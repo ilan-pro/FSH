@@ -52,6 +52,9 @@ La note finale tiendra compte des éléments suivants :
 
 # Cours
 
+* [cours nº1](Cours/cours_1.pdf) : introduction, rôle d'un système
+  d'exploitation, notions de processus, de fichier, d'appel système
+
 # TD et TP
 
 # Projet
