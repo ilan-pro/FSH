@@ -11,6 +11,15 @@ git pull
 (ce mode de clonage nécessite une authentification par le protocole `ssh`
 et non `http`, cf TP nº1)
 
+Autre option, plus compliquée mais ouvrant plus de perspectives :
+commencer par faire un `fork` de ce dépôt depuis l'interface `gitlab`, ce
+qui va créer un dépôt dont vous serez propriétaire, puis cloner ce
+nouveau dépôt. Vous pourrez alors modifier votre dépôt comme bon vous
+semble (notamment y ajouter votre travail personnel), tout en gardant la
+possibilité d'y intégrer les évolutions futures du dépôt du cours par un
+simple clic sur le bouton `update fork` qui apparaîtra le cas échéant.
+
+
 # Équipe pédagogique
 
 | | | |
@@ -55,7 +64,19 @@ La note finale tiendra compte des éléments suivants :
 * [cours nº1](Cours/cours_1.pdf) : introduction, rôle d'un système
   d'exploitation, notions de processus, de fichier, d'appel système
 
+* cours nº2 : `open` et `close`;
+  tables des inoeuds (virtuels), des fichiers ouverts, des descripteurs;
+  rôle des compteurs;
+  flags et opérateurs logiques binaires;
+  pointeur de position courante;
+  `read`, `write` (à suivre au prochain cours);
+  [slides](Cours/cours_2.pdf) + [programmes](Cours/code-cours-2) présentés en cours
+
+
 # TD et TP
+
+* [énoncé de TP nº1](TP/TP1/tp1.pdf) : `ssh` et rappels
+
 
 # Projet
 
