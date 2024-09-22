@@ -34,7 +34,7 @@ simple clic sur le bouton `update fork` qui apparaîtra le cas échéant.
 # Suggestions pour réviser le C
 
 * _Modern C_, de Jens Gustedt, 2020 (Manning Publications), [disponible en
-  ligne](https://modernc.gforge.inria.fr/)
+  ligne](https://gustedt.gitlabpages.inria.fr/modern-c/)
 * [un tutoriel qui a une bonne
   tête](https://zestedesavoir.com/tutoriels/755/le-langage-c-1/); voir la
   section II en particulier.
