@@ -72,10 +72,16 @@ La note finale tiendra compte des éléments suivants :
   `read`, `write` (à suivre au prochain cours);
   [slides](Cours/cours_2.pdf) + [programmes](Cours/code-cours-2) présentés en cours
 
+* cours nº3 : retour sur `read` et `write`; `lseek`; les entrés/sorties
+  via la bibliothèque standard;
+  [slides](Cours/cours_3.pdf) +
+  [programmes](Cours/code-cours-3) présentés en cours
+
 
 # TD et TP
 
 * [énoncé de TP nº1](TP/TP1/tp1.pdf) : `ssh` et rappels
+* [énoncé de TP nº2](TP/TP2/tp2.md) : entrées-sorties
 
 
 # Projet
