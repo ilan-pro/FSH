@@ -14,9 +14,9 @@ int main(int argc, char **argv) {
     return 1;
   }
 
-  /* ouverture en écriture, avec création si nécessaire du fichier de nom
-   * argv[2]; le programme doit terminer avec la valeur de retour 1 en
-   * cas d'erreur.  */
+  /* ouverture en écriture, avec création si nécessaire ou troncage du contenu
+   * sinon, du fichier de nom argv[2]; le programme doit terminer avec la valeur
+   * de retour 1 en cas d'erreur.  */
 
   // TODO : compléter
 
