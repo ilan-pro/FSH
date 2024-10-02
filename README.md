@@ -82,6 +82,7 @@ La note finale tiendra compte des éléments suivants :
 
 * [énoncé de TP nº1](TP/TP1/tp1.pdf) : `ssh` et rappels
 * [énoncé de TP nº2](TP/TP2/tp2.md) : entrées-sorties
+* [énoncé de TP nº3](TP/TP3/tp3.md) : entrées-sorties, encore
 
 
 # Projet
