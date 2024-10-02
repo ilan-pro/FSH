@@ -76,7 +76,7 @@ compare_with_sed() {
 }
 
 check_valgrind() {
-    echo -n "Running \`valgrind --leak-check=full \`echo "blablbbla" | ./my-sed $@\`... "
+    echo -n "Running \`echo \"blablabbla\" | valgrind --leak-check=full ./my-sed $@\`... "
     echo "blablabbla" | valgrind --leak-check=full --error-exitcode=33 ./my-sed $@ >/dev/null 2>&1
     RES=$?
     if [ "$RES" -eq 33 ]; then

@@ -69,7 +69,7 @@ compare_with_tr() {
 }
 
 check_valgrind() {
-    echo -n "Running \`valgrind --leak-check=full \`echo "blablabbla" | ./my-tr $@\`... "
+    echo -n "Running \`echo \"blablabbla\" | valgrind --leak-check=full ./my-tr $@\`... "
     echo "blablabbla" | valgrind --leak-check=full --error-exitcode=33 ./my-tr $@ >/dev/null 2>&1
     RES=$?
     if [ "$RES" -eq 33 ]; then
