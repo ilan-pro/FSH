@@ -27,7 +27,7 @@ compare_with_sed() {
     else
     	yes blablaaabla | head -c 5000 > "$TMP_MY"
     	cp "$TMP_MY" "$TMP_SYS"
- 
+
     	echo -n "Running \`./my-sed $@ fic\`... "
     	./my-sed $@ "$TMP_MY" 2>/dev/null
    	RES_MY=$?
@@ -37,10 +37,10 @@ compare_with_sed() {
     	else
 	    #sed -i '' s/$2//g "$TMP_SYS"  2>/dev/null #version bsd
 	    sed -i s/$2//g "$TMP_SYS"  2>/dev/null
-    	fi 
-    fi	
+    	fi
+    fi
     local RES_SYS=$?
-	
+
     if [ $RES_SYS -ne 0 ]; then
         RES_SYS=1
     fi
@@ -77,7 +77,7 @@ compare_with_sed() {
 
 check_valgrind() {
     echo -n "Running \`valgrind --leak-check=full \`echo "blablbbla" | ./my-sed $@\`... "
-    valgrind --leak-check=full --error-exitcode=33 echo "blablabbla" | ./my-sed $@ >/dev/null 2>&1
+    echo "blablabbla" | valgrind --leak-check=full --error-exitcode=33 ./my-sed $@ >/dev/null 2>&1
     RES=$?
     if [ "$RES" -eq 33 ]; then
         echo_red "Failed"
@@ -85,7 +85,7 @@ check_valgrind() {
         echo "OK"
     fi
 }
-    
+
 INPUT=
 compare_with_sed "a" "i"
 INPUT="delete"
@@ -101,4 +101,3 @@ if command -v valgrind >/dev/null 2>&1; then
 else
     echo "Could not run memory leaks check: please install valgrind on this computer if you can, otherwise ignore this line."
 fi
-
