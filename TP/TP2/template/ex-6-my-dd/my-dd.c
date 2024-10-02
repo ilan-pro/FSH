@@ -59,7 +59,7 @@ int main(int argc, char **argv) {
 
   /* TODO [B] : si l'option -i était présente, ouvrir le fichier
    * correspondant en lecture seule, et mettre le descripteur de fichier
-   * obtenu dans in_file.
+   * obtenu dans in_fd.
    * Ne pas oublier de tester s'il y a eu une erreur. */
 
   /* TODO [B] : si l'option -o était présente, ouvrir le fichier
