@@ -74,7 +74,7 @@ chmod u+rwx .
   echo -n "Running ./cree-ou-ecrase on existing file... "
   one_test ./cree-ou-ecrase tutu $fic_existant 0 tutu
   echo -n "Running ./cree-ou-ecrase on non accessible file... "
-  one_test ./cree tutu $fic_inaccessible 1
+  one_test ./cree-ou-ecrase tutu $fic_inaccessible 1
   clean
 
 ## test ajoute
@@ -84,7 +84,7 @@ chmod u+rwx .
   echo -n "Running ./ajoute on existing file... "
   one_test ./ajoute tutu $fic_existant 0 turlututu
   echo -n "Running ./ajoute on non accessible file... "
-  one_test ./cree tutu $fic_inaccessible 1
+  one_test ./ajoute tutu $fic_inaccessible 1
   clean
 
 ## test cree-ou-ajoute
@@ -94,5 +94,5 @@ chmod u+rwx .
   echo -n "Running ./cree-ou-ajoute on existing file... "
   one_test ./cree-ou-ajoute tutu $fic_existant 0 turlututu
   echo -n "Running ./cree-ou-ajoute on non accessible file... "
-  one_test ./cree tutu $fic_inaccessible 1
+  one_test ./cree-ou-ajoute tutu $fic_inaccessible 1
   clean
