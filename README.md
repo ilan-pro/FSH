@@ -77,6 +77,12 @@ La note finale tiendra compte des éléments suivants :
   [slides](Cours/cours_3.pdf) +
   [programmes](Cours/code-cours-3) présentés en cours
 
+* cours nº4 : duplication de descripteurs et redirections; 
+  différentes stratégies pour stocker les fichiers; inoeuds (physiques); 
+  consultation avec `stat` et dérivés;
+  [slides](Cours/cours_4.pdf) +
+  [programme](Cours/code-cours-4) présenté en cours
+
 
 # TD et TP
 
