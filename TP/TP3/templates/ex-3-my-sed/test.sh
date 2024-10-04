@@ -23,7 +23,7 @@ compare_with_sed() {
 	rm -rf NONEXISTENT_FILE
 	./my-sed $@ "NONEXISTENT_FILE" 2>/dev/null
     	RES_MY=$?
-	sed -i s/$1/$2/g "NONEXISTENT_FILE" 2>/dev/null
+	sed -i -e "s/$1/$2/g" "NONEXISTENT_FILE" 2>/dev/null
     else
     	yes blablaaabla | head -c 5000 > "$TMP_MY"
     	cp "$TMP_MY" "$TMP_SYS"
@@ -32,11 +32,12 @@ compare_with_sed() {
     	./my-sed $@ "$TMP_MY" 2>/dev/null
    	RES_MY=$?
     	if [ -z "$INPUT" ]; then
-	    #sed -i '' s/$1/$2/g "$TMP_SYS" 2>/dev/null #version bsd
-	    sed -i s/$1/$2/g "$TMP_SYS" 2>/dev/null
+            # option -e (superflue) ajoutée pour assurer la compatibilité 
+            # avec la version bsd (qui interprétera l'option comme argument
+            # positionnel après l'option -i...)
+	    sed -i -e "s/$1/$2/g" "$TMP_SYS" 2>/dev/null
     	else
-	    #sed -i '' s/$2//g "$TMP_SYS"  2>/dev/null #version bsd
-	    sed -i s/$2//g "$TMP_SYS"  2>/dev/null
+	    sed -i -e "s/$2//g" "$TMP_SYS"  2>/dev/null
     	fi
     fi
     local RES_SYS=$?
@@ -77,7 +78,7 @@ compare_with_sed() {
 
 check_valgrind() {
     echo -n "Running \`echo \"blablabbla\" | valgrind --leak-check=full ./my-sed $@\`... "
-    echo "blablabbla" | valgrind --leak-check=full --error-exitcode=33 ./my-sed $@ >/dev/null 2>&1
+    valgrind --leak-check=full --error-exitcode=33 ./my-sed $@ >/dev/null 2>&1
     RES=$?
     if [ "$RES" -eq 33 ]; then
         echo_red "Failed"
