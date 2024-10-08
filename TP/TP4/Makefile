@@ -14,5 +14,6 @@ tarexamples :
 	rm titi grosminet meme
 	head -c 3072 titi.tar >| sans_zeros.tar
 	head -c 2602 titi.tar >| tronque.tar
-	mv titi.tar sans_zeros.tar tronque.tar /tmp
-	(cd templates; tar cf tarutils.tar tarutils.c tarutils.h ; mv tarutils.tar /tmp)
+	mkdir -p /tmp/$$USER
+	mv titi.tar sans_zeros.tar tronque.tar /tmp/$$USER
+	(cd templates; tar cf tarutils.tar tarutils.c tarutils.h ; mv tarutils.tar /tmp/$$USER)

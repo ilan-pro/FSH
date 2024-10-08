@@ -97,7 +97,7 @@ Déplacez-vous ensuite dans le répertoire `TP/TP4/` du dépôt git, et
 exécutez la commande `make init`.  Ceci crée :
   * un répertoire `TP/TP4/work/` contenant déjà une partie du code, que
     vous devrez compléter.
-  * plusieurs fichiers d'archive dans `/tmp` :
+  * plusieurs fichiers d'archive dans `/tmp/<USER_NAME>` :
       - deux archives valides, `titi.tar` contenant 3 petits fichiers
         (chacun tenant sur un bloc) et `tarutils.tar` contenant 2 plus
         gros fichiers;
@@ -109,13 +109,13 @@ Consultez l'archive `titi.tar`, par exemple à l'aide de `hexdump -C`,
 pour bien en comprendre la structure.
 
 Vous devrez compléter les fichiers `.c` fournis dans le répertoire
-`TP/TP4/work/`, et effectuer des tests dans `/tmp` : la manipulation
-d'une archive, notamment l'extraction,  peut écraser des fichiers déjà
-présents. De plus vos premiers essais peuvent mal se comporter (par
-exemple créer des flopées de fichiers aux noms cabalistiques). Il est
-donc **impératif** de faire vos essais dans un répertoire de test ne
-contenant rien d'important, en particulier vos fichiers C. Se placer dans
-`/tmp` est un bon choix.
+`TP/TP4/work/`, et effectuer des tests dans `/tmp/<USER_NAME>` : la
+manipulation d'une archive, notamment l'extraction, peut écraser des
+fichiers déjà présents. De plus vos premiers essais peuvent mal se
+comporter (par exemple créer des flopées de fichiers aux noms
+cabalistiques). Il est donc **impératif** de faire vos essais dans un
+répertoire de test ne contenant rien d'important, en particulier vos
+fichiers C. Se placer dans un sous-répertoire de `/tmp` est un bon choix.
 
 
 **Tous les accès en lecture/écriture aux différents fichiers manipulés
