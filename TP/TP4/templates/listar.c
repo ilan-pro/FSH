@@ -42,7 +42,8 @@ int main(int argc, char **argv){
 
     /* TODO : calcul des droits, de la taille et du nombre de blocs occupés --
      * ce nombre est la partie entière supérieure de filesize / BLOCKSIZE, 
-     * c'est-à-dire (filesize + BLOCKSIZE - 1) >> BLOCKBITS*/
+     * c'est-à-dire (filesize + BLOCKSIZE - 1) / SIZE 
+*/
 
 
     /* affichage des informations de l'entête : droits en octal, taille 
