@@ -59,6 +59,14 @@ La note finale tiendra compte des éléments suivants :
 * examen écrit
 
 
+### QCM nº1 
+
+Le premier QCM aura lieu durant le CM nº7 (23 octobre 2024). Il portera
+sur l'intégralité des cours 1 à 5.
+
+Répartition dans les deux amphis à venir.
+
+
 # Cours
 
 * [cours nº1](Cours/cours_1.pdf) : introduction, rôle d'un système
