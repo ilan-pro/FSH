@@ -81,7 +81,11 @@ La note finale tiendra compte des éléments suivants :
   différentes stratégies pour stocker les fichiers; inoeuds (physiques); 
   consultation avec `stat` et dérivés;
   [slides](Cours/cours_4.pdf) +
-  [programme](Cours/code-cours-4) présenté en cours
+  [programmes](Cours/code-cours-4) présentés en cours
+
+* cours nº5 : organisation du SGF; ouverture et parcours de répertoires;
+  [slides](Cours/cours_5.pdf) +
+  [programmes](Cours/code-cours-5) présentés en cours
 
 
 # TD et TP
@@ -89,6 +93,7 @@ La note finale tiendra compte des éléments suivants :
 * [énoncé de TP nº1](TP/TP1/tp1.pdf) : `ssh` et rappels
 * [énoncé de TP nº2](TP/TP2/tp2.md) : entrées-sorties
 * [énoncé de TP nº3](TP/TP3/tp3.md) : entrées-sorties, encore
+* [énoncé de TP nº4](TP/TP4/tp4.md) : manipulation d'archives `tar`
 
 
 # Projet
