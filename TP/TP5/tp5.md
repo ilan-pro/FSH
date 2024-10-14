@@ -52,7 +52,7 @@ Attention à faire appel à `lstat()` et non `stat()` (et compiler *sans*
 
 
 
-#### Exercice 2 : pwd
+#### Exercice 2 : `pwd`
 
 Le but final de cet exercice est d'écrire un programme affichant la
 référence absolue du répertoire courant à l'instar de la commande `pwd
