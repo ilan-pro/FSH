@@ -4,7 +4,7 @@ TP nº5 : manipulation d'archives tar(suite) - le système de gestion des fichie
 #### Pour commencer
 Faites `make init`. Cela vous permettra, pour l'exo 1, de récupérer
 les fichiers modifiés par rapport au TP 4 et installera dans le
-répertoire `/tmp/<votrelogin>/test` (où <votrelogin> est votre nom de
+répertoire `/tmp/<votrelogin>/test` (où `<votrelogin>` est votre nom de
 login) une arborescence qui vous premettra de tester la commande `mktar`.
 Pour l'exercice 2, rien n'est fourni.
 
