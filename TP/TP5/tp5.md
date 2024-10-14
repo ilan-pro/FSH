@@ -2,35 +2,41 @@ TP nº5 : manipulation d'archives tar(suite) - le système de gestion des fichie
 =====================
 
 #### Pour commencer
-Faites `make init`. Cela vous donnera, pour l'exo 1, les fichiers qui changent par rapport au TP 4 et installera dans le répertoire `/tmp/votrelogin/test` une arborescence qui vous premettra de tester la commande `mktar`.
+Faites `make init`. Cela vous permettra, pour l'exo 1, de récupérer
+les fichiers modifiés par rapport au TP 4 et installera dans le
+répertoire `/tmp/<votrelogin>/test` (où <votrelogin> est votre nom de
+login) une arborescence qui vous premettra de tester la commande `mktar`.
 Pour l'exercice 2, rien n'est fourni.
 
 #### Exercice 1 : 
 Dans cet exercice, nous allons reprendre la commande `mktar` en la rendant plus générale.
 
 
-La façon d'appeler est toujours la même:
+La ligne de commande reste la même:
 
 ```bash
 mktar arc.tar f1 f2 ....    # archive f1, f2, ... dans arc.tar
 
 ```
 
-Mais les fichiers `f1`, `f2`, ... ne sont plus forcèment des fichiers réguliers:
+Mais les fichiers `f1`, `f2`, ... ne sont plus forcément des fichiers réguliers:
 
 * pour un fichier régulier, on l'archive comme dans le TP4.
 * pour un lien symbolique, on devra aussi  mettre dans l'entête le nom du fichier pointé (champ `linkname`). Il faudra utiliser la fonction `readlink` pour le trouver.
     Attention le type qu'il faut mettre dans `typeflag` est `SYMTYPE` et pas `LNKTYPE`. (Dans le nouveau fichier `tarutils.h`, les commentaires ont été modifiés pour que ce soit clair.)
       Il n'y aura que le bloc d'entête à écrire.
 * pour un tube (fifo), là aussi on ne met que le fichier d'en-tête. (Un tube est un fichier de taille limité qui sert à la communication entre processus, nous verrons cela plus tard en cours.)
-* pour un répertoire, on listera les fichiers, liens symboliques et tubes  contenus dans le répertoire.
+* pour un répertoire, on archivera les fichiers, liens symboliques et tubes  contenus dans le répertoire.
       Il n'y aura pas de récursivité, i.e. les sous-répertoires dans  le répertoire sont ignorés.
 
 
-Si on rencontre un fichier qui ne peut être archivé, on se contente d'un commentaire en sortie erreur et on continue l'archivage.
+Lorsqu'on rencontre un fichier qui ne peut être archivé, on se contente
+d'un commentaire sur la sortie erreur et on continue l'archivage.
 
-
- Pour ne pas suivre les liens symboliques pour récupérer la structure `stat`, il faut utiliser `lstat`. Il faut compiler sans `std=c99` pour pouvoir l'utiliser.
+Attention, lorsqu'on archive un lien symbolique, on a besoin de
+récupérer les informations sur le lien et non sur le fichier
+pointé. Il faudra donc faire appel à `lstat` et non `stat` (compiler
+sans `std=c99` pour pouvoir l'utiliser).
 
 
 
