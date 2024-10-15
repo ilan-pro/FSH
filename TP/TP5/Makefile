@@ -1,4 +1,4 @@
-SHELL=/usr/bin/bash
+SHELL=/bin/bash
 
 .PHONY: init rep-test
 
