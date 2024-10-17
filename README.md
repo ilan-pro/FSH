@@ -95,6 +95,10 @@ Répartition dans les deux amphis à venir.
   [slides](Cours/cours_5.pdf) +
   [programmes](Cours/code-cours-5) présentés en cours
 
+* cours nº6 : organisation du SGF, suite et fin; début du cours sur les
+  processus; [slides](Cours/cours_6.pdf) +
+  [programmes](Cours/code-cours-6) présentés en cours
+
 
 # TD et TP
 
@@ -102,6 +106,7 @@ Répartition dans les deux amphis à venir.
 * [énoncé de TP nº2](TP/TP2/tp2.md) : entrées-sorties
 * [énoncé de TP nº3](TP/TP3/tp3.md) : entrées-sorties, encore
 * [énoncé de TP nº4](TP/TP4/tp4.md) : manipulation d'archives `tar`
+* [énoncé de TP nº5](TP/TP5/tp5.md) : manipulation d'archives `tar`, suite
 
 
 # Projet
