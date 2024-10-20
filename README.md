@@ -113,3 +113,5 @@ Répartition dans les deux amphis à venir.
 
 # Sujets d'examen
 
+* [échantillon de questions de QCM](echantillon-qcm.pdf)
+
