@@ -78,7 +78,7 @@ int test_append () {
   
   int ret = 1;
   
-  if ((*p_string_append)(str, "01234") == 0) ret = 0;
+  if ((*p_string_append)(str, "01234") != 0) ret = 0;
   if (str->capacity != 20) ret = 0;
   if (str->length != 15) ret = 0;
   if (strcmp(str->data, "012345678901234") != 0) ret = 0;
