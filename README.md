@@ -99,6 +99,10 @@ Répartition dans les deux amphis à venir.
   processus; [slides](Cours/cours_6.pdf) +
   [programmes](Cours/code-cours-6) présentés en cours
 
+* cours nº7 : processus, suite; [slides](Cours/cours_7.pdf) +
+  [programmes](Cours/code-cours-7) présentés en cours (+ un exemple
+  encore plus simple de `fork`)
+
 
 # TD et TP
 
@@ -110,6 +114,9 @@ Répartition dans les deux amphis à venir.
 
 
 # Projet
+
+Le [sujet du projet](Projet/projet.md) est disponible.
+
 
 # Sujets d'examen
 
