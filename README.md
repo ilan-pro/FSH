@@ -117,6 +117,10 @@ Répartition dans les deux amphis à venir.
 
 Le [sujet du projet](Projet/projet.md) est disponible.
 
+Par ailleurs, nous avons ouvert un [serveur
+discord](https://discord.gg/DsAWzppbCG) avec en particulier un salon
+dédié aux questions concernant le projet, et un autre pour faciliter les
+prises de contact si vous avez du mal à constituer une équipe.
 
 # Sujets d'examen
 
