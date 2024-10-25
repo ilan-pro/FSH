@@ -284,8 +284,8 @@ valeur de retour, qui est considérée comme valant 255 au cas où un appel
 
 Le projet est à faire par équipes de 3 étudiants, exceptionnellement 2 si
 une situation particulière le justifie. La composition de chaque équipe
-devra être envoyée par mail à Dominique Poulalhon avec pour sujet [SY5]
-équipe projet **au plus tard le 10 novembre 2024**, avec copie à chaque
+devra être envoyée par mail à Dominique Poulalhon avec pour sujet `[SY5]
+équipe projet` **au plus tard le 10 novembre 2024**, avec copie à chaque
 membre de l'équipe.
 
 Chaque équipe doit créer un dépôt `git` **privé** sur le [gitlab de
@@ -335,7 +335,8 @@ intermédiaires seront évalués par des tests automatiques.
 
 ### Premier jalon jeudi 28 novembre
 
-La version à évaluer devra être spécifiée à l'aide du tag `jalon-1`. 
+La version à évaluer devra être spécifiée à l'aide du tag `jalon-1` sur
+la branche `main`. 
 
 Pour créer le tag : se placer sur le commit à étiqueter et faire :
 ```
