@@ -56,8 +56,6 @@
 - FERNANDES Anthony
 - ZITOUNI Yacob
 
-**fichier AUTHORS.md incomplet**
-
 ### Équipe 11
 - HANON Marylou
 - HUSSON Eléacine
@@ -187,15 +185,37 @@
 - CHÈZE Rémi
 - JIN Christophe
 
-**pas de fichier AUTHORS.md**
-
 ### Équipe 32
-- CHOUCROUN Gabriel
 - ANDRAOS Juddy
+- CHOUCROUN Gabriel
 - GWODEM TAMO Sandra Loriane
 
 ### Équipe 33
 - GRITAR Georgel
 - GUAN Olivier
 - RAMANANAHERISOA Fy-Tommy
+
+### Équipe 34
+- BETRAOUI Mohamed Ali
+- HADDAG Amayas
+- HAMMOUCHE Nida
+
+### Équipe 35
+- GBAGUIDI Nerval
+- MOUSSA Nidhal
+- PIGET Mathéo
+
+### Équipe 36
+- ALVES VIEIRA Lionel
+- COULOMBEL Corentin
+- MÉLART Arthur
+
+**fichier AUTHORS.md incomplet**
+
+### Équipe 37
+- LE ROY Julie
+- LES BIENS Cédric
+- LOTHSAVAN Hugo
+
+**pas de fichier AUTHORS.md**
 
