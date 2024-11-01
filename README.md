@@ -46,6 +46,7 @@ il est facile de s'y perdre...
 
 * _UNIX, Programmation et communication_, J.-M. Rifflet et J.-B. Yunès, Dunod
 * _Modern Operating Systems_, A. Tanenbaum, Pearson; les 2e et 3e éditions ont été traduites en français (_Systèmes d'exploitation_)
+* [The Linux Programming Interface](https://man7.org/tlpi/), Michael Kerrisk
 * [le manuel de POSIX](https://pubs.opengroup.org/onlinepubs/9699919799/)
 
 
@@ -116,6 +117,8 @@ Répartition dans les deux amphis à venir.
 # Projet
 
 Le [sujet du projet](Projet/projet.md) est disponible.
+
+[Liste des équipes](Projet/equipes.md) déclarées au 1er novembre.
 
 Par ailleurs, nous avons ouvert un [serveur
 discord](https://discord.gg/DsAWzppbCG) avec en particulier un salon
