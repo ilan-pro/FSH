@@ -1,6 +1,6 @@
 ### Équipe 1
 - TEZEMPA CHOUNGFAK Sylvain
-- TOMAS Andrea
+- TOMAS Andréa
 - XU Nic
 
 **pas de fichier AUTHORS.md**
@@ -188,4 +188,14 @@
 - JIN Christophe
 
 **pas de fichier AUTHORS.md**
+
+### Équipe 32
+- CHOUCROUN Gabriel
+- ANDRAOS Juddy
+- GWODEM TAMO Sandra Loriane
+
+### Équipe 33
+- GRITAR Georgel
+- GUAN Olivier
+- RAMANANAHERISOA Fy-Tommy
 
