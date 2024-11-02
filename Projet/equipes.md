@@ -10,8 +10,6 @@
 - SAGIR Emirhan-Faruk
 - YU Mina
 
-**pas de dépôt**
-
 ### Équipe 3
 - ARKAM Rayane
 - GEBRAYEL Maroun
@@ -74,8 +72,6 @@
 - OULJIHATE Ayoub
 - SAHALI Rayane
 - ZEKHNINE Yani
-
-**pas de dépôt**
 
 ### Équipe 14
 - PERY Camille
@@ -161,7 +157,7 @@
 - ROUSSAT Tristan
 - ZHU Antoine
 
-**pas de dépôt**
+**fichier AUTHORS.md incomplet**
 
 ### Équipe 28
 - BLAVY Clément
@@ -216,6 +212,4 @@
 - LE ROY Julie
 - LES BIENS Cédric
 - LOTHSAVAN Hugo
-
-**pas de fichier AUTHORS.md**
 
