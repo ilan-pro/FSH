@@ -105,8 +105,6 @@
 - FADILI Ilias
 - FROMENT Erwan
 
-**pas de dépôt**
-
 ### Équipe 20
 - BAS Loussine
 - MANGEANT SASTRE CAMPOS Amaël
@@ -135,8 +133,6 @@
 - LIU Shiqi
 - MA Qian En
 - OUESLATI Said
-
-**pas de dépôt**
 
 ### Équipe 25
 - AFONSO Julien
@@ -212,4 +208,21 @@
 - LE ROY Julie
 - LES BIENS Cédric
 - LOTHSAVAN Hugo
+
+### Équipe 38
+- ADJLOUT Amazigh
+- MAISSOURADZE Nicolas
+- PHAM NGUYEN Gia Loc
+
+### Équipe 39
+- COSTA Mathieu
+- LECOMTE Marius
+- LEVEQUE Ulysse
+
+**fichier AUTHORS.md incomplet**
+
+### Équipe 40
+- BENSAAD Taha
+- CHETOUANI Bilal
+- FERNEZ Dimitri
 
