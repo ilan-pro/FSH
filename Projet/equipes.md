@@ -31,6 +31,7 @@
 - FISCHER Gabriel
 - JOHNSON Michaël
 - POPOVIĆ Mila
+- WITZMANN Kai
 
 ### Équipe 7
 - LIN Léo
@@ -134,6 +135,8 @@
 - MA Qian En
 - OUESLATI Said
 
+**pas de fichier AUTHORS.md**
+
 ### Équipe 25
 - AFONSO Julien
 - DAS Sagor
@@ -192,6 +195,8 @@
 - HADDAG Amayas
 - HAMMOUCHE Nida
 
+**fichier AUTHORS.md incomplet**
+
 ### Équipe 35
 - GBAGUIDI Nerval
 - MOUSSA Nidhal
@@ -225,4 +230,35 @@
 - BENSAAD Taha
 - CHETOUANI Bilal
 - FERNEZ Dimitri
+
+### Équipe 41
+- CHEN Michel
+- HUYNH Minh Van Claude
+- ROIG Lucas
+
+**pas de dépôt**
+
+### Équipe 42
+- ABICHOU Roua
+- MERAH Darina
+- UPRETY Dikesh
+
+**fichier AUTHORS.md incomplet**
+
+### Équipe 43
+- BENREZZOUG Marwane
+- BOUCHEKIF Jawad
+- BUISINE Enzo
+
+**pas de dépôt**
+
+### Équipe 44
+- NGUYEN Valentin Even
+- NOS Melvyn
+- PARAT Nicolas
+
+### Équipe 45
+- AZOULAY Ethan
+- DJABELA Maïlys
+- ZHENG Henry
 
