@@ -84,7 +84,7 @@
 - DECK Arthur
 - LABBI Noaym
 
-**fichier AUTHORS.md incomplet**
+**fichier AUTHORS.md vide**
 
 ### Équipe 16
 - BOUCHARAB Amine
@@ -135,7 +135,7 @@
 - MA Qian En
 - OUESLATI Said
 
-**pas de fichier AUTHORS.md**
+**pas de fichier AUTHORS.md** (mal nommé)
 
 ### Équipe 25
 - AFONSO Julien
@@ -173,7 +173,7 @@
 - BENCHEIK Ilias
 - LOUNICI Sifaks
 
-**fichier AUTHORS.md incomplet**
+**fichier AUTHORS.md vide**
 
 ### Équipe 31
 - BEALES Archie
@@ -257,8 +257,20 @@
 - NOS Melvyn
 - PARAT Nicolas
 
+** dépôt vide**
+
 ### Équipe 45
 - AZOULAY Ethan
 - DJABELA Maïlys
 - ZHENG Henry
+
+### Équipe 46
+- CAMELIN Marie
+- PINARD Clément
+- ZHAO Julien
+
+### Équipe 47
+- BENMALEK Majda
+- HOUNAS Sabrina
+- MUSHTAQ Amenah
 
