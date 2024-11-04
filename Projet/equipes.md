@@ -257,7 +257,7 @@
 - NOS Melvyn
 - PARAT Nicolas
 
-** dépôt vide**
+**dépôt vide**
 
 ### Équipe 45
 - AZOULAY Ethan
