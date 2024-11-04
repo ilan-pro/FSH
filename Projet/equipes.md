@@ -250,8 +250,6 @@
 - BOUCHEKIF Jawad
 - BUISINE Enzo
 
-**pas de dépôt**
-
 ### Équipe 44
 - NGUYEN Valentin Even
 - NOS Melvyn
