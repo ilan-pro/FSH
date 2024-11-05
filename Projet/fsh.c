@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
+#include <sys/types.h>
 
 run_commande(){
     while(1){
@@ -21,7 +22,11 @@ run_commande(){
         }while(cut);
 
         cmd_splitted[cp] = NULL;
-        execvp(cmd_splitted[0],cmd_splitted);
+        pid_t son_processus = fork();
+        if(son_processus == 0){
+            execvp(cmd_splitted[0],cmd_splitted);
+        }
+        wait(NULL);
         free(rep);
         for(int i=0;i<cp;i++){
             // on libère tous les bufs alloué dans le do while
