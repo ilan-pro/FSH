@@ -1,5 +1,5 @@
-ksh:
-	gcc ksh.c -o ksh -lreadline
+fsh:
+	gcc fsh.c -o fsh -lreadline
 
 clean: 
-	rm -f ksh 
+	rm -f fsh 
