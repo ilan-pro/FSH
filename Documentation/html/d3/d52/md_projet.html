@@ -1,0 +1,252 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>FSH - Projet Système: Projet : programmation d&#39;un interpréteur de commandes</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">FSH - Projet Système
+   </div>
+   <div id="projectbrief">Projet de la matière Sy5 - U Paris Cité</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "../../search",false,'Recherche','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="../../menudata.js"></script>
+<script type="text/javascript" src="../../menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('../../',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+</div><!-- top -->
+<div class="PageDoc"><div class="header">
+  <div class="headertitle">
+<div class="title">Projet : programmation d'un interpréteur de commandes </div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><p><b>L3 Informatique - Système</b></p>
+<p>Il est important de bien lire le sujet jusqu'au bout et de bien y réfléchir avant de se lancer dans la programmation du projet.</p>
+<h1><a class="anchor" id="autotoc_md1"></a>
+Sujet : &lt;tt&gt;fsh&lt;/tt&gt;, un petit shell avec des boucles &lt;tt&gt;for&lt;/tt&gt;</h1>
+<p>Le but du projet est de programmer un interpréteur de commandes (aka <em>shell</em>) interactif reprenant quelques fonctionnalités plus ou moins classiques des shells usuels : outre la possibilité d'exécuter toutes les commandes externes, <code>fsh</code> devra proposer quelques commandes internes, permettre la redirection des flots standard ainsi que les combinaisons par tube, adapter le prompt à la situation, et supporter les structures conditionnelles et un certain type particulier de boucles.</p>
+<p>La gestion des tâches n'est pas requise : tous les processus lancés à partir de votre shell le seront en premier-plan.</p>
+<p>Plus précisément, <code>fsh</code> doit respecter les prescriptions suivantes :</p>
+<h2><a class="anchor" id="autotoc_md2"></a>
+Commandes externes</h2>
+<p><code>fsh</code> peut exécuter toutes les commandes externes, avec ou sans arguments, en tenant compte de la variable d'environnement <code>PATH</code>.</p>
+<h2><a class="anchor" id="autotoc_md3"></a>
+Commandes internes</h2>
+<p><code>fsh</code> possède (au moins) les commandes internes listées ci-dessous. Elles ont comme valeur de retour 0 en cas de succès (à l'exception d'<code>exit</code>, naturellement), et 1 en cas d'échec.</p>
+<h4><a class="anchor" id="autotoc_md4"></a>
+&lt;tt&gt;pwd&lt;/tt&gt;</h4>
+<p>Affiche la référence physique absolue du répertoire de travail courant.</p>
+<h4><a class="anchor" id="autotoc_md5"></a>
+&lt;tt&gt;cd [REF | -]&lt;/tt&gt;</h4>
+<p>Change de répertoire de travail courant, qui devient le répertoire <code>REF</code> (s'il s'agit d'une référence valide), le précédent répertoire de travail si le paramètre est <code>-</code>, ou <code>$HOME</code> en l'absence de paramètre.</p>
+<h4><a class="anchor" id="autotoc_md6"></a>
+&lt;tt&gt;exit [VAL]&lt;/tt&gt;</h4>
+<p>Termine le processus <code>fsh</code> avec comme valeur de retour <code>VAL</code> (ou par défaut la valeur de retour de la dernière commande exécutée).</p>
+<p>Lorsqu'il atteint la fin de son entrée standard (ie si l'utilisateur saisit <code>ctrl-D</code> en mode interactif), <code>fsh</code> se comporte comme si la commande interne <code>exit</code> (sans paramètre) avait été saisie.</p>
+<h4><a class="anchor" id="autotoc_md7"></a>
+&lt;tt&gt;ftype REF&lt;/tt&gt;</h4>
+<p>Affiche le type du fichier de référence <code>REF</code> (s'il s'agit d'une référence valide) : <code>directory</code>, <code>regular file</code> , <code>symbolic link</code>, <code>named pipe</code>, <code>other</code>.</p>
+<h2><a class="anchor" id="autotoc_md8"></a>
+Redirections vers des fichiers</h2>
+<p><code>fsh</code> gère les redirections suivantes :</p>
+<ul>
+<li><code>CMD &lt; FIC</code> : redirection de l'entrée standard de la commande <code>CMD</code> sur le fichier (ordinaire, tube nommé...) <code>FIC</code></li>
+<li><code>CMD &gt; FIC</code> : redirection de la sortie standard de la commande <code>CMD</code> sur le fichier (ordinaire, tube nommé...) <code>FIC</code> <b>sans écrasement</b> (ie, échoue si <code>FIC</code> existe déjà)</li>
+<li><code>CMD &gt;| FIC</code> : redirection de la sortie standard de la commande <code>CMD</code> sur le fichier (ordinaire, tube nommé...) <code>FIC</code> <b>avec écrasement</b> éventuel</li>
+<li><code>CMD &gt;&gt; FIC</code> : redirection de la sortie standard de la commande <code>CMD</code> sur le fichier (ordinaire, tube nommé...) <code>FIC</code> <b>en concaténation</b></li>
+<li><code>CMD 2&gt; FIC</code> : redirection de la sortie erreur standard de la commande <code>cmd</code> sur le fichier (ordinaire, tube nommé...) <code>FIC</code> <b>sans écrasement</b> (ie, échoue si <code>FIC</code> existe déjà)</li>
+<li><code>CMD 2&gt;| FIC</code> : redirection de la sortie erreur standard de la commande <code>CMD</code> sur le fichier (ordinaire, tube nommé...) <code>FIC</code> <b>avec écrasement</b> éventuel</li>
+<li><code>CMD 2&gt;&gt; FIC</code> : redirection de la sortie erreur standard de la commande <code>CMD</code> sur le fichier (ordinaire, tube nommé...) <code>FIC</code> <b>en concaténation</b></li>
+</ul>
+<p>Les espaces de part et d'autre des symboles de redirection sont requis.</p>
+<p>En cas d'échec d'une redirection, la ligne de commande saisie n'est pas exécutée, et la valeur de retour est 1.</p>
+<h2><a class="anchor" id="autotoc_md9"></a>
+Hiérarchie des lignes de commande</h2>
+<h3><a class="anchor" id="autotoc_md10"></a>
+Commandes simples</h3>
+<p>Une <b>commande simple</b> est une ligne de commande exécutant une unique commande, interne ou externe, avec ou sans redirection.</p>
+<h3><a class="anchor" id="autotoc_md11"></a>
+Pipelines</h3>
+<p>Si <code>CMD_1</code> et <code>CMD_2</code> sont deux commandes simples, <code>CMD_1 | CMD_2</code> provoque l'exécution <b>simultanée</b> de <code>CMD_1</code> et <code>CMD_2</code>, avec redirection de la sortie standard de <code>CMD_1</code> et de l'entrée standard de <code>CMD_2</code> sur un même tube anonyme.</p>
+<p>Un <b>pipeline</b> est soit une commande simple, soit une ligne de commande de la forme <code>CMD_1 | CMD_2 | ... | CMD_N</code>, avec les redirections additionnelles éventuelles :</p><ul>
+<li>redirection de l'entrée standard de <code>CMD_1</code></li>
+<li>redirection de la sortie standard de <code>CMD_N</code></li>
+<li>redirection des sorties erreurs des <code>N</code> commandes.</li>
+</ul>
+<p>Les espaces de part et d'autre du symbole <code>|</code> sont requis.</p>
+<p>La valeur de retour est celle de <code>CMD_N</code>.</p>
+<h3><a class="anchor" id="autotoc_md12"></a>
+Commandes structurées</h3>
+<p>Une <b>commande structurée</b> est soit un pipeline, soit une ligne de commande d'une des formes suivantes :</p>
+<h4><a class="anchor" id="autotoc_md13"></a>
+&lt;tt&gt;CMD_1 ; CMD_2 ; ... ; CMD_N&lt;/tt&gt;</h4>
+<p>Exécute <code>CMD_1</code>, <b>puis</b> après la terminaison de celle-ci, <code>CMD_2</code>, et ainsi de suite jusqu'à <code>CMD_N</code>.</p>
+<p>La valeur de retour est celle de <code>CMD_N</code>.</p>
+<h4><a class="anchor" id="autotoc_md14"></a>
+&lt;tt&gt;if TEST { CMD }&lt;/tt&gt;</h4>
+<p>Exécute le pipeline <code>TEST</code> puis, en cas de succès (<em>ie</em> si sa valeur de retour est 0), exécute la commande structurée <code>CMD</code> entre accolades.</p>
+<p>La valeur de retour est celle de <code>CMD</code> si celle-ci est exécutée, et 0 sinon.</p>
+<h4><a class="anchor" id="autotoc_md15"></a>
+&lt;tt&gt;if TEST { CMD_1 } else { CMD_2 }&lt;/tt&gt;</h4>
+<p>Exécute le pipeline <code>TEST</code> puis, selon sa valeur de retour, exécute l'une ou l'autre des commandes structurées entre accolades.</p>
+<p>La valeur de retour est celle de <code>CMD_1</code> ou de <code>CMD_2</code> selon le cas.</p>
+<h4><a class="anchor" id="autotoc_md16"></a>
+&lt;tt&gt;for F in REP [-A] [-r] [-e EXT] [-t TYPE] [-p MAX] { CMD }&lt;/tt&gt;</h4>
+<p>Sans option, exécute la commande structurée <code>CMD</code> pour chaque (référence de) fichier non caché du répertoire <code>REP</code>. <code>CMD</code> peut dépendre de la valeur de la variable de boucle <code>F</code>, désignée par <code>$F</code>. Par souci de simplification, les noms de variables sont limités à un caractère.</p>
+<p>Effet des options :</p>
+<ul>
+<li><code>-A</code> : étend la portée de la boucle aux fichiers cachés (sauf <code>.</code> et <code>..</code>);</li>
+<li><code>-r</code> : parcours récursif de toute l'arborescence de racine <code>REP</code>;</li>
+<li><code>-e EXT</code> : filtrage des résultats selon l'extension : les fichiers dont le nom de base ne se termine pas par <code>.EXT</code> sont ignorés; pour les autres fichiers, la variable de boucle <code>F</code> prend pour valeur la référence du fichier <em>amputée de son extension</em>, pour permettre des usages tels que <code>for F in . -e jpg { convert $F.jpg $F.png }</code>;</li>
+<li><code>-t TYPE</code> : filtrage des résultats selon le type de fichier : <code>f</code> pour les fichiers ordinaires, <code>d</code> pour les répertoires, <code>l</code> pour les liens symboliques, <code>p</code> pour les tubes;</li>
+<li><code>-p MAX</code> : permet le traitement en parallèle d'un maximum de <code>MAX</code> tours de boucle.</li>
+</ul>
+<p>La valeur de retour est le <b>maximum</b> des valeurs de retour des différents tours de boucle.</p>
+<p>Les espaces de part et d'autre des symboles <code>;</code>, <code>{</code> et <code>}</code> sont requis.</p>
+<h3><a class="anchor" id="autotoc_md17"></a>
+Autres lignes de commande</h3>
+<p>Les commandes structurées sont les lignes de commande les plus génériques que <code>fsh</code> doit savoir interpréter et exécuter. En particulier, il n'est pas demandé de pouvoir rediriger l'entrée ou la sortie d'une commande structurée, que ce soit vers un fichier ou dans un pipeline.</p>
+<h2><a class="anchor" id="autotoc_md18"></a>
+Gestion de la ligne de commande</h2>
+<p><code>fsh</code> fonctionne en mode interactif : il affiche une invite de commande (<em>prompt</em>), lit la ligne de commande saisie par l'utilisateur, la découpe en mots selon les (blocs d')espaces, interprète les éventuels caractères spéciaux (<code>&lt;</code>, <code>&gt;</code>, <code>|</code>, <code>[</code>, <code>}</code>, <code>;</code>, <code>$</code>), puis exécute la ou les commandes correspondantes.</p>
+<p><code>fsh</code> ne fournit aucun mécanisme d'échappement; les arguments de la ligne de commande ne peuvent donc pas contenir de caractères spéciaux (espaces en particulier).</p>
+<p>Il est fortement recommandé d'utiliser la bibliothèque <a href="https://tiswww.cwru.edu/php/chet/readline/rltop.html"><code>readline</code></a> pour simplifier la lecture de la ligne de commande : cette bibliothèque offre de nombreuses possibilités d'édition pendant la saisie de la ligne de commande, de gestion de l'historique, de complétion automatique... Sans entrer dans les détails, un usage basique de la fonction <code>char *readline (const char *prompt)</code> fournit déjà un résultat très satisfaisant :</p>
+<div class="fragment"><div class="line"><span class="keywordtype">char</span> * ligne = readline(<span class="stringliteral">&quot;mon joli prompt $ &quot;</span>);  </div>
+<div class="line"><span class="comment">/* alloue et remplit ligne avec une version &quot;propre&quot; de la ligne saisie,</span></div>
+<div class="line"><span class="comment"> * ie nettoyée des éventuelles erreurs et corrections (et du &#39;\n&#39; final) */</span></div>
+<div class="line">add_history(ligne);</div>
+<div class="line"><span class="comment">/* ajoute la ligne à l&#39;historique, permettant sa réutilisation avec les</span></div>
+<div class="line"><span class="comment"> * flèches du clavier */</span></div>
+</div><!-- fragment --><p>L'affichage du prompt de <code>fsh</code> est réalisé <b>sur sa sortie erreur</b>. Avec la bibliothèque <code>readline</code>, ce comportement s'obtient en indiquant <code>rl_outstream = stderr;</code> avant le premier appel à la fonction <code>readline()</code>.</p>
+<h3><a class="anchor" id="autotoc_md19"></a>
+Formatage du prompt</h3>
+<p>Le prompt est limité à 30 caractères (apparents, ie. sans compter les indications de couleur), et est formé des éléments suivants :</p>
+<ul>
+<li>un code de bascule de couleur, <code>"\033[32m"</code> (vert) ou <code>"\033[91m"</code> (rouge) suivant que la dernière commande exécutée a réussi ou échoué;</li>
+<li>entre crochets, la <b>valeur de retour</b> de la dernière commande exécutée (0 par défaut pour le premier prompt) ou <code>"SIG"</code> si elle a été interrompue par un signal;</li>
+<li>une autre bascule de couleur, par exemple <code>"\033[34m"</code> (bleu) ou <code>"\033[36m"</code> (cyan);</li>
+<li>la référence du <b>répertoire courant</b>, éventuellement tronquée (par la gauche) pour respecter la limite de 30 caractères; dans ce cas la référence commencera par trois points (<code>"..."</code>); <br  />
+</li>
+<li>la bascule <code>"\033[00m"</code> (retour à la normale); <br  />
+</li>
+<li>un dollar puis un espace (<code>"$ "</code>). <br  />
+</li>
+</ul>
+<p>Pour que l'affichage s'adapte correctement à la géométrie de la fenêtre, chaque bascule de couleur doit être entourée des balises &lsquo;&rsquo;\001'<code>et </code>'\002'` (qui indiquent que la portion de chaîne qu'elles délimitent est formée de caractères non imprimables et doit donc être ignorée dans le calcul de la longueur du texte à afficher).</p>
+<p>Par exemple (sans la coloration) : </p><div class="fragment"><div class="line">[0]/home/titi$ cd /tmp/pas/trop/long</div>
+<div class="line">[0]/tmp/pas/trop/long$ cd mais/la/ca/depasse</div>
+<div class="line">[0]...ong/mais/la/ca/depasse$ pwd</div>
+<div class="line">/tmp/pas/trop/long/mais/la/ca/depasse</div>
+<div class="line">[0]...ong/mais/la/ca/depasse$ cd repertoire-inexistant</div>
+<div class="line">cd: no such file or directory: repertoire-inexistant</div>
+<div class="line">[1]...ong/mais/la/ca/depasse$ </div>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md20"></a>
+Sensibilité aux signaux</h2>
+<p><code>fsh</code> ignore les signaux <code>SIGINT</code> et <code>SIGTERM</code>, contrairement aux processus exécutant des commandes externes.</p>
+<p>Lorsque l'exécution d'une commande est interrompue par la réception d'un signal, le prompt commence par la chaîne <code>"[SIG]"</code> en lieu et place de la valeur de retour, qui est considérée comme valant 255 au cas où un appel à <code>exit</code> sans paramètre (ou un <code>ctrl-D</code>) suit.</p>
+<h1><a class="anchor" id="autotoc_md21"></a>
+Modalités de réalisation (et de test)</h1>
+<p>Le projet est à faire par équipes de 3 étudiants, exceptionnellement 2 si une situation particulière le justifie. La composition de chaque équipe devra être envoyée par mail à Dominique Poulalhon avec pour sujet <code>[SY5] équipe projet</code> <b>au plus tard le 10 novembre 2024</b>, avec copie à chaque membre de l'équipe.</p>
+<p>Chaque équipe doit créer un dépôt <code>git</code> <b>privé</b> sur le <a href="https://moule.informatique.univ-paris-diderot.fr/">gitlab de l'UFR</a> <b>dès la constitution de l'équipe</b> et y donner accès en tant que <code>Reporter</code> à tous les enseignants du cours de Système : Isabelle Fagnot, Guillaume Geoffroy, Anne Micheli, Astyax Nourel et Dominique Poulalhon. Le dépôt devra contenir un fichier <code><a class="el" href="../../dd/d8e/AUTHORS_8md.html">AUTHORS.md</a></code> donnant la liste des membres de l'équipe (un par ligne, en précisant pour chacun, dans l'ordre : nom, prénom, numéro étudiant et pseudo(s) sur le gitlab).</p>
+<p>En plus du code source de votre programme, vous devez fournir un <code>Makefile</code> tel que :</p><ul>
+<li>l'exécution de <code>make</code> à la racine du dépôt crée (dans ce même répertoire) l'exécutable <code>fsh</code>,</li>
+<li><code>make clean</code> efface tous les fichiers compilés,</li>
+</ul>
+<p>ainsi qu'un fichier <code>ARCHITECTURE.md</code> expliquant la stratégie adoptée pour répondre au sujet (notamment l'architecture logicielle, les structures de données et les algorithmes implémentés).</p>
+<p><b>Le projet doit s'exécuter correctement sur lulu</b>.</p>
+<p>Les seules interdictions strictes sont les suivantes : plagiat (d'un autre projet ou d'une source extérieure à la licence, quelle qu'elle soit), utilisation outrancière d'une IA générative de code, et utilisation des fonctions de haut niveau masquant les appels système étudiés en cours pour autre chose que l'interaction entre le shell et l'utilisateur dans le terminal (notamment la gestion de la ligne de commande avec <code>readline</code>, ou l'affichage de messages d'erreur avec <code>perror()</code>).</p>
+<p>Pour rappel, l'emprunt de code sans citer sa source est un plagiat. L'emprunt de code en citant sa source est autorisé, mais bien sûr vous n'êtes notés que sur ce que vous avez effectivement produit. Donc si vous copiez l'intégralité de votre projet en le spécifiant clairement, vous aurez quand même 0 (mais vous éviterez une demande de convocation de la section disciplinaire).</p>
+<h1><a class="anchor" id="autotoc_md22"></a>
+Modalités de rendu</h1>
+<p>Le projet sera évalué en 3 phases : deux jalons intermédiaires, sans soutenance, et un rendu final avec soutenance. Les deux jalons intermédiaires seront évalués par des tests automatiques.</p>
+<h2><a class="anchor" id="autotoc_md23"></a>
+Premier jalon jeudi 28 novembre</h2>
+<p>La version à évaluer devra être spécifiée à l'aide du tag <code>jalon-1</code> sur la branche <code>main</code>.</p>
+<p>Pour créer le tag : se placer sur le commit à étiqueter et faire : </p><div class="fragment"><div class="line">git tag jalon-1</div>
+<div class="line">git push origin --tags</div>
+</div><!-- fragment --><p>Points testés :</p>
+<ul>
+<li>existence du dépôt git</li>
+<li>présence du fichier <code><a class="el" href="../../dd/d8e/AUTHORS_8md.html">AUTHORS.md</a></code></li>
+<li>compilation sans erreur avec <code>make</code> à la racine du dépôt</li>
+<li>exécution de <code>fsh</code> à la racine du dépôt</li>
+<li>commandes internes</li>
+<li>exécution des commandes externes simples (avec arguments mais sans redirections)</li>
+<li>conformité du prompt (y compris valeur de retour)</li>
+<li>boucles <code>for</code> sans option, avec corps de boucle limité à une commande simple</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md24"></a>
+Deuxième jalon jeudi 19 décembre</h2>
+<p>La version à évaluer devra être spécifiée à l'aide du tag <code>jalon-2</code>.</p>
+<p>Points testés : le projet complet <b>à l'exception</b> :</p>
+<ul>
+<li>des pipelines formés de strictement plus d'une commande simple</li>
+<li>des boucles <code>for</code> avec parallélisation (option <code>-p</code>)</li>
+<li>de la gestion des signaux</li>
+</ul>
+<p>Par exemple, on demande que cette ligne de commande-ci fonctionne correctement :</p>
+<div class="fragment"><div class="line">for F in dir { echo $F ; if test -d $F { for G in $F -A { echo $G } } }</div>
+</div><!-- fragment --><p>mais pas forcément celle-là : </p><div class="fragment"><div class="line">cat fichier | tr a A</div>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md25"></a>
+Rendu final début janvier</h2>
+<p>La version à évaluer devra être spécifiée à l'aide du tag <code>rendu-final</code>.</p>
+<p>Le projet final devra être rendu à une date encore à définir mais au plus tard le 10 janvier, pour des soutenances entre le 13 et le 17 janvier.</p>
+<h2><a class="anchor" id="autotoc_md26"></a>
+Participation effective</h2>
+<p><b>Les projets sont des travaux de groupe, pas des travaux à répartir entre vous</b> ("je fais le projet de Prog fonctionnelle, tu fais celui de
+Systèmes"). La participation effective d'un étudiant au projet de son groupe sera évaluée grâce, entre autres, aux statistiques du dépôt git et aux réponses aux questions pendant la soutenance, et les notes des étudiants d'un même groupe pourront être modulées en cas de participation déséquilibrée.</p>
+<p><b>En particulier, un étudiant n'ayant aucun commit sur les aspects réellement "système" du code et incapable de répondre de manière satisfaisante sera noté "DEF".</b> </p>
+</div></div><!-- contents -->
+</div><!-- PageDoc -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré par&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+</small></address>
+</body>
+</html>

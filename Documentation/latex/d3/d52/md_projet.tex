@@ -1,0 +1,197 @@
+{\bfseries{L3 Informatique -\/ Système}}
+
+Il est important de bien lire le sujet jusqu\textquotesingle{}au bout et de bien y réfléchir avant de se lancer dans la programmation du projet.\hypertarget{md_projet_autotoc_md1}{}\doxysection{Sujet \+: $<$tt$>$fsh$<$/tt$>$, un petit shell avec des boucles $<$tt$>$for$<$/tt$>$}\label{md_projet_autotoc_md1}
+Le but du projet est de programmer un interpréteur de commandes (aka {\itshape shell}) interactif reprenant quelques fonctionnalités plus ou moins classiques des shells usuels \+: outre la possibilité d\textquotesingle{}exécuter toutes les commandes externes, {\ttfamily fsh} devra proposer quelques commandes internes, permettre la redirection des flots standard ainsi que les combinaisons par tube, adapter le prompt à la situation, et supporter les structures conditionnelles et un certain type particulier de boucles.
+
+La gestion des tâches n\textquotesingle{}est pas requise \+: tous les processus lancés à partir de votre shell le seront en premier-\/plan.
+
+Plus précisément, {\ttfamily fsh} doit respecter les prescriptions suivantes \+:\hypertarget{md_projet_autotoc_md2}{}\doxysubsection{Commandes externes}\label{md_projet_autotoc_md2}
+{\ttfamily fsh} peut exécuter toutes les commandes externes, avec ou sans arguments, en tenant compte de la variable d\textquotesingle{}environnement {\ttfamily PATH}.\hypertarget{md_projet_autotoc_md3}{}\doxysubsection{Commandes internes}\label{md_projet_autotoc_md3}
+{\ttfamily fsh} possède (au moins) les commandes internes listées ci-\/dessous. Elles ont comme valeur de retour 0 en cas de succès (à l\textquotesingle{}exception d\textquotesingle{}{\ttfamily exit}, naturellement), et 1 en cas d\textquotesingle{}échec.\hypertarget{md_projet_autotoc_md4}{}\doxyparagraph{$<$tt$>$pwd$<$/tt$>$}\label{md_projet_autotoc_md4}
+Affiche la référence physique absolue du répertoire de travail courant.\hypertarget{md_projet_autotoc_md5}{}\doxyparagraph{$<$tt$>$cd \mbox{[}\+REF $\vert$ -\/\mbox{]}$<$/tt$>$}\label{md_projet_autotoc_md5}
+Change de répertoire de travail courant, qui devient le répertoire {\ttfamily REF} (s\textquotesingle{}il s\textquotesingle{}agit d\textquotesingle{}une référence valide), le précédent répertoire de travail si le paramètre est {\ttfamily -\/}, ou {\ttfamily \$\+HOME} en l\textquotesingle{}absence de paramètre.\hypertarget{md_projet_autotoc_md6}{}\doxyparagraph{$<$tt$>$exit \mbox{[}\+VAL\mbox{]}$<$/tt$>$}\label{md_projet_autotoc_md6}
+Termine le processus {\ttfamily fsh} avec comme valeur de retour {\ttfamily VAL} (ou par défaut la valeur de retour de la dernière commande exécutée).
+
+Lorsqu\textquotesingle{}il atteint la fin de son entrée standard (ie si l\textquotesingle{}utilisateur saisit {\ttfamily ctrl-\/D} en mode interactif), {\ttfamily fsh} se comporte comme si la commande interne {\ttfamily exit} (sans paramètre) avait été saisie.\hypertarget{md_projet_autotoc_md7}{}\doxyparagraph{$<$tt$>$ftype REF$<$/tt$>$}\label{md_projet_autotoc_md7}
+Affiche le type du fichier de référence {\ttfamily REF} (s\textquotesingle{}il s\textquotesingle{}agit d\textquotesingle{}une référence valide) \+: {\ttfamily directory}, {\ttfamily regular file} , {\ttfamily symbolic link}, {\ttfamily named pipe}, {\ttfamily other}.\hypertarget{md_projet_autotoc_md8}{}\doxysubsection{Redirections vers des fichiers}\label{md_projet_autotoc_md8}
+{\ttfamily fsh} gère les redirections suivantes \+:
+
+
+\begin{DoxyItemize}
+\item {\ttfamily CMD $<$ FIC} \+: redirection de l\textquotesingle{}entrée standard de la commande {\ttfamily CMD} sur le fichier (ordinaire, tube nommé...) {\ttfamily FIC}
+\item {\ttfamily CMD $>$ FIC} \+: redirection de la sortie standard de la commande {\ttfamily CMD} sur le fichier (ordinaire, tube nommé...) {\ttfamily FIC} {\bfseries{sans écrasement}} (ie, échoue si {\ttfamily FIC} existe déjà)
+\item {\ttfamily CMD $>$$\vert$ FIC} \+: redirection de la sortie standard de la commande {\ttfamily CMD} sur le fichier (ordinaire, tube nommé...) {\ttfamily FIC} {\bfseries{avec écrasement}} éventuel
+\item {\ttfamily CMD $>$$>$ FIC} \+: redirection de la sortie standard de la commande {\ttfamily CMD} sur le fichier (ordinaire, tube nommé...) {\ttfamily FIC} {\bfseries{en concaténation}}
+\item {\ttfamily CMD 2$>$ FIC} \+: redirection de la sortie erreur standard de la commande {\ttfamily cmd} sur le fichier (ordinaire, tube nommé...) {\ttfamily FIC} {\bfseries{sans écrasement}} (ie, échoue si {\ttfamily FIC} existe déjà)
+\item {\ttfamily CMD 2$>$$\vert$ FIC} \+: redirection de la sortie erreur standard de la commande {\ttfamily CMD} sur le fichier (ordinaire, tube nommé...) {\ttfamily FIC} {\bfseries{avec écrasement}} éventuel
+\item {\ttfamily CMD 2$>$$>$ FIC} \+: redirection de la sortie erreur standard de la commande {\ttfamily CMD} sur le fichier (ordinaire, tube nommé...) {\ttfamily FIC} {\bfseries{en concaténation}}
+\end{DoxyItemize}
+
+Les espaces de part et d\textquotesingle{}autre des symboles de redirection sont requis.
+
+En cas d\textquotesingle{}échec d\textquotesingle{}une redirection, la ligne de commande saisie n\textquotesingle{}est pas exécutée, et la valeur de retour est 1.\hypertarget{md_projet_autotoc_md9}{}\doxysubsection{Hiérarchie des lignes de commande}\label{md_projet_autotoc_md9}
+\hypertarget{md_projet_autotoc_md10}{}\doxysubsubsection{Commandes simples}\label{md_projet_autotoc_md10}
+Une {\bfseries{commande simple}} est une ligne de commande exécutant une unique commande, interne ou externe, avec ou sans redirection.\hypertarget{md_projet_autotoc_md11}{}\doxysubsubsection{Pipelines}\label{md_projet_autotoc_md11}
+Si {\ttfamily CMD\+\_\+1} et {\ttfamily CMD\+\_\+2} sont deux commandes simples, {\ttfamily CMD\+\_\+1 $\vert$ CMD\+\_\+2} provoque l\textquotesingle{}exécution {\bfseries{simultanée}} de {\ttfamily CMD\+\_\+1} et {\ttfamily CMD\+\_\+2}, avec redirection de la sortie standard de {\ttfamily CMD\+\_\+1} et de l\textquotesingle{}entrée standard de {\ttfamily CMD\+\_\+2} sur un même tube anonyme.
+
+Un {\bfseries{pipeline}} est soit une commande simple, soit une ligne de commande de la forme {\ttfamily CMD\+\_\+1 $\vert$ CMD\+\_\+2 $\vert$ ... $\vert$ CMD\+\_\+N}, avec les redirections additionnelles éventuelles \+:
+\begin{DoxyItemize}
+\item redirection de l\textquotesingle{}entrée standard de {\ttfamily CMD\+\_\+1}
+\item redirection de la sortie standard de {\ttfamily CMD\+\_\+N}
+\item redirection des sorties erreurs des {\ttfamily N} commandes.
+\end{DoxyItemize}
+
+Les espaces de part et d\textquotesingle{}autre du symbole {\ttfamily $\vert$} sont requis.
+
+La valeur de retour est celle de {\ttfamily CMD\+\_\+N}.\hypertarget{md_projet_autotoc_md12}{}\doxysubsubsection{Commandes structurées}\label{md_projet_autotoc_md12}
+Une {\bfseries{commande structurée}} est soit un pipeline, soit une ligne de commande d\textquotesingle{}une des formes suivantes \+:\hypertarget{md_projet_autotoc_md13}{}\doxyparagraph{$<$tt$>$\+CMD\+\_\+1 ; CMD\+\_\+2 ; ... ; CMD\+\_\+\+N$<$/tt$>$}\label{md_projet_autotoc_md13}
+Exécute {\ttfamily CMD\+\_\+1}, {\bfseries{puis}} après la terminaison de celle-\/ci, {\ttfamily CMD\+\_\+2}, et ainsi de suite jusqu\textquotesingle{}à {\ttfamily CMD\+\_\+N}.
+
+La valeur de retour est celle de {\ttfamily CMD\+\_\+N}.\hypertarget{md_projet_autotoc_md14}{}\doxyparagraph{$<$tt$>$if TEST \{ CMD \}$<$/tt$>$}\label{md_projet_autotoc_md14}
+Exécute le pipeline {\ttfamily TEST} puis, en cas de succès ({\itshape ie} si sa valeur de retour est 0), exécute la commande structurée {\ttfamily CMD} entre accolades.
+
+La valeur de retour est celle de {\ttfamily CMD} si celle-\/ci est exécutée, et 0 sinon.\hypertarget{md_projet_autotoc_md15}{}\doxyparagraph{$<$tt$>$if TEST \{ CMD\+\_\+1 \} else \{ CMD\+\_\+2 \}$<$/tt$>$}\label{md_projet_autotoc_md15}
+Exécute le pipeline {\ttfamily TEST} puis, selon sa valeur de retour, exécute l\textquotesingle{}une ou l\textquotesingle{}autre des commandes structurées entre accolades.
+
+La valeur de retour est celle de {\ttfamily CMD\+\_\+1} ou de {\ttfamily CMD\+\_\+2} selon le cas.\hypertarget{md_projet_autotoc_md16}{}\doxyparagraph{$<$tt$>$for F in REP \mbox{[}-\/\+A\mbox{]} \mbox{[}-\/r\mbox{]} \mbox{[}-\/e EXT\mbox{]} \mbox{[}-\/t TYPE\mbox{]} \mbox{[}-\/p MAX\mbox{]} \{ CMD \}$<$/tt$>$}\label{md_projet_autotoc_md16}
+Sans option, exécute la commande structurée {\ttfamily CMD} pour chaque (référence de) fichier non caché du répertoire {\ttfamily REP}. {\ttfamily CMD} peut dépendre de la valeur de la variable de boucle {\ttfamily F}, désignée par {\ttfamily \$F}. Par souci de simplification, les noms de variables sont limités à un caractère.
+
+Effet des options \+:
+
+
+\begin{DoxyItemize}
+\item {\ttfamily -\/A} \+: étend la portée de la boucle aux fichiers cachés (sauf {\ttfamily .} et {\ttfamily ..});
+\item {\ttfamily -\/r} \+: parcours récursif de toute l\textquotesingle{}arborescence de racine {\ttfamily REP};
+\item {\ttfamily -\/e EXT} \+: filtrage des résultats selon l\textquotesingle{}extension \+: les fichiers dont le nom de base ne se termine pas par {\ttfamily .EXT} sont ignorés; pour les autres fichiers, la variable de boucle {\ttfamily F} prend pour valeur la référence du fichier {\itshape amputée de son extension}, pour permettre des usages tels que {\ttfamily for F in . -\/e jpg \{ convert \$\+F.\+jpg \$\+F.\+png \}};
+\item {\ttfamily -\/t TYPE} \+: filtrage des résultats selon le type de fichier \+: {\ttfamily f} pour les fichiers ordinaires, {\ttfamily d} pour les répertoires, {\ttfamily l} pour les liens symboliques, {\ttfamily p} pour les tubes;
+\item {\ttfamily -\/p MAX} \+: permet le traitement en parallèle d\textquotesingle{}un maximum de {\ttfamily MAX} tours de boucle.
+\end{DoxyItemize}
+
+La valeur de retour est le {\bfseries{maximum}} des valeurs de retour des différents tours de boucle.
+
+Les espaces de part et d\textquotesingle{}autre des symboles {\ttfamily ;}, {\ttfamily \{} et {\ttfamily \}} sont requis.\hypertarget{md_projet_autotoc_md17}{}\doxysubsubsection{Autres lignes de commande}\label{md_projet_autotoc_md17}
+Les commandes structurées sont les lignes de commande les plus génériques que {\ttfamily fsh} doit savoir interpréter et exécuter. En particulier, il n\textquotesingle{}est pas demandé de pouvoir rediriger l\textquotesingle{}entrée ou la sortie d\textquotesingle{}une commande structurée, que ce soit vers un fichier ou dans un pipeline.\hypertarget{md_projet_autotoc_md18}{}\doxysubsection{Gestion de la ligne de commande}\label{md_projet_autotoc_md18}
+{\ttfamily fsh} fonctionne en mode interactif \+: il affiche une invite de commande ({\itshape prompt}), lit la ligne de commande saisie par l\textquotesingle{}utilisateur, la découpe en mots selon les (blocs d\textquotesingle{})espaces, interprète les éventuels caractères spéciaux ({\ttfamily $<$}, {\ttfamily $>$}, {\ttfamily $\vert$}, {\ttfamily \mbox{[}}, {\ttfamily \}}, {\ttfamily ;}, {\ttfamily \$}), puis exécute la ou les commandes correspondantes.
+
+{\ttfamily fsh} ne fournit aucun mécanisme d\textquotesingle{}échappement; les arguments de la ligne de commande ne peuvent donc pas contenir de caractères spéciaux (espaces en particulier).
+
+Il est fortement recommandé d\textquotesingle{}utiliser la bibliothèque \href{https://tiswww.cwru.edu/php/chet/readline/rltop.html}{\texttt{ {\ttfamily readline}}} pour simplifier la lecture de la ligne de commande \+: cette bibliothèque offre de nombreuses possibilités d\textquotesingle{}édition pendant la saisie de la ligne de commande, de gestion de l\textquotesingle{}historique, de complétion automatique... Sans entrer dans les détails, un usage basique de la fonction {\ttfamily char $\ast$readline (const char $\ast$prompt)} fournit déjà un résultat très satisfaisant \+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{char} * ligne = readline(\textcolor{stringliteral}{"{}mon joli prompt \$ "{}});  }
+\DoxyCodeLine{\textcolor{comment}{/* alloue et remplit ligne avec une version "{}propre"{} de la ligne saisie,}}
+\DoxyCodeLine{\textcolor{comment}{ * ie nettoyée des éventuelles erreurs et corrections (et du '\(\backslash\)n' final) */}}
+\DoxyCodeLine{add\_history(ligne);}
+\DoxyCodeLine{\textcolor{comment}{/* ajoute la ligne à l'historique, permettant sa réutilisation avec les}}
+\DoxyCodeLine{\textcolor{comment}{ * flèches du clavier */}}
+
+\end{DoxyCode}
+
+
+L\textquotesingle{}affichage du prompt de {\ttfamily fsh} est réalisé {\bfseries{sur sa sortie erreur}}. Avec la bibliothèque {\ttfamily readline}, ce comportement s\textquotesingle{}obtient en indiquant {\ttfamily rl\+\_\+outstream = stderr;} avant le premier appel à la fonction {\ttfamily readline()}.\hypertarget{md_projet_autotoc_md19}{}\doxysubsubsection{Formatage du prompt}\label{md_projet_autotoc_md19}
+Le prompt est limité à 30 caractères (apparents, ie. sans compter les indications de couleur), et est formé des éléments suivants \+:
+
+
+\begin{DoxyItemize}
+\item un code de bascule de couleur, {\ttfamily \char`\"{}\textbackslash{}033\mbox{[}32m\char`\"{}} (vert) ou {\ttfamily \char`\"{}\textbackslash{}033\mbox{[}91m\char`\"{}} (rouge) suivant que la dernière commande exécutée a réussi ou échoué;
+\item entre crochets, la {\bfseries{valeur de retour}} de la dernière commande exécutée (0 par défaut pour le premier prompt) ou {\ttfamily \char`\"{}\+SIG\char`\"{}} si elle a été interrompue par un signal;
+\item une autre bascule de couleur, par exemple {\ttfamily \char`\"{}\textbackslash{}033\mbox{[}34m\char`\"{}} (bleu) ou {\ttfamily \char`\"{}\textbackslash{}033\mbox{[}36m\char`\"{}} (cyan);
+\item la référence du {\bfseries{répertoire courant}}, éventuellement tronquée (par la gauche) pour respecter la limite de 30 caractères; dans ce cas la référence commencera par trois points ({\ttfamily \char`\"{}...\char`\"{}}); ~\newline
+
+\item la bascule {\ttfamily \char`\"{}\textbackslash{}033\mbox{[}00m\char`\"{}} (retour à la normale); ~\newline
+
+\item un dollar puis un espace ({\ttfamily \char`\"{}\$ \char`\"{}}). ~\newline
+
+\end{DoxyItemize}
+
+Pour que l\textquotesingle{}affichage s\textquotesingle{}adapte correctement à la géométrie de la fenêtre, chaque bascule de couleur doit être entourée des balises `'\textbackslash{}001\textquotesingle{}{\ttfamily et }\textquotesingle{}\textbackslash{}002\textquotesingle{}\`{} (qui indiquent que la portion de chaîne qu\textquotesingle{}elles délimitent est formée de caractères non imprimables et doit donc être ignorée dans le calcul de la longueur du texte à afficher).
+
+Par exemple (sans la coloration) \+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{[0]/home/titi\$ cd /tmp/pas/trop/long}
+\DoxyCodeLine{[0]/tmp/pas/trop/long\$ cd mais/la/ca/depasse}
+\DoxyCodeLine{[0]...ong/mais/la/ca/depasse\$ pwd}
+\DoxyCodeLine{/tmp/pas/trop/long/mais/la/ca/depasse}
+\DoxyCodeLine{[0]...ong/mais/la/ca/depasse\$ cd repertoire-\/inexistant}
+\DoxyCodeLine{cd: no such file or directory: repertoire-\/inexistant}
+\DoxyCodeLine{[1]...ong/mais/la/ca/depasse\$ }
+
+\end{DoxyCode}
+\hypertarget{md_projet_autotoc_md20}{}\doxysubsection{Sensibilité aux signaux}\label{md_projet_autotoc_md20}
+{\ttfamily fsh} ignore les signaux {\ttfamily SIGINT} et {\ttfamily SIGTERM}, contrairement aux processus exécutant des commandes externes.
+
+Lorsque l\textquotesingle{}exécution d\textquotesingle{}une commande est interrompue par la réception d\textquotesingle{}un signal, le prompt commence par la chaîne {\ttfamily \char`\"{}\mbox{[}\+SIG\mbox{]}\char`\"{}} en lieu et place de la valeur de retour, qui est considérée comme valant 255 au cas où un appel à {\ttfamily exit} sans paramètre (ou un {\ttfamily ctrl-\/D}) suit.\hypertarget{md_projet_autotoc_md21}{}\doxysection{Modalités de réalisation (et de test)}\label{md_projet_autotoc_md21}
+Le projet est à faire par équipes de 3 étudiants, exceptionnellement 2 si une situation particulière le justifie. La composition de chaque équipe devra être envoyée par mail à Dominique Poulalhon avec pour sujet {\ttfamily \mbox{[}SY5\mbox{]} équipe projet} {\bfseries{au plus tard le 10 novembre 2024}}, avec copie à chaque membre de l\textquotesingle{}équipe.
+
+Chaque équipe doit créer un dépôt {\ttfamily git} {\bfseries{privé}} sur le \href{https://moule.informatique.univ-paris-diderot.fr/}{\texttt{ gitlab de l\textquotesingle{}UFR}} {\bfseries{dès la constitution de l\textquotesingle{}équipe}} et y donner accès en tant que {\ttfamily Reporter} à tous les enseignants du cours de Système \+: Isabelle Fagnot, Guillaume Geoffroy, Anne Micheli, Astyax Nourel et Dominique Poulalhon. Le dépôt devra contenir un fichier {\ttfamily \mbox{\hyperlink{AUTHORS_8md}{AUTHORS.\+md}}} donnant la liste des membres de l\textquotesingle{}équipe (un par ligne, en précisant pour chacun, dans l\textquotesingle{}ordre \+: nom, prénom, numéro étudiant et pseudo(s) sur le gitlab).
+
+En plus du code source de votre programme, vous devez fournir un {\ttfamily Makefile} tel que \+:
+\begin{DoxyItemize}
+\item l\textquotesingle{}exécution de {\ttfamily make} à la racine du dépôt crée (dans ce même répertoire) l\textquotesingle{}exécutable {\ttfamily fsh},
+\item {\ttfamily make clean} efface tous les fichiers compilés,
+\end{DoxyItemize}
+
+ainsi qu\textquotesingle{}un fichier {\ttfamily ARCHITECTURE.\+md} expliquant la stratégie adoptée pour répondre au sujet (notamment l\textquotesingle{}architecture logicielle, les structures de données et les algorithmes implémentés).
+
+{\bfseries{Le projet doit s\textquotesingle{}exécuter correctement sur lulu}}.
+
+Les seules interdictions strictes sont les suivantes \+: plagiat (d\textquotesingle{}un autre projet ou d\textquotesingle{}une source extérieure à la licence, quelle qu\textquotesingle{}elle soit), utilisation outrancière d\textquotesingle{}une IA générative de code, et utilisation des fonctions de haut niveau masquant les appels système étudiés en cours pour autre chose que l\textquotesingle{}interaction entre le shell et l\textquotesingle{}utilisateur dans le terminal (notamment la gestion de la ligne de commande avec {\ttfamily readline}, ou l\textquotesingle{}affichage de messages d\textquotesingle{}erreur avec {\ttfamily perror()}).
+
+Pour rappel, l\textquotesingle{}emprunt de code sans citer sa source est un plagiat. L\textquotesingle{}emprunt de code en citant sa source est autorisé, mais bien sûr vous n\textquotesingle{}êtes notés que sur ce que vous avez effectivement produit. Donc si vous copiez l\textquotesingle{}intégralité de votre projet en le spécifiant clairement, vous aurez quand même 0 (mais vous éviterez une demande de convocation de la section disciplinaire).\hypertarget{md_projet_autotoc_md22}{}\doxysection{Modalités de rendu}\label{md_projet_autotoc_md22}
+Le projet sera évalué en 3 phases \+: deux jalons intermédiaires, sans soutenance, et un rendu final avec soutenance. Les deux jalons intermédiaires seront évalués par des tests automatiques.\hypertarget{md_projet_autotoc_md23}{}\doxysubsection{Premier jalon jeudi 28 novembre}\label{md_projet_autotoc_md23}
+La version à évaluer devra être spécifiée à l\textquotesingle{}aide du tag {\ttfamily jalon-\/1} sur la branche {\ttfamily main}.
+
+Pour créer le tag \+: se placer sur le commit à étiqueter et faire \+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{git tag jalon-\/1}
+\DoxyCodeLine{git push origin -\/-\/tags}
+
+\end{DoxyCode}
+
+
+Points testés \+:
+
+
+\begin{DoxyItemize}
+\item existence du dépôt git
+\item présence du fichier {\ttfamily \mbox{\hyperlink{AUTHORS_8md}{AUTHORS.\+md}}}
+\item compilation sans erreur avec {\ttfamily make} à la racine du dépôt
+\item exécution de {\ttfamily fsh} à la racine du dépôt
+\item commandes internes
+\item exécution des commandes externes simples (avec arguments mais sans redirections)
+\item conformité du prompt (y compris valeur de retour)
+\item boucles {\ttfamily for} sans option, avec corps de boucle limité à une commande simple
+\end{DoxyItemize}\hypertarget{md_projet_autotoc_md24}{}\doxysubsection{Deuxième jalon jeudi 19 décembre}\label{md_projet_autotoc_md24}
+La version à évaluer devra être spécifiée à l\textquotesingle{}aide du tag {\ttfamily jalon-\/2}.
+
+Points testés \+: le projet complet {\bfseries{à l\textquotesingle{}exception}} \+:
+
+
+\begin{DoxyItemize}
+\item des pipelines formés de strictement plus d\textquotesingle{}une commande simple
+\item des boucles {\ttfamily for} avec parallélisation (option {\ttfamily -\/p})
+\item de la gestion des signaux
+\end{DoxyItemize}
+
+Par exemple, on demande que cette ligne de commande-\/ci fonctionne correctement \+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{for F in dir \{ echo \$F ; if test -\/d \$F \{ for G in \$F -\/A \{ echo \$G \} \} \}}
+
+\end{DoxyCode}
+
+
+mais pas forcément celle-\/là \+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{cat fichier | tr a A}
+
+\end{DoxyCode}
+\hypertarget{md_projet_autotoc_md25}{}\doxysubsection{Rendu final début janvier}\label{md_projet_autotoc_md25}
+La version à évaluer devra être spécifiée à l\textquotesingle{}aide du tag {\ttfamily rendu-\/final}.
+
+Le projet final devra être rendu à une date encore à définir mais au plus tard le 10 janvier, pour des soutenances entre le 13 et le 17 janvier.\hypertarget{md_projet_autotoc_md26}{}\doxysubsection{Participation effective}\label{md_projet_autotoc_md26}
+{\bfseries{Les projets sont des travaux de groupe, pas des travaux à répartir entre vous}} (\char`\"{}je fais le projet de Prog fonctionnelle, tu fais celui de \+Systèmes\char`\"{}). La participation effective d\textquotesingle{}un étudiant au projet de son groupe sera évaluée grâce, entre autres, aux statistiques du dépôt git et aux réponses aux questions pendant la soutenance, et les notes des étudiants d\textquotesingle{}un même groupe pourront être modulées en cas de participation déséquilibrée.
+
+{\bfseries{En particulier, un étudiant n\textquotesingle{}ayant aucun commit sur les aspects réellement \char`\"{}système\char`\"{} du code et incapable de répondre de manière satisfaisante sera noté \char`\"{}\+DEF\char`\"{}.}} 

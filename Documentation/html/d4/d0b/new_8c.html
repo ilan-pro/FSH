@@ -1,0 +1,336 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>FSH - Projet Système: Référence du fichier base/new.c</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">FSH - Projet Système
+   </div>
+   <div id="projectbrief">Projet de la matière Sy5 - U Paris Cité</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "../../search",false,'Recherche','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="../../menudata.js"></script>
+<script type="text/javascript" src="../../menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('../../',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="../../dir_e914ee4d4a44400f1fdb170cb4ead18a.html">base</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#func-members">Fonctions</a> &#124;
+<a href="#var-members">Variables</a>  </div>
+  <div class="headertitle">
+<div class="title">Référence du fichier new.c</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Fichier contenant l'implémentation de toutes les méthodes génériques agissant sur des objets déclarées dans l'interface.  
+<a href="#details">Plus de détails...</a></p>
+<div class="textblock"><code>#include &quot;<a class="el" href="../../d7/d58/new_8h_source.html">new.h</a>&quot;</code><br />
+<code>#include &quot;assert.h&quot;</code><br />
+<code>#include &quot;stdlib.h&quot;</code><br />
+<code>#include &lt;stdio.h&gt;</code><br />
+<code>#include &lt;string.h&gt;</code><br />
+</div><div class="textblock"><div class="dynheader">
+Graphe des dépendances par inclusion de new.c:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../dc/da3/new_8c__incl.png" border="0" usemap="#abase_2new_8c" alt=""/></div>
+<map name="abase_2new_8c" id="abase_2new_8c">
+<area shape="rect" title="Fichier contenant l&#39;implémentation de toutes les méthodes génériques agissant sur des objets déclarée..." alt="" coords="234,5,329,32"/>
+<area shape="rect" href="../../d7/d58/new_8h.html" title="Fichier d&#39;en&#45;tête contenant les déclarations de toutes les méthodes génériques agissant sur des objet..." alt="" coords="62,80,122,107"/>
+<area shape="rect" title=" " alt="" coords="147,80,221,107"/>
+<area shape="rect" title=" " alt="" coords="246,80,317,107"/>
+<area shape="rect" title=" " alt="" coords="341,80,408,107"/>
+<area shape="rect" title=" " alt="" coords="433,80,503,107"/>
+<area shape="rect" href="../../d4/d05/Class_8h.html" title="Fichier d&#39;en&#45;tête contenant la définition du type Class." alt="" coords="57,155,127,181"/>
+<area shape="rect" title=" " alt="" coords="5,229,80,256"/>
+<area shape="rect" title=" " alt="" coords="104,229,179,256"/>
+</map>
+</div>
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Fonctions</h2></td></tr>
+<tr class="memitem:a4d3f685fb05159e0ab423bf213878c8e"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d0b/new_8c.html#a4d3f685fb05159e0ab423bf213878c8e">obj_new</a> (void *__class__,...)</td></tr>
+<tr class="memdesc:a4d3f685fb05159e0ab423bf213878c8e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fonction qui crée un objet à partir de sa classe.  <a href="../../d4/d0b/new_8c.html#a4d3f685fb05159e0ab423bf213878c8e">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a4d3f685fb05159e0ab423bf213878c8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0f1db85eee610ac2a243f51a430c90c3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d0b/new_8c.html#a0f1db85eee610ac2a243f51a430c90c3">obj_destroy</a> (void *self_)</td></tr>
+<tr class="memdesc:a0f1db85eee610ac2a243f51a430c90c3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fonction qui détruit et desalloue l'espace mémoire alloué pour l'objet.  <a href="../../d4/d0b/new_8c.html#a0f1db85eee610ac2a243f51a430c90c3">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a0f1db85eee610ac2a243f51a430c90c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a982170ff95dbd729473188fea16f8db5"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d0b/new_8c.html#a982170ff95dbd729473188fea16f8db5">obj_to_string</a> (const void *self_)</td></tr>
+<tr class="memdesc:a982170ff95dbd729473188fea16f8db5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fonction qui renvoie une chaine de caractère représentative de l'objet.  <a href="../../d4/d0b/new_8c.html#a982170ff95dbd729473188fea16f8db5">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a982170ff95dbd729473188fea16f8db5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a80d4746b01a9f4a30386f83993065802"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d0b/new_8c.html#a80d4746b01a9f4a30386f83993065802">obj_equals</a> (const void *self_, const void *object_)</td></tr>
+<tr class="memdesc:a80d4746b01a9f4a30386f83993065802"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fonction qui renvoie si oui ou non les deux objets sont egaux.  <a href="../../d4/d0b/new_8c.html#a80d4746b01a9f4a30386f83993065802">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a80d4746b01a9f4a30386f83993065802"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6a92c31a5100f543a7b250ae748b4a04"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d0b/new_8c.html#a6a92c31a5100f543a7b250ae748b4a04">obj_instance_of</a> (const void *object, const <a class="el" href="../../d4/d05/Class_8h.html#a6ec2a8ccaeb1e924a80036ec40760377">Class</a> _class_)</td></tr>
+<tr class="memdesc:a6a92c31a5100f543a7b250ae748b4a04"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fonction qui permet de vérifier si un objet est l'instance d'une classe donnée.  <a href="../../d4/d0b/new_8c.html#a6a92c31a5100f543a7b250ae748b4a04">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a6a92c31a5100f543a7b250ae748b4a04"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:af5dbbe0ca6412092210d1165a49c2377"><td class="memItemLeft" align="right" valign="top">char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d0b/new_8c.html#af5dbbe0ca6412092210d1165a49c2377">to_string_buffer</a> [1024]</td></tr>
+<tr class="memdesc:af5dbbe0ca6412092210d1165a49c2377"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mémoire tampon qui doit être utilisée dans les fonctions <code>to_string</code> des objets. Cette mémmoire est généralement statique, afin d'éviter les allocations dynamiques.  <a href="../../d4/d0b/new_8c.html#af5dbbe0ca6412092210d1165a49c2377">Plus de détails...</a><br /></td></tr>
+<tr class="separator:af5dbbe0ca6412092210d1165a49c2377"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Description détaillée</h2>
+<div class="textblock"><p>Fichier contenant l'implémentation de toutes les méthodes génériques agissant sur des objets déclarées dans l'interface. </p>
+<p>Ces méthode sont générique pour permettre la création et la manipulation d'objets sans connaitre réelment leurs types et leurs structures. <br  />
+Indispensable si on veut faire de la programmation orienté objet de manière plus efficace. </p>
+</div><h2 class="groupheader">Documentation des fonctions</h2>
+<a id="a0f1db85eee610ac2a243f51a430c90c3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0f1db85eee610ac2a243f51a430c90c3">&#9670;&nbsp;</a></span>obj_destroy()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void obj_destroy </td>
+          <td>(</td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>self_</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Fonction qui détruit et desalloue l'espace mémoire alloué pour l'objet. </p>
+<p>La fonction va appeler la fonction <code>dtor()</code> définie dans la classe de l'objet, qui va désallouer tous les éléments utilisés dans l'objet, puis après l'appel, va désallouer l'objet avec <code>free()</code>.</p>
+<p>NB : La desallocation du pointeur vers l'objet <code>self_</code> ne doit pas se faire dans <code>dtor()</code>, cela va générer une erreur car au retour de l'appel cette fonction le fait également (il y aura donc deux <code>free()</code> sur une référence)).</p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self_</td><td>L'objet à détruire. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">Abort</td><td>Le programme est interrompu si une fonction de destruction n'est pas définie dans la classe. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a80d4746b01a9f4a30386f83993065802"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a80d4746b01a9f4a30386f83993065802">&#9670;&nbsp;</a></span>obj_equals()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int obj_equals </td>
+          <td>(</td>
+          <td class="paramtype">const void *&#160;</td>
+          <td class="paramname"><em>self_</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const void *&#160;</td>
+          <td class="paramname"><em>object_</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Fonction qui renvoie si oui ou non les deux objets sont egaux. </p>
+<p>La fonction appelle la fonction <code>equals()</code> définie dans la classe de l'objet. Si la fonction n'est pas définie elle compare bit à bit les deux objets en mémoire. (avec la fonction <code>memcmp()</code>)</p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self_</td><td>L'objet 1. </td></tr>
+    <tr><td class="paramname">object_</td><td>L'objet 2. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>Si oui (1) ou non (0) objet1 et objet2 sont égaux. </dd></dl>
+
+</div>
+</div>
+<a id="a6a92c31a5100f543a7b250ae748b4a04"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6a92c31a5100f543a7b250ae748b4a04">&#9670;&nbsp;</a></span>obj_instance_of()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int obj_instance_of </td>
+          <td>(</td>
+          <td class="paramtype">const void *&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="../../d4/d05/Class_8h.html#a6ec2a8ccaeb1e924a80036ec40760377">Class</a>&#160;</td>
+          <td class="paramname"><em>_class_</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Fonction qui permet de vérifier si un objet est l'instance d'une classe donnée. </p>
+<p>Cette fonction fonctionne également sur les objets dont la classe hérite d'une autre ( elle vérifie récursivement avec les ancètres).</p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self_</td><td>L'objet dont on souhaite vérifier l'appartenance à la classe. </td></tr>
+    <tr><td class="paramname">_class_</td><td>La classe. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>Si oui (1) ou non (0) l'objet est une instance de la classe. </dd></dl>
+
+</div>
+</div>
+<a id="a4d3f685fb05159e0ab423bf213878c8e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4d3f685fb05159e0ab423bf213878c8e">&#9670;&nbsp;</a></span>obj_new()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void* obj_new </td>
+          <td>(</td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>_class_</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>...</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Fonction qui crée un objet à partir de sa classe. </p>
+<p>La fonction alloue dynamiquement la mémoire l'objet avec calloc(), et appelle le constructeur définie dans la classe (Liaison dynamique). Si un constructeur n'est pas définie alors la fonction <code><a class="el" href="../../d7/d58/new_8h.html#a13ef2db84cbf848c09facc92d80b5b21" title="Fonction qui crée un objet à partir de sa classe.">obj_new()</a></code> renvoie l'objet avec tous les attribut à 0 (à cause calloc()).</p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">_class_</td><td>La classe de l'objet à construire. </td></tr>
+    <tr><td class="paramname">...</td><td>La liste des arguments que prend le constructeur.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>L'objet renvoyé par le constructeur définie dans sa classe ou la structure telle qu'elle a été alloué avec <code>calloc()</code> (si il n'y avait pas de constructeur). </dd></dl>
+
+</div>
+</div>
+<a id="a982170ff95dbd729473188fea16f8db5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a982170ff95dbd729473188fea16f8db5">&#9670;&nbsp;</a></span>obj_to_string()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char* obj_to_string </td>
+          <td>(</td>
+          <td class="paramtype">const void *&#160;</td>
+          <td class="paramname"><em>self_</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Fonction qui renvoie une chaine de caractère représentative de l'objet. </p>
+<p>La fonction appelle la fonction <code>to_string()</code> définie dans la classe de l'objet qui doit renvoyer une chaine de caractère.</p>
+<p>Si la fonction n'est pas définie, <code><a class="el" href="../../d7/d58/new_8h.html#a982170ff95dbd729473188fea16f8db5" title="Fonction qui renvoie une chaine de caractère représentative de l&#39;objet.">obj_to_string()</a></code> renvoie le nom de la classe suivi de l'adresse du pointeur de l'objet.</p>
+<p>ATTENTION : NE JAMAIS RENVOYER UNE CHAINE DE CARACTERE ALLOUEE DYNAMIQUEMENT !<br  />
+ Il est impératif d'écrire directement dans le buffer <code>to_string_buffer</code> situé en dessous et de laisser au code appelant la responsabilité de décider s'il souhaite en faire une copie ou non.</p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self_</td><td>L'objet à interroger. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>La chaine de caractère renvoyé par <code>to_string</code>, qui est généralement un pointeur vers <code>to_string_buffer</code> ci-dessous. </dd></dl>
+
+</div>
+</div>
+<h2 class="groupheader">Documentation des variables</h2>
+<a id="af5dbbe0ca6412092210d1165a49c2377"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af5dbbe0ca6412092210d1165a49c2377">&#9670;&nbsp;</a></span>to_string_buffer</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char to_string_buffer[1024]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Mémoire tampon qui doit être utilisée dans les fonctions <code>to_string</code> des objets. Cette mémmoire est généralement statique, afin d'éviter les allocations dynamiques. </p>
+<p>De cette façon on réduit les risques de fuites mémoire et on confie au code appelant la responsabilité de gérer, si nécessaire, une copie de la chaîne résultante. </p>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré par&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+</small></address>
+</body>
+</html>
