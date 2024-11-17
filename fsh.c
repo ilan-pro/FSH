@@ -9,7 +9,7 @@
 
 #include "base/LinkedList.h"
 #include "base/new.h"
-#include "base/String.h"
+#include "shell.h"
 
 int run_commande(){
     while(1){
@@ -43,5 +43,6 @@ int run_commande(){
 }
 
 int main(){
+    Shell_start();
     return 0; 
 }

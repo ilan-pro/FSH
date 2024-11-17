@@ -1,12 +1,13 @@
 var indexSectionsWithContent =
 {
-  0: "_acdeflmnoprst",
+  0: "_acdeflmnoprstw",
   1: "_",
   2: "acflnps",
-  3: "lmor",
-  4: "_cdenpst",
+  3: "lmors",
+  4: "_cdenpstw",
   5: "cls",
-  6: "ap"
+  6: "p",
+  7: "ap"
 };
 
 var indexSectionNames =
@@ -17,7 +18,8 @@ var indexSectionNames =
   3: "functions",
   4: "variables",
   5: "typedefs",
-  6: "pages"
+  6: "defines",
+  7: "pages"
 };
 
 var indexSectionLabels =
@@ -28,6 +30,7 @@ var indexSectionLabels =
   3: "Fonctions",
   4: "Variables",
   5: "Définitions de type",
-  6: "Pages"
+  6: "Macros",
+  7: "Pages"
 };
 

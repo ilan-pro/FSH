@@ -1,0 +1,76 @@
+\hypertarget{shell_8h}{}\doxysection{Référence du fichier shell.\+h}
+\label{shell_8h}\index{shell.h@{shell.h}}
+{\ttfamily \#include $<$linux/limits.\+h$>$}\newline
+Graphe des dépendances par inclusion de shell.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=160pt]{df/d55/shell_8h__incl}
+\end{center}
+\end{figure}
+Ce graphe montre quels fichiers incluent directement ou indirectement ce fichier \+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=186pt]{d1/d44/shell_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{shell_8h_ac855d1077484caa2542bb26af8ea6479}{PROMPT\+\_\+\+CHAR\+\_\+\+LIMITS}}~30
+\begin{DoxyCompactList}\small\item\em Il s\textquotesingle{}agit du nombre de caractère maximal que doit avoir le prompt. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Fonctions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{shell_8h_a0dabbf807290a3a452d301797493bad4}{Shell\+\_\+start}} ()
+\begin{DoxyCompactList}\small\item\em Fonction qui va démarrer l\textquotesingle{}interpreteur de commande. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+char \mbox{\hyperlink{shell_8h_a0fb747376cf2f2d8093c063281da9702}{working\+\_\+dir}} \mbox{[}PATH\+\_\+\+MAX\mbox{]}
+\begin{DoxyCompactList}\small\item\em Il s\textquotesingle{}agit du chemin absolue vers le repertoire courant. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Documentation des macros}
+\mbox{\Hypertarget{shell_8h_ac855d1077484caa2542bb26af8ea6479}\label{shell_8h_ac855d1077484caa2542bb26af8ea6479}} 
+\index{shell.h@{shell.h}!PROMPT\_CHAR\_LIMITS@{PROMPT\_CHAR\_LIMITS}}
+\index{PROMPT\_CHAR\_LIMITS@{PROMPT\_CHAR\_LIMITS}!shell.h@{shell.h}}
+\doxysubsubsection{\texorpdfstring{PROMPT\_CHAR\_LIMITS}{PROMPT\_CHAR\_LIMITS}}
+{\footnotesize\ttfamily \#define PROMPT\+\_\+\+CHAR\+\_\+\+LIMITS~30}
+
+
+
+Il s\textquotesingle{}agit du nombre de caractère maximal que doit avoir le prompt. 
+
+
+
+\doxysubsection{Documentation des fonctions}
+\mbox{\Hypertarget{shell_8h_a0dabbf807290a3a452d301797493bad4}\label{shell_8h_a0dabbf807290a3a452d301797493bad4}} 
+\index{shell.h@{shell.h}!Shell\_start@{Shell\_start}}
+\index{Shell\_start@{Shell\_start}!shell.h@{shell.h}}
+\doxysubsubsection{\texorpdfstring{Shell\_start()}{Shell\_start()}}
+{\footnotesize\ttfamily int Shell\+\_\+start (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Fonction qui va démarrer l\textquotesingle{}interpreteur de commande. 
+
+\begin{DoxyReturn}{Renvoie}
+Le code de retour au moment de la fermture du terminal. 
+\end{DoxyReturn}
+
+
+\doxysubsection{Documentation des variables}
+\mbox{\Hypertarget{shell_8h_a0fb747376cf2f2d8093c063281da9702}\label{shell_8h_a0fb747376cf2f2d8093c063281da9702}} 
+\index{shell.h@{shell.h}!working\_dir@{working\_dir}}
+\index{working\_dir@{working\_dir}!shell.h@{shell.h}}
+\doxysubsubsection{\texorpdfstring{working\_dir}{working\_dir}}
+{\footnotesize\ttfamily char working\+\_\+dir\mbox{[}PATH\+\_\+\+MAX\mbox{]}\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Il s\textquotesingle{}agit du chemin absolue vers le repertoire courant. 
+
