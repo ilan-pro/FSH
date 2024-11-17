@@ -207,8 +207,7 @@ int ListCell_add(ListCell self, void* object, int index){
     assert(index >=0);
 
     if (index == 0){
-            
-    
+        
         // On ajoute la nouvelle cellule.
         ListCell new_cell = obj_new(_ListCell_, object);
         new_cell->previous=self->previous;
@@ -367,7 +366,100 @@ ListCell ListCell_get_next(const ListCell self){
 
 /**
  * @internal
+ * Fonction qui change la cellule précédant self.
+ */
+void* ListCell_replace_previous(const ListCell self, const ListCell new_prev, int clone){
+
+    assert(self && obj_instance_of(self, _ListCell_));
+    if(new_prev) // Si le précédent n'est pas NULL
+        assert(obj_instance_of(new_prev, _ListCell_)); // On vérifie si c'est un ListCell
+                                                                      
+    ListCell prev = self->previous;
+    void* self_prev_value = NULL; // La valeur qui se trouve dans la cellule prev (NULL pour l'instant)
+
+    if (prev){ // Si prev n'était pas NULL
+
+        if (prev->previous) // Si son précendent n'est pas NULL
+            prev->previous->next = new_prev; // On met à jour son suivant.
+        
+        if (new_prev) // Si new prev n'est pas null.
+            new_prev->previous = prev->previous; // Mise à jour du précédent du nouveau précédent. (peut être NULL ce n'est pas grave)
+
+        if (clone) // Si la fonction doit faire une copie.
+            self_prev_value = obj_clone(prev->value);
+
+        prev->next = NULL; // On le coupe du reste de la liste.
+        prev->previous = NULL; 
+        obj_destroy(prev); // Et on le détruit.
+
+    }
+    // Sinon le nouveau précédent garde son ancien précédent
+
+    // On change le précdent de self.
+    self->previous = new_prev; 
+    
+    if (new_prev) // Si new prev n'est pas null.
+        new_prev->next = self;
+
+    return self_prev_value;
+
+}
+
+/**
+ * @internal
  * Fonction qui renvoie la cellule précédant `self`
+ */
+void* ListCell_replace_next(const ListCell self, const ListCell new_next, int clone){
+
+    assert(self && obj_instance_of(self, _ListCell_));
+    
+    if(new_next) // Si le suivant n'est pas NULL
+        assert(obj_instance_of(new_next, _ListCell_)); // On vérifie si c'est un ListCell
+                                
+    ListCell next = self->next; // On récupère le suivant actuelle de self.
+    void* self_next_value = NULL; // La valeur qui se trouve dans la cellule next (NULL pour l'instant)
+
+    if (next){ // Si next n'était pas NULL
+
+        if (next->next) // Si son suivant n'est pas NULL
+            next->next->previous = new_next; // On met à jour son précédent.
+
+        if (new_next)// Si new_next n'est pas null.
+            new_next->next = next->next; // Mise à jour du suivant du nouveau suivant. (peut être NULL ce n'est pas grave)
+
+        if (clone) // Si la fonction doit faire une copie.
+            self_next_value = obj_clone(next->value);
+
+        next->next = NULL; // On le coupe du reste de la liste.
+        next->previous = NULL; 
+        obj_destroy(next); // Et on le détruit.
+
+    }
+    // Sinon le nouveau précédent garde son ancien précédent
+
+    // On change le next de self.
+    self->next = new_next; 
+    
+    if (new_next)// Si new_next n'est pas null.
+        new_next->previous = self;
+
+    return self_next_value;
+}
+
+
+
+    
+/** 
+ * @internal 
+ * @brief Fonction qui modifie la cellule qui précède `self`.
+ * 
+ * **ATTENTION** Risque de fuite de mémoire, rien ne sera désalloué. 
+ * La fonction va seulement remplacer la référence à la cellule précédente 
+ * par la nouvelle. 
+ * 
+ * @param self La cellule dont on veut changer celle qui la suit.
+ * @param new_prev La nouvelle cellule suivant `self`.
+ * @return L'ancienne cellule précédante de `self`.
  */
 ListCell ListCell_set_previous(const ListCell self, const ListCell new_prev){
 
@@ -383,7 +475,15 @@ ListCell ListCell_set_previous(const ListCell self, const ListCell new_prev){
 
 /**
  * @internal
- * Fonction qui renvoie la cellule précédant `self`
+ * @brief Fonction qui modifie la cellule qui suit `self`.
+ * 
+ * **ATTENTION** Risque de fuite de mémoire, rien ne sera désalloué.
+ * La fonction va seulement remplacer la référence à la cellule suivante 
+ * par la nouvelle. 
+ * 
+ * @param self La cellule dont on veut changer celle qui la précède.
+ * @param new_prev La nouvelle cellule précédant `self`.
+ * @return L'ancienne cellule suivante de `self`.
  */
 ListCell ListCell_set_next(const ListCell self, const ListCell new_next){
 

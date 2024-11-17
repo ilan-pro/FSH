@@ -7,6 +7,10 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 
+#include "base/LinkedList.h"
+#include "base/new.h"
+#include "base/String.h"
+
 int run_commande(){
     while(1){
         char *rep = readline("Entrez une commande: ");

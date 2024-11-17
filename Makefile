@@ -1,5 +1,5 @@
 fsh:
-	find **/*.c *.c > sources; gcc -Wall -g @sources -o fsh -lreadline; rm source
+	find **/*.c *.c > sources; gcc -Wall -g @sources -o fsh -lreadline; rm sources
 
 clean: 
 	rm -f fsh 

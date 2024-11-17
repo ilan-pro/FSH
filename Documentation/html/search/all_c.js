@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['size_54',['size',['../d8/d36/struct__Class__.html#a49194702f2ab698823a1f161f92c9856',1,'_Class_']]],
-  ['string_55',['String',['../d4/db5/String_8c.html#aef4dfc8829b0dbeb22460f55ddf63556',1,'String():&#160;String.c'],['../d9/dba/String_8h.html#aef4dfc8829b0dbeb22460f55ddf63556',1,'String():&#160;String.h']]],
-  ['string_2ec_56',['String.c',['../d4/db5/String_8c.html',1,'']]],
-  ['string_2eh_57',['String.h',['../d9/dba/String_8h.html',1,'']]]
+  ['size_56',['size',['../d8/d36/struct__Class__.html#a49194702f2ab698823a1f161f92c9856',1,'_Class_']]],
+  ['string_57',['String',['../d4/db5/String_8c.html#aef4dfc8829b0dbeb22460f55ddf63556',1,'String():&#160;String.c'],['../d9/dba/String_8h.html#aef4dfc8829b0dbeb22460f55ddf63556',1,'String():&#160;String.h']]],
+  ['string_2ec_58',['String.c',['../d4/db5/String_8c.html',1,'']]],
+  ['string_2eh_59',['String.h',['../d9/dba/String_8h.html',1,'']]]
 ];

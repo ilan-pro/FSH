@@ -34,7 +34,7 @@ typedef struct \mbox{\hyperlink{struct__ListCell__}{\+\_\+\+List\+Cell\+\_\+}} $
 \begin{DoxyCompactItemize}
 \item 
 int \mbox{\hyperlink{ListCell_8h_a9ec761d5e0f3855a1bef7bb0d693358a}{List\+Cell\+\_\+add}} (\mbox{\hyperlink{ListCell_8c_a0942caee76f24634f4b9ae7edba6aa57}{List\+Cell}} self, void $\ast$object, int index)
-\begin{DoxyCompactList}\small\item\em Fonction qui ajoute un object à une position donnée dans la liste, à partir de cette cellule. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Fonction qui ajoute un objet à une position donnée dans la liste, à partir de cette cellule. \end{DoxyCompactList}\item 
 void $\ast$ \mbox{\hyperlink{ListCell_8h_aae2285ec6518af32de9cb67ad5f52b4b}{List\+Cell\+\_\+remove}} (\mbox{\hyperlink{ListCell_8c_a0942caee76f24634f4b9ae7edba6aa57}{List\+Cell}} self, int index, int clone)
 \begin{DoxyCompactList}\small\item\em Fonction qui va retirer un object à une position donnée, à partir de cette cellule. \end{DoxyCompactList}\item 
 void $\ast$ \mbox{\hyperlink{ListCell_8h_a2019c9dcbf83335df581897980e8888c}{List\+Cell\+\_\+get}} (const \mbox{\hyperlink{ListCell_8c_a0942caee76f24634f4b9ae7edba6aa57}{List\+Cell}} self, int index, int clone)
@@ -42,12 +42,16 @@ void $\ast$ \mbox{\hyperlink{ListCell_8h_a2019c9dcbf83335df581897980e8888c}{List
 \mbox{\hyperlink{ListCell_8c_a0942caee76f24634f4b9ae7edba6aa57}{List\+Cell}} \mbox{\hyperlink{ListCell_8h_a7b77722320f2da555315b840619bf69f}{List\+Cell\+\_\+get\+\_\+last}} (const \mbox{\hyperlink{ListCell_8c_a0942caee76f24634f4b9ae7edba6aa57}{List\+Cell}} self\+\_\+)
 \begin{DoxyCompactList}\small\item\em Fonction qui va rechercher à partir de cette cellule le dernier élément de la chaine. \end{DoxyCompactList}\item 
 void $\ast$ \mbox{\hyperlink{ListCell_8h_ae289ee13ff633988c0f263a163b23075}{List\+Cell\+\_\+get\+\_\+value}} (const \mbox{\hyperlink{ListCell_8c_a0942caee76f24634f4b9ae7edba6aa57}{List\+Cell}} self)
-\begin{DoxyCompactList}\small\item\em Fonction qui va renvoyer la valeur contenu dans la cellule. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Fonction qui va renvoyer la valeur contenue dans la cellule. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{ListCell_8c_a0942caee76f24634f4b9ae7edba6aa57}{List\+Cell}} \mbox{\hyperlink{ListCell_8h_a77083f155127e2465830aaab369fb80d}{List\+Cell\+\_\+get\+\_\+previous}} (const \mbox{\hyperlink{ListCell_8c_a0942caee76f24634f4b9ae7edba6aa57}{List\+Cell}} self)
 \begin{DoxyCompactList}\small\item\em Fonction qui renvoie la cellule qui précède {\ttfamily self}. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{ListCell_8c_a0942caee76f24634f4b9ae7edba6aa57}{List\+Cell}} \mbox{\hyperlink{ListCell_8h_aa07eaad054a81354dc31171104dfcae3}{List\+Cell\+\_\+get\+\_\+next}} (const \mbox{\hyperlink{ListCell_8c_a0942caee76f24634f4b9ae7edba6aa57}{List\+Cell}} self)
 \begin{DoxyCompactList}\small\item\em Fonction qui renvoie la cellule qui suit {\ttfamily self}. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{ListCell_8c_a0942caee76f24634f4b9ae7edba6aa57}{List\+Cell}} \mbox{\hyperlink{ListCell_8h_ae68154fbe05da9e5d0c6db7fcdb88bd6}{List\+Cell\+\_\+set\+\_\+previous}} (const \mbox{\hyperlink{ListCell_8c_a0942caee76f24634f4b9ae7edba6aa57}{List\+Cell}} self, const \mbox{\hyperlink{ListCell_8c_a0942caee76f24634f4b9ae7edba6aa57}{List\+Cell}} new\+\_\+prev)
+void $\ast$ \mbox{\hyperlink{ListCell_8h_a506b47fb4feb744dc0e361a63b5c03d7}{List\+Cell\+\_\+replace\+\_\+previous}} (const \mbox{\hyperlink{ListCell_8c_a0942caee76f24634f4b9ae7edba6aa57}{List\+Cell}} self, const \mbox{\hyperlink{ListCell_8c_a0942caee76f24634f4b9ae7edba6aa57}{List\+Cell}} new\+\_\+prev, int clone)
+\begin{DoxyCompactList}\small\item\em Fonction qui remplace la cellule qui précède {\ttfamily self}. \end{DoxyCompactList}\item 
+void $\ast$ \mbox{\hyperlink{ListCell_8h_a64d4db9bf1f58a6e706d84e92cde8684}{List\+Cell\+\_\+replace\+\_\+next}} (const \mbox{\hyperlink{ListCell_8c_a0942caee76f24634f4b9ae7edba6aa57}{List\+Cell}} self, const \mbox{\hyperlink{ListCell_8c_a0942caee76f24634f4b9ae7edba6aa57}{List\+Cell}} new\+\_\+next, int clone)
+\begin{DoxyCompactList}\small\item\em Fonction qui remplace la cellule qui suit {\ttfamily self}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{ListCell_8c_a0942caee76f24634f4b9ae7edba6aa57}{List\+Cell}} \mbox{\hyperlink{ListCell_8h_a515ed34793c0007331654f3ba077e9c7}{List\+Cell\+\_\+set\+\_\+previous}} (const \mbox{\hyperlink{ListCell_8c_a0942caee76f24634f4b9ae7edba6aa57}{List\+Cell}} self, const \mbox{\hyperlink{ListCell_8c_a0942caee76f24634f4b9ae7edba6aa57}{List\+Cell}} new\+\_\+next)
 \begin{DoxyCompactList}\small\item\em Fonction qui modifie la cellule qui précède {\ttfamily self}. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{ListCell_8c_a0942caee76f24634f4b9ae7edba6aa57}{List\+Cell}} \mbox{\hyperlink{ListCell_8h_ab7b9c59a1a1db8f09219c9748fa45fdf}{List\+Cell\+\_\+set\+\_\+next}} (const \mbox{\hyperlink{ListCell_8c_a0942caee76f24634f4b9ae7edba6aa57}{List\+Cell}} self, const \mbox{\hyperlink{ListCell_8c_a0942caee76f24634f4b9ae7edba6aa57}{List\+Cell}} new\+\_\+next)
 \begin{DoxyCompactList}\small\item\em Fonction qui modifie la cellule qui suit {\ttfamily self}. \end{DoxyCompactList}\end{DoxyCompactItemize}
@@ -81,7 +85,7 @@ Fichier d\textquotesingle{}en-\/tête contenant les déclarations de toutes les 
 
 
 
-Fonction qui ajoute un object à une position donnée dans la liste, à partir de cette cellule. 
+Fonction qui ajoute un objet à une position donnée dans la liste, à partir de cette cellule. 
 
 
 \begin{DoxyParams}{Paramètres}
@@ -89,11 +93,11 @@ Fonction qui ajoute un object à une position donnée dans la liste, à partir d
 \hline
 {\em object} & L\textquotesingle{}objet à ajouter dans la liste. \\
 \hline
-{\em index} & la position où l\textquotesingle{}on doit ajoute l\textquotesingle{}objet. \\
+{\em index} & la position où l\textquotesingle{}on doit ajouter l\textquotesingle{}objet. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Renvoie}
-La dernière cellule de la chaine. 
+0 Si l\textquotesingle{}ojout a échoué, 1 sinon. 
 \end{DoxyReturn}
 \mbox{\Hypertarget{ListCell_8h_a2019c9dcbf83335df581897980e8888c}\label{ListCell_8h_a2019c9dcbf83335df581897980e8888c}} 
 \index{ListCell.h@{ListCell.h}!ListCell\_get@{ListCell\_get}}
@@ -109,11 +113,11 @@ Fonction qui va rechercher une valeur à l\textquotesingle{}aide de l\textquotes
 \begin{DoxyParams}{Paramètres}
 {\em self} & La cellule où la recherche va débuter. \\
 \hline
-{\em clone} & Booléen dont 1 permet d\textquotesingle{}indiquer à la fonction qu\textquotesingle{}on souhaite qu\textquotesingle{}elle renvoie une copie de l\textquotesingle{}objet après au lieux de la vraie référence.\\
+{\em clone} & Booléen dont 1 permet d\textquotesingle{}indiquer à la fonction qu\textquotesingle{}on souhaite qu\textquotesingle{}elle renvoie une copie de l\textquotesingle{}objet au lieux de la vraie référence.\\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Renvoie}
-La dernière cellule de la chaine. 
+La valeur qui se trouve à l\textquotesingle{}indice {\ttfamily index} à partir de cette cellule 
 \end{DoxyReturn}
 \mbox{\Hypertarget{ListCell_8h_a7b77722320f2da555315b840619bf69f}\label{ListCell_8h_a7b77722320f2da555315b840619bf69f}} 
 \index{ListCell.h@{ListCell.h}!ListCell\_get\_last@{ListCell\_get\_last}}
@@ -177,7 +181,7 @@ La cellule précédant {\ttfamily self}.
 
 
 
-Fonction qui va renvoyer la valeur contenu dans la cellule. 
+Fonction qui va renvoyer la valeur contenue dans la cellule. 
 
 
 \begin{DoxyParams}{Paramètres}
@@ -199,7 +203,7 @@ Fonction qui va retirer un object à une position donnée, à partir de cette ce
 
 
 \begin{DoxyParams}{Paramètres}
-{\em self} & La cellule où la recherche de la bonne position àr retirer va débuter. \\
+{\em self} & La cellule où la recherche de la bonne position à retirer va débuter. \\
 \hline
 {\em index} & la position où l\textquotesingle{}on doit ajoute l\textquotesingle{}objet. \\
 \hline
@@ -207,7 +211,55 @@ Fonction qui va retirer un object à une position donnée, à partir de cette ce
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Renvoie}
-La dernière cellule de la chaine. 
+La valeur retirée (ou NULL si on ne souhaite pas la récupérer) si l\textquotesingle{}élément est bien retiré de la liste, NULL sinon. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{ListCell_8h_a64d4db9bf1f58a6e706d84e92cde8684}\label{ListCell_8h_a64d4db9bf1f58a6e706d84e92cde8684}} 
+\index{ListCell.h@{ListCell.h}!ListCell\_replace\_next@{ListCell\_replace\_next}}
+\index{ListCell\_replace\_next@{ListCell\_replace\_next}!ListCell.h@{ListCell.h}}
+\doxysubsubsection{\texorpdfstring{ListCell\_replace\_next()}{ListCell\_replace\_next()}}
+{\footnotesize\ttfamily void$\ast$ List\+Cell\+\_\+replace\+\_\+next (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{ListCell_8c_a0942caee76f24634f4b9ae7edba6aa57}{List\+Cell}}}]{self,  }\item[{const \mbox{\hyperlink{ListCell_8c_a0942caee76f24634f4b9ae7edba6aa57}{List\+Cell}}}]{new\+\_\+next,  }\item[{int}]{clone }\end{DoxyParamCaption})}
+
+
+
+Fonction qui remplace la cellule qui suit {\ttfamily self}. 
+
+{\bfseries{ATTENTION}} La cellule remplacée est imédiatement détruite avec sa valeur, mettre le paramètre {\ttfamily clone} à 1 pour renvoyer une copie de la valeur avant qu\textquotesingle{}elle soit détruite.
+
+
+\begin{DoxyParams}{Paramètres}
+{\em self} & La cellule dont on veut changer celle qui la suit. \\
+\hline
+{\em new\+\_\+prev} & La nouvelle cellule suivant {\ttfamily self}. \\
+\hline
+{\em clone} & Booléen dont 1 permet d\textquotesingle{}indiquer à la fonction qu\textquotesingle{}on souhaite qu\textquotesingle{}elle renvoie une copie de la valeur qui se trouvait dans la cellule écrasée après suppression.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+une copie de la valeur qui se trouvait dans la cellule écrasée ou NULL si pas de copie ({\ttfamily clone} mis à 0) 
+\end{DoxyReturn}
+\mbox{\Hypertarget{ListCell_8h_a506b47fb4feb744dc0e361a63b5c03d7}\label{ListCell_8h_a506b47fb4feb744dc0e361a63b5c03d7}} 
+\index{ListCell.h@{ListCell.h}!ListCell\_replace\_previous@{ListCell\_replace\_previous}}
+\index{ListCell\_replace\_previous@{ListCell\_replace\_previous}!ListCell.h@{ListCell.h}}
+\doxysubsubsection{\texorpdfstring{ListCell\_replace\_previous()}{ListCell\_replace\_previous()}}
+{\footnotesize\ttfamily void$\ast$ List\+Cell\+\_\+replace\+\_\+previous (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{ListCell_8c_a0942caee76f24634f4b9ae7edba6aa57}{List\+Cell}}}]{self,  }\item[{const \mbox{\hyperlink{ListCell_8c_a0942caee76f24634f4b9ae7edba6aa57}{List\+Cell}}}]{new\+\_\+prev,  }\item[{int}]{clone }\end{DoxyParamCaption})}
+
+
+
+Fonction qui remplace la cellule qui précède {\ttfamily self}. 
+
+{\bfseries{ATTENTION}} La cellule remplacée est imédiatement détruite avec sa valeur, mettre le paramètre {\ttfamily clone} à 1 pour renvoyer une copie de la valeur avant qu\textquotesingle{}elle soit détruite.
+
+
+\begin{DoxyParams}{Paramètres}
+{\em self} & La cellule dont on veut changer celle qui la précède. \\
+\hline
+{\em new\+\_\+prev} & La nouvelle cellule précédant {\ttfamily self}. \\
+\hline
+{\em clone} & Booléen dont 1 permet d\textquotesingle{}indiquer à la fonction qu\textquotesingle{}on souhaite qu\textquotesingle{}elle renvoie une copie de la valeur qui se trouvait dans la cellule écrasée après suppression.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+une copie de la valeur qui se trouvait dans la cellule écrasée ou NULL si pas de copie ({\ttfamily clone} mis à 0) 
 \end{DoxyReturn}
 \mbox{\Hypertarget{ListCell_8h_ab7b9c59a1a1db8f09219c9748fa45fdf}\label{ListCell_8h_ab7b9c59a1a1db8f09219c9748fa45fdf}} 
 \index{ListCell.h@{ListCell.h}!ListCell\_set\_next@{ListCell\_set\_next}}
@@ -219,35 +271,39 @@ La dernière cellule de la chaine.
 
 Fonction qui modifie la cellule qui suit {\ttfamily self}. 
 
-
-\begin{DoxyParams}{Paramètres}
-{\em self} & La cellule dont on veut modifier celle qui la suit. \\
-\hline
-{\em La} & nouvelle cellule suivant {\ttfamily self}.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Renvoie}
-L\textquotesingle{}ancienne cellule qui suivait {\ttfamily self}. 
-\end{DoxyReturn}
-\mbox{\Hypertarget{ListCell_8h_ae68154fbe05da9e5d0c6db7fcdb88bd6}\label{ListCell_8h_ae68154fbe05da9e5d0c6db7fcdb88bd6}} 
-\index{ListCell.h@{ListCell.h}!ListCell\_set\_previous@{ListCell\_set\_previous}}
-\index{ListCell\_set\_previous@{ListCell\_set\_previous}!ListCell.h@{ListCell.h}}
-\doxysubsubsection{\texorpdfstring{ListCell\_set\_previous()}{ListCell\_set\_previous()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{ListCell_8c_a0942caee76f24634f4b9ae7edba6aa57}{List\+Cell}} List\+Cell\+\_\+set\+\_\+previous (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{ListCell_8c_a0942caee76f24634f4b9ae7edba6aa57}{List\+Cell}}}]{self,  }\item[{const \mbox{\hyperlink{ListCell_8c_a0942caee76f24634f4b9ae7edba6aa57}{List\+Cell}}}]{new\+\_\+prev }\end{DoxyParamCaption})}
-
-
-
-Fonction qui modifie la cellule qui précède {\ttfamily self}. 
+{\bfseries{ATTENTION}} Risque de fuite de mémoire, rien ne sera désalloué. La fonction va seulement remplacer la référence à la cellule suivante par la nouvelle.
 
 
 \begin{DoxyParams}{Paramètres}
 {\em self} & La cellule dont on veut changer celle qui la précède. \\
 \hline
-{\em La} & nouvelle cellule précédant {\ttfamily self}.\\
+{\em new\+\_\+prev} & La nouvelle cellule précédant {\ttfamily self}.\\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Renvoie}
-L\textquotesingle{}ancienne cellule précédant {\ttfamily self}. 
+L\textquotesingle{}ancienne cellule suivante de {\ttfamily self}. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{ListCell_8h_a515ed34793c0007331654f3ba077e9c7}\label{ListCell_8h_a515ed34793c0007331654f3ba077e9c7}} 
+\index{ListCell.h@{ListCell.h}!ListCell\_set\_previous@{ListCell\_set\_previous}}
+\index{ListCell\_set\_previous@{ListCell\_set\_previous}!ListCell.h@{ListCell.h}}
+\doxysubsubsection{\texorpdfstring{ListCell\_set\_previous()}{ListCell\_set\_previous()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{ListCell_8c_a0942caee76f24634f4b9ae7edba6aa57}{List\+Cell}} List\+Cell\+\_\+set\+\_\+previous (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{ListCell_8c_a0942caee76f24634f4b9ae7edba6aa57}{List\+Cell}}}]{self,  }\item[{const \mbox{\hyperlink{ListCell_8c_a0942caee76f24634f4b9ae7edba6aa57}{List\+Cell}}}]{new\+\_\+next }\end{DoxyParamCaption})}
+
+
+
+Fonction qui modifie la cellule qui précède {\ttfamily self}. 
+
+{\bfseries{ATTENTION}} Risque de fuite de mémoire, rien ne sera désalloué. La fonction va seulement remplacer la référence à la cellule précédente par la nouvelle.
+
+
+\begin{DoxyParams}{Paramètres}
+{\em self} & La cellule dont on veut changer celle qui la suit. \\
+\hline
+{\em new\+\_\+prev} & La nouvelle cellule suivant {\ttfamily self}. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+L\textquotesingle{}ancienne cellule précédante de {\ttfamily self}. 
 \end{DoxyReturn}
 
 

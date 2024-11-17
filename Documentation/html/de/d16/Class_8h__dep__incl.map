@@ -1,11 +1,12 @@
 <map id="base/Class.h" name="base/Class.h">
-<area shape="rect" id="node1" title="Fichier d&#39;en&#45;tête contenant la définition du type Class." alt="" coords="329,5,433,32"/>
+<area shape="rect" id="node1" title="Fichier d&#39;en&#45;tête contenant la définition du type Class." alt="" coords="379,5,483,32"/>
 <area shape="rect" id="node2" href="$d6/d82/ListCell_8h.html" title="Fichier d&#39;en&#45;tête contenant les déclarations de toutes les méthodes utilisées pour manipuler les obje..." alt="" coords="173,80,290,107"/>
-<area shape="rect" id="node5" href="$d7/d58/new_8h.html" title="Fichier d&#39;en&#45;tête contenant les déclarations de toutes les méthodes génériques agissant sur des objet..." alt="" coords="333,80,428,107"/>
-<area shape="rect" id="node9" href="$d9/dba/String_8h.html" title="Fichier d&#39;en&#45;tête contenant les déclarations des variables publiques et de toutes les méthodes public..." alt="" coords="453,80,559,107"/>
+<area shape="rect" id="node6" href="$d7/d58/new_8h.html" title="Fichier d&#39;en&#45;tête contenant les déclarations de toutes les méthodes génériques agissant sur des objet..." alt="" coords="384,80,479,107"/>
+<area shape="rect" id="node10" href="$d9/dba/String_8h.html" title="Fichier d&#39;en&#45;tête contenant les déclarations des variables publiques et de toutes les méthodes public..." alt="" coords="613,80,719,107"/>
 <area shape="rect" id="node3" href="$d7/de9/LinkedList_8c.html" title="Fichier contenant l&#39;implémentation des variables et de toutes les méthodes déclarés dans LinkedList...." alt="" coords="165,155,298,181"/>
 <area shape="rect" id="node4" href="$db/d44/LinkedList_8h.html" title="Fichier d&#39;en&#45;tête contenant les déclarations de toutes les méthodes utilisées pour manipuler les obje..." alt="" coords="5,155,140,181"/>
-<area shape="rect" id="node6" href="$dc/db6/ListCell_8c.html" title="Fichier contenant l&#39;implémentation des variables et de toutes les méthodes déclarés dans ListCell...." alt="" coords="323,155,439,181"/>
-<area shape="rect" id="node7" href="$d4/d0b/new_8c.html" title="Fichier contenant l&#39;implémentation de toutes les méthodes génériques agissant sur des objets déclarée..." alt="" coords="463,155,557,181"/>
-<area shape="rect" id="node8" href="$d4/db5/String_8c.html" title="Fichier contenant l&#39;implémentation des variables et de toutes les méthodes de l&#39;interface." alt="" coords="582,155,689,181"/>
+<area shape="rect" id="node5" href="$da/de7/fsh_8c.html" title=" " alt="" coords="309,229,362,256"/>
+<area shape="rect" id="node7" href="$dc/db6/ListCell_8c.html" title="Fichier contenant l&#39;implémentation des variables et de toutes les méthodes déclarés dans ListCell...." alt="" coords="373,155,489,181"/>
+<area shape="rect" id="node8" href="$d4/d0b/new_8c.html" title="Fichier contenant l&#39;implémentation de toutes les méthodes génériques agissant sur des objets déclarée..." alt="" coords="513,155,608,181"/>
+<area shape="rect" id="node9" href="$d4/db5/String_8c.html" title="Fichier contenant l&#39;implémentation des variables et de toutes les méthodes de l&#39;interface." alt="" coords="633,155,739,181"/>
 </map>

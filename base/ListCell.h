@@ -75,24 +75,25 @@
     extern Class _ListCell_;
 
     /**
-     * @brief Fonction qui ajoute un object à une position donnée dans la liste, à partir de cette cellule.
+     * @brief Fonction qui ajoute un objet à une position donnée dans la liste, à partir de cette cellule.
      *
      * @param self La cellule où la recherche de la bonne position va débuter.
      * @param object L'objet à ajouter dans la liste.
-     * @param index la position où l'on doit ajoute l'objet.
-     * @return La dernière cellule de la chaine.
+     * @param index la position où l'on doit ajouter l'objet.
+     * @return 0 Si l'ojout a échoué, 1 sinon.
      */
     int ListCell_add(ListCell self, void* object, int index);
 
     /**
      * @brief Fonction qui va retirer un object à une position donnée, à partir de cette cellule.
      * 
-     * @param self La cellule où la recherche de la bonne position àr retirer va débuter.
+     * @param self La cellule où la recherche de la bonne position à retirer va débuter.
      * @param index la position où l'on doit ajoute l'objet.
      * @param clone Booléen dont 1 permet d'indiquer à la fonction qu'on souhaite qu'elle nous renvoie 
      * une copie de l'objet après suppression. Pour rappel, l'objet sera détruit après sa suppression 
      * de la liste.
-     * @return La dernière cellule de la chaine.
+     * @return La valeur retirée (ou NULL si on ne souhaite pas la récupérer) si l'élément est bien retiré 
+     * de la liste, NULL sinon.
      */
     void* ListCell_remove(ListCell self, int index, int clone);
 
@@ -102,9 +103,9 @@
      *
      * @param self La cellule où la recherche va débuter.
      * @param clone Booléen dont 1 permet d'indiquer à la fonction qu'on souhaite qu'elle renvoie 
-     * une copie de l'objet après au lieux de la vraie référence.
+     * une copie de l'objet au lieux de la vraie référence.
      * 
-     * @return La dernière cellule de la chaine.
+     * @return La valeur qui se trouve à l'indice `index` à partir de cette cellule
      */
     void* ListCell_get(const ListCell self, int index, int clone);
 
@@ -118,7 +119,7 @@
     ListCell ListCell_get_last(const ListCell self_);
 
     /**
-     * @brief Fonction qui va renvoyer la valeur contenu dans la cellule
+     * @brief Fonction qui va renvoyer la valeur contenue dans la cellule
      *
      * @param self La cellule dont on cherche la valeur.
      * @return La valeur stockée dans la cellule.
@@ -142,22 +143,64 @@
     ListCell ListCell_get_next(const ListCell self);
 
     /**
-     * @brief Fonction qui modifie la cellule qui précède `self`.
+     * @brief Fonction qui remplace la cellule qui précède `self`.
      *
+     * **ATTENTION** La cellule remplacée est imédiatement détruite 
+     * avec sa valeur, mettre le paramètre `clone` à 1 pour renvoyer 
+     * une copie de la valeur avant qu'elle soit détruite.
+     * 
      * @param self La cellule dont on veut changer celle qui la précède.
-     * @param La nouvelle cellule précédant `self`.
-     *
-     * @return L'ancienne cellule précédant `self`.
+     * @param new_prev La nouvelle cellule précédant `self`.
+     * @param clone Booléen dont 1 permet d'indiquer à la fonction qu'on souhaite qu'elle renvoie 
+     * une copie de la valeur qui se trouvait dans la cellule écrasée après suppression.
+     * 
+     * @return une copie de la valeur qui se trouvait dans la cellule écrasée ou NULL si pas 
+     * de copie (`clone` mis à 0)
      */
-    ListCell ListCell_set_previous(const ListCell self, const ListCell new_prev);
+    void* ListCell_replace_previous(const ListCell self, const ListCell new_prev, int clone);
 
+    /**
+     * @brief Fonction qui remplace la cellule qui suit `self`.
+     * 
+     * **ATTENTION** La cellule remplacée est imédiatement détruite 
+     * avec sa valeur, mettre le paramètre `clone` à 1 pour renvoyer 
+     * une copie de la valeur avant qu'elle soit détruite.
+     * 
+     * @param self La cellule dont on veut changer celle qui la suit.
+     * @param new_prev La nouvelle cellule suivant `self`.
+     * @param clone Booléen dont 1 permet d'indiquer à la fonction qu'on souhaite qu'elle renvoie 
+     * une copie de la valeur qui se trouvait dans la cellule écrasée après suppression.
+     * 
+     * @return une copie de la valeur qui se trouvait dans la cellule écrasée ou NULL si pas 
+     * de copie (`clone` mis à 0)
+     */
+    void* ListCell_replace_next(const ListCell self, const ListCell new_next, int clone);
+
+    
+    /**
+     * @brief Fonction qui modifie la cellule qui précède `self`.
+     * 
+     * **ATTENTION** Risque de fuite de mémoire, rien ne sera désalloué. 
+     * La fonction va seulement remplacer la référence à la cellule précédente 
+     * par la nouvelle. 
+     * 
+     * @param self La cellule dont on veut changer celle qui la suit.
+     * @param new_prev La nouvelle cellule suivant `self`.
+     * @return L'ancienne cellule précédante de `self`.
+     */
+    ListCell ListCell_set_previous(const ListCell self, const ListCell new_next);
+    
     /**
      * @brief Fonction qui modifie la cellule qui suit `self`.
      * 
-     * @param self La cellule dont on veut modifier celle qui la suit.
-     * @param La nouvelle cellule suivant `self`.
+     * **ATTENTION** Risque de fuite de mémoire, rien ne sera désalloué.
+     * La fonction va seulement remplacer la référence à la cellule suivante 
+     * par la nouvelle. 
+     * 
+     * @param self La cellule dont on veut changer celle qui la précède.
+     * @param new_prev La nouvelle cellule précédant `self`.
      *
-     * @return L'ancienne cellule qui suivait `self`.
+     * @return L'ancienne cellule suivante de `self`.
      */
     ListCell ListCell_set_next(const ListCell self, const ListCell new_next);
 

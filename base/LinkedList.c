@@ -206,12 +206,10 @@ int LinkedList_add_first(LinkedList self_, void *object_, int clone){
     if (self_->length == 0){
         self_->last = first;
     }
-    else{
+    else
         // On met la première cellule de la liste comme suivant de la nouvelle tête de liste.
-        ListCell_set_next(first, self_->first);
-        // On met la nouvelle tête de liste comme étant précédent de l'ancienne tête de liste.
-        ListCell_set_previous(self_->first, first);
-    }
+        ListCell_replace_next(first, self_->first, 0); // Le précédent de `self_->first` est aussi mis à jour dans la fonction
+    
 
     // Mise à jour du premier élément
     self_->first = first;
@@ -253,9 +251,7 @@ int LinkedList_add_last(LinkedList self_, void *object_, int clone){
     }
     else{
         // On met la nouvelle fin de liste comme étant suivant de l'ancienne fin de liste.
-        ListCell_set_next(self_->last, last);
-        // On met la dernière cellule de la liste comme précédent de la nouvelle fin de liste.
-        ListCell_set_previous(last, self_->last);
+        ListCell_replace_next(self_->last, last, 0); // Le précédent de last est aussi mis à jour dans cet appel.
     }
 
     // Mise à jour du dernier élément
@@ -468,11 +464,11 @@ int LinkedList_add( LinkedList self, void* object, int index, int clone ){
     // Vérification si self est une liste.
     assert(obj_instance_of(self, _LinkedList_));
     // Vérification si la l'indice est dans la liste.
-    assert(index >= 0 && index < self->length);
+    assert(index >= 0 && index <= self->length);
 
     if (index == 0) // Si index est le premier élément
         return LinkedList_add_first(self, object, clone); // Ajout en tête de liste/   
-    else if (index == self->length - 1) // Si index est le dernier
+    else if (index == self->length) // Si index est le dernier
         return LinkedList_add_last(self, object, clone); // Ajout en fin de liste.
 
     if(clone) // Si clone est vrai
