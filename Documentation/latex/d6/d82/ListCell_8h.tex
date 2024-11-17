@@ -54,7 +54,11 @@ void $\ast$ \mbox{\hyperlink{ListCell_8h_a64d4db9bf1f58a6e706d84e92cde8684}{List
 \mbox{\hyperlink{ListCell_8c_a0942caee76f24634f4b9ae7edba6aa57}{List\+Cell}} \mbox{\hyperlink{ListCell_8h_a515ed34793c0007331654f3ba077e9c7}{List\+Cell\+\_\+set\+\_\+previous}} (const \mbox{\hyperlink{ListCell_8c_a0942caee76f24634f4b9ae7edba6aa57}{List\+Cell}} self, const \mbox{\hyperlink{ListCell_8c_a0942caee76f24634f4b9ae7edba6aa57}{List\+Cell}} new\+\_\+next)
 \begin{DoxyCompactList}\small\item\em Fonction qui modifie la cellule qui précède {\ttfamily self}. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{ListCell_8c_a0942caee76f24634f4b9ae7edba6aa57}{List\+Cell}} \mbox{\hyperlink{ListCell_8h_ab7b9c59a1a1db8f09219c9748fa45fdf}{List\+Cell\+\_\+set\+\_\+next}} (const \mbox{\hyperlink{ListCell_8c_a0942caee76f24634f4b9ae7edba6aa57}{List\+Cell}} self, const \mbox{\hyperlink{ListCell_8c_a0942caee76f24634f4b9ae7edba6aa57}{List\+Cell}} new\+\_\+next)
-\begin{DoxyCompactList}\small\item\em Fonction qui modifie la cellule qui suit {\ttfamily self}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Fonction qui modifie la cellule qui suit {\ttfamily self}. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{ListCell_8h_aca7a11018f4af0785137785463aefe1e}{List\+Cell\+\_\+contains}} (\mbox{\hyperlink{ListCell_8c_a0942caee76f24634f4b9ae7edba6aa57}{List\+Cell}} self, void $\ast$value)
+\begin{DoxyCompactList}\small\item\em Fonction qui compare la valeur contenue dans la cellule avec {\ttfamily value}. \end{DoxyCompactList}\item 
+long long int \mbox{\hyperlink{ListCell_8h_a25b8a97605e09c7d997c5b87d5969b2e}{List\+Cell\+\_\+index\+\_\+of}} (\mbox{\hyperlink{ListCell_8c_a0942caee76f24634f4b9ae7edba6aa57}{List\+Cell}} self, void $\ast$value, long long int index)
+\begin{DoxyCompactList}\small\item\em Fonction qui renvoie l\textquotesingle{}indice de la première occurence d\textquotesingle{}un élément qui se trouve dans la liste à partir de la cellule courrante. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
@@ -98,6 +102,28 @@ Fonction qui ajoute un objet à une position donnée dans la liste, à partir de
 \end{DoxyParams}
 \begin{DoxyReturn}{Renvoie}
 0 Si l\textquotesingle{}ojout a échoué, 1 sinon. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{ListCell_8h_aca7a11018f4af0785137785463aefe1e}\label{ListCell_8h_aca7a11018f4af0785137785463aefe1e}} 
+\index{ListCell.h@{ListCell.h}!ListCell\_contains@{ListCell\_contains}}
+\index{ListCell\_contains@{ListCell\_contains}!ListCell.h@{ListCell.h}}
+\doxysubsubsection{\texorpdfstring{ListCell\_contains()}{ListCell\_contains()}}
+{\footnotesize\ttfamily int List\+Cell\+\_\+contains (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ListCell_8c_a0942caee76f24634f4b9ae7edba6aa57}{List\+Cell}}}]{self,  }\item[{void $\ast$}]{value }\end{DoxyParamCaption})}
+
+
+
+Fonction qui compare la valeur contenue dans la cellule avec {\ttfamily value}. 
+
+La fonction va comparer les deux valeurs avec la méthode {\ttfamily \mbox{\hyperlink{new_8c_a80d4746b01a9f4a30386f83993065802}{obj\+\_\+equals()}}}. Si les deux valeurs sont différentes alors la fonction continue sur la cellule suivante.
+
+
+\begin{DoxyParams}{Paramètres}
+{\em self} & La cellule courante. \\
+\hline
+{\em value} & La valeur à comparer. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+0 Si aucune cellule de la chaine ne contient {\ttfamily value} 
 \end{DoxyReturn}
 \mbox{\Hypertarget{ListCell_8h_a2019c9dcbf83335df581897980e8888c}\label{ListCell_8h_a2019c9dcbf83335df581897980e8888c}} 
 \index{ListCell.h@{ListCell.h}!ListCell\_get@{ListCell\_get}}
@@ -191,6 +217,33 @@ Fonction qui va renvoyer la valeur contenue dans la cellule.
 \begin{DoxyReturn}{Renvoie}
 La valeur stockée dans la cellule. 
 \end{DoxyReturn}
+\mbox{\Hypertarget{ListCell_8h_a25b8a97605e09c7d997c5b87d5969b2e}\label{ListCell_8h_a25b8a97605e09c7d997c5b87d5969b2e}} 
+\index{ListCell.h@{ListCell.h}!ListCell\_index\_of@{ListCell\_index\_of}}
+\index{ListCell\_index\_of@{ListCell\_index\_of}!ListCell.h@{ListCell.h}}
+\doxysubsubsection{\texorpdfstring{ListCell\_index\_of()}{ListCell\_index\_of()}}
+{\footnotesize\ttfamily long long int List\+Cell\+\_\+index\+\_\+of (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ListCell_8c_a0942caee76f24634f4b9ae7edba6aa57}{List\+Cell}}}]{self,  }\item[{void $\ast$}]{value,  }\item[{long long int}]{index }\end{DoxyParamCaption})}
+
+
+
+Fonction qui renvoie l\textquotesingle{}indice de la première occurence d\textquotesingle{}un élément qui se trouve dans la liste à partir de la cellule courrante. 
+
+La fonction va comparer les deux valeurs avec la méthode {\ttfamily \mbox{\hyperlink{new_8c_a80d4746b01a9f4a30386f83993065802}{obj\+\_\+equals()}}}. Si les deux valeurs sont différentes alors la fonction continue sur la cellule suivante.
+
+
+\begin{DoxyParams}{Paramètres}
+{\em self} & La cellule courante. \\
+\hline
+{\em object} & L\textquotesingle{}élément à rechercher. \\
+\hline
+{\em index} & L\textquotesingle{}indice de la cellule actuelle. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+L\textquotesingle{}indice dans la liste de l\textquotesingle{}élément. -\/1 Si l\textquotesingle{}élément n\textquotesingle{}est pas dans la liste. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{Voir également}
+\mbox{\hyperlink{new_8c_a80d4746b01a9f4a30386f83993065802}{obj\+\_\+equals()}} 
+\end{DoxySeeAlso}
 \mbox{\Hypertarget{ListCell_8h_aae2285ec6518af32de9cb67ad5f52b4b}\label{ListCell_8h_aae2285ec6518af32de9cb67ad5f52b4b}} 
 \index{ListCell.h@{ListCell.h}!ListCell\_remove@{ListCell\_remove}}
 \index{ListCell\_remove@{ListCell\_remove}!ListCell.h@{ListCell.h}}

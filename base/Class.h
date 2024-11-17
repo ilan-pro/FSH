@@ -92,14 +92,14 @@ typedef struct _Class_ {
      */
     int (* const equals) (const void*, const void*);    
         
-    /*
+    /**
      * @brief Référence vers la fonction clone de la classe.
      *
      * Cette fonction est appellée dynamiquement par la fonction `obj_clone()` définie 
      * dans `new.h`
      */
     void* (*const clone) (const void*);
-    /*
+    /**
      * @brief Référence vers la fonction print de la classe.
      *
      * Cette fonction est appellée dynamiquement par la fonction `obj_print()` définie 

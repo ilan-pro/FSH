@@ -498,9 +498,63 @@ ListCell ListCell_set_next(const ListCell self, const ListCell new_next){
     return next;
 }
 
+/**
+ * @internal
+ * @brief Fonction qui compare la valeur contenue dans la cellule avec `value`.
+ * 
+ * La fonction va comparer les deux valeurs avec la méthode `obj_equals()`.
+ * Si les deux valeurs sont différentes alors la fonction continue sur la cellule suivante.
+ * 
+ * @param self La cellule courante.
+ * @param value La valeur à comparer.
+ * @return 0 Si aucune cellule de la chaine ne contient `value`
+ */
+int ListCell_contains(ListCell self, void* value){
+
+    assert(self && obj_instance_of(self, _ListCell_));
+
+    // Si la valeur de la cellule est l'objet sont les mêmes.
+    if (obj_equals(self->value, value))
+        return 1; // On renvoie vrai.
+    
+    if (self->next) // Si la cellule admet un suivant.
+        return ListCell_contains(self->next, value); // On demande au suivant.
+
+    return 0; // Sinon on renvoie faux.
+
+}
 
 
 
+/**
+ * @internal
+ * @brief Fonction qui renvoie l'indice de la première occurence d'un élément 
+ * qui se trouve dans la liste à partir de la cellule courrante.
+ * 
+ * La fonction va comparer les deux valeurs avec la méthode `obj_equals()`.
+ * Si les deux valeurs sont différentes alors la fonction continue sur la cellule suivante.
+ * 
+ * @param self La cellule courante.
+ * @param object L'élément à rechercher.
+ * @param index L'indice de la cellule actuelle.
+ * @return L'indice dans la liste de l'élément. -1 Si l'élément n'est pas dans la liste.
+ * @see obj_equals()
+ */
+long long int ListCell_index_of( ListCell self, void* value, long long int index ){
+
+    assert(self && obj_instance_of(self, _ListCell_));
+
+    // Si la valeur de la cellule est l'objet sont les mêmes.
+    if (obj_equals(self->value, value))
+        return index; // On renvoie l'indice.
+    
+    
+    if (self->next) // Si la cellule admet un suivant.
+        return ListCell_index_of(self->next, value, index + 1); // On demande au suivant.
+
+    return -1;
+
+}
 
 
 

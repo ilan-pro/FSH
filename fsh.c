@@ -25,7 +25,7 @@ int run_commande(){
             cmd_splitted = realloc(cmd_splitted, (cp+2) * sizeof(char*));
             cut = strtok(NULL, " ");
         }while(cut);
-
+        
         cmd_splitted[cp] = NULL;
         pid_t son_processus = fork();
         if(son_processus == 0){

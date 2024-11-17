@@ -204,4 +204,31 @@
      */
     ListCell ListCell_set_next(const ListCell self, const ListCell new_next);
 
+
+    /**
+     * @brief Fonction qui compare la valeur contenue dans la cellule avec `value`.
+     * 
+     * La fonction va comparer les deux valeurs avec la méthode `obj_equals()`.
+     * Si les deux valeurs sont différentes alors la fonction continue sur la cellule suivante.
+     * 
+     * @param self La cellule courante.
+     * @param value La valeur à comparer.
+     * @return 0 Si aucune cellule de la chaine ne contient `value`
+     */
+    int ListCell_contains(ListCell self, void* value);
+
+    /**
+     * @brief Fonction qui renvoie l'indice de la première occurence d'un élément 
+     * qui se trouve dans la liste à partir de la cellule courrante.
+     * 
+     * La fonction va comparer les deux valeurs avec la méthode `obj_equals()`.
+     * Si les deux valeurs sont différentes alors la fonction continue sur la cellule suivante.
+     * 
+     * @param self La cellule courante.
+     * @param object L'élément à rechercher.
+     * @param index L'indice de la cellule actuelle.
+     * @return L'indice dans la liste de l'élément. -1 Si l'élément n'est pas dans la liste.
+     * @see obj_equals()
+     */
+    long long int ListCell_index_of( ListCell self, void* value, long long int index );
 #endif

@@ -146,6 +146,12 @@ Fonctions</h2></td></tr>
 <tr class="memitem:ac1e9d14edb9e4d3d68e9f64559afb647"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/de9/LinkedList_8c.html#ac1e9d14edb9e4d3d68e9f64559afb647">LinkedList_get</a> (<a class="el" href="../../d7/de9/LinkedList_8c.html#a9e97ddb0b652fc6241b56a6f723e4dc0">LinkedList</a> self, int index, int clone)</td></tr>
 <tr class="memdesc:ac1e9d14edb9e4d3d68e9f64559afb647"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fonction qui renvoie la valeur d' élément de la liste qui se trouve à une position donnée.  <a href="../../d7/de9/LinkedList_8c.html#ac1e9d14edb9e4d3d68e9f64559afb647">Plus de détails...</a><br /></td></tr>
 <tr class="separator:ac1e9d14edb9e4d3d68e9f64559afb647"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a286c0772e27a8afc28bfdb8873b6948b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/de9/LinkedList_8c.html#a286c0772e27a8afc28bfdb8873b6948b">LinkedList_contains</a> (<a class="el" href="../../d7/de9/LinkedList_8c.html#a9e97ddb0b652fc6241b56a6f723e4dc0">LinkedList</a> self, void *object)</td></tr>
+<tr class="memdesc:a286c0772e27a8afc28bfdb8873b6948b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fonction qui vérifie si oui ou non un élément se trouve dans la liste.  <a href="../../d7/de9/LinkedList_8c.html#a286c0772e27a8afc28bfdb8873b6948b">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a286c0772e27a8afc28bfdb8873b6948b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4185653d9f545f45ca0e6df5dc12bc27"><td class="memItemLeft" align="right" valign="top">long long int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/de9/LinkedList_8c.html#a4185653d9f545f45ca0e6df5dc12bc27">LinkedList_index_of</a> (<a class="el" href="../../d7/de9/LinkedList_8c.html#a9e97ddb0b652fc6241b56a6f723e4dc0">LinkedList</a> self, void *object)</td></tr>
+<tr class="memdesc:a4185653d9f545f45ca0e6df5dc12bc27"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fonction qui renvoie l'indice de la première occurence d'un élément qui se trouve dans la liste.  <a href="../../d7/de9/LinkedList_8c.html#a4185653d9f545f45ca0e6df5dc12bc27">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a4185653d9f545f45ca0e6df5dc12bc27"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
@@ -344,6 +350,46 @@ Variables</h2></td></tr>
 
 </div>
 </div>
+<a id="a286c0772e27a8afc28bfdb8873b6948b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a286c0772e27a8afc28bfdb8873b6948b">&#9670;&nbsp;</a></span>LinkedList_contains()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int LinkedList_contains </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d7/de9/LinkedList_8c.html#a9e97ddb0b652fc6241b56a6f723e4dc0">LinkedList</a>&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>object</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Fonction qui vérifie si oui ou non un élément se trouve dans la liste. </p>
+<p>La fonction va comparer les éléments avec la méthode <code><a class="el" href="../../d4/d0b/new_8c.html#a80d4746b01a9f4a30386f83993065802" title="Fonction qui renvoie si oui ou non les deux objets sont egaux.">obj_equals()</a></code>, qui va appeler dynamiquement sa redéfinition sur les objets de la liste (si redefinie).</p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>La liste à parcourir. </td></tr>
+    <tr><td class="paramname">object</td><td>L'élément à rechercher. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>1 Si l'élément se trouve dans la liste et 0 sinon. </dd></dl>
+<dl class="section see"><dt>Voir également</dt><dd><a class="el" href="../../d4/d0b/new_8c.html#a80d4746b01a9f4a30386f83993065802" title="Fonction qui renvoie si oui ou non les deux objets sont egaux.">obj_equals()</a> </dd></dl>
+
+</div>
+</div>
 <a id="ac1e9d14edb9e4d3d68e9f64559afb647"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ac1e9d14edb9e4d3d68e9f64559afb647">&#9670;&nbsp;</a></span>LinkedList_get()</h2>
 
@@ -469,6 +515,46 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Renvoie</dt><dd>La valeur du dernier élément ou NULL si la liste est vide. </dd></dl>
+
+</div>
+</div>
+<a id="a4185653d9f545f45ca0e6df5dc12bc27"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4185653d9f545f45ca0e6df5dc12bc27">&#9670;&nbsp;</a></span>LinkedList_index_of()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">long long int LinkedList_index_of </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d7/de9/LinkedList_8c.html#a9e97ddb0b652fc6241b56a6f723e4dc0">LinkedList</a>&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>object</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Fonction qui renvoie l'indice de la première occurence d'un élément qui se trouve dans la liste. </p>
+<p>La fonction va comparer les éléments avec la méthode <code><a class="el" href="../../d4/d0b/new_8c.html#a80d4746b01a9f4a30386f83993065802" title="Fonction qui renvoie si oui ou non les deux objets sont egaux.">obj_equals()</a></code>, qui va appeler dynamiquement sa redéfinition sur les objets de la liste (si redefinie).</p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>La liste à parcourir. </td></tr>
+    <tr><td class="paramname">object</td><td>L'élément à rechercher. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>L'indice dans la liste de l'élément. -1 Si l'élément n'est pas dans la liste. </dd></dl>
+<dl class="section see"><dt>Voir également</dt><dd><a class="el" href="../../d4/d0b/new_8c.html#a80d4746b01a9f4a30386f83993065802" title="Fonction qui renvoie si oui ou non les deux objets sont egaux.">obj_equals()</a> </dd></dl>
 
 </div>
 </div>

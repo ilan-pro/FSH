@@ -346,6 +346,35 @@
      */
     void* LinkedList_remove( LinkedList self, int index, int clone );
 
+    /**
+     * @brief Fonction qui vérifie si oui ou non un élément se trouve dans la liste.
+     * 
+     * La fonction va comparer les éléments avec la méthode `obj_equals()`, qui va appeler 
+     * dynamiquement sa redéfinition sur les objets de la liste (si redefinie).
+     * 
+     * 
+     * @param self La liste à parcourir.
+     * @param object L'élément à rechercher.
+     * @return 1 Si l'élément se trouve dans la liste et 0 sinon.
+     * @see obj_equals()
+     */
+    int LinkedList_contains( LinkedList self, void* object );
+
+    /**
+     * @brief Fonction qui renvoie l'indice de la première occurence d'un élément 
+     * qui se trouve dans la liste.
+     * 
+     * La fonction va comparer les éléments avec la méthode `obj_equals()`, qui va appeler 
+     * dynamiquement sa redéfinition sur les objets de la liste (si redefinie).
+     * 
+     * 
+     * @param self La liste à parcourir.
+     * @param object L'élément à rechercher.
+     * @return L'indice dans la liste de l'élément. -1 Si l'élément n'est pas dans la liste.
+     * @see obj_equals()
+     */
+    long long int LinkedList_index_of( LinkedList self, void* object);
+
 #endif
 
 

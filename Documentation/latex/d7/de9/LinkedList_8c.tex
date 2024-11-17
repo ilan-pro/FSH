@@ -50,7 +50,11 @@ int \mbox{\hyperlink{LinkedList_8c_a92fac81c68bf041a32f827830d335fbe}{Linked\+Li
 void $\ast$ \mbox{\hyperlink{LinkedList_8c_aa7918068dd2bcd899627bb6247318eea}{Linked\+List\+\_\+remove}} (\mbox{\hyperlink{LinkedList_8c_a9e97ddb0b652fc6241b56a6f723e4dc0}{Linked\+List}} self, int index, int clone)
 \begin{DoxyCompactList}\small\item\em Fonction qui va retirer un élément de la liste qui se trouve à une position donnée. \end{DoxyCompactList}\item 
 void $\ast$ \mbox{\hyperlink{LinkedList_8c_ac1e9d14edb9e4d3d68e9f64559afb647}{Linked\+List\+\_\+get}} (\mbox{\hyperlink{LinkedList_8c_a9e97ddb0b652fc6241b56a6f723e4dc0}{Linked\+List}} self, int index, int clone)
-\begin{DoxyCompactList}\small\item\em Fonction qui renvoie la valeur d\textquotesingle{} élément de la liste qui se trouve à une position donnée. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Fonction qui renvoie la valeur d\textquotesingle{} élément de la liste qui se trouve à une position donnée. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{LinkedList_8c_a286c0772e27a8afc28bfdb8873b6948b}{Linked\+List\+\_\+contains}} (\mbox{\hyperlink{LinkedList_8c_a9e97ddb0b652fc6241b56a6f723e4dc0}{Linked\+List}} self, void $\ast$object)
+\begin{DoxyCompactList}\small\item\em Fonction qui vérifie si oui ou non un élément se trouve dans la liste. \end{DoxyCompactList}\item 
+long long int \mbox{\hyperlink{LinkedList_8c_a4185653d9f545f45ca0e6df5dc12bc27}{Linked\+List\+\_\+index\+\_\+of}} (\mbox{\hyperlink{LinkedList_8c_a9e97ddb0b652fc6241b56a6f723e4dc0}{Linked\+List}} self, void $\ast$object)
+\begin{DoxyCompactList}\small\item\em Fonction qui renvoie l\textquotesingle{}indice de la première occurence d\textquotesingle{}un élément qui se trouve dans la liste. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
@@ -184,6 +188,31 @@ Chaque ajout se fait en temps constant O(1).
 {\em Abort} & Le programme s\textquotesingle{}arrête si l\textquotesingle{}objet à ajouter n\textquotesingle{}est pas du même type (ou sous-\/type) que les autres. \\
 \hline
 \end{DoxyExceptions}
+\mbox{\Hypertarget{LinkedList_8c_a286c0772e27a8afc28bfdb8873b6948b}\label{LinkedList_8c_a286c0772e27a8afc28bfdb8873b6948b}} 
+\index{LinkedList.c@{LinkedList.c}!LinkedList\_contains@{LinkedList\_contains}}
+\index{LinkedList\_contains@{LinkedList\_contains}!LinkedList.c@{LinkedList.c}}
+\doxysubsubsection{\texorpdfstring{LinkedList\_contains()}{LinkedList\_contains()}}
+{\footnotesize\ttfamily int Linked\+List\+\_\+contains (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{LinkedList_8c_a9e97ddb0b652fc6241b56a6f723e4dc0}{Linked\+List}}}]{self,  }\item[{void $\ast$}]{object }\end{DoxyParamCaption})}
+
+
+
+Fonction qui vérifie si oui ou non un élément se trouve dans la liste. 
+
+La fonction va comparer les éléments avec la méthode {\ttfamily \mbox{\hyperlink{new_8c_a80d4746b01a9f4a30386f83993065802}{obj\+\_\+equals()}}}, qui va appeler dynamiquement sa redéfinition sur les objets de la liste (si redefinie).
+
+
+\begin{DoxyParams}{Paramètres}
+{\em self} & La liste à parcourir. \\
+\hline
+{\em object} & L\textquotesingle{}élément à rechercher. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+1 Si l\textquotesingle{}élément se trouve dans la liste et 0 sinon. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{Voir également}
+\mbox{\hyperlink{new_8c_a80d4746b01a9f4a30386f83993065802}{obj\+\_\+equals()}} 
+\end{DoxySeeAlso}
 \mbox{\Hypertarget{LinkedList_8c_ac1e9d14edb9e4d3d68e9f64559afb647}\label{LinkedList_8c_ac1e9d14edb9e4d3d68e9f64559afb647}} 
 \index{LinkedList.c@{LinkedList.c}!LinkedList\_get@{LinkedList\_get}}
 \index{LinkedList\_get@{LinkedList\_get}!LinkedList.c@{LinkedList.c}}
@@ -260,6 +289,31 @@ La fonction peut être appelée pour tout objet de type {\ttfamily \mbox{\hyperl
 \begin{DoxyReturn}{Renvoie}
 La valeur du dernier élément ou NULL si la liste est vide. 
 \end{DoxyReturn}
+\mbox{\Hypertarget{LinkedList_8c_a4185653d9f545f45ca0e6df5dc12bc27}\label{LinkedList_8c_a4185653d9f545f45ca0e6df5dc12bc27}} 
+\index{LinkedList.c@{LinkedList.c}!LinkedList\_index\_of@{LinkedList\_index\_of}}
+\index{LinkedList\_index\_of@{LinkedList\_index\_of}!LinkedList.c@{LinkedList.c}}
+\doxysubsubsection{\texorpdfstring{LinkedList\_index\_of()}{LinkedList\_index\_of()}}
+{\footnotesize\ttfamily long long int Linked\+List\+\_\+index\+\_\+of (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{LinkedList_8c_a9e97ddb0b652fc6241b56a6f723e4dc0}{Linked\+List}}}]{self,  }\item[{void $\ast$}]{object }\end{DoxyParamCaption})}
+
+
+
+Fonction qui renvoie l\textquotesingle{}indice de la première occurence d\textquotesingle{}un élément qui se trouve dans la liste. 
+
+La fonction va comparer les éléments avec la méthode {\ttfamily \mbox{\hyperlink{new_8c_a80d4746b01a9f4a30386f83993065802}{obj\+\_\+equals()}}}, qui va appeler dynamiquement sa redéfinition sur les objets de la liste (si redefinie).
+
+
+\begin{DoxyParams}{Paramètres}
+{\em self} & La liste à parcourir. \\
+\hline
+{\em object} & L\textquotesingle{}élément à rechercher. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+L\textquotesingle{}indice dans la liste de l\textquotesingle{}élément. -\/1 Si l\textquotesingle{}élément n\textquotesingle{}est pas dans la liste. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{Voir également}
+\mbox{\hyperlink{new_8c_a80d4746b01a9f4a30386f83993065802}{obj\+\_\+equals()}} 
+\end{DoxySeeAlso}
 \mbox{\Hypertarget{LinkedList_8c_aa7918068dd2bcd899627bb6247318eea}\label{LinkedList_8c_aa7918068dd2bcd899627bb6247318eea}} 
 \index{LinkedList.c@{LinkedList.c}!LinkedList\_remove@{LinkedList\_remove}}
 \index{LinkedList\_remove@{LinkedList\_remove}!LinkedList.c@{LinkedList.c}}
