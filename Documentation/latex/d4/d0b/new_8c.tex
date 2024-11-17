@@ -11,8 +11,7 @@ Fichier contenant l\textquotesingle{}implémentation de toutes les méthodes gé
 {\ttfamily \#include $<$stdio.\+h$>$}\newline
 {\ttfamily \#include $<$string.\+h$>$}\newline
 {\ttfamily \#include $<$unistd.\+h$>$}\newline
-Graphe des dépendances par inclusion de new.\+c\+:
-\nopagebreak
+Graphe des dépendances par inclusion de new.\+c\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -93,7 +92,7 @@ NB \+: La desallocation du pointeur vers l\textquotesingle{}objet {\ttfamily sel
 \end{DoxyParams}
 
 \begin{DoxyExceptions}{Exceptions}
-{\em Abort} & Le programme est interrompu si une fonction de destruction n\textquotesingle{}est pas définie dans la classe. \\
+{\em Abort.} & Le programme est interrompu si une fonction de destruction n\textquotesingle{}est pas définie dans la classe. Cela permet de garantir une destruction profonde de l\textquotesingle{}objet, évitant les fuites de mémoire. \\
 \hline
 \end{DoxyExceptions}
 \mbox{\Hypertarget{new_8c_a80d4746b01a9f4a30386f83993065802}\label{new_8c_a80d4746b01a9f4a30386f83993065802}} 

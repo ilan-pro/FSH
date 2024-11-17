@@ -1,0 +1,155 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>FSH - Projet Système:  Fichier source de base/LinkedList.h</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">FSH - Projet Système
+   </div>
+   <div id="projectbrief">Projet de la matière Sy5 - U Paris Cité</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "../../search",false,'Recherche','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="../../menudata.js"></script>
+<script type="text/javascript" src="../../menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('../../',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="../../dir_e914ee4d4a44400f1fdb170cb4ead18a.html">base</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">LinkedList.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="../../db/d44/LinkedList_8h.html">Aller à la documentation de ce fichier.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="../../d6/d82/ListCell_8h.html">ListCell.h</a>&quot;</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#ifndef LINKEDLIST_H</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#define LINKEDLIST_H</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#ifdef LINKEDLIST_CLASS</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    </div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">    #define LINKEDLIST_FIELDS \</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">        size_t length; \</span></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">        ListCell first; \</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor">        ListCell last; </span></div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    </div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="../../d9/d5f/struct__LinkedList__.html">_LinkedList_</a>* <a class="code" href="../../db/d44/LinkedList_8h.html#a9e97ddb0b652fc6241b56a6f723e4dc0">LinkedList</a>;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160; </div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="preprocessor">#else</span></div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160; </div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="keyword">typedef</span> <span class="keyword">struct </span>_linkedlist_private{</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    } __linkedlist_private_field;</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    </div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="preprocessor">    #define LINKEDLIST_H_FIELDS \</span></div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="preprocessor">        const char _[sizeof(__linkedlist_private_field)];</span></div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    </div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    <span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="../../d9/d5f/struct__LinkedList__.html">_LinkedList_</a>{</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        <a class="code" href="../../d8/d36/struct__Class__.html">Class</a> <a class="code" href="../../d9/d5f/struct__LinkedList__.html#a92f9ba2de11b493b01f99b817666c612">_LinkedList_</a>;</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;        LINKEDLIST_H_FIELDS</div>
+<div class="line"><a name="l00087"></a><span class="lineno"><a class="line" href="../../db/d44/LinkedList_8h.html#a9e97ddb0b652fc6241b56a6f723e4dc0">   87</a></span>&#160;    }* <a class="code" href="../../db/d44/LinkedList_8h.html#a9e97ddb0b652fc6241b56a6f723e4dc0">LinkedList</a>;</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160; </div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    </div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    <span class="keyword">extern</span> <a class="code" href="../../d8/d36/struct__Class__.html">Class</a> <a class="code" href="../../db/d44/LinkedList_8h.html#a20e713d397e75f073df5e535a488c61f">_LinkedList_</a>;</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160; </div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;        </div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    <span class="keywordtype">size_t</span> <a class="code" href="../../db/d44/LinkedList_8h.html#ad4b4ba9ce9fce1ea5f5f248950a6723b">LinkedList_size</a>(<a class="code" href="../../d9/d5f/struct__LinkedList__.html">LinkedList</a> self_);</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;        </div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;    <span class="keywordtype">int</span> <a class="code" href="../../db/d44/LinkedList_8h.html#a82c869507e3fa9c78178d47706a1bb62">LinkedList_add_first</a>(<a class="code" href="../../d9/d5f/struct__LinkedList__.html">LinkedList</a> self_, <span class="keywordtype">void</span>* object_, <span class="keywordtype">int</span> clone);</div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;    </div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;    <span class="keywordtype">int</span> <a class="code" href="../../db/d44/LinkedList_8h.html#aa0703eb5b968c96cb455bc00ce39bf83">LinkedList_add_last</a>(<a class="code" href="../../d9/d5f/struct__LinkedList__.html">LinkedList</a> <span class="keyword">self</span>, <span class="keywordtype">void</span>* object_, <span class="keywordtype">int</span> clone);</div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;    </div>
+<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;    <span class="keywordtype">void</span>* <a class="code" href="../../db/d44/LinkedList_8h.html#a19cd73bd53654ddeb3440b30b0b88b21">LinkedList_remove_first</a>(<a class="code" href="../../d9/d5f/struct__LinkedList__.html">LinkedList</a> <span class="keyword">self</span>, <span class="keywordtype">int</span> clone);</div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160; </div>
+<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;    <span class="keywordtype">void</span>* <a class="code" href="../../db/d44/LinkedList_8h.html#a3a984622be6a7d96d6cebdde37c6ea39">LinkedList_remove_last</a>(<a class="code" href="../../d9/d5f/struct__LinkedList__.html">LinkedList</a> <span class="keyword">self</span>, <span class="keywordtype">int</span> clone);</div>
+<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;    </div>
+<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;    <span class="keywordtype">void</span>* <a class="code" href="../../db/d44/LinkedList_8h.html#a06a4c894cac52931188464b7652ddf5a">LinkedList_get_first</a>(<a class="code" href="../../d9/d5f/struct__LinkedList__.html">LinkedList</a> <span class="keyword">self</span>, <span class="keywordtype">int</span> clone);</div>
+<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160; </div>
+<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;    <span class="keywordtype">void</span>* <a class="code" href="../../db/d44/LinkedList_8h.html#aedf8e74739973258efe4b13d29037b4c">LinkedList_get_last</a>(<a class="code" href="../../d9/d5f/struct__LinkedList__.html">LinkedList</a> <span class="keyword">self</span>, <span class="keywordtype">int</span> clone);</div>
+<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160; </div>
+<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;    <span class="keywordtype">void</span>* <a class="code" href="../../db/d44/LinkedList_8h.html#ac1e9d14edb9e4d3d68e9f64559afb647">LinkedList_get</a>(<a class="code" href="../../d9/d5f/struct__LinkedList__.html">LinkedList</a> <span class="keyword">self</span>, <span class="keywordtype">int</span> index,  <span class="keywordtype">int</span> clone);</div>
+<div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160; </div>
+<div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;    <span class="keywordtype">int</span> <a class="code" href="../../db/d44/LinkedList_8h.html#a92fac81c68bf041a32f827830d335fbe">LinkedList_add</a>( <a class="code" href="../../d9/d5f/struct__LinkedList__.html">LinkedList</a> <span class="keyword">self</span>, <span class="keywordtype">void</span>* <span class="keywordtype">object</span>, <span class="keywordtype">int</span> index, <span class="keywordtype">int</span> clone );</div>
+<div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160; </div>
+<div class="line"><a name="l00347"></a><span class="lineno">  347</span>&#160;    <span class="keywordtype">void</span>* <a class="code" href="../../db/d44/LinkedList_8h.html#aa7918068dd2bcd899627bb6247318eea">LinkedList_remove</a>( <a class="code" href="../../d9/d5f/struct__LinkedList__.html">LinkedList</a> <span class="keyword">self</span>, <span class="keywordtype">int</span> index, <span class="keywordtype">int</span> clone );</div>
+<div class="line"><a name="l00348"></a><span class="lineno">  348</span>&#160; </div>
+<div class="line"><a name="l00349"></a><span class="lineno">  349</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00350"></a><span class="lineno">  350</span>&#160; </div>
+<div class="line"><a name="l00351"></a><span class="lineno">  351</span>&#160; </div>
+<div class="line"><a name="l00352"></a><span class="lineno">  352</span>&#160; </div>
+<div class="line"><a name="l00353"></a><span class="lineno">  353</span>&#160; </div>
+<div class="line"><a name="l00354"></a><span class="lineno">  354</span>&#160; </div>
+<div class="line"><a name="l00355"></a><span class="lineno">  355</span>&#160; </div>
+<div class="line"><a name="l00356"></a><span class="lineno">  356</span>&#160; </div>
+<div class="line"><a name="l00357"></a><span class="lineno">  357</span>&#160; </div>
+<div class="ttc" id="aLinkedList_8h_html_a06a4c894cac52931188464b7652ddf5a"><div class="ttname"><a href="../../db/d44/LinkedList_8h.html#a06a4c894cac52931188464b7652ddf5a">LinkedList_get_first</a></div><div class="ttdeci">void * LinkedList_get_first(LinkedList self, int clone)</div><div class="ttdoc">Fonction qui renvoie la valeur du premier élément de la liste.</div><div class="ttdef"><b>Definition:</b> LinkedList.c:417</div></div>
+<div class="ttc" id="aLinkedList_8h_html_a19cd73bd53654ddeb3440b30b0b88b21"><div class="ttname"><a href="../../db/d44/LinkedList_8h.html#a19cd73bd53654ddeb3440b30b0b88b21">LinkedList_remove_first</a></div><div class="ttdeci">void * LinkedList_remove_first(LinkedList self, int clone)</div><div class="ttdoc">Cette fonction va retirer le premier élément de la liste.</div><div class="ttdef"><b>Definition:</b> LinkedList.c:275</div></div>
+<div class="ttc" id="aLinkedList_8h_html_a20e713d397e75f073df5e535a488c61f"><div class="ttname"><a href="../../db/d44/LinkedList_8h.html#a20e713d397e75f073df5e535a488c61f">_LinkedList_</a></div><div class="ttdeci">Class _LinkedList_</div><div class="ttdoc">Classe de tous les objets _LinkedList_.</div><div class="ttdef"><b>Definition:</b> LinkedList.c:100</div></div>
+<div class="ttc" id="aLinkedList_8h_html_a3a984622be6a7d96d6cebdde37c6ea39"><div class="ttname"><a href="../../db/d44/LinkedList_8h.html#a3a984622be6a7d96d6cebdde37c6ea39">LinkedList_remove_last</a></div><div class="ttdeci">void * LinkedList_remove_last(LinkedList self, int clone)</div><div class="ttdoc">Cette fonction va retirer le dernier élément de la liste.</div><div class="ttdef"><b>Definition:</b> LinkedList.c:316</div></div>
+<div class="ttc" id="aLinkedList_8h_html_a82c869507e3fa9c78178d47706a1bb62"><div class="ttname"><a href="../../db/d44/LinkedList_8h.html#a82c869507e3fa9c78178d47706a1bb62">LinkedList_add_first</a></div><div class="ttdeci">int LinkedList_add_first(LinkedList self_, void *object_, int clone)</div><div class="ttdoc">Fonction qui va rajouter un élément en tête de liste.</div><div class="ttdef"><b>Definition:</b> LinkedList.c:192</div></div>
+<div class="ttc" id="aLinkedList_8h_html_a92fac81c68bf041a32f827830d335fbe"><div class="ttname"><a href="../../db/d44/LinkedList_8h.html#a92fac81c68bf041a32f827830d335fbe">LinkedList_add</a></div><div class="ttdeci">int LinkedList_add(LinkedList self, void *object, int index, int clone)</div><div class="ttdoc">Fonction qui ajoute un élément à une position précise dans la liste.</div><div class="ttdef"><b>Definition:</b> LinkedList.c:464</div></div>
+<div class="ttc" id="aLinkedList_8h_html_a9e97ddb0b652fc6241b56a6f723e4dc0"><div class="ttname"><a href="../../db/d44/LinkedList_8h.html#a9e97ddb0b652fc6241b56a6f723e4dc0">LinkedList</a></div><div class="ttdeci">struct _LinkedList_ * LinkedList</div></div>
+<div class="ttc" id="aLinkedList_8h_html_aa0703eb5b968c96cb455bc00ce39bf83"><div class="ttname"><a href="../../db/d44/LinkedList_8h.html#aa0703eb5b968c96cb455bc00ce39bf83">LinkedList_add_last</a></div><div class="ttdeci">int LinkedList_add_last(LinkedList self, void *object_, int clone)</div><div class="ttdoc">Fonction qui va rajouter un élément en fin de liste.</div><div class="ttdef"><b>Definition:</b> LinkedList.c:237</div></div>
+<div class="ttc" id="aLinkedList_8h_html_aa7918068dd2bcd899627bb6247318eea"><div class="ttname"><a href="../../db/d44/LinkedList_8h.html#aa7918068dd2bcd899627bb6247318eea">LinkedList_remove</a></div><div class="ttdeci">void * LinkedList_remove(LinkedList self, int index, int clone)</div><div class="ttdoc">Fonction qui va retirer un élément de la liste qui se trouve à une position donnée.</div><div class="ttdef"><b>Definition:</b> LinkedList.c:511</div></div>
+<div class="ttc" id="aLinkedList_8h_html_ac1e9d14edb9e4d3d68e9f64559afb647"><div class="ttname"><a href="../../db/d44/LinkedList_8h.html#ac1e9d14edb9e4d3d68e9f64559afb647">LinkedList_get</a></div><div class="ttdeci">void * LinkedList_get(LinkedList self, int index, int clone)</div><div class="ttdoc">Fonction qui renvoie la valeur d' élément de la liste qui se trouve à une position donnée.</div><div class="ttdef"><b>Definition:</b> LinkedList.c:556</div></div>
+<div class="ttc" id="aLinkedList_8h_html_ad4b4ba9ce9fce1ea5f5f248950a6723b"><div class="ttname"><a href="../../db/d44/LinkedList_8h.html#ad4b4ba9ce9fce1ea5f5f248950a6723b">LinkedList_size</a></div><div class="ttdeci">size_t LinkedList_size(LinkedList self_)</div><div class="ttdoc">Fonction qui renvoie la taille de la liste.</div><div class="ttdef"><b>Definition:</b> LinkedList.c:173</div></div>
+<div class="ttc" id="aLinkedList_8h_html_aedf8e74739973258efe4b13d29037b4c"><div class="ttname"><a href="../../db/d44/LinkedList_8h.html#aedf8e74739973258efe4b13d29037b4c">LinkedList_get_last</a></div><div class="ttdeci">void * LinkedList_get_last(LinkedList self, int clone)</div><div class="ttdoc">Fonction qui renvoie la valeur du dernier élément de la liste.</div><div class="ttdef"><b>Definition:</b> LinkedList.c:389</div></div>
+<div class="ttc" id="aListCell_8h_html"><div class="ttname"><a href="../../d6/d82/ListCell_8h.html">ListCell.h</a></div><div class="ttdoc">Fichier d'en-tête contenant les déclarations de toutes les méthodes utilisées pour manipuler les obje...</div></div>
+<div class="ttc" id="astruct__Class___html"><div class="ttname"><a href="../../d8/d36/struct__Class__.html">_Class_</a></div><div class="ttdoc">Structure représentant la classe dans laquelle appratient un objet.</div><div class="ttdef"><b>Definition:</b> Class.h:52</div></div>
+<div class="ttc" id="astruct__LinkedList___html"><div class="ttname"><a href="../../d9/d5f/struct__LinkedList__.html">_LinkedList_</a></div><div class="ttdoc">Classe LinkedList des listes doublement chainées.</div><div class="ttdef"><b>Definition:</b> LinkedList.c:77</div></div>
+<div class="ttc" id="astruct__LinkedList___html_a92f9ba2de11b493b01f99b817666c612"><div class="ttname"><a href="../../d9/d5f/struct__LinkedList__.html#a92f9ba2de11b493b01f99b817666c612">_LinkedList_::_LinkedList_</a></div><div class="ttdeci">Class _LinkedList_</div><div class="ttdoc">Class des objets de type LinkedList.</div><div class="ttdef"><b>Definition:</b> LinkedList.c:81</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré par&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+</small></address>
+</body>
+</html>

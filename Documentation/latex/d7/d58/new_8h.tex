@@ -6,20 +6,18 @@ Fichier d\textquotesingle{}en-\/tête contenant les déclarations de toutes les 
 
 
 {\ttfamily \#include \char`\"{}Class.\+h\char`\"{}}\newline
-Graphe des dépendances par inclusion de new.\+h\+:
-\nopagebreak
+Graphe des dépendances par inclusion de new.\+h\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=210pt]{da/d63/new_8h__incl}
 \end{center}
 \end{figure}
-Ce graphe montre quels fichiers incluent directement ou indirectement ce fichier \+:
-\nopagebreak
+Ce graphe montre quels fichiers incluent directement ou indirectement ce fichier \+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=308pt]{dc/dae/new_8h__dep__incl}
+\includegraphics[width=350pt]{dc/dae/new_8h__dep__incl}
 \end{center}
 \end{figure}
 \doxysubsection*{Fonctions}
@@ -95,7 +93,7 @@ NB \+: La desallocation du pointeur vers l\textquotesingle{}objet {\ttfamily sel
 \end{DoxyParams}
 
 \begin{DoxyExceptions}{Exceptions}
-{\em Abort} & Le programme est interrompu si une fonction de destruction n\textquotesingle{}est pas définie dans la classe. \\
+{\em Abort.} & Le programme est interrompu si une fonction de destruction n\textquotesingle{}est pas définie dans la classe. Cela permet de garantir une destruction profonde de l\textquotesingle{}objet, évitant les fuites de mémoire. \\
 \hline
 \end{DoxyExceptions}
 \mbox{\Hypertarget{new_8h_a80d4746b01a9f4a30386f83993065802}\label{new_8h_a80d4746b01a9f4a30386f83993065802}} 

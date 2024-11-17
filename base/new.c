@@ -135,6 +135,7 @@ int obj_equals(const void* self_, const void* object_){
 }
 
 /**
+ * @internal
  * Fonction qui vérifie récursivement si `_object_` ou un de ses ancètre 
  * est `_class_`.
  */
@@ -186,7 +187,7 @@ void* obj_clone(const void* object){
         return _object_->clone(object);
     
     // S'il n'y a pas de fonction clone alors appel à memcpy()
-    char warn[] = "[Avertissement] la fonction clone a fait une copie bit à bit de l'espace mémoire de l'objet. \nLes deux objets risques de partager les mêmes références vers leurs attributs.\n";
+    char warn[] = "[Avertissement] la fonction clone a fait une copie bit à bit de l'espace mémoire de l'objet. \nLes deux objets risques de partager les mêmes références vers leurs attributs (copie non-profonde).\n";
     write(1, warn, strlen(warn));
 
     // Allocation de la nouvelle mémoire

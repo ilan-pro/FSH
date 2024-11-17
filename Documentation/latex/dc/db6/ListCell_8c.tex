@@ -1,0 +1,261 @@
+\hypertarget{ListCell_8c}{}\doxysection{Référence du fichier base/\+List\+Cell.c}
+\label{ListCell_8c}\index{base/ListCell.c@{base/ListCell.c}}
+
+
+Fichier contenant l\textquotesingle{}implémentation des variables et de toutes les méthodes déclarés dans {\ttfamily \mbox{\hyperlink{ListCell_8h}{List\+Cell.\+h}}}.  
+
+
+{\ttfamily \#include $<$assert.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}new.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+Graphe des dépendances par inclusion de List\+Cell.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=342pt]{dd/dbf/ListCell_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct__ListCell__}{\+\_\+\+List\+Cell\+\_\+}}
+\begin{DoxyCompactList}\small\item\em Class {\ttfamily List\+Cell} des cellules d\textquotesingle{}une liste doublement chainée. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Définitions de type}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \mbox{\hyperlink{struct__ListCell__}{\+\_\+\+List\+Cell\+\_\+}} $\ast$ \mbox{\hyperlink{ListCell_8c_a0942caee76f24634f4b9ae7edba6aa57}{List\+Cell}}
+\begin{DoxyCompactList}\small\item\em Class {\ttfamily List\+Cell} des cellules d\textquotesingle{}une liste doublement chainée. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Fonctions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{ListCell_8c_a9ec761d5e0f3855a1bef7bb0d693358a}{List\+Cell\+\_\+add}} (\mbox{\hyperlink{ListCell_8c_a0942caee76f24634f4b9ae7edba6aa57}{List\+Cell}} self, void $\ast$object, int index)
+\begin{DoxyCompactList}\small\item\em Fonction qui ajoute un object à une position donnée dans la liste, à partir de cette cellule. \end{DoxyCompactList}\item 
+void $\ast$ \mbox{\hyperlink{ListCell_8c_aae2285ec6518af32de9cb67ad5f52b4b}{List\+Cell\+\_\+remove}} (\mbox{\hyperlink{ListCell_8c_a0942caee76f24634f4b9ae7edba6aa57}{List\+Cell}} self, int index, int clone)
+\begin{DoxyCompactList}\small\item\em Fonction qui va retirer un object à une position donnée, à partir de cette cellule. \end{DoxyCompactList}\item 
+void $\ast$ \mbox{\hyperlink{ListCell_8c_a2019c9dcbf83335df581897980e8888c}{List\+Cell\+\_\+get}} (const \mbox{\hyperlink{ListCell_8c_a0942caee76f24634f4b9ae7edba6aa57}{List\+Cell}} self, int index, int clone)
+\begin{DoxyCompactList}\small\item\em Fonction qui va rechercher une valeur à l\textquotesingle{}aide de l\textquotesingle{}indice de la cellule qui la contient, à partir de cette cellule. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{ListCell_8c_a0942caee76f24634f4b9ae7edba6aa57}{List\+Cell}} \mbox{\hyperlink{ListCell_8c_a7b77722320f2da555315b840619bf69f}{List\+Cell\+\_\+get\+\_\+last}} (const \mbox{\hyperlink{ListCell_8c_a0942caee76f24634f4b9ae7edba6aa57}{List\+Cell}} self\+\_\+)
+\begin{DoxyCompactList}\small\item\em Fonction qui va rechercher à partir de cette cellule le dernier élément de la chaine. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{ListCell_8c_a0942caee76f24634f4b9ae7edba6aa57}{List\+Cell}} \mbox{\hyperlink{ListCell_8c_a77083f155127e2465830aaab369fb80d}{List\+Cell\+\_\+get\+\_\+previous}} (const \mbox{\hyperlink{ListCell_8c_a0942caee76f24634f4b9ae7edba6aa57}{List\+Cell}} self)
+\begin{DoxyCompactList}\small\item\em Fonction qui renvoie la cellule qui précède {\ttfamily self}. \end{DoxyCompactList}\item 
+void $\ast$ \mbox{\hyperlink{ListCell_8c_ae289ee13ff633988c0f263a163b23075}{List\+Cell\+\_\+get\+\_\+value}} (const \mbox{\hyperlink{ListCell_8c_a0942caee76f24634f4b9ae7edba6aa57}{List\+Cell}} self)
+\begin{DoxyCompactList}\small\item\em Fonction qui va renvoyer la valeur contenu dans la cellule. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{ListCell_8c_a0942caee76f24634f4b9ae7edba6aa57}{List\+Cell}} \mbox{\hyperlink{ListCell_8c_aa07eaad054a81354dc31171104dfcae3}{List\+Cell\+\_\+get\+\_\+next}} (const \mbox{\hyperlink{ListCell_8c_a0942caee76f24634f4b9ae7edba6aa57}{List\+Cell}} self)
+\begin{DoxyCompactList}\small\item\em Fonction qui renvoie la cellule qui suit {\ttfamily self}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{ListCell_8c_a0942caee76f24634f4b9ae7edba6aa57}{List\+Cell}} \mbox{\hyperlink{ListCell_8c_ae68154fbe05da9e5d0c6db7fcdb88bd6}{List\+Cell\+\_\+set\+\_\+previous}} (const \mbox{\hyperlink{ListCell_8c_a0942caee76f24634f4b9ae7edba6aa57}{List\+Cell}} self, const \mbox{\hyperlink{ListCell_8c_a0942caee76f24634f4b9ae7edba6aa57}{List\+Cell}} new\+\_\+prev)
+\begin{DoxyCompactList}\small\item\em Fonction qui modifie la cellule qui précède {\ttfamily self}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{ListCell_8c_a0942caee76f24634f4b9ae7edba6aa57}{List\+Cell}} \mbox{\hyperlink{ListCell_8c_ab7b9c59a1a1db8f09219c9748fa45fdf}{List\+Cell\+\_\+set\+\_\+next}} (const \mbox{\hyperlink{ListCell_8c_a0942caee76f24634f4b9ae7edba6aa57}{List\+Cell}} self, const \mbox{\hyperlink{ListCell_8c_a0942caee76f24634f4b9ae7edba6aa57}{List\+Cell}} new\+\_\+next)
+\begin{DoxyCompactList}\small\item\em Fonction qui modifie la cellule qui suit {\ttfamily self}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{Class_8h_a6ec2a8ccaeb1e924a80036ec40760377}{Class}} \mbox{\hyperlink{ListCell_8c_a52ec298a2d026f0c7a2cbfe6f4cb45e2}{\+\_\+\+List\+Cell\+\_\+}} = \& \+\_\+\+\_\+\+List\+Cell\+\_\+\+\_\+
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Description détaillée}
+Fichier contenant l\textquotesingle{}implémentation des variables et de toutes les méthodes déclarés dans {\ttfamily \mbox{\hyperlink{ListCell_8h}{List\+Cell.\+h}}}. 
+
+C\textquotesingle{}est dans ce fichier que sont implémentés les constructeurs, destructeurs, etc, des objets de type {\ttfamily \mbox{\hyperlink{struct__ListCell__}{\+\_\+\+List\+Cell\+\_\+}}}, En plus des méthodes publique de {\ttfamily \mbox{\hyperlink{ListCell_8h}{List\+Cell.\+h}}}. 
+
+\doxysubsection{Documentation des définitions de type}
+\mbox{\Hypertarget{ListCell_8c_a0942caee76f24634f4b9ae7edba6aa57}\label{ListCell_8c_a0942caee76f24634f4b9ae7edba6aa57}} 
+\index{ListCell.c@{ListCell.c}!ListCell@{ListCell}}
+\index{ListCell@{ListCell}!ListCell.c@{ListCell.c}}
+\doxysubsubsection{\texorpdfstring{ListCell}{ListCell}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{struct__ListCell__}{\+\_\+\+List\+Cell\+\_\+}}$\ast$ \mbox{\hyperlink{ListCell_8c_a0942caee76f24634f4b9ae7edba6aa57}{List\+Cell}}}
+
+
+
+Class {\ttfamily List\+Cell} des cellules d\textquotesingle{}une liste doublement chainée. 
+
+Construction \+: obj\+\_\+new ( \mbox{\hyperlink{struct__ListCell__}{\+\_\+\+List\+Cell\+\_\+}}, void$\ast$ value ) 
+
+\doxysubsection{Documentation des fonctions}
+\mbox{\Hypertarget{ListCell_8c_a9ec761d5e0f3855a1bef7bb0d693358a}\label{ListCell_8c_a9ec761d5e0f3855a1bef7bb0d693358a}} 
+\index{ListCell.c@{ListCell.c}!ListCell\_add@{ListCell\_add}}
+\index{ListCell\_add@{ListCell\_add}!ListCell.c@{ListCell.c}}
+\doxysubsubsection{\texorpdfstring{ListCell\_add()}{ListCell\_add()}}
+{\footnotesize\ttfamily int List\+Cell\+\_\+add (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ListCell_8c_a0942caee76f24634f4b9ae7edba6aa57}{List\+Cell}}}]{self,  }\item[{void $\ast$}]{object,  }\item[{int}]{index }\end{DoxyParamCaption})}
+
+
+
+Fonction qui ajoute un object à une position donnée dans la liste, à partir de cette cellule. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em self} & La cellule où la recherche de la bonne position va débuter. \\
+\hline
+{\em object} & L\textquotesingle{}objet à ajouter dans la liste. \\
+\hline
+{\em index} & la position où l\textquotesingle{}on doit ajoute l\textquotesingle{}objet. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+La dernière cellule de la chaine. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{ListCell_8c_a2019c9dcbf83335df581897980e8888c}\label{ListCell_8c_a2019c9dcbf83335df581897980e8888c}} 
+\index{ListCell.c@{ListCell.c}!ListCell\_get@{ListCell\_get}}
+\index{ListCell\_get@{ListCell\_get}!ListCell.c@{ListCell.c}}
+\doxysubsubsection{\texorpdfstring{ListCell\_get()}{ListCell\_get()}}
+{\footnotesize\ttfamily void$\ast$ List\+Cell\+\_\+get (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{ListCell_8c_a0942caee76f24634f4b9ae7edba6aa57}{List\+Cell}}}]{self,  }\item[{int}]{index,  }\item[{int}]{clone }\end{DoxyParamCaption})}
+
+
+
+Fonction qui va rechercher une valeur à l\textquotesingle{}aide de l\textquotesingle{}indice de la cellule qui la contient, à partir de cette cellule. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em self} & La cellule où la recherche va débuter. \\
+\hline
+{\em clone} & Booléen dont 1 permet d\textquotesingle{}indiquer à la fonction qu\textquotesingle{}on souhaite qu\textquotesingle{}elle renvoie une copie de l\textquotesingle{}objet après au lieux de la vraie référence.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+La dernière cellule de la chaine. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{ListCell_8c_a7b77722320f2da555315b840619bf69f}\label{ListCell_8c_a7b77722320f2da555315b840619bf69f}} 
+\index{ListCell.c@{ListCell.c}!ListCell\_get\_last@{ListCell\_get\_last}}
+\index{ListCell\_get\_last@{ListCell\_get\_last}!ListCell.c@{ListCell.c}}
+\doxysubsubsection{\texorpdfstring{ListCell\_get\_last()}{ListCell\_get\_last()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{ListCell_8c_a0942caee76f24634f4b9ae7edba6aa57}{List\+Cell}} List\+Cell\+\_\+get\+\_\+last (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{ListCell_8c_a0942caee76f24634f4b9ae7edba6aa57}{List\+Cell}}}]{self\+\_\+ }\end{DoxyParamCaption})}
+
+
+
+Fonction qui va rechercher à partir de cette cellule le dernier élément de la chaine. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em self\+\_\+} & La cellule où la recherche va débuter. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+La dernière cellule de la chaine. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{ListCell_8c_aa07eaad054a81354dc31171104dfcae3}\label{ListCell_8c_aa07eaad054a81354dc31171104dfcae3}} 
+\index{ListCell.c@{ListCell.c}!ListCell\_get\_next@{ListCell\_get\_next}}
+\index{ListCell\_get\_next@{ListCell\_get\_next}!ListCell.c@{ListCell.c}}
+\doxysubsubsection{\texorpdfstring{ListCell\_get\_next()}{ListCell\_get\_next()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{ListCell_8c_a0942caee76f24634f4b9ae7edba6aa57}{List\+Cell}} List\+Cell\+\_\+get\+\_\+next (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{ListCell_8c_a0942caee76f24634f4b9ae7edba6aa57}{List\+Cell}}}]{self }\end{DoxyParamCaption})}
+
+
+
+Fonction qui renvoie la cellule qui suit {\ttfamily self}. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em self} & La cellule dont on cherche celle qui la suit. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+La cellule suivant {\ttfamily self}. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{ListCell_8c_a77083f155127e2465830aaab369fb80d}\label{ListCell_8c_a77083f155127e2465830aaab369fb80d}} 
+\index{ListCell.c@{ListCell.c}!ListCell\_get\_previous@{ListCell\_get\_previous}}
+\index{ListCell\_get\_previous@{ListCell\_get\_previous}!ListCell.c@{ListCell.c}}
+\doxysubsubsection{\texorpdfstring{ListCell\_get\_previous()}{ListCell\_get\_previous()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{ListCell_8c_a0942caee76f24634f4b9ae7edba6aa57}{List\+Cell}} List\+Cell\+\_\+get\+\_\+previous (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{ListCell_8c_a0942caee76f24634f4b9ae7edba6aa57}{List\+Cell}}}]{self }\end{DoxyParamCaption})}
+
+
+
+Fonction qui renvoie la cellule qui précède {\ttfamily self}. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em self} & La cellule dont on cherche celle qui la précède. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+La cellule précédant {\ttfamily self}. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{ListCell_8c_ae289ee13ff633988c0f263a163b23075}\label{ListCell_8c_ae289ee13ff633988c0f263a163b23075}} 
+\index{ListCell.c@{ListCell.c}!ListCell\_get\_value@{ListCell\_get\_value}}
+\index{ListCell\_get\_value@{ListCell\_get\_value}!ListCell.c@{ListCell.c}}
+\doxysubsubsection{\texorpdfstring{ListCell\_get\_value()}{ListCell\_get\_value()}}
+{\footnotesize\ttfamily void$\ast$ List\+Cell\+\_\+get\+\_\+value (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{ListCell_8c_a0942caee76f24634f4b9ae7edba6aa57}{List\+Cell}}}]{self }\end{DoxyParamCaption})}
+
+
+
+Fonction qui va renvoyer la valeur contenu dans la cellule. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em self} & La cellule dont on cherche la valeur. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+La valeur stockée dans la cellule. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{ListCell_8c_aae2285ec6518af32de9cb67ad5f52b4b}\label{ListCell_8c_aae2285ec6518af32de9cb67ad5f52b4b}} 
+\index{ListCell.c@{ListCell.c}!ListCell\_remove@{ListCell\_remove}}
+\index{ListCell\_remove@{ListCell\_remove}!ListCell.c@{ListCell.c}}
+\doxysubsubsection{\texorpdfstring{ListCell\_remove()}{ListCell\_remove()}}
+{\footnotesize\ttfamily void$\ast$ List\+Cell\+\_\+remove (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ListCell_8c_a0942caee76f24634f4b9ae7edba6aa57}{List\+Cell}}}]{self,  }\item[{int}]{index,  }\item[{int}]{clone }\end{DoxyParamCaption})}
+
+
+
+Fonction qui va retirer un object à une position donnée, à partir de cette cellule. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em self} & La cellule où la recherche de la bonne position àr retirer va débuter. \\
+\hline
+{\em index} & la position où l\textquotesingle{}on doit ajoute l\textquotesingle{}objet. \\
+\hline
+{\em clone} & Booléen dont 1 permet d\textquotesingle{}indiquer à la fonction qu\textquotesingle{}on souhaite qu\textquotesingle{}elle nous renvoie une copie de l\textquotesingle{}objet après suppression. Pour rappel, l\textquotesingle{}objet sera détruit après sa suppression de la liste. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+La dernière cellule de la chaine. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{ListCell_8c_ab7b9c59a1a1db8f09219c9748fa45fdf}\label{ListCell_8c_ab7b9c59a1a1db8f09219c9748fa45fdf}} 
+\index{ListCell.c@{ListCell.c}!ListCell\_set\_next@{ListCell\_set\_next}}
+\index{ListCell\_set\_next@{ListCell\_set\_next}!ListCell.c@{ListCell.c}}
+\doxysubsubsection{\texorpdfstring{ListCell\_set\_next()}{ListCell\_set\_next()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{ListCell_8c_a0942caee76f24634f4b9ae7edba6aa57}{List\+Cell}} List\+Cell\+\_\+set\+\_\+next (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{ListCell_8c_a0942caee76f24634f4b9ae7edba6aa57}{List\+Cell}}}]{self,  }\item[{const \mbox{\hyperlink{ListCell_8c_a0942caee76f24634f4b9ae7edba6aa57}{List\+Cell}}}]{new\+\_\+next }\end{DoxyParamCaption})}
+
+
+
+Fonction qui modifie la cellule qui suit {\ttfamily self}. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em self} & La cellule dont on veut modifier celle qui la suit. \\
+\hline
+{\em La} & nouvelle cellule suivant {\ttfamily self}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+L\textquotesingle{}ancienne cellule qui suivait {\ttfamily self}. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{ListCell_8c_ae68154fbe05da9e5d0c6db7fcdb88bd6}\label{ListCell_8c_ae68154fbe05da9e5d0c6db7fcdb88bd6}} 
+\index{ListCell.c@{ListCell.c}!ListCell\_set\_previous@{ListCell\_set\_previous}}
+\index{ListCell\_set\_previous@{ListCell\_set\_previous}!ListCell.c@{ListCell.c}}
+\doxysubsubsection{\texorpdfstring{ListCell\_set\_previous()}{ListCell\_set\_previous()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{ListCell_8c_a0942caee76f24634f4b9ae7edba6aa57}{List\+Cell}} List\+Cell\+\_\+set\+\_\+previous (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{ListCell_8c_a0942caee76f24634f4b9ae7edba6aa57}{List\+Cell}}}]{self,  }\item[{const \mbox{\hyperlink{ListCell_8c_a0942caee76f24634f4b9ae7edba6aa57}{List\+Cell}}}]{new\+\_\+prev }\end{DoxyParamCaption})}
+
+
+
+Fonction qui modifie la cellule qui précède {\ttfamily self}. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em self} & La cellule dont on veut changer celle qui la précède. \\
+\hline
+{\em La} & nouvelle cellule précédant {\ttfamily self}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+L\textquotesingle{}ancienne cellule précédant {\ttfamily self}. 
+\end{DoxyReturn}
+
+
+\doxysubsection{Documentation des variables}
+\mbox{\Hypertarget{ListCell_8c_a52ec298a2d026f0c7a2cbfe6f4cb45e2}\label{ListCell_8c_a52ec298a2d026f0c7a2cbfe6f4cb45e2}} 
+\index{ListCell.c@{ListCell.c}!\_ListCell\_@{\_ListCell\_}}
+\index{\_ListCell\_@{\_ListCell\_}!ListCell.c@{ListCell.c}}
+\doxysubsubsection{\texorpdfstring{\_ListCell\_}{\_ListCell\_}}
+{\footnotesize\ttfamily \mbox{\hyperlink{Class_8h_a6ec2a8ccaeb1e924a80036ec40760377}{Class}} \mbox{\hyperlink{struct__ListCell__}{\+\_\+\+List\+Cell\+\_\+}} = \& \+\_\+\+\_\+\+List\+Cell\+\_\+\+\_\+}
+
+Classe de tous les objets de type {\ttfamily \mbox{\hyperlink{struct__ListCell__}{\+\_\+\+List\+Cell\+\_\+}}}. 

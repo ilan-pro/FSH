@@ -43,8 +43,9 @@ void* obj_new(void* _class_, ...);
  * fonction le fait également (il y aura donc deux `free()` sur une référence)).
  *
  * @param self_ L'objet à détruire.
- * @throw Abort Le programme est interrompu si une fonction de destruction n'est pas définie 
- * dans la classe.
+ * @throw Abort. Le programme est interrompu si une fonction de destruction n'est pas définie 
+ * dans la classe. Cela permet de garantir une destruction profonde de l'objet, évitant les 
+ * fuites de mémoire.
  */
 void obj_destroy(void* self_);
 

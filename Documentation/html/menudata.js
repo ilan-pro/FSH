@@ -34,7 +34,19 @@ var menudata={children:[
 {text:"Fichiers",url:"files.html",children:[
 {text:"Liste des fichiers",url:"files.html"},
 {text:"Membres de fichier",url:"globals.html",children:[
-{text:"Tout",url:"globals.html"},
-{text:"Fonctions",url:"globals_func.html"},
+{text:"Tout",url:"globals.html",children:[
+{text:"_",url:"globals.html#index__5F"},
+{text:"c",url:"globals.html#index_c"},
+{text:"l",url:"globals.html#index_l"},
+{text:"m",url:"globals.html#index_m"},
+{text:"o",url:"globals.html#index_o"},
+{text:"r",url:"globals.html#index_r"},
+{text:"s",url:"globals.html#index_s"},
+{text:"t",url:"globals.html#index_t"}]},
+{text:"Fonctions",url:"globals_func.html",children:[
+{text:"l",url:"globals_func.html#index_l"},
+{text:"m",url:"globals_func.html#index_m"},
+{text:"o",url:"globals_func.html#index_o"},
+{text:"r",url:"globals_func.html#index_r"}]},
 {text:"Variables",url:"globals_vars.html"},
 {text:"Définitions de type",url:"globals_type.html"}]}]}]}
