@@ -10,6 +10,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "new.h"
+
 /**@cond HIDE_THIS*/
 #define STRING_CLASS "String"
 #include "String.h"
@@ -29,7 +30,7 @@
  *
  * @return L'objet après avoir été initialisé.
  */
-static void* String_construct(void*, va_list*);
+static void* String_construct(void* self_, va_list* args);
 
 /**
  * Cette fonction va désallouer la chaine de caractère encapsulé 
@@ -38,7 +39,7 @@ static void* String_construct(void*, va_list*);
  * @param `self_` la référence vers l'objet.
  * @return la même référence après avoir desalloué la chaine.
  */
-static void* String_destroy(void*);
+static void* String_destroy(void* self_);
 
 /**
  * Fonction qui renvoie une copie de la chaine de caractère 
@@ -50,7 +51,26 @@ static void* String_destroy(void*);
  * @param self_ L'objet de type String dont on souhaite récupérer la chaine.
  * @return Une copie de la chaine stockée dans l'objet.
  */
-static char* String_to_string(void*);
+static char* String_to_string(const void* self_);
+
+/**
+ * Fonction qui va comparer l'objet String avec un autre afin de vérifier 
+ * si les deux chaines sont oui ou non égales.
+ * 
+ * @param self_ L'objet String dont on souhaite comparer la chaine.
+ * @param object_ L'objet auquel on va comparer.
+ *
+ * @return si oui (1) ou non (0) les deux chaines sont les mêmes.
+ */
+static int String_equals(const void* self_, const void* object_);
+    
+/**
+ * Fonction qui va renvoyer une copie de l'objet String, self_.
+ *
+ * @param self_ L'objet String à copier.
+ * @return Un nouvel objet de type String, copie de la chaine.
+ */
+static void* String_clone(const void* self_);
 
 /*****************************************************/
 /************* Structure de la classe ****************/
@@ -63,13 +83,13 @@ static char* String_to_string(void*);
  * <p>Il permet nottement de les utiliser dans des structure de donnée génériques comme 
  * les listes.
  * 
- * Construction : obj_new( _String_, <chaine_de_caractere> );
+ * Construction : obj_new( \_String\_, <chaine_de_caractere> );
  */
 typedef struct _String_ {
     /**
      * @brief Classe d'un objet String
      */
-    Class _String_; 
+    const Class _String_; 
     STRING_FIELD    // Champs de l'objet String (déclarés dans le header)
 }* String ;
 
@@ -80,7 +100,7 @@ static struct _Class_ __String__ = {
     NULL,
     STRING_CLASS,
     sizeof(struct _String_),
-    0, String_destroy, 0, 0
+    String_construct, String_destroy, String_to_string, String_equals, String_clone
 };
 
 /**
@@ -108,6 +128,9 @@ static void* String_construct(void* self_, va_list* args){
     // Allocation du champs str (en contournant const)
     *(char**)&self->str = malloc(sizeof(char) * (1 + strlen(str_arg)));
     
+    // Mise à jour de la taille de la chaine.
+    *(int*)&self->size = strlen(str_arg);
+
     // Copie dans la chaine (en contournant encore const)
     strcpy(*(char**)&self->str, str_arg);
     
@@ -125,6 +148,57 @@ static void* String_destroy(void* self_){
     free((void*)self->str); // 
 
     return self;
+
+}
+
+// Fonction to_string
+static char* String_to_string(const void* self_){
+    
+    // Vérification si on a pas NULL
+    assert(self_);
+    // Vérification si cet objet est un String
+    assert(obj_instance_of(self_, _String_));
+    
+    // Conversion de l'objet en String.
+    String self = (String) self_;
+    
+    // Copie de la chaine dans to_string_buffer puis 
+    // retour du pointeur vers to_string_buffer.
+    return strcpy(to_string_buffer, self->str);
+    
+}
+
+// Fonction equals.
+static int String_equals(const void* self_, const void* object_){
+    
+    // Vérification des pointeur (pas de NULL)
+    assert(self_ && object_);
+    // Vérification de l'appartenance de self_ et object_  à la classe String
+    if (obj_instance_of(self_, _String_) && obj_instance_of(object_, _String_)){
+    
+        // Conversion des pointeurs en String.
+        String self = (String) self_;
+        String object = (String) object_;
+
+        // Comparaison des chaines.
+        return strcmp(self->str, object->str) == 0;
+    
+    }
+
+    return 0;
+
+}
+
+// Fonction clone.
+static void* String_clone(const void* self_){
+    
+    // On s'assure que l'objet n'est pas NULL et 
+    // Qu'il est bien de type String.
+    assert(self_ && obj_instance_of(self_, _String_)); 
+    String self = (String) self_;
+
+    // Constructtion d'une nouvelle chaine à partir de celle-ci.
+    return obj_new(_String_, self->str);
 
 }
 

@@ -81,17 +81,19 @@ $(function() {
 <code>#include &quot;stdlib.h&quot;</code><br />
 <code>#include &lt;stdio.h&gt;</code><br />
 <code>#include &lt;string.h&gt;</code><br />
+<code>#include &lt;unistd.h&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Graphe des dépendances par inclusion de new.c:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../dc/da3/new_8c__incl.png" border="0" usemap="#abase_2new_8c" alt=""/></div>
 <map name="abase_2new_8c" id="abase_2new_8c">
-<area shape="rect" title="Fichier contenant l&#39;implémentation de toutes les méthodes génériques agissant sur des objets déclarée..." alt="" coords="234,5,329,32"/>
+<area shape="rect" title="Fichier contenant l&#39;implémentation de toutes les méthodes génériques agissant sur des objets déclarée..." alt="" coords="281,5,375,32"/>
 <area shape="rect" href="../../d7/d58/new_8h.html" title="Fichier d&#39;en&#45;tête contenant les déclarations de toutes les méthodes génériques agissant sur des objet..." alt="" coords="62,80,122,107"/>
 <area shape="rect" title=" " alt="" coords="147,80,221,107"/>
 <area shape="rect" title=" " alt="" coords="246,80,317,107"/>
 <area shape="rect" title=" " alt="" coords="341,80,408,107"/>
 <area shape="rect" title=" " alt="" coords="433,80,503,107"/>
+<area shape="rect" title=" " alt="" coords="528,80,603,107"/>
 <area shape="rect" href="../../d4/d05/Class_8h.html" title="Fichier d&#39;en&#45;tête contenant la définition du type Class." alt="" coords="57,155,127,181"/>
 <area shape="rect" title=" " alt="" coords="5,229,80,256"/>
 <area shape="rect" title=" " alt="" coords="104,229,179,256"/>
@@ -115,6 +117,12 @@ Fonctions</h2></td></tr>
 <tr class="memitem:a6a92c31a5100f543a7b250ae748b4a04"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d0b/new_8c.html#a6a92c31a5100f543a7b250ae748b4a04">obj_instance_of</a> (const void *object, const <a class="el" href="../../d4/d05/Class_8h.html#a6ec2a8ccaeb1e924a80036ec40760377">Class</a> _class_)</td></tr>
 <tr class="memdesc:a6a92c31a5100f543a7b250ae748b4a04"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fonction qui permet de vérifier si un objet est l'instance d'une classe donnée.  <a href="../../d4/d0b/new_8c.html#a6a92c31a5100f543a7b250ae748b4a04">Plus de détails...</a><br /></td></tr>
 <tr class="separator:a6a92c31a5100f543a7b250ae748b4a04"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abd38a6858dfc530b8466440559c2531b"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d0b/new_8c.html#abd38a6858dfc530b8466440559c2531b">obj_clone</a> (const void *object)</td></tr>
+<tr class="memdesc:abd38a6858dfc530b8466440559c2531b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fonction qui crée et renvoie la copie d'un objet.  <a href="../../d4/d0b/new_8c.html#abd38a6858dfc530b8466440559c2531b">Plus de détails...</a><br /></td></tr>
+<tr class="separator:abd38a6858dfc530b8466440559c2531b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a02aa90f11b9841069a0e5e0aa370bf28"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d0b/new_8c.html#a02aa90f11b9841069a0e5e0aa370bf28">obj_print</a> (const void *object)</td></tr>
+<tr class="memdesc:a02aa90f11b9841069a0e5e0aa370bf28"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fonction qui affiche le contenu d'un objet.  <a href="../../d4/d0b/new_8c.html#a02aa90f11b9841069a0e5e0aa370bf28">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a02aa90f11b9841069a0e5e0aa370bf28"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
@@ -127,6 +135,35 @@ Variables</h2></td></tr>
 <p>Ces méthode sont générique pour permettre la création et la manipulation d'objets sans connaitre réelment leurs types et leurs structures. <br  />
 Indispensable si on veut faire de la programmation orienté objet de manière plus efficace. </p>
 </div><h2 class="groupheader">Documentation des fonctions</h2>
+<a id="abd38a6858dfc530b8466440559c2531b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abd38a6858dfc530b8466440559c2531b">&#9670;&nbsp;</a></span>obj_clone()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void* obj_clone </td>
+          <td>(</td>
+          <td class="paramtype">const void *&#160;</td>
+          <td class="paramname"><em>self_</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Fonction qui crée et renvoie la copie d'un objet. </p>
+<p>La fonction appelle la fonction <code>clone()</code> définie dans la classe de l'objet et il est conseillé d'en avoir une.</p>
+<p>Si la fonction n'est pas définie dans la classe alors cette fonction réalisera une copie bit à bit de l'espace mémoire dédié à l'objet, avec <code>memcpy()</code> ce qui peut être très risqué car si l'objet avait des références dans ses attributs (pointeurs vers d'autres objets) sa copie aura les mêmes références. Cela peut déclancher une erreur au moment de la destruction des objets car le destructeur va détruire deux fois la même réfénrence.</p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self_</td><td>L'objet à cloner. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>Une copie de l'objet. </dd></dl>
+
+</div>
+</div>
 <a id="a0f1db85eee610ac2a243f51a430c90c3"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a0f1db85eee610ac2a243f51a430c90c3">&#9670;&nbsp;</a></span>obj_destroy()</h2>
 
@@ -210,7 +247,7 @@ Indispensable si on veut faire de la programmation orienté objet de manière pl
           <td class="memname">int obj_instance_of </td>
           <td>(</td>
           <td class="paramtype">const void *&#160;</td>
-          <td class="paramname"><em>self</em>, </td>
+          <td class="paramname"><em>self_</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -275,6 +312,34 @@ Indispensable si on veut faire de la programmation orienté objet de manière pl
   </dd>
 </dl>
 <dl class="section return"><dt>Renvoie</dt><dd>L'objet renvoyé par le constructeur définie dans sa classe ou la structure telle qu'elle a été alloué avec <code>calloc()</code> (si il n'y avait pas de constructeur). </dd></dl>
+
+</div>
+</div>
+<a id="a02aa90f11b9841069a0e5e0aa370bf28"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a02aa90f11b9841069a0e5e0aa370bf28">&#9670;&nbsp;</a></span>obj_print()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void obj_print </td>
+          <td>(</td>
+          <td class="paramtype">const void *&#160;</td>
+          <td class="paramname"><em>self_</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Fonction qui affiche le contenu d'un objet. </p>
+<p>La fonction appelle la fonction <code>print()</code> définie dans la classe de l'objet.</p>
+<p>Si la fonction n'est pas définie dans la classe alors cette fonction affichera le résultat de l'appel à <code>to_string()</code> sur l'objet.</p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self_</td><td>L'objet à afficher. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

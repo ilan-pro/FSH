@@ -107,6 +107,38 @@ int obj_equals(const void* self_, const void* object_);
  * @return Si oui (1) ou non (0) l'objet est une instance de la classe.
  *
  */
-int obj_instance_of(const void* self, const Class _class_);
+int obj_instance_of(const void* self_, const Class _class_);
+    
+/**
+ * @brief Fonction qui crée et renvoie la copie d'un objet.
+ *  
+ * La fonction appelle la fonction `clone()` définie dans la classe 
+ * de l'objet et il est conseillé d'en avoir une.
+ *
+ * Si la fonction n'est pas définie dans la classe alors cette fonction 
+ * réalisera une copie bit à bit de l'espace mémoire dédié à l'objet, avec 
+ * `memcpy()` ce qui peut être très risqué car si l'objet avait des références
+ * dans ses attributs (pointeurs vers d'autres objets) sa copie aura les mêmes 
+ * références.
+ * Cela peut déclancher une erreur au moment de la destruction des objets car 
+ * le destructeur va détruire deux fois la même réfénrence.
+ *
+ * @param self_ L'objet à cloner.
+ * @return Une copie de l'objet.
+ */
+void* obj_clone(const void* self_);
+
+/**
+ * @brief Fonction qui affiche le contenu d'un objet.
+ *  
+ * La fonction appelle la fonction `print()` définie dans la classe 
+ * de l'objet.
+ *
+ * Si la fonction n'est pas définie dans la classe alors cette fonction 
+ * affichera le résultat de l'appel à `to_string()` sur l'objet.
+ * 
+ * @param self_ L'objet à afficher.
+ */
+void obj_print(const void* self_);
 
 #endif

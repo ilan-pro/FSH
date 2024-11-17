@@ -5,8 +5,9 @@
 #include <string.h>
 #include <unistd.h>
 #include <sys/types.h>
+#include <sys/wait.h>
 
-run_commande(){
+int run_commande(){
     while(1){
         char *rep = readline("Entrez une commande: ");
         char **cmd_splitted = (char **) malloc(sizeof(char*));
@@ -33,10 +34,10 @@ run_commande(){
             free(cmd_splitted[i]);
         }
         free(cmd_splitted); 
-    }   
+    }
+    return 0;
 }
 
 int main(){
-    run_commande();
     return 0; 
 }

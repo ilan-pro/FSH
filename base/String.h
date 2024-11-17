@@ -22,6 +22,7 @@
      * pour inclure les arrtibuts du parents dans ceux de l'enfant.
      */
     #define STRING_FIELD \
+        const int size; \
         const char* str; 
 
     
@@ -38,40 +39,52 @@
      * contient les champs privés visibles uniquement dans le fichiers source) aient la même taille.
      */
     typedef struct string_private {
-        const char* const str;
+        const char* str;
     } __string_private;
     
     /**
-     * @brief Attribut privés des objets de type String.
+     * Attribut des objets de type String.
      * 
-     * Il s'agit des attribut de la structure contenant les champs de l'objet
-     * ces attribut seront visible pour tous ceux qui "include" cette en-tête.
+     * Il s'agit des attributs de la structure contenant les champs de l'objet.
+     * Ces attributs seront visibles pour tous ceux qui "include" cette en-tête.
+     *
+     * Le tableau `const char _[sizeof(__string_private)];` contiendera tous les champs 
+     * que l'objet aura rendu privé, ce pointeur n'est là que pour que les deux structures 
+     * contenant les attributs de classe (celle visible publiquement ici et celle qui
+     * contient les champs privés visibles uniquement dans le fichiers source) aient la même taille.
      */
-    #define STRING_H_FIELD \
+    #define STRING_H_FIELD  \
+        const int size; \
+        \
         const char _[sizeof(__string_private)]; // Les champs privés rendus opaques par un pointeur vers une zone "vide".
     
-    /** endcond */
+    /**@endcond */
     
     /**
-     * @brief Classe `String` des chaines de caractères.
+     * @internal
+     * 
+     * Classe `String` des chaines de caractères.
      *
      * Il s'agit d'un boxing du type `char*` en object de 
      * type String.
      * <p>Il permet nottement de les utiliser dans des structure de donnée génériques comme 
-     * les listes.
+     * les `_LinkedList_`.
      * 
      * Construction : obj_new( _String_, <chaine_de_caractere> );
      */
     typedef struct _String_ {
-        /**
-         * Classe String
-         */
-        Class _String_;
+        const Class _String_;
         STRING_H_FIELD
     }* String;
 
 #endif
     
+    /**
+     * @internal
+     * Classe de tous les objets de type String.
+     * 
+     * Elle est défini dans le fichier `String.c`
+     */
     extern Class _String_;
 
 #endif

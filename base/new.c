@@ -12,7 +12,7 @@
 #include "stdlib.h"
 #include <stdio.h>
 #include <string.h>
-
+#include <unistd.h>
 
 /**
  * @internal 
@@ -28,7 +28,7 @@ char to_string_buffer[1024];
  * Voir DOC. dans new.h
  */
 void* obj_new(void* __class__, ...){
-    
+        
     // On cast en Class le pointeur (Class = struct _Class_* )
     Class _class_ = (Class) __class__;
     assert(_class_); // Vérification.
@@ -61,11 +61,14 @@ void* obj_new(void* __class__, ...){
  */
 void obj_destroy(void* self_){
     
+    if (!self_) // Si l'objet est NULL on ne fait rien.
+        return;
+
     // Récupération de la classe de l'objet.
     // On suppose que le premier champs de la structure 
     // de l'objet est sa classe (lire DOC `Class.h`)
     Class _class_ = *(Class*) self_;
-    assert(self_ && _class_ && _class_->dtor);
+    assert(_class_ && _class_->dtor);
         
     // Destruction de l'objet.
     self_ = _class_->dtor(self_);
@@ -83,6 +86,9 @@ void obj_destroy(void* self_){
  */
 char* obj_to_string(const void* self_){
     
+    if (!self_) // Si self_ est NULL alors on renvoie NULL
+        return "NULL";
+
     // Récupération de la classe de l'objet.
     Class _class_ = *(Class*) self_;
     assert(_class_);
@@ -137,7 +143,7 @@ static int instanceof(const Class _object_, const Class _class_){
     if (_object_ == _class_)
         return 1;
     else if (_object_->_super_)
-        return instanceof(_object_->_super_, _class_);
+        return instanceof((const Class)_object_->_super_, _class_);
     else 
         return 0;
 
@@ -157,9 +163,67 @@ int obj_instance_of(const void* object, const Class _class_){
     // On suppose que le premier champs de la structure 
     // de l'objet est sa classe (lire DOC `Class.h`)
     Class _object_ = *(Class*) object;
+    assert(_object_);
     
     return instanceof(_object_, _class_);
     
 }
 
+/**
+ * @internal
+ * Fonction qui fait la copie de l'objet à partir de sa fonction 
+ * clone ou memcpy() sinon.
+ */
+void* obj_clone(const void* object){
+    
+    if (!object) // Si l'objet est NULL alors son clone c'est NULL
+        return NULL;
+
+    Class _object_ = *(Class*) object;
+    assert(_object_);
+    
+    if (_object_->clone)
+        return _object_->clone(object);
+    
+    // S'il n'y a pas de fonction clone alors appel à memcpy()
+    char warn[] = "[Avertissement] la fonction clone a fait une copie bit à bit de l'espace mémoire de l'objet. \nLes deux objets risques de partager les mêmes références vers leurs attributs.\n";
+    write(1, warn, strlen(warn));
+
+    // Allocation de la nouvelle mémoire
+    void* new_objet = (void*)malloc(_object_->size);
+    return memcpy(new_objet, object, _object_->size);
+
+}
+
+/**
+ * @internal 
+ * Fonction qui va afficher le contrenu de l'objet
+ * Voir DOC `new.h
+ */
+void obj_print(const void* object){
+
+    if (!object){ // Si l'objet est NULL on écrit NULL
+        write(1,"NULL",4);
+        return;
+    }
+
+    // Récupération de la classe de l'objet.
+    Class _object_ = *(Class*)object;
+    // Vérfication si la classe n'est pas null.
+    assert(_object_);
+
+    // Si l'objet a définie la méthode print().
+    if (_object_->print){
+        _object_->print(object);
+        return;
+    }
+    
+    // Sinon on affiche le résultat de to_String.
+    char* to_string = obj_to_string(object);
+    size_t to_string_len = strlen(to_string);
+    char* tmp = malloc(sizeof(char) * (1 + to_string_len));
+    strcpy(tmp, to_string);
+    write(1, tmp, to_string_len);
+    free(tmp);
+}
 

@@ -54,7 +54,7 @@ typedef struct _Class_ {
     /**
      * @brief Classe du parent. NULL si pas de parent.
      */
-    struct _Class_* _super_;                    
+    const struct _Class_* _super_;                    
     /**
      * @brief Le nom de la classe de l'objet.
      */
@@ -62,35 +62,51 @@ typedef struct _Class_ {
     /**
      * @brief La taille d'allocation à la construction d'un objet.
      */
-    size_t size;
+    const size_t size;
     /**
      * @brief Référence vers le constructeur d'une instance de la classe.
      * 
-     * Cette fonction sera appelé dynamiquement par la fonction `obj_new()` définie 
+     * Cette fonction sera appelée dynamiquement par la fonction `obj_new()` définie 
      * dans `new.h`
      */
-    void* (*ctor) (void*, va_list*);            
+    void* (* const ctor) (void*, va_list*);            
     /**
      * @brief Référence vers le destructeur d'une instance de la classe.
      *
-     * Cette fonction sera appelé dynamiquement par la fonction `obj_destroy()` définie 
+     * Cette fonction sera appelée dynamiquement par la fonction `obj_destroy()` définie 
      * dans `new.h`
      */
-    void* (*dtor) (void*);                       
+    void* (* const dtor) (void*);                       
     /**
      * @brief Référence vers la fonction `to_string` de la classe.
      *
-     * Cette fonction sera appelé dynamiquement par la fonction `obj_to_string()` définie 
+     * Cette fonction sera appelée dynamiquement par la fonction `obj_to_string()` définie 
      * dans `new.h`
      */
-    char* (*to_string) (const void*);            
+    char* (* const to_string) (const void*);            
     /**
      * @brief Référence vers la fonction `equals` de la classe 
      *
-     * Cette fonction sera appelé dynamiquement par la fonction `obj_equals()` définie 
+     * Cette fonction sera appelée dynamiquement par la fonction `obj_equals()` définie 
      * dans `new.h`
      */
-    int (*equals) (const void*, const void*);    
+    int (* const equals) (const void*, const void*);    
+        
+    /*
+     * @brief Référence vers la fonction clone de la classe.
+     *
+     * Cette fonction est appellée dynamiquement par la fonction `obj_clone()` définie 
+     * dans `new.h`
+     */
+    void* (*const clone) (const void*);
+    /*
+     * @brief Référence vers la fonction print de la classe.
+     *
+     * Cette fonction est appellée dynamiquement par la fonction `obj_print()` définie 
+     * dans `new.h`
+     */
+    void (*const print) (const void*);
+
 
 }* Class;                                        // le type `Class` est pointeur vers cette structure.
 
