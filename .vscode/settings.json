@@ -1,5 +1,7 @@
 {
     "files.associations": {
-        "history.h": "c"
+        "history.h": "c",
+        "cstdlib": "cpp",
+        "class.h": "c"
     }
 }

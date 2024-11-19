@@ -9,6 +9,9 @@
 #include <readline/readline.h>
 #include <readline/history.h>
 #include <assert.h>
+#include "base/Class.h"
+#include "all_cmd.h"
+#include "base/String.h"
 
 /**********************************************/
 /********* Déclaration des fonctions **********/
@@ -24,6 +27,7 @@ static int init_working_dir();
  */
 static void update_prompt();
 void parse_prompt();
+static Class get_internal_cmd(char *char_lu);
 
 /**********************************************/
 
@@ -78,20 +82,45 @@ int Shell_start(){
 }
 
 void parse_prompt(){
+    // Variable qui stock le nombre de caractères que nous avons lu.
     int lu1lettre = 0;
+    // Espace mémoire qui va servir à stocker le nom de la commande
     char *char_lu = malloc(sizeof(char));
     assert(char_lu);
     char_lu[0] = '\0';
+    // tant qu'il y a quelque chose à lire (différent \0)
     while(*usr_prompt){
+        // On récupère le caractère pointé par user_prompt puis on incrémente pour les caractères suivant.
         char res = *(usr_prompt++);
+        // on vérifie que ce caractère est un espace 
         if(res == ' '){
-           if(!lu1lettre){
+            // si c'est un espace et que nous n'avons pas lu de caratère ...
+            if(!lu1lettre){
+                // ...alors on continue
+                continue;
+            }
+            // si on arrive ici, c'est qu'il y a un espace et qu'on à déjà lu un caractère
+            // donc char_lu contient le nom de la commande
+            // on remet lu1lettre à 0 car nous voulons relire une commande
+            lu1lettre = 0;
+            printf("'%s' \n", char_lu);
+            
+            // à mettre dans une fonction a par
+            if(get_internal_cmd(char_lu)){
+                printf("commande interne\n");
+            }else{
+                printf("...commande externe\n");
+            }
+            // jusqu'ici
+
+            // on trunk l'espace alloué par l'ancienne commande afin de pouvoir stocker le nom de la nouvelle commande sans l'avoir à la concatener avec l'ancienne
+            char_lu = realloc(char_lu, sizeof(char));
+            char_lu[0] = '\0';
+            // pour éviter d'avoir des espaces si il y a une autre commande qui suit
+            // continue pour revenir au debut du while
             continue;
-           }else{
-            printf("%s\n", char_lu);
-            break;
-           }
         }
+        // ajout du charactère res à char_lu
         lu1lettre++;
         char_lu = realloc(char_lu, (sizeof(char) * (lu1lettre+1)));
         assert(char_lu);
@@ -99,6 +128,15 @@ void parse_prompt(){
         char_lu[lu1lettre] = '\0';
     }
     free(char_lu);
+}
+
+static Class get_internal_cmd(char *char_lu){
+    for(int i=0;i<4;i++){
+        if(strcmp(char_lu, cmd[i][0]) == 0){
+            return _String_;
+        }
+    }
+    return NULL;
 }
 
 
