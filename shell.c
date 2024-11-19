@@ -8,6 +8,7 @@
 #include <unistd.h>
 #include <readline/readline.h>
 #include <readline/history.h>
+#include <assert.h>
 
 /**********************************************/
 /********* Déclaration des fonctions **********/
@@ -22,6 +23,7 @@ static int init_working_dir();
  * Fonction qui créer le texte du prompt
  */
 static void update_prompt();
+void parse_prompt();
 
 /**********************************************/
 
@@ -46,6 +48,8 @@ static char path[PROMPT_CHAR_LIMITS];
  */
 static char prompt[50];
 
+char *usr_prompt;
+
 /**
  * @internal
  * 
@@ -61,36 +65,40 @@ int Shell_start(){
         
         // Mise à jour du prompt.
         update_prompt();
-
-        char *rep = readline(prompt);
-        char **cmd_splitted = (char **) malloc(sizeof(char*));
-        int cp=0;
-        // On découpe la chaîne en sous-parties
-        char *cut = strtok(rep, " ");
-        do {
-            char *buf = (char *)malloc(strlen(cut) * sizeof(char));
-            strcpy(buf,cut);
-            cmd_splitted[cp++] = buf;
-            cmd_splitted = realloc(cmd_splitted, (cp+2) * sizeof(char*));
-            cut = strtok(NULL, " ");
-        }while(cut);
-        
-        cmd_splitted[cp] = NULL;
-        pid_t son_processus = fork();
-        if(son_processus == 0){
-            execvp(cmd_splitted[0],cmd_splitted);
-        }
-        wait(NULL);
-        free(rep);
-        for(int i=0;i<cp;i++){
-            // on libère tous les bufs alloué dans le do while
-            free(cmd_splitted[i]);
-        }
-        free(cmd_splitted); 
-        return 0;
+        usr_prompt = readline(prompt);
+        char *cp_prompt = usr_prompt;
+        parse_prompt();
+        free(cp_prompt);
+        rl_free_line_state();
+        rl_clear_history();
+        break;
     }
     return 0;
 
+}
+
+void parse_prompt(){
+    int lu1lettre = 0;
+    char *char_lu = malloc(sizeof(char));
+    assert(char_lu);
+    char_lu[0] = '\0';
+    while(*usr_prompt){
+        char res = *(usr_prompt++);
+        if(res == ' '){
+           if(!lu1lettre){
+            continue;
+           }else{
+            printf("%s\n", char_lu);
+            break;
+           }
+        }
+        lu1lettre++;
+        char_lu = realloc(char_lu, (sizeof(char) * (lu1lettre+1)));
+        assert(char_lu);
+        char_lu[lu1lettre-1] = res;
+        char_lu[lu1lettre] = '\0';
+    }
+    free(char_lu);
 }
 
 
