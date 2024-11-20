@@ -9,7 +9,7 @@
 #include <readline/history.h>
 #include <assert.h>
 #include "base/Class.h"
-#include "all_cmd.h"
+#include "command/all_cmd.h"
 #include "base/String.h"
 
 /**********************************************/
@@ -144,7 +144,7 @@ static Class get_internal_cmd(char *char_lu){
 
 /**
  * Fonction qui va allouer l'espace mémoire pour stocker le chemin
- * obsolue vers le répertoire courant.
+ * absolue vers le répertoire courant.
  */
 static int init_working_dir(){
 

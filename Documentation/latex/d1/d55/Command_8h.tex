@@ -1,5 +1,10 @@
 \hypertarget{Command_8h}{}\doxysection{Référence du fichier command/\+Command.h}
 \label{Command_8h}\index{command/Command.h@{command/Command.h}}
+
+
+Fichier d\textquotesingle{}en-\/tête contenant les déclarations des variables publiques et de toutes les méthodes public de {\ttfamily \+\_\+\+Command\+\_\+}.  
+
+
 {\ttfamily \#include \char`\"{}../base/\+Linked\+List.\+h\char`\"{}}\newline
 Graphe des dépendances par inclusion de Command.\+h\+:\nopagebreak
 \begin{figure}[H]
@@ -8,15 +13,10 @@ Graphe des dépendances par inclusion de Command.\+h\+:\nopagebreak
 \includegraphics[width=210pt]{d4/d3c/Command_8h__incl}
 \end{center}
 \end{figure}
-\doxysubsection*{Macros}
-\begin{DoxyCompactItemize}
-\item 
-\#define \mbox{\hyperlink{Command_8h_a77bb9a2fe0f95b2cb787c65c8616f830}{COMMAND\+\_\+H}}
-\end{DoxyCompactItemize}
 \doxysubsection*{Fonctions}
 \begin{DoxyCompactItemize}
 \item 
-int \mbox{\hyperlink{Command_8h_acb6fd925ac367f0717bab81803686de0}{Command\+\_\+execute}} ()
+int \mbox{\hyperlink{Command_8h_a67f00477620b6d9fce3659748d6e1eea}{Command\+\_\+execute}} (Command self)
 \begin{DoxyCompactList}\small\item\em Fonction qui va exécuter la commande. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Variables}
 \begin{DoxyCompactItemize}
@@ -25,21 +25,17 @@ int \mbox{\hyperlink{Command_8h_acb6fd925ac367f0717bab81803686de0}{Command\+\_\+
 \begin{DoxyCompactList}\small\item\em Classe de toutes les commandes. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
-\doxysubsection{Documentation des macros}
-\mbox{\Hypertarget{Command_8h_a77bb9a2fe0f95b2cb787c65c8616f830}\label{Command_8h_a77bb9a2fe0f95b2cb787c65c8616f830}} 
-\index{Command.h@{Command.h}!COMMAND\_H@{COMMAND\_H}}
-\index{COMMAND\_H@{COMMAND\_H}!Command.h@{Command.h}}
-\doxysubsubsection{\texorpdfstring{COMMAND\_H}{COMMAND\_H}}
-{\footnotesize\ttfamily \#define COMMAND\+\_\+H}
+\doxysubsection{Description détaillée}
+Fichier d\textquotesingle{}en-\/tête contenant les déclarations des variables publiques et de toutes les méthodes public de {\ttfamily \+\_\+\+Command\+\_\+}. 
 
-
+Ce fichier d\textquotesingle{}en-\/tête définie les attributs publics et privés de la classe {\ttfamily \+\_\+\+Command\+\_\+} et déclare la méthode abstraite {\ttfamily \mbox{\hyperlink{Command_8h_a67f00477620b6d9fce3659748d6e1eea}{Command\+\_\+execute()}}}. 
 
 \doxysubsection{Documentation des fonctions}
-\mbox{\Hypertarget{Command_8h_acb6fd925ac367f0717bab81803686de0}\label{Command_8h_acb6fd925ac367f0717bab81803686de0}} 
+\mbox{\Hypertarget{Command_8h_a67f00477620b6d9fce3659748d6e1eea}\label{Command_8h_a67f00477620b6d9fce3659748d6e1eea}} 
 \index{Command.h@{Command.h}!Command\_execute@{Command\_execute}}
 \index{Command\_execute@{Command\_execute}!Command.h@{Command.h}}
 \doxysubsubsection{\texorpdfstring{Command\_execute()}{Command\_execute()}}
-{\footnotesize\ttfamily int Command\+\_\+execute (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily int Command\+\_\+execute (\begin{DoxyParamCaption}\item[{Command}]{self }\end{DoxyParamCaption})}
 
 
 
@@ -68,4 +64,6 @@ La valeur de retour de la commande après exécution.
 
 Classe de toutes les commandes. 
 
-Il s\textquotesingle{}agit d\textquotesingle{}une classe abstraite qui représente une commande interne du shell. Elle possède une méthode abstraite à redéfinir dans tout sous-\/type de commande (sinon cela va déclancher une erreur), qui la méthode {\ttfamily execute()} appelée par {\ttfamily \mbox{\hyperlink{Command_8h_acb6fd925ac367f0717bab81803686de0}{Command\+\_\+execute()}}}, la fonction appelée pour exécuter la commande. 
+Il s\textquotesingle{}agit d\textquotesingle{}une classe abstraite qui représente une commande interne du shell. Elle possède une méthode abstraite à redéfinir dans tout sous-\/type de commande (sinon cela va déclancher une erreur), qui la méthode {\ttfamily execute()} appelée par {\ttfamily \mbox{\hyperlink{Command_8c_a67f00477620b6d9fce3659748d6e1eea}{Command\+\_\+execute()}}}, la fonction appelée pour exécuter la commande.
+
+Construction \+: {\ttfamily obj\+\_\+new(\+\_\+\+Command\+\_\+, $<$Nom\+\_\+de\+\_\+la\+\_\+commande$>$ )} 

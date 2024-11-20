@@ -23,7 +23,7 @@
 /**
  * Fonction qui construit initialise l'objet (de type String) donnée en argument 
  * en initialisant sont champs `str` avec la valeur donnée au constructeur (qui 
- * se trouve dans `va_list* args`).
+ * se trouve dans `va_list* args`, et que la fonction copie). 
  *
  * @param `self_` L'objet alloué par le constructeur générique de `new.h`.
  * @param `args` Une liste d'argument qui doit contenir la chaine à copier dans le champs `str` de l'objet.
