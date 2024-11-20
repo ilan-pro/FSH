@@ -1,5 +1,4 @@
 #include "shell.h"
-#include <complex.h>
 #include <stddef.h>
 #include <string.h>
 #include <stdlib.h>
@@ -52,6 +51,9 @@ static char path[PROMPT_CHAR_LIMITS];
  */
 static char prompt[50];
 
+/**
+ * Chaine de caractère qui va stocker la saisie de l'utilisateur.
+ */
 char *usr_prompt;
 
 /**

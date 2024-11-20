@@ -1,0 +1,64 @@
+#include "../base/LinkedList.h"
+#ifndef COMMAND_H 
+#define COMMAND_H
+
+#ifdef COMMAND_CLASS
+
+    // Attributs d'une commande.
+    #define COMMAND_FIELDS \
+        const char* const name; /* Nom de la commande */ \
+        int (*const execute) (); /* Fonction qui va faire exécuter la commande */\
+        LinkedList params; /* L'ensemble des paramètres de la commande */ \
+        LinkedList args; /* L'ensemble des arguments de la commande */ \ 
+        // Ajouter d'autres attributs ici.
+    
+    typedef struct _Command_* Command;
+
+#else
+
+    /** @cond HIDE_THIS*/ 
+    // Champs privées des commandes.
+    typedef struct __command_private_fields{
+        LinkedList params;
+        LinkedList args;
+    } __command_priv_fields;
+    
+    // Champs visible depuis l'extérieur, les champs privés sont cachés
+    #define COMMAND_H_FIELDS \
+        const char* const name; \
+        int (*const execute) (); \
+        const char _[sizeof(__command_priv_fields)];
+    
+    typedef struct _Command_ {
+        Class _Command_;
+        COMMAND_H_FIELDS
+    }* Command;
+        
+    /**@endcond*/
+    
+#endif
+    
+    /**
+     * @brief Classe de toutes les commandes.
+     * 
+     * Il s'agit d'une classe abstraite qui représente une commande interne du shell. 
+     * Elle possède une méthode abstraite à redéfinir dans tout sous-type de commande 
+     * (sinon cela va déclancher une erreur), qui la méthode `execute()` appelée par 
+     * `Command_execute()`, la fonction appelée pour exécuter la commande.
+     */
+    extern Class _Command_;
+    
+    /**
+     * @brief Fonction qui va exécuter la commande.
+     *
+     * Cette fonction est abstraite (déclanche une erreur si aucune redéfinition
+     * n'est trouvée), à chaque appel la fonction va appeller la méthode `execute()` 
+     * de l'objet (liason dynamique). Cela va permettre plus tard de créer une 
+     * file de commandes toutes distinctes et de les éxécuter.
+     * 
+     * @param self La commande à faire exécuter.
+     * @return La valeur de retour de la commande après exécution.
+     */
+    int Command_execute();
+
+#endif

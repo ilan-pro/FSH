@@ -10,8 +10,11 @@
 {\ttfamily \#include $<$unistd.\+h$>$}\newline
 {\ttfamily \#include $<$readline/readline.\+h$>$}\newline
 {\ttfamily \#include $<$readline/history.\+h$>$}\newline
-Graphe des dépendances par inclusion de shell.\+c\+:
-\nopagebreak
+{\ttfamily \#include $<$assert.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}base/\+Class.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}all\+\_\+cmd.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}base/\+String.\+h\char`\"{}}\newline
+Graphe des dépendances par inclusion de shell.\+c\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -21,16 +24,26 @@ Graphe des dépendances par inclusion de shell.\+c\+:
 \doxysubsection*{Fonctions}
 \begin{DoxyCompactItemize}
 \item 
+void \mbox{\hyperlink{shell_8c_af5bcf670ed5210c7f347de1bb0715d2a}{parse\+\_\+prompt}} ()
+\item 
 int \mbox{\hyperlink{shell_8c_a0dabbf807290a3a452d301797493bad4}{Shell\+\_\+start}} ()
 \begin{DoxyCompactList}\small\item\em Fonction qui va démarrer l\textquotesingle{}interpreteur de commande. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
 char \mbox{\hyperlink{shell_8c_a0fb747376cf2f2d8093c063281da9702}{working\+\_\+dir}} \mbox{[}PATH\+\_\+\+MAX\mbox{]}
-\begin{DoxyCompactList}\small\item\em Il s\textquotesingle{}agit du chemin absolue vers le repertoire courant. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Il s\textquotesingle{}agit du chemin absolue vers le repertoire courant. \end{DoxyCompactList}\item 
+char $\ast$ \mbox{\hyperlink{shell_8c_ad5f0370ef35eb011706a0cb8bc299885}{usr\+\_\+prompt}}
+\end{DoxyCompactItemize}
 
 
 \doxysubsection{Documentation des fonctions}
+\mbox{\Hypertarget{shell_8c_af5bcf670ed5210c7f347de1bb0715d2a}\label{shell_8c_af5bcf670ed5210c7f347de1bb0715d2a}} 
+\index{shell.c@{shell.c}!parse\_prompt@{parse\_prompt}}
+\index{parse\_prompt@{parse\_prompt}!shell.c@{shell.c}}
+\doxysubsubsection{\texorpdfstring{parse\_prompt()}{parse\_prompt()}}
+{\footnotesize\ttfamily void parse\+\_\+prompt (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
 \mbox{\Hypertarget{shell_8c_a0dabbf807290a3a452d301797493bad4}\label{shell_8c_a0dabbf807290a3a452d301797493bad4}} 
 \index{shell.c@{shell.c}!Shell\_start@{Shell\_start}}
 \index{Shell\_start@{Shell\_start}!shell.c@{shell.c}}
@@ -47,7 +60,13 @@ Le code de retour au moment de la fermture du terminal.
 
 
 \doxysubsection{Documentation des variables}
-\mbox{\Hypertarget{shell_8c_a0fb747376cf2f2d8093c063281da9702}\label{shell_8c_a0fb747376cf2f2d8093c063281da9702}} 
+\mbox{\Hypertarget{shell_8c_ad5f0370ef35eb011706a0cb8bc299885}\label{shell_8c_ad5f0370ef35eb011706a0cb8bc299885}} 
+\index{shell.c@{shell.c}!usr\_prompt@{usr\_prompt}}
+\index{usr\_prompt@{usr\_prompt}!shell.c@{shell.c}}
+\doxysubsubsection{\texorpdfstring{usr\_prompt}{usr\_prompt}}
+{\footnotesize\ttfamily char$\ast$ usr\+\_\+prompt}
+
+Chaine de caractère qui va stocker la saisie de l\textquotesingle{}utilisateur. \mbox{\Hypertarget{shell_8c_a0fb747376cf2f2d8093c063281da9702}\label{shell_8c_a0fb747376cf2f2d8093c063281da9702}} 
 \index{shell.c@{shell.c}!working\_dir@{working\_dir}}
 \index{working\_dir@{working\_dir}!shell.c@{shell.c}}
 \doxysubsubsection{\texorpdfstring{working\_dir}{working\_dir}}

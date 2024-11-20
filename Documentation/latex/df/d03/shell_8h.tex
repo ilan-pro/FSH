@@ -1,16 +1,14 @@
 \hypertarget{shell_8h}{}\doxysection{Référence du fichier shell.\+h}
 \label{shell_8h}\index{shell.h@{shell.h}}
 {\ttfamily \#include $<$linux/limits.\+h$>$}\newline
-Graphe des dépendances par inclusion de shell.\+h\+:
-\nopagebreak
+Graphe des dépendances par inclusion de shell.\+h\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=160pt]{df/d55/shell_8h__incl}
 \end{center}
 \end{figure}
-Ce graphe montre quels fichiers incluent directement ou indirectement ce fichier \+:
-\nopagebreak
+Ce graphe montre quels fichiers incluent directement ou indirectement ce fichier \+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -31,7 +29,9 @@ int \mbox{\hyperlink{shell_8h_a0dabbf807290a3a452d301797493bad4}{Shell\+\_\+star
 \begin{DoxyCompactItemize}
 \item 
 char \mbox{\hyperlink{shell_8h_a0fb747376cf2f2d8093c063281da9702}{working\+\_\+dir}} \mbox{[}PATH\+\_\+\+MAX\mbox{]}
-\begin{DoxyCompactList}\small\item\em Il s\textquotesingle{}agit du chemin absolue vers le repertoire courant. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Il s\textquotesingle{}agit du chemin absolue vers le repertoire courant. \end{DoxyCompactList}\item 
+char $\ast$ \mbox{\hyperlink{shell_8h_ad5f0370ef35eb011706a0cb8bc299885}{usr\+\_\+prompt}}
+\end{DoxyCompactItemize}
 
 
 \doxysubsection{Documentation des macros}
@@ -64,7 +64,13 @@ Le code de retour au moment de la fermture du terminal.
 
 
 \doxysubsection{Documentation des variables}
-\mbox{\Hypertarget{shell_8h_a0fb747376cf2f2d8093c063281da9702}\label{shell_8h_a0fb747376cf2f2d8093c063281da9702}} 
+\mbox{\Hypertarget{shell_8h_ad5f0370ef35eb011706a0cb8bc299885}\label{shell_8h_ad5f0370ef35eb011706a0cb8bc299885}} 
+\index{shell.h@{shell.h}!usr\_prompt@{usr\_prompt}}
+\index{usr\_prompt@{usr\_prompt}!shell.h@{shell.h}}
+\doxysubsubsection{\texorpdfstring{usr\_prompt}{usr\_prompt}}
+{\footnotesize\ttfamily char$\ast$ usr\+\_\+prompt\hspace{0.3cm}{\ttfamily [extern]}}
+
+Chaine de caractère qui va stocker la saisie de l\textquotesingle{}utilisateur. \mbox{\Hypertarget{shell_8h_a0fb747376cf2f2d8093c063281da9702}\label{shell_8h_a0fb747376cf2f2d8093c063281da9702}} 
 \index{shell.h@{shell.h}!working\_dir@{working\_dir}}
 \index{working\_dir@{working\_dir}!shell.h@{shell.h}}
 \doxysubsubsection{\texorpdfstring{working\_dir}{working\_dir}}

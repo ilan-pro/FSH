@@ -1,0 +1,125 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>FSH - Projet Système:  Fichier source de command/Command.h</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">FSH - Projet Système
+   </div>
+   <div id="projectbrief">Projet de la matière Sy5 - U Paris Cité</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "../../search",false,'Recherche','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="../../menudata.js"></script>
+<script type="text/javascript" src="../../menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('../../',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="../../dir_689a8946103f9323d050afa7f32bd943.html">command</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">Command.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="../../d1/d55/Command_8h.html">Aller à la documentation de ce fichier.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#include &quot;../base/LinkedList.h&quot;</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#ifndef COMMAND_H </span></div>
+<div class="line"><a name="l00003"></a><span class="lineno"><a class="line" href="../../d1/d55/Command_8h.html#a77bb9a2fe0f95b2cb787c65c8616f830">    3</a></span>&#160;<span class="preprocessor">#define COMMAND_H</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160; </div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#ifdef COMMAND_CLASS</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160; </div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;    <span class="comment">// Attributs d&#39;une commande.</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">    #define COMMAND_FIELDS \</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">        const char* const name; </span><span class="comment">/* Nom de la commande */</span><span class="preprocessor"> \</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">        int (*const execute) (); </span><span class="comment">/* Fonction qui va faire exécuter la commande */</span><span class="preprocessor">\</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">        LinkedList params; </span><span class="comment">/* L&#39;ensemble des paramètres de la commande */</span><span class="preprocessor"> \</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">        LinkedList args; </span><span class="comment">/* L&#39;ensemble des arguments de la commande */</span><span class="preprocessor"> \ </span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;        <span class="comment">// Ajouter d&#39;autres attributs ici.</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    </div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="../../d1/d55/Command_8h.html#a71bbc68ea98b0c616c57ca3e2bf3616a">_Command_</a>* Command;</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160; </div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#else</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <span class="comment">// Champs privées des commandes.</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <span class="keyword">typedef</span> <span class="keyword">struct </span>__command_private_fields{</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        <a class="code" href="../../d9/d5f/struct__LinkedList__.html">LinkedList</a> params;</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;        <a class="code" href="../../d9/d5f/struct__LinkedList__.html">LinkedList</a> args;</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    } __command_priv_fields;</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    </div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="comment">// Champs visible depuis l&#39;extérieur, les champs privés sont cachés</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="preprocessor">    #define COMMAND_H_FIELDS \</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">        const char* const name; \</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor">        int (*const execute) (); \</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">        const char _[sizeof(__command_priv_fields)];</span></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    </div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="../../d1/d55/Command_8h.html#a71bbc68ea98b0c616c57ca3e2bf3616a">_Command_</a> {</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        <a class="code" href="../../d8/d36/struct__Class__.html">Class</a> <a class="code" href="../../d1/d55/Command_8h.html#a71bbc68ea98b0c616c57ca3e2bf3616a">_Command_</a>;</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        COMMAND_H_FIELDS</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    }* Command;</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        </div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    </div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="keyword">extern</span> <a class="code" href="../../d8/d36/struct__Class__.html">Class</a> <a class="code" href="../../d1/d55/Command_8h.html#a71bbc68ea98b0c616c57ca3e2bf3616a">_Command_</a>;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    </div>
+<div class="line"><a name="l00062"></a><span class="lineno"><a class="line" href="../../d1/d55/Command_8h.html#acb6fd925ac367f0717bab81803686de0">   62</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="../../d1/d55/Command_8h.html#acb6fd925ac367f0717bab81803686de0">Command_execute</a>();</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160; </div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aCommand_8h_html_a71bbc68ea98b0c616c57ca3e2bf3616a"><div class="ttname"><a href="../../d1/d55/Command_8h.html#a71bbc68ea98b0c616c57ca3e2bf3616a">_Command_</a></div><div class="ttdeci">Class _Command_</div><div class="ttdoc">Classe de toutes les commandes.</div></div>
+<div class="ttc" id="aCommand_8h_html_acb6fd925ac367f0717bab81803686de0"><div class="ttname"><a href="../../d1/d55/Command_8h.html#acb6fd925ac367f0717bab81803686de0">Command_execute</a></div><div class="ttdeci">int Command_execute()</div><div class="ttdoc">Fonction qui va exécuter la commande.</div></div>
+<div class="ttc" id="astruct__Class___html"><div class="ttname"><a href="../../d8/d36/struct__Class__.html">_Class_</a></div><div class="ttdoc">Structure représentant la classe dans laquelle appratient un objet.</div><div class="ttdef"><b>Definition:</b> Class.h:52</div></div>
+<div class="ttc" id="astruct__LinkedList___html"><div class="ttname"><a href="../../d9/d5f/struct__LinkedList__.html">_LinkedList_</a></div><div class="ttdoc">Classe LinkedList des listes doublement chainées.</div><div class="ttdef"><b>Definition:</b> LinkedList.c:77</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré par&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+</small></address>
+</body>
+</html>

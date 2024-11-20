@@ -1,0 +1,71 @@
+\hypertarget{Command_8h}{}\doxysection{Référence du fichier command/\+Command.h}
+\label{Command_8h}\index{command/Command.h@{command/Command.h}}
+{\ttfamily \#include \char`\"{}../base/\+Linked\+List.\+h\char`\"{}}\newline
+Graphe des dépendances par inclusion de Command.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=210pt]{d4/d3c/Command_8h__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{Command_8h_a77bb9a2fe0f95b2cb787c65c8616f830}{COMMAND\+\_\+H}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Fonctions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{Command_8h_acb6fd925ac367f0717bab81803686de0}{Command\+\_\+execute}} ()
+\begin{DoxyCompactList}\small\item\em Fonction qui va exécuter la commande. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{Class_8h_a6ec2a8ccaeb1e924a80036ec40760377}{Class}} \mbox{\hyperlink{Command_8h_a71bbc68ea98b0c616c57ca3e2bf3616a}{\+\_\+\+Command\+\_\+}}
+\begin{DoxyCompactList}\small\item\em Classe de toutes les commandes. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Documentation des macros}
+\mbox{\Hypertarget{Command_8h_a77bb9a2fe0f95b2cb787c65c8616f830}\label{Command_8h_a77bb9a2fe0f95b2cb787c65c8616f830}} 
+\index{Command.h@{Command.h}!COMMAND\_H@{COMMAND\_H}}
+\index{COMMAND\_H@{COMMAND\_H}!Command.h@{Command.h}}
+\doxysubsubsection{\texorpdfstring{COMMAND\_H}{COMMAND\_H}}
+{\footnotesize\ttfamily \#define COMMAND\+\_\+H}
+
+
+
+\doxysubsection{Documentation des fonctions}
+\mbox{\Hypertarget{Command_8h_acb6fd925ac367f0717bab81803686de0}\label{Command_8h_acb6fd925ac367f0717bab81803686de0}} 
+\index{Command.h@{Command.h}!Command\_execute@{Command\_execute}}
+\index{Command\_execute@{Command\_execute}!Command.h@{Command.h}}
+\doxysubsubsection{\texorpdfstring{Command\_execute()}{Command\_execute()}}
+{\footnotesize\ttfamily int Command\+\_\+execute (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Fonction qui va exécuter la commande. 
+
+Cette fonction est abstraite (déclanche une erreur si aucune redéfinition n\textquotesingle{}est trouvée), à chaque appel la fonction va appeller la méthode {\ttfamily execute()} de l\textquotesingle{}objet (liason dynamique). Cela va permettre plus tard de créer une file de commandes toutes distinctes et de les éxécuter.
+
+
+\begin{DoxyParams}{Paramètres}
+{\em self} & La commande à faire exécuter. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+La valeur de retour de la commande après exécution. 
+\end{DoxyReturn}
+
+
+\doxysubsection{Documentation des variables}
+\mbox{\Hypertarget{Command_8h_a71bbc68ea98b0c616c57ca3e2bf3616a}\label{Command_8h_a71bbc68ea98b0c616c57ca3e2bf3616a}} 
+\index{Command.h@{Command.h}!\_Command\_@{\_Command\_}}
+\index{\_Command\_@{\_Command\_}!Command.h@{Command.h}}
+\doxysubsubsection{\texorpdfstring{\_Command\_}{\_Command\_}}
+{\footnotesize\ttfamily \mbox{\hyperlink{Class_8h_a6ec2a8ccaeb1e924a80036ec40760377}{Class}} \+\_\+\+Command\+\_\+\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Classe de toutes les commandes. 
+
+Il s\textquotesingle{}agit d\textquotesingle{}une classe abstraite qui représente une commande interne du shell. Elle possède une méthode abstraite à redéfinir dans tout sous-\/type de commande (sinon cela va déclancher une erreur), qui la méthode {\ttfamily execute()} appelée par {\ttfamily \mbox{\hyperlink{Command_8h_acb6fd925ac367f0717bab81803686de0}{Command\+\_\+execute()}}}, la fonction appelée pour exécuter la commande. 
