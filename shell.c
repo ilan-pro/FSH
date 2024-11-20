@@ -91,10 +91,41 @@ void parse_prompt(){
     assert(char_lu);
     char_lu[0] = '\0';
     // tant qu'il y a quelque chose à lire (différent \0)
-    while(*usr_prompt){
+    LinkedList file_principale = obj_new(_LinkedList_);
+    LInkedList file_secondaire = obj_new(_LinkedList_);	
+    while(1){
         // On récupère le caractère pointé par user_prompt puis on incrémente pour les caractères suivant.
-        char res = *(usr_prompt++);
-        // on vérifie que ce caractère est un espace 
+ 	
+	char res = *(usr_prompt++);
+	
+	if(res == '|'){
+		continue;
+	}
+
+	if(res == '\0'){
+		//en faire une fonction
+		if(lu1lettre > 0){
+			Class tmp = get_internal_cmd(char_lu);
+			if(tmp){
+				Command cmd = obj_new(tmp, char_lu);
+				LinkedList_add_last(file_secondaire, cmd, 0);
+			}else{
+				printf("...commande externe");
+			}
+		}
+		LinkedLIst_add_last(file_principale, file_secondaire, 0);
+		break;
+	}
+
+	// on check si res est arrivé à la fin d'une PipeLine
+	if(res == ';'){
+		// Si nous ne rencontrons un ';' c'est que nous avons fini notre PipeLine et que nous pouvons stocker dans la liste, le résultat de cette dernière.
+		LinkedList_add_last(file_principale, file_secondaire, 0);
+		// Nous pouvons maintenant commencer une nouvelle file afin de stocker la futur PipeLine
+		file_secondaire = obj_new(_LinkedList_);	
+	}
+
+        // on vérifie que ce caractère est un espace
         if(res == ' '){
             // si c'est un espace et que nous n'avons pas lu de caratère ...
             if(!lu1lettre){
@@ -108,10 +139,14 @@ void parse_prompt(){
             printf("'%s' \n", char_lu);
             
             // à mettre dans une fonction a par
-            if(get_internal_cmd(char_lu)){
-                printf("commande interne\n");
+	    Class tmp = get_interal_cmd(char_lu);
+            if(tmp){
+		// je cré l'objet associé à ma commande
+               	Command cmd = obj_new(tmp, char_lu);
+		//j'ajoute la commande interne à ma file
+		LinkedList_add_last(file_secondaire, cmd, 0);	
             }else{
-                printf("...commande externe\n");
+                printf("...commande externe"); 
             }
             // jusqu'ici
 
