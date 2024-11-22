@@ -2,7 +2,7 @@
 \label{Command_8c}\index{command/Command.c@{command/Command.c}}
 
 
-Fichier source de la classe {\ttfamily \+\_\+\+Command\+\_\+} contenant l\textquotesingle{}implémentation des variables et de toutes les méthodes de l\textquotesingle{}interface.  
+Fichier source de la classe {\ttfamily \mbox{\hyperlink{struct__Command__}{\+\_\+\+Command\+\_\+}}} contenant l\textquotesingle{}implémentation des variables et de toutes les méthodes de l\textquotesingle{}interface.  
 
 
 {\ttfamily \#include $<$assert.\+h$>$}\newline
@@ -19,10 +19,20 @@ Graphe des dépendances par inclusion de Command.\+c\+:\nopagebreak
 \includegraphics[width=350pt]{db/d10/Command_8c__incl}
 \end{center}
 \end{figure}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct__Command__}{\+\_\+\+Command\+\_\+}}
+\begin{DoxyCompactList}\small\item\em Classe de toutes les commandes. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Définitions de type}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \mbox{\hyperlink{struct__Command__}{\+\_\+\+Command\+\_\+}} $\ast$ \mbox{\hyperlink{Command_8c_a3818e99ca4c9066c0c978b40ac1a85d7}{Command}}
+\end{DoxyCompactItemize}
 \doxysubsection*{Fonctions}
 \begin{DoxyCompactItemize}
 \item 
-int \mbox{\hyperlink{Command_8c_a67f00477620b6d9fce3659748d6e1eea}{Command\+\_\+execute}} (Command self)
+int \mbox{\hyperlink{Command_8c_a67f00477620b6d9fce3659748d6e1eea}{Command\+\_\+execute}} (\mbox{\hyperlink{Command_8c_a3818e99ca4c9066c0c978b40ac1a85d7}{Command}} self)
 \begin{DoxyCompactList}\small\item\em Fonction qui va exécuter la commande. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Variables}
 \begin{DoxyCompactItemize}
@@ -32,7 +42,16 @@ int \mbox{\hyperlink{Command_8c_a67f00477620b6d9fce3659748d6e1eea}{Command\+\_\+
 
 
 \doxysubsection{Description détaillée}
-Fichier source de la classe {\ttfamily \+\_\+\+Command\+\_\+} contenant l\textquotesingle{}implémentation des variables et de toutes les méthodes de l\textquotesingle{}interface. 
+Fichier source de la classe {\ttfamily \mbox{\hyperlink{struct__Command__}{\+\_\+\+Command\+\_\+}}} contenant l\textquotesingle{}implémentation des variables et de toutes les méthodes de l\textquotesingle{}interface. 
+
+
+
+\doxysubsection{Documentation des définitions de type}
+\mbox{\Hypertarget{Command_8c_a3818e99ca4c9066c0c978b40ac1a85d7}\label{Command_8c_a3818e99ca4c9066c0c978b40ac1a85d7}} 
+\index{Command.c@{Command.c}!Command@{Command}}
+\index{Command@{Command}!Command.c@{Command.c}}
+\doxysubsubsection{\texorpdfstring{Command}{Command}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{struct__Command__}{\+\_\+\+Command\+\_\+}}$\ast$ \mbox{\hyperlink{Command_8c_a3818e99ca4c9066c0c978b40ac1a85d7}{Command}}}
 
 
 
@@ -41,7 +60,7 @@ Fichier source de la classe {\ttfamily \+\_\+\+Command\+\_\+} contenant l\textqu
 \index{Command.c@{Command.c}!Command\_execute@{Command\_execute}}
 \index{Command\_execute@{Command\_execute}!Command.c@{Command.c}}
 \doxysubsubsection{\texorpdfstring{Command\_execute()}{Command\_execute()}}
-{\footnotesize\ttfamily int Command\+\_\+execute (\begin{DoxyParamCaption}\item[{Command}]{self }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily int Command\+\_\+execute (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{Command_8c_a3818e99ca4c9066c0c978b40ac1a85d7}{Command}}}]{self }\end{DoxyParamCaption})}
 
 
 
@@ -64,7 +83,7 @@ La valeur de retour de la commande après exécution.
 \index{Command.c@{Command.c}!\_Command\_@{\_Command\_}}
 \index{\_Command\_@{\_Command\_}!Command.c@{Command.c}}
 \doxysubsubsection{\texorpdfstring{\_Command\_}{\_Command\_}}
-{\footnotesize\ttfamily \mbox{\hyperlink{Class_8h_a6ec2a8ccaeb1e924a80036ec40760377}{Class}} \+\_\+\+Command\+\_\+ = \&\+\_\+\+\_\+\+Command\+\_\+\+\_\+}
+{\footnotesize\ttfamily \mbox{\hyperlink{Class_8h_a6ec2a8ccaeb1e924a80036ec40760377}{Class}} \mbox{\hyperlink{struct__Command__}{\+\_\+\+Command\+\_\+}} = \&\+\_\+\+\_\+\+Command\+\_\+\+\_\+}
 
 
 
@@ -72,4 +91,4 @@ Classe de toutes les commandes.
 
 Il s\textquotesingle{}agit d\textquotesingle{}une classe abstraite qui représente une commande interne du shell. Elle possède une méthode abstraite à redéfinir dans tout sous-\/type de commande (sinon cela va déclancher une erreur), qui la méthode {\ttfamily execute()} appelée par {\ttfamily \mbox{\hyperlink{Command_8c_a67f00477620b6d9fce3659748d6e1eea}{Command\+\_\+execute()}}}, la fonction appelée pour exécuter la commande.
 
-Construction \+: {\ttfamily obj\+\_\+new(\+\_\+\+Command\+\_\+, $<$Nom\+\_\+de\+\_\+la\+\_\+commande$>$ )} 
+Construction \+: {\ttfamily obj\+\_\+new(\mbox{\hyperlink{struct__Command__}{\+\_\+\+Command\+\_\+}}, $<$Nom\+\_\+de\+\_\+la\+\_\+commande$>$ )} 

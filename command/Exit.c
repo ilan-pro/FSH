@@ -1,0 +1,160 @@
+
+/**
+ * @file Exit.c
+ * @brief Fichier contenant l'implémentation des fonctions déclarées dans `Exit.h`
+ * 
+ * `exit` est la commande qui permet de quitter le terminal.
+ * 
+ * Contruction : <code><strong>obj_new(_Exit_, "exit");</strong></code><br>
+ * `_Exit_` désigne la classe des commandes exit. et la chaine "exit" est le nom de la commande.
+ */
+
+
+#include <assert.h>
+
+/** @cond HIDE_THIS*/
+#define EXIT_CLASS "Exit"
+#include "Exit.h"
+/**@endcond*/
+
+
+/*****************************************************/
+/************ Déclaration des fonctions **************/
+
+/**
+ * Constructeur d'une commande EXIT.
+ * 
+ * @param self_ L'objet alloué par calloc().
+ * @param args La liste des arguements (Nomalement elle ne doit contenir que "Exit").
+ * @return Un objet de type Exit, initialisé.
+ */
+static void* Exit_constructor(void* self_, va_list* args);
+
+/**
+ * Destructeur d'un objet de type commande EXIT.
+ *
+ * Le destructeur va juste appeller le destructeur du parent, 
+ * qui va désallouer les ressources qui sont héritées.
+ * 
+ * @param self_ L'objet à désallouer.
+ * @return Un objet dont tout l'intértieur desalloué.
+ */
+static void* Exit_destroy(void* self_);
+
+/**
+ * @brief Fonction qui va exécuter la commande.
+ *
+ * Cette fonction est une redéfinition de la fonction `Command_execute()` de 
+ * la classe `_Command_` (appelée par laison dynamique).
+ *
+ * @param self La commande exit à faire exécuter.
+ * @return La valeur de retour de la commande après exécution.
+ */
+static int Exit_execute(Command self_);
+
+
+/*****************************************************/
+/************* Structure de la classe ****************/
+
+
+/**
+ * @brief Classe `Exit` de la commande Exit qui affiche 
+ * le chemin absolu du répertoire courant.
+ *
+ * Construction : <code><strong> obj_new( `_Exit_`, "exit") </strong></code>
+ * <br>
+ * `_Exit_` étant la classe de la commande exit.
+ */
+typedef struct _Exit_ {
+    
+    /**
+     * @brief Classe des commandes exit.
+     *
+     * `exit` est la commande qui permet de quitter le terminal.
+     * 
+     * Contruction : <code><strong>obj_new(_Exit_, "exit");</strong></code><br>   
+     * `_Exit_` désigne la classe des commandes exit. et la chaine "exit" est le nom de la commande.
+     */
+    Class _Exit_;
+    EXIT_FILEDS
+
+}* Exit;
+
+static struct _Class_ __Exit__ = {
+    
+    NULL,
+    EXIT_CLASS,
+    sizeof(struct _Exit_),
+    Exit_constructor,
+    Exit_destroy,
+    0,
+    0,
+    0,
+    0 // Sera celui du parent.
+
+
+};
+
+/**
+ * @brief Classe des commandes exit.
+ *
+ * `exit` est la commande qui permet de quitter le terminal.
+ *
+ * Contruction : <code><strong>obj_new(_Exit_, "exit");</strong></code>
+ * `_Exit_` désigne la classe des commandes exit. et la chaine "exit" est le nom de la commande.
+ */
+Class _Exit_ = &__Exit__;
+
+/***************************************************/
+/************** Corps des fonctions ****************/
+
+
+// Constructeur.
+static void* Exit_constructor(void* self_, va_list* args){
+    
+    // Vérification des arguments.
+    assert(self_ && args);    
+    
+    // Conversion en objet de type Exit.
+    Exit self = (Exit) self_;
+
+    // On ajoute le parent à EXIT (en controunant la contrainte sur const).
+    *(Class*)&(self->_Exit_->_super_) = _Command_; 
+    // On met la fonction print du parent comme fonction d'affichage de l'enfant.
+    *((void (**)) &(self->_Exit_->print)) = _Command_->print;
+        
+    // Ajout de la fonction execute de la classe fille.
+    *((int (**) (Command)) &(self->execute)) = Exit_execute;
+
+    return _Command_->ctor(self, args);
+    
+}
+
+// Destructeur.
+static void* Exit_destroy(void* self_){
+    
+    // Vérification des arguments.
+    assert(self_);    
+    
+    return _Command_->dtor(self_);
+    
+}
+
+// Execute.
+static int Exit_execute(Command self_){
+        
+    //// Ecrire le corps de la fonction ici ! 
+
+    return 0;
+}
+
+
+
+
+
+
+
+
+
+
+

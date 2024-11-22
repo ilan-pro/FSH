@@ -12,7 +12,9 @@
 {\ttfamily \#include $<$assert.\+h$>$}\newline
 {\ttfamily \#include \char`\"{}base/\+Class.\+h\char`\"{}}\newline
 {\ttfamily \#include \char`\"{}command/all\+\_\+cmd.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}command/\+Command.\+h\char`\"{}}\newline
 {\ttfamily \#include \char`\"{}base/\+String.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}base/new.\+h\char`\"{}}\newline
 Graphe des dépendances par inclusion de shell.\+c\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
@@ -32,7 +34,7 @@ int \mbox{\hyperlink{shell_8c_a0dabbf807290a3a452d301797493bad4}{Shell\+\_\+star
 \item 
 char \mbox{\hyperlink{shell_8c_a0fb747376cf2f2d8093c063281da9702}{working\+\_\+dir}} \mbox{[}PATH\+\_\+\+MAX\mbox{]}
 \begin{DoxyCompactList}\small\item\em Il s\textquotesingle{}agit du chemin absolue vers le repertoire courant. \end{DoxyCompactList}\item 
-char $\ast$ \mbox{\hyperlink{shell_8c_ad5f0370ef35eb011706a0cb8bc299885}{usr\+\_\+prompt}}
+char $\ast$ \mbox{\hyperlink{shell_8c_ad5f0370ef35eb011706a0cb8bc299885}{usr\+\_\+prompt}} = \char`\"{}\char`\"{}
 \end{DoxyCompactItemize}
 
 
@@ -63,7 +65,7 @@ Le code de retour au moment de la fermture du terminal.
 \index{shell.c@{shell.c}!usr\_prompt@{usr\_prompt}}
 \index{usr\_prompt@{usr\_prompt}!shell.c@{shell.c}}
 \doxysubsubsection{\texorpdfstring{usr\_prompt}{usr\_prompt}}
-{\footnotesize\ttfamily char$\ast$ usr\+\_\+prompt}
+{\footnotesize\ttfamily char$\ast$ usr\+\_\+prompt = \char`\"{}\char`\"{}}
 
 Chaine de caractère qui va stocker la saisie de l\textquotesingle{}utilisateur. \mbox{\Hypertarget{shell_8c_a0fb747376cf2f2d8093c063281da9702}\label{shell_8c_a0fb747376cf2f2d8093c063281da9702}} 
 \index{shell.c@{shell.c}!working\_dir@{working\_dir}}

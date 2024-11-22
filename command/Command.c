@@ -22,7 +22,7 @@
 /**
  * Il s'agit du constructeur de la commande.
  *
- * La fonction va répérer le pointeur vers la saisie de l'utilisateur et va 
+ * La fonction va récupérer le pointeur vers la saisie de l'utilisateur (usr_prompt dans le fichier `shell.h`) et va 
  * continuer la lecture (en incrémentant le pointeur) jusqu'à ce qu'il tombe sur 
  * le caractère `;`, `|`, `}`.
  *
@@ -73,12 +73,22 @@ int Command_execute(Command self);
 
 /*****************************************************/
 /************* Structure de la classe ****************/
-/**@cond HIDE_THIS */
+
 typedef struct _Command_ {
+
+    /**
+     * @brief Classe de toutes les commandes.
+     * 
+     * Il s'agit d'une classe abstraite qui représente une commande interne du shell. 
+     * Elle possède une méthode abstraite à redéfinir dans tout sous-type de commande 
+     * (sinon cela va déclancher une erreur), qui la méthode `execute()` appelée par 
+     * `Command_execute()`, la fonction appelée pour exécuter la commande.
+     * 
+     * Construction : `obj_new(_Command_, <Nom_de_la_commande> )`
+     */
     Class _Command_;
     COMMAND_FIELDS
 }* Command;
-/**@endcond */
 
 static struct _Class_ __Command__ = {
     NULL,
@@ -340,7 +350,7 @@ int Command_execute(Command self){
     }
 
     // Sinon on éxécute la commande.
-    return self->execute();
+    return self->execute(self);
 
 }
 

@@ -79,7 +79,7 @@
      * 
      * Voir suite de la documentation dans `LinkedList.c`
      *
-     * Construction : obj_new( _LinkedList_, <chaine_de_caractere> );
+     * Construction : obj_new( _LinkedList_);
      */
     typedef struct _LinkedList_{
         Class _LinkedList_;

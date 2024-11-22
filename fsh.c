@@ -9,6 +9,7 @@
 
 #include "base/LinkedList.h"
 #include "base/new.h"
+#include "command/Pwd.h"
 #include "shell.h"
 
 int run_commande(){
@@ -43,6 +44,10 @@ int run_commande(){
 }
 
 int main(){
-    Shell_start();
+    /** Shell_start(); */
+    Pwd t = obj_new(_Pwd_, "pwd");
+    obj_print(t);
+    write(1,"\n", 1);
+    obj_destroy(t);
     return 0; 
 }

@@ -1,0 +1,164 @@
+
+/**
+ * @file Pwd.c
+ * @brief Fichier contenant l'implémentation des fonctions déclarées dans `Pwd.h`
+ * 
+ * Pwd est une commande qui va afficher le chemin absolue vers le répertoire courant.
+ * 
+ * Contruction : <code><strong>obj_new(_Pwd_, "pwd");</strong></code><br>
+ * `_Pwd_` désigne la classe des commandes pwd. et la chaine "pwd" est le nom de la commande.
+ */
+
+
+#include <assert.h>
+
+/** @cond HIDE_THIS*/
+#define PWD_CLASS "Pwd"
+#include "Pwd.h"
+/**@endcond*/
+
+
+/*****************************************************/
+/************ Déclaration des fonctions **************/
+
+/**
+ * Constructeur d'une commande PWD.
+ * 
+ * @param self_ L'objet alloué par calloc().
+ * @param args La liste des arguements (Nomalement elle ne doit contenir que "Pwd").
+ * @return Un objet de type Pwd, initialisé.
+ */
+static void* Pwd_constructor(void* self_, va_list* args);
+
+/**
+ * Destructeur d'un objet de type commande PWD.
+ *
+ * Le destructeur va juste appeller le destructeur du parent, 
+ * qui va désallouer les ressources qui sont héritées.
+ * 
+ * @param self_ L'objet à désallouer.
+ * @return Un objet dont tout l'intértieur desalloué.
+ */
+static void* Pwd_destroy(void* self_);
+
+/**
+ * @brief Fonction qui va exécuter la commande.
+ *
+ * Cette fonction est une redéfinition de la fonction `Command_execute()` de 
+ * la classe `_Command_` (appelée par laison dynamique).
+ *
+ * @param self La commande pwd à faire exécuter.
+ * @return La valeur de retour de la commande après exécution.
+ */
+static int Pwd_execute(Command self_);
+
+
+/*****************************************************/
+/************* Structure de la classe ****************/
+
+
+/**
+ * @brief Classe `Pwd` de la commande Pwd qui affiche 
+ * le chemin absolu du répertoire courant.
+ *
+ * Construction : <code><strong> obj_new( `_Pwd_`, "pwd") </strong></code>
+ * <br>
+ * `_Pwd_` étant la classe de la commande pwd.
+ */
+typedef struct _Pwd_ {
+    
+    /**
+     * @brief Classe des commandes pwd.
+     *
+     * `pwd` est la commande qui permet d'afficher le chemin 
+     * absolue du vers le répertoire dans lequel on se 
+     * trouve.
+     *
+     * Contruction : <code><strong>obj_new(_Pwd_, "pwd");</strong></code><br>   
+     * `_Pwd_` désigne la classe des commandes pwd. et la chaine "pwd" est le nom de la commande.
+     */
+    Class _Pwd_;
+    PWD_FILEDS
+
+}* Pwd;
+
+static struct _Class_ __Pwd__ = {
+    
+    NULL,
+    PWD_CLASS,
+    sizeof(struct _Pwd_),
+    Pwd_constructor,
+    Pwd_destroy,
+    0,
+    0,
+    0,
+    0 // Sera celui du parent.
+
+
+};
+
+/**
+ * @brief Classe des commandes pwd.
+ *
+ * `pwd` est la commande qui permet d'afficher le chemin 
+ * absolue du vers le répertoire dans lequel on se 
+ * trouve.
+ *
+ * Contruction : <code><strong>obj_new(_Pwd_, "pwd");</strong></code>
+ * `_Pwd_` désigne la classe des commandes pwd. et la chaine "pwd" est le nom de la commande.
+ */
+Class _Pwd_ = &__Pwd__;
+
+/***************************************************/
+/************** Corps des fonctions ****************/
+
+
+// Constructeur.
+static void* Pwd_constructor(void* self_, va_list* args){
+    
+    // Vérification des arguments.
+    assert(self_ && args);    
+    
+    // Conversion en objet de type Pwd.
+    Pwd self = (Pwd) self_;
+
+    // On ajoute le parent à PWD (en controunant la contrainte sur const).
+    *(Class*)&(self->_Pwd_->_super_) = _Command_; 
+    // On met la fonction print du parent comme fonction d'affichage de l'enfant.
+    *((void (**)) &(self->_Pwd_->print)) = _Command_->print;
+        
+    // Ajout de la fonction execute de la classe fille.
+    *((int (**) (Command)) &(self->execute)) = Pwd_execute;
+
+    return _Command_->ctor(self, args);
+    
+}
+
+// Destructeur.
+static void* Pwd_destroy(void* self_){
+    
+    // Vérification des arguments.
+    assert(self_);    
+    
+    return _Command_->dtor(self_);
+    
+}
+
+// Execute.
+static int Pwd_execute(Command self_){
+        
+    //// Ecrire le corps de la fonction ici ! 
+
+    return 0;
+}
+
+
+
+
+
+
+
+
+
+
+

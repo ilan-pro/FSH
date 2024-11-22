@@ -68,7 +68,7 @@ static void LinkedList_print (const void* self_);
 /**
  * @brief Classe `LinkedList` des listes doublement chainées.
  * 
- * Construction : obj_new( `_LinkedList_`);
+ * Construction : <code><strong> obj_new( `_LinkedList_`) </strong></code>
  * <br>
  * `_LinkedList_` étant la classe de la liste.
  * <p>
@@ -76,7 +76,12 @@ static void LinkedList_print (const void* self_);
  */
 typedef struct _LinkedList_ {
     /**
-     * @brief Class des objets de type LinkedList.
+     * @brief Classe de tous les objets `_LinkedList_`.
+     * Construction : <code><strong> obj_new( `_LinkedList_`) </strong></code>
+     * <br>
+     * `_LinkedList_` étant la classe de la liste.
+     * <p>
+     * NB : Tous les éléments de la liste peuvent être de plusieurs type différents
      */
     Class _LinkedList_;
     LINKEDLIST_FIELDS
@@ -96,6 +101,11 @@ static struct _Class_ __LinkedList__ = {
 
 /**
  * @brief Classe de tous les objets `_LinkedList_`.
+ * Construction : <code><strong> obj_new( `_LinkedList_`) </strong></code>
+ * <br>
+ * `_LinkedList_` étant la classe de la liste.
+ * <p>
+ * NB : Tous les éléments de la liste peuvent être de plusieurs type différents
  */
 Class _LinkedList_ = &__LinkedList__;
 
