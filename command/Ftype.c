@@ -5,7 +5,7 @@
  * 
  * `ftype` est la commande qui donne le type d'un fichier.
  * 
- * Contruction : <code><strong>obj_new(_Ftype_, "ftype");</strong></code><br>
+ * Construction : <code><strong>obj_new(_Ftype_, "ftype");</strong></code><br>
  * `_Ftype_` désigne la classe des commandes ftype. et la chaine "ftype" est le nom de la commande.
  */
 
@@ -72,7 +72,7 @@ typedef struct _Ftype_ {
      *
      * `ftype` est la commande qui donne le type d'un fichier.
      *
-     * Contruction : <code><strong>obj_new(_Ftype_, "ftype");</strong></code><br>   
+     * Construction : <code><strong>obj_new(_Ftype_, "ftype");</strong></code><br>   
      * `_Ftype_` désigne la classe des commandes ftype. et la chaine "ftype" est le nom de la commande.
      */
     Class _Ftype_;
@@ -100,10 +100,10 @@ static struct _Class_ __Ftype__ = {
  *
  * `ftype` est la commande qui donne le type d'un fichier.
  *
- * Contruction : <code><strong>obj_new(_Ftype_, "ftype");</strong></code>
+ * Construction : <code><strong>obj_new(_Ftype_, "ftype");</strong></code>
  * `_Ftype_` désigne la classe des commandes ftype. et la chaine "ftype" est le nom de la commande.
  */
-Class _Ftype_ = &__Ftype__;
+const Class _Ftype_ = &__Ftype__;
 
 /***************************************************/
 /************** Corps des fonctions ****************/

@@ -4,7 +4,7 @@
  * @file Pwd.h
  * @brief Fichier d'en-tête contenant les déclarations des variables publiques et de toutes les méthodes public de Pwd.
  * 
- * Contruction : <code><strong>obj_new(_Pwd_, "pwd");</strong></code>
+ * Construction : <code><strong>obj_new(_Pwd_, "pwd");</strong></code>
  * `_Pwd_` désigne la classe des commandes pwd. et la chaine "pwd" est le nom de la commande.
  */
 
@@ -57,9 +57,9 @@
      * absolue du vers le répertoire dans lequel on se 
      * trouve.
      *
-     * Contruction : <code><strong>obj_new(_Pwd_, "pwd");</strong></code><br>   
+     * Construction : <code><strong>obj_new(_Pwd_, "pwd");</strong></code><br>   
      * `_Pwd_` désigne la classe des commandes pwd. et la chaine "pwd" est le nom de la commande.
      */
-    extern Class _Pwd_;
+    extern const Class _Pwd_;
 
 #endif

@@ -4,7 +4,7 @@
  * @file Exit.h
  * @brief Fichier d'en-tête contenant les déclarations des variables publiques et de toutes les méthodes public de Exit.
  * 
- * Contruction : <code><strong>obj_new(_Exit_, "exit");</strong></code>
+ * Construction : <code><strong>obj_new(_Exit_, "exit");</strong></code>
  * `_Exit_` désigne la classe des commandes exit. et la chaine "exit" est le nom de la commande.
  */
 
@@ -53,9 +53,9 @@
      *
      * `exit` est la commande qui permet de quitter le terminal.
      *
-     * Contruction : <code><strong>obj_new(_Exit_, "exit");</strong></code><br>   
+     * Construction : <code><strong>obj_new(_Exit_, "exit");</strong></code><br>   
      * `_Exit_` désigne la classe des commandes exit. et la chaine "exit" est le nom de la commande.
      */
-    extern Class _Exit_;
+    extern const Class _Exit_;
 
 #endif

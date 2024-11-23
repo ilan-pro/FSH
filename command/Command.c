@@ -6,6 +6,7 @@
 
 #include <assert.h>
 #include <stdlib.h>
+#include <stdio.h>
 #include <string.h>
 #include <unistd.h>
 #include "../base/new.h"
@@ -112,11 +113,35 @@ static struct _Class_ __Command__ = {
  * 
  * Construction : `obj_new(_Command_, <Nom_de_la_commande> )`
  */
-Class _Command_ = &__Command__;
+const Class _Command_ = &__Command__;
 
 /***************************************************/
 /************** Corps des fonctions ****************/
 
+/**
+ * @internal
+ * @brief Fonction qui vérifie si oui ou non le caractère actuellement pointé par 
+ * le pointeur vers le prompte de l'utilisateur est valide, c'est à dire 
+ * si on doit oui ou non arrêter la parsing de la commande.
+ * 
+ * Un caractère est valide si et seulement si : 
+ *  - Ce n'est pas le caracètre null (fin de chaine).
+ *  - Ce n'est pas l'un des caracètres '|', ';' ou '}'.
+ * 
+ * Si le caractère n'est pas null (fin de chaine) et qu'il est entre guillemets (simple ou double) ou échapé 
+ * alors il est autamatiquement valide ('|', ';' et '}' seront considérés comme des caracètres normaux).
+ * 
+ * @param quoted Booléen indiquant si le caracètre est entre guillemets simple.
+ * @param double_quoted Booléen indiquant si le caracètre est entre guillemets doubles.
+ * @param esc Booléen indiquant si le caracètre est echapé par \ .
+ * @return Si oui ou non le caractère actuellement pointé par 
+ * le pointeur vers le prompte de l'utilisateur est valide.
+ */
+int Command_actual_char_is_legal(int quoted, int double_quoted, int esc){
+
+    return *usr_prompt && (quoted || double_quoted || esc || ((*usr_prompt) != '|' && (*usr_prompt) != ';' && (*usr_prompt) != '}'));
+
+}
 
 /**
  * Fonction qui va lire les paramètres d'une commande.
@@ -184,30 +209,33 @@ static void Command_parse_usr_prompt(Command self){
     mot[0] = '\0';
     
     int quoted = 0; // Booléean indiquant si oui ou non on se trouve dans des guillemets.
+    int double_quoted = 0; // Booléean indiquant si oui ou non on se trouve dans des guillemets double.
+    int esc = 0; // Booléean indiquant si oui ou non le caractère suivant est echappé.
 
     /** 
-     * Lecture du prompt dans la boucle tant que l'on a pas fini le prompt 
-     * ou qu'on a pas rencontré l'un des caractères `;`, `}` ou `|`
+     * Lecture du prompt dans la boucle tant que le caractère pointé est 
+     * valide (voir documentation de la fonction actual_char_is_legal()).
      */
-    while(*usr_prompt && (*usr_prompt) != '|' && (*usr_prompt) != ';' && (*usr_prompt) != '}' ){
+    while(Command_actual_char_is_legal(quoted, double_quoted, esc)){
         
         // Récupération du caractère pointé par le pointeur, et incémentation de la posisiton.
         char c = *(usr_prompt++);
         switch (c) {
             default : // par défaut on ajoute le caractère à la chaine en cours de lecture. 
-                
                 h_default: // label 
+
+                esc = 0; // On met l'echappement à 0 (si jamais le caractère était échappé)
                 // Incrémentation du compteur.
                 char_compteur ++;
                 // Réallocation pour accueillir le nouveau caractère.
                 mot = realloc(mot, (1 + char_compteur) * sizeof(char));
                 mot[char_compteur] = '\0';
                 mot[char_compteur - 1] = c;
-                
                 break; 
-            case ' ':
+
+            case ' ': // Le cas où le caractère lu est un espace.
     
-                if (quoted) // Si on est dans une expression parenthésée
+                if (quoted || double_quoted || esc) // Si on est dans une expression entre guillemets ou que ' ' est echapé
                     goto h_default; // On va dans default
 
                 if (char_compteur){ // Si il y a au moins une lettre lue.
@@ -230,6 +258,7 @@ static void Command_parse_usr_prompt(Command self){
                     continue;    
             
             case '-' :  // Pour les paramètres.
+
                 if (char_compteur) {
                     /** 
                      * Si il y a au moins une lettre lue, alors 
@@ -238,15 +267,43 @@ static void Command_parse_usr_prompt(Command self){
                      */
                     goto h_default;
                 }
+                else if (!Command_actual_char_is_legal(quoted, double_quoted, esc) || *(usr_prompt)==' '){
+                    /**
+                     * Si le prochain caractère (car on a fait usr_prompt++) n'est pas valide
+                     * (et donc qu'il n'y aura pas de prochaine itération) ou que le prochain 
+                     * caractère est un espace, alors il n'y pas de paramètre à chercher '-' 
+                     * est considéré comme un argument (ex : cd - ou cat - ).
+                     */
+                    goto h_default;
+                }
+
+
                 // Sinon on récupère les paramètres.
                 Command_parse_usr_prompt_params(self);
                 break;
 
-            case '"': // Le cas où on a des guillemets
-                quoted = !quoted;
+            case '"': // Le cas où on a des guillemets doubles
+                if (!quoted && !esc) // S'ils sont dans des guillemets simples ou explicitement echapés alors ils sont échapés
+                    double_quoted = !double_quoted;
+
+                goto h_default;
+                break;
+
+            case '\'': // Le cas où on a des guillemets simples
+                if (!double_quoted && !esc) // S'ils sont dans des guillemets doubles ou explicitement echapés alors ils sont échapés
+                    quoted = !quoted;
+
                 goto h_default;
                 break;
             
+            case '\\': // Il n'y a pas d'échappement mais ça ne coûte rien
+            
+                if (esc) // Si il est echappé
+                    goto h_default;
+                
+                esc = 1;
+                break;
+
             // TODO on peut rajouter le case '>' pour les redirection (pas pour le moment).
             
             
@@ -339,6 +396,9 @@ int Command_execute(Command self){
     
     // Vérification de self
     assert(self);
+
+    // Vérification de si self est un sous-type.
+    assert(obj_instance_of(self, _Command_));
 
     if (!self->execute){ // Si self n'a pas définie une méthode execute() on arrête tout.
         char tmp1[] = "\e[1;31m[Erreur] La commande \"";

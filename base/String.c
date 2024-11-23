@@ -106,7 +106,7 @@ static struct _Class_ __String__ = {
 /**
  * Classe de tous les objets de type String.
  */
-Class _String_ = &__String__;
+const Class _String_ = &__String__;
 
 
 /***************************************************/

@@ -15,7 +15,7 @@
 #include <assert.h>
 
 /** @cond HIDE_THIS*/
-#define Cd_CLASS "Cd"
+#define CD_CLASS "Cd"
 #include "Cd.h"
 /**@endcond*/
 
@@ -108,7 +108,7 @@ static struct _Class_ __Cd__ = {
  * Contruction : <code><strong>obj_new(_Cd_, "cd");</strong></code>
  * `_Cd_` désigne la classe des commandes cd. et la chaine "cd" est le nom de la commande.
  */
-Class _Cd_ = &__Cd__;
+const Class _Cd_ = &__Cd__;
 
 /***************************************************/
 /************** Corps des fonctions ****************/

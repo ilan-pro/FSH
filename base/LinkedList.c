@@ -107,7 +107,7 @@ static struct _Class_ __LinkedList__ = {
  * <p>
  * NB : Tous les éléments de la liste peuvent être de plusieurs type différents
  */
-Class _LinkedList_ = &__LinkedList__;
+const Class _LinkedList_ = &__LinkedList__;
 
 /***************************************************/
 /************** Corps des fonctions ****************/

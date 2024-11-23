@@ -85,6 +85,6 @@
      * 
      * Elle est défini dans le fichier `String.c`
      */
-    extern Class _String_;
+    extern const Class _String_;
 
 #endif

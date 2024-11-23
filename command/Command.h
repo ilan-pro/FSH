@@ -65,7 +65,7 @@
      * 
      * Construction : `obj_new(_Command_, <Nom_de_la_commande> )`
      */
-    extern Class _Command_;
+    extern const Class _Command_;
     
     /**
      * @brief Fonction qui va exécuter la commande.
@@ -80,4 +80,24 @@
      */
     int Command_execute(Command self);
 
+    /**
+     * @brief Fonction qui vérifie si oui ou non le caractère actuellement pointé par 
+     * le pointeur vers le prompte de l'utilisateur est valide, c'est à dire 
+     * si on doit oui ou non arrêter la parsing de la commande.
+     * 
+     * Un caractère est valide si et seulement si : 
+     *  - Ce n'est pas le caracètre null (fin de chaine).
+     *  - Ce n'est pas l'un des caracètres '|', ';' ou '}'.
+     * 
+     * Si le caractère n'est pas null (fin de chaine) et qu'il est entre guillemets (simple ou double) ou échapé 
+     * alors il est autamatiquement valide ('|', ';' et '}' seront considérés comme des caracètres normaux).
+     * 
+     * @param quoted Booléen indiquant si le caracètre est entre guillemets simple.
+     * @param double_quoted Booléen indiquant si le caracètre est entre guillemets doubles.
+     * @param esc Booléen indiquant si le caracètre est echapé par \ .
+     * @return Si oui ou non le caractère actuellement pointé par 
+     * le pointeur vers le prompte de l'utilisateur est valide.
+     */
+    int Command_actual_char_is_legal(int quoted, int double_quoted, int esc);
+    
 #endif

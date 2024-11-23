@@ -1,5 +1,10 @@
 \hypertarget{shell_8c}{}\doxysection{Référence du fichier shell.\+c}
 \label{shell_8c}\index{shell.c@{shell.c}}
+
+
+Fichier contenant l\textquotesingle{}implémentation des fonctions utilisé par le shell pour le traitement et construction des commandes.  
+
+
 {\ttfamily \#include \char`\"{}shell.\+h\char`\"{}}\newline
 {\ttfamily \#include $<$stddef.\+h$>$}\newline
 {\ttfamily \#include $<$string.\+h$>$}\newline
@@ -13,9 +18,11 @@
 {\ttfamily \#include \char`\"{}base/\+Class.\+h\char`\"{}}\newline
 {\ttfamily \#include \char`\"{}command/all\+\_\+cmd.\+h\char`\"{}}\newline
 {\ttfamily \#include \char`\"{}command/\+Command.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}command/\+External\+Command.\+h\char`\"{}}\newline
 {\ttfamily \#include \char`\"{}base/\+String.\+h\char`\"{}}\newline
 {\ttfamily \#include \char`\"{}base/new.\+h\char`\"{}}\newline
-Graphe des dépendances par inclusion de shell.\+c\+:\nopagebreak
+Graphe des dépendances par inclusion de shell.\+c\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -37,6 +44,11 @@ char \mbox{\hyperlink{shell_8c_a0fb747376cf2f2d8093c063281da9702}{working\+\_\+d
 char $\ast$ \mbox{\hyperlink{shell_8c_ad5f0370ef35eb011706a0cb8bc299885}{usr\+\_\+prompt}} = \char`\"{}\char`\"{}
 \end{DoxyCompactItemize}
 
+
+\doxysubsection{Description détaillée}
+Fichier contenant l\textquotesingle{}implémentation des fonctions utilisé par le shell pour le traitement et construction des commandes. 
+
+On y retrouve notament la fonction {\ttfamily \mbox{\hyperlink{shell_8c_a0dabbf807290a3a452d301797493bad4}{Shell\+\_\+start()}}} qui va démarrer le shell et l\textquotesingle{}intéraction avec l\textquotesingle{}utilisateur. 
 
 \doxysubsection{Documentation des fonctions}
 \mbox{\Hypertarget{shell_8c_af5bcf670ed5210c7f347de1bb0715d2a}\label{shell_8c_af5bcf670ed5210c7f347de1bb0715d2a}} 
@@ -67,7 +79,7 @@ Le code de retour au moment de la fermture du terminal.
 \doxysubsubsection{\texorpdfstring{usr\_prompt}{usr\_prompt}}
 {\footnotesize\ttfamily char$\ast$ usr\+\_\+prompt = \char`\"{}\char`\"{}}
 
-Chaine de caractère qui va stocker la saisie de l\textquotesingle{}utilisateur. \mbox{\Hypertarget{shell_8c_a0fb747376cf2f2d8093c063281da9702}\label{shell_8c_a0fb747376cf2f2d8093c063281da9702}} 
+Il s\textquotesingle{}agit de la chaine de caractère saisie par l\textquotesingle{}utilisateur. \mbox{\Hypertarget{shell_8c_a0fb747376cf2f2d8093c063281da9702}\label{shell_8c_a0fb747376cf2f2d8093c063281da9702}} 
 \index{shell.c@{shell.c}!working\_dir@{working\_dir}}
 \index{working\_dir@{working\_dir}!shell.c@{shell.c}}
 \doxysubsubsection{\texorpdfstring{working\_dir}{working\_dir}}

@@ -5,7 +5,7 @@
  * 
  * Pwd est une commande qui va afficher le chemin absolue vers le répertoire courant.
  * 
- * Contruction : <code><strong>obj_new(_Pwd_, "pwd");</strong></code><br>
+ * Construction : <code><strong>obj_new(_Pwd_, "pwd");</strong></code><br>
  * `_Pwd_` désigne la classe des commandes pwd. et la chaine "pwd" est le nom de la commande.
  */
 
@@ -74,7 +74,7 @@ typedef struct _Pwd_ {
      * absolue du vers le répertoire dans lequel on se 
      * trouve.
      *
-     * Contruction : <code><strong>obj_new(_Pwd_, "pwd");</strong></code><br>   
+     * Construction : <code><strong>obj_new(_Pwd_, "pwd");</strong></code><br>   
      * `_Pwd_` désigne la classe des commandes pwd. et la chaine "pwd" est le nom de la commande.
      */
     Class _Pwd_;
@@ -104,10 +104,10 @@ static struct _Class_ __Pwd__ = {
  * absolue du vers le répertoire dans lequel on se 
  * trouve.
  *
- * Contruction : <code><strong>obj_new(_Pwd_, "pwd");</strong></code>
+ * Construction : <code><strong>obj_new(_Pwd_, "pwd");</strong></code>
  * `_Pwd_` désigne la classe des commandes pwd. et la chaine "pwd" est le nom de la commande.
  */
-Class _Pwd_ = &__Pwd__;
+const Class _Pwd_ = &__Pwd__;
 
 /***************************************************/
 /************** Corps des fonctions ****************/

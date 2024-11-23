@@ -56,6 +56,6 @@
      * Contruction : <code><strong>obj_new(_Cd_, "cd");</strong></code><br>   
      * `_Cd_` désigne la classe des commandes cd. et la chaine "cd" est le nom de la commande.
      */
-    extern Class _Cd_;
+    extern const Class _Cd_;
 
 #endif

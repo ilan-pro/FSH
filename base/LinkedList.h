@@ -94,7 +94,7 @@
      *
      * Elle est définie dans `LinkedList.c`
      */
-    extern Class _LinkedList_;
+    extern const Class _LinkedList_;
 
         
     /**

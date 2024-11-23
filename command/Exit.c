@@ -5,7 +5,7 @@
  * 
  * `exit` est la commande qui permet de quitter le terminal.
  * 
- * Contruction : <code><strong>obj_new(_Exit_, "exit");</strong></code><br>
+ * Construction : <code><strong>obj_new(_Exit_, "exit");</strong></code><br>
  * `_Exit_` désigne la classe des commandes exit. et la chaine "exit" est le nom de la commande.
  */
 
@@ -72,7 +72,7 @@ typedef struct _Exit_ {
      *
      * `exit` est la commande qui permet de quitter le terminal.
      * 
-     * Contruction : <code><strong>obj_new(_Exit_, "exit");</strong></code><br>   
+     * Construction : <code><strong>obj_new(_Exit_, "exit");</strong></code><br>   
      * `_Exit_` désigne la classe des commandes exit. et la chaine "exit" est le nom de la commande.
      */
     Class _Exit_;
@@ -100,10 +100,10 @@ static struct _Class_ __Exit__ = {
  *
  * `exit` est la commande qui permet de quitter le terminal.
  *
- * Contruction : <code><strong>obj_new(_Exit_, "exit");</strong></code>
+ * Construction : <code><strong>obj_new(_Exit_, "exit");</strong></code>
  * `_Exit_` désigne la classe des commandes exit. et la chaine "exit" est le nom de la commande.
  */
-Class _Exit_ = &__Exit__;
+const Class _Exit_ = &__Exit__;
 
 /***************************************************/
 /************** Corps des fonctions ****************/

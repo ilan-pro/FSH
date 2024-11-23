@@ -1,3 +1,9 @@
+/**
+ * @file shell.c
+ * @brief Fichier contenant l'implémentation des fonctions utilisé par le shell pour le traitement et construction des commandes.
+ * 
+ * On y retrouve notament la fonction `Shell_start()` qui va démarrer le shell et l'intéraction avec l'utilisateur.
+ */
 #include "shell.h"
 #include <stddef.h>
 #include <string.h>
@@ -11,6 +17,7 @@
 #include "base/Class.h"
 #include "command/all_cmd.h"
 #include "command/Command.h"
+#include "command/ExternalCommand.h"
 #include "base/String.h"
 #include "base/new.h"
 
@@ -54,13 +61,13 @@ static char path[PROMPT_CHAR_LIMITS];
 static char prompt[50];
 
 /**
+ * @internal
  * Chaine de caractère qui va stocker la saisie de l'utilisateur.
  */
 char *usr_prompt = "";
 
 /**
  * @internal
- * 
  * Fonction qui démarre le shell "FSH".
  */
 int Shell_start(){
@@ -139,8 +146,6 @@ void parse_prompt(){
             // on remet lu1lettre à 0 car nous voulons relire une commande
             lu1lettre = 0;
             printf("'%s' \n", char_lu);
-            Command c = obj_new(_Command_,char_lu);
-            obj_print(c);
 
             // à mettre dans une fonction a par
 	    Class tmp = get_interal_cmd(char_lu);
