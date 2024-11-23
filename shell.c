@@ -11,7 +11,9 @@
 #include "base/Class.h"
 #include "command/all_cmd.h"
 #include "base/String.h"
-
+#include "base/LinkedList.h"
+#include "command/Command.h"
+		
 /**********************************************/
 /********* Déclaration des fonctions **********/
 
@@ -22,11 +24,12 @@ static int init_working_dir();
 
 
 /**
- * Fonction qui créer le texte du prompt
+ * Fonction qui cré le texte du prompt
  */
 static void update_prompt();
 void parse_prompt();
 static Class get_internal_cmd(char *char_lu);
+static Command apply_cmd(char *char_lu, LinkedList file_secondaire);
 
 /**********************************************/
 
@@ -92,7 +95,7 @@ void parse_prompt(){
     char_lu[0] = '\0';
     // tant qu'il y a quelque chose à lire (différent \0)
     LinkedList file_principale = obj_new(_LinkedList_);
-    LInkedList file_secondaire = obj_new(_LinkedList_);	
+    LinkedList file_secondaire = obj_new(_LinkedList_);	
     while(1){
         // On récupère le caractère pointé par user_prompt puis on incrémente pour les caractères suivant.
  	
@@ -105,15 +108,9 @@ void parse_prompt(){
 	if(res == '\0'){
 		//en faire une fonction
 		if(lu1lettre > 0){
-			Class tmp = get_internal_cmd(char_lu);
-			if(tmp){
-				Command cmd = obj_new(tmp, char_lu);
-				LinkedList_add_last(file_secondaire, cmd, 0);
-			}else{
-				printf("...commande externe");
-			}
+			apply_cmd(char_lu, file_secondaire);
 		}
-		LinkedLIst_add_last(file_principale, file_secondaire, 0);
+		LinkedList_add_last(file_principale, file_secondaire, 0);
 		break;
 	}
 
@@ -137,20 +134,10 @@ void parse_prompt(){
             // on remet lu1lettre à 0 car nous voulons relire une commande
             lu1lettre = 0;
             printf("'%s' \n", char_lu);
-            
-            // à mettre dans une fonction a par
-	    Class tmp = get_interal_cmd(char_lu);
-            if(tmp){
-		// je cré l'objet associé à ma commande
-               	Command cmd = obj_new(tmp, char_lu);
-		//j'ajoute la commande interne à ma file
-		LinkedList_add_last(file_secondaire, cmd, 0);	
-            }else{
-                printf("...commande externe"); 
-            }
-            // jusqu'ici
+        
+	    apply_cmd(char_lu, file_secondaire);
 
-            // on trunk l'espace alloué par l'ancienne commande afin de pouvoir stocker le nom de la nouvelle commande sans l'avoir à la concatener avec l'ancienne
+	    // on trunk l'espace alloué par l'ancienne commande afin de pouvoir stocker le nom de la nouvelle commande sans l'avoir à la concatener avec l'ancienne
             char_lu = realloc(char_lu, sizeof(char));
             char_lu[0] = '\0';
             // pour éviter d'avoir des espaces si il y a une autre commande qui suit
@@ -165,6 +152,26 @@ void parse_prompt(){
         char_lu[lu1lettre] = '\0';
     }
     free(char_lu);
+}
+
+/** 
+ * Fonction qui va retourner la commande associé 
+ * à ce que l'utilisateur à tapé sur le prompt.
+ * Et va l'ajouter dans la file de la pipleline qu'on parse actuellement
+ */
+static Command apply_cmd(char *char_lu, LinkedList file_secondaire){
+	Class tmp = get_internal_cmd(char_lu);
+	Command cmd;
+	if(tmp){
+		// je cré l'objet associé à ma commande
+		cmd = obj_new(tmp, char_lu);
+		//j'ajoute la commande interne à ma file
+		LinkedList_add_last(file_secondaire, cmd, 0);	
+	}else{
+		printf("...TA GRAND MÈRE");
+        cmd = NULL;
+	}
+	return cmd;
 }
 
 static Class get_internal_cmd(char *char_lu){
@@ -183,7 +190,7 @@ static Class get_internal_cmd(char *char_lu){
  */
 static int init_working_dir(){
 
-    if (!getcwd(working_dir, PATH_MAX)){
+    if (!getcwd(working_dir, 4092)){
         perror("Récupération du chemin absolue.");
         return 1;
     }
