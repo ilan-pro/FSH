@@ -95,7 +95,7 @@ static struct _Class_ __ListCell__ = {
 /**
  * Classe de tous les objets de type `_ListCell_`.
  */
-Class _ListCell_ = & __ListCell__;
+const Class _ListCell_ = & __ListCell__;
 
 /***************************************************/
 /************** Corps des fonctions ****************/

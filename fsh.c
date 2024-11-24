@@ -1,3 +1,9 @@
+/**
+ * @file fsh.c
+ * @brief Fichier contenant la fonction main de l'application.
+ * 
+ * C'est cette fonction qui va initialiser les commandes et démarrer le shell.
+ */
 #include <readline/readline.h>
 #include <readline/history.h>
 #include <stdio.h>
@@ -9,7 +15,24 @@
 
 #include "base/LinkedList.h"
 #include "base/new.h"
+#include "command/all_cmd.h"
 #include "shell.h"
+
+/**
+ * @brief Fonction qui va ajouter les classes des commandes internes dans le 
+ * la table qui contient les commandes internes.
+ * 
+ * Ajouter directement les classes dans la déclaration faite dans le fichier `all_cmd.h` 
+ * est impossible car les structures des classes ne sont pas constantes au moment de la compilation. 
+ */
+void initialize_cmd(){
+
+    cmd[0][1] = _Pwd_;
+    cmd[1][1] = _Exit_;
+    cmd[2][1] = _Cd_;
+    cmd[3][1] = _Ftype_;
+
+}
 
 int run_commande(){
     while(1){
@@ -43,6 +66,11 @@ int run_commande(){
 }
 
 int main(){
-    Shell_start();
+    initialize_cmd();
+    Shell_start(); 
+    // Pwd t = obj_new(_Pwd_, "pwd");
+    // obj_print(t);
+    // write(1,"\n", 1);
+    // obj_destroy(t);
     return 0; 
 }

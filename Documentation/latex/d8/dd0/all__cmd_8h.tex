@@ -1,33 +1,41 @@
 \hypertarget{all__cmd_8h}{}\doxysection{Référence du fichier command/all\+\_\+cmd.h}
 \label{all__cmd_8h}\index{command/all\_cmd.h@{command/all\_cmd.h}}
-Ce graphe montre quels fichiers incluent directement ou indirectement ce fichier \+:\nopagebreak
+{\ttfamily \#include \char`\"{}Pwd.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Exit.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Cd.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Ftype.\+h\char`\"{}}\newline
+Graphe des dépendances par inclusion de all\+\_\+cmd.\+h\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=196pt]{d6/d63/all__cmd_8h__dep__incl}
+\includegraphics[width=316pt]{de/d6b/all__cmd_8h__incl}
+\end{center}
+\end{figure}
+Ce graphe montre quels fichiers incluent directement ou indirectement ce fichier \+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=320pt]{d6/d63/all__cmd_8h__dep__incl}
 \end{center}
 \end{figure}
 \doxysubsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
-const void $\ast$ \mbox{\hyperlink{all__cmd_8h_aadcd72e00e8607d942298df26db5ff6a}{cmd}} \mbox{[}$\,$\mbox{]}\mbox{[}1\mbox{]}
-\end{DoxyCompactItemize}
+const void $\ast$ \mbox{\hyperlink{all__cmd_8h_a285ec15fc8c9d5528845fb7cb239a87b}{cmd}} \mbox{[}$\,$\mbox{]}\mbox{[}2\mbox{]}
+\begin{DoxyCompactList}\small\item\em L\textquotesingle{}ensemble de toutes les commandes internes du shell. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Documentation des variables}
-\mbox{\Hypertarget{all__cmd_8h_aadcd72e00e8607d942298df26db5ff6a}\label{all__cmd_8h_aadcd72e00e8607d942298df26db5ff6a}} 
+\mbox{\Hypertarget{all__cmd_8h_a285ec15fc8c9d5528845fb7cb239a87b}\label{all__cmd_8h_a285ec15fc8c9d5528845fb7cb239a87b}} 
 \index{all\_cmd.h@{all\_cmd.h}!cmd@{cmd}}
 \index{cmd@{cmd}!all\_cmd.h@{all\_cmd.h}}
 \doxysubsubsection{\texorpdfstring{cmd}{cmd}}
-{\footnotesize\ttfamily const void$\ast$ cmd\mbox{[}$\,$\mbox{]}\mbox{[}1\mbox{]}}
+{\footnotesize\ttfamily const void$\ast$ cmd\mbox{[}$\,$\mbox{]}\mbox{[}2\mbox{]}\hspace{0.3cm}{\ttfamily [extern]}}
 
-{\bfseries Valeur initiale \+:}
-\begin{DoxyCode}{0}
-\DoxyCodeLine{= \{}
-\DoxyCodeLine{    \{\textcolor{stringliteral}{"{}pwd"{}}\},}
-\DoxyCodeLine{    \{\textcolor{stringliteral}{"{}exit"{}}\},}
-\DoxyCodeLine{    \{\textcolor{stringliteral}{"{}cd"{}}\},}
-\DoxyCodeLine{    \{\textcolor{stringliteral}{"{}ftype"{}}\}}
-\DoxyCodeLine{\}}
 
-\end{DoxyCode}
+
+L\textquotesingle{}ensemble de toutes les commandes internes du shell. 
+
+Ce tableau est un tableau à deux dimension dont chaque ligne contient deux éléments le premier étant le nom de la commande (char$\ast$) est le second, la classe où elle appartient. 

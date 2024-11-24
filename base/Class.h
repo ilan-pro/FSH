@@ -54,7 +54,7 @@ typedef struct _Class_ {
     /**
      * @brief Classe du parent. NULL si pas de parent.
      */
-    const struct _Class_* _super_;                    
+    const struct _Class_* const _super_;                    
     /**
      * @brief Le nom de la classe de l'objet.
      */

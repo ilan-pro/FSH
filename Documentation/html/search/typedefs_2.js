@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['string_157',['String',['../d4/db5/String_8c.html#aef4dfc8829b0dbeb22460f55ddf63556',1,'String():&#160;String.c'],['../d9/dba/String_8h.html#aef4dfc8829b0dbeb22460f55ddf63556',1,'String():&#160;String.h']]]
+  ['ftype_207',['Ftype',['../d2/d1d/Ftype_8c.html#a7f2752718425377d513df9f7c408d19b',1,'Ftype():&#160;Ftype.c'],['../dd/db8/Ftype_8h.html#a7f2752718425377d513df9f7c408d19b',1,'Ftype():&#160;Ftype.h']]]
 ];

@@ -72,7 +72,7 @@
      *
      * Elle est définie dans `ListCell.c`
      */
-    extern Class _ListCell_;
+    extern const Class _ListCell_;
 
     /**
      * @brief Fonction qui ajoute un objet à une position donnée dans la liste, à partir de cette cellule.

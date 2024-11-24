@@ -1,6 +1,4 @@
 var searchData=
 [
-  ['name_52',['name',['../d8/d36/struct__Class__.html#a5ac9c5395304cb4342d3c5035fc73272',1,'_Class_']]],
-  ['new_2ec_53',['new.c',['../d4/d0b/new_8c.html',1,'']]],
-  ['new_2eh_54',['new.h',['../d7/d58/new_8h.html',1,'']]]
+  ['main_72',['main',['../da/de7/fsh_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4',1,'fsh.c']]]
 ];
