@@ -15,11 +15,4 @@
  */
 extern const void* cmd[][2];
 
-// const void* cmd[][1] = {
-//     {"pwd"},
-//     {"exit"},
-//     {"cd"},
-//     {"ftype"}
-// };
-
 #endif

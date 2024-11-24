@@ -184,12 +184,16 @@ static Command apply_cmd(char *char_lu, LinkedList file_secondaire){
 	return cmd;
 }
 
+/**
+ * Fonction qui récupère la commande interne correspondante.
+ */
 static Class get_internal_cmd(char *char_lu){
     for(int i=0;i<4;i++){
         if(strcmp(char_lu, cmd[i][0]) == 0){
-            return _String_;
+            return cmd[i][1];
         }
     }
+    // si aucune commande externe n'a été trouvé return NULL
     return NULL;
 }
 
