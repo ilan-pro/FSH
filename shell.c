@@ -19,7 +19,6 @@
 #include "command/Command.h"
 #include "command/ExternalCommand.h"
 #include "base/String.h"
-#include "base/LinkedList.h"
 		
 #include "base/new.h"
 
@@ -130,7 +129,8 @@ void parse_prompt(){
 		LinkedList_add_last(file_principale, file_secondaire, 0);
 		// Nous pouvons maintenant commencer une nouvelle file afin de stocker la futur PipeLine
 		file_secondaire = obj_new(_LinkedList_);	
-	}
+	    continue;
+    }
 
         // on vérifie que ce caractère est un espace
         if(res == ' '){
@@ -163,6 +163,28 @@ void parse_prompt(){
     }
     free(char_lu);
 }
+    
+/**
+ * @internal
+ * @brief Fonction qui va exécuter toutes les pipelines d'une 
+ * commande structurée (par appel de la méthode execute() de chaque commande).
+ * 
+ * La fonction va créer un nouveau processus pour chaque éxécution de commande et 
+ * va attendre que l'exécution de la commande soit terminée avant de passer à la commande 
+ * suivante. La fonction s'occupera également de faire les redirections de sorties 
+ * si jamais il y en a.
+ *
+ * @param struct_cmds La commande structurée. Une commande structurée est une liste de listes 
+ * dont chaque liste est une pipeline (commande simple ou plusieurs commandes simples CMD_1 | CMD_2 | ... ).
+ *
+ * @return La valeur de retour de la dernière exécution (si elle échoue alors ce sera la valeur de 
+ * son code d'erreur).
+ */
+int Shell_execute_all(LinkedList struct_cmds){
+        
+    
+
+}
 
 /** 
  * Fonction qui va retourner la commande associé 
@@ -190,7 +212,7 @@ static Command apply_cmd(char *char_lu, LinkedList file_secondaire){
 static Class get_internal_cmd(char *char_lu){
     for(int i=0;i<4;i++){
         if(strcmp(char_lu, cmd[i][0]) == 0){
-            return cmd[i][1];
+            return (Class)cmd[i][1];
         }
     }
     // si aucune commande externe n'a été trouvé return NULL

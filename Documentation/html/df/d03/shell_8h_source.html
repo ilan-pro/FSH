@@ -69,18 +69,26 @@ $(function() {
 <a href="../../df/d03/shell_8h.html">Aller à la documentation de ce fichier.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#ifndef SHELL_H</span></div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#define SHELL_H</span></div>
-<div class="line"><a name="l00011"></a><span class="lineno"><a class="line" href="../../df/d03/shell_8h.html#ac855d1077484caa2542bb26af8ea6479">   11</a></span>&#160;<span class="preprocessor">#define PROMPT_CHAR_LIMITS 30</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="keywordtype">int</span> <a class="code" href="../../df/d03/shell_8h.html#a0dabbf807290a3a452d301797493bad4">Shell_start</a>();</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; </div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">char</span> <a class="code" href="../../df/d03/shell_8h.html#af1d59d6d50ca8965f4eb0e160c8a5e42">working_dir</a>[4096];</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">char</span> *<a class="code" href="../../df/d03/shell_8h.html#ad5f0370ef35eb011706a0cb8bc299885">usr_prompt</a>;</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="ttc" id="ashell_8h_html_a0dabbf807290a3a452d301797493bad4"><div class="ttname"><a href="../../df/d03/shell_8h.html#a0dabbf807290a3a452d301797493bad4">Shell_start</a></div><div class="ttdeci">int Shell_start()</div><div class="ttdoc">Fonction qui va démarrer l'interpreteur de commande.</div><div class="ttdef"><b>Definition:</b> shell.c:73</div></div>
-<div class="ttc" id="ashell_8h_html_ad5f0370ef35eb011706a0cb8bc299885"><div class="ttname"><a href="../../df/d03/shell_8h.html#ad5f0370ef35eb011706a0cb8bc299885">usr_prompt</a></div><div class="ttdeci">char * usr_prompt</div><div class="ttdef"><b>Definition:</b> shell.c:67</div></div>
-<div class="ttc" id="ashell_8h_html_af1d59d6d50ca8965f4eb0e160c8a5e42"><div class="ttname"><a href="../../df/d03/shell_8h.html#af1d59d6d50ca8965f4eb0e160c8a5e42">working_dir</a></div><div class="ttdeci">char working_dir[4096]</div><div class="ttdoc">Il s'agit du chemin absolue vers le repertoire courant.</div><div class="ttdef"><b>Definition:</b> shell.c:51</div></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="../../db/d44/LinkedList_8h.html">base/LinkedList.h</a>&quot;</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160; </div>
+<div class="line"><a name="l00013"></a><span class="lineno"><a class="line" href="../../df/d03/shell_8h.html#ac855d1077484caa2542bb26af8ea6479">   13</a></span>&#160;<span class="preprocessor">#define PROMPT_CHAR_LIMITS 30</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="keywordtype">int</span> <a class="code" href="../../df/d03/shell_8h.html#a0dabbf807290a3a452d301797493bad4">Shell_start</a>();</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160; </div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160; </div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="keywordtype">int</span> <a class="code" href="../../df/d03/shell_8h.html#acc2f620fc1231964805ced37642eb8ad">Shell_execute_all</a>(<a class="code" href="../../d9/d5f/struct__LinkedList__.html">LinkedList</a> struct_cmds);</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160; </div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">char</span> <a class="code" href="../../df/d03/shell_8h.html#af1d59d6d50ca8965f4eb0e160c8a5e42">working_dir</a>[4096];</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">char</span> *<a class="code" href="../../df/d03/shell_8h.html#ad5f0370ef35eb011706a0cb8bc299885">usr_prompt</a>;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aLinkedList_8h_html"><div class="ttname"><a href="../../db/d44/LinkedList_8h.html">LinkedList.h</a></div><div class="ttdoc">Fichier d'en-tête contenant les déclarations de toutes les méthodes utilisées pour manipuler les obje...</div></div>
+<div class="ttc" id="ashell_8h_html_a0dabbf807290a3a452d301797493bad4"><div class="ttname"><a href="../../df/d03/shell_8h.html#a0dabbf807290a3a452d301797493bad4">Shell_start</a></div><div class="ttdeci">int Shell_start()</div><div class="ttdoc">Fonction qui va démarrer l'interpreteur de commande.</div><div class="ttdef"><b>Definition:</b> shell.c:76</div></div>
+<div class="ttc" id="ashell_8h_html_acc2f620fc1231964805ced37642eb8ad"><div class="ttname"><a href="../../df/d03/shell_8h.html#acc2f620fc1231964805ced37642eb8ad">Shell_execute_all</a></div><div class="ttdeci">int Shell_execute_all(LinkedList struct_cmds)</div><div class="ttdoc">Fonction qui va exécuter toutes les pipelines d'une commande structurée (par appel de la méthode exec...</div><div class="ttdef"><b>Definition:</b> shell.c:183</div></div>
+<div class="ttc" id="ashell_8h_html_ad5f0370ef35eb011706a0cb8bc299885"><div class="ttname"><a href="../../df/d03/shell_8h.html#ad5f0370ef35eb011706a0cb8bc299885">usr_prompt</a></div><div class="ttdeci">char * usr_prompt</div><div class="ttdef"><b>Definition:</b> shell.c:70</div></div>
+<div class="ttc" id="ashell_8h_html_af1d59d6d50ca8965f4eb0e160c8a5e42"><div class="ttname"><a href="../../df/d03/shell_8h.html#af1d59d6d50ca8965f4eb0e160c8a5e42">working_dir</a></div><div class="ttdeci">char working_dir[4096]</div><div class="ttdoc">Il s'agit du chemin absolue vers le repertoire courant.</div><div class="ttdef"><b>Definition:</b> shell.c:54</div></div>
+<div class="ttc" id="astruct__LinkedList___html"><div class="ttname"><a href="../../d9/d5f/struct__LinkedList__.html">_LinkedList_</a></div><div class="ttdoc">Classe LinkedList des listes doublement chainées.</div><div class="ttdef"><b>Definition:</b> LinkedList.c:77</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

@@ -21,8 +21,7 @@ Fichier contenant l\textquotesingle{}implémentation des fonctions utilisé par 
 {\ttfamily \#include \char`\"{}command/\+External\+Command.\+h\char`\"{}}\newline
 {\ttfamily \#include \char`\"{}base/\+String.\+h\char`\"{}}\newline
 {\ttfamily \#include \char`\"{}base/new.\+h\char`\"{}}\newline
-Graphe des dépendances par inclusion de shell.\+c\+:
-\nopagebreak
+Graphe des dépendances par inclusion de shell.\+c\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -35,7 +34,9 @@ Graphe des dépendances par inclusion de shell.\+c\+:
 void \mbox{\hyperlink{shell_8c_af5bcf670ed5210c7f347de1bb0715d2a}{parse\+\_\+prompt}} ()
 \item 
 int \mbox{\hyperlink{shell_8c_a0dabbf807290a3a452d301797493bad4}{Shell\+\_\+start}} ()
-\begin{DoxyCompactList}\small\item\em Fonction qui va démarrer l\textquotesingle{}interpreteur de commande. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Fonction qui va démarrer l\textquotesingle{}interpreteur de commande. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{shell_8c_acc2f620fc1231964805ced37642eb8ad}{Shell\+\_\+execute\+\_\+all}} (\mbox{\hyperlink{LinkedList_8c_a9e97ddb0b652fc6241b56a6f723e4dc0}{Linked\+List}} struct\+\_\+cmds)
+\begin{DoxyCompactList}\small\item\em Fonction qui va exécuter toutes les pipelines d\textquotesingle{}une commande structurée (par appel de la méthode execute() de chaque commande). \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
@@ -57,6 +58,26 @@ On y retrouve notament la fonction {\ttfamily \mbox{\hyperlink{shell_8c_a0dabbf8
 \doxysubsubsection{\texorpdfstring{parse\_prompt()}{parse\_prompt()}}
 {\footnotesize\ttfamily void parse\+\_\+prompt (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
+\mbox{\Hypertarget{shell_8c_acc2f620fc1231964805ced37642eb8ad}\label{shell_8c_acc2f620fc1231964805ced37642eb8ad}} 
+\index{shell.c@{shell.c}!Shell\_execute\_all@{Shell\_execute\_all}}
+\index{Shell\_execute\_all@{Shell\_execute\_all}!shell.c@{shell.c}}
+\doxysubsubsection{\texorpdfstring{Shell\_execute\_all()}{Shell\_execute\_all()}}
+{\footnotesize\ttfamily int Shell\+\_\+execute\+\_\+all (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{LinkedList_8c_a9e97ddb0b652fc6241b56a6f723e4dc0}{Linked\+List}}}]{struct\+\_\+cmds }\end{DoxyParamCaption})}
+
+
+
+Fonction qui va exécuter toutes les pipelines d\textquotesingle{}une commande structurée (par appel de la méthode execute() de chaque commande). 
+
+La fonction va créer un nouveau processus pour chaque éxécution de commande et va attendre que l\textquotesingle{}exécution de la commande soit terminée avant de passer à la commande suivante. La fonction s\textquotesingle{}occupera également de faire les redirections de sorties si jamais il y en a.
+
+
+\begin{DoxyParams}{Paramètres}
+{\em struct\+\_\+cmds} & La commande structurée. Une commande structurée est une liste de listes dont chaque liste est une pipeline (commande simple ou plusieurs commandes simples CMD\+\_\+1 $\vert$ CMD\+\_\+2 $\vert$ ... ).\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+La valeur de retour de la dernière exécution (si elle échoue alors ce sera la valeur de son code d\textquotesingle{}erreur). 
+\end{DoxyReturn}
 \mbox{\Hypertarget{shell_8c_a0dabbf807290a3a452d301797493bad4}\label{shell_8c_a0dabbf807290a3a452d301797493bad4}} 
 \index{shell.c@{shell.c}!Shell\_start@{Shell\_start}}
 \index{Shell\_start@{Shell\_start}!shell.c@{shell.c}}

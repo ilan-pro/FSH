@@ -5,6 +5,8 @@
  */
 #ifndef SHELL_H
 #define SHELL_H
+#include "base/LinkedList.h"
+
 /**
  * @brief Il s'agit du nombre de caractère maximal que doit avoir le prompt.
  */
@@ -16,6 +18,24 @@
  * @return Le code de retour au moment de la fermture du terminal.
  */
 int Shell_start();
+
+
+/**
+ * @brief Fonction qui va exécuter toutes les pipelines d'une 
+ * commande structurée (par appel de la méthode execute() de chaque commande).
+ * 
+ * La fonction va créer un nouveau processus pour chaque éxécution de commande et 
+ * va attendre que l'exécution de la commande soit terminée avant de passer à la commande 
+ * suivante. La fonction s'occupera également de faire les redirections de sorties 
+ * si jamais il y en a.
+ *
+ * @param struct_cmds La commande structurée. Une commande structurée est une liste de listes 
+ * dont chaque liste est une pipeline (commande simple ou plusieurs commandes simples CMD_1 | CMD_2 | ... ).
+ *
+ * @return La valeur de retour de la dernière exécution (si elle échoue alors ce sera la valeur de 
+ * son code d'erreur).
+ */
+int Shell_execute_all(LinkedList struct_cmds);
 
 /**
  * @brief Il s'agit du chemin absolue vers le repertoire courant.
