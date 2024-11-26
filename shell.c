@@ -175,15 +175,70 @@ void parse_prompt(){
  * si jamais il y en a.
  *
  * @param struct_cmds La commande structurée. Une commande structurée est une liste de listes 
+ * @param delete_list Un boolean pour savoir si nous devons détruire la liste ou non. Ceci sert pour les boucles for.
+ * Afin de ne pas perdre la liste si nous voulons plusieurs répetition de la liste
  * dont chaque liste est une pipeline (commande simple ou plusieurs commandes simples CMD_1 | CMD_2 | ... ).
  *
  * @return La valeur de retour de la dernière exécution (si elle échoue alors ce sera la valeur de 
  * son code d'erreur).
  */
-int Shell_execute_all(LinkedList struct_cmds){
-        
-    
+int Shell_execute_all(LinkedList struct_cmds, int delete_list){
+    // Sert à stocker le status des processus enfant afin de retourner le dernier éxecuter.
+    int last_status = 0;
 
+
+    LinkedList struct_cmds_copy;
+    if(!delete_list){
+        struct_cmds_copy = obj_clone(struct_cmds);
+    }else{
+        struct_cmds_copy = struct_cmds;
+    }
+
+    // Afin de garantir un coup constant pour chaque extraction d'éléments, nous allons favoriser le while car avec un for,
+    // nous devrions faire un get qui parcours toute la liste. Voir le while comme une boucle
+    while(LinkedList_size(struct_cmds_copy) != 0){
+
+        // on récupère la list chaîné de chaque pipeline
+        LinkedList pipeline = LinkedList_remove_first(struct_cmds_copy, 1);
+        
+        // Le nombre de commandes à éxécuté
+        // int size_of_pipeline = LinkedList_size(pipeline);
+        
+        while(LinkedList_size(pipeline) != 0){
+        // for(int j=0; j < size_of_pipeline; j++){
+            
+            pid_t pid = fork();
+
+            switch(pid){
+                case -1:
+
+                    perror("fork");
+                    break;
+
+                case 0: //Enfant
+
+                    // On éxécute les commandes
+                    Command cmd = LinkedList_remove_first(pipeline, 1); 
+                    Command_execute(cmd);
+                    obj_destroy(cmd);
+                    exit(0);
+
+                default: //Parent
+
+                    // Attendre que l'enfant finisse d'éxécuter une commande
+                    waitpid(pid, &last_status, 0); // On récupère dans last_exec le statut de retour du processus enfant
+                    break;
+            }
+            obj_destroy(pipeline);
+        }
+
+    }
+    if(delete_list){
+        obj_destroy(struct_cmds_copy);
+    }
+
+    // si tout à réussi, on retourne la valeur de la dernière éxécution
+    return last_status;
 }
 
 /** 
@@ -200,7 +255,7 @@ static Command apply_cmd(char *char_lu, LinkedList file_secondaire){
 		//j'ajoute la commande interne à ma file
 		LinkedList_add_last(file_secondaire, cmd, 0);	
 	}else{
-		printf("...TA GRAND MÈRE");
+		printf("commande externe à écrire");
         cmd = NULL;
 	}
 	return cmd;
