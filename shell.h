@@ -19,7 +19,7 @@
  */
 int Shell_start();
 
-
+  
 /**
  * @brief Fonction qui va exécuter toutes les pipelines d'une 
  * commande structurée (par appel de la méthode execute() de chaque commande).
@@ -30,17 +30,22 @@ int Shell_start();
  * si jamais il y en a.
  *
  * @param struct_cmds La commande structurée. Une commande structurée est une liste de listes 
+ * @param delete_list Un boolean pour savoir si nous devons détruire la liste ou non. Ceci sert pour les boucles for.
+ * Afin de ne pas perdre la liste si nous voulons plusieurs répetition de la liste
  * dont chaque liste est une pipeline (commande simple ou plusieurs commandes simples CMD_1 | CMD_2 | ... ).
  *
  * @return La valeur de retour de la dernière exécution (si elle échoue alors ce sera la valeur de 
  * son code d'erreur).
  */
-int Shell_execute_all(LinkedList struct_cmds);
+int Shell_execute_all(LinkedList struct_cmds, int delete_list);
 
 /**
  * @brief Il s'agit du chemin absolue vers le repertoire courant.
  */
 extern char working_dir[4096];
+
+// commentaire
+LinkedList Shell_parse();
 
 /**
  * Il s'agit de la chaine de caractère saisie par l'utilisateur.

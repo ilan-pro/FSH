@@ -16,7 +16,6 @@
 #include <assert.h>
 #include "base/Class.h"
 #include "command/all_cmd.h"
-#include "command/Command.h"
 #include "command/ExternalCommand.h"
 #include "base/String.h"
 		
@@ -51,7 +50,7 @@ static int previous_cmd_finish = 0;
  * @internal
  * @brief Il s'agit du chemin absolue vers le repertoire courant.
  */
-char working_dir[PATH_MAX]; // PATH_MAX va éviter d'avoir des débordement.
+char working_dir[4096]; // PATH_MAX va éviter d'avoir des débordement.
 
 /**
  * Le chemin vers le répertoire courrant (tronqué dans le prompt).
@@ -85,7 +84,8 @@ int Shell_start(){
         update_prompt();
         usr_prompt = readline(prompt);
         char *cp_prompt = usr_prompt;
-        parse_prompt();
+        LinkedList file_principal = Shell_parse();
+        previous_cmd_finish = Shell_execute_all(file_principal,1);
         free(cp_prompt);
         rl_free_line_state();
         rl_clear_history();
@@ -95,7 +95,8 @@ int Shell_start(){
 
 }
 
-void parse_prompt(){
+// ecrire comm
+LinkedList Shell_parse(){
     // Variable qui stock le nombre de caractères que nous avons lu.
     int lu1lettre = 0;
     // Espace mémoire qui va servir à stocker le nom de la commande
@@ -108,29 +109,40 @@ void parse_prompt(){
     while(1){
         // On récupère le caractère pointé par user_prompt puis on incrémente pour les caractères suivant.
  	
-	char res = *(usr_prompt++);
-	
-	if(res == '|'){
-		continue;
-	}
+        char res = *(usr_prompt++);
+        
+        if(res == '|'){
+            continue;
+        }
 
-	if(res == '\0'){
-		//en faire une fonction
-		if(lu1lettre > 0){
-			apply_cmd(char_lu, file_secondaire);
-		}
-		LinkedList_add_last(file_principale, file_secondaire, 0);
-		break;
-	}
+        if(res == '\0'){
+            fin :
+            //en faire une fonction
+            if(lu1lettre > 0){
+                apply_cmd(char_lu, file_secondaire);
+            }
+            LinkedList_add_last(file_principale, file_secondaire, 0);
+            break;
+        }
 
-	// on check si res est arrivé à la fin d'une PipeLine
-	if(res == ';'){
-		// Si nous ne rencontrons un ';' c'est que nous avons fini notre PipeLine et que nous pouvons stocker dans la liste, le résultat de cette dernière.
-		LinkedList_add_last(file_principale, file_secondaire, 0);
-		// Nous pouvons maintenant commencer une nouvelle file afin de stocker la futur PipeLine
-		file_secondaire = obj_new(_LinkedList_);	
-	    continue;
-    }
+        if(res == '}'){
+            // if(For_is_open() == 1){
+                // goto fin;   
+            // }else{
+                // char erreur[] = "erreur de syntaxe";
+                // write(2, erreur, strlen(erreur));
+                // return NULL;
+            // }
+        }
+
+        // on check si res est arrivé à la fin d'une PipeLine
+        if(res == ';'){
+            // Si nous ne rencontrons un ';' c'est que nous avons fini notre PipeLine et que nous pouvons stocker dans la liste, le résultat de cette dernière.
+            LinkedList_add_last(file_principale, file_secondaire, 0);
+            // Nous pouvons maintenant commencer une nouvelle file afin de stocker la futur PipeLine
+            file_secondaire = obj_new(_LinkedList_);	
+            continue;
+        }
 
         // on vérifie que ce caractère est un espace
         if(res == ' '){
@@ -143,7 +155,6 @@ void parse_prompt(){
             // donc char_lu contient le nom de la commande
             // on remet lu1lettre à 0 car nous voulons relire une commande
             lu1lettre = 0;
-            printf("'%s' \n", char_lu);
         
 	    apply_cmd(char_lu, file_secondaire);
 
@@ -162,6 +173,7 @@ void parse_prompt(){
         char_lu[lu1lettre] = '\0';
     }
     free(char_lu);
+    return file_principale;
 }
     
 /**
@@ -188,6 +200,7 @@ int Shell_execute_all(LinkedList struct_cmds, int delete_list){
 
 
     LinkedList struct_cmds_copy;
+
     if(!delete_list){
         struct_cmds_copy = obj_clone(struct_cmds);
     }else{
@@ -199,13 +212,9 @@ int Shell_execute_all(LinkedList struct_cmds, int delete_list){
     while(LinkedList_size(struct_cmds_copy) != 0){
 
         // on récupère la list chaîné de chaque pipeline
-        LinkedList pipeline = LinkedList_remove_first(struct_cmds_copy, 1);
-        
-        // Le nombre de commandes à éxécuté
-        // int size_of_pipeline = LinkedList_size(pipeline);
+        LinkedList pipeline = LinkedList_get_first(struct_cmds_copy, 0);
         
         while(LinkedList_size(pipeline) != 0){
-        // for(int j=0; j < size_of_pipeline; j++){
             
             pid_t pid = fork();
 
@@ -218,10 +227,10 @@ int Shell_execute_all(LinkedList struct_cmds, int delete_list){
                 case 0: //Enfant
 
                     // On éxécute les commandes
-                    Command cmd = LinkedList_remove_first(pipeline, 1); 
-                    Command_execute(cmd);
-                    obj_destroy(cmd);
-                    exit(0);
+                    Command cmd = LinkedList_get_first(pipeline, 0); 
+                    int val_retour = Command_execute(cmd);
+                    LinkedList_remove_first(pipeline, 0);
+                    exit(val_retour);
 
                 default: //Parent
 
@@ -229,7 +238,7 @@ int Shell_execute_all(LinkedList struct_cmds, int delete_list){
                     waitpid(pid, &last_status, 0); // On récupère dans last_exec le statut de retour du processus enfant
                     break;
             }
-            obj_destroy(pipeline);
+            LinkedList_remove_first(struct_cmds_copy, 0);
         }
 
     }

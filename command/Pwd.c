@@ -11,6 +11,10 @@
 
 
 #include <assert.h>
+#include "../shell.h"
+#include <unistd.h>
+#include <string.h>
+#include <stdio.h>
 
 /** @cond HIDE_THIS*/
 #define PWD_CLASS "Pwd"
@@ -120,7 +124,7 @@ static void* Pwd_constructor(void* self_, va_list* args){
     assert(self_ && args);    
     
     // Conversion en objet de type Pwd.
-    Pwd self = (Pwd) self_;
+    Pwd self = _Command_->ctor(self, args);
 
     // On ajoute le parent à PWD (en controunant la contrainte sur const).
     *(Class*)&(self->_Pwd_->_super_) = _Command_; 
@@ -129,9 +133,8 @@ static void* Pwd_constructor(void* self_, va_list* args){
         
     // Ajout de la fonction execute de la classe fille.
     *((int (**) (Command)) &(self->execute)) = Pwd_execute;
-
-    return _Command_->ctor(self, args);
     
+    return self;
 }
 
 // Destructeur.
@@ -148,7 +151,7 @@ static void* Pwd_destroy(void* self_){
 static int Pwd_execute(Command self_){
         
     //// Ecrire le corps de la fonction ici ! 
-
+    write(1, working_dir, strlen(working_dir));
     return 0;
 }
 

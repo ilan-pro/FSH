@@ -333,7 +333,11 @@ static void* Command_constructor(void* self_, va_list* args){
         
     // Récupération du nom de la commande
     char* cmd_name = va_arg(*args, char*);
-    *((char**) &self->name) = cmd_name; // On change le nom (en trichant un peu, cela viole la contrainte sur les const)
+
+    char *name = malloc(sizeof(char) * (1+strlen(cmd_name)));
+    strcpy(name, cmd_name);
+
+    *((char**) &self->name) = name; // On change le nom (en trichant un peu, cela viole la contrainte sur les const)
 
     // La fonction execute() est mis à 0 pour déclancher une erreur si la classe fille n'a pas fourni une implémentation.
     *(int(**))&self->execute = 0;
@@ -356,7 +360,7 @@ static void* Command_destroy(void* self_){
     //Destructions des listes.
     obj_destroy(self->args);
     obj_destroy(self->params);
-
+    free(self->name);
     return self;
 
 }
