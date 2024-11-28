@@ -407,7 +407,7 @@ void* ListCell_replace_previous(const ListCell self, const ListCell new_prev, in
 
 /**
  * @internal
- * Fonction qui renvoie la cellule précédant `self`
+ * Fonction qui remplace la cellule suivant `self`
  */
 void* ListCell_replace_next(const ListCell self, const ListCell new_next, int clone){
 

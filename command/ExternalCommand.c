@@ -21,8 +21,8 @@
 
 /** @cond HIDE_THIS*/
 #define EXTERNAL_COMMAND_CLASS "ExternalCommand"
-#include "ExternalCommand.h"
 /**@endcond*/
+#include "ExternalCommand.h"
 
 
 /*****************************************************/

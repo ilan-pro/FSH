@@ -85,12 +85,14 @@ int Shell_start(){
         usr_prompt = readline(prompt);
         char *cp_prompt = usr_prompt;
         LinkedList file_principal = Shell_parse();
+        //obj_print(file_principal); printf("\n");
         previous_cmd_finish = Shell_execute_all(file_principal,1);
         free(cp_prompt);
         rl_free_line_state();
-        rl_clear_history();
         break;
     }
+    
+    rl_clear_history();
     return 0;
 
 }
@@ -108,21 +110,33 @@ LinkedList Shell_parse(){
     LinkedList file_secondaire = obj_new(_LinkedList_);	
     while(1){
         // On récupère le caractère pointé par user_prompt puis on incrémente pour les caractères suivant.
- 	
-        char res = *(usr_prompt++);
+        char res = *(usr_prompt);
         
-        if(res == '|'){
-            continue;
-        }
-
         if(res == '\0'){
             fin :
             //en faire une fonction
-            if(lu1lettre > 0){
+            if(lu1lettre > 0){ // Si on a lu au moins une lettre alors il y a une commande à ajouter avant
                 apply_cmd(char_lu, file_secondaire);
             }
-            LinkedList_add_last(file_principale, file_secondaire, 0);
+
+            // Ajout de la pipeline (si et seulement si elle n'est pas vide)
+            if (LinkedList_size(file_secondaire) > 0)
+                LinkedList_add_last(file_principale, file_secondaire, 0);
+            else // Si elle est vide on la détruit
+                obj_destroy(file_secondaire);
+                
             break;
+        }
+
+        
+        if(res == '|'){
+            if (lu1lettre){ // Si on a lu au moins une lettre alors il y a une commande à ajouter avant
+                apply_cmd(char_lu, file_secondaire);
+                lu1lettre = 0;
+            }
+
+            usr_prompt++; // Décalage vers le caractère suivant
+            continue;
         }
 
         if(res == '}'){
@@ -135,12 +149,25 @@ LinkedList Shell_parse(){
             // }
         }
 
+
         // on check si res est arrivé à la fin d'une PipeLine
         if(res == ';'){
+            if (lu1lettre){ // Si on a lu au moins une lettre alors il y a une commande à ajouter avant
+                apply_cmd(char_lu, file_secondaire);
+                lu1lettre = 0;
+            }
+            
             // Si nous ne rencontrons un ';' c'est que nous avons fini notre PipeLine et que nous pouvons stocker dans la liste, le résultat de cette dernière.
-            LinkedList_add_last(file_principale, file_secondaire, 0);
+            // Ajout de la pipeline (si et seulement si elle n'est pas vide)
+            if (LinkedList_size(file_secondaire) > 0)
+                LinkedList_add_last(file_principale, file_secondaire, 0);
+            else // Si elle est vide on la détruit
+                obj_destroy(file_secondaire);
+                
             // Nous pouvons maintenant commencer une nouvelle file afin de stocker la futur PipeLine
             file_secondaire = obj_new(_LinkedList_);	
+
+            usr_prompt++; // Décalage vers le caractère suivant
             continue;
         }
 
@@ -149,6 +176,8 @@ LinkedList Shell_parse(){
             // si c'est un espace et que nous n'avons pas lu de caratère ...
             if(!lu1lettre){
                 // ...alors on continue
+                
+                usr_prompt++; // Décalage vers le caractère suivant
                 continue;
             }
             // si on arrive ici, c'est qu'il y a un espace et qu'on à déjà lu un caractère
@@ -156,21 +185,25 @@ LinkedList Shell_parse(){
             // on remet lu1lettre à 0 car nous voulons relire une commande
             lu1lettre = 0;
         
-	    apply_cmd(char_lu, file_secondaire);
+            apply_cmd(char_lu, file_secondaire);
 
-	    // on trunk l'espace alloué par l'ancienne commande afin de pouvoir stocker le nom de la nouvelle commande sans l'avoir à la concatener avec l'ancienne
+            // on trunk l'espace alloué par l'ancienne commande afin de pouvoir stocker le nom de la nouvelle commande sans l'avoir à la concatener avec l'ancienne
             char_lu = realloc(char_lu, sizeof(char));
             char_lu[0] = '\0';
             // pour éviter d'avoir des espaces si il y a une autre commande qui suit
             // continue pour revenir au debut du while
+            
+            usr_prompt++; // Décalage vers le caractère suivant
             continue;
         }
+        
         // ajout du charactère res à char_lu
         lu1lettre++;
         char_lu = realloc(char_lu, (sizeof(char) * (lu1lettre+1)));
         assert(char_lu);
         char_lu[lu1lettre-1] = res;
         char_lu[lu1lettre] = '\0';
+        usr_prompt++;
     }
     free(char_lu);
     return file_principale;
@@ -216,6 +249,9 @@ int Shell_execute_all(LinkedList struct_cmds, int delete_list){
         
         while(LinkedList_size(pipeline) != 0){
             
+            // Récupération de la commande
+            Command cmd = LinkedList_get_first(pipeline, 0); 
+            
             pid_t pid = fork();
 
             switch(pid){
@@ -226,10 +262,7 @@ int Shell_execute_all(LinkedList struct_cmds, int delete_list){
 
                 case 0: //Enfant
 
-                    // On éxécute les commandes
-                    Command cmd = LinkedList_get_first(pipeline, 0); 
                     int val_retour = Command_execute(cmd);
-                    LinkedList_remove_first(pipeline, 0);
                     exit(val_retour);
 
                 default: //Parent
@@ -238,8 +271,12 @@ int Shell_execute_all(LinkedList struct_cmds, int delete_list){
                     waitpid(pid, &last_status, 0); // On récupère dans last_exec le statut de retour du processus enfant
                     break;
             }
-            LinkedList_remove_first(struct_cmds_copy, 0);
+            // Le fils n'arrivera jamais ici.
+            
+            // Suppression de la commande exécutée de la file.
+            LinkedList_remove_first(pipeline, 0);
         }
+        LinkedList_remove_first(struct_cmds_copy, 0);
 
     }
     if(delete_list){

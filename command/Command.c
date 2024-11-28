@@ -138,8 +138,13 @@ const Class _Command_ = &__Command__;
  * le pointeur vers le prompte de l'utilisateur est valide.
  */
 int Command_actual_char_is_legal(int quoted, int double_quoted, int esc){
-
-    return *usr_prompt && (quoted || double_quoted || esc || ((*usr_prompt) != '|' && (*usr_prompt) != ';' && (*usr_prompt) != '}'));
+    
+    return *usr_prompt 
+    && (quoted || double_quoted || esc || (
+        (*usr_prompt) != '|' && 
+        (*usr_prompt) != ';' && 
+        (*usr_prompt) != '}')
+    );
 
 }
 
@@ -217,7 +222,6 @@ static void Command_parse_usr_prompt(Command self){
      * valide (voir documentation de la fonction actual_char_is_legal()).
      */
     while(Command_actual_char_is_legal(quoted, double_quoted, esc)){
-        
         // Récupération du caractère pointé par le pointeur, et incémentation de la posisiton.
         char c = *(usr_prompt++);
         switch (c) {
@@ -311,7 +315,7 @@ static void Command_parse_usr_prompt(Command self){
 
     }
     
-    if(char_compteur)  // Si on a lu au moin un mot.
+    if(char_compteur)  // Si on a lu au moins un mot.
         LinkedList_add_last(self->args,obj_new(_String_, mot), 0); // On ajoute le mot
 
     free(mot);
@@ -339,7 +343,7 @@ static void* Command_constructor(void* self_, va_list* args){
 
     *((char**) &self->name) = name; // On change le nom (en trichant un peu, cela viole la contrainte sur les const)
 
-    // La fonction execute() est mis à 0 pour déclancher une erreur si la classe fille n'a pas fourni une implémentation.
+    // La fonction execute() est mise à 0 pour déclancher une erreur si la classe fille n'a pas fourni une implémentation.
     *(int(**))&self->execute = 0;
 
     // Lecture du prompt de l'utilisateur
@@ -360,7 +364,7 @@ static void* Command_destroy(void* self_){
     //Destructions des listes.
     obj_destroy(self->args);
     obj_destroy(self->params);
-    free(self->name);
+    free(*((char**) &self->name));
     return self;
 
 }

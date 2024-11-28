@@ -124,7 +124,7 @@ static void* Pwd_constructor(void* self_, va_list* args){
     assert(self_ && args);    
     
     // Conversion en objet de type Pwd.
-    Pwd self = _Command_->ctor(self, args);
+    Pwd self = _Command_->ctor(self_, args);
 
     // On ajoute le parent à PWD (en controunant la contrainte sur const).
     *(Class*)&(self->_Pwd_->_super_) = _Command_; 
@@ -152,6 +152,7 @@ static int Pwd_execute(Command self_){
         
     //// Ecrire le corps de la fonction ici ! 
     write(1, working_dir, strlen(working_dir));
+    write(1,"\n", 1); // Saut de ligne.
     return 0;
 }
 

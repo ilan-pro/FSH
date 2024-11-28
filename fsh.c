@@ -13,8 +13,8 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 
-#include "base/LinkedList.h"
 #include "base/new.h"
+#include "command/For.h"
 #include "command/all_cmd.h"
 #include "shell.h"
 
@@ -31,6 +31,29 @@ void initialize_cmd(){
     cmd[1][1] = _Exit_;
     cmd[2][1] = _Cd_;
     cmd[3][1] = _Ftype_;
+
+}
+
+
+/**
+ * @brief Fonction qui va initialiser les listes chainées utilsées pour stocker 
+ * les identificateurs et les noms des fichiers en cours de traitement.
+ */
+void initialize_for_lists(){
+        
+   For_ids = obj_new(_LinkedList_);   
+   For_files = obj_new(_LinkedList_);   
+
+}
+
+/**
+ * @brief Fonction qui va détruire les listes chainées utilsées pour stocker 
+ * les identificateurs et les noms des fichiers en cours de traitement.
+ */
+void destroy_for_lists(){
+        
+    obj_destroy(For_ids);
+    obj_destroy(For_files);
 
 }
 
@@ -67,10 +90,8 @@ int run_commande(){
 
 int main(){
     initialize_cmd();
+    initialize_for_lists();
     Shell_start(); 
-    // Pwd t = obj_new(_Pwd_, "pwd");
-    // obj_print(t);
-    // write(1,"\n", 1);
-    // obj_destroy(t);
+    destroy_for_lists();
     return 0; 
 }

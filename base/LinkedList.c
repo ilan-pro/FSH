@@ -372,7 +372,7 @@ static void LinkedList_print(const void* self_){
         obj_print(self->first);
         
     }
-    write(1, "]\n",2);
+    write(1, "]",1);
     
 }
 

@@ -1,0 +1,68 @@
+\hypertarget{For_8c}{}\doxysection{Référence du fichier command/\+For.c}
+\label{For_8c}\index{command/For.c@{command/For.c}}
+
+
+Fichier contenant l\textquotesingle{}implémentation des fonctions déclarées dans {\ttfamily \mbox{\hyperlink{For_8h}{For.\+h}}}  
+
+
+{\ttfamily \#include $<$assert.\+h$>$}\newline
+Graphe des dépendances par inclusion de For.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=171pt]{d1/d9e/For_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct__For__}{\+\_\+\+For\+\_\+}}
+\begin{DoxyCompactList}\small\item\em Classe {\ttfamily For} de la commande For qui affiche le chemin absolu du répertoire courant. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Définitions de type}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \mbox{\hyperlink{struct__For__}{\+\_\+\+For\+\_\+}} $\ast$ \mbox{\hyperlink{For_8c_a99bcdba67d272a896984c5e4520b8a2a}{For}}
+\begin{DoxyCompactList}\small\item\em Classe {\ttfamily For} de la commande For qui affiche le chemin absolu du répertoire courant. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const \mbox{\hyperlink{Class_8h_a6ec2a8ccaeb1e924a80036ec40760377}{Class}} \mbox{\hyperlink{For_8c_a2ac2f94c439d462de131635ede59ea09}{\+\_\+\+For\+\_\+}} = \&\+\_\+\+\_\+\+For\+\_\+\+\_\+
+\begin{DoxyCompactList}\small\item\em Classe des commandes for. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Description détaillée}
+Fichier contenant l\textquotesingle{}implémentation des fonctions déclarées dans {\ttfamily \mbox{\hyperlink{For_8h}{For.\+h}}} 
+
+For est une commande qui exécute un certain nombre de commandes pour chaque fichier d\textquotesingle{}un répertoire.
+
+Construction \+: {\ttfamily {\bfseries{obj\+\_\+new({\itshape For}, \char`\"{}for\char`\"{});}}}~\newline
+ {\ttfamily \mbox{\hyperlink{struct__For__}{\+\_\+\+For\+\_\+}}} désigne la classe des commandes for. et la chaine \char`\"{}for\char`\"{} est le nom de la commande. 
+
+\doxysubsection{Documentation des définitions de type}
+\mbox{\Hypertarget{For_8c_a99bcdba67d272a896984c5e4520b8a2a}\label{For_8c_a99bcdba67d272a896984c5e4520b8a2a}} 
+\index{For.c@{For.c}!For@{For}}
+\index{For@{For}!For.c@{For.c}}
+\doxysubsubsection{\texorpdfstring{For}{For}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{struct__For__}{\+\_\+\+For\+\_\+}}$\ast$ \mbox{\hyperlink{For_8c_a99bcdba67d272a896984c5e4520b8a2a}{For}}}
+
+
+
+Classe {\ttfamily For} de la commande For qui affiche le chemin absolu du répertoire courant. 
+
+Construction \+: {\ttfamily {\bfseries{ obj\+\_\+new( {\ttfamily \mbox{\hyperlink{struct__For__}{\+\_\+\+For\+\_\+}}}, \char`\"{}for\char`\"{}) }}} ~\newline
+ {\ttfamily \mbox{\hyperlink{struct__For__}{\+\_\+\+For\+\_\+}}} étant la classe de la commande for. 
+
+\doxysubsection{Documentation des variables}
+\mbox{\Hypertarget{For_8c_a2ac2f94c439d462de131635ede59ea09}\label{For_8c_a2ac2f94c439d462de131635ede59ea09}} 
+\index{For.c@{For.c}!\_For\_@{\_For\_}}
+\index{\_For\_@{\_For\_}!For.c@{For.c}}
+\doxysubsubsection{\texorpdfstring{\_For\_}{\_For\_}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{Class_8h_a6ec2a8ccaeb1e924a80036ec40760377}{Class}} \mbox{\hyperlink{struct__For__}{\+\_\+\+For\+\_\+}} = \&\+\_\+\+\_\+\+For\+\_\+\+\_\+}
+
+
+
+Classe des commandes for. 
+
+{\ttfamily for} est la commande qui permet d\textquotesingle{}afficher le chemin absolue du vers le répertoire dans lequel on se trouve.
+
+Construction \+: {\ttfamily {\bfseries{obj\+\_\+new({\itshape For}, \char`\"{}for\char`\"{});}}} {\ttfamily \mbox{\hyperlink{struct__For__}{\+\_\+\+For\+\_\+}}} désigne la classe des commandes for. et la chaine \char`\"{}for\char`\"{} est le nom de la commande. 
