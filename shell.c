@@ -111,7 +111,7 @@ LinkedList Shell_parse(){
     while(1){
         // On récupère le caractère pointé par user_prompt puis on incrémente pour les caractères suivant.
         char res = *(usr_prompt);
-        
+
         if(res == '\0'){
             fin :
             //en faire une fonction
@@ -175,7 +175,7 @@ LinkedList Shell_parse(){
             // si c'est un espace et que nous n'avons pas lu de caratère ...
             if(!lu1lettre){
                 // ...alors on continue
-                
+            
                 usr_prompt++; // Décalage vers le caractère suivant
                 continue;
             }
@@ -191,8 +191,6 @@ LinkedList Shell_parse(){
             char_lu[0] = '\0';
             // pour éviter d'avoir des espaces si il y a une autre commande qui suit
             // continue pour revenir au debut du while
-            
-            usr_prompt++; // Décalage vers le caractère suivant
             continue;
         }
         
@@ -203,6 +201,7 @@ LinkedList Shell_parse(){
         char_lu[lu1lettre-1] = res;
         char_lu[lu1lettre] = '\0';
         usr_prompt++;
+        printf("'%s'\n", char_lu);
     }
     free(char_lu);
     return file_principale;
@@ -273,6 +272,7 @@ int Shell_execute_all(LinkedList struct_cmds, int delete_list){
  * Et va l'ajouter dans la file de la pipleline qu'on parse actuellement
  */
 static Command apply_cmd(char *char_lu, LinkedList file_secondaire){
+    // printf("'%s'\n", char_lu);
 	Class tmp = get_internal_cmd(char_lu);
 	Command cmd;
 	if(tmp){
