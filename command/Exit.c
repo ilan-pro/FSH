@@ -21,6 +21,7 @@
 #include "Exit.h"
 #include "../base/String.h"
 #include "../base/new.h"
+#include "../shell.h"
 /**@endcond*/
 
 
@@ -152,7 +153,7 @@ static int Exit_execute(Command self_){
 
     Exit self = (Exit) self_;
     
-    int exit_code = 0; // Par défaut, on quitte avec un code de sortie 0
+    int exit_code = previous_cmd_finish; // Par défaut, on quitte avec un code de sortie 0
     if (LinkedList_size(self->args) == 1) {
         // Tente de convertir l'argument en un entier pour le code de sortie
         char *endptr;

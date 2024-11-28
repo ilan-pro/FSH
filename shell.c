@@ -44,7 +44,7 @@ static Command apply_cmd(char *char_lu, LinkedList file_secondaire);
 /**
  * Le résultat de la dernière commande.
  */
-static int previous_cmd_finish = 0;
+int previous_cmd_finish = 0;
 
 /**
  * @internal
@@ -86,10 +86,15 @@ int Shell_start(){
         update_prompt();
         usr_prompt = readline(prompt);
         char *cp_prompt = usr_prompt;
-        LinkedList file_principal = Shell_parse();
-        /** obj_print(file_principal); printf("\n"); */
-        previous_cmd_finish = Shell_execute_all(file_principal,1);
-        free(cp_prompt);
+        if (usr_prompt){
+            LinkedList file_principal = Shell_parse();
+            /** obj_print(file_principal); printf("\n"); */
+            previous_cmd_finish = Shell_execute_all(file_principal,1);
+            free(cp_prompt);
+        }
+        else{
+            break;
+        }
         rl_free_line_state();
     }
     
@@ -351,7 +356,7 @@ static void update_prompt(){
 
     if (len>PROMPT_CHAR_LIMITS){
         // On pointe vers les 33 derniers caracètres (Les 3 sont pour les  ...)
-        tr = working_dir + (len-PROMPT_CHAR_LIMITS+7);
+        tr = working_dir + (len-PROMPT_CHAR_LIMITS+8);
         snprintf(path, 30, "...%s", tr);
     }
     else

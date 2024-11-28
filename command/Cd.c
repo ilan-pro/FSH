@@ -161,7 +161,6 @@ static char prev_path[4096]= "";
 static int Cd_execute(Command self_){
         
     Cd self = (Cd) self_;
-
     char *path;
 
     if (LinkedList_size(self->args) > 1){
@@ -192,13 +191,11 @@ static int Cd_execute(Command self_){
                 perror("changement de chemin");
                 return 1;
             }else{
-                write(1, prev_path, strlen(prev_path));
-                write(1, "\n", 1);
+                strcpy(prev_path, working_dir); 
                 goto maj_working_dir;
             }
         }
     }
-    
     if(chdir(path) != 0){ 
 
         perror("changement de chemin");
@@ -213,7 +210,7 @@ static int Cd_execute(Command self_){
     maj_working_dir:
 
     // mettre à jour working_dir
-    if(getcwd(working_dir, sizeof(working_dir)) != NULL){
+    if(getcwd(working_dir, sizeof(working_dir)) == NULL){
         return 1;
     }
     

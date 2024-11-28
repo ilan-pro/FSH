@@ -52,4 +52,7 @@ LinkedList Shell_parse();
  */
 extern char *usr_prompt;
 
+
+extern int previous_cmd_finish;
+
 #endif

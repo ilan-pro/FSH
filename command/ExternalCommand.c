@@ -279,7 +279,8 @@ static int ExternalCommand_execute(Command self_){
      */
 
     pid_t pid = fork();
-    
+   
+    fprintf(stderr, "%s\n", working_dir) ;
     
     switch(pid){
         case 0:
