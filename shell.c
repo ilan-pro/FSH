@@ -88,7 +88,7 @@ int Shell_start(){
         char *cp_prompt = usr_prompt;
         if (usr_prompt){
             LinkedList file_principal = Shell_parse();
-            /** obj_print(file_principal); printf("\n"); */
+            obj_print(file_principal); printf("\n"); 
             previous_cmd_finish = Shell_execute_all(file_principal,1);
             free(cp_prompt);
         }
@@ -138,6 +138,7 @@ LinkedList Shell_parse(){
         char res = *(usr_prompt);
 
         if(res == '\0'){
+            fin:
             //en faire une fonction
             if(lu1lettre > 0){ // Si on a lu au moins une lettre alors il y a une commande à ajouter avant
                 apply_cmd(char_lu, file_secondaire);
@@ -164,12 +165,13 @@ LinkedList Shell_parse(){
         }
 
         if(res == '}'){
-            // if(For_is_open() == 1){
-                // goto fin;   
+            usr_prompt++;
+            goto fin;
+            // if(For_is_open() == 1){   
             // }else{
-                // char erreur[] = "erreur de syntaxe";
-                // write(2, erreur, strlen(erreur));
-                // return NULL;
+            //     char erreur[] = "erreur de syntaxe";
+            //     write(2, erreur, strlen(erreur));
+            //     return NULL;
             // }
         }
 
@@ -320,7 +322,7 @@ static Command apply_cmd(char *char_lu, LinkedList file_secondaire){
  * Fonction qui récupère la commande interne correspondante.
  */
 static Class get_internal_cmd(char *char_lu){
-    for(int i=0;i<4;i++){
+    for(int i=0; i<5; i++){
         if(strcmp(char_lu, cmd[i][0]) == 0){
             return (Class)cmd[i][1];
         }

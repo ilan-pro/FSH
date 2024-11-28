@@ -57,7 +57,7 @@ static void* For_destroy(void* self_);
  */
 static int For_execute(Command self_);
 
-
+static void For_print(const void* self_);
 /*****************************************************/
 /************* Structure de la classe ****************/
 
@@ -189,7 +189,7 @@ static void* For_constructor(void* self_, va_list* args){
     // On ajoute le parent à FOR (en controunant la contrainte sur const).
     *(Class*)&(self->_For_->_super_) = _Command_; 
     // On met la fonction print du parent comme fonction d'affichage de l'enfant.
-    *((void (**)) &(self->_For_->print)) = _Command_->print;
+    *((void (**)) &(self->_For_->print)) = For_print;
         
     // Ajout de la fonction execute de la classe fille.
     *((int (**) (Command)) &(self->execute)) = For_execute;
@@ -208,7 +208,7 @@ static void* For_constructor(void* self_, va_list* args){
     // Réucpération du prochain mot
     next_word(mot);
     if(!usr_prompt){
-        char tmp[] = "\e[1;31mErreur : boucle for mal écrite !\n\e[1;0m";
+        char tmp[] = "\e[1;31mErreur : boucle for mal écrite !0\n\e[1;0m";
         write(2,tmp, strlen(tmp));
     }
     // Le mot parsé est l'identificateur des fichiers dans la boucle.
@@ -223,11 +223,11 @@ static void* For_constructor(void* self_, va_list* args){
     // Récupération du prochain mot `in`
     next_word(mot);
     if(!usr_prompt){
-        char tmp[] = "\e[1;31mErreur : boucle for mal écrite !\n\e[1;0m";
+        char tmp[] = "\e[1;31mErreur : boucle for mal écrite !1\n\e[1;0m";
         write(2,tmp, strlen(tmp));
     }
-    if(strcmp(mot, "in")){
-        char tmp[] = "\e[1;31mErreur : boucle for mal écrite !\n\e[1;0m";
+    if(!strcmp(mot, "in")){
+        char tmp[] = "\e[1;31mErreur : boucle for mal écrite !2\n\e[1;0m";
         write(2,tmp, strlen(tmp));
     }
     
@@ -258,6 +258,7 @@ static void* For_constructor(void* self_, va_list* args){
         usr_prompt ++;
         
     }
+    usr_prompt ++;
     
     // Récupération des commandes de for.
     self->commands = Shell_parse(); 
@@ -274,6 +275,9 @@ static void* For_destroy(void* self_){
     // Vérification des arguments.
     assert(self_);    
     
+    For self = (For) self_;
+    obj_destroy(self->commands);
+
     return _Command_->dtor(self_);
     
 }
@@ -282,17 +286,16 @@ static void* For_destroy(void* self_){
 static int For_execute(Command self_){
         
     //// Ecrire le corps de la fonction ici ! 
-
+    
     return 0;
 }
 
 
+static void For_print (const void* self_) {
 
-
-
-
-
-
-
-
-
+    assert(self_);
+    assert(obj_instance_of(self_, _For_));
+    write(1, "For ", 4);
+    obj_print(((For)self_)->commands);  
+        
+}

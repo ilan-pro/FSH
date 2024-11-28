@@ -31,6 +31,7 @@ void initialize_cmd(){
     cmd[1][1] = _Exit_;
     cmd[2][1] = _Cd_;
     cmd[3][1] = _Ftype_;
+    cmd[4][1] = _For_;
 
 }
 
