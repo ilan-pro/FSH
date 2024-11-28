@@ -12,6 +12,10 @@
 
 #include <assert.h>
 #include <sys/stat.h>
+#include "../base/String.h"
+#include "../base/new.h"
+#include <string.h>
+#include <unistd.h>
 
 /** @cond HIDE_THIS*/
 #define FTYPE_CLASS "Ftype"
@@ -145,33 +149,52 @@ static void* Ftype_destroy(void* self_){
 
 // Execute.
 static int Ftype_execute(Command self_){
-    /**   
+     
     Ftype self = (Ftype) self_;
 
     struct stat statbuf;
 
-    if (stat(self->params, &statbuf) == -1) {
-        perror("ftype");
-        return;
+    if(LinkedList_size(self->args) > 1){
+        char tmp[] = "\e[1;31mErreur : trop d'arguments !\n\e[1;0m";
+        write(2, tmp, strlen(tmp));
+        return 1;
+    }else if(LinkedList_size(self->args) == 0){
+        char tmp[] = "\e[1;31mErreur : pas d'arguments !\n\e[1;0m";
+        write(2,tmp, strlen(tmp));
+        return 1;
+    }else{
+
+        char* first_arg = obj_to_string((String) LinkedList_get_first(self->args, 0));
+
+        // faire lstat car si on a un deux fichiers qui forment un lien circulaire (chacun pointe sur l'autre), il y aura un stackoverflow.
+        if (lstat(first_arg, &statbuf) == -1) {
+            perror("ftype");
+            return 1;
+        }
+
+        if (S_ISREG(statbuf.st_mode)) {
+            
+            write(1, "regular file\n", 13);
+
+        } else if (S_ISDIR(statbuf.st_mode)) {
+
+            write(1, "directory\n", 10);
+
+        } else if (S_ISLNK(statbuf.st_mode)) {
+            
+            write(1, "symbolic link\n", 14);
+
+        } else if (S_ISFIFO(statbuf.st_mode)) {
+            
+            write(1, "named pipe\n", 11);
+
+        } else {
+
+            write(1, "other\n", 6);
+
+        }
     }
-    if (S_ISREG(statbuf.st_mode)) {
-        printf("'%s' est un fichier ordinaire\n", self->params);
-    } else if (S_ISDIR(statbuf.st_mode)) {
-        printf("'%s' est un répertoire\n", self->params);
-    } else if (S_ISLNK(statbuf.st_mode)) {
-        printf("'%s' est un lien symbolique\n", self->params);
-    } else if (S_ISCHR(statbuf.st_mode)) {
-        printf("'%s' est un fichier spécial de caractère\n", self->params);
-    } else if (S_ISBLK(statbuf.st_mode)) {
-        printf("'%s' est un fichier spécial de bloc\n", self->params);
-    } else if (S_ISFIFO(statbuf.st_mode)) {
-        printf("'%s' est un tube nommé (FIFO)\n", self->params);
-    } else if (S_ISSOCK(statbuf.st_mode)) {
-        printf("'%s' est un socket\n", self->params);
-    } else {
-        printf("'%s' a un type inconnu\n", self->params);
-    }
-    */  
+    
     return 0;
 }
 

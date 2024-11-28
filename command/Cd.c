@@ -182,7 +182,7 @@ static int Cd_execute(Command self_){
         // prev_pass garde le dernier chemin depuis lequel on à fait cd
         if(strcmp(prev_path, "") == 0){
 
-            char tmp1[] = "\e[1;31m[Erreur] : non défini\"";
+            char tmp1[] = "\e[1;31m[Erreur] : prev_path non défini\e[1;0m\n";
             write(2, tmp1, strlen(tmp1));
             return 1;
 
@@ -192,7 +192,9 @@ static int Cd_execute(Command self_){
                 perror("changement de chemin");
                 return 1;
             }else{
-                return 0;
+                write(1, prev_path, strlen(prev_path));
+                write(1, "\n", 1);
+                goto maj_working_dir;
             }
         }
     }
@@ -206,7 +208,9 @@ static int Cd_execute(Command self_){
 
         strcpy(prev_path, working_dir); 
     
-    }
+    }   
+
+    maj_working_dir:
 
     // mettre à jour working_dir
     if(getcwd(working_dir, sizeof(working_dir)) != NULL){

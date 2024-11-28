@@ -12,11 +12,15 @@
 
 #include <assert.h>
 #include <stdlib.h>
-#include <stdio.h>
+#include <unistd.h>
+#include <stdio.h> 
+#include <string.h>
 
 /** @cond HIDE_THIS*/
 #define EXIT_CLASS "Exit"
 #include "Exit.h"
+#include "../base/String.h"
+#include "../base/new.h"
 /**@endcond*/
 
 
@@ -145,33 +149,34 @@ static void* Exit_destroy(void* self_){
 
 // Execute.
 static int Exit_execute(Command self_){
+
+    Exit self = (Exit) self_;
     
-    // Exit self = (Exit) self_;
+    int exit_code = 0; // Par défaut, on quitte avec un code de sortie 0
+    if (LinkedList_size(self->args) == 1) {
+        // Tente de convertir l'argument en un entier pour le code de sortie
+        char *endptr;
+        char *nombre = obj_to_string((String)LinkedList_get_first(self->args, 0)) ;
+        exit_code = strtol(nombre, &endptr, 10);
 
-    // int exit_code = 0;  // Par défaut, on quitte avec un code de sortie 0
+        if (*endptr != '\0') {
 
-    // if (self->args != NULL) {
-    //     // Tente de convertir l'argument en un entier pour le code de sortie
-    //     char *endptr;
-    //     exit_code = strtol(self->args, &endptr, 10);
+            char tmp1[] = "\e[1;31m[Erreur] La commande ne prend que des entiers\e[1;0m\n";
+            write(2, tmp1, strlen(tmp1));
+            if (exit_code)
+                exit(exit_code);
+            else
+                exit(1);
+        }
+    }else if (LinkedList_size(self->args) > 1){
+        
+        char tmp1[] = "\e[1;31m[Erreur] La commande ne prend pas plusieurs arguments\e[1;0m\n";
+        write(2, tmp1, strlen(tmp1));
+        return 1;
 
-    //     if (*endptr != '\0') {
-    //         fprintf(stderr, "exit: '%s' n'est pas un entier valide\n", self->args);
-    //         return;
-    //     }
-    // }
+    }   
 
-    // exit(exit_code);
+    exit(exit_code);
     return 0;
+
 }
-
-
-
-
-
-
-
-
-
-
-

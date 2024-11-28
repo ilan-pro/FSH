@@ -18,12 +18,16 @@
 #include <string.h>
 #include "../base/new.h"
 #include "../shell.h"
+#include <sys/wait.h>
+#include <sys/types.h>
+#include <unistd.h>
 
 /** @cond HIDE_THIS*/
 #define EXTERNAL_COMMAND_CLASS "ExternalCommand"
 /**@endcond*/
 #include "ExternalCommand.h"
 #include <sys/types.h>
+#include "../base/String.h"
 
 
 /*****************************************************/
@@ -59,11 +63,6 @@ static void* ExternalCommand_destroy(void* self_);
  * @return La valeur de retour de la commande après exécution.
  */
 static int ExternalCommand_execute(Command self_);
-
-/**
- * Fonction qui va afficher la commande externe.
- */
-static void ExternalCommand_print(const void* self_);
 
 /*****************************************************/
 /************* Structure de la classe ****************/
@@ -103,7 +102,7 @@ static struct _Class_ __ExternalCommand__ = {
     0,
     0,
     0,
-    ExternalCommand_print
+    0
 
 
 };
@@ -134,6 +133,8 @@ static void* ExternalCommand_constructor(void* self_, va_list* args){
     // On ajoute le parent à EXTERNAL_COMMAND (en contournant la contrainte sur const).
     *(Class*)&(self->_ExternalCommand_->_super_) = _Command_; 
 
+    // On met la fonction print du parent comme fonction d'affichage de l'enfant.
+    *((void (**)) &(self->_ExternalCommand_->print)) = _Command_->print;
         
     // Ajout de la fonction execute de la classe fille.
     *((int (**) (Command)) &(self->execute)) = ExternalCommand_execute;
@@ -142,8 +143,13 @@ static void* ExternalCommand_constructor(void* self_, va_list* args){
     
     // Récupération du nom de la commande.
     char* cmd_name = va_arg(*args, char*);
-    *(char**)&self->name = cmd_name; // Mise à jour du nom de la commande.
+    printf("'%s'\n", cmd_name);
+    char* tmp = malloc((1 + strlen(cmd_name)) * sizeof(char));
+    *(char**)&self->name = strcpy(tmp, cmd_name); // Mise à jour du nom de la commande.
     
+    self->args = obj_new(_LinkedList_);
+    self->params = obj_new(_LinkedList_);
+
     int cmd_length = strlen(cmd_name);
     char* command = malloc((2 + cmd_length) * sizeof(char));
     assert(command);
@@ -165,7 +171,6 @@ static void* ExternalCommand_constructor(void* self_, va_list* args){
         
         // Récupération du caractère pointé par le pointeur, et incémentation de la posisiton.
         char c = *(usr_prompt++);
-        printf("%c\n", c);
         switch (c){
             default : 
                 h_default: // label 
@@ -180,6 +185,30 @@ static void* ExternalCommand_constructor(void* self_, va_list* args){
                 command[cmd_length- 1] = c;
                 break; 
 
+
+            case ' ': // Le cas où le caractère lu est un espace.
+    
+                if (quoted || double_quoted || esc) // Si on est dans une expression entre guillemets ou que ' ' est echapé
+                    goto h_default; // On va dans default
+
+                if (cmd_length){ // Si il y a au moins une lettre lue.
+                    
+                    // Ajout du mot dans la liste des arguments de la commande.
+                    // L'ajout se fait à la fin pour préserver l'ordre de déclaration des arguments (sait-on jamais).
+                    LinkedList_add_last(self->args, obj_new(_String_, command), 0);
+                    
+                    // Remise à 0 du compteur
+                    cmd_length = 0;
+
+                    // troncage du mot en mot vide.
+                    command = realloc(command, sizeof(char));
+                    assert(command);
+                    command[0] = '\0';
+                    continue;
+
+                }
+                else // Si on aucun caractère n'est lu alors on ignore l'espace.
+                    continue;    
 
             case '"': // Le cas où on a des guillemets doubles
                 if (!quoted && !esc) // S'ils sont dans des guillemets simples ou explicitement echapés alors ils sont échapés
@@ -205,8 +234,24 @@ static void* ExternalCommand_constructor(void* self_, va_list* args){
         }
     }
     
+    if (cmd_length){ // Si il y a au moins une lettre lue.
+        
+        // Ajout du mot dans la liste des arguments de la commande.
+        // L'ajout se fait à la fin pour préserver l'ordre de déclaration des arguments (sait-on jamais).
+        LinkedList_add_last(self->args, obj_new(_String_, command), 0);
+        
+        // Remise à 0 du compteur
+        cmd_length = 0;
+
+        // troncage du mot en mot vide.
+        command = realloc(command, sizeof(char));
+        assert(command);
+        command[0] = '\0';
+
+    }
+    
     // Mise à jour de la commande
-    self->command = command;
+    free(command);
 
     // La commande externe est correctement initialisée.
     return self;
@@ -219,33 +264,13 @@ static void* ExternalCommand_destroy(void* self_){
     assert(self_);    
     assert(obj_instance_of(self_, _ExternalCommand_));
 
-    ExternalCommand self = (ExternalCommand) self_;
-    
-    // Libération de la mémoire pour la chaine de la commande.
-    free(self->command);
-    
+    ExternalCommand self = _Command_->dtor(self_);
+    free(*(char**)&self->name);
+    obj_destroy(self->params);
+    obj_destroy(self->args);
     // Aucun autre champ n'est à libérer il n'y a pas de liste d'argument ni de liste de paramètre.
 
     return self;
-}
-
-/**
- * Fonction qui va afficher la commande externe.
- */
-static void ExternalCommand_print(const void* self_){
-    
-    // Vérification de l'argument.
-    assert(self_);    
-    assert(obj_instance_of(self_, _ExternalCommand_));
-    
-    // Conversion en objet de type ExternalCommand.
-    ExternalCommand self = (ExternalCommand) self_;
-    
-    write(1, "Commande externe : ", 19);
-    write(1, self->name, strlen(self->name));
-    write(1, " | expr : ", 10);
-    write(1, self->command, strlen(self->command));
-    
 }
 
 // Execute.
@@ -256,42 +281,44 @@ static int ExternalCommand_execute(Command self_){
      * nous devons les exécuter dans un processus différent car il ne vont pas modifier l'état du shell.
      */
 
-    // pid_t pid = fork();
+    pid_t pid = fork();
     
     
-    // switch(pid){
-    //     case 0:
-    //         // le fils
-    //         // ExternalCommand cmd = _ExternalCommand_->ctor(self_, );
-    //         ExternalCommand self = (ExternalCommand) self_;
-    //         if(execvp(self->name, self->command) < 0 ){
-    //             perror("execvp");
-    //             exit(1);
-    //         }
-    //         exit(0);
-    //     case 1:
-    //         // le père
-    //         if(waitpid(pid, NULL, 0) < 0){
-    //             perror("waitpid");
-    //             exit(1);
-    //         }
+    switch(pid){
+        case 0:
+            // le fils
+            // ExternalCommand cmd = _ExternalCommand_->ctor(self_, );
+            ExternalCommand self = (ExternalCommand) self_;
+            int size = LinkedList_size(self->args);
+            char **cmd = malloc((size + 1) * sizeof(char));
 
-    //         break;
-    //     default:
-    //         perror("fork");
-    //         return 1;
-    // }
+            if(!cmd){
+                perror("malloc");
+                exit(1);
+            }
+            
+            for(int i=0; i < size; i++){
+                cmd[i] = obj_to_string((String) LinkedList_get(self->args, i, 0));
+            }
+            cmd[size] = NULL;
+            
+            if(execvp(self->name, cmd) < 0 ){
+                perror("execvp"); 
+                exit(1);
+            }
+            exit(0);
+        case -1:
+            perror("fork,");
+            return 1;
+
+        default:
+            // le père
+            if(waitpid(pid, NULL, 0) < 0){
+                perror("waitpid");
+                return 1;
+            }
+            break;
+    }
+
     return 0;
 }
-
-
-
-
-
-
-
-
-
-
-
-

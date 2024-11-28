@@ -17,7 +17,6 @@
     
     #define EXTERNAL_COMMAND_FILEDS \
         COMMAND_FIELDS /* Doit toujours être déclaré en premier pour pouvoir réduire l'objet à un objet de type Command pour le polymorphisme */\
-        char* command; /** Il s'agit la commande entière à donner (avec argument et paramètres) */\ 
 
     typedef struct _ExternalCommand_* ExternalCommand;
     
@@ -26,7 +25,6 @@
     
     /** @cond HIDE_THIS*/
     typedef struct __external_command_private_fields{
-        char* command;
     } __external_command_private_fields;
 
     #define EXTERNAL_COMMAND_H_FIELDS \

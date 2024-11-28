@@ -89,7 +89,6 @@ int Shell_start(){
         previous_cmd_finish = Shell_execute_all(file_principal,1);
         free(cp_prompt);
         rl_free_line_state();
-        // break;
     }
     
     rl_clear_history();
@@ -97,7 +96,26 @@ int Shell_start(){
 
 }
 
-// ecrire comm
+/**
+ * @internal
+ * @brief Fonction qui va se charger d'initialiser la liste des commandes à exécuter par le shell.
+ * La fonction va avoir une file principale qui va contenir toutes les différentes pipelines que l'utilisateur va taper.
+ * Nous allons stocker les commandes de chaque pipeline dans les file secondaire qui seront initialisées dans le while à chaque rencontre 
+ * de charactère ';'
+ * Nous allons stocker le nom de chaque commande dans char_lu qu'on va redimensionner dynamiquement au fur et à mesure
+ * de l'avancement dans la pipeline (et maj à 0 quand nous avons fini de lire une commande).
+ * Nous allons aussi utiliser une variable qui stock le nombre de charactère lu (utile pour le redimensionnement dynamique et
+ * avoir l'information que nous avons déjà lu quelque chose ou non).
+ * Quand le programme rencontre un charactère ';' ou un '\0', il ajoute la pipeline à la liste de nos pipelines car
+ * cette dernière à finit d'être parsé.
+ * Nous avons différents traitements dans notre while. Le traitement de la piepline qui va juste continuer le while
+ * (car nous ne le traitons pas encore).
+ * Le '}' pour signifier que nous sommes arriver à la fin des instructions d'une boucle for.
+ * Le ' ', va se charger de continuer simplement le while si nous n'avons toujours pas lu de commande et va ajouter la commande dans le cas
+ * ou nous avons déjà lu une commande puis continue pour continuer de parser.
+ * @return La file principale qui va contenir l'ensemble des pipelines tapés par l'utilisateur (Si une erreur de syntaxe est identifié,
+ * alors le programme renvoie la liste NULL)
+ */
 LinkedList Shell_parse(){
     // Variable qui stock le nombre de caractères que nous avons lu.
     int lu1lettre = 0;
@@ -201,7 +219,6 @@ LinkedList Shell_parse(){
         char_lu[lu1lettre-1] = res;
         char_lu[lu1lettre] = '\0';
         usr_prompt++;
-        printf("'%s'\n", char_lu);
     }
     free(char_lu);
     return file_principale;
@@ -249,15 +266,17 @@ int Shell_execute_all(LinkedList struct_cmds, int delete_list){
             Command cmd = LinkedList_get_first(pipeline, 0); 
             
             // Suppression de la commande exécutée de la file.
-            int val_retour = Command_execute(cmd);
-            if(val_retour != 0){
-                
+            last_status = Command_execute(cmd);
+            previous_cmd_finish = last_status;
+            if(last_status != 0){
+                goto clear;
             }
             LinkedList_remove_first(pipeline, 0);
         }
         LinkedList_remove_first(struct_cmds_copy, 0);
 
     }
+    clear:
     if(delete_list){
         obj_destroy(struct_cmds_copy);
     }
@@ -272,7 +291,6 @@ int Shell_execute_all(LinkedList struct_cmds, int delete_list){
  * Et va l'ajouter dans la file de la pipleline qu'on parse actuellement
  */
 static Command apply_cmd(char *char_lu, LinkedList file_secondaire){
-    // printf("'%s'\n", char_lu);
 	Class tmp = get_internal_cmd(char_lu);
 	Command cmd;
 	if(tmp){
@@ -283,9 +301,9 @@ static Command apply_cmd(char *char_lu, LinkedList file_secondaire){
 		LinkedList_add_last(file_secondaire, cmd, 0);	
 
 	}else{
-        
+
         // donc c'est une commande externe
-		cmd = obj_new(tmp, char_lu);
+		cmd = obj_new(_ExternalCommand_, char_lu);
         LinkedList_add_last(file_secondaire, cmd, 0);
 
 	}
