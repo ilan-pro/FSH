@@ -11,6 +11,8 @@
 
 
 #include <assert.h>
+#include <stdlib.h>
+#include <stdio.h>
 
 /** @cond HIDE_THIS*/
 #define EXIT_CLASS "Exit"
@@ -116,7 +118,8 @@ static void* Exit_constructor(void* self_, va_list* args){
     assert(self_ && args);    
     
     // Conversion en objet de type Exit.
-    Exit self = (Exit) self_;
+    Exit self =  _Command_->ctor(self_, args);
+    // (Exit) self_;
 
     // On ajoute le parent à EXIT (en controunant la contrainte sur const).
     *(Class*)&(self->_Exit_->_super_) = _Command_; 
@@ -126,7 +129,7 @@ static void* Exit_constructor(void* self_, va_list* args){
     // Ajout de la fonction execute de la classe fille.
     *((int (**) (Command)) &(self->execute)) = Exit_execute;
 
-    return _Command_->ctor(self, args);
+    return self;
     
 }
 
@@ -142,9 +145,23 @@ static void* Exit_destroy(void* self_){
 
 // Execute.
 static int Exit_execute(Command self_){
-        
-    //// Ecrire le corps de la fonction ici ! 
+    
+    // Exit self = (Exit) self_;
 
+    // int exit_code = 0;  // Par défaut, on quitte avec un code de sortie 0
+
+    // if (self->args != NULL) {
+    //     // Tente de convertir l'argument en un entier pour le code de sortie
+    //     char *endptr;
+    //     exit_code = strtol(self->args, &endptr, 10);
+
+    //     if (*endptr != '\0') {
+    //         fprintf(stderr, "exit: '%s' n'est pas un entier valide\n", self->args);
+    //         return;
+    //     }
+    // }
+
+    // exit(exit_code);
     return 0;
 }
 

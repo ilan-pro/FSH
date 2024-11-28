@@ -11,10 +11,12 @@
 
 
 #include <assert.h>
+#include <sys/stat.h>
 
 /** @cond HIDE_THIS*/
 #define FTYPE_CLASS "Ftype"
 #include "Ftype.h"
+#include <stdio.h>
 /**@endcond*/
 
 
@@ -116,7 +118,8 @@ static void* Ftype_constructor(void* self_, va_list* args){
     assert(self_ && args);    
     
     // Conversion en objet de type Ftype.
-    Ftype self = (Ftype) self_;
+    Ftype self = _Command_->ctor(self_, args);
+    // (Ftype) self_;
 
     // On ajoute le parent à FTYPE (en controunant la contrainte sur const).
     *(Class*)&(self->_Ftype_->_super_) = _Command_; 
@@ -126,7 +129,7 @@ static void* Ftype_constructor(void* self_, va_list* args){
     // Ajout de la fonction execute de la classe fille.
     *((int (**) (Command)) &(self->execute)) = Ftype_execute;
 
-    return _Command_->ctor(self, args);
+    return self;
     
 }
 
@@ -142,9 +145,33 @@ static void* Ftype_destroy(void* self_){
 
 // Execute.
 static int Ftype_execute(Command self_){
-        
-    //// Ecrire le corps de la fonction ici ! 
+    /**   
+    Ftype self = (Ftype) self_;
 
+    struct stat statbuf;
+
+    if (stat(self->params, &statbuf) == -1) {
+        perror("ftype");
+        return;
+    }
+    if (S_ISREG(statbuf.st_mode)) {
+        printf("'%s' est un fichier ordinaire\n", self->params);
+    } else if (S_ISDIR(statbuf.st_mode)) {
+        printf("'%s' est un répertoire\n", self->params);
+    } else if (S_ISLNK(statbuf.st_mode)) {
+        printf("'%s' est un lien symbolique\n", self->params);
+    } else if (S_ISCHR(statbuf.st_mode)) {
+        printf("'%s' est un fichier spécial de caractère\n", self->params);
+    } else if (S_ISBLK(statbuf.st_mode)) {
+        printf("'%s' est un fichier spécial de bloc\n", self->params);
+    } else if (S_ISFIFO(statbuf.st_mode)) {
+        printf("'%s' est un tube nommé (FIFO)\n", self->params);
+    } else if (S_ISSOCK(statbuf.st_mode)) {
+        printf("'%s' est un socket\n", self->params);
+    } else {
+        printf("'%s' a un type inconnu\n", self->params);
+    }
+    */  
     return 0;
 }
 

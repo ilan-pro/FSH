@@ -23,6 +23,7 @@
 #define EXTERNAL_COMMAND_CLASS "ExternalCommand"
 /**@endcond*/
 #include "ExternalCommand.h"
+#include <sys/types.h>
 
 
 /*****************************************************/
@@ -249,9 +250,37 @@ static void ExternalCommand_print(const void* self_){
 
 // Execute.
 static int ExternalCommand_execute(Command self_){
-        
-    //// Ecrire le corps de la fonction ici ! 
+    
+    /**Nous allons fork afin de pouvoir exécuter les commandes externes car les commandes externes, aux antipodes des commandes
+     * internes,
+     * nous devons les exécuter dans un processus différent car il ne vont pas modifier l'état du shell.
+     */
 
+    // pid_t pid = fork();
+    
+    
+    // switch(pid){
+    //     case 0:
+    //         // le fils
+    //         // ExternalCommand cmd = _ExternalCommand_->ctor(self_, );
+    //         ExternalCommand self = (ExternalCommand) self_;
+    //         if(execvp(self->name, self->command) < 0 ){
+    //             perror("execvp");
+    //             exit(1);
+    //         }
+    //         exit(0);
+    //     case 1:
+    //         // le père
+    //         if(waitpid(pid, NULL, 0) < 0){
+    //             perror("waitpid");
+    //             exit(1);
+    //         }
+
+    //         break;
+    //     default:
+    //         perror("fork");
+    //         return 1;
+    // }
     return 0;
 }
 

@@ -68,9 +68,6 @@ void obj_destroy(void* self_){
     // On suppose que le premier champs de la structure 
     // de l'objet est sa classe (lire DOC `Class.h`)
     Class _class_ = *(Class*) self_;
-    if(!_class_->dtor){
-        printf("ZOOOOOOOOOO '%s' ZOOOOOOOOO\n", _class_->name);
-    }
     assert(_class_ && _class_->dtor);
     // Destruction de l'objet.
     self_ = _class_->dtor(self_);

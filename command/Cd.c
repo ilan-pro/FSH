@@ -13,10 +13,17 @@
 
 
 #include <assert.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <stdio.h>
+#include <string.h>
+#include "../shell.h"
 
 /** @cond HIDE_THIS*/
 #define CD_CLASS "Cd"
 #include "Cd.h"
+#include "../base/String.h"
+#include "../base/new.h"
 /**@endcond*/
 
 
@@ -121,7 +128,8 @@ static void* Cd_constructor(void* self_, va_list* args){
     assert(self_ && args);    
     
     // Conversion en objet de type Cd.
-    Cd self = (Cd) self_;
+    Cd self = _Command_->ctor(self_, args);
+    // (Cd) self_;
 
     // On ajoute le parent à Cd (en controunant la contrainte sur const).
     *(Class*)&(self->_Cd_->_super_) = _Command_; 
@@ -131,7 +139,7 @@ static void* Cd_constructor(void* self_, va_list* args){
     // Ajout de la fonction execute de la classe fille.
     *((int (**) (Command)) &(self->execute)) = Cd_execute;
 
-    return _Command_->ctor(self, args);
+    return self;
     
 }
 
@@ -146,17 +154,67 @@ static void* Cd_destroy(void* self_){
     
 }
 
+// variable globale prev_path
+static char prev_path[4096]= "";
+
 // Execute.
 static int Cd_execute(Command self_){
         
-    //// Ecrire le corps de la fonction ici ! 
+    Cd self = (Cd) self_;
 
+    char *path;
+
+    if (LinkedList_size(self->args) > 1){
+        char tmp1[] = "\e[1;31m[Erreur] de syntaxe : la commande ne prend qu'un seul argument.\e[1;0m";
+        write(2, tmp1, strlen(tmp1));
+        return 1;
+    }
+    else if(LinkedList_size(self->args)== 0){
+        path = getenv("HOME");
+        assert(path != NULL);
+    }
+    else{
+        String tmp = (String) LinkedList_get_first(self->args, 0);
+        path = obj_to_string(tmp);
+    }
+
+    if(strcmp(path, "-")==0){
+        // prev_pass garde le dernier chemin depuis lequel on à fait cd
+        if(strcmp(prev_path, "") == 0){
+
+            char tmp1[] = "\e[1;31m[Erreur] : non défini\"";
+            write(2, tmp1, strlen(tmp1));
+            return 1;
+
+        }else{
+            int res = chdir(prev_path);
+            if(res != 0){
+                perror("changement de chemin");
+                return 1;
+            }else{
+                return 0;
+            }
+        }
+    }
+    
+    if(chdir(path) != 0){ 
+
+        perror("changement de chemin");
+        return 1;
+
+    }else{
+
+        strcpy(prev_path, working_dir); 
+    
+    }
+
+    // mettre à jour working_dir
+    if(getcwd(working_dir, sizeof(working_dir)) != NULL){
+        return 1;
+    }
+    
     return 0;
 }
-
-
-
-
 
 
 

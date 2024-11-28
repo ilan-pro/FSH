@@ -88,7 +88,7 @@ int run_commande(){
     return 0;
 }
 
-int main(){
+int main(){ 
     initialize_cmd();
     initialize_for_lists();
     Shell_start(); 

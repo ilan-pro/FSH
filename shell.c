@@ -89,7 +89,7 @@ int Shell_start(){
         previous_cmd_finish = Shell_execute_all(file_principal,1);
         free(cp_prompt);
         rl_free_line_state();
-        break;
+        // break;
     }
     
     rl_clear_history();
@@ -213,9 +213,7 @@ LinkedList Shell_parse(){
  * @brief Fonction qui va exécuter toutes les pipelines d'une 
  * commande structurée (par appel de la méthode execute() de chaque commande).
  * 
- * La fonction va créer un nouveau processus pour chaque éxécution de commande et 
- * va attendre que l'exécution de la commande soit terminée avant de passer à la commande 
- * suivante. La fonction s'occupera également de faire les redirections de sorties 
+ * La fonction s'occupera également de faire les redirections de sorties 
  * si jamais il y en a.
  *
  * @param struct_cmds La commande structurée. Une commande structurée est une liste de listes 
@@ -251,28 +249,11 @@ int Shell_execute_all(LinkedList struct_cmds, int delete_list){
             // Récupération de la commande
             Command cmd = LinkedList_get_first(pipeline, 0); 
             
-            pid_t pid = fork();
-
-            switch(pid){
-                case -1:
-
-                    perror("fork");
-                    break;
-
-                case 0: //Enfant
-
-                    int val_retour = Command_execute(cmd);
-                    exit(val_retour);
-
-                default: //Parent
-
-                    // Attendre que l'enfant finisse d'éxécuter une commande
-                    waitpid(pid, &last_status, 0); // On récupère dans last_exec le statut de retour du processus enfant
-                    break;
-            }
-            // Le fils n'arrivera jamais ici.
-            
             // Suppression de la commande exécutée de la file.
+            int val_retour = Command_execute(cmd);
+            if(val_retour != 0){
+                
+            }
             LinkedList_remove_first(pipeline, 0);
         }
         LinkedList_remove_first(struct_cmds_copy, 0);
@@ -295,13 +276,18 @@ static Command apply_cmd(char *char_lu, LinkedList file_secondaire){
 	Class tmp = get_internal_cmd(char_lu);
 	Command cmd;
 	if(tmp){
+
 		// je cré l'objet associé à ma commande
 		cmd = obj_new(tmp, char_lu);
 		//j'ajoute la commande interne à ma file
 		LinkedList_add_last(file_secondaire, cmd, 0);	
+
 	}else{
-		printf("commande externe à écrire");
-        cmd = NULL;
+        
+        // donc c'est une commande externe
+		cmd = obj_new(tmp, char_lu);
+        LinkedList_add_last(file_secondaire, cmd, 0);
+
 	}
 	return cmd;
 }
