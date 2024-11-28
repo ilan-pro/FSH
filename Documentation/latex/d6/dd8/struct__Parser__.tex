@@ -1,0 +1,70 @@
+\hypertarget{struct__Parser__}{}\doxysection{Référence de la structure \+\_\+\+Parser\+\_\+}
+\label{struct__Parser__}\index{\_Parser\_@{\_Parser\_}}
+
+
+Classe des objets de type {\ttfamily Parser}.  
+
+
+
+
+{\ttfamily \#include $<$Parser.\+h$>$}
+
+
+
+Graphe de collaboration de \+\_\+\+Parser\+\_\+\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=194pt]{da/de6/struct__Parser____coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Attributs publics}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{Class_8h_a6ec2a8ccaeb1e924a80036ec40760377}{Class}} \mbox{\hyperlink{struct__Parser___ae29be08a636af937f68a967325a4ea34}{\+\_\+\+Parser\+\_\+}}
+\begin{DoxyCompactList}\small\item\em Classe des objets de type {\ttfamily Parser}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Description détaillée}
+Classe des objets de type {\ttfamily Parser}. 
+
+Un objet Parser est un objet qui va analyser une chaine de caractère et va appeler une va appeler une certaine fonction (handler) à chaque caractère lu, afin qu\textquotesingle{}elle l\textquotesingle{}interprète à sa guise.
+
+La classe possède un certains nombres de fonction permettant de manipuler la chaine en cours de lecture et le tampon qui stock les caractères déjà lus.
+
+Construction \+: {\ttfamily {\bfseries{ obj\+\_\+new({\ttfamily \mbox{\hyperlink{struct__Parser__}{\+\_\+\+Parser\+\_\+}}}, char$\ast$$\ast$ string, Parse\+Handler handler) }}}~\newline
+ où \+: ~\newline
+ 
+\begin{DoxyItemize}
+\item {\ttfamily \mbox{\hyperlink{struct__Parser__}{\+\_\+\+Parser\+\_\+}}} désigne la classe des objets de type {\ttfamily Parser} 
+\item {\bfseries{{\ttfamily string}}} est un pointeur vers une chaine de caractère (Attention la chaine de caractère est modifiée pendant la parsing, alors penser à faire une copie). 
+\item {\bfseries{{\ttfamily handler}}} un objet de type {\ttfamily \mbox{\hyperlink{struct__ParseHandler__}{\+\_\+\+Parse\+Handler\+\_\+}}} qui va contenir la fonction qui va gérer chaque caractère lu.  
+\end{DoxyItemize}
+
+Il faut donc faire attention à la chaine qu\textquotesingle{}on donne au constructeur (surtout vérifier qu\textquotesingle{}elle ne sera pas désallouée pendant le parsing). Toujours faire une copie de la chaine si on prévoit de l\textquotesingle{}utiliser entierèment ailleurs. 
+
+\doxysubsection{Documentation des données membres}
+\mbox{\Hypertarget{struct__Parser___ae29be08a636af937f68a967325a4ea34}\label{struct__Parser___ae29be08a636af937f68a967325a4ea34}} 
+\index{\_Parser\_@{\_Parser\_}!\_Parser\_@{\_Parser\_}}
+\index{\_Parser\_@{\_Parser\_}!\_Parser\_@{\_Parser\_}}
+\doxysubsubsection{\texorpdfstring{\_Parser\_}{\_Parser\_}}
+{\footnotesize\ttfamily \mbox{\hyperlink{Class_8h_a6ec2a8ccaeb1e924a80036ec40760377}{Class}} \+\_\+\+Parser\+\_\+\+::\+\_\+\+Parser\+\_\+}
+
+
+
+Classe des objets de type {\ttfamily Parser}. 
+
+Un objet Parser est un objet qui va analyser une chaine de caractère et va appeler une va appeler une certaine fonction (handler) à chaque caractère lu, afin qu\textquotesingle{}elle l\textquotesingle{}interprète à sa guise.
+
+Construction \+: {\ttfamily {\bfseries{ obj\+\_\+new({\ttfamily \mbox{\hyperlink{struct__Parser__}{\+\_\+\+Parser\+\_\+}}}, char$\ast$$\ast$ string, Parse\+Handler handler) }}}~\newline
+ où \+: ~\newline
+ 
+\begin{DoxyItemize}
+\item {\ttfamily \mbox{\hyperlink{struct__Parser__}{\+\_\+\+Parser\+\_\+}}} désigne la classe des objets de type {\ttfamily Parser} 
+\item {\bfseries{{\ttfamily string}}} est un pointeur vers une chaine de caractère (Attention la chaine de caractère est modifiée pendant la parsing, alors penser à faire une copie). 
+\item {\bfseries{{\ttfamily handler}}} un objet de type {\ttfamily \mbox{\hyperlink{struct__ParseHandler__}{\+\_\+\+Parse\+Handler\+\_\+}}} qui va contenir la fonction qui va gérer chaque caractère lu.  
+\end{DoxyItemize}
+
+La documentation de cette structure a été générée à partir du fichier suivant \+:\begin{DoxyCompactItemize}
+\item 
+parser/\mbox{\hyperlink{Parser_8h}{Parser.\+h}}\end{DoxyCompactItemize}

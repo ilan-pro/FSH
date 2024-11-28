@@ -37,6 +37,7 @@ var menudata={children:[
 {text:"Tout",url:"globals.html",children:[
 {text:"_",url:"globals.html#index__5F"},
 {text:"c",url:"globals.html#index_c"},
+{text:"d",url:"globals.html#index_d"},
 {text:"e",url:"globals.html#index_e"},
 {text:"f",url:"globals.html#index_f"},
 {text:"i",url:"globals.html#index_i"},
@@ -51,6 +52,8 @@ var menudata={children:[
 {text:"w",url:"globals.html#index_w"}]},
 {text:"Fonctions",url:"globals_func.html",children:[
 {text:"c",url:"globals_func.html#index_c"},
+{text:"d",url:"globals_func.html#index_d"},
+{text:"f",url:"globals_func.html#index_f"},
 {text:"i",url:"globals_func.html#index_i"},
 {text:"l",url:"globals_func.html#index_l"},
 {text:"m",url:"globals_func.html#index_m"},
@@ -58,6 +61,12 @@ var menudata={children:[
 {text:"p",url:"globals_func.html#index_p"},
 {text:"r",url:"globals_func.html#index_r"},
 {text:"s",url:"globals_func.html#index_s"}]},
-{text:"Variables",url:"globals_vars.html"},
+{text:"Variables",url:"globals_vars.html",children:[
+{text:"_",url:"globals_vars.html#index__5F"},
+{text:"c",url:"globals_vars.html#index_c"},
+{text:"f",url:"globals_vars.html#index_f"},
+{text:"t",url:"globals_vars.html#index_t"},
+{text:"u",url:"globals_vars.html#index_u"},
+{text:"w",url:"globals_vars.html#index_w"}]},
 {text:"Définitions de type",url:"globals_type.html"},
 {text:"Macros",url:"globals_defs.html"}]}]}]}

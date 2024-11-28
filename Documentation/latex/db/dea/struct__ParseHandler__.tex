@@ -1,0 +1,71 @@
+\hypertarget{struct__ParseHandler__}{}\doxysection{Référence de la structure \+\_\+\+Parse\+Handler\+\_\+}
+\label{struct__ParseHandler__}\index{\_ParseHandler\_@{\_ParseHandler\_}}
+
+
+Classe des objets de type {\ttfamily Parse\+Handler}.  
+
+
+
+
+{\ttfamily \#include $<$Parse\+Handler.\+h$>$}
+
+
+
+Graphe de collaboration de \+\_\+\+Parse\+Handler\+\_\+\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=212pt]{de/d99/struct__ParseHandler____coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Attributs publics}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{Class_8h_a6ec2a8ccaeb1e924a80036ec40760377}{Class}} \mbox{\hyperlink{struct__ParseHandler___a705dac3e9cc6ff9b08f363bc04d5cce5}{\+\_\+\+Parse\+Handler\+\_\+}}
+\begin{DoxyCompactList}\small\item\em Classe des objets de type {\ttfamily Parse\+Handler}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Description détaillée}
+Classe des objets de type {\ttfamily Parse\+Handler}. 
+
+Un objet Parse\+Handler est un objet qui défini comment interpréter les différents caractères lus dans un objet de type {\ttfamily \mbox{\hyperlink{struct__Parser__}{\+\_\+\+Parser\+\_\+}}}, il le fait par le biais d\textquotesingle{}une fonction que le parseur va appeller à chaque caractère lu. ~\newline
+
+
+Les objets {\ttfamily \mbox{\hyperlink{struct__ParseHandler__}{\+\_\+\+Parse\+Handler\+\_\+}}} sont composés d\textquotesingle{}autres objets de type {\ttfamily \+\_\+\+Parse\+Handler\+Interpret\+\_\+} qui sont des objets permettant de définissant certains actions à faire lors de la rencontre de certains caractères.
+
+En gros L\textquotesingle{}objet {\ttfamily \mbox{\hyperlink{struct__ParseHandler__}{\+\_\+\+Parse\+Handler\+\_\+}}} va reconnaitre cetrains caractères \char`\"{}spéciaux\char`\"{} et {\ttfamily \+\_\+\+Parse\+Handler\+Interpret\+\_\+} va définir les actions à faire lorsqu\textquotesingle{}on rencontre ces caractères.
+
+~\newline
+ Cette classe est donc une classe abstraite qui doit être redéfinie sur des classes plus spécifiques dans leur interprétation de caractères.
+
+Construction \+: {\ttfamily {\bfseries{ obj\+\_\+new({\ttfamily \mbox{\hyperlink{struct__ParseHandler__}{\+\_\+\+Parse\+Handler\+\_\+}}}, Parse\+Handler\+Interpret interpretor ) }}}~\newline
+ où \+: ~\newline
+ 
+\begin{DoxyItemize}
+\item {\ttfamily \mbox{\hyperlink{struct__ParseHandler__}{\+\_\+\+Parse\+Handler\+\_\+}}} désigne la classe des objets de type {\ttfamily Parse\+Handler} 
+\item {\bfseries{{\ttfamily interpretor}}} est un objet {\ttfamily Parse\+Handler\+Interpret} qui va interpréter les différents caracètres \char`\"{}spéciaux\char`\"{} reconnu par l\textquotesingle{}objet {\ttfamily Parse\+Handler}. 
+\end{DoxyItemize}
+
+\doxysubsection{Documentation des données membres}
+\mbox{\Hypertarget{struct__ParseHandler___a705dac3e9cc6ff9b08f363bc04d5cce5}\label{struct__ParseHandler___a705dac3e9cc6ff9b08f363bc04d5cce5}} 
+\index{\_ParseHandler\_@{\_ParseHandler\_}!\_ParseHandler\_@{\_ParseHandler\_}}
+\index{\_ParseHandler\_@{\_ParseHandler\_}!\_ParseHandler\_@{\_ParseHandler\_}}
+\doxysubsubsection{\texorpdfstring{\_ParseHandler\_}{\_ParseHandler\_}}
+{\footnotesize\ttfamily \mbox{\hyperlink{Class_8h_a6ec2a8ccaeb1e924a80036ec40760377}{Class}} \+\_\+\+Parse\+Handler\+\_\+\+::\+\_\+\+Parse\+Handler\+\_\+}
+
+
+
+Classe des objets de type {\ttfamily Parse\+Handler}. 
+
+Construction \+: {\ttfamily {\bfseries{ obj\+\_\+new({\ttfamily \mbox{\hyperlink{struct__ParseHandler__}{\+\_\+\+Parse\+Handler\+\_\+}}}, Parse\+Handler\+Interpret interpretor ) }}}~\newline
+ où \+: ~\newline
+ 
+\begin{DoxyItemize}
+\item {\ttfamily \mbox{\hyperlink{struct__ParseHandler__}{\+\_\+\+Parse\+Handler\+\_\+}}} désigne la classe des objets de type {\ttfamily Parse\+Handler} 
+\item {\bfseries{{\ttfamily interpretor}}} est un objet {\ttfamily Parse\+Handler\+Interpret} qui va interpréter les différents caracètres \char`\"{}spéciaux\char`\"{} reconnu par l\textquotesingle{}objet {\ttfamily Parse\+Handler}. 
+\end{DoxyItemize}
+
+La documentation de cette structure a été générée à partir du fichier suivant \+:\begin{DoxyCompactItemize}
+\item 
+parser/\mbox{\hyperlink{ParseHandler_8h}{Parse\+Handler.\+h}}\end{DoxyCompactItemize}

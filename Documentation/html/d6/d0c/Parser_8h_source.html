@@ -1,0 +1,137 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>FSH - Projet Système:  Fichier source de parser/Parser.h</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">FSH - Projet Système
+   </div>
+   <div id="projectbrief">Projet de la matière Sy5 - U Paris Cité</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "../../search",false,'Recherche','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="../../menudata.js"></script>
+<script type="text/javascript" src="../../menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('../../',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="../../dir_572890c148f68441e050f6560d78312b.html">parser</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">Parser.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="../../d6/d0c/Parser_8h.html">Aller à la documentation de ce fichier.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#ifndef PARSER_H</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#define PARSER_H</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="../../d3/d01/ParseHandler_8h.html">ParseHandler.h</a>&quot;</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#include &quot;../base/Class.h&quot;</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="preprocessor">#ifdef PARSER_CLASS</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    </div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor">    #define PARSER_FIELDS \</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">        char** str; \</span></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">        char* buffer; \</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">        ParseHandler handler; </span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="../../d6/dd8/struct__Parser__.html">_Parser_</a>* <a class="code" href="../../d6/d0c/Parser_8h.html#a2572816ce925d606728b3d081f2280cc">Parser</a>;    </div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160; </div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="preprocessor">#else</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160; </div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <span class="keyword">typedef</span> <span class="keyword">struct </span>__parse_prv_f {</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        <span class="keywordtype">char</span>** str;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        <span class="keywordtype">char</span>* buffer; </div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        <a class="code" href="../../db/dea/struct__ParseHandler__.html">ParseHandler</a> handler; </div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    } __parser_private_fields;    </div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160; </div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="preprocessor">    #define PARSER_H_FIELDS \</span></div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="preprocessor">        const char _parser [ sizeof(__parser_private_fields) ];</span></div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    </div>
+<div class="line"><a name="l00073"></a><span class="lineno"><a class="line" href="../../d6/dd8/struct__Parser__.html">   73</a></span>&#160;    <span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="../../d6/dd8/struct__Parser__.html">_Parser_</a>{</div>
+<div class="line"><a name="l00089"></a><span class="lineno"><a class="line" href="../../d6/dd8/struct__Parser__.html#ae29be08a636af937f68a967325a4ea34">   89</a></span>&#160;        <a class="code" href="../../d8/d36/struct__Class__.html">Class</a> <a class="code" href="../../d6/dd8/struct__Parser__.html#ae29be08a636af937f68a967325a4ea34">_Parser_</a>;</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;        PARSER_H_FIELDS</div>
+<div class="line"><a name="l00091"></a><span class="lineno"><a class="line" href="../../d6/d0c/Parser_8h.html#a2572816ce925d606728b3d081f2280cc">   91</a></span>&#160;    }* <a class="code" href="../../d6/d0c/Parser_8h.html#a2572816ce925d606728b3d081f2280cc">Parser</a>;</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160; </div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    <span class="comment">// Méthodes publics</span></div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;        </div>
+<div class="line"><a name="l00104"></a><span class="lineno"><a class="line" href="../../d6/d0c/Parser_8h.html#a30fe57951c31e58dd4f2d8da1a1acfae">  104</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="../../d6/d0c/Parser_8h.html#a30fe57951c31e58dd4f2d8da1a1acfae">Parser_clear_buf</a>(<a class="code" href="../../d6/dd8/struct__Parser__.html">Parser</a> <span class="keyword">self</span>);</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    </div>
+<div class="line"><a name="l00116"></a><span class="lineno"><a class="line" href="../../d6/d0c/Parser_8h.html#a9ac9d8da69d17a731eb3472ba3047ada">  116</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="../../d6/d0c/Parser_8h.html#a9ac9d8da69d17a731eb3472ba3047ada">Parser_accept</a>(<a class="code" href="../../d6/dd8/struct__Parser__.html">Parser</a> <span class="keyword">self</span>);</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;        </div>
+<div class="line"><a name="l00127"></a><span class="lineno"><a class="line" href="../../d6/d0c/Parser_8h.html#acc6c2c29cf8b6c26b6d87c8441278691">  127</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="../../d6/d0c/Parser_8h.html#acc6c2c29cf8b6c26b6d87c8441278691">Parser_pass</a>(<a class="code" href="../../d6/dd8/struct__Parser__.html">Parser</a> <span class="keyword">self</span>);</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;    </div>
+<div class="line"><a name="l00135"></a><span class="lineno"><a class="line" href="../../d6/d0c/Parser_8h.html#aaac1dba2122315975b44e737345dcb09">  135</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="../../d6/d0c/Parser_8h.html#aaac1dba2122315975b44e737345dcb09">Parser_has_read</a>(<a class="code" href="../../d6/dd8/struct__Parser__.html">Parser</a> <span class="keyword">self</span>);</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160; </div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;    </div>
+<div class="line"><a name="l00146"></a><span class="lineno"><a class="line" href="../../d6/d0c/Parser_8h.html#a1c986f4664d55ab43b32947f2774682c">  146</a></span>&#160;    <span class="keyword">const</span> <span class="keywordtype">char</span>* <a class="code" href="../../d6/d0c/Parser_8h.html#a1c986f4664d55ab43b32947f2774682c">Parser_get_buff</a>(<a class="code" href="../../d6/dd8/struct__Parser__.html">Parser</a> <span class="keyword">self</span>);</div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;    </div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160; </div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160; </div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aParseHandler_8h_html"><div class="ttname"><a href="../../d3/d01/ParseHandler_8h.html">ParseHandler.h</a></div><div class="ttdoc">Fichier contenant les déclarations des fonctions de l'interface de la classe _ParseHandler_.</div></div>
+<div class="ttc" id="aParser_8h_html_a1c986f4664d55ab43b32947f2774682c"><div class="ttname"><a href="../../d6/d0c/Parser_8h.html#a1c986f4664d55ab43b32947f2774682c">Parser_get_buff</a></div><div class="ttdeci">const char * Parser_get_buff(Parser self)</div><div class="ttdoc">Fonction qui renvoie la chaine de caractère contenant les caractères lus.</div></div>
+<div class="ttc" id="aParser_8h_html_a2572816ce925d606728b3d081f2280cc"><div class="ttname"><a href="../../d6/d0c/Parser_8h.html#a2572816ce925d606728b3d081f2280cc">Parser</a></div><div class="ttdeci">struct _Parser_ * Parser</div><div class="ttdoc">Classe des objets de type Parser.</div></div>
+<div class="ttc" id="aParser_8h_html_a30fe57951c31e58dd4f2d8da1a1acfae"><div class="ttname"><a href="../../d6/d0c/Parser_8h.html#a30fe57951c31e58dd4f2d8da1a1acfae">Parser_clear_buf</a></div><div class="ttdeci">void Parser_clear_buf(Parser self)</div><div class="ttdoc">Fonction qui efface tous les caractères lu par le parser.</div></div>
+<div class="ttc" id="aParser_8h_html_a9ac9d8da69d17a731eb3472ba3047ada"><div class="ttname"><a href="../../d6/d0c/Parser_8h.html#a9ac9d8da69d17a731eb3472ba3047ada">Parser_accept</a></div><div class="ttdeci">void Parser_accept(Parser self)</div><div class="ttdoc">Fonction qui va indiquer au parseur d'ajouter le caractère en tête de lecture dans la mémoire tampon.</div></div>
+<div class="ttc" id="aParser_8h_html_aaac1dba2122315975b44e737345dcb09"><div class="ttname"><a href="../../d6/d0c/Parser_8h.html#aaac1dba2122315975b44e737345dcb09">Parser_has_read</a></div><div class="ttdeci">int Parser_has_read(Parser self)</div><div class="ttdoc">Fonction qui indiquer si oui ou non le parseur a lu au moins un caractère.</div></div>
+<div class="ttc" id="aParser_8h_html_acc6c2c29cf8b6c26b6d87c8441278691"><div class="ttname"><a href="../../d6/d0c/Parser_8h.html#acc6c2c29cf8b6c26b6d87c8441278691">Parser_pass</a></div><div class="ttdeci">void Parser_pass(Parser self)</div><div class="ttdoc">Fonction qui indiquer au parseur d'ignorer le caractère en tête de lecture à d'aller au suivant.</div></div>
+<div class="ttc" id="astruct__Class___html"><div class="ttname"><a href="../../d8/d36/struct__Class__.html">_Class_</a></div><div class="ttdoc">Structure représentant la classe dans laquelle appratient un objet.</div><div class="ttdef"><b>Definition:</b> Class.h:52</div></div>
+<div class="ttc" id="astruct__ParseHandler___html"><div class="ttname"><a href="../../db/dea/struct__ParseHandler__.html">_ParseHandler_</a></div><div class="ttdoc">Classe des objets de type ParseHandler.</div><div class="ttdef"><b>Definition:</b> ParseHandler.h:75</div></div>
+<div class="ttc" id="astruct__Parser___html"><div class="ttname"><a href="../../d6/dd8/struct__Parser__.html">_Parser_</a></div><div class="ttdoc">Classe des objets de type Parser.</div><div class="ttdef"><b>Definition:</b> Parser.h:73</div></div>
+<div class="ttc" id="astruct__Parser___html_ae29be08a636af937f68a967325a4ea34"><div class="ttname"><a href="../../d6/dd8/struct__Parser__.html#ae29be08a636af937f68a967325a4ea34">_Parser_::_Parser_</a></div><div class="ttdeci">Class _Parser_</div><div class="ttdoc">Classe des objets de type Parser.</div><div class="ttdef"><b>Definition:</b> Parser.h:89</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré par&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+</small></address>
+</body>
+</html>

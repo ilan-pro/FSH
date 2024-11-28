@@ -92,11 +92,13 @@ Ce graphe montre quels fichiers incluent directement ou indirectement ce fichier
 <div class="dyncontent">
 <div class="center"><img src="../../d1/d44/shell_8h__dep__incl.png" border="0" usemap="#ashell_8hdep" alt=""/></div>
 <map name="ashell_8hdep" id="ashell_8hdep">
-<area shape="rect" title="Fichier contenant la déclration des variables globales du shell ainsi que les fonctions utilisées par..." alt="" coords="357,5,423,32"/>
+<area shape="rect" title="Fichier contenant la déclration des variables globales du shell ainsi que les fonctions utilisées par..." alt="" coords="548,5,613,32"/>
 <area shape="rect" href="../../d7/d41/Command_8c.html" title="Fichier source de la classe _Command_ contenant l&#39;implémentation des variables et de toutes les métho..." alt="" coords="5,80,175,107"/>
 <area shape="rect" href="../../db/d86/ExternalCommand_8c.html" title="Fichier contenant l&#39;implémentation des fonctions déclarées dans ExternalCommand.h" alt="" coords="199,80,421,107"/>
-<area shape="rect" href="../../da/de7/fsh_8c.html" title="Fichier contenant la fonction main de l&#39;application." alt="" coords="445,80,498,107"/>
-<area shape="rect" href="../../d6/d4f/shell_8c.html" title="Fichier contenant l&#39;implémentation des fonctions utilisé par le shell pour le traitement et construct..." alt="" coords="522,80,586,107"/>
+<area shape="rect" href="../../d8/d8b/For_8c.html" title="Fichier contenant l&#39;implémentation des fonctions déclarées dans For.h" alt="" coords="445,80,567,107"/>
+<area shape="rect" href="../../dc/d87/Pwd_8c.html" title="Fichier contenant l&#39;implémentation des fonctions déclarées dans Pwd.h" alt="" coords="591,80,720,107"/>
+<area shape="rect" href="../../da/de7/fsh_8c.html" title="Fichier contenant la fonction main de l&#39;application." alt="" coords="745,80,798,107"/>
+<area shape="rect" href="../../d6/d4f/shell_8c.html" title="Fichier contenant l&#39;implémentation des fonctions utilisé par le shell pour le traitement et construct..." alt="" coords="822,80,886,107"/>
 </map>
 </div>
 </div>
@@ -113,9 +115,11 @@ Fonctions</h2></td></tr>
 <tr class="memitem:a0dabbf807290a3a452d301797493bad4"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d03/shell_8h.html#a0dabbf807290a3a452d301797493bad4">Shell_start</a> ()</td></tr>
 <tr class="memdesc:a0dabbf807290a3a452d301797493bad4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fonction qui va démarrer l'interpreteur de commande.  <a href="../../df/d03/shell_8h.html#a0dabbf807290a3a452d301797493bad4">Plus de détails...</a><br /></td></tr>
 <tr class="separator:a0dabbf807290a3a452d301797493bad4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acc2f620fc1231964805ced37642eb8ad"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d03/shell_8h.html#acc2f620fc1231964805ced37642eb8ad">Shell_execute_all</a> (<a class="el" href="../../d7/de9/LinkedList_8c.html#a9e97ddb0b652fc6241b56a6f723e4dc0">LinkedList</a> struct_cmds)</td></tr>
-<tr class="memdesc:acc2f620fc1231964805ced37642eb8ad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fonction qui va exécuter toutes les pipelines d'une commande structurée (par appel de la méthode execute() de chaque commande).  <a href="../../df/d03/shell_8h.html#acc2f620fc1231964805ced37642eb8ad">Plus de détails...</a><br /></td></tr>
-<tr class="separator:acc2f620fc1231964805ced37642eb8ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab600c5244daa49aa7fc5c7d66035aa5f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d03/shell_8h.html#ab600c5244daa49aa7fc5c7d66035aa5f">Shell_execute_all</a> (<a class="el" href="../../d7/de9/LinkedList_8c.html#a9e97ddb0b652fc6241b56a6f723e4dc0">LinkedList</a> struct_cmds, int delete_list)</td></tr>
+<tr class="memdesc:ab600c5244daa49aa7fc5c7d66035aa5f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fonction qui va exécuter toutes les pipelines d'une commande structurée (par appel de la méthode execute() de chaque commande).  <a href="../../df/d03/shell_8h.html#ab600c5244daa49aa7fc5c7d66035aa5f">Plus de détails...</a><br /></td></tr>
+<tr class="separator:ab600c5244daa49aa7fc5c7d66035aa5f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a848375151232c50f09afa8c52a15aa95"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d7/de9/LinkedList_8c.html#a9e97ddb0b652fc6241b56a6f723e4dc0">LinkedList</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d03/shell_8h.html#a848375151232c50f09afa8c52a15aa95">Shell_parse</a> ()</td></tr>
+<tr class="separator:a848375151232c50f09afa8c52a15aa95"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
@@ -145,8 +149,8 @@ Variables</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Documentation des fonctions</h2>
-<a id="acc2f620fc1231964805ced37642eb8ad"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acc2f620fc1231964805ced37642eb8ad">&#9670;&nbsp;</a></span>Shell_execute_all()</h2>
+<a id="ab600c5244daa49aa7fc5c7d66035aa5f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab600c5244daa49aa7fc5c7d66035aa5f">&#9670;&nbsp;</a></span>Shell_execute_all()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -155,8 +159,18 @@ Variables</h2></td></tr>
           <td class="memname">int Shell_execute_all </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="../../d7/de9/LinkedList_8c.html#a9e97ddb0b652fc6241b56a6f723e4dc0">LinkedList</a>&#160;</td>
-          <td class="paramname"><em>struct_cmds</em></td><td>)</td>
+          <td class="paramname"><em>struct_cmds</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>delete_list</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -165,11 +179,29 @@ Variables</h2></td></tr>
 <p>La fonction va créer un nouveau processus pour chaque éxécution de commande et va attendre que l'exécution de la commande soit terminée avant de passer à la commande suivante. La fonction s'occupera également de faire les redirections de sorties si jamais il y en a.</p>
 <dl class="params"><dt>Paramètres</dt><dd>
   <table class="params">
-    <tr><td class="paramname">struct_cmds</td><td>La commande structurée. Une commande structurée est une liste de listes dont chaque liste est une pipeline (commande simple ou plusieurs commandes simples CMD_1 | CMD_2 | ... ).</td></tr>
+    <tr><td class="paramname">struct_cmds</td><td>La commande structurée. Une commande structurée est une liste de listes </td></tr>
+    <tr><td class="paramname">delete_list</td><td>Un boolean pour savoir si nous devons détruire la liste ou non. Ceci sert pour les boucles for. Afin de ne pas perdre la liste si nous voulons plusieurs répetition de la liste dont chaque liste est une pipeline (commande simple ou plusieurs commandes simples CMD_1 | CMD_2 | ... ).</td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Renvoie</dt><dd>La valeur de retour de la dernière exécution (si elle échoue alors ce sera la valeur de son code d'erreur). </dd></dl>
+
+</div>
+</div>
+<a id="a848375151232c50f09afa8c52a15aa95"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a848375151232c50f09afa8c52a15aa95">&#9670;&nbsp;</a></span>Shell_parse()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d7/de9/LinkedList_8c.html#a9e97ddb0b652fc6241b56a6f723e4dc0">LinkedList</a> Shell_parse </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
 
 </div>
 </div>
