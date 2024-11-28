@@ -78,6 +78,8 @@ int Shell_start(){
     if (init_working_dir())
         return 1;
 
+    rl_outstream = stderr;
+
     while(1){
         
         // Mise à jour du prompt.
@@ -85,7 +87,7 @@ int Shell_start(){
         usr_prompt = readline(prompt);
         char *cp_prompt = usr_prompt;
         LinkedList file_principal = Shell_parse();
-        obj_print(file_principal); printf("\n");
+        /** obj_print(file_principal); printf("\n"); */
         previous_cmd_finish = Shell_execute_all(file_principal,1);
         free(cp_prompt);
         rl_free_line_state();
@@ -131,7 +133,6 @@ LinkedList Shell_parse(){
         char res = *(usr_prompt);
 
         if(res == '\0'){
-            fin :
             //en faire une fonction
             if(lu1lettre > 0){ // Si on a lu au moins une lettre alors il y a une commande à ajouter avant
                 apply_cmd(char_lu, file_secondaire);
@@ -350,7 +351,7 @@ static void update_prompt(){
 
     if (len>PROMPT_CHAR_LIMITS){
         // On pointe vers les 33 derniers caracètres (Les 3 sont pour les  ...)
-        tr = working_dir + (len-PROMPT_CHAR_LIMITS+4);
+        tr = working_dir + (len-PROMPT_CHAR_LIMITS+7);
         snprintf(path, 30, "...%s", tr);
     }
     else
@@ -361,7 +362,7 @@ static void update_prompt(){
     if (!previous_cmd_finish) // Si la précédente commande s'est bien terminée.
         snprintf(prompt, 50, "\033[32m[%d]\033[36m%s\033[00m$ ", previous_cmd_finish, path); // On le met en vert.
     else
-        snprintf(prompt, 50, "\033[91m[%d]\033[00m%s\033[00m$ ", previous_cmd_finish, path); // On le met en rouge.
+        snprintf(prompt, 50, "\033[91m[%d]\033[00m%s$ ", previous_cmd_finish, path); // On le met en rouge.
 
 }
 
