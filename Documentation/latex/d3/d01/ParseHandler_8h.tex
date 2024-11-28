@@ -5,8 +5,7 @@
 Fichier contenant les déclarations des fonctions de l\textquotesingle{}interface de la classe {\ttfamily \mbox{\hyperlink{struct__ParseHandler__}{\+\_\+\+Parse\+Handler\+\_\+}}}.  
 
 
-Ce graphe montre quels fichiers incluent directement ou indirectement ce fichier \+:
-\nopagebreak
+Ce graphe montre quels fichiers incluent directement ou indirectement ce fichier \+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -34,9 +33,9 @@ void \mbox{\hyperlink{ParseHandler_8h_a25f6a025bbc4381a9b5f56b1469748a6}{Parse\+
 Fichier contenant les déclarations des fonctions de l\textquotesingle{}interface de la classe {\ttfamily \mbox{\hyperlink{struct__ParseHandler__}{\+\_\+\+Parse\+Handler\+\_\+}}}. 
 
 Un objet Parse\+Handler est un objet qui définir comment interpréter les différents caractères lus dans un objet de type {\ttfamily \mbox{\hyperlink{struct__Parser__}{\+\_\+\+Parser\+\_\+}}}, il le fait par le biais d\textquotesingle{}une fonction que le parseur va appeller à chaque caractère lu. ~\newline
- Les objets {\ttfamily \mbox{\hyperlink{struct__ParseHandler__}{\+\_\+\+Parse\+Handler\+\_\+}}} sont composés d\textquotesingle{}autres objets de type {\ttfamily \+\_\+\+Parse\+Handler\+Interpret\+\_\+} qui sont des objets permettant de définissant certains actions à faire lors de la rencontre de certains caractères.
+ Les objets {\ttfamily \mbox{\hyperlink{struct__ParseHandler__}{\+\_\+\+Parse\+Handler\+\_\+}}} sont composés d\textquotesingle{}autres objets de type {\ttfamily \mbox{\hyperlink{struct__ParseHandlerInterpret__}{\+\_\+\+Parse\+Handler\+Interpret\+\_\+}}} qui sont des objets permettant de définissant certains actions à faire lors de la rencontre de certains caractères.
 
-En gros L\textquotesingle{}objet {\ttfamily \mbox{\hyperlink{struct__ParseHandler__}{\+\_\+\+Parse\+Handler\+\_\+}}} va reconnaitre cetrains caractères \char`\"{}spéciaux\char`\"{} et {\ttfamily \+\_\+\+Parse\+Handler\+Interpret\+\_\+} va définir les actions à faire lorsqu\textquotesingle{}on rencontre ces caractères.
+En gros L\textquotesingle{}objet {\ttfamily \mbox{\hyperlink{struct__ParseHandler__}{\+\_\+\+Parse\+Handler\+\_\+}}} va reconnaitre cetrains caractères \char`\"{}spéciaux\char`\"{} et {\ttfamily \mbox{\hyperlink{struct__ParseHandlerInterpret__}{\+\_\+\+Parse\+Handler\+Interpret\+\_\+}}} va définir les actions à faire lorsqu\textquotesingle{}on rencontre ces caractères.
 
 ~\newline
  Cette classe est donc une classe abstraite qui doit être redéfinie sur des classes plus spécifiques dans leur interprétation de caractères.
@@ -63,9 +62,9 @@ Classe des objets de type {\ttfamily Parse\+Handler}.
 Un objet Parse\+Handler est un objet qui défini comment interpréter les différents caractères lus dans un objet de type {\ttfamily \mbox{\hyperlink{struct__Parser__}{\+\_\+\+Parser\+\_\+}}}, il le fait par le biais d\textquotesingle{}une fonction que le parseur va appeller à chaque caractère lu. ~\newline
 
 
-Les objets {\ttfamily \mbox{\hyperlink{struct__ParseHandler__}{\+\_\+\+Parse\+Handler\+\_\+}}} sont composés d\textquotesingle{}autres objets de type {\ttfamily \+\_\+\+Parse\+Handler\+Interpret\+\_\+} qui sont des objets permettant de définissant certains actions à faire lors de la rencontre de certains caractères.
+Les objets {\ttfamily \mbox{\hyperlink{struct__ParseHandler__}{\+\_\+\+Parse\+Handler\+\_\+}}} sont composés d\textquotesingle{}autres objets de type {\ttfamily \mbox{\hyperlink{struct__ParseHandlerInterpret__}{\+\_\+\+Parse\+Handler\+Interpret\+\_\+}}} qui sont des objets permettant de définissant certains actions à faire lors de la rencontre de certains caractères.
 
-En gros L\textquotesingle{}objet {\ttfamily \mbox{\hyperlink{struct__ParseHandler__}{\+\_\+\+Parse\+Handler\+\_\+}}} va reconnaitre cetrains caractères \char`\"{}spéciaux\char`\"{} et {\ttfamily \+\_\+\+Parse\+Handler\+Interpret\+\_\+} va définir les actions à faire lorsqu\textquotesingle{}on rencontre ces caractères.
+En gros L\textquotesingle{}objet {\ttfamily \mbox{\hyperlink{struct__ParseHandler__}{\+\_\+\+Parse\+Handler\+\_\+}}} va reconnaitre cetrains caractères \char`\"{}spéciaux\char`\"{} et {\ttfamily \mbox{\hyperlink{struct__ParseHandlerInterpret__}{\+\_\+\+Parse\+Handler\+Interpret\+\_\+}}} va définir les actions à faire lorsqu\textquotesingle{}on rencontre ces caractères.
 
 ~\newline
  Cette classe est donc une classe abstraite qui doit être redéfinie sur des classes plus spécifiques dans leur interprétation de caractères.
