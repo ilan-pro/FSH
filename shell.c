@@ -85,7 +85,7 @@ int Shell_start(){
         usr_prompt = readline(prompt);
         char *cp_prompt = usr_prompt;
         LinkedList file_principal = Shell_parse();
-        //obj_print(file_principal); printf("\n");
+        obj_print(file_principal); printf("\n");
         previous_cmd_finish = Shell_execute_all(file_principal,1);
         free(cp_prompt);
         rl_free_line_state();
@@ -159,13 +159,12 @@ LinkedList Shell_parse(){
             
             // Si nous ne rencontrons un ';' c'est que nous avons fini notre PipeLine et que nous pouvons stocker dans la liste, le résultat de cette dernière.
             // Ajout de la pipeline (si et seulement si elle n'est pas vide)
-            if (LinkedList_size(file_secondaire) > 0)
+            if (LinkedList_size(file_secondaire) > 0){
                 LinkedList_add_last(file_principale, file_secondaire, 0);
-            else // Si elle est vide on la détruit
-                obj_destroy(file_secondaire);
+                // Nous pouvons maintenant commencer une nouvelle file afin de stocker la futur PipeLine
+                file_secondaire = obj_new(_LinkedList_);	
+            }
                 
-            // Nous pouvons maintenant commencer une nouvelle file afin de stocker la futur PipeLine
-            file_secondaire = obj_new(_LinkedList_);	
 
             usr_prompt++; // Décalage vers le caractère suivant
             continue;
