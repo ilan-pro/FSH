@@ -5,11 +5,19 @@
 Fichier contenant les déclarations des fonctions de l\textquotesingle{}interface de la classe {\ttfamily \mbox{\hyperlink{struct__ParseHandler__}{\+\_\+\+Parse\+Handler\+\_\+}}}.  
 
 
+{\ttfamily \#include \char`\"{}Parse\+Handler\+Interpret.\+h\char`\"{}}\newline
+Graphe des dépendances par inclusion de Parse\+Handler.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=212pt]{d8/d3b/ParseHandler_8h__incl}
+\end{center}
+\end{figure}
 Ce graphe montre quels fichiers incluent directement ou indirectement ce fichier \+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=203pt]{de/dd6/ParseHandler_8h__dep__incl}
+\includegraphics[width=275pt]{de/dd6/ParseHandler_8h__dep__incl}
 \end{center}
 \end{figure}
 \doxysubsection*{Classes}
@@ -25,8 +33,15 @@ typedef struct \mbox{\hyperlink{struct__ParseHandler__}{\+\_\+\+Parse\+Handler\+
 \doxysubsection*{Fonctions}
 \begin{DoxyCompactItemize}
 \item 
-void \mbox{\hyperlink{ParseHandler_8h_a25f6a025bbc4381a9b5f56b1469748a6}{Parse\+Handler\+\_\+interpret}} (\mbox{\hyperlink{ParseHandler_8h_af727df7833a4412028dba33631eea885}{Parse\+Handler}} self, struct \mbox{\hyperlink{struct__Parser__}{\+\_\+\+Parser\+\_\+}} $\ast$parser, char c)
-\begin{DoxyCompactList}\small\item\em Fonction qui interprète un caractère lu par le parseur. \end{DoxyCompactList}\end{DoxyCompactItemize}
+void \mbox{\hyperlink{ParseHandler_8h_a2c46e2d0afe736700cbe1ac70c2fc52b}{Parse\+Handler\+\_\+interpret}} (\mbox{\hyperlink{ParseHandler_8c_af727df7833a4412028dba33631eea885}{Parse\+Handler}} self, \mbox{\hyperlink{Parser_8c_a2572816ce925d606728b3d081f2280cc}{Parser}} parser, char c)
+\begin{DoxyCompactList}\small\item\em Fonction qui interprète un caractère lu par le parseur. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{ParseHandler_8h_a21c9bdafec1e8086ef1af306b9efb131}{Parse\+Handler\+\_\+action\+\_\+on\+\_\+parse\+\_\+finish}} (\mbox{\hyperlink{ParseHandler_8c_af727df7833a4412028dba33631eea885}{Parse\+Handler}} self, \mbox{\hyperlink{Parser_8c_a2572816ce925d606728b3d081f2280cc}{Parser}} parser)
+\begin{DoxyCompactList}\small\item\em Fonction qui exécute des instructions à la fin du parsing de la chaine, par le parseur. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{Class_8h_a6ec2a8ccaeb1e924a80036ec40760377}{Class}} \mbox{\hyperlink{ParseHandler_8h_a484c86b5ca4ecc2da9e5e2d1b88de4d1}{\+\_\+\+Parse\+Handler\+\_\+}}
+\begin{DoxyCompactList}\small\item\em Classe des objets de type {\ttfamily Parse\+Handler}. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Description détaillée}
@@ -53,7 +68,7 @@ Construction \+: {\ttfamily {\bfseries{ obj\+\_\+new({\ttfamily \mbox{\hyperlink
 \index{ParseHandler.h@{ParseHandler.h}!ParseHandler@{ParseHandler}}
 \index{ParseHandler@{ParseHandler}!ParseHandler.h@{ParseHandler.h}}
 \doxysubsubsection{\texorpdfstring{ParseHandler}{ParseHandler}}
-{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{struct__ParseHandler__}{\+\_\+\+Parse\+Handler\+\_\+}}$\ast$ \mbox{\hyperlink{ParseHandler_8h_af727df7833a4412028dba33631eea885}{Parse\+Handler}}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{struct__ParseHandler__}{\+\_\+\+Parse\+Handler\+\_\+}}$\ast$ \mbox{\hyperlink{ParseHandler_8c_af727df7833a4412028dba33631eea885}{Parse\+Handler}}}
 
 
 
@@ -78,11 +93,32 @@ Construction \+: {\ttfamily {\bfseries{ obj\+\_\+new({\ttfamily \mbox{\hyperlink
 \end{DoxyItemize}
 
 \doxysubsection{Documentation des fonctions}
-\mbox{\Hypertarget{ParseHandler_8h_a25f6a025bbc4381a9b5f56b1469748a6}\label{ParseHandler_8h_a25f6a025bbc4381a9b5f56b1469748a6}} 
+\mbox{\Hypertarget{ParseHandler_8h_a21c9bdafec1e8086ef1af306b9efb131}\label{ParseHandler_8h_a21c9bdafec1e8086ef1af306b9efb131}} 
+\index{ParseHandler.h@{ParseHandler.h}!ParseHandler\_action\_on\_parse\_finish@{ParseHandler\_action\_on\_parse\_finish}}
+\index{ParseHandler\_action\_on\_parse\_finish@{ParseHandler\_action\_on\_parse\_finish}!ParseHandler.h@{ParseHandler.h}}
+\doxysubsubsection{\texorpdfstring{ParseHandler\_action\_on\_parse\_finish()}{ParseHandler\_action\_on\_parse\_finish()}}
+{\footnotesize\ttfamily void Parse\+Handler\+\_\+action\+\_\+on\+\_\+parse\+\_\+finish (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ParseHandler_8c_af727df7833a4412028dba33631eea885}{Parse\+Handler}}}]{self,  }\item[{\mbox{\hyperlink{Parser_8c_a2572816ce925d606728b3d081f2280cc}{Parser}}}]{parser }\end{DoxyParamCaption})}
+
+
+
+Fonction qui exécute des instructions à la fin du parsing de la chaine, par le parseur. 
+
+Elle peut être utile pour travailler sur la dernière valeur qui se trouve dans le buffer à la fin du parsing.
+
+La fonction va appeller la fonction {\ttfamily Parse\+Handler\+Interpret\+\_\+action\+\_\+on\+\_\+parse\+\_\+finish()} de son interpreteur. Si elle n\textquotesingle{}est pas définie aucune erreur n\textquotesingle{}est pas levée.
+
+
+\begin{DoxyParams}{Paramètres}
+{\em self} & L\textquotesingle{}objet {\ttfamily Parse\+Handler} qui va gérer la fin du parsing. \\
+\hline
+{\em parser} & Le parseur qui vient de finir son parsing. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{ParseHandler_8h_a2c46e2d0afe736700cbe1ac70c2fc52b}\label{ParseHandler_8h_a2c46e2d0afe736700cbe1ac70c2fc52b}} 
 \index{ParseHandler.h@{ParseHandler.h}!ParseHandler\_interpret@{ParseHandler\_interpret}}
 \index{ParseHandler\_interpret@{ParseHandler\_interpret}!ParseHandler.h@{ParseHandler.h}}
 \doxysubsubsection{\texorpdfstring{ParseHandler\_interpret()}{ParseHandler\_interpret()}}
-{\footnotesize\ttfamily void Parse\+Handler\+\_\+interpret (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ParseHandler_8h_af727df7833a4412028dba33631eea885}{Parse\+Handler}}}]{self,  }\item[{struct \mbox{\hyperlink{struct__Parser__}{\+\_\+\+Parser\+\_\+}} $\ast$}]{parser,  }\item[{char}]{c }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void Parse\+Handler\+\_\+interpret (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ParseHandler_8c_af727df7833a4412028dba33631eea885}{Parse\+Handler}}}]{self,  }\item[{\mbox{\hyperlink{Parser_8c_a2572816ce925d606728b3d081f2280cc}{Parser}}}]{parser,  }\item[{char}]{c }\end{DoxyParamCaption})}
 
 
 
@@ -102,3 +138,23 @@ C\textquotesingle{}est à la classe fille d\textquotesingle{}indiquer comment el
 {\em c} & Le caractère lu par le parseur. \\
 \hline
 \end{DoxyParams}
+
+
+\doxysubsection{Documentation des variables}
+\mbox{\Hypertarget{ParseHandler_8h_a484c86b5ca4ecc2da9e5e2d1b88de4d1}\label{ParseHandler_8h_a484c86b5ca4ecc2da9e5e2d1b88de4d1}} 
+\index{ParseHandler.h@{ParseHandler.h}!\_ParseHandler\_@{\_ParseHandler\_}}
+\index{\_ParseHandler\_@{\_ParseHandler\_}!ParseHandler.h@{ParseHandler.h}}
+\doxysubsubsection{\texorpdfstring{\_ParseHandler\_}{\_ParseHandler\_}}
+{\footnotesize\ttfamily \mbox{\hyperlink{Class_8h_a6ec2a8ccaeb1e924a80036ec40760377}{Class}} \mbox{\hyperlink{struct__ParseHandler__}{\+\_\+\+Parse\+Handler\+\_\+}}\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Classe des objets de type {\ttfamily Parse\+Handler}. 
+
+Construction \+: {\ttfamily {\bfseries{ obj\+\_\+new({\ttfamily \mbox{\hyperlink{struct__ParseHandler__}{\+\_\+\+Parse\+Handler\+\_\+}}}, Parse\+Handler\+Interpret interpretor ) }}}~\newline
+ où \+: ~\newline
+ 
+\begin{DoxyItemize}
+\item {\ttfamily \mbox{\hyperlink{struct__ParseHandler__}{\+\_\+\+Parse\+Handler\+\_\+}}} désigne la classe des objets de type {\ttfamily Parse\+Handler} 
+\item {\bfseries{{\ttfamily interpretor}}} est un objet {\ttfamily Parse\+Handler\+Interpret} qui va interpréter les différents caracètres \char`\"{}spéciaux\char`\"{} reconnu par l\textquotesingle{}objet {\ttfamily Parse\+Handler}. 
+\end{DoxyItemize}

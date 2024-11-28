@@ -25,6 +25,7 @@
 
 #ifndef PARSE_HANDLER_H
 #define PARSE_HANDLER_H
+#include "ParseHandlerInterpret.h"
 
 #ifdef PARSE_HANDLER_CLASS
     
@@ -99,8 +100,20 @@
      * C'est largement suffisant pour définir des pointeurs `struct _Parser_ *` qui sont 
      * des `Parser`.
      */
-    struct _Parser_;
+    typedef struct _Parser_* Parser;
     /**@endcond*/
+
+    /**
+     * @brief Classe des objets de type `ParseHandler`.
+     *
+     * Construction : <code><strong> obj_new(`_ParseHandler_`,  ParseHandlerInterpret interpretor ) </strong></code><br>
+     * où : <br>
+     * <ul>
+     *  <li> `_ParseHandler_` désigne la classe des objets de type `ParseHandler`</li> 
+     *  <li> <strong>`interpretor`</strong> est un objet `ParseHandlerInterpret` qui va interpréter les différents caracètres "spéciaux" reconnu par l'objet `ParseHandler`.
+     * </ul>
+     */
+    extern Class _ParseHandler_;
 
     // Méthodes publics
         
@@ -118,8 +131,22 @@
      * @param parser Le parseur qui a lu le caractère (pour pouvoir lui demander de l'accepter par exemple).
      * @param c Le caractère lu par le parseur.
      */
-    void ParseHandler_interpret(ParseHandler self, struct _Parser_* parser, char c);
-    
+    void ParseHandler_interpret(ParseHandler self, Parser parser, char c);
+
+    /**
+     * @brief Fonction qui exécute des instructions à la fin du parsing de la chaine, par le parseur.
+     * 
+     * Elle peut être utile pour travailler sur la dernière valeur qui se trouve dans le buffer à la fin 
+     * du parsing.
+     * 
+     * La fonction va appeller la fonction `ParseHandlerInterpret_action_on_parse_finish()` de son 
+     * interpreteur. Si elle n'est pas définie aucune erreur n'est pas levée.
+     * 
+     * @param self L'objet `ParseHandler` qui va gérer la fin du parsing.
+     * @param parser Le parseur qui vient de finir son parsing.
+     *  
+     */
+    void ParseHandler_action_on_parse_finish(ParseHandler self, Parser parser);
 
 
 #endif

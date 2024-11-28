@@ -12,13 +12,14 @@
 
 #ifndef PARSE_HANDLER_INTERPRET_H
 #define PARSE_HANDLER_INTERPRET_H
+#include "../base/Class.h"
 
 #ifdef PARSE_HANDLER_INTERPRET_CLASS
     
-    #define PARSE_HANDLER_INTERPRET_H_FIELDS \
-        /** Pas d'attribut de classe */        
+    #define PARSE_HANDLER_INTERPRET_FIELDS \
+        void ( * action_on_parse_finish ) (ParseHandlerInterpret, Parser);
     
-    typedef struct _ParseHandler_* ParseHandler;    
+    typedef struct _ParseHandlerInterpret_* ParseHandlerInterpret;    
 
 #else
 
@@ -29,6 +30,7 @@
     } __parse_handler_interpret_private_fields;    
 
     #define PARSE_HANDLER_INTERPRET_H_FIELDS \
+        void ( * action_on_parse_finish ) (ParseHandlerInterpret, Parser);\
         const char _parser [ sizeof(__parse_handler_interpret_private_fields) ];
     
     /**@endcond*/
@@ -46,17 +48,25 @@
      */
     typedef struct _ParseHandlerInterpret_{
         /**
-         * @brief Classe des objets de type `ParseHandler`.
+         * @brief Classe des objets de type `ParseHandlerInterpret`.
          *
          * Construction : <code><strong> obj_new(`_ParseHandlerInterpret_`) </strong></code><br>
          * où `_ParseHandlerInterpret_` désigne la classe des objets de type `ParseHandlerInterpret`
          */
         Class _ParseHandlerInterpret_;
         PARSE_HANDLER_INTERPRET_H_FIELDS
-    }* ParseHandler;
+    }* ParseHandlerInterpret;
 
 #endif
     // Méthodes publics
+
+    /**
+     * @brief Classe des objets de type `ParseHandlerInterpret`.
+     *
+     * Construction : <code><strong> obj_new(`_ParseHandlerInterpret_`) </strong></code><br>
+     * où `_ParseHandlerInterpret_` désigne la classe des objets de type `ParseHandlerInterpret`
+     */
+    extern Class _ParseHandlerInterpret_;
         
 
 #endif

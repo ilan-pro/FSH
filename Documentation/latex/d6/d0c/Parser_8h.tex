@@ -6,12 +6,11 @@ Fichier contenant les déclarations des fonctions de l\textquotesingle{}interfac
 
 
 {\ttfamily \#include \char`\"{}Parse\+Handler.\+h\char`\"{}}\newline
-{\ttfamily \#include \char`\"{}../base/\+Class.\+h\char`\"{}}\newline
 Graphe des dépendances par inclusion de Parser.\+h\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=296pt]{da/d03/Parser_8h__incl}
+\includegraphics[width=212pt]{da/d03/Parser_8h__incl}
 \end{center}
 \end{figure}
 \doxysubsection*{Classes}
@@ -27,16 +26,23 @@ typedef struct \mbox{\hyperlink{struct__Parser__}{\+\_\+\+Parser\+\_\+}} $\ast$ 
 \doxysubsection*{Fonctions}
 \begin{DoxyCompactItemize}
 \item 
-void \mbox{\hyperlink{Parser_8h_a30fe57951c31e58dd4f2d8da1a1acfae}{Parser\+\_\+clear\+\_\+buf}} (\mbox{\hyperlink{Parser_8h_a2572816ce925d606728b3d081f2280cc}{Parser}} self)
+void \mbox{\hyperlink{Parser_8h_a30fe57951c31e58dd4f2d8da1a1acfae}{Parser\+\_\+clear\+\_\+buf}} (\mbox{\hyperlink{Parser_8c_a2572816ce925d606728b3d081f2280cc}{Parser}} self)
 \begin{DoxyCompactList}\small\item\em Fonction qui efface tous les caractères lu par le parser. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{Parser_8h_a9ac9d8da69d17a731eb3472ba3047ada}{Parser\+\_\+accept}} (\mbox{\hyperlink{Parser_8h_a2572816ce925d606728b3d081f2280cc}{Parser}} self)
+void \mbox{\hyperlink{Parser_8h_a9ac9d8da69d17a731eb3472ba3047ada}{Parser\+\_\+accept}} (\mbox{\hyperlink{Parser_8c_a2572816ce925d606728b3d081f2280cc}{Parser}} self)
 \begin{DoxyCompactList}\small\item\em Fonction qui va indiquer au parseur d\textquotesingle{}ajouter le caractère en tête de lecture dans la mémoire tampon. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{Parser_8h_acc6c2c29cf8b6c26b6d87c8441278691}{Parser\+\_\+pass}} (\mbox{\hyperlink{Parser_8h_a2572816ce925d606728b3d081f2280cc}{Parser}} self)
+void \mbox{\hyperlink{Parser_8h_acc6c2c29cf8b6c26b6d87c8441278691}{Parser\+\_\+pass}} (\mbox{\hyperlink{Parser_8c_a2572816ce925d606728b3d081f2280cc}{Parser}} self)
 \begin{DoxyCompactList}\small\item\em Fonction qui indiquer au parseur d\textquotesingle{}ignorer le caractère en tête de lecture à d\textquotesingle{}aller au suivant. \end{DoxyCompactList}\item 
-int \mbox{\hyperlink{Parser_8h_aaac1dba2122315975b44e737345dcb09}{Parser\+\_\+has\+\_\+read}} (\mbox{\hyperlink{Parser_8h_a2572816ce925d606728b3d081f2280cc}{Parser}} self)
-\begin{DoxyCompactList}\small\item\em Fonction qui indiquer si oui ou non le parseur a lu au moins un caractère. \end{DoxyCompactList}\item 
-const char $\ast$ \mbox{\hyperlink{Parser_8h_a1c986f4664d55ab43b32947f2774682c}{Parser\+\_\+get\+\_\+buff}} (\mbox{\hyperlink{Parser_8h_a2572816ce925d606728b3d081f2280cc}{Parser}} self)
-\begin{DoxyCompactList}\small\item\em Fonction qui renvoie la chaine de caractère contenant les caractères lus. \end{DoxyCompactList}\end{DoxyCompactItemize}
+int \mbox{\hyperlink{Parser_8h_ac60bf39f074d82788ee8c423e7e7f554}{Parser\+\_\+read}} (\mbox{\hyperlink{Parser_8c_a2572816ce925d606728b3d081f2280cc}{Parser}} self)
+\begin{DoxyCompactList}\small\item\em Fonction qui va renvoyer le nombre de caractère lu (qui la taille de la chaine du buffer). \end{DoxyCompactList}\item 
+const char $\ast$ \mbox{\hyperlink{Parser_8h_a1c986f4664d55ab43b32947f2774682c}{Parser\+\_\+get\+\_\+buff}} (\mbox{\hyperlink{Parser_8c_a2572816ce925d606728b3d081f2280cc}{Parser}} self)
+\begin{DoxyCompactList}\small\item\em Fonction qui renvoie la chaine de caractère contenant les caractères lus. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{Parser_8h_ac398c05c7e48eeea2b4b6705af2af0a2}{Parser\+\_\+parse}} (\mbox{\hyperlink{Parser_8c_a2572816ce925d606728b3d081f2280cc}{Parser}} self)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{Class_8h_a6ec2a8ccaeb1e924a80036ec40760377}{Class}} \mbox{\hyperlink{Parser_8h_a51f0219402aa5cfe41db24391d23acfb}{\+\_\+\+Parser\+\_\+}}
+\begin{DoxyCompactList}\small\item\em Classe des objets de type {\ttfamily Parser}. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Description détaillée}
@@ -60,7 +66,7 @@ Construction \+: {\ttfamily {\bfseries{ obj\+\_\+new({\ttfamily \mbox{\hyperlink
 \index{Parser.h@{Parser.h}!Parser@{Parser}}
 \index{Parser@{Parser}!Parser.h@{Parser.h}}
 \doxysubsubsection{\texorpdfstring{Parser}{Parser}}
-{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{struct__Parser__}{\+\_\+\+Parser\+\_\+}}$\ast$ \mbox{\hyperlink{Parser_8h_a2572816ce925d606728b3d081f2280cc}{Parser}}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{struct__Parser__}{\+\_\+\+Parser\+\_\+}}$\ast$ \mbox{\hyperlink{Parser_8c_a2572816ce925d606728b3d081f2280cc}{Parser}}}
 
 
 
@@ -86,7 +92,7 @@ Il faut donc faire attention à la chaine qu\textquotesingle{}on donne au constr
 \index{Parser.h@{Parser.h}!Parser\_accept@{Parser\_accept}}
 \index{Parser\_accept@{Parser\_accept}!Parser.h@{Parser.h}}
 \doxysubsubsection{\texorpdfstring{Parser\_accept()}{Parser\_accept()}}
-{\footnotesize\ttfamily void Parser\+\_\+accept (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{Parser_8h_a2572816ce925d606728b3d081f2280cc}{Parser}}}]{self }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void Parser\+\_\+accept (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{Parser_8c_a2572816ce925d606728b3d081f2280cc}{Parser}}}]{self }\end{DoxyParamCaption})}
 
 
 
@@ -103,7 +109,7 @@ Cette fonction va décaler la pointeur de la chaine de caractère de 1, et cela 
 \index{Parser.h@{Parser.h}!Parser\_clear\_buf@{Parser\_clear\_buf}}
 \index{Parser\_clear\_buf@{Parser\_clear\_buf}!Parser.h@{Parser.h}}
 \doxysubsubsection{\texorpdfstring{Parser\_clear\_buf()}{Parser\_clear\_buf()}}
-{\footnotesize\ttfamily void Parser\+\_\+clear\+\_\+buf (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{Parser_8h_a2572816ce925d606728b3d081f2280cc}{Parser}}}]{self }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void Parser\+\_\+clear\+\_\+buf (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{Parser_8c_a2572816ce925d606728b3d081f2280cc}{Parser}}}]{self }\end{DoxyParamCaption})}
 
 
 
@@ -120,7 +126,7 @@ Cette fonction remet la chaine de caractère contenant les caractères lus (mém
 \index{Parser.h@{Parser.h}!Parser\_get\_buff@{Parser\_get\_buff}}
 \index{Parser\_get\_buff@{Parser\_get\_buff}!Parser.h@{Parser.h}}
 \doxysubsubsection{\texorpdfstring{Parser\_get\_buff()}{Parser\_get\_buff()}}
-{\footnotesize\ttfamily const char$\ast$ Parser\+\_\+get\+\_\+buff (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{Parser_8h_a2572816ce925d606728b3d081f2280cc}{Parser}}}]{self }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily const char$\ast$ Parser\+\_\+get\+\_\+buff (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{Parser_8c_a2572816ce925d606728b3d081f2280cc}{Parser}}}]{self }\end{DoxyParamCaption})}
 
 
 
@@ -136,29 +142,26 @@ Cette fonction ne renvoie pas une copie de la mémoire tampon (donc ne pas désa
 \begin{DoxyReturn}{Renvoie}
 Le buffer (la chaine de caractère contenant les caractères lus) du paseur. 
 \end{DoxyReturn}
-\mbox{\Hypertarget{Parser_8h_aaac1dba2122315975b44e737345dcb09}\label{Parser_8h_aaac1dba2122315975b44e737345dcb09}} 
-\index{Parser.h@{Parser.h}!Parser\_has\_read@{Parser\_has\_read}}
-\index{Parser\_has\_read@{Parser\_has\_read}!Parser.h@{Parser.h}}
-\doxysubsubsection{\texorpdfstring{Parser\_has\_read()}{Parser\_has\_read()}}
-{\footnotesize\ttfamily int Parser\+\_\+has\+\_\+read (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{Parser_8h_a2572816ce925d606728b3d081f2280cc}{Parser}}}]{self }\end{DoxyParamCaption})}
+\mbox{\Hypertarget{Parser_8h_ac398c05c7e48eeea2b4b6705af2af0a2}\label{Parser_8h_ac398c05c7e48eeea2b4b6705af2af0a2}} 
+\index{Parser.h@{Parser.h}!Parser\_parse@{Parser\_parse}}
+\index{Parser\_parse@{Parser\_parse}!Parser.h@{Parser.h}}
+\doxysubsubsection{\texorpdfstring{Parser\_parse()}{Parser\_parse()}}
+{\footnotesize\ttfamily void Parser\+\_\+parse (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{Parser_8c_a2572816ce925d606728b3d081f2280cc}{Parser}}}]{self }\end{DoxyParamCaption})}
 
+@biref Fonction qui va commencer le parsing de la chaine du parseur.
 
-
-Fonction qui indiquer si oui ou non le parseur a lu au moins un caractère. 
+La fonction va appeller, pour chaque caractère lu, la fonction {\ttfamily \mbox{\hyperlink{ParseHandler_8c_a25f6a025bbc4381a9b5f56b1469748a6}{Parse\+Handler\+\_\+interpret()}}}.
 
 
 \begin{DoxyParams}{Paramètres}
-{\em self} & Le parseur dont on souhaite connaitre l\textquotesingle{}état du buffer. \\
+{\em self} & Le parseur dont on souhaite démarrer le parsing. \\
 \hline
 \end{DoxyParams}
-\begin{DoxyReturn}{Renvoie}
-1 Si le buffer n\textquotesingle{}est pas vide (il y a un caracètre lu), 0 sinon. 
-\end{DoxyReturn}
 \mbox{\Hypertarget{Parser_8h_acc6c2c29cf8b6c26b6d87c8441278691}\label{Parser_8h_acc6c2c29cf8b6c26b6d87c8441278691}} 
 \index{Parser.h@{Parser.h}!Parser\_pass@{Parser\_pass}}
 \index{Parser\_pass@{Parser\_pass}!Parser.h@{Parser.h}}
 \doxysubsubsection{\texorpdfstring{Parser\_pass()}{Parser\_pass()}}
-{\footnotesize\ttfamily void Parser\+\_\+pass (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{Parser_8h_a2572816ce925d606728b3d081f2280cc}{Parser}}}]{self }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void Parser\+\_\+pass (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{Parser_8c_a2572816ce925d606728b3d081f2280cc}{Parser}}}]{self }\end{DoxyParamCaption})}
 
 
 
@@ -171,3 +174,46 @@ Cette fonction va décaler la pointeur de la chaine de caractère de 1, et cela 
 {\em self} & Le perseur dont on veut ignorer le caractère en tête de lecture. \\
 \hline
 \end{DoxyParams}
+\mbox{\Hypertarget{Parser_8h_ac60bf39f074d82788ee8c423e7e7f554}\label{Parser_8h_ac60bf39f074d82788ee8c423e7e7f554}} 
+\index{Parser.h@{Parser.h}!Parser\_read@{Parser\_read}}
+\index{Parser\_read@{Parser\_read}!Parser.h@{Parser.h}}
+\doxysubsubsection{\texorpdfstring{Parser\_read()}{Parser\_read()}}
+{\footnotesize\ttfamily int Parser\+\_\+read (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{Parser_8c_a2572816ce925d606728b3d081f2280cc}{Parser}}}]{self }\end{DoxyParamCaption})}
+
+
+
+Fonction qui va renvoyer le nombre de caractère lu (qui la taille de la chaine du buffer). 
+
+La fonction permet de savoir aussi si on a oui ou non lu un caractère dans {\ttfamily self-\/$>$str}.
+
+
+\begin{DoxyParams}{Paramètres}
+{\em self} & Le parseur dont on souhaite connaitre la taille du buffer. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+$>$=1 Si le buffer n\textquotesingle{}est pas vide (il y a un caracètre lu), 0 sinon. 
+\end{DoxyReturn}
+
+
+\doxysubsection{Documentation des variables}
+\mbox{\Hypertarget{Parser_8h_a51f0219402aa5cfe41db24391d23acfb}\label{Parser_8h_a51f0219402aa5cfe41db24391d23acfb}} 
+\index{Parser.h@{Parser.h}!\_Parser\_@{\_Parser\_}}
+\index{\_Parser\_@{\_Parser\_}!Parser.h@{Parser.h}}
+\doxysubsubsection{\texorpdfstring{\_Parser\_}{\_Parser\_}}
+{\footnotesize\ttfamily \mbox{\hyperlink{Class_8h_a6ec2a8ccaeb1e924a80036ec40760377}{Class}} \mbox{\hyperlink{struct__Parser__}{\+\_\+\+Parser\+\_\+}}\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Classe des objets de type {\ttfamily Parser}. 
+
+Un objet Parser est un objet qui va analyser une chaine de caractère et va appeler une va appeler une certaine fonction (handler) à chaque caractère lu, afin qu\textquotesingle{}elle l\textquotesingle{}interprète à sa guise.
+
+Construction \+: {\ttfamily {\bfseries{ obj\+\_\+new({\ttfamily \mbox{\hyperlink{struct__Parser__}{\+\_\+\+Parser\+\_\+}}}, char$\ast$$\ast$ string, Parse\+Handler handler) }}}~\newline
+ où \+: ~\newline
+ 
+\begin{DoxyItemize}
+\item {\ttfamily \mbox{\hyperlink{struct__Parser__}{\+\_\+\+Parser\+\_\+}}} désigne la classe des objets de type {\ttfamily Parser} 
+\item {\bfseries{{\ttfamily string}}} est un pointeur vers une chaine de caractère (Attention la chaine de caractère est modifiée pendant la parsing, alors penser à faire une copie). 
+\item {\bfseries{{\ttfamily handler}}} un objet de type {\ttfamily \mbox{\hyperlink{struct__ParseHandler__}{\+\_\+\+Parse\+Handler\+\_\+}}} qui va contenir la fonction qui va gérer chaque caractère lu.  
+\end{DoxyItemize}

@@ -69,7 +69,8 @@ $(function() {
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
 <a href="#typedef-members">Définitions de type</a> &#124;
-<a href="#func-members">Fonctions</a>  </div>
+<a href="#func-members">Fonctions</a> &#124;
+<a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
 <div class="title">Référence du fichier Parser.h</div>  </div>
 </div><!--header-->
@@ -78,17 +79,17 @@ $(function() {
 <p>Fichier contenant les déclarations des fonctions de l'interface de la classe <code><a class="el" href="../../d6/dd8/struct__Parser__.html" title="Classe des objets de type Parser.">_Parser_</a></code>.  
 <a href="#details">Plus de détails...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="../../d3/d01/ParseHandler_8h_source.html">ParseHandler.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="../../d4/d05/Class_8h_source.html">../base/Class.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Graphe des dépendances par inclusion de Parser.h:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../da/d03/Parser_8h__incl.png" border="0" usemap="#aparser_2Parser_8h" alt=""/></div>
 <map name="aparser_2Parser_8h" id="aparser_2Parser_8h">
-<area shape="rect" title="Fichier contenant les déclarations des fonctions de l&#39;interface de la classe _Parser_." alt="" coords="76,5,195,32"/>
-<area shape="rect" href="../../d3/d01/ParseHandler_8h.html" title="Fichier contenant les déclarations des fonctions de l&#39;interface de la classe _ParseHandler_." alt="" coords="5,80,124,107"/>
-<area shape="rect" href="../../d4/d05/Class_8h.html" title="Fichier d&#39;en&#45;tête contenant la définition du type Class." alt="" coords="148,80,264,107"/>
-<area shape="rect" title=" " alt="" coords="119,155,194,181"/>
-<area shape="rect" title=" " alt="" coords="218,155,293,181"/>
+<area shape="rect" title="Fichier contenant les déclarations des fonctions de l&#39;interface de la classe _Parser_." alt="" coords="34,5,153,32"/>
+<area shape="rect" href="../../d3/d01/ParseHandler_8h.html" title="Fichier contenant les déclarations des fonctions de l&#39;interface de la classe _ParseHandler_." alt="" coords="34,80,153,107"/>
+<area shape="rect" href="../../dc/d4c/ParseHandlerInterpret_8h.html" title="Fichier contenant les déclarations des fonctions de l&#39;interface de la classe _ParseHandlerInterpret_." alt="" coords="5,155,181,181"/>
+<area shape="rect" href="../../d4/d05/Class_8h.html" title="Fichier d&#39;en&#45;tête contenant la définition du type Class." alt="" coords="35,229,151,256"/>
+<area shape="rect" title=" " alt="" coords="7,304,81,331"/>
+<area shape="rect" title=" " alt="" coords="105,304,180,331"/>
 </map>
 </div>
 </div>
@@ -108,21 +109,29 @@ Définitions de type</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Fonctions</h2></td></tr>
-<tr class="memitem:a30fe57951c31e58dd4f2d8da1a1acfae"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d0c/Parser_8h.html#a30fe57951c31e58dd4f2d8da1a1acfae">Parser_clear_buf</a> (<a class="el" href="../../d6/d0c/Parser_8h.html#a2572816ce925d606728b3d081f2280cc">Parser</a> self)</td></tr>
+<tr class="memitem:a30fe57951c31e58dd4f2d8da1a1acfae"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d0c/Parser_8h.html#a30fe57951c31e58dd4f2d8da1a1acfae">Parser_clear_buf</a> (<a class="el" href="../../d3/d41/Parser_8c.html#a2572816ce925d606728b3d081f2280cc">Parser</a> self)</td></tr>
 <tr class="memdesc:a30fe57951c31e58dd4f2d8da1a1acfae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fonction qui efface tous les caractères lu par le parser.  <a href="../../d6/d0c/Parser_8h.html#a30fe57951c31e58dd4f2d8da1a1acfae">Plus de détails...</a><br /></td></tr>
 <tr class="separator:a30fe57951c31e58dd4f2d8da1a1acfae"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9ac9d8da69d17a731eb3472ba3047ada"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d0c/Parser_8h.html#a9ac9d8da69d17a731eb3472ba3047ada">Parser_accept</a> (<a class="el" href="../../d6/d0c/Parser_8h.html#a2572816ce925d606728b3d081f2280cc">Parser</a> self)</td></tr>
+<tr class="memitem:a9ac9d8da69d17a731eb3472ba3047ada"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d0c/Parser_8h.html#a9ac9d8da69d17a731eb3472ba3047ada">Parser_accept</a> (<a class="el" href="../../d3/d41/Parser_8c.html#a2572816ce925d606728b3d081f2280cc">Parser</a> self)</td></tr>
 <tr class="memdesc:a9ac9d8da69d17a731eb3472ba3047ada"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fonction qui va indiquer au parseur d'ajouter le caractère en tête de lecture dans la mémoire tampon.  <a href="../../d6/d0c/Parser_8h.html#a9ac9d8da69d17a731eb3472ba3047ada">Plus de détails...</a><br /></td></tr>
 <tr class="separator:a9ac9d8da69d17a731eb3472ba3047ada"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acc6c2c29cf8b6c26b6d87c8441278691"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d0c/Parser_8h.html#acc6c2c29cf8b6c26b6d87c8441278691">Parser_pass</a> (<a class="el" href="../../d6/d0c/Parser_8h.html#a2572816ce925d606728b3d081f2280cc">Parser</a> self)</td></tr>
+<tr class="memitem:acc6c2c29cf8b6c26b6d87c8441278691"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d0c/Parser_8h.html#acc6c2c29cf8b6c26b6d87c8441278691">Parser_pass</a> (<a class="el" href="../../d3/d41/Parser_8c.html#a2572816ce925d606728b3d081f2280cc">Parser</a> self)</td></tr>
 <tr class="memdesc:acc6c2c29cf8b6c26b6d87c8441278691"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fonction qui indiquer au parseur d'ignorer le caractère en tête de lecture à d'aller au suivant.  <a href="../../d6/d0c/Parser_8h.html#acc6c2c29cf8b6c26b6d87c8441278691">Plus de détails...</a><br /></td></tr>
 <tr class="separator:acc6c2c29cf8b6c26b6d87c8441278691"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaac1dba2122315975b44e737345dcb09"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d0c/Parser_8h.html#aaac1dba2122315975b44e737345dcb09">Parser_has_read</a> (<a class="el" href="../../d6/d0c/Parser_8h.html#a2572816ce925d606728b3d081f2280cc">Parser</a> self)</td></tr>
-<tr class="memdesc:aaac1dba2122315975b44e737345dcb09"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fonction qui indiquer si oui ou non le parseur a lu au moins un caractère.  <a href="../../d6/d0c/Parser_8h.html#aaac1dba2122315975b44e737345dcb09">Plus de détails...</a><br /></td></tr>
-<tr class="separator:aaac1dba2122315975b44e737345dcb09"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1c986f4664d55ab43b32947f2774682c"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d0c/Parser_8h.html#a1c986f4664d55ab43b32947f2774682c">Parser_get_buff</a> (<a class="el" href="../../d6/d0c/Parser_8h.html#a2572816ce925d606728b3d081f2280cc">Parser</a> self)</td></tr>
+<tr class="memitem:ac60bf39f074d82788ee8c423e7e7f554"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d0c/Parser_8h.html#ac60bf39f074d82788ee8c423e7e7f554">Parser_read</a> (<a class="el" href="../../d3/d41/Parser_8c.html#a2572816ce925d606728b3d081f2280cc">Parser</a> self)</td></tr>
+<tr class="memdesc:ac60bf39f074d82788ee8c423e7e7f554"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fonction qui va renvoyer le nombre de caractère lu (qui la taille de la chaine du buffer).  <a href="../../d6/d0c/Parser_8h.html#ac60bf39f074d82788ee8c423e7e7f554">Plus de détails...</a><br /></td></tr>
+<tr class="separator:ac60bf39f074d82788ee8c423e7e7f554"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1c986f4664d55ab43b32947f2774682c"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d0c/Parser_8h.html#a1c986f4664d55ab43b32947f2774682c">Parser_get_buff</a> (<a class="el" href="../../d3/d41/Parser_8c.html#a2572816ce925d606728b3d081f2280cc">Parser</a> self)</td></tr>
 <tr class="memdesc:a1c986f4664d55ab43b32947f2774682c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fonction qui renvoie la chaine de caractère contenant les caractères lus.  <a href="../../d6/d0c/Parser_8h.html#a1c986f4664d55ab43b32947f2774682c">Plus de détails...</a><br /></td></tr>
 <tr class="separator:a1c986f4664d55ab43b32947f2774682c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac398c05c7e48eeea2b4b6705af2af0a2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d0c/Parser_8h.html#ac398c05c7e48eeea2b4b6705af2af0a2">Parser_parse</a> (<a class="el" href="../../d3/d41/Parser_8c.html#a2572816ce925d606728b3d081f2280cc">Parser</a> self)</td></tr>
+<tr class="separator:ac398c05c7e48eeea2b4b6705af2af0a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:a51f0219402aa5cfe41db24391d23acfb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d4/d05/Class_8h.html#a6ec2a8ccaeb1e924a80036ec40760377">Class</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d0c/Parser_8h.html#a51f0219402aa5cfe41db24391d23acfb">_Parser_</a></td></tr>
+<tr class="memdesc:a51f0219402aa5cfe41db24391d23acfb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Classe des objets de type <code>Parser</code>.  <a href="../../d6/d0c/Parser_8h.html#a51f0219402aa5cfe41db24391d23acfb">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a51f0219402aa5cfe41db24391d23acfb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Description détaillée</h2>
 <div class="textblock"><p>Fichier contenant les déclarations des fonctions de l'interface de la classe <code><a class="el" href="../../d6/dd8/struct__Parser__.html" title="Classe des objets de type Parser.">_Parser_</a></code>. </p>
@@ -146,7 +155,7 @@ Fonctions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">typedef struct <a class="el" href="../../d6/dd8/struct__Parser__.html">_Parser_</a>* <a class="el" href="../../d6/d0c/Parser_8h.html#a2572816ce925d606728b3d081f2280cc">Parser</a></td>
+          <td class="memname">typedef struct <a class="el" href="../../d6/dd8/struct__Parser__.html">_Parser_</a>* <a class="el" href="../../d3/d41/Parser_8c.html#a2572816ce925d606728b3d081f2280cc">Parser</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -178,7 +187,7 @@ Fonctions</h2></td></tr>
         <tr>
           <td class="memname">void Parser_accept </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="../../d6/d0c/Parser_8h.html#a2572816ce925d606728b3d081f2280cc">Parser</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="../../d3/d41/Parser_8c.html#a2572816ce925d606728b3d081f2280cc">Parser</a>&#160;</td>
           <td class="paramname"><em>self</em></td><td>)</td>
           <td></td>
         </tr>
@@ -205,7 +214,7 @@ Fonctions</h2></td></tr>
         <tr>
           <td class="memname">void Parser_clear_buf </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="../../d6/d0c/Parser_8h.html#a2572816ce925d606728b3d081f2280cc">Parser</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="../../d3/d41/Parser_8c.html#a2572816ce925d606728b3d081f2280cc">Parser</a>&#160;</td>
           <td class="paramname"><em>self</em></td><td>)</td>
           <td></td>
         </tr>
@@ -232,7 +241,7 @@ Fonctions</h2></td></tr>
         <tr>
           <td class="memname">const char* Parser_get_buff </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="../../d6/d0c/Parser_8h.html#a2572816ce925d606728b3d081f2280cc">Parser</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="../../d3/d41/Parser_8c.html#a2572816ce925d606728b3d081f2280cc">Parser</a>&#160;</td>
           <td class="paramname"><em>self</em></td><td>)</td>
           <td></td>
         </tr>
@@ -251,30 +260,29 @@ Fonctions</h2></td></tr>
 
 </div>
 </div>
-<a id="aaac1dba2122315975b44e737345dcb09"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aaac1dba2122315975b44e737345dcb09">&#9670;&nbsp;</a></span>Parser_has_read()</h2>
+<a id="ac398c05c7e48eeea2b4b6705af2af0a2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac398c05c7e48eeea2b4b6705af2af0a2">&#9670;&nbsp;</a></span>Parser_parse()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int Parser_has_read </td>
+          <td class="memname">void Parser_parse </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="../../d6/d0c/Parser_8h.html#a2572816ce925d606728b3d081f2280cc">Parser</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="../../d3/d41/Parser_8c.html#a2572816ce925d606728b3d081f2280cc">Parser</a>&#160;</td>
           <td class="paramname"><em>self</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Fonction qui indiquer si oui ou non le parseur a lu au moins un caractère. </p>
+<p>@biref Fonction qui va commencer le parsing de la chaine du parseur.</p>
+<p>La fonction va appeller, pour chaque caractère lu, la fonction <code><a class="el" href="../../d8/d13/ParseHandler_8c.html#a25f6a025bbc4381a9b5f56b1469748a6">ParseHandler_interpret()</a></code>.</p>
 <dl class="params"><dt>Paramètres</dt><dd>
   <table class="params">
-    <tr><td class="paramname">self</td><td>Le parseur dont on souhaite connaitre l'état du buffer. </td></tr>
+    <tr><td class="paramname">self</td><td>Le parseur dont on souhaite démarrer le parsing. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Renvoie</dt><dd>1 Si le buffer n'est pas vide (il y a un caracètre lu), 0 sinon. </dd></dl>
 
 </div>
 </div>
@@ -287,7 +295,7 @@ Fonctions</h2></td></tr>
         <tr>
           <td class="memname">void Parser_pass </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="../../d6/d0c/Parser_8h.html#a2572816ce925d606728b3d081f2280cc">Parser</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="../../d3/d41/Parser_8c.html#a2572816ce925d606728b3d081f2280cc">Parser</a>&#160;</td>
           <td class="paramname"><em>self</em></td><td>)</td>
           <td></td>
         </tr>
@@ -302,6 +310,70 @@ Fonctions</h2></td></tr>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="ac60bf39f074d82788ee8c423e7e7f554"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac60bf39f074d82788ee8c423e7e7f554">&#9670;&nbsp;</a></span>Parser_read()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Parser_read </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d3/d41/Parser_8c.html#a2572816ce925d606728b3d081f2280cc">Parser</a>&#160;</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Fonction qui va renvoyer le nombre de caractère lu (qui la taille de la chaine du buffer). </p>
+<p>La fonction permet de savoir aussi si on a oui ou non lu un caractère dans <code>self-&gt;str</code>.</p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>Le parseur dont on souhaite connaitre la taille du buffer. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>&gt;=1 Si le buffer n'est pas vide (il y a un caracètre lu), 0 sinon. </dd></dl>
+
+</div>
+</div>
+<h2 class="groupheader">Documentation des variables</h2>
+<a id="a51f0219402aa5cfe41db24391d23acfb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a51f0219402aa5cfe41db24391d23acfb">&#9670;&nbsp;</a></span>_Parser_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d4/d05/Class_8h.html#a6ec2a8ccaeb1e924a80036ec40760377">Class</a> <a class="el" href="../../d6/dd8/struct__Parser__.html">_Parser_</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Classe des objets de type <code>Parser</code>. </p>
+<p>Un objet Parser est un objet qui va analyser une chaine de caractère et va appeler une va appeler une certaine fonction (handler) à chaque caractère lu, afin qu'elle l'interprète à sa guise.</p>
+<p>Construction : <code><b> obj_new(<code><a class="el" href="../../d6/dd8/struct__Parser__.html" title="Classe des objets de type Parser.">_Parser_</a></code>, char** string, ParseHandler handler) </b></code><br  />
+ où : <br  />
+ </p><ul>
+<li>
+<code><a class="el" href="../../d6/dd8/struct__Parser__.html" title="Classe des objets de type Parser.">_Parser_</a></code> désigne la classe des objets de type <code>Parser</code> </li>
+<li>
+<b><code>string</code></b> est un pointeur vers une chaine de caractère (Attention la chaine de caractère est modifiée pendant la parsing, alors penser à faire une copie). </li>
+<li>
+<b><code>handler</code></b> un objet de type <code><a class="el" href="../../db/dea/struct__ParseHandler__.html" title="Classe des objets de type ParseHandler.">_ParseHandler_</a></code> qui va contenir la fonction qui va gérer chaque caractère lu.  </li>
+</ul>
 
 </div>
 </div>

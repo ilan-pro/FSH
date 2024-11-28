@@ -1,0 +1,251 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>FSH - Projet Système: Référence du fichier parser/ParseHandler.c</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">FSH - Projet Système
+   </div>
+   <div id="projectbrief">Projet de la matière Sy5 - U Paris Cité</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "../../search",false,'Recherche','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="../../menudata.js"></script>
+<script type="text/javascript" src="../../menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('../../',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="../../dir_572890c148f68441e050f6560d78312b.html">parser</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#typedef-members">Définitions de type</a> &#124;
+<a href="#func-members">Fonctions</a> &#124;
+<a href="#var-members">Variables</a>  </div>
+  <div class="headertitle">
+<div class="title">Référence du fichier ParseHandler.c</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Fichier contenant l'implémentation de la classe <code><a class="el" href="../../db/dea/struct__ParseHandler__.html" title="Classe des objets de type ParseHandler.">_ParseHandler_</a></code>.  
+<a href="#details">Plus de détails...</a></p>
+<div class="textblock"><code>#include &quot;<a class="el" href="../../d7/d58/new_8h_source.html">../base/new.h</a>&quot;</code><br />
+<code>#include &lt;assert.h&gt;</code><br />
+<code>#include &lt;stdlib.h&gt;</code><br />
+<code>#include &lt;string.h&gt;</code><br />
+<code>#include &lt;unistd.h&gt;</code><br />
+</div><div class="textblock"><div class="dynheader">
+Graphe des dépendances par inclusion de ParseHandler.c:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../d4/d97/ParseHandler_8c__incl.png" border="0" usemap="#aparser_2ParseHandler_8c" alt=""/></div>
+<map name="aparser_2ParseHandler_8c" id="aparser_2ParseHandler_8c">
+<area shape="rect" title="Fichier contenant l&#39;implémentation de la classe _ParseHandler_." alt="" coords="223,5,385,32"/>
+<area shape="rect" href="../../d7/d58/new_8h.html" title="Fichier d&#39;en&#45;tête contenant les déclarations de toutes les méthodes génériques agissant sur des objet..." alt="" coords="39,80,145,107"/>
+<area shape="rect" title=" " alt="" coords="169,80,244,107"/>
+<area shape="rect" title=" " alt="" coords="269,80,339,107"/>
+<area shape="rect" title=" " alt="" coords="363,80,434,107"/>
+<area shape="rect" title=" " alt="" coords="459,80,533,107"/>
+<area shape="rect" href="../../d4/d05/Class_8h.html" title="Fichier d&#39;en&#45;tête contenant la définition du type Class." alt="" coords="57,155,127,181"/>
+<area shape="rect" title=" " alt="" coords="5,229,80,256"/>
+<area shape="rect" title=" " alt="" coords="104,229,179,256"/>
+</map>
+</div>
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/dea/struct__ParseHandler__.html">_ParseHandler_</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Classe des objets de type <code>ParseHandler</code>.  <a href="../../db/dea/struct__ParseHandler__.html#details">Plus de détails...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
+Définitions de type</h2></td></tr>
+<tr class="memitem:af727df7833a4412028dba33631eea885"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="../../db/dea/struct__ParseHandler__.html">_ParseHandler_</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d13/ParseHandler_8c.html#af727df7833a4412028dba33631eea885">ParseHandler</a></td></tr>
+<tr class="separator:af727df7833a4412028dba33631eea885"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Fonctions</h2></td></tr>
+<tr class="memitem:a25f6a025bbc4381a9b5f56b1469748a6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d13/ParseHandler_8c.html#a25f6a025bbc4381a9b5f56b1469748a6">ParseHandler_interpret</a> (<a class="el" href="../../d8/d13/ParseHandler_8c.html#af727df7833a4412028dba33631eea885">ParseHandler</a> self, struct <a class="el" href="../../d6/dd8/struct__Parser__.html">_Parser_</a> *parser, char c)</td></tr>
+<tr class="separator:a25f6a025bbc4381a9b5f56b1469748a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a496865baa20b10d0c1ac2cffaf4c9fdd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d13/ParseHandler_8c.html#a496865baa20b10d0c1ac2cffaf4c9fdd">ParseHandler_action_on_parse_finish</a> (<a class="el" href="../../d8/d13/ParseHandler_8c.html#af727df7833a4412028dba33631eea885">ParseHandler</a> self, struct <a class="el" href="../../d6/dd8/struct__Parser__.html">_Parser_</a> *parser)</td></tr>
+<tr class="separator:a496865baa20b10d0c1ac2cffaf4c9fdd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:a484c86b5ca4ecc2da9e5e2d1b88de4d1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d4/d05/Class_8h.html#a6ec2a8ccaeb1e924a80036ec40760377">Class</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d13/ParseHandler_8c.html#a484c86b5ca4ecc2da9e5e2d1b88de4d1">_ParseHandler_</a> = &amp;__ParseHandler__</td></tr>
+<tr class="memdesc:a484c86b5ca4ecc2da9e5e2d1b88de4d1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Classe des objets de type <code>ParseHandler</code>.  <a href="../../d8/d13/ParseHandler_8c.html#a484c86b5ca4ecc2da9e5e2d1b88de4d1">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a484c86b5ca4ecc2da9e5e2d1b88de4d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Description détaillée</h2>
+<div class="textblock"><p>Fichier contenant l'implémentation de la classe <code><a class="el" href="../../db/dea/struct__ParseHandler__.html" title="Classe des objets de type ParseHandler.">_ParseHandler_</a></code>. </p>
+<p>Un objet ParseHandler est un objet qui définir comment interpréter les différents caractères lus dans un objet de type <code><a class="el" href="../../d6/dd8/struct__Parser__.html" title="Classe des objets de type Parser.">_Parser_</a></code>, il le fait par le biais d'une fonction que le parseur va appeller à chaque caractère lu. <br  />
+ Les objets <code><a class="el" href="../../db/dea/struct__ParseHandler__.html" title="Classe des objets de type ParseHandler.">_ParseHandler_</a></code> sont composés d'autres objets de type <code><a class="el" href="../../da/da4/struct__ParseHandlerInterpret__.html" title="Classe des objets de type ParseHandlerInterpret.">_ParseHandlerInterpret_</a></code> qui sont des objets permettant de définissant certains actions à faire lors de la rencontre de certains caractères.</p>
+<p>En gros L'objet <code><a class="el" href="../../db/dea/struct__ParseHandler__.html" title="Classe des objets de type ParseHandler.">_ParseHandler_</a></code> va reconnaitre cetrains caractères "spéciaux" et <code><a class="el" href="../../da/da4/struct__ParseHandlerInterpret__.html" title="Classe des objets de type ParseHandlerInterpret.">_ParseHandlerInterpret_</a></code> va définir les actions à faire lorsqu'on rencontre ces caractères.</p>
+<p><br  />
+ Cette classe est donc une classe abstraite qui doit être redéfinie sur des classes plus spécifiques dans leur interprétation de caractères.</p>
+<p>Construction : <code><b> obj_new(<code><a class="el" href="../../db/dea/struct__ParseHandler__.html" title="Classe des objets de type ParseHandler.">_ParseHandler_</a></code>, ParseHandlerInterpret interpretor ) </b></code><br  />
+ où : <br  />
+ </p><ul>
+<li>
+<code><a class="el" href="../../db/dea/struct__ParseHandler__.html" title="Classe des objets de type ParseHandler.">_ParseHandler_</a></code> désigne la classe des objets de type <code>ParseHandler</code> </li>
+<li>
+<b><code>interpretor</code></b> est un objet <code>ParseHandlerInterpret</code> qui va interpréter les différents caracètres "spéciaux" reconnu par l'objet <code>ParseHandler</code>. </li>
+</ul>
+</div><h2 class="groupheader">Documentation des définitions de type</h2>
+<a id="af727df7833a4412028dba33631eea885"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af727df7833a4412028dba33631eea885">&#9670;&nbsp;</a></span>ParseHandler</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef struct <a class="el" href="../../db/dea/struct__ParseHandler__.html">_ParseHandler_</a>* <a class="el" href="../../d8/d13/ParseHandler_8c.html#af727df7833a4412028dba33631eea885">ParseHandler</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Documentation des fonctions</h2>
+<a id="a496865baa20b10d0c1ac2cffaf4c9fdd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a496865baa20b10d0c1ac2cffaf4c9fdd">&#9670;&nbsp;</a></span>ParseHandler_action_on_parse_finish()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ParseHandler_action_on_parse_finish </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d8/d13/ParseHandler_8c.html#af727df7833a4412028dba33631eea885">ParseHandler</a>&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">struct <a class="el" href="../../d6/dd8/struct__Parser__.html">_Parser_</a> *&#160;</td>
+          <td class="paramname"><em>parser</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a25f6a025bbc4381a9b5f56b1469748a6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a25f6a025bbc4381a9b5f56b1469748a6">&#9670;&nbsp;</a></span>ParseHandler_interpret()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ParseHandler_interpret </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d8/d13/ParseHandler_8c.html#af727df7833a4412028dba33631eea885">ParseHandler</a>&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">struct <a class="el" href="../../d6/dd8/struct__Parser__.html">_Parser_</a> *&#160;</td>
+          <td class="paramname"><em>parser</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char&#160;</td>
+          <td class="paramname"><em>c</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Documentation des variables</h2>
+<a id="a484c86b5ca4ecc2da9e5e2d1b88de4d1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a484c86b5ca4ecc2da9e5e2d1b88de4d1">&#9670;&nbsp;</a></span>_ParseHandler_</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d4/d05/Class_8h.html#a6ec2a8ccaeb1e924a80036ec40760377">Class</a> <a class="el" href="../../db/dea/struct__ParseHandler__.html">_ParseHandler_</a> = &amp;__ParseHandler__</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Classe des objets de type <code>ParseHandler</code>. </p>
+<p>Construction : <code><b> obj_new(<code><a class="el" href="../../db/dea/struct__ParseHandler__.html" title="Classe des objets de type ParseHandler.">_ParseHandler_</a></code>, ParseHandlerInterpret interpretor ) </b></code><br  />
+ où : <br  />
+ </p><ul>
+<li>
+<code><a class="el" href="../../db/dea/struct__ParseHandler__.html" title="Classe des objets de type ParseHandler.">_ParseHandler_</a></code> désigne la classe des objets de type <code>ParseHandler</code> </li>
+<li>
+<b><code>interpretor</code></b> est un objet <code>ParseHandlerInterpret</code> qui va interpréter les différents caracètres "spéciaux" reconnu par l'objet <code>ParseHandler</code>. </li>
+</ul>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré par&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+</small></address>
+</body>
+</html>

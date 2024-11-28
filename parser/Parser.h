@@ -22,13 +22,13 @@
 #ifndef PARSER_H
 #define PARSER_H
 #include "ParseHandler.h"
-#include "../base/Class.h"
 
 #ifdef PARSER_CLASS
     
     #define PARSER_FIELDS \
         char** str; /** Il s'agit de la chaine de caractère à lire ( /!\ elle est modifiée pendant le parsing) */\
         char* buffer; /**Il s'agit des caractères qui sont déjà lus (mémoire tampon)*/\
+        int buff_size; /**Il s'agit de la taille du buffer (ça évite de la calculer tout le temps).*/ \
         ParseHandler handler; /** Il s'agit du getionnaire qui va gérer chaque caractère lu par le parser */
     
     typedef struct _Parser_* Parser;    
@@ -38,8 +38,9 @@
     /**@cond HIDE_THIS*/
     
     typedef struct __parse_prv_f {
-        char** str;
+        char* const* str;
         char* buffer; 
+        int buff_size;
         ParseHandler handler; 
     } __parser_private_fields;    
 
@@ -92,6 +93,23 @@
 
 #endif
     // Méthodes publics
+    
+    /**
+     * @brief Classe des objets de type `Parser`.
+     *
+     * Un objet Parser est un objet qui va analyser une chaine de caractère et va appeler une va appeler 
+     * une certaine fonction (handler) à chaque caractère lu, afin qu'elle l'interprète à sa guise.
+     * 
+     * Construction : <code><strong> obj_new(`_Parser_`, char** string, ParseHandler handler) </strong></code><br>
+     * où : <br>
+     * <ul>
+     *  <li> `_Parser_` désigne la classe des objets de type `Parser`</li> 
+     *  <li> <strong>`string`</strong> est un pointeur vers une chaine de caractère (Attention la chaine de 
+     *  caractère est modifiée pendant la parsing, alors penser à faire une copie).</li>
+     *  <li> <strong>`handler`</strong> un objet de type `_ParseHandler_` qui va contenir la fonction qui va gérer chaque caractère lu. </li>
+     * </ul>
+     */ 
+    extern Class _Parser_;
         
     /**
      * @brief Fonction qui efface tous les caractères lu par le parser.
@@ -127,12 +145,14 @@
     void Parser_pass(Parser self);
     
     /**
-     * @brief Fonction qui indiquer si oui ou non le parseur a lu au moins un caractère.
+     * @brief Fonction qui va renvoyer le nombre de caractère lu (qui la taille de la chaine du buffer).
      * 
-     * @param self Le parseur dont on souhaite connaitre l'état du buffer.
-     * @return 1 Si le buffer n'est pas vide (il y a un caracètre lu), 0 sinon.
+     * La fonction permet de savoir aussi si on a oui ou non lu un caractère dans `self->str`.
+     * 
+     * @param self Le parseur dont on souhaite connaitre la taille du buffer.
+     * @return >=1 Si le buffer n'est pas vide (il y a un caracètre lu), 0 sinon.
      */
-    int Parser_has_read(Parser self);
+    int Parser_read(Parser self);
 
     
     /**
@@ -144,7 +164,14 @@
      * @return Le buffer (la chaine de caractère contenant les caractères lus) du paseur.
      */
     const char* Parser_get_buff(Parser self);
-    
-
+            
+    /**
+     * @biref Fonction qui va commencer le parsing de la chaine du parseur.
+     *
+     * La fonction va appeller, pour chaque caractère lu, la fonction `ParseHandler_interpret()`.
+     *
+     * @param self Le parseur dont on souhaite démarrer le parsing.
+     */
+    void Parser_parse(Parser self);
 
 #endif
