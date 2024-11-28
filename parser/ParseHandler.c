@@ -223,7 +223,7 @@ void ParseHandler_action_on_parse_finish(ParseHandler self, struct _Parser_* par
     assert(self->interpretor);
     
     if (self->interpretor->action_on_parse_finish)
-        self->interpretor->action_on_parse_finish(self, parser);
+        self->interpretor->action_on_parse_finish(self->interpretor, parser);
     
 }
 

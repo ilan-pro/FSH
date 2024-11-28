@@ -44,7 +44,7 @@
     } __parse_handler_private_fields;    
 
     #define PARSE_HANDLER_H_FIELDS \
-        const char _parser [ sizeof(__parse_handler_private_fields) ];
+        const char _parser_hand [ sizeof(__parse_handler_private_fields) ];
     
     /**@endcond*/
 

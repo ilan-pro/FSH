@@ -5,6 +5,11 @@
  * Un objet Parser est un objet qui va analyser une chaine de caractère et va appeler une va appeler 
  * une certaine fonction (handler) à chaque caractère lu, afin qu'elle l'interprète à sa guise.
  * 
+ * <br>
+ * NB : Lorsqu'un parsing est terminé. L'objet peut ne plus être utilisable (tout appel à `Parser_parse()` finira aussitôt), car le parseur 
+ * aura atteint la fin de la chaine à lire (à moins qu'il ne soit stopé avant).
+ * <br>
+ * 
  *
  * La classe possède un certains nombres de fonction permettant de manipuler la chaine en cours de 
  * lecture et le tampon qui stock les caractères déjà lus.
@@ -29,6 +34,7 @@
         char** str; /** Il s'agit de la chaine de caractère à lire ( /!\ elle est modifiée pendant le parsing) */\
         char* buffer; /**Il s'agit des caractères qui sont déjà lus (mémoire tampon)*/\
         int buff_size; /**Il s'agit de la taille du buffer (ça évite de la calculer tout le temps).*/ \
+        unsigned char parse; /** Boolean indiquant si oui ou non il faut continuer le parsing (sur la lettre suivante) ou arrêter. */\
         ParseHandler handler; /** Il s'agit du getionnaire qui va gérer chaque caractère lu par le parser */
     
     typedef struct _Parser_* Parser;    
@@ -41,6 +47,7 @@
         char* const* str;
         char* buffer; 
         int buff_size;
+        unsigned char parse;
         ParseHandler handler; 
     } __parser_private_fields;    
 
@@ -58,6 +65,11 @@
      * 
      * La classe possède un certains nombres de fonction permettant de manipuler la chaine en cours de 
      * lecture et le tampon qui stock les caractères déjà lus.
+     * 
+     * <br>
+     * NB : Lorsqu'un parsing est terminé. L'objet peut ne plus être utilisable (tout appel à `Parser_parse()` finira aussitôt), car le parseur 
+     * aura atteint la fin de la chaine à lire (à moins qu'il ne soit stopé avant).
+     * <br>
      * 
      * Construction : <code><strong> obj_new(`_Parser_`, char** string, ParseHandler handler) </strong></code><br>
      * où : <br>
@@ -166,7 +178,7 @@
     const char* Parser_get_buff(Parser self);
             
     /**
-     * @biref Fonction qui va commencer le parsing de la chaine du parseur.
+     * @brief Fonction qui va commencer le parsing de la chaine du parseur.
      *
      * La fonction va appeller, pour chaque caractère lu, la fonction `ParseHandler_interpret()`.
      *
@@ -174,4 +186,11 @@
      */
     void Parser_parse(Parser self);
 
+    /**
+     * @brief Fonction qui va mettre un terme au parsing.
+
+     *
+     * @param self Le parseur dont on souhaite terminer le parsing.
+     */
+    void Parser_stop_parse(Parser self);
 #endif

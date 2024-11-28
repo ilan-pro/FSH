@@ -68,5 +68,11 @@ var menudata={children:[
 {text:"t",url:"globals_vars.html#index_t"},
 {text:"u",url:"globals_vars.html#index_u"},
 {text:"w",url:"globals_vars.html#index_w"}]},
-{text:"Définitions de type",url:"globals_type.html"},
+{text:"Définitions de type",url:"globals_type.html",children:[
+{text:"c",url:"globals_type.html#index_c"},
+{text:"e",url:"globals_type.html#index_e"},
+{text:"f",url:"globals_type.html#index_f"},
+{text:"l",url:"globals_type.html#index_l"},
+{text:"p",url:"globals_type.html#index_p"},
+{text:"s",url:"globals_type.html#index_s"}]},
 {text:"Macros",url:"globals_defs.html"}]}]}]}

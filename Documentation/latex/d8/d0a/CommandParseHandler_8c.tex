@@ -1,0 +1,100 @@
+\hypertarget{CommandParseHandler_8c}{}\doxysection{Référence du fichier parser/\+Command\+Parse\+Handler.c}
+\label{CommandParseHandler_8c}\index{parser/CommandParseHandler.c@{parser/CommandParseHandler.c}}
+
+
+Fichier contenantl\textquotesingle{}implémentation de la classe {\ttfamily \+\_\+\+Command\+Prompt\+Handler\+\_\+} sous-\/type de {\ttfamily \mbox{\hyperlink{struct__ParseHandler__}{\+\_\+\+Parse\+Handler\+\_\+}}}.  
+
+
+{\ttfamily \#include \char`\"{}../base/new.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Command\+Parse\+Handler\+Interpret.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$assert.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+Graphe des dépendances par inclusion de Command\+Parse\+Handler.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d1/dbd/CommandParseHandler_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct__CommandParseHandler__}{\+\_\+\+Command\+Parse\+Handler\+\_\+}}
+\begin{DoxyCompactList}\small\item\em Classe des objets de type {\ttfamily Parse\+Handler}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Définitions de type}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \mbox{\hyperlink{struct__CommandParseHandler__}{\+\_\+\+Command\+Parse\+Handler\+\_\+}} $\ast$ \mbox{\hyperlink{CommandParseHandler_8c_aa36e2fa996634f02780d5a38a8e8dae9}{Command\+Parse\+Handler}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Fonctions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{CommandParseHandler_8c_a496865baa20b10d0c1ac2cffaf4c9fdd}{Parse\+Handler\+\_\+action\+\_\+on\+\_\+parse\+\_\+finish}} (\mbox{\hyperlink{ParseHandler_8c_af727df7833a4412028dba33631eea885}{Parse\+Handler}} self, struct \mbox{\hyperlink{struct__Parser__}{\+\_\+\+Parser\+\_\+}} $\ast$parser)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{Class_8h_a6ec2a8ccaeb1e924a80036ec40760377}{Class}} \mbox{\hyperlink{CommandParseHandler_8c_a0a44c0bc3017de509ea11f918e297f25}{\+\_\+\+Command\+Parse\+Handler\+\_\+}} = \&\+\_\+\+\_\+\+Command\+Parse\+Handler\+\_\+\+\_\+
+\begin{DoxyCompactList}\small\item\em Classe des objets de type {\ttfamily Command\+Parse\+Handler}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Description détaillée}
+Fichier contenantl\textquotesingle{}implémentation de la classe {\ttfamily \+\_\+\+Command\+Prompt\+Handler\+\_\+} sous-\/type de {\ttfamily \mbox{\hyperlink{struct__ParseHandler__}{\+\_\+\+Parse\+Handler\+\_\+}}}. 
+
+Un objet Parse\+Handler est un objet qui définir comment interpréter les différents caractères lus dans un objet de type {\ttfamily \mbox{\hyperlink{struct__Parser__}{\+\_\+\+Parser\+\_\+}}}, il le fait par le biais d\textquotesingle{}une fonction que le parseur va appeller à chaque caractère lu. ~\newline
+ Les objets {\ttfamily \mbox{\hyperlink{struct__ParseHandler__}{\+\_\+\+Parse\+Handler\+\_\+}}} sont composés d\textquotesingle{}autres objets de type {\ttfamily \mbox{\hyperlink{struct__ParseHandlerInterpret__}{\+\_\+\+Parse\+Handler\+Interpret\+\_\+}}} qui sont des objets permettant de définissant certains actions à faire lors de la rencontre de certains caractères.
+
+En gros L\textquotesingle{}objet {\ttfamily \mbox{\hyperlink{struct__ParseHandler__}{\+\_\+\+Parse\+Handler\+\_\+}}} va reconnaitre cetrains caractères \char`\"{}spéciaux\char`\"{} et {\ttfamily \mbox{\hyperlink{struct__ParseHandlerInterpret__}{\+\_\+\+Parse\+Handler\+Interpret\+\_\+}}} va définir les actions à faire lorsqu\textquotesingle{}on rencontre ces caractères.
+
+~\newline
+ Cette classe est un sous-\/type de {\ttfamily \mbox{\hyperlink{struct__ParseHandler__}{\+\_\+\+Parse\+Handler\+\_\+}}} reservée à l\textquotesingle{}extraction des commandes à partir du prompt de l\textquotesingle{}utilisateur. L\textquotesingle{}objet de type {\ttfamily \+\_\+\+Command\+Prompt\+Handler\+\_\+} reconnait donc certains caractères qu\textquotesingle{}il considère comme spéciaux (\textquotesingle{}-\/\textquotesingle{}, \textquotesingle{};\textquotesingle{}, \textquotesingle{}$\vert$\textquotesingle{}, etc.). Il appelle son interpreteur de type {\ttfamily \+\_\+\+Command\+Prompt\+Handler\+Interpret\+\_\+} pour qu\textquotesingle{}il les interprète. 
+
+Par exemple un caractère {\ttfamily ;} pour un interpreteur qui crée et ajoute des pipelines des commandes, signifie pour lui la fin d\textquotesingle{}une pipeline et donc qu\textquotesingle{}il doit ajouter la pipline courante dans la file principale et en créer une nouvelle pour la suite, tandis que pour un interpreteur qui construit une commande ce caractère signifie qu\textquotesingle{}il doit stoper son parseur car la construction de la commande est terminée.
+
+Construction \+: {\ttfamily {\bfseries{ obj\+\_\+new({\ttfamily \mbox{\hyperlink{struct__CommandParseHandler__}{\+\_\+\+Command\+Parse\+Handler\+\_\+}}}, Parse\+Handler\+Interpret interpretor ) }}}~\newline
+ où \+: ~\newline
+ 
+\begin{DoxyItemize}
+\item {\ttfamily \mbox{\hyperlink{struct__CommandParseHandler__}{\+\_\+\+Command\+Parse\+Handler\+\_\+}}} désigne la classe des objets de type {\ttfamily Command\+Parse\+Handler} 
+\item {\bfseries{{\ttfamily interpretor}}} est un objet {\ttfamily \+\_\+\+Command\+Prompt\+Handler\+Interpret\+\_\+} qui va interpréter les différents caracètres \char`\"{}spéciaux\char`\"{} reconnus par l\textquotesingle{}objet {\ttfamily Command\+Parse\+Handler}  
+\end{DoxyItemize}
+
+\doxysubsection{Documentation des définitions de type}
+\mbox{\Hypertarget{CommandParseHandler_8c_aa36e2fa996634f02780d5a38a8e8dae9}\label{CommandParseHandler_8c_aa36e2fa996634f02780d5a38a8e8dae9}} 
+\index{CommandParseHandler.c@{CommandParseHandler.c}!CommandParseHandler@{CommandParseHandler}}
+\index{CommandParseHandler@{CommandParseHandler}!CommandParseHandler.c@{CommandParseHandler.c}}
+\doxysubsubsection{\texorpdfstring{CommandParseHandler}{CommandParseHandler}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{struct__CommandParseHandler__}{\+\_\+\+Command\+Parse\+Handler\+\_\+}}$\ast$ \mbox{\hyperlink{CommandParseHandler_8c_aa36e2fa996634f02780d5a38a8e8dae9}{Command\+Parse\+Handler}}}
+
+
+
+\doxysubsection{Documentation des fonctions}
+\mbox{\Hypertarget{CommandParseHandler_8c_a496865baa20b10d0c1ac2cffaf4c9fdd}\label{CommandParseHandler_8c_a496865baa20b10d0c1ac2cffaf4c9fdd}} 
+\index{CommandParseHandler.c@{CommandParseHandler.c}!ParseHandler\_action\_on\_parse\_finish@{ParseHandler\_action\_on\_parse\_finish}}
+\index{ParseHandler\_action\_on\_parse\_finish@{ParseHandler\_action\_on\_parse\_finish}!CommandParseHandler.c@{CommandParseHandler.c}}
+\doxysubsubsection{\texorpdfstring{ParseHandler\_action\_on\_parse\_finish()}{ParseHandler\_action\_on\_parse\_finish()}}
+{\footnotesize\ttfamily void Parse\+Handler\+\_\+action\+\_\+on\+\_\+parse\+\_\+finish (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ParseHandler_8c_af727df7833a4412028dba33631eea885}{Parse\+Handler}}}]{self,  }\item[{struct \mbox{\hyperlink{struct__Parser__}{\+\_\+\+Parser\+\_\+}} $\ast$}]{parser }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Documentation des variables}
+\mbox{\Hypertarget{CommandParseHandler_8c_a0a44c0bc3017de509ea11f918e297f25}\label{CommandParseHandler_8c_a0a44c0bc3017de509ea11f918e297f25}} 
+\index{CommandParseHandler.c@{CommandParseHandler.c}!\_CommandParseHandler\_@{\_CommandParseHandler\_}}
+\index{\_CommandParseHandler\_@{\_CommandParseHandler\_}!CommandParseHandler.c@{CommandParseHandler.c}}
+\doxysubsubsection{\texorpdfstring{\_CommandParseHandler\_}{\_CommandParseHandler\_}}
+{\footnotesize\ttfamily \mbox{\hyperlink{Class_8h_a6ec2a8ccaeb1e924a80036ec40760377}{Class}} \mbox{\hyperlink{struct__CommandParseHandler__}{\+\_\+\+Command\+Parse\+Handler\+\_\+}} = \&\+\_\+\+\_\+\+Command\+Parse\+Handler\+\_\+\+\_\+}
+
+
+
+Classe des objets de type {\ttfamily Command\+Parse\+Handler}. 
+
+Construction \+: {\ttfamily {\bfseries{ obj\+\_\+new({\ttfamily \mbox{\hyperlink{struct__CommandParseHandler__}{\+\_\+\+Command\+Parse\+Handler\+\_\+}}}, Command\+Prompt\+Handler\+Interpret interpretor ) }}}~\newline
+ où \+: ~\newline
+ 
+\begin{DoxyItemize}
+\item {\ttfamily \mbox{\hyperlink{struct__CommandParseHandler__}{\+\_\+\+Command\+Parse\+Handler\+\_\+}}} désigne la classe des objets de type {\ttfamily Command\+Parse\+Handler} 
+\item {\bfseries{{\ttfamily interpretor}}} est un objet {\ttfamily \+\_\+\+Command\+Prompt\+Handler\+Interpret\+\_\+} qui va interpréter les différents caracètres \char`\"{}spéciaux\char`\"{} reconnus par l\textquotesingle{}objet {\ttfamily Command\+Parse\+Handler}  
+\end{DoxyItemize}

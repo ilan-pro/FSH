@@ -32,6 +32,10 @@ Un objet Parser est un objet qui va analyser une chaine de caractère et va appe
 
 La classe possède un certains nombres de fonction permettant de manipuler la chaine en cours de lecture et le tampon qui stock les caractères déjà lus.
 
+~\newline
+ NB \+: Lorsqu\textquotesingle{}un parsing est terminé. L\textquotesingle{}objet peut ne plus être utilisable (tout appel à {\ttfamily \mbox{\hyperlink{Parser_8c_ac398c05c7e48eeea2b4b6705af2af0a2}{Parser\+\_\+parse()}}} finira aussitôt), car le parseur aura atteint la fin de la chaine à lire (à moins qu\textquotesingle{}il ne soit stopé avant). ~\newline
+
+
 Construction \+: {\ttfamily {\bfseries{ obj\+\_\+new({\ttfamily \mbox{\hyperlink{struct__Parser__}{\+\_\+\+Parser\+\_\+}}}, char$\ast$$\ast$ string, Parse\+Handler handler) }}}~\newline
  où \+: ~\newline
  

@@ -132,7 +132,11 @@ Fonctions</h2></td></tr>
 <tr class="memdesc:a1c986f4664d55ab43b32947f2774682c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fonction qui renvoie la chaine de caractère contenant les caractères lus.  <a href="../../d3/d41/Parser_8c.html#a1c986f4664d55ab43b32947f2774682c">Plus de détails...</a><br /></td></tr>
 <tr class="separator:a1c986f4664d55ab43b32947f2774682c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac398c05c7e48eeea2b4b6705af2af0a2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/d41/Parser_8c.html#ac398c05c7e48eeea2b4b6705af2af0a2">Parser_parse</a> (<a class="el" href="../../d3/d41/Parser_8c.html#a2572816ce925d606728b3d081f2280cc">Parser</a> self)</td></tr>
+<tr class="memdesc:ac398c05c7e48eeea2b4b6705af2af0a2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fonction qui va commencer le parsing de la chaine du parseur.  <a href="../../d3/d41/Parser_8c.html#ac398c05c7e48eeea2b4b6705af2af0a2">Plus de détails...</a><br /></td></tr>
 <tr class="separator:ac398c05c7e48eeea2b4b6705af2af0a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7055c84db583c206cd92871974934d9e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/d41/Parser_8c.html#a7055c84db583c206cd92871974934d9e">Parser_stop_parse</a> (<a class="el" href="../../d3/d41/Parser_8c.html#a2572816ce925d606728b3d081f2280cc">Parser</a> self)</td></tr>
+<tr class="memdesc:a7055c84db583c206cd92871974934d9e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fonction qui va mettre un terme au parsing.  <a href="../../d3/d41/Parser_8c.html#a7055c84db583c206cd92871974934d9e">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a7055c84db583c206cd92871974934d9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
@@ -144,6 +148,9 @@ Variables</h2></td></tr>
 <div class="textblock"><p>Fichier contenant l'implémentation de la classe <code><a class="el" href="../../d6/dd8/struct__Parser__.html" title="Classe des objets de type Parser.">_Parser_</a></code>. </p>
 <p>Un objet Parser est un objet qui va analyser une chaine de caractère et va appeler une va appeler une certaine fonction (handler) à chaque caractère lu, afin qu'elle l'interprète à sa guise.</p>
 <p>La classe possède un certains nombres de fonction permettant de manipuler la chaine en cours de lecture et le tampon qui stock les caractères déjà lus.</p>
+<p><br  />
+ NB : Lorsqu'un parsing est terminé. L'objet peut ne plus être utilisable (tout appel à <code><a class="el" href="../../d3/d41/Parser_8c.html#ac398c05c7e48eeea2b4b6705af2af0a2" title="Fonction qui va commencer le parsing de la chaine du parseur.">Parser_parse()</a></code> finira aussitôt), car le parseur aura atteint la fin de la chaine à lire (à moins qu'il ne soit stopé avant). <br  />
+</p>
 <p>Construction : <code><b> obj_new(<code><a class="el" href="../../d6/dd8/struct__Parser__.html" title="Classe des objets de type Parser.">_Parser_</a></code>, char** string, ParseHandler handler) </b></code><br  />
  où : <br  />
  </p><ul>
@@ -267,6 +274,8 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Fonction qui va commencer le parsing de la chaine du parseur. </p>
 <p>@biref Fonction qui va commencer le parsing de la chaine du parseur.</p>
 <p>La fonction va appeller, pour chaque caractère lu, la fonction <code><a class="el" href="../../d8/d13/ParseHandler_8c.html#a25f6a025bbc4381a9b5f56b1469748a6">ParseHandler_interpret()</a></code>.</p>
 <dl class="params"><dt>Paramètres</dt><dd>
@@ -330,6 +339,32 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Renvoie</dt><dd>&gt;=1 Si le buffer n'est pas vide (il y a un caracètre lu), 0 sinon. </dd></dl>
+
+</div>
+</div>
+<a id="a7055c84db583c206cd92871974934d9e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7055c84db583c206cd92871974934d9e">&#9670;&nbsp;</a></span>Parser_stop_parse()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Parser_stop_parse </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d3/d41/Parser_8c.html#a2572816ce925d606728b3d081f2280cc">Parser</a>&#160;</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Fonction qui va mettre un terme au parsing. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>Le parseur dont on souhaite terminer le parsing. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

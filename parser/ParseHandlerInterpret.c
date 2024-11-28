@@ -133,7 +133,29 @@ static void* ParseHandlerInterpret_destructor(void* self_){
 }
 
 
+/**
+ * @internal
+ * @brief Fonction qui exécute des instructions à la fin du parsing de la chaine, par le parseur.
+ * 
+ * Elle peut être utile pour travailler sur la dernière valeur qui se trouve dans le buffer à la fin 
+ * du parsing.
+ * 
+ * @param self L'objet `ParseHandlerInterpret` qui va gérer la fin du parsing.
+ * @param parser Le parseur qui vient de finir son parsing.
+ *  
+ */
+static void ParseHandlerInterpret_action_on_parse_finish(ParseHandlerInterpret self, Parser parser){
 
+    assert(self);
+    assert(parser);
+    assert(obj_instance_of(parser, _Parser_));
+    assert(obj_instance_of(self, _ParseHandlerInterpret_));
+
+    if (self->action_on_parse_finish)
+        self->action_on_parse_finish(self, parser);
+
+    return;
+}
 
 
 

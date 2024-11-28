@@ -1,0 +1,277 @@
+\hypertarget{CommandParseHandlerInterpret_8c}{}\doxysection{Référence du fichier parser/\+Command\+Parse\+Handler\+Interpret.c}
+\label{CommandParseHandlerInterpret_8c}\index{parser/CommandParseHandlerInterpret.c@{parser/CommandParseHandlerInterpret.c}}
+
+
+Fichier contenant l\textquotesingle{}implémentation de la classe {\ttfamily \mbox{\hyperlink{struct__CommandParseHandlerInterpret__}{\+\_\+\+Command\+Parse\+Handler\+Interpret\+\_\+}}}.  
+
+
+{\ttfamily \#include \char`\"{}../base/new.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$assert.\+h$>$}\newline
+Graphe des dépendances par inclusion de Command\+Parse\+Handler\+Interpret.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=271pt]{df/dd9/CommandParseHandlerInterpret_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct__CommandParseHandlerInterpret__}{\+\_\+\+Command\+Parse\+Handler\+Interpret\+\_\+}}
+\begin{DoxyCompactList}\small\item\em Classe des objets de type {\ttfamily Command\+Parse\+Handler\+Interpret}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Définitions de type}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \mbox{\hyperlink{struct__CommandParseHandlerInterpret__}{\+\_\+\+Command\+Parse\+Handler\+Interpret\+\_\+}} $\ast$ \mbox{\hyperlink{CommandParseHandlerInterpret_8c_a4b4e68b9b3acd89fec8f55a2dca00902}{Command\+Parse\+Handler\+Interpret}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Fonctions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{CommandParseHandlerInterpret_8c_aadef70b1af1548c77b0196d6fa68fb3d}{Command\+Parse\+Handler\+Interpret\+\_\+semicolon}} (\mbox{\hyperlink{CommandParseHandlerInterpret_8c_a4b4e68b9b3acd89fec8f55a2dca00902}{Command\+Parse\+Handler\+Interpret}} self, \mbox{\hyperlink{Parser_8c_a2572816ce925d606728b3d081f2280cc}{Parser}} parser)
+\begin{DoxyCompactList}\small\item\em Fonction qui exécute des insturctions spécifiques au moment où le parseur lit un \textquotesingle{};\textquotesingle{}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{CommandParseHandlerInterpret_8c_a81348492a716e35b05671ba39588a2ac}{Command\+Parse\+Handler\+Interpret\+\_\+pipe}} (\mbox{\hyperlink{CommandParseHandlerInterpret_8c_a4b4e68b9b3acd89fec8f55a2dca00902}{Command\+Parse\+Handler\+Interpret}} self, \mbox{\hyperlink{Parser_8c_a2572816ce925d606728b3d081f2280cc}{Parser}} parser)
+\begin{DoxyCompactList}\small\item\em Fonction qui exécute des insturctions spécifiques au moment où le parseur lit un \textquotesingle{}$\vert$\textquotesingle{}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{CommandParseHandlerInterpret_8c_ac39aa9c3126eaaaa0547ba0989926708}{Command\+Parse\+Handler\+Interpret\+\_\+space}} (\mbox{\hyperlink{CommandParseHandlerInterpret_8c_a4b4e68b9b3acd89fec8f55a2dca00902}{Command\+Parse\+Handler\+Interpret}} self, \mbox{\hyperlink{Parser_8c_a2572816ce925d606728b3d081f2280cc}{Parser}} parser)
+\begin{DoxyCompactList}\small\item\em Fonction qui exécute des insturctions spécifiques au moment où le parseur lit un \textquotesingle{} \textquotesingle{}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{CommandParseHandlerInterpret_8c_adfd6aeb8af3a1df578839d793f11fe3a}{Command\+Parse\+Handler\+Interpret\+\_\+double\+\_\+quote}} (\mbox{\hyperlink{CommandParseHandlerInterpret_8c_a4b4e68b9b3acd89fec8f55a2dca00902}{Command\+Parse\+Handler\+Interpret}} self, \mbox{\hyperlink{Parser_8c_a2572816ce925d606728b3d081f2280cc}{Parser}} parser)
+\begin{DoxyCompactList}\small\item\em Fonction qui exécute des insturctions spécifiques au moment où le parseur lit un \textquotesingle{}\char`\"{}\textquotesingle{}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{CommandParseHandlerInterpret_8c_a4bab5b8ce61b5aeee2ceb9367bd0ae31}{Command\+Parse\+Handler\+Interpret\+\_\+quote}} (\mbox{\hyperlink{CommandParseHandlerInterpret_8c_a4b4e68b9b3acd89fec8f55a2dca00902}{Command\+Parse\+Handler\+Interpret}} self, \mbox{\hyperlink{Parser_8c_a2572816ce925d606728b3d081f2280cc}{Parser}} parser)
+\begin{DoxyCompactList}\small\item\em Fonction qui exécute des insturctions spécifiques au moment où le parseur lit un \char`\"{}\textquotesingle{}\char`\"{} (guillemet simple). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{CommandParseHandlerInterpret_8c_aee9b057957a8cc853bedf2a44116e784}{Command\+Parse\+Handler\+Interpret\+\_\+minus}} (\mbox{\hyperlink{CommandParseHandlerInterpret_8c_a4b4e68b9b3acd89fec8f55a2dca00902}{Command\+Parse\+Handler\+Interpret}} self, \mbox{\hyperlink{Parser_8c_a2572816ce925d606728b3d081f2280cc}{Parser}} parser)
+\begin{DoxyCompactList}\small\item\em Fonction qui exécute des insturctions spécifiques au moment où le parseur lit un \textquotesingle{}-\/\textquotesingle{}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{CommandParseHandlerInterpret_8c_a4d3477c21ba22f359ab8833da6958a07}{Command\+Parse\+Handler\+Interpret\+\_\+backslsh}} (\mbox{\hyperlink{CommandParseHandlerInterpret_8c_a4b4e68b9b3acd89fec8f55a2dca00902}{Command\+Parse\+Handler\+Interpret}} self, \mbox{\hyperlink{Parser_8c_a2572816ce925d606728b3d081f2280cc}{Parser}} parser)
+\begin{DoxyCompactList}\small\item\em Fonction qui exécute des insturctions spécifiques au moment où le parseur lit un \textquotesingle{}\textbackslash{}\textquotesingle{}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{CommandParseHandlerInterpret_8c_a73b7f84ffa9dcd744c24d2941b0874a7}{Command\+Parse\+Handler\+Interpret\+\_\+lt}} (\mbox{\hyperlink{CommandParseHandlerInterpret_8c_a4b4e68b9b3acd89fec8f55a2dca00902}{Command\+Parse\+Handler\+Interpret}} self, \mbox{\hyperlink{Parser_8c_a2572816ce925d606728b3d081f2280cc}{Parser}} parser)
+\begin{DoxyCompactList}\small\item\em Fonction qui exécute des insturctions spécifiques au moment où le parseur lit un \textquotesingle{}$<$\textquotesingle{} (pour les redirections en général). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{CommandParseHandlerInterpret_8c_adeb4173a1889f6acf51074e33c9b12ff}{Command\+Parse\+Handler\+Interpret\+\_\+gt}} (\mbox{\hyperlink{CommandParseHandlerInterpret_8c_a4b4e68b9b3acd89fec8f55a2dca00902}{Command\+Parse\+Handler\+Interpret}} self, \mbox{\hyperlink{Parser_8c_a2572816ce925d606728b3d081f2280cc}{Parser}} parser)
+\begin{DoxyCompactList}\small\item\em Fonction qui exécute des insturctions spécifiques au moment où le parseur lit un \textquotesingle{}$>$\textquotesingle{}. (pour les redirections en général) \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{CommandParseHandlerInterpret_8c_afd68cbd5be1333650ea277beefcfd4b2}{Command\+Parse\+Handler\+Interpret\+\_\+opening\+\_\+bracket}} (\mbox{\hyperlink{CommandParseHandlerInterpret_8c_a4b4e68b9b3acd89fec8f55a2dca00902}{Command\+Parse\+Handler\+Interpret}} self, \mbox{\hyperlink{Parser_8c_a2572816ce925d606728b3d081f2280cc}{Parser}} parser)
+\begin{DoxyCompactList}\small\item\em Fonction qui exécute des insturctions spécifiques au moment où le parseur lit un \textquotesingle{}\{\textquotesingle{}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{CommandParseHandlerInterpret_8c_a524ec25b482e381dfafea37a04f92f30}{Command\+Parse\+Handler\+Interpret\+\_\+closing\+\_\+bracket}} (\mbox{\hyperlink{CommandParseHandlerInterpret_8c_a4b4e68b9b3acd89fec8f55a2dca00902}{Command\+Parse\+Handler\+Interpret}} self, \mbox{\hyperlink{Parser_8c_a2572816ce925d606728b3d081f2280cc}{Parser}} parser)
+\begin{DoxyCompactList}\small\item\em Fonction qui exécute des insturctions spécifiques au moment où le parseur lit un \textquotesingle{}\}\textquotesingle{}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{CommandParseHandlerInterpret_8c_a4204bf76306be5e9df9b10f4a254466d}{Command\+Parse\+Handler\+Interpret\+\_\+dollar\+\_\+sign}} (\mbox{\hyperlink{CommandParseHandlerInterpret_8c_a4b4e68b9b3acd89fec8f55a2dca00902}{Command\+Parse\+Handler\+Interpret}} self, \mbox{\hyperlink{Parser_8c_a2572816ce925d606728b3d081f2280cc}{Parser}} parser)
+\begin{DoxyCompactList}\small\item\em Fonction qui exécute des insturctions spécifiques au moment où le parseur lit un \textquotesingle{}\$\textquotesingle{}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{Class_8h_a6ec2a8ccaeb1e924a80036ec40760377}{Class}} \mbox{\hyperlink{CommandParseHandlerInterpret_8c_ade519e2ad2260151a0f2c6dca2368cc3}{\+\_\+\+Command\+Parse\+Handler\+Interpret\+\_\+}} = \&\+\_\+\+\_\+\+Command\+Parse\+Handler\+Interpret\+\_\+\+\_\+
+\begin{DoxyCompactList}\small\item\em Classe des objets de type {\ttfamily Command\+Parse\+Handler\+Interpret}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Description détaillée}
+Fichier contenant l\textquotesingle{}implémentation de la classe {\ttfamily \mbox{\hyperlink{struct__CommandParseHandlerInterpret__}{\+\_\+\+Command\+Parse\+Handler\+Interpret\+\_\+}}}. 
+
+Un objet Parse\+Handler\+Interpret est un objet qui possède un certain nombre de fonctions qui seront appelées par l\textquotesingle{}objet {\ttfamily \mbox{\hyperlink{struct__ParseHandler__}{\+\_\+\+Parse\+Handler\+\_\+}}} qui le contient, ces fonctions doivent définir les différentes actions à faire au moment de la rencontre de certains caractères spéciaux reconnu par l\textquotesingle{}objet {\ttfamily \mbox{\hyperlink{struct__ParseHandler__}{\+\_\+\+Parse\+Handler\+\_\+}}}.
+
+Cette classe est un sous-\/type qui définie des fonctions pour gérer les caractères spéciaux des commandes du shell tels que \textquotesingle{};\textquotesingle{}, \textquotesingle{}$\vert$\textquotesingle{}, etc.
+
+Cette classe a les méthodes public qui doivent toutes être redéfinies (mais ne déclanchent pas d\textquotesingle{}erreur si ce n\textquotesingle{}est pas le cas) elles ont une implémentation par défaut, qui d\textquotesingle{}accepte (ajoute le caractère au tampon du parser) tous les caractères spéciaux. Donc le mieux c\textquotesingle{}est de redéfinir celles dont on souhaite interpréter autrement.
+
+Construction \+: {\ttfamily {\bfseries{ obj\+\_\+new({\ttfamily \mbox{\hyperlink{struct__CommandParseHandlerInterpret__}{\+\_\+\+Command\+Parse\+Handler\+Interpret\+\_\+}}}) }}}~\newline
+ où {\ttfamily \mbox{\hyperlink{struct__CommandParseHandlerInterpret__}{\+\_\+\+Command\+Parse\+Handler\+Interpret\+\_\+}}} désigne la classe des objets de type {\ttfamily Command\+Parse\+Handler\+Interpret} 
+
+\doxysubsection{Documentation des définitions de type}
+\mbox{\Hypertarget{CommandParseHandlerInterpret_8c_a4b4e68b9b3acd89fec8f55a2dca00902}\label{CommandParseHandlerInterpret_8c_a4b4e68b9b3acd89fec8f55a2dca00902}} 
+\index{CommandParseHandlerInterpret.c@{CommandParseHandlerInterpret.c}!CommandParseHandlerInterpret@{CommandParseHandlerInterpret}}
+\index{CommandParseHandlerInterpret@{CommandParseHandlerInterpret}!CommandParseHandlerInterpret.c@{CommandParseHandlerInterpret.c}}
+\doxysubsubsection{\texorpdfstring{CommandParseHandlerInterpret}{CommandParseHandlerInterpret}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{struct__CommandParseHandlerInterpret__}{\+\_\+\+Command\+Parse\+Handler\+Interpret\+\_\+}}$\ast$ \mbox{\hyperlink{CommandParseHandlerInterpret_8c_a4b4e68b9b3acd89fec8f55a2dca00902}{Command\+Parse\+Handler\+Interpret}}}
+
+
+
+\doxysubsection{Documentation des fonctions}
+\mbox{\Hypertarget{CommandParseHandlerInterpret_8c_a4d3477c21ba22f359ab8833da6958a07}\label{CommandParseHandlerInterpret_8c_a4d3477c21ba22f359ab8833da6958a07}} 
+\index{CommandParseHandlerInterpret.c@{CommandParseHandlerInterpret.c}!CommandParseHandlerInterpret\_backslsh@{CommandParseHandlerInterpret\_backslsh}}
+\index{CommandParseHandlerInterpret\_backslsh@{CommandParseHandlerInterpret\_backslsh}!CommandParseHandlerInterpret.c@{CommandParseHandlerInterpret.c}}
+\doxysubsubsection{\texorpdfstring{CommandParseHandlerInterpret\_backslsh()}{CommandParseHandlerInterpret\_backslsh()}}
+{\footnotesize\ttfamily void Command\+Parse\+Handler\+Interpret\+\_\+backslsh (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{CommandParseHandlerInterpret_8c_a4b4e68b9b3acd89fec8f55a2dca00902}{Command\+Parse\+Handler\+Interpret}}}]{self,  }\item[{\mbox{\hyperlink{Parser_8c_a2572816ce925d606728b3d081f2280cc}{Parser}}}]{parser }\end{DoxyParamCaption})}
+
+
+
+Fonction qui exécute des insturctions spécifiques au moment où le parseur lit un \textquotesingle{}\textbackslash{}\textquotesingle{}. 
+
+Par défaut la fonction accepte, c\textquotesingle{}est à dire dit au parseur d\textquotesingle{}ajouter le caractère à son buffer.
+
+\begin{DoxySeeAlso}{Voir également}
+\mbox{\hyperlink{Parser_8h}{Parser.\+h}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{CommandParseHandlerInterpret_8c_a524ec25b482e381dfafea37a04f92f30}\label{CommandParseHandlerInterpret_8c_a524ec25b482e381dfafea37a04f92f30}} 
+\index{CommandParseHandlerInterpret.c@{CommandParseHandlerInterpret.c}!CommandParseHandlerInterpret\_closing\_bracket@{CommandParseHandlerInterpret\_closing\_bracket}}
+\index{CommandParseHandlerInterpret\_closing\_bracket@{CommandParseHandlerInterpret\_closing\_bracket}!CommandParseHandlerInterpret.c@{CommandParseHandlerInterpret.c}}
+\doxysubsubsection{\texorpdfstring{CommandParseHandlerInterpret\_closing\_bracket()}{CommandParseHandlerInterpret\_closing\_bracket()}}
+{\footnotesize\ttfamily void Command\+Parse\+Handler\+Interpret\+\_\+closing\+\_\+bracket (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{CommandParseHandlerInterpret_8c_a4b4e68b9b3acd89fec8f55a2dca00902}{Command\+Parse\+Handler\+Interpret}}}]{self,  }\item[{\mbox{\hyperlink{Parser_8c_a2572816ce925d606728b3d081f2280cc}{Parser}}}]{parser }\end{DoxyParamCaption})}
+
+
+
+Fonction qui exécute des insturctions spécifiques au moment où le parseur lit un \textquotesingle{}\}\textquotesingle{}. 
+
+Par défaut la fonction accepte, c\textquotesingle{}est à dire dit au parseur d\textquotesingle{}ajouter le caractère à son buffer.
+
+\begin{DoxySeeAlso}{Voir également}
+\mbox{\hyperlink{Parser_8h}{Parser.\+h}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{CommandParseHandlerInterpret_8c_a4204bf76306be5e9df9b10f4a254466d}\label{CommandParseHandlerInterpret_8c_a4204bf76306be5e9df9b10f4a254466d}} 
+\index{CommandParseHandlerInterpret.c@{CommandParseHandlerInterpret.c}!CommandParseHandlerInterpret\_dollar\_sign@{CommandParseHandlerInterpret\_dollar\_sign}}
+\index{CommandParseHandlerInterpret\_dollar\_sign@{CommandParseHandlerInterpret\_dollar\_sign}!CommandParseHandlerInterpret.c@{CommandParseHandlerInterpret.c}}
+\doxysubsubsection{\texorpdfstring{CommandParseHandlerInterpret\_dollar\_sign()}{CommandParseHandlerInterpret\_dollar\_sign()}}
+{\footnotesize\ttfamily void Command\+Parse\+Handler\+Interpret\+\_\+dollar\+\_\+sign (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{CommandParseHandlerInterpret_8c_a4b4e68b9b3acd89fec8f55a2dca00902}{Command\+Parse\+Handler\+Interpret}}}]{self,  }\item[{\mbox{\hyperlink{Parser_8c_a2572816ce925d606728b3d081f2280cc}{Parser}}}]{parser }\end{DoxyParamCaption})}
+
+
+
+Fonction qui exécute des insturctions spécifiques au moment où le parseur lit un \textquotesingle{}\$\textquotesingle{}. 
+
+Par défaut la fonction accepte, c\textquotesingle{}est à dire dit au parseur d\textquotesingle{}ajouter le caractère à son buffer.
+
+\begin{DoxySeeAlso}{Voir également}
+\mbox{\hyperlink{Parser_8h}{Parser.\+h}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{CommandParseHandlerInterpret_8c_adfd6aeb8af3a1df578839d793f11fe3a}\label{CommandParseHandlerInterpret_8c_adfd6aeb8af3a1df578839d793f11fe3a}} 
+\index{CommandParseHandlerInterpret.c@{CommandParseHandlerInterpret.c}!CommandParseHandlerInterpret\_double\_quote@{CommandParseHandlerInterpret\_double\_quote}}
+\index{CommandParseHandlerInterpret\_double\_quote@{CommandParseHandlerInterpret\_double\_quote}!CommandParseHandlerInterpret.c@{CommandParseHandlerInterpret.c}}
+\doxysubsubsection{\texorpdfstring{CommandParseHandlerInterpret\_double\_quote()}{CommandParseHandlerInterpret\_double\_quote()}}
+{\footnotesize\ttfamily void Command\+Parse\+Handler\+Interpret\+\_\+double\+\_\+quote (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{CommandParseHandlerInterpret_8c_a4b4e68b9b3acd89fec8f55a2dca00902}{Command\+Parse\+Handler\+Interpret}}}]{self,  }\item[{\mbox{\hyperlink{Parser_8c_a2572816ce925d606728b3d081f2280cc}{Parser}}}]{parser }\end{DoxyParamCaption})}
+
+
+
+Fonction qui exécute des insturctions spécifiques au moment où le parseur lit un \textquotesingle{}\char`\"{}\textquotesingle{}. 
+
+Par défaut la fonction accepte, c\textquotesingle{}est à dire dit au parseur d\textquotesingle{}ajouter le caractère à son buffer.
+
+\begin{DoxySeeAlso}{Voir également}
+\mbox{\hyperlink{Parser_8h}{Parser.\+h}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{CommandParseHandlerInterpret_8c_adeb4173a1889f6acf51074e33c9b12ff}\label{CommandParseHandlerInterpret_8c_adeb4173a1889f6acf51074e33c9b12ff}} 
+\index{CommandParseHandlerInterpret.c@{CommandParseHandlerInterpret.c}!CommandParseHandlerInterpret\_gt@{CommandParseHandlerInterpret\_gt}}
+\index{CommandParseHandlerInterpret\_gt@{CommandParseHandlerInterpret\_gt}!CommandParseHandlerInterpret.c@{CommandParseHandlerInterpret.c}}
+\doxysubsubsection{\texorpdfstring{CommandParseHandlerInterpret\_gt()}{CommandParseHandlerInterpret\_gt()}}
+{\footnotesize\ttfamily void Command\+Parse\+Handler\+Interpret\+\_\+gt (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{CommandParseHandlerInterpret_8c_a4b4e68b9b3acd89fec8f55a2dca00902}{Command\+Parse\+Handler\+Interpret}}}]{self,  }\item[{\mbox{\hyperlink{Parser_8c_a2572816ce925d606728b3d081f2280cc}{Parser}}}]{parser }\end{DoxyParamCaption})}
+
+
+
+Fonction qui exécute des insturctions spécifiques au moment où le parseur lit un \textquotesingle{}$>$\textquotesingle{}. (pour les redirections en général) 
+
+Par défaut la fonction accepte, c\textquotesingle{}est à dire dit au parseur d\textquotesingle{}ajouter le caractère à son buffer.
+
+\begin{DoxySeeAlso}{Voir également}
+\mbox{\hyperlink{Parser_8h}{Parser.\+h}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{CommandParseHandlerInterpret_8c_a73b7f84ffa9dcd744c24d2941b0874a7}\label{CommandParseHandlerInterpret_8c_a73b7f84ffa9dcd744c24d2941b0874a7}} 
+\index{CommandParseHandlerInterpret.c@{CommandParseHandlerInterpret.c}!CommandParseHandlerInterpret\_lt@{CommandParseHandlerInterpret\_lt}}
+\index{CommandParseHandlerInterpret\_lt@{CommandParseHandlerInterpret\_lt}!CommandParseHandlerInterpret.c@{CommandParseHandlerInterpret.c}}
+\doxysubsubsection{\texorpdfstring{CommandParseHandlerInterpret\_lt()}{CommandParseHandlerInterpret\_lt()}}
+{\footnotesize\ttfamily void Command\+Parse\+Handler\+Interpret\+\_\+lt (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{CommandParseHandlerInterpret_8c_a4b4e68b9b3acd89fec8f55a2dca00902}{Command\+Parse\+Handler\+Interpret}}}]{self,  }\item[{\mbox{\hyperlink{Parser_8c_a2572816ce925d606728b3d081f2280cc}{Parser}}}]{parser }\end{DoxyParamCaption})}
+
+
+
+Fonction qui exécute des insturctions spécifiques au moment où le parseur lit un \textquotesingle{}$<$\textquotesingle{} (pour les redirections en général). 
+
+Par défaut la fonction accepte, c\textquotesingle{}est à dire dit au parseur d\textquotesingle{}ajouter le caractère à son buffer.
+
+\begin{DoxySeeAlso}{Voir également}
+\mbox{\hyperlink{Parser_8h}{Parser.\+h}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{CommandParseHandlerInterpret_8c_aee9b057957a8cc853bedf2a44116e784}\label{CommandParseHandlerInterpret_8c_aee9b057957a8cc853bedf2a44116e784}} 
+\index{CommandParseHandlerInterpret.c@{CommandParseHandlerInterpret.c}!CommandParseHandlerInterpret\_minus@{CommandParseHandlerInterpret\_minus}}
+\index{CommandParseHandlerInterpret\_minus@{CommandParseHandlerInterpret\_minus}!CommandParseHandlerInterpret.c@{CommandParseHandlerInterpret.c}}
+\doxysubsubsection{\texorpdfstring{CommandParseHandlerInterpret\_minus()}{CommandParseHandlerInterpret\_minus()}}
+{\footnotesize\ttfamily void Command\+Parse\+Handler\+Interpret\+\_\+minus (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{CommandParseHandlerInterpret_8c_a4b4e68b9b3acd89fec8f55a2dca00902}{Command\+Parse\+Handler\+Interpret}}}]{self,  }\item[{\mbox{\hyperlink{Parser_8c_a2572816ce925d606728b3d081f2280cc}{Parser}}}]{parser }\end{DoxyParamCaption})}
+
+
+
+Fonction qui exécute des insturctions spécifiques au moment où le parseur lit un \textquotesingle{}-\/\textquotesingle{}. 
+
+Par défaut la fonction accepte, c\textquotesingle{}est à dire dit au parseur d\textquotesingle{}ajouter le caractère à son buffer.
+
+\begin{DoxySeeAlso}{Voir également}
+\mbox{\hyperlink{Parser_8h}{Parser.\+h}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{CommandParseHandlerInterpret_8c_afd68cbd5be1333650ea277beefcfd4b2}\label{CommandParseHandlerInterpret_8c_afd68cbd5be1333650ea277beefcfd4b2}} 
+\index{CommandParseHandlerInterpret.c@{CommandParseHandlerInterpret.c}!CommandParseHandlerInterpret\_opening\_bracket@{CommandParseHandlerInterpret\_opening\_bracket}}
+\index{CommandParseHandlerInterpret\_opening\_bracket@{CommandParseHandlerInterpret\_opening\_bracket}!CommandParseHandlerInterpret.c@{CommandParseHandlerInterpret.c}}
+\doxysubsubsection{\texorpdfstring{CommandParseHandlerInterpret\_opening\_bracket()}{CommandParseHandlerInterpret\_opening\_bracket()}}
+{\footnotesize\ttfamily void Command\+Parse\+Handler\+Interpret\+\_\+opening\+\_\+bracket (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{CommandParseHandlerInterpret_8c_a4b4e68b9b3acd89fec8f55a2dca00902}{Command\+Parse\+Handler\+Interpret}}}]{self,  }\item[{\mbox{\hyperlink{Parser_8c_a2572816ce925d606728b3d081f2280cc}{Parser}}}]{parser }\end{DoxyParamCaption})}
+
+
+
+Fonction qui exécute des insturctions spécifiques au moment où le parseur lit un \textquotesingle{}\{\textquotesingle{}. 
+
+Par défaut la fonction accepte, c\textquotesingle{}est à dire dit au parseur d\textquotesingle{}ajouter le caractère à son buffer.
+
+\begin{DoxySeeAlso}{Voir également}
+\mbox{\hyperlink{Parser_8h}{Parser.\+h}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{CommandParseHandlerInterpret_8c_a81348492a716e35b05671ba39588a2ac}\label{CommandParseHandlerInterpret_8c_a81348492a716e35b05671ba39588a2ac}} 
+\index{CommandParseHandlerInterpret.c@{CommandParseHandlerInterpret.c}!CommandParseHandlerInterpret\_pipe@{CommandParseHandlerInterpret\_pipe}}
+\index{CommandParseHandlerInterpret\_pipe@{CommandParseHandlerInterpret\_pipe}!CommandParseHandlerInterpret.c@{CommandParseHandlerInterpret.c}}
+\doxysubsubsection{\texorpdfstring{CommandParseHandlerInterpret\_pipe()}{CommandParseHandlerInterpret\_pipe()}}
+{\footnotesize\ttfamily void Command\+Parse\+Handler\+Interpret\+\_\+pipe (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{CommandParseHandlerInterpret_8c_a4b4e68b9b3acd89fec8f55a2dca00902}{Command\+Parse\+Handler\+Interpret}}}]{self,  }\item[{\mbox{\hyperlink{Parser_8c_a2572816ce925d606728b3d081f2280cc}{Parser}}}]{parser }\end{DoxyParamCaption})}
+
+
+
+Fonction qui exécute des insturctions spécifiques au moment où le parseur lit un \textquotesingle{}$\vert$\textquotesingle{}. 
+
+Par défaut la fonction accepte, c\textquotesingle{}est à dire dit au parseur d\textquotesingle{}ajouter le caractère à son buffer.
+
+\begin{DoxySeeAlso}{Voir également}
+\mbox{\hyperlink{Parser_8h}{Parser.\+h}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{CommandParseHandlerInterpret_8c_a4bab5b8ce61b5aeee2ceb9367bd0ae31}\label{CommandParseHandlerInterpret_8c_a4bab5b8ce61b5aeee2ceb9367bd0ae31}} 
+\index{CommandParseHandlerInterpret.c@{CommandParseHandlerInterpret.c}!CommandParseHandlerInterpret\_quote@{CommandParseHandlerInterpret\_quote}}
+\index{CommandParseHandlerInterpret\_quote@{CommandParseHandlerInterpret\_quote}!CommandParseHandlerInterpret.c@{CommandParseHandlerInterpret.c}}
+\doxysubsubsection{\texorpdfstring{CommandParseHandlerInterpret\_quote()}{CommandParseHandlerInterpret\_quote()}}
+{\footnotesize\ttfamily void Command\+Parse\+Handler\+Interpret\+\_\+quote (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{CommandParseHandlerInterpret_8c_a4b4e68b9b3acd89fec8f55a2dca00902}{Command\+Parse\+Handler\+Interpret}}}]{self,  }\item[{\mbox{\hyperlink{Parser_8c_a2572816ce925d606728b3d081f2280cc}{Parser}}}]{parser }\end{DoxyParamCaption})}
+
+
+
+Fonction qui exécute des insturctions spécifiques au moment où le parseur lit un \char`\"{}\textquotesingle{}\char`\"{} (guillemet simple). 
+
+Par défaut la fonction accepte, c\textquotesingle{}est à dire dit au parseur d\textquotesingle{}ajouter le caractère à son buffer.
+
+\begin{DoxySeeAlso}{Voir également}
+\mbox{\hyperlink{Parser_8h}{Parser.\+h}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{CommandParseHandlerInterpret_8c_aadef70b1af1548c77b0196d6fa68fb3d}\label{CommandParseHandlerInterpret_8c_aadef70b1af1548c77b0196d6fa68fb3d}} 
+\index{CommandParseHandlerInterpret.c@{CommandParseHandlerInterpret.c}!CommandParseHandlerInterpret\_semicolon@{CommandParseHandlerInterpret\_semicolon}}
+\index{CommandParseHandlerInterpret\_semicolon@{CommandParseHandlerInterpret\_semicolon}!CommandParseHandlerInterpret.c@{CommandParseHandlerInterpret.c}}
+\doxysubsubsection{\texorpdfstring{CommandParseHandlerInterpret\_semicolon()}{CommandParseHandlerInterpret\_semicolon()}}
+{\footnotesize\ttfamily void Command\+Parse\+Handler\+Interpret\+\_\+semicolon (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{CommandParseHandlerInterpret_8c_a4b4e68b9b3acd89fec8f55a2dca00902}{Command\+Parse\+Handler\+Interpret}}}]{self,  }\item[{\mbox{\hyperlink{Parser_8c_a2572816ce925d606728b3d081f2280cc}{Parser}}}]{parser }\end{DoxyParamCaption})}
+
+
+
+Fonction qui exécute des insturctions spécifiques au moment où le parseur lit un \textquotesingle{};\textquotesingle{}. 
+
+Par défaut la fonction accepte, c\textquotesingle{}est à dire dit au parseur d\textquotesingle{}ajouter le caractère à son buffer.
+
+\begin{DoxySeeAlso}{Voir également}
+\mbox{\hyperlink{Parser_8h}{Parser.\+h}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{CommandParseHandlerInterpret_8c_ac39aa9c3126eaaaa0547ba0989926708}\label{CommandParseHandlerInterpret_8c_ac39aa9c3126eaaaa0547ba0989926708}} 
+\index{CommandParseHandlerInterpret.c@{CommandParseHandlerInterpret.c}!CommandParseHandlerInterpret\_space@{CommandParseHandlerInterpret\_space}}
+\index{CommandParseHandlerInterpret\_space@{CommandParseHandlerInterpret\_space}!CommandParseHandlerInterpret.c@{CommandParseHandlerInterpret.c}}
+\doxysubsubsection{\texorpdfstring{CommandParseHandlerInterpret\_space()}{CommandParseHandlerInterpret\_space()}}
+{\footnotesize\ttfamily void Command\+Parse\+Handler\+Interpret\+\_\+space (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{CommandParseHandlerInterpret_8c_a4b4e68b9b3acd89fec8f55a2dca00902}{Command\+Parse\+Handler\+Interpret}}}]{self,  }\item[{\mbox{\hyperlink{Parser_8c_a2572816ce925d606728b3d081f2280cc}{Parser}}}]{parser }\end{DoxyParamCaption})}
+
+
+
+Fonction qui exécute des insturctions spécifiques au moment où le parseur lit un \textquotesingle{} \textquotesingle{}. 
+
+Par défaut la fonction accepte, c\textquotesingle{}est à dire dit au parseur d\textquotesingle{}ajouter le caractère à son buffer.
+
+\begin{DoxySeeAlso}{Voir également}
+\mbox{\hyperlink{Parser_8h}{Parser.\+h}} 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Documentation des variables}
+\mbox{\Hypertarget{CommandParseHandlerInterpret_8c_ade519e2ad2260151a0f2c6dca2368cc3}\label{CommandParseHandlerInterpret_8c_ade519e2ad2260151a0f2c6dca2368cc3}} 
+\index{CommandParseHandlerInterpret.c@{CommandParseHandlerInterpret.c}!\_CommandParseHandlerInterpret\_@{\_CommandParseHandlerInterpret\_}}
+\index{\_CommandParseHandlerInterpret\_@{\_CommandParseHandlerInterpret\_}!CommandParseHandlerInterpret.c@{CommandParseHandlerInterpret.c}}
+\doxysubsubsection{\texorpdfstring{\_CommandParseHandlerInterpret\_}{\_CommandParseHandlerInterpret\_}}
+{\footnotesize\ttfamily \mbox{\hyperlink{Class_8h_a6ec2a8ccaeb1e924a80036ec40760377}{Class}} \mbox{\hyperlink{struct__CommandParseHandlerInterpret__}{\+\_\+\+Command\+Parse\+Handler\+Interpret\+\_\+}} = \&\+\_\+\+\_\+\+Command\+Parse\+Handler\+Interpret\+\_\+\+\_\+}
+
+
+
+Classe des objets de type {\ttfamily Command\+Parse\+Handler\+Interpret}. 
+
+Construction \+: {\ttfamily {\bfseries{ obj\+\_\+new({\ttfamily \mbox{\hyperlink{struct__CommandParseHandlerInterpret__}{\+\_\+\+Command\+Parse\+Handler\+Interpret\+\_\+}}}) }}}~\newline
+ où {\ttfamily \mbox{\hyperlink{struct__CommandParseHandlerInterpret__}{\+\_\+\+Command\+Parse\+Handler\+Interpret\+\_\+}}} désigne la classe des objets de type {\ttfamily Parse\+Handler\+Interpret} 

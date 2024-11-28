@@ -8,7 +8,12 @@
  * 
  * La classe possède un certains nombres de fonction permettant de manipuler la chaine en cours de 
  * lecture et le tampon qui stock les caractères déjà lus.
- *
+ * 
+ * <br>
+ * NB : Lorsqu'un parsing est terminé. L'objet peut ne plus être utilisable (tout appel à `Parser_parse()` finira aussitôt), car le parseur 
+ * aura atteint la fin de la chaine à lire (à moins qu'il ne soit stopé avant).
+ * <br>
+ * 
  * Construction : <code><strong> obj_new(`_Parser_`, char** string, ParseHandler handler) </strong></code><br>
  * où : <br>
  * <ul>
@@ -77,8 +82,10 @@ static void Parser_print( const void* );
  * 
  * La classe possède un certains nombres de fonction permettant de manipuler la chaine en cours de 
  * lecture et le tampon qui stock les caractères déjà lus.
+ * 
  * <br>
- * NB : Lorsqu'un parsing est terminé. L'objet n'est plus utilisable (tout appel à `Parser_parse()` finira aussitôt).
+ * NB : Lorsqu'un parsing est terminé. L'objet peut ne plus être utilisable (tout appel à `Parser_parse()` finira aussitôt), car le parseur 
+ * aura atteint la fin de la chaine à lire (à moins qu'il ne soit stopé avant).
  * <br>
  * 
  * Construction : <code><strong> obj_new(`_Parser_`, char** string, ParseHandler handler) </strong></code><br>
@@ -117,9 +124,12 @@ static struct _Class_ __Parser__ = {
  *
  * Un objet Parser est un objet qui va analyser une chaine de caractère et va appeler une va appeler
  * une certaine fonction (handler) à chaque caractère lu, afin qu'elle l'interprète à sa guise.
+ * 
  * <br>
- * NB : Lorsqu'un parsing est terminé. L'objet n'est plus utilisable (tout appel à `Parser_parse()` finira aussitôt).
- * <br>
+ * NB : Lorsqu'un parsing est terminé. L'objet peut ne plus être utilisable (tout appel à `Parser_parse()` finira aussitôt), car le parseur 
+ * aura atteint la fin de la chaine à lire (à moins qu'il ne soit stopé avant).
+ * <br>4
+ * 
  * Construction : <code><strong> obj_new(`_Parser_`, char** string, ParseHandler handler) </strong></code><br>
  * où : <br>
  * <ul>
@@ -154,6 +164,7 @@ static void* Parser_constructor(void* self_, va_list* args){
 
     self->str = str; // (Pas de copie faite !)
     self->handler = handler; 
+    self->parse = 1;
 
     self->buffer = malloc(sizeof(char));
     self->buffer[0] = '\0';
@@ -315,7 +326,7 @@ void Parser_parse(Parser self){
     assert(self);
     assert(obj_instance_of(self, _Parser_));
     
-    while(*(*self->str)) // Tant qu'on est pas tombé sur le caractère de fin '\0'
+    while(*(*self->str) && self->parse) // Tant qu'on est pas tombé sur le caractère de fin '\0'
         ParseHandler_interpret(self->handler, self, *(*self->str)); // Appelle de ParseHandler_interpret() pour la caractère pointé.
     
     // Si on a est ici c'est que le parsing est terminée.
@@ -327,6 +338,20 @@ void Parser_parse(Parser self){
 
             
 
+/**
+ * @brief Fonction qui va mettre un terme au parsing.
+ *
+ * @param self Le parseur dont on souhaite terminer le parsing.
+ */
+void Parser_stop_parse(Parser self){
+
+    // Vérification de self
+    assert(self);
+    assert(obj_instance_of(self, _Parser_));
+
+    self->parse = 0;
+
+}
 
 
 

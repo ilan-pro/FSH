@@ -1,0 +1,57 @@
+\hypertarget{struct__CommandParseHandlerInterpret__}{}\doxysection{Référence de la structure \+\_\+\+Command\+Parse\+Handler\+Interpret\+\_\+}
+\label{struct__CommandParseHandlerInterpret__}\index{\_CommandParseHandlerInterpret\_@{\_CommandParseHandlerInterpret\_}}
+
+
+Classe des objets de type {\ttfamily Command\+Parse\+Handler\+Interpret}.  
+
+
+
+
+{\ttfamily \#include $<$Command\+Parse\+Handler\+Interpret.\+h$>$}
+
+
+
+Graphe de collaboration de \+\_\+\+Command\+Parse\+Handler\+Interpret\+\_\+\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=343pt]{df/df4/struct__CommandParseHandlerInterpret____coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Attributs publics}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{Class_8h_a6ec2a8ccaeb1e924a80036ec40760377}{Class}} \mbox{\hyperlink{struct__CommandParseHandlerInterpret___a410fb13fe7a1afbccfc31b7f9191fc14}{\+\_\+\+Command\+Parse\+Handler\+Interpret\+\_\+}}
+\begin{DoxyCompactList}\small\item\em Classe des objets de type {\ttfamily Command\+Parse\+Handler\+Interpret}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Description détaillée}
+Classe des objets de type {\ttfamily Command\+Parse\+Handler\+Interpret}. 
+
+Un objet Parse\+Handler\+Interpret est un objet qui possède un certain nombre de fonctions qui seront appelées par l\textquotesingle{}objet {\ttfamily \mbox{\hyperlink{struct__ParseHandler__}{\+\_\+\+Parse\+Handler\+\_\+}}} qui le contient, ces fonctions doivent définir les différentes actions à faire au moment de la rencontre de certains caractères spéciaux reconnu par l\textquotesingle{}objet {\ttfamily \mbox{\hyperlink{struct__ParseHandler__}{\+\_\+\+Parse\+Handler\+\_\+}}}.
+
+Cette classe est un sous-\/type qui définie des fonctions pour gérer les caractères spéciaux des commandes du shell tels que \textquotesingle{};\textquotesingle{}, \textquotesingle{}$\vert$\textquotesingle{}, etc.
+
+Cette classe a les méthodes public qui doivent toutes être redéfinies (mais ne déclanchent pas d\textquotesingle{}erreur si ce n\textquotesingle{}est pas le cas) elles ont une implémentation par défaut, qui d\textquotesingle{}accepte (ajoute le caractère au tampon du parser) tous les caractères spéciaux. Donc le mieux c\textquotesingle{}est de redéfinir celles dont on souhaite interpréter autrement.
+
+Construction \+: {\ttfamily {\bfseries{ obj\+\_\+new({\ttfamily \mbox{\hyperlink{struct__CommandParseHandlerInterpret__}{\+\_\+\+Command\+Parse\+Handler\+Interpret\+\_\+}}}) }}}~\newline
+ où {\ttfamily \mbox{\hyperlink{struct__CommandParseHandlerInterpret__}{\+\_\+\+Command\+Parse\+Handler\+Interpret\+\_\+}}} désigne la classe des objets de type {\ttfamily Parse\+Handler\+Interpret} 
+
+\doxysubsection{Documentation des données membres}
+\mbox{\Hypertarget{struct__CommandParseHandlerInterpret___a410fb13fe7a1afbccfc31b7f9191fc14}\label{struct__CommandParseHandlerInterpret___a410fb13fe7a1afbccfc31b7f9191fc14}} 
+\index{\_CommandParseHandlerInterpret\_@{\_CommandParseHandlerInterpret\_}!\_CommandParseHandlerInterpret\_@{\_CommandParseHandlerInterpret\_}}
+\index{\_CommandParseHandlerInterpret\_@{\_CommandParseHandlerInterpret\_}!\_CommandParseHandlerInterpret\_@{\_CommandParseHandlerInterpret\_}}
+\doxysubsubsection{\texorpdfstring{\_CommandParseHandlerInterpret\_}{\_CommandParseHandlerInterpret\_}}
+{\footnotesize\ttfamily \mbox{\hyperlink{Class_8h_a6ec2a8ccaeb1e924a80036ec40760377}{Class}} \+\_\+\+Command\+Parse\+Handler\+Interpret\+\_\+\+::\+\_\+\+Command\+Parse\+Handler\+Interpret\+\_\+}
+
+
+
+Classe des objets de type {\ttfamily Command\+Parse\+Handler\+Interpret}. 
+
+Construction \+: {\ttfamily {\bfseries{ obj\+\_\+new({\ttfamily \mbox{\hyperlink{struct__CommandParseHandlerInterpret__}{\+\_\+\+Command\+Parse\+Handler\+Interpret\+\_\+}}}) }}}~\newline
+ où {\ttfamily \mbox{\hyperlink{struct__CommandParseHandlerInterpret__}{\+\_\+\+Command\+Parse\+Handler\+Interpret\+\_\+}}} désigne la classe des objets de type {\ttfamily Parse\+Handler\+Interpret} 
+
+La documentation de cette structure a été générée à partir du fichier suivant \+:\begin{DoxyCompactItemize}
+\item 
+parser/\mbox{\hyperlink{CommandParseHandlerInterpret_8c}{Command\+Parse\+Handler\+Interpret.\+c}}\item 
+parser/\mbox{\hyperlink{CommandParseHandlerInterpret_8h}{Command\+Parse\+Handler\+Interpret.\+h}}\end{DoxyCompactItemize}

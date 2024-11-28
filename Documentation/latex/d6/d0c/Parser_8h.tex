@@ -37,7 +37,9 @@ int \mbox{\hyperlink{Parser_8h_ac60bf39f074d82788ee8c423e7e7f554}{Parser\+\_\+re
 const char $\ast$ \mbox{\hyperlink{Parser_8h_a1c986f4664d55ab43b32947f2774682c}{Parser\+\_\+get\+\_\+buff}} (\mbox{\hyperlink{Parser_8c_a2572816ce925d606728b3d081f2280cc}{Parser}} self)
 \begin{DoxyCompactList}\small\item\em Fonction qui renvoie la chaine de caractère contenant les caractères lus. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{Parser_8h_ac398c05c7e48eeea2b4b6705af2af0a2}{Parser\+\_\+parse}} (\mbox{\hyperlink{Parser_8c_a2572816ce925d606728b3d081f2280cc}{Parser}} self)
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Fonction qui va commencer le parsing de la chaine du parseur. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{Parser_8h_a7055c84db583c206cd92871974934d9e}{Parser\+\_\+stop\+\_\+parse}} (\mbox{\hyperlink{Parser_8c_a2572816ce925d606728b3d081f2280cc}{Parser}} self)
+\begin{DoxyCompactList}\small\item\em Fonction qui va mettre un terme au parsing. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
@@ -49,6 +51,10 @@ void \mbox{\hyperlink{Parser_8h_ac398c05c7e48eeea2b4b6705af2af0a2}{Parser\+\_\+p
 Fichier contenant les déclarations des fonctions de l\textquotesingle{}interface de la classe {\ttfamily \mbox{\hyperlink{struct__Parser__}{\+\_\+\+Parser\+\_\+}}}. 
 
 Un objet Parser est un objet qui va analyser une chaine de caractère et va appeler une va appeler une certaine fonction (handler) à chaque caractère lu, afin qu\textquotesingle{}elle l\textquotesingle{}interprète à sa guise.
+
+~\newline
+ NB \+: Lorsqu\textquotesingle{}un parsing est terminé. L\textquotesingle{}objet peut ne plus être utilisable (tout appel à {\ttfamily \mbox{\hyperlink{Parser_8h_ac398c05c7e48eeea2b4b6705af2af0a2}{Parser\+\_\+parse()}}} finira aussitôt), car le parseur aura atteint la fin de la chaine à lire (à moins qu\textquotesingle{}il ne soit stopé avant). ~\newline
+
 
 La classe possède un certains nombres de fonction permettant de manipuler la chaine en cours de lecture et le tampon qui stock les caractères déjà lus.
 
@@ -75,6 +81,10 @@ Classe des objets de type {\ttfamily Parser}.
 Un objet Parser est un objet qui va analyser une chaine de caractère et va appeler une va appeler une certaine fonction (handler) à chaque caractère lu, afin qu\textquotesingle{}elle l\textquotesingle{}interprète à sa guise.
 
 La classe possède un certains nombres de fonction permettant de manipuler la chaine en cours de lecture et le tampon qui stock les caractères déjà lus.
+
+~\newline
+ NB \+: Lorsqu\textquotesingle{}un parsing est terminé. L\textquotesingle{}objet peut ne plus être utilisable (tout appel à {\ttfamily \mbox{\hyperlink{Parser_8c_ac398c05c7e48eeea2b4b6705af2af0a2}{Parser\+\_\+parse()}}} finira aussitôt), car le parseur aura atteint la fin de la chaine à lire (à moins qu\textquotesingle{}il ne soit stopé avant). ~\newline
+
 
 Construction \+: {\ttfamily {\bfseries{ obj\+\_\+new({\ttfamily \mbox{\hyperlink{struct__Parser__}{\+\_\+\+Parser\+\_\+}}}, char$\ast$$\ast$ string, Parse\+Handler handler) }}}~\newline
  où \+: ~\newline
@@ -148,6 +158,17 @@ Le buffer (la chaine de caractère contenant les caractères lus) du paseur.
 \doxysubsubsection{\texorpdfstring{Parser\_parse()}{Parser\_parse()}}
 {\footnotesize\ttfamily void Parser\+\_\+parse (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{Parser_8c_a2572816ce925d606728b3d081f2280cc}{Parser}}}]{self }\end{DoxyParamCaption})}
 
+
+
+Fonction qui va commencer le parsing de la chaine du parseur. 
+
+La fonction va appeller, pour chaque caractère lu, la fonction {\ttfamily \mbox{\hyperlink{ParseHandler_8c_a25f6a025bbc4381a9b5f56b1469748a6}{Parse\+Handler\+\_\+interpret()}}}.
+
+
+\begin{DoxyParams}{Paramètres}
+{\em self} & Le parseur dont on souhaite démarrer le parsing.\\
+\hline
+\end{DoxyParams}
 @biref Fonction qui va commencer le parsing de la chaine du parseur.
 
 La fonction va appeller, pour chaque caractère lu, la fonction {\ttfamily \mbox{\hyperlink{ParseHandler_8c_a25f6a025bbc4381a9b5f56b1469748a6}{Parse\+Handler\+\_\+interpret()}}}.
@@ -194,6 +215,21 @@ La fonction permet de savoir aussi si on a oui ou non lu un caractère dans {\tt
 \begin{DoxyReturn}{Renvoie}
 $>$=1 Si le buffer n\textquotesingle{}est pas vide (il y a un caracètre lu), 0 sinon. 
 \end{DoxyReturn}
+\mbox{\Hypertarget{Parser_8h_a7055c84db583c206cd92871974934d9e}\label{Parser_8h_a7055c84db583c206cd92871974934d9e}} 
+\index{Parser.h@{Parser.h}!Parser\_stop\_parse@{Parser\_stop\_parse}}
+\index{Parser\_stop\_parse@{Parser\_stop\_parse}!Parser.h@{Parser.h}}
+\doxysubsubsection{\texorpdfstring{Parser\_stop\_parse()}{Parser\_stop\_parse()}}
+{\footnotesize\ttfamily void Parser\+\_\+stop\+\_\+parse (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{Parser_8c_a2572816ce925d606728b3d081f2280cc}{Parser}}}]{self }\end{DoxyParamCaption})}
+
+
+
+Fonction qui va mettre un terme au parsing. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em self} & Le parseur dont on souhaite terminer le parsing. \\
+\hline
+\end{DoxyParams}
 
 
 \doxysubsection{Documentation des variables}

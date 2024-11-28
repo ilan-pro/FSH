@@ -1,0 +1,121 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>FSH - Projet Système:  Fichier source de parser/CommandParseHandler.h</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">FSH - Projet Système
+   </div>
+   <div id="projectbrief">Projet de la matière Sy5 - U Paris Cité</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "../../search",false,'Recherche','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="../../menudata.js"></script>
+<script type="text/javascript" src="../../menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('../../',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="../../dir_572890c148f68441e050f6560d78312b.html">parser</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">CommandParseHandler.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="../../d7/dfd/CommandParseHandler_8h.html">Aller à la documentation de ce fichier.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#ifndef COMMAND_PARSE_HANDLER_H</span></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">#define COMMAND_PARSE_HANDLER_H</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="preprocessor">#ifdef COMMAND_PARSE_HANDLER_CLASS</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="preprocessor">    #define PARSE_HANDLER_CLASS</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="preprocessor">    #include &quot;<a class="code" href="../../d3/d01/ParseHandler_8h.html">ParseHandler.h</a>&quot;</span></div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    </div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="preprocessor">    #define COMMAND_PARSE_HANDLER_FIELDS \</span></div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="preprocessor">        PARSE_HANDLER_FIELDS</span></div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    </div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="../../d3/dcb/struct__CommandParseHandler__.html">_CommandParseHandler_</a>* <a class="code" href="../../d7/dfd/CommandParseHandler_8h.html#aa36e2fa996634f02780d5a38a8e8dae9">CommandParseHandler</a>;    </div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160; </div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="preprocessor">#else</span></div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="preprocessor">    #include &quot;<a class="code" href="../../d3/d01/ParseHandler_8h.html">ParseHandler.h</a>&quot;</span></div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160; </div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="keyword">typedef</span> <span class="keyword">struct </span>__command_parse_handler_prv_f {</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    } __command_parse_handler_private_fields;    </div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="preprocessor">    #define COMMAND_PARSE_HANDLER_H_FIELDS \</span></div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="preprocessor">        PARSE_HANDLER_H_FIELDS</span></div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        <span class="keyword">const</span> <span class="keywordtype">char</span> _command_parse_hand [ <span class="keyword">sizeof</span>(__command_parse_handler_private_fields) ];</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    </div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    <span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="../../d3/dcb/struct__CommandParseHandler__.html">_CommandParseHandler_</a>{</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;        <a class="code" href="../../d8/d36/struct__Class__.html">Class</a> <a class="code" href="../../d3/dcb/struct__CommandParseHandler__.html#af89d7cbb7fa6098dc398487000d59e91">_CommandParseHandler_</a>;</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;        COMMAND_PARSE_HANDLER_H_FIELDS</div>
+<div class="line"><a name="l00104"></a><span class="lineno"><a class="line" href="../../d7/dfd/CommandParseHandler_8h.html#aa36e2fa996634f02780d5a38a8e8dae9">  104</a></span>&#160;    }* <a class="code" href="../../d7/dfd/CommandParseHandler_8h.html#aa36e2fa996634f02780d5a38a8e8dae9">CommandParseHandler</a>;</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160; </div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;        </div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;    <span class="keyword">extern</span> <a class="code" href="../../d8/d36/struct__Class__.html">Class</a> <a class="code" href="../../d7/dfd/CommandParseHandler_8h.html#a0a44c0bc3017de509ea11f918e297f25">_CommandParseHandler_</a>;</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160; </div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160; </div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160; </div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160; </div>
+<div class="ttc" id="aCommandParseHandler_8h_html_a0a44c0bc3017de509ea11f918e297f25"><div class="ttname"><a href="../../d7/dfd/CommandParseHandler_8h.html#a0a44c0bc3017de509ea11f918e297f25">_CommandParseHandler_</a></div><div class="ttdeci">Class _CommandParseHandler_</div><div class="ttdoc">Classe des objets de type CommandParseHandler.</div><div class="ttdef"><b>Definition:</b> CommandParseHandler.c:135</div></div>
+<div class="ttc" id="aCommandParseHandler_8h_html_aa36e2fa996634f02780d5a38a8e8dae9"><div class="ttname"><a href="../../d7/dfd/CommandParseHandler_8h.html#aa36e2fa996634f02780d5a38a8e8dae9">CommandParseHandler</a></div><div class="ttdeci">struct _CommandParseHandler_ * CommandParseHandler</div><div class="ttdoc">Classe des objets de type ParseHandler.</div></div>
+<div class="ttc" id="aParseHandler_8h_html"><div class="ttname"><a href="../../d3/d01/ParseHandler_8h.html">ParseHandler.h</a></div><div class="ttdoc">Fichier contenant les déclarations des fonctions de l'interface de la classe _ParseHandler_.</div></div>
+<div class="ttc" id="astruct__Class___html"><div class="ttname"><a href="../../d8/d36/struct__Class__.html">_Class_</a></div><div class="ttdoc">Structure représentant la classe dans laquelle appratient un objet.</div><div class="ttdef"><b>Definition:</b> Class.h:52</div></div>
+<div class="ttc" id="astruct__CommandParseHandler___html"><div class="ttname"><a href="../../d3/dcb/struct__CommandParseHandler__.html">_CommandParseHandler_</a></div><div class="ttdoc">Classe des objets de type ParseHandler.</div><div class="ttdef"><b>Definition:</b> CommandParseHandler.c:105</div></div>
+<div class="ttc" id="astruct__CommandParseHandler___html_af89d7cbb7fa6098dc398487000d59e91"><div class="ttname"><a href="../../d3/dcb/struct__CommandParseHandler__.html#af89d7cbb7fa6098dc398487000d59e91">_CommandParseHandler_::_CommandParseHandler_</a></div><div class="ttdeci">Class _CommandParseHandler_</div><div class="ttdoc">Classe des objets de type CommandParseHandler.</div><div class="ttdef"><b>Definition:</b> CommandParseHandler.c:106</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré par&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+</small></address>
+</body>
+</html>

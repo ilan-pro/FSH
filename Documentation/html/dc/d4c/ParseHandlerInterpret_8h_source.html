@@ -84,31 +84,36 @@ $(function() {
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#else</span></div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <span class="keyword">typedef</span> <span class="keyword">struct </span>__parse_handler_interp_prv_f {</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    } __parse_handler_interpret_private_fields;    </div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160; </div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">    #define PARSE_HANDLER_INTERPRET_H_FIELDS \</span></div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">        void ( * action_on_parse_finish ) (ParseHandlerInterpret, Parser);\</span></div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor">        const char _parser [ sizeof(__parse_handler_interpret_private_fields) ];</span></div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    </div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="../../da/da4/struct__ParseHandlerInterpret__.html">_ParseHandlerInterpret_</a>{</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        <a class="code" href="../../d8/d36/struct__Class__.html">Class</a> <a class="code" href="../../da/da4/struct__ParseHandlerInterpret__.html#a103a99fa17650913e60db9c9c8ffea7d">_ParseHandlerInterpret_</a>;</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        PARSE_HANDLER_INTERPRET_H_FIELDS</div>
-<div class="line"><a name="l00058"></a><span class="lineno"><a class="line" href="../../dc/d4c/ParseHandlerInterpret_8h.html#ad3f2f3c1f580756f46f221ec1acd1ef0">   58</a></span>&#160;    }* <a class="code" href="../../dc/d4c/ParseHandlerInterpret_8h.html#ad3f2f3c1f580756f46f221ec1acd1ef0">ParseHandlerInterpret</a>;</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160; </div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <span class="comment">// Méthodes publics</span></div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160; </div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <span class="keyword">extern</span> <a class="code" href="../../d8/d36/struct__Class__.html">Class</a> <a class="code" href="../../dc/d4c/ParseHandlerInterpret_8h.html#ab9d4051b7d16ec9b31384388fa62dbca">_ParseHandlerInterpret_</a>;</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        </div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160; </div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="../../d6/dd8/struct__Parser__.html">_Parser_</a>* <a class="code" href="../../d3/d41/Parser_8c.html#a2572816ce925d606728b3d081f2280cc">Parser</a>;</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    </div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="../../da/da4/struct__ParseHandlerInterpret__.html">_ParseHandlerInterpret_</a>* <a class="code" href="../../dc/d4c/ParseHandlerInterpret_8h.html#ad3f2f3c1f580756f46f221ec1acd1ef0">ParseHandlerInterpret</a>;</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="keyword">typedef</span> <span class="keyword">struct </span>__parse_handler_interp_prv_f {</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    } __parse_handler_interpret_private_fields;    </div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160; </div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="preprocessor">    #define PARSE_HANDLER_INTERPRET_H_FIELDS \</span></div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="preprocessor">        void ( * action_on_parse_finish ) (ParseHandlerInterpret, Parser);\</span></div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="preprocessor">        const char _parse_hand_interp [ sizeof(__parse_handler_interpret_private_fields) ];</span></div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    </div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="../../da/da4/struct__ParseHandlerInterpret__.html">_ParseHandlerInterpret_</a>{</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        <a class="code" href="../../d8/d36/struct__Class__.html">Class</a> <a class="code" href="../../da/da4/struct__ParseHandlerInterpret__.html#a103a99fa17650913e60db9c9c8ffea7d">_ParseHandlerInterpret_</a>;</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        PARSE_HANDLER_INTERPRET_H_FIELDS</div>
+<div class="line"><a name="l00069"></a><span class="lineno"><a class="line" href="../../dc/d4c/ParseHandlerInterpret_8h.html#ad3f2f3c1f580756f46f221ec1acd1ef0">   69</a></span>&#160;    }* <a class="code" href="../../dc/d4c/ParseHandlerInterpret_8h.html#ad3f2f3c1f580756f46f221ec1acd1ef0">ParseHandlerInterpret</a>;</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160; </div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    <span class="comment">// Méthodes publics</span></div>
 <div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160; </div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    <span class="keyword">extern</span> <a class="code" href="../../d8/d36/struct__Class__.html">Class</a> <a class="code" href="../../dc/d4c/ParseHandlerInterpret_8h.html#ab9d4051b7d16ec9b31384388fa62dbca">_ParseHandlerInterpret_</a>;</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        </div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160; </div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160; </div>
 <div class="ttc" id="aParseHandlerInterpret_8h_html_ab9d4051b7d16ec9b31384388fa62dbca"><div class="ttname"><a href="../../dc/d4c/ParseHandlerInterpret_8h.html#ab9d4051b7d16ec9b31384388fa62dbca">_ParseHandlerInterpret_</a></div><div class="ttdeci">Class _ParseHandlerInterpret_</div><div class="ttdoc">Classe des objets de type ParseHandlerInterpret.</div></div>
 <div class="ttc" id="aParseHandlerInterpret_8h_html_ad3f2f3c1f580756f46f221ec1acd1ef0"><div class="ttname"><a href="../../dc/d4c/ParseHandlerInterpret_8h.html#ad3f2f3c1f580756f46f221ec1acd1ef0">ParseHandlerInterpret</a></div><div class="ttdeci">struct _ParseHandlerInterpret_ * ParseHandlerInterpret</div><div class="ttdoc">Classe des objets de type ParseHandlerInterpret.</div></div>
+<div class="ttc" id="aParser_8c_html_a2572816ce925d606728b3d081f2280cc"><div class="ttname"><a href="../../d3/d41/Parser_8c.html#a2572816ce925d606728b3d081f2280cc">Parser</a></div><div class="ttdeci">struct _Parser_ * Parser</div></div>
 <div class="ttc" id="astruct__Class___html"><div class="ttname"><a href="../../d8/d36/struct__Class__.html">_Class_</a></div><div class="ttdoc">Structure représentant la classe dans laquelle appratient un objet.</div><div class="ttdef"><b>Definition:</b> Class.h:52</div></div>
 <div class="ttc" id="astruct__ParseHandlerInterpret___html"><div class="ttname"><a href="../../da/da4/struct__ParseHandlerInterpret__.html">_ParseHandlerInterpret_</a></div><div class="ttdoc">Classe des objets de type ParseHandlerInterpret.</div><div class="ttdef"><b>Definition:</b> ParseHandlerInterpret.c:67</div></div>
 <div class="ttc" id="astruct__ParseHandlerInterpret___html_a103a99fa17650913e60db9c9c8ffea7d"><div class="ttname"><a href="../../da/da4/struct__ParseHandlerInterpret__.html#a103a99fa17650913e60db9c9c8ffea7d">_ParseHandlerInterpret_::_ParseHandlerInterpret_</a></div><div class="ttdeci">Class _ParseHandlerInterpret_</div><div class="ttdoc">Classe des objets de type ParseHandlerInterpret.</div><div class="ttdef"><b>Definition:</b> ParseHandlerInterpret.c:68</div></div>
+<div class="ttc" id="astruct__Parser___html"><div class="ttname"><a href="../../d6/dd8/struct__Parser__.html">_Parser_</a></div><div class="ttdoc">Classe des objets de type Parser.</div><div class="ttdef"><b>Definition:</b> Parser.c:103</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

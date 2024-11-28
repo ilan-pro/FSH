@@ -23,15 +23,26 @@
 
 #else
 
-    /**@cond HIDE_THIS*/
+    /**
+     * @cond HIDE_THIS
+     *
+     * Il s'agit d'un objet Parser défini dans `Parser.h`, on ne peut pas l'inclure ici 
+     * car `Parser.h` inclu déjà ce header (cela créerait une inclusion circulaire).
+     *
+     * Donc on le déclare tout simplement ici, et le linker se chargera du reste.
+     * C'est largement suffisant pour définir des pointeurs `struct _Parser_ *` qui sont 
+     * des `Parser`.
+     */
+    typedef struct _Parser_* Parser;
     
+    typedef struct _ParseHandlerInterpret_* ParseHandlerInterpret;
     typedef struct __parse_handler_interp_prv_f {
         /** Au cas où */
     } __parse_handler_interpret_private_fields;    
 
     #define PARSE_HANDLER_INTERPRET_H_FIELDS \
         void ( * action_on_parse_finish ) (ParseHandlerInterpret, Parser);\
-        const char _parser [ sizeof(__parse_handler_interpret_private_fields) ];
+        const char _parse_hand_interp [ sizeof(__parse_handler_interpret_private_fields) ];
     
     /**@endcond*/
 

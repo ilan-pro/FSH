@@ -1,5 +1,6 @@
 <map id="parser/ParseHandler.h" name="parser/ParseHandler.h">
-<area shape="rect" id="node1" title="Fichier contenant les déclarations des fonctions de l&#39;interface de la classe _ParseHandler_." alt="" coords="53,5,217,32"/>
-<area shape="rect" id="node2" href="$d3/d41/Parser_8c.html" title="Fichier contenant l&#39;implémentation de la classe _Parser_." alt="" coords="5,80,123,107"/>
-<area shape="rect" id="node3" href="$d6/d0c/Parser_8h.html" title="Fichier contenant les déclarations des fonctions de l&#39;interface de la classe _Parser_." alt="" coords="146,80,265,107"/>
+<area shape="rect" id="node1" title="Fichier contenant les déclarations des fonctions de l&#39;interface de la classe _ParseHandler_." alt="" coords="237,5,401,32"/>
+<area shape="rect" id="node2" href="$d7/dfd/CommandParseHandler_8h.html" title="Fichier contenant les déclarations des fonctions de l&#39;interface de la classe _CommandPromptHandler_ s..." alt="" coords="5,80,236,107"/>
+<area shape="rect" id="node3" href="$d3/d41/Parser_8c.html" title="Fichier contenant l&#39;implémentation de la classe _Parser_." alt="" coords="261,80,378,107"/>
+<area shape="rect" id="node4" href="$d6/d0c/Parser_8h.html" title="Fichier contenant les déclarations des fonctions de l&#39;interface de la classe _Parser_." alt="" coords="401,80,520,107"/>
 </map>
