@@ -265,9 +265,6 @@ static void* ExternalCommand_destroy(void* self_){
     assert(obj_instance_of(self_, _ExternalCommand_));
 
     ExternalCommand self = _Command_->dtor(self_);
-    free(*(char**)&self->name);
-    obj_destroy(self->params);
-    obj_destroy(self->args);
     // Aucun autre champ n'est à libérer il n'y a pas de liste d'argument ni de liste de paramètre.
 
     return self;
@@ -288,9 +285,9 @@ static int ExternalCommand_execute(Command self_){
         case 0:
             // le fils
             // ExternalCommand cmd = _ExternalCommand_->ctor(self_, );
-            ExternalCommand self = (ExternalCommand) self_;
+            ExternalCommand self = (ExternalCommand) (void*) self_;
             int size = LinkedList_size(self->args);
-            char **cmd = malloc((size + 1) * sizeof(char));
+            char **cmd = malloc((size + 1) * sizeof(char*));
 
             if(!cmd){
                 perror("malloc");
@@ -298,14 +295,25 @@ static int ExternalCommand_execute(Command self_){
             }
             
             for(int i=0; i < size; i++){
-                cmd[i] = obj_to_string((String) LinkedList_get(self->args, i, 0));
+                char* tmp = obj_to_string((String) LinkedList_get(self->args, i, 0));
+                cmd[i] = malloc((1 + strlen(tmp)) * sizeof(char));
+                strcpy(cmd[i], tmp);
             }
             cmd[size] = NULL;
             
             if(execvp(self->name, cmd) < 0 ){
+                for(int i=0; i < size; i++)
+                    free(cmd[i]);
+                free(cmd);
+
                 perror("execvp"); 
                 exit(1);
             }
+
+            for(int i=0; i < size; i++)
+                free(cmd[i]);
+            free(cmd);
+            
             exit(0);
         case -1:
             perror("fork,");
