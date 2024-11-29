@@ -147,6 +147,9 @@ static void* ExternalCommand_constructor(void* self_, va_list* args){
     char* tmp = malloc((1 + strlen(cmd_name)) * sizeof(char));
     *(char**)&self->name = strcpy(tmp, cmd_name); // Mise à jour du nom de la commande.
     
+    // Récupération du reste du prompt.
+    char** prompt = va_arg(*args, char**);
+
     self->args = obj_new(_LinkedList_);
     self->params = obj_new(_LinkedList_);
 
@@ -162,15 +165,15 @@ static void* ExternalCommand_constructor(void* self_, va_list* args){
     int quoted = 0; // Booléean indiquant si oui ou non on se trouve dans des guillemets.
     int double_quoted = 0; // Booléean indiquant si oui ou non on se trouve dans des guillemets double.
     int esc = 0; // Booléean indiquant si oui ou non le caractère suivant est echappé.
-
+    
     /** 
      * Lecture du prompt dans la boucle tant que le caractère pointé est 
      * valide (voir documentation de la fonction actual_char_is_legal()).
      */
-    while(Command_actual_char_is_legal(quoted, double_quoted, esc)){
+    while(Command_actual_char_is_legal(quoted, double_quoted, esc, prompt)){
         
         // Récupération du caractère pointé par le pointeur, et incémentation de la posisiton.
-        char c = *(usr_prompt++);
+        char c = *((*prompt)++);
         switch (c){
             default : 
                 h_default: // label 

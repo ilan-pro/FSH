@@ -152,6 +152,7 @@ LinkedList Shell_parse(){
                 
             break;
         }
+        
 
         
         if(res == '|'){
@@ -216,7 +217,7 @@ LinkedList Shell_parse(){
             char_lu = realloc(char_lu, sizeof(char));
             char_lu[0] = '\0';
             // pour éviter d'avoir des espaces si il y a une autre commande qui suit
-            // continue pour revenir au debut du while
+            // continue pour revenir au debut du whilevoir des espaces si 
             continue;
         }
         
@@ -304,14 +305,14 @@ static Command apply_cmd(char *char_lu, LinkedList file_secondaire){
 	if(tmp){
 
 		// je cré l'objet associé à ma commande
-		cmd = obj_new(tmp, char_lu);
+		cmd = obj_new(tmp, char_lu, &usr_prompt);
 		//j'ajoute la commande interne à ma file
 		LinkedList_add_last(file_secondaire, cmd, 0);	
 
 	}else{
 
         // donc c'est une commande externe
-		cmd = obj_new(_ExternalCommand_, char_lu);
+		cmd = obj_new(_ExternalCommand_, char_lu, &usr_prompt);
         LinkedList_add_last(file_secondaire, cmd, 0);
 
 	}

@@ -13,8 +13,7 @@ Graphe des dépendances par inclusion de Command.\+h\+:\nopagebreak
 \includegraphics[width=210pt]{d4/d3c/Command_8h__incl}
 \end{center}
 \end{figure}
-Ce graphe montre quels fichiers incluent directement ou indirectement ce fichier \+:
-\nopagebreak
+Ce graphe montre quels fichiers incluent directement ou indirectement ce fichier \+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -36,7 +35,7 @@ typedef struct \mbox{\hyperlink{struct__Command__}{\+\_\+\+Command\+\_\+}} $\ast
 \item 
 int \mbox{\hyperlink{Command_8h_a67f00477620b6d9fce3659748d6e1eea}{Command\+\_\+execute}} (\mbox{\hyperlink{Command_8c_a3818e99ca4c9066c0c978b40ac1a85d7}{Command}} self)
 \begin{DoxyCompactList}\small\item\em Fonction qui va exécuter la commande. \end{DoxyCompactList}\item 
-int \mbox{\hyperlink{Command_8h_ab43f330b543aaa9ca3cce3423a87154c}{Command\+\_\+actual\+\_\+char\+\_\+is\+\_\+legal}} (int quoted, int double\+\_\+quoted, int esc)
+int \mbox{\hyperlink{Command_8h_a0c8154af6719bb6797fee45a301f93f8}{Command\+\_\+actual\+\_\+char\+\_\+is\+\_\+legal}} (int quoted, int double\+\_\+quoted, int esc, char $\ast$$\ast$prompt)
 \begin{DoxyCompactList}\small\item\em Fonction qui vérifie si oui ou non le caractère actuellement pointé par le pointeur vers le prompte de l\textquotesingle{}utilisateur est valide, c\textquotesingle{}est à dire si on doit oui ou non arrêter la parsing de la commande. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Variables}
 \begin{DoxyCompactItemize}
@@ -66,11 +65,11 @@ Il s\textquotesingle{}agit d\textquotesingle{}une classe abstraite qui représen
 Construction \+: {\ttfamily {\bfseries{obj\+\_\+new(\mbox{\hyperlink{struct__Command__}{\+\_\+\+Command\+\_\+}}, \char`\"{}\+Nom\+\_\+de\+\_\+la\+\_\+commande\char`\"{} )}}} 
 
 \doxysubsection{Documentation des fonctions}
-\mbox{\Hypertarget{Command_8h_ab43f330b543aaa9ca3cce3423a87154c}\label{Command_8h_ab43f330b543aaa9ca3cce3423a87154c}} 
+\mbox{\Hypertarget{Command_8h_a0c8154af6719bb6797fee45a301f93f8}\label{Command_8h_a0c8154af6719bb6797fee45a301f93f8}} 
 \index{Command.h@{Command.h}!Command\_actual\_char\_is\_legal@{Command\_actual\_char\_is\_legal}}
 \index{Command\_actual\_char\_is\_legal@{Command\_actual\_char\_is\_legal}!Command.h@{Command.h}}
 \doxysubsubsection{\texorpdfstring{Command\_actual\_char\_is\_legal()}{Command\_actual\_char\_is\_legal()}}
-{\footnotesize\ttfamily int Command\+\_\+actual\+\_\+char\+\_\+is\+\_\+legal (\begin{DoxyParamCaption}\item[{int}]{quoted,  }\item[{int}]{double\+\_\+quoted,  }\item[{int}]{esc }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily int Command\+\_\+actual\+\_\+char\+\_\+is\+\_\+legal (\begin{DoxyParamCaption}\item[{int}]{quoted,  }\item[{int}]{double\+\_\+quoted,  }\item[{int}]{esc,  }\item[{char $\ast$$\ast$}]{prompt }\end{DoxyParamCaption})}
 
 
 
@@ -91,6 +90,8 @@ Si le caractère n\textquotesingle{}est pas null (fin de chaine) et qu\textquote
 {\em double\+\_\+quoted} & Booléen indiquant si le caracètre est entre guillemets doubles. \\
 \hline
 {\em esc} & Booléen indiquant si le caracètre est echapé par \textbackslash{} . \\
+\hline
+{\em prompt} & Le prompt en cours de paring. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Renvoie}
@@ -129,6 +130,13 @@ La valeur de retour de la commande après exécution.
 
 Classe de toutes les commandes. 
 
-Il s\textquotesingle{}agit d\textquotesingle{}une classe abstraite qui représente une commande interne du shell. Elle possède une méthode abstraite à redéfinir dans tout sous-\/type de commande (sinon cela va déclancher une erreur), qui la méthode {\ttfamily execute()} appelée par {\ttfamily \mbox{\hyperlink{Command_8c_a67f00477620b6d9fce3659748d6e1eea}{Command\+\_\+execute()}}}, la fonction appelée pour exécuter la commande.
+Il s\textquotesingle{}agit d\textquotesingle{}une classe abstraite qui représente une commande interne du shell. Elle possède une méthode abstraite à redéfinir dans tout sous-\/type de commande (sinon cela va déclancher une erreur), qui la méthode {\ttfamily execute()} appelée par {\ttfamily command\+\_\+execute()}, la fonction appelée pour exécuter la commande.
 
-Construction \+: {\ttfamily obj\+\_\+new(\mbox{\hyperlink{struct__Command__}{\+\_\+\+Command\+\_\+}}, $<$Nom\+\_\+de\+\_\+la\+\_\+commande$>$ )} 
+Construction \+: {\ttfamily obj\+\_\+new(}\mbox{\hyperlink{struct__Command__}{\+\_\+\+Command\+\_\+}}{\ttfamily , char$\ast$ nom\+\_\+de\+\_\+la\+\_\+commande, char$\ast$$\ast$ prompt )} Avec \+: 
+\begin{DoxyItemize}
+\item {\ttfamily \mbox{\hyperlink{struct__Command__}{\+\_\+\+Command\+\_\+}}} \+: La classe des objets de type {\ttfamily Command}.  
+\item {\ttfamily {\bfseries{ nom\+\_\+de\+\_\+la\+\_\+commande }}} \+: Le nom de la commande.  
+\item {\ttfamily {\bfseries{ prompt }}} Un pointeur vers le reste du {\ttfamily prompt} (les commandes prennent souvent un certain nombre de paramètre ainsi que des arguments).~\newline
+. {\ttfamily char $\ast$$\ast$} permet de modifier directement la chaine du prompt sans faire de copie. Alors NB que la chaine ~\newline
+ est modifiée pendant la création de la commande. 
+\end{DoxyItemize}

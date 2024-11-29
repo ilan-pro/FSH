@@ -47,12 +47,6 @@ extern char working_dir[4096];
 // commentaire
 LinkedList Shell_parse();
 
-/**
- * Il s'agit de la chaine de caractère saisie par l'utilisateur.
- */
-extern char *usr_prompt;
-
-
 extern int previous_cmd_finish;
 
 #endif

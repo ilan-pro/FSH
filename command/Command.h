@@ -95,9 +95,10 @@
      * @param quoted Booléen indiquant si le caracètre est entre guillemets simple.
      * @param double_quoted Booléen indiquant si le caracètre est entre guillemets doubles.
      * @param esc Booléen indiquant si le caracètre est echapé par \ .
+     * @param prompt Le prompt en cours de paring.
      * @return Si oui ou non le caractère actuellement pointé par 
      * le pointeur vers le prompte de l'utilisateur est valide.
      */
-    int Command_actual_char_is_legal(int quoted, int double_quoted, int esc);
+    int Command_actual_char_is_legal(int quoted, int double_quoted, int esc, char** prompt);
     
 #endif

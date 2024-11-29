@@ -2,6 +2,15 @@
  * @file Command.c
  * @brief  Fichier source de la classe `_Command_` contenant l'implémentation des variables et de toutes les méthodes de l'interface.
  * 
+ * Construction : `obj_new(`_Command_`, char* nom_de_la_commande, char** prompt )`
+ * Avec : <ul>
+ *      <li> `_Command_` : La classe des objets de type `Command`. </li>
+ *      <li> <code><strong> nom_de_la_commande </strong></code> : Le nom de la commande. </li>
+ *      <li> <code><strong> prompt </strong></code> Un pointeur vers le reste du `prompt` (les commandes 
+ *      prennent souvent un certain nombre de paramètre ainsi que des arguments).<br>. `char **` permet de 
+ *      modifier directement la chaine du prompt sans faire de copie. Alors NB que la chaine  
+ *      est modifiée pendant la création de la commande.</li>
+ *  </ul>
  */
 
 #include <assert.h>
@@ -11,7 +20,6 @@
 #include <unistd.h>
 #include "../base/new.h"
 #include "../base/String.h"
-#include "../shell.h"
 /**@cond HIDE_THIS*/
 #define COMMAND_CLASS "Command"  
 #include "Command.h"
@@ -85,7 +93,15 @@ typedef struct _Command_ {
      * (sinon cela va déclancher une erreur), qui la méthode `execute()` appelée par 
      * `Command_execute()`, la fonction appelée pour exécuter la commande.
      * 
-     * Construction : `obj_new(_Command_, <Nom_de_la_commande> )`
+     * Construction : `obj_new(`_Command_`, char* nom_de_la_commande, char** prompt )`
+     * Avec : <ul>
+     *      <li> `_Command_` : La classe des objets de type `Command`. </li>
+     *      <li> <code><strong> nom_de_la_commande </strong></code> : Le nom de la commande. </li>
+     *      <li> <code><strong> prompt </strong></code> Un pointeur vers le reste du `prompt` (les commandes 
+     *      prennent souvent un certain nombre de paramètre ainsi que des arguments).<br>. `char **` permet de 
+     *      modifier directement la chaine du prompt sans faire de copie. Alors NB que la chaine  
+     *      est modifiée pendant la création de la commande.</li>
+     *  </ul>
      */
     Class _Command_;
     COMMAND_FIELDS
@@ -109,9 +125,17 @@ static struct _Class_ __Command__ = {
  * Il s'agit d'une classe abstraite qui représente une commande interne du shell. 
  * Elle possède une méthode abstraite à redéfinir dans tout sous-type de commande 
  * (sinon cela va déclancher une erreur), qui la méthode `execute()` appelée par 
- * `Command_execute()`, la fonction appelée pour exécuter la commande.
+ * `command_execute()`, la fonction appelée pour exécuter la commande.
  * 
- * Construction : `obj_new(_Command_, <Nom_de_la_commande> )`
+ * Construction : `obj_new(`_Command_`, char* nom_de_la_commande, char** prompt )`
+ * Avec : <ul>
+ *      <li> `_Command_` : La classe des objets de type `Command`. </li>
+ *      <li> <code><strong> nom_de_la_commande </strong></code> : Le nom de la commande. </li>
+ *      <li> <code><strong> prompt </strong></code> Un pointeur vers le reste du `prompt` (les commandes 
+ *      prennent souvent un certain nombre de paramètre ainsi que des arguments).<br>. `char **` permet de 
+ *      modifier directement la chaine du prompt sans faire de copie. Alors NB que la chaine  
+ *      est modifiée pendant la création de la commande.</li>
+ *  </ul>
  */
 const Class _Command_ = &__Command__;
 
@@ -134,16 +158,17 @@ const Class _Command_ = &__Command__;
  * @param quoted Booléen indiquant si le caracètre est entre guillemets simple.
  * @param double_quoted Booléen indiquant si le caracètre est entre guillemets doubles.
  * @param esc Booléen indiquant si le caracètre est echapé par \ .
+ * @param prompt Le prompt en cours de paring.
  * @return Si oui ou non le caractère actuellement pointé par 
  * le pointeur vers le prompte de l'utilisateur est valide.
  */
-int Command_actual_char_is_legal(int quoted, int double_quoted, int esc){
+int Command_actual_char_is_legal(int quoted, int double_quoted, int esc, char** prompt){
     
-    return *usr_prompt 
+    return **prompt
     && (quoted || double_quoted || esc || (
-        (*usr_prompt) != '|' && 
-        (*usr_prompt) != ';' && 
-        (*usr_prompt) != '}')
+        *(*prompt) != '|' && 
+        *(*prompt) != ';' && 
+        *(*prompt) != '}')
     );
 
 }
@@ -158,23 +183,24 @@ int Command_actual_char_is_legal(int quoted, int double_quoted, int esc){
  * chaine soit terminé (la chaine est toujours le prompt de l'utilisateur).
  * 
  * @param self La commande en cours de construction.
+ * @param prompt Le prompt en cours de paring.
  */
-static void Command_parse_usr_prompt_params(Command self){
+static void Command_parse_usr_prompt_params(Command self, char** prompt){
 
 
     /** 
      * Lecture du prompt dans la boucle tant que l'on a pas fini le prompt 
      * ou qu'on a pas rencontré l'un des caractères `;`, `}` ou `|`
      */
-    while(*usr_prompt && (*usr_prompt) != '|' && (*usr_prompt) != ';' && (*usr_prompt) != '}' ){
+    while(**prompt && *(*prompt) != '|' && *(*prompt) != ';' && *(*prompt) != '}' ){
         
-        if (*usr_prompt == ' ') // Si on tombe sur un espace alors on a fini de lire.
+        if (**prompt== ' ') // Si on tombe sur un espace alors on a fini de lire.
             break;
 
         // On crée une chaine à un seul caractère pour le paramètre.
         // TODO : Penser à créer une classe Character (si le temps le permet)
         char param[2];
-        param[0] = *(usr_prompt++);
+        param[0] = *(*prompt++);
         param[1] = '\0';
         
         // Ajout du paramètre dans la liste.
@@ -197,8 +223,9 @@ static void Command_parse_usr_prompt_params(Command self){
  * écrite dans le fichier `shell.c`
  *
  * @param self La commande en cours de construction.
+ * @param prompt Le prompt en cours de paring.
  */
-static void Command_parse_usr_prompt(Command self){
+static void Command_parse_usr_prompt(Command self, char** prompt){
     
     // Nombre de caractère lu. (Si ce nombre vaut 0 alors on a encore rien lu dans le prompt et donc tous les espaces sont ignorés. Le nombre est mis à 0 après chaque lecture d'un mot)
     int char_compteur = 0;
@@ -221,9 +248,9 @@ static void Command_parse_usr_prompt(Command self){
      * Lecture du prompt dans la boucle tant que le caractère pointé est 
      * valide (voir documentation de la fonction actual_char_is_legal()).
      */
-    while(Command_actual_char_is_legal(quoted, double_quoted, esc)){
+    while(Command_actual_char_is_legal(quoted, double_quoted, esc, prompt)){
         // Récupération du caractère pointé par le pointeur, et incémentation de la posisiton.
-        char c = *(usr_prompt++);
+        char c = *((*prompt)++);
         switch (c) {
             default : // par défaut on ajoute le caractère à la chaine en cours de lecture. 
                 h_default: // label 
@@ -271,7 +298,7 @@ static void Command_parse_usr_prompt(Command self){
                      */
                     goto h_default;
                 }
-                else if (!Command_actual_char_is_legal(quoted, double_quoted, esc) || *(usr_prompt)==' '){
+                else if (!Command_actual_char_is_legal(quoted, double_quoted, esc, prompt) || *(*prompt)==' '){
                     /**
                      * Si le prochain caractère (car on a fait usr_prompt++) n'est pas valide
                      * (et donc qu'il n'y aura pas de prochaine itération) ou que le prochain 
@@ -283,7 +310,7 @@ static void Command_parse_usr_prompt(Command self){
 
 
                 // Sinon on récupère les paramètres.
-                Command_parse_usr_prompt_params(self);
+                Command_parse_usr_prompt_params(self, prompt);
                 break;
 
             case '"': // Le cas où on a des guillemets doubles
@@ -338,6 +365,9 @@ static void* Command_constructor(void* self_, va_list* args){
     // Récupération du nom de la commande
     char* cmd_name = va_arg(*args, char*);
 
+    // Récupération du prompt
+    char** prompt = va_arg(*args, char**);
+
     char *name = malloc(sizeof(char) * (1+strlen(cmd_name)));
     strcpy(name, cmd_name);
 
@@ -347,7 +377,7 @@ static void* Command_constructor(void* self_, va_list* args){
     *(int(**))&self->execute = 0;
 
     // Lecture du prompt de l'utilisateur
-    Command_parse_usr_prompt(self);
+    Command_parse_usr_prompt(self, prompt);
 
     return self;
 }
@@ -378,6 +408,8 @@ static void Command_print(const void* self_){
     // Conversion en Command.
     Command self = (Command) self_;
     write(1, "Commande : ", 11);
+    
+
     write(1, self->name, strlen(self->name));
     write(1, ". Args=", 7);
     obj_print(self->args);

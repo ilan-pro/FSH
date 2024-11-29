@@ -139,7 +139,7 @@ static char* For_dir = "";
 /************** Corps des fonctions ****************/
 
 
-static void next_word(char* mot){
+static void next_word(char* mot, char** prompt){
 
     int break_loop = 0;
     
@@ -148,9 +148,9 @@ static void next_word(char* mot){
      * Lecture du prompt dans la boucle tant que le caractère pointé est 
      * n'est pas \0`(fin de l chaine)
      */
-    while(usr_prompt && *usr_prompt != '{' && !break_loop){
+    while(prompt && **prompt != '{' && !break_loop){
         
-        char c = *(usr_prompt++);
+        char c = *(*prompt++);
         
         // Nombre de caractère lu. (Si ce nombre vaut 0 alors on a encore rien lu 
         // dans le prompt et donc tous les espaces sont ignorés. Le nombre est mis à 0 après chaque lecture d'un mot)
@@ -194,6 +194,9 @@ static void* For_constructor(void* self_, va_list* args){
     // Ajout de la fonction execute de la classe fille.
     *((int (**) (Command)) &(self->execute)) = For_execute;
 
+    //Récupération du reste du prompt.
+    char** prompt = va_arg(*args, char**);
+
     
     /** 
      * Chaine de caractère qui va contenir le mot en cours de lecture, 
@@ -206,9 +209,9 @@ static void* For_constructor(void* self_, va_list* args){
     mot[0] = '\0';
         
     // Réucpération du prochain mot
-    next_word(mot);
-    if(!usr_prompt){
-        char tmp[] = "\e[1;31mErreur : boucle for mal écrite !0\n\e[1;0m";
+    next_word(mot, prompt);
+    if(!*prompt){
+        char tmp[] = "\e[1;31mErreur : boucle for mal écrite !\n\e[1;0m";
         write(2,tmp, strlen(tmp));
     }
     // Le mot parsé est l'identificateur des fichiers dans la boucle.
@@ -221,9 +224,9 @@ static void* For_constructor(void* self_, va_list* args){
     mot[0] = '\0';
     
     // Récupération du prochain mot `in`
-    next_word(mot);
-    if(!usr_prompt){
-        char tmp[] = "\e[1;31mErreur : boucle for mal écrite !1\n\e[1;0m";
+    next_word(mot, prompt);
+    if(!*prompt){
+        char tmp[] = "\e[1;31mErreur : boucle for mal écrite !\n\e[1;0m";
         write(2,tmp, strlen(tmp));
     }
     if(!strcmp(mot, "in")){
@@ -237,8 +240,8 @@ static void* For_constructor(void* self_, va_list* args){
     mot[0] = '\0';
     
     // Récupération du chemin vers le répertoire.
-    next_word(mot);
-    if(!usr_prompt){
+    next_word(mot, prompt);
+    if(!*prompt){
         char tmp[] = "\e[1;31mErreur : boucle for mal écrite !\n\e[1;0m";
         write(2,tmp, strlen(tmp));
     }
@@ -247,18 +250,18 @@ static void* For_constructor(void* self_, va_list* args){
     strcpy(For_dir, mot);
     
     
-    while(*usr_prompt != '{'){
+    while(**prompt!= '{'){
             
-        if(!usr_prompt){
+        if(!*prompt){
             char tmp[] = "\e[1;31mErreur : boucle for mal écrite !\n\e[1;0m";
             write(2,tmp, strlen(tmp));
             break;
         }
 
-        usr_prompt ++;
+        (*prompt)++;
         
     }
-    usr_prompt ++;
+    (*prompt)++;
     
     // Récupération des commandes de for.
     self->commands = Shell_parse(); 

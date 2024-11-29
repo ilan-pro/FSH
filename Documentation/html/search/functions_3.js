@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['main_179',['main',['../da/de7/fsh_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4',1,'fsh.c']]]
+  ['initialize_5fcmd_162',['initialize_cmd',['../da/de7/fsh_8c.html#a2f4dbf5d30e18b6c18dab724885aebc6',1,'fsh.c']]],
+  ['initialize_5ffor_5flists_163',['initialize_for_lists',['../da/de7/fsh_8c.html#ab0a6d40889442f4e3dee5b822b67a51d',1,'fsh.c']]]
 ];

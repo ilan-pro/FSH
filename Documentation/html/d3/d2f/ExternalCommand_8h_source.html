@@ -79,30 +79,28 @@ $(function() {
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    </div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">    #define EXTERNAL_COMMAND_FILEDS \</span></div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">        COMMAND_FIELDS </span><span class="comment">/* Doit toujours être déclaré en premier pour pouvoir réduire l&#39;objet à un objet de type Command pour le polymorphisme */</span><span class="preprocessor">\</span></div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">        char* command; \ </span></div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160; </div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="../../da/dfa/struct__ExternalCommand__.html">_ExternalCommand_</a>* <a class="code" href="../../d3/d2f/ExternalCommand_8h.html#a59edfd41ec0446af2bc560f4ce9ca9da">ExternalCommand</a>;</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    </div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#else</span></div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="../../d1/d55/Command_8h.html">Command.h</a>&quot;</span></div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    </div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <span class="keyword">typedef</span> <span class="keyword">struct </span>__external_command_private_fields{</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        <span class="keywordtype">char</span>* command;</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    } __external_command_private_fields;</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160; </div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">    #define EXTERNAL_COMMAND_H_FIELDS \</span></div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">        COMMAND_H_FIELDS </span><span class="comment">/* Doit toujours être déclaré en premier pour pouvoir réduire l&#39;objet à un objet de type Command pour le polymorphisme */</span><span class="preprocessor"> \</span></div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor">        const char _ExternalCommand_private[sizeof(__external_command_private_fields)];</span></div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="../../da/dfa/struct__ExternalCommand__.html">_ExternalCommand_</a> {</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;       <a class="code" href="../../d8/d36/struct__Class__.html">Class</a> <a class="code" href="../../da/dfa/struct__ExternalCommand__.html#a9995e9d326347079c64a130e447ab5f5">_ExternalCommand_</a>;</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;       EXTERNAL_COMMAND_H_FIELDS</div>
-<div class="line"><a name="l00050"></a><span class="lineno"><a class="line" href="../../d3/d2f/ExternalCommand_8h.html#a59edfd41ec0446af2bc560f4ce9ca9da">   50</a></span>&#160;    }* <a class="code" href="../../d3/d2f/ExternalCommand_8h.html#a59edfd41ec0446af2bc560f4ce9ca9da">ExternalCommand</a>;</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor"></span> </div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="../../da/dfa/struct__ExternalCommand__.html">_ExternalCommand_</a>* <a class="code" href="../../d3/d2f/ExternalCommand_8h.html#a59edfd41ec0446af2bc560f4ce9ca9da">ExternalCommand</a>;</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    </div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#else</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="../../d1/d55/Command_8h.html">Command.h</a>&quot;</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    </div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <span class="keyword">typedef</span> <span class="keyword">struct </span>__external_command_private_fields{</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    } __external_command_private_fields;</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">    #define EXTERNAL_COMMAND_H_FIELDS \</span></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">        COMMAND_H_FIELDS </span><span class="comment">/* Doit toujours être déclaré en premier pour pouvoir réduire l&#39;objet à un objet de type Command pour le polymorphisme */</span><span class="preprocessor"> \</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">        const char _ExternalCommand_private[sizeof(__external_command_private_fields)];</span></div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="../../da/dfa/struct__ExternalCommand__.html">_ExternalCommand_</a> {</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;       <a class="code" href="../../d8/d36/struct__Class__.html">Class</a> <a class="code" href="../../da/dfa/struct__ExternalCommand__.html#a9995e9d326347079c64a130e447ab5f5">_ExternalCommand_</a>;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;       EXTERNAL_COMMAND_H_FIELDS</div>
+<div class="line"><a name="l00048"></a><span class="lineno"><a class="line" href="../../d3/d2f/ExternalCommand_8h.html#a59edfd41ec0446af2bc560f4ce9ca9da">   48</a></span>&#160;    }* <a class="code" href="../../d3/d2f/ExternalCommand_8h.html#a59edfd41ec0446af2bc560f4ce9ca9da">ExternalCommand</a>;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160; </div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <span class="keyword">extern</span> <span class="keyword">const</span> <a class="code" href="../../d8/d36/struct__Class__.html">Class</a> <a class="code" href="../../d3/d2f/ExternalCommand_8h.html#ac50e4834d94c6c6f79a76d830f341452">_ExternalCommand_</a>;</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160; </div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="keyword">extern</span> <span class="keyword">const</span> <a class="code" href="../../d8/d36/struct__Class__.html">Class</a> <a class="code" href="../../d3/d2f/ExternalCommand_8h.html#ac50e4834d94c6c6f79a76d830f341452">_ExternalCommand_</a>;</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160; </div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="ttc" id="aCommand_8h_html"><div class="ttname"><a href="../../d1/d55/Command_8h.html">Command.h</a></div><div class="ttdoc">Fichier d'en-tête contenant les déclarations des variables publiques et de toutes les méthodes public...</div></div>
 <div class="ttc" id="aExternalCommand_8h_html_a59edfd41ec0446af2bc560f4ce9ca9da"><div class="ttname"><a href="../../d3/d2f/ExternalCommand_8h.html#a59edfd41ec0446af2bc560f4ce9ca9da">ExternalCommand</a></div><div class="ttdeci">struct _ExternalCommand_ * ExternalCommand</div></div>
 <div class="ttc" id="aExternalCommand_8h_html_ac50e4834d94c6c6f79a76d830f341452"><div class="ttname"><a href="../../d3/d2f/ExternalCommand_8h.html#ac50e4834d94c6c6f79a76d830f341452">_ExternalCommand_</a></div><div class="ttdeci">const Class _ExternalCommand_</div><div class="ttdoc">Classe des commandes externes.</div><div class="ttdef"><b>Definition:</b> ExternalCommand.c:119</div></div>

@@ -10,7 +10,7 @@ var searchData=
   ['command_23',['Command',['../d7/d41/Command_8c.html#a3818e99ca4c9066c0c978b40ac1a85d7',1,'Command():&#160;Command.c'],['../d1/d55/Command_8h.html#a3818e99ca4c9066c0c978b40ac1a85d7',1,'Command():&#160;Command.h']]],
   ['command_2ec_24',['Command.c',['../d7/d41/Command_8c.html',1,'']]],
   ['command_2eh_25',['Command.h',['../d1/d55/Command_8h.html',1,'']]],
-  ['command_5factual_5fchar_5fis_5flegal_26',['Command_actual_char_is_legal',['../d7/d41/Command_8c.html#ab43f330b543aaa9ca3cce3423a87154c',1,'Command_actual_char_is_legal(int quoted, int double_quoted, int esc):&#160;Command.c'],['../d1/d55/Command_8h.html#ab43f330b543aaa9ca3cce3423a87154c',1,'Command_actual_char_is_legal(int quoted, int double_quoted, int esc):&#160;Command.c']]],
+  ['command_5factual_5fchar_5fis_5flegal_26',['Command_actual_char_is_legal',['../d7/d41/Command_8c.html#a0c8154af6719bb6797fee45a301f93f8',1,'Command_actual_char_is_legal(int quoted, int double_quoted, int esc, char **prompt):&#160;Command.c'],['../d1/d55/Command_8h.html#a0c8154af6719bb6797fee45a301f93f8',1,'Command_actual_char_is_legal(int quoted, int double_quoted, int esc, char **prompt):&#160;Command.c']]],
   ['command_5fexecute_27',['Command_execute',['../d7/d41/Command_8c.html#a67f00477620b6d9fce3659748d6e1eea',1,'Command_execute(Command self):&#160;Command.c'],['../d1/d55/Command_8h.html#a67f00477620b6d9fce3659748d6e1eea',1,'Command_execute(Command self):&#160;Command.c']]],
   ['ctor_28',['ctor',['../d8/d36/struct__Class__.html#af03691a875f9e325b643827d3f7a0458',1,'_Class_']]]
 ];

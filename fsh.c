@@ -14,6 +14,7 @@
 #include <sys/wait.h>
 
 #include "base/new.h"
+#include "command/ExternalCommand.h"
 #include "command/For.h"
 #include "command/all_cmd.h"
 #include "shell.h"
@@ -92,7 +93,14 @@ int run_commande(){
 int main(){ 
     initialize_cmd();
     initialize_for_lists();
-    Shell_start(); 
+    
+    char* prompt = " -l";
+    ExternalCommand e = obj_new(_ExternalCommand_, "ls", &prompt);
+        
+    Command_execute((Command)e);
+
+    obj_destroy(e);
+    //Shell_start(); 
     destroy_for_lists();
     return 0; 
 }

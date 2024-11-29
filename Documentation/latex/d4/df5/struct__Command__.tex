@@ -45,7 +45,14 @@ Classe de toutes les commandes.
 
 Il s\textquotesingle{}agit d\textquotesingle{}une classe abstraite qui représente une commande interne du shell. Elle possède une méthode abstraite à redéfinir dans tout sous-\/type de commande (sinon cela va déclancher une erreur), qui la méthode {\ttfamily execute()} appelée par {\ttfamily \mbox{\hyperlink{Command_8c_a67f00477620b6d9fce3659748d6e1eea}{Command\+\_\+execute()}}}, la fonction appelée pour exécuter la commande.
 
-Construction \+: {\ttfamily obj\+\_\+new(\mbox{\hyperlink{struct__Command__}{\+\_\+\+Command\+\_\+}}, $<$Nom\+\_\+de\+\_\+la\+\_\+commande$>$ )} 
+Construction \+: {\ttfamily obj\+\_\+new(}\mbox{\hyperlink{struct__Command__}{\+\_\+\+Command\+\_\+}}{\ttfamily , char$\ast$ nom\+\_\+de\+\_\+la\+\_\+commande, char$\ast$$\ast$ prompt )} Avec \+: 
+\begin{DoxyItemize}
+\item {\ttfamily \mbox{\hyperlink{struct__Command__}{\+\_\+\+Command\+\_\+}}} \+: La classe des objets de type {\ttfamily Command}.  
+\item {\ttfamily {\bfseries{ nom\+\_\+de\+\_\+la\+\_\+commande }}} \+: Le nom de la commande.  
+\item {\ttfamily {\bfseries{ prompt }}} Un pointeur vers le reste du {\ttfamily prompt} (les commandes prennent souvent un certain nombre de paramètre ainsi que des arguments).~\newline
+. {\ttfamily char $\ast$$\ast$} permet de modifier directement la chaine du prompt sans faire de copie. Alors NB que la chaine ~\newline
+ est modifiée pendant la création de la commande. 
+\end{DoxyItemize}
 
 La documentation de cette structure a été générée à partir du fichier suivant \+:\begin{DoxyCompactItemize}
 \item 

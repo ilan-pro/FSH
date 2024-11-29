@@ -52,8 +52,8 @@
     /**
      * @internal
      * @brief Classe des commandes for.
-     *
      * `for` est la commande qui permet d'afficher le chemin 
+     *
      * absolue du vers le répertoire dans lequel on se 
      * trouve.
      *
@@ -75,7 +75,7 @@
      * @param id Identificateur du fichier.
      * @return Le nom du fichier identifié, ou NULL si l'identificateur n'existe pas dans la boucle.
      */
-    extern char* For_get_file(char* id);
+    char* For_get_file(char* id);
     
     /**
      * @internal 
@@ -88,9 +88,9 @@
      *
      * @return Si oui ou non il y a une boucle en cours d'exécution.
      */
-    extern int For_exists();
+    int For_exists();
     
-    
+
     /** 
      * @brief Il s'agit de la liste qui va contenir les identificateurs des différentes variables 
      * utilisées dans les boucles `for`.

@@ -109,7 +109,16 @@ Attributs publics</h2></td></tr>
 
 <p>Classe de toutes les commandes. </p>
 <p>Il s'agit d'une classe abstraite qui représente une commande interne du shell. Elle possède une méthode abstraite à redéfinir dans tout sous-type de commande (sinon cela va déclancher une erreur), qui la méthode <code>execute()</code> appelée par <code><a class="el" href="../../d7/d41/Command_8c.html#a67f00477620b6d9fce3659748d6e1eea" title="Fonction qui va exécuter la commande.">Command_execute()</a></code>, la fonction appelée pour exécuter la commande.</p>
-<p>Construction : <code>obj_new(<a class="el" href="../../d4/df5/struct__Command__.html" title="Classe de toutes les commandes.">_Command_</a>, &lt;Nom_de_la_commande&gt; )</code> </p>
+<p>Construction : <code>obj_new(</code><a class="el" href="../../d4/df5/struct__Command__.html" title="Classe de toutes les commandes.">_Command_</a><code>, char* nom_de_la_commande, char** prompt )</code> Avec : </p><ul>
+<li>
+<code><a class="el" href="../../d4/df5/struct__Command__.html" title="Classe de toutes les commandes.">_Command_</a></code> : La classe des objets de type <code>Command</code>.  </li>
+<li>
+<code><b> nom_de_la_commande </b></code> : Le nom de la commande.  </li>
+<li>
+<code><b> prompt </b></code> Un pointeur vers le reste du <code>prompt</code> (les commandes prennent souvent un certain nombre de paramètre ainsi que des arguments).<br  />
+. <code>char **</code> permet de modifier directement la chaine du prompt sans faire de copie. Alors NB que la chaine <br  />
+ est modifiée pendant la création de la commande. </li>
+</ul>
 
 </div>
 </div>
