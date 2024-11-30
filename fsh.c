@@ -14,6 +14,7 @@
 #include <sys/wait.h>
 
 #include "base/ArrayList.h"
+#include "base/String.h"
 #include "base/new.h"
 #include "command/ExternalCommand.h"
 #include "command/For.h"
@@ -94,13 +95,23 @@ int run_commande(){
 int main(){ 
     initialize_cmd();
     initialize_for_lists();
+        
+    ArrayList a = obj_new(_ArrayList_, 0);
+    ArrayList_add_first(a, obj_new(_String_, "Poisson"), 0);
+    ArrayList_add_first(a, obj_new(_String_, "De"), 0);
+    ArrayList_add_first(a, obj_new(_String_, "Ta"), 0);
+    ArrayList_add_first(a, obj_new(_String_, "Ville"), 0);
+    ArrayList_add_first(a, obj_new(_String_, "Natale"), 0);
+    ArrayList_add_first(a, obj_new(_String_, "Natale"), 0);
+    ArrayList_add_first(a, obj_new(_String_, "Natale"), 0);
+    obj_print(a);
 
-    char* prompt = " -l";
-    ExternalCommand e = obj_new(_ExternalCommand_, "ls", &prompt);
+    /** char* prompt = " -l"; */
+    /** ExternalCommand e = obj_new(_ExternalCommand_, "ls", &prompt); */
 
-    Command_execute((Command)e);
+    /** Command_execute((Command)e); */
 
-    obj_destroy(e);
+    /** obj_destroy(e); */
     //Shell_start();
     destroy_for_lists();
     return 0; 

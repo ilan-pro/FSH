@@ -24,7 +24,7 @@
 
     #define ARRAY_LIST_FIELDS \
         size_t size; /** Il s'agit de la taille de la liste. */ \
-        size_t last_index; /** IL s'agit de de l'indice du dernier élément dans la liste. Il permet de déterminer le nombre d'élément dans la liste, ainsi que la saturation de la liste. */ \
+        size_t last_index; /** IL s'agit de de l'indice de la première place liste dans la liste. Il permet de déterminer le nombre d'élément dans la liste, ainsi que la saturation de la liste. */ \
         void** dyn_array; /** Il s'agit du tableau dynamique qui va contenir les éléments. Il augemente de 50% à chaque fois qu'il est plein. */ \
     
     typedef struct _ArrayList_* ArrayList;
@@ -105,7 +105,7 @@
      * @param self_ L'objet de type `ArrayList` (ou sous-type).
      * @return La taille de la liste.
      */
-    size_t ArrayList_size(ArrayList self_);
+    size_t ArrayList_size( ArrayList self );
         
     /**
      * @brief Fonction qui va rajouter un élément en tête de liste.
@@ -137,7 +137,7 @@
      *
      * @return 0 si l'ajout à échoué, 1 sinon.
      */
-    int ArrayList_add_first(ArrayList self_, void* object_, int clone);
+    int ArrayList_add_first( ArrayList self, void* object_, int clone );
     
     /**
      * @brief Fonction qui va rajouter un élément en fin de liste.
@@ -276,7 +276,7 @@
      * 
      * @return La valeur de l'élément ou NULL si la liste est vide.
      */
-    void* ArrayList_get(ArrayList self, int index, int clone);
+    void* ArrayList_get(ArrayList self, size_t index, int clone);
 
     /**
      * @brief Fonction qui ajoute un élément à une position précise dans la liste.
@@ -311,7 +311,7 @@
      * 
      * @return 0 Si l'ajout a échoué 1 sinon.
      */
-    int ArrayList_add( ArrayList self, void* object, int index, int clone );
+    int ArrayList_add( ArrayList self, void* object, size_t index, int clone );
 
     /**
      * @brief Fonction qui va retirer un élément de la liste qui se trouve à une position donnée.
@@ -335,7 +335,7 @@
      * @return La valeur retirée (ou NULL si on ne souhaite pas la récupérer) Si le dernier
      * élément est bien retiré de la liste, NULL sinon.
      */
-    void* ArrayList_remove( ArrayList self, int index, int clone );
+    void* ArrayList_remove( ArrayList self, size_t index, int clone );
 
     /**
      * @brief Fonction qui vérifie si oui ou non un élément se trouve dans la liste.

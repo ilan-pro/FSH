@@ -18,6 +18,8 @@
 
 #include <assert.h>
 #include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
 #include <unistd.h>
 #include "new.h"
 
@@ -68,6 +70,13 @@ static void* ArrayList_clone(const void*);
  * La fonction `obj_print()` sera appelée sur chaque objet de la liste.
  */
 static void ArrayList_print(const void*);
+    
+/**
+ * Fonction qui va vérifier la taille de la liste si, on peut rajouter un élément 
+ * dans la liste. 
+ * Si la fonction trouve qu'on ne peut pas ajouter d'élément alors elle ralonge la liste de size/2.
+ */
+static void check_size(ArrayList);
 
 /*****************************************************/
 /************* Structure de la classe ****************/
@@ -144,7 +153,33 @@ const Class _ArrayList_ = &__ArrayList__;
 /***************************************************/
 /************** Corps des fonctions ****************/
 
+
+/**
+ * Fonction qui va vérifier la taille de la liste si, on peut rajouter un élément 
+ * dans la liste. 
+ * Si la fonction trouve qu'on ne peut pas ajouter d'élément alors elle ralonge la liste de size/2.
+ */
+static void check_size( ArrayList self ){
     
+    // Vérification
+    assert(self);
+    assert(self->last_index<=self->size); // Si l'indice du dernier élément n'est pas inférieur ou égal alors c'est mauvais signe.
+
+    if (self->last_index < self->size) // Si l'indice est strictement inférieur alors on peut toujours rajouter un élément.
+        return;
+    
+    printf("Ici : new_size=%lu\n", self->size + self->size/2);
+
+    // Sinon on ralonge la liste de size/2
+    self->dyn_array = realloc(self->dyn_array, sizeof(void**)*(self->size + self->size/2));
+    assert(self->dyn_array);
+    self->size = self->size + self->size/2;
+
+    return;
+
+}
+    
+
 /**
  * Constructeur d'une `ArrayList`. 
  *
@@ -169,6 +204,7 @@ static void* ArrayList_constructor( void* self_ , va_list* args ){
     
     // Initialisation du tableau.
     self->dyn_array = (void**) malloc(sizeof(void**) * init_size);
+    assert(self->dyn_array);
     self->size = init_size;
     self->last_index = 0;
 
@@ -261,7 +297,7 @@ static void* ArrayList_clone( const void* self_ ){
     ArrayList copy = obj_new(_ArrayList_, ArrayList_size(self)); // On lui donne initialement la taille de self pour éviter le redimensionnement.
     
     for (size_t i = 0; i<ArrayList_size(self); i++)
-        ArrayList_add_last(copy, ArrayList_get(self, i, 1), 0); // On ajoute une copie du i-ème élément à la fin.
+        ArrayList_add_last(copy, self->dyn_array[i], 1); // On ajoute une copie du i-ème élément à la fin.
 
     return copy;
 }
@@ -282,8 +318,10 @@ static void ArrayList_print( const void* self_ ){
     ArrayList self = (ArrayList) self_;
     
     write(1, "[ ", 2); 
-    for (size_t i = 0; i<ArrayList_size(self); i++){
-        obj_print(ArrayList_get(self, i, 0));
+    for (size_t i = 0; i<self->size; i++){
+
+        if (i<self->last_index) obj_print(self->dyn_array[i]);
+        else write(1, " _, ", 4);
         if (i<ArrayList_size(self)-1)
             write(1, ", ", 2);
     }
@@ -293,3 +331,169 @@ static void ArrayList_print( const void* self_ ){
 
 
 
+/**
+ * @internal
+ * @brief Fonction qui renvoie la taille de la liste.
+ *
+ * Cette fonction renvoie la taille de la liste, elle peut être appelé pour tout 
+ * objet de type `_ArrayList_` ou sous-type de `_ArrayList_`.
+ *
+ * <p>La récupération de la taille se fait en temps constant O(1).
+ *
+ * @param self_ L'objet de type `ArrayList` (ou sous-type).
+ * @return La taille de la liste.
+ */
+size_t ArrayList_size( ArrayList self ){
+
+    // Vérifications.
+    assert(self);
+    assert(obj_instance_of(self, _ArrayList_));
+    
+    // Renvoie l'indice de la dernière place libre.
+    return self->last_index;
+    
+}
+
+
+
+
+/**
+ * @brief Fonction qui va rajouter un élément en tête de liste.
+ *
+ * **ATTENTION** : Au moment de la destruction de la liste les valeurs 
+ * sont également désallouées. Faire une copie (avec `obj_clone()`) (ou 
+ * mettre le paramètre `clone` à 1 pour que la fonction le face)
+ * de l'objet avant de l'ajouter dans la liste, si on tient à garder l'objet 
+ * intact après la destruction de la liste.
+ * <p>Si on souhaite insérer 2 fois un élément (avec la même référence) dans la 
+ * liste il est important de mettre `clone` à 1 pour que la fonction puisse 
+ * clonner l'objet car au moment de la destruction il sera supprimé deux fois 
+ * ce qui va générer une erreur.
+ *  
+ * <p>
+ * La fonction peut être appelée pour tout objet de type `_ArrayList_` 
+ * ou sous-type de `_ArrayList_`.
+ *
+ * <p>L'ajout d'un élément en tête de liste est θ(n)
+ *
+ * @param self_ La liste dans laquelle on souhaite ajouter l'objet.
+ * @param object_ L'objet à insérer dans la liste (copier l'objet si on 
+ * souhaite le garder après la destruction de la liste).
+ *
+ * @param clone Boolean dont 1 permet d'indiquer à la fonction si on souhaite qu'elle 
+ * ajoute une copie de l'objet (copié avec `obj_clone()`) plutôt que l'objet lui-même. 
+ * Cela va permettre de garentir que l'objet ne sera pas détruit avec la liste. Mettre 
+ * à 0 sinon.
+ *
+ * @return 0 si l'ajout à échoué, 1 sinon.
+ */
+int ArrayList_add_first( ArrayList self, void* object, int clone ){
+    
+    return ArrayList_add(self, object, 0, clone);
+
+}
+
+
+/**
+ * @brief Fonction qui va rajouter un élément en fin de liste.
+ *
+ * **ATTENTION** : Au moment de la destruction de la liste les valeurs 
+ * sont également désallouées. Faire une copie (avec `obj_clone()`) (ou 
+ * mettre le paramètre `clone` à 1 pour que la fonction le fasse)
+ * de l'objet avant de l'ajouter dans la liste, si on tient à garder l'objet 
+ * intact après la destruction de la liste.
+ * <p>Si on souhaite insérer 2 fois un élément (avec la même référence) dans la 
+ * liste il est important de mettre `clone` à 1 pour que la fonction puisse 
+ * clonner l'objet car au moment de la destruction il sera supprimé deux fois 
+ * ce qui va générer une erreur.
+ * 
+ * <p>
+ * La fonction peut être appelée pour tout objet de type `_ArrayList_` 
+ * ou sous-type de `_ArrayList_`.
+ *
+ * <p> Chaque ajout en fin de liste se fait en temps constant O(1).
+ *  
+ * @param self_ La liste dans laquelle on souhaite ajouter l'objet.
+ * @param object_ L'objet à insérer dans la liste (copier l'objet si on 
+ * souhaite le garder après la destruction de la liste).
+ *
+ * @param clone Boolean dont 1 permet d'indiquer à la fonction si on souhaite qu'elle 
+ * ajoute une copie de l'objet (copié avec `obj_clone()`) plutôt que l'objet lui-même. 
+ * Cela va permettre de garentir que l'objet ne sera pas détruit avec la liste. Mettre 
+ * à 0 sinon.
+ *
+ * @return 0 si l'ajout à échoué, 1 sinon.
+ */
+int ArrayList_add_last( ArrayList self, void* object, int clone ){
+
+    return ArrayList_add(self, object, self->last_index, clone);
+
+}
+
+
+/**
+ * @brief Fonction qui ajoute un élément à une position précise dans la liste.
+ * 
+ * Mettre le paramètre `clone` à 1 pour renvoyer une copie au lieu de la 
+ * la vraie valeur.
+ * 
+ * **ATTENTION** : Au moment de la destruction de la liste les valeurs 
+ * sont également désallouées. Faire une copie (avec `obj_clone()`) (ou 
+ * mettre le paramètre `clone` à 1 pour que la fonction le fasse)
+ * de l'objet avant de l'ajouter dans la liste, si on tient à garder l'objet 
+ * intact après la destruction de la liste.
+ * <p>Si on souhaite insérer 2 fois un élément (deux fois la même référence) dans la 
+ * liste il est important de mettre `clone` à 1 pour que la fonction puisse 
+ * clonner l'objet car au moment de la destruction il sera supprimé deux fois 
+ * ce qui va générer une erreur.
+ * 
+ * <p>
+ * La fonction peut être appelée pour tout objet de type `_ArrayList_` 
+ * ou sous-type de `_ArrayList_`.
+ *
+ * <p>Chaque ajout ne se fait pas en temps constant O(size-index).
+ * 
+ * @param self La liste dont on cherche le dernier élément.
+ * @param object L'objet à insérer dans la liste (copier l'objet si on 
+ * souhaite le garder après la destruction de la liste).
+ * @param index Position dans laquelle on souhaite insérer l'objet dans la liste.
+ * @param clone Boolean dont 1 permet d'indiquer à la fonction si on souhaite qu'elle 
+ * ajoute une copie de l'objet (copié avec `obj_clone()`) plutôt que l'objet lui-même. 
+ * Cela va permettre de garentir que l'objet ne sera pas détruit avec la liste. Mettre 
+ * à 0 sinon.
+ * 
+ * @return 0 Si l'ajout a échoué 1 sinon.
+ */
+int ArrayList_add( ArrayList self, void *object, size_t index, int clone ){
+
+    
+    // Vérifications.
+    assert(self);
+    assert(obj_instance_of(self, _ArrayList_));
+    
+    // Vérification de l'indice.
+    if(index<0 || index > self->last_index){
+            
+        char err[] = "\e[1;31m[Erreur] L'indice de l'élément est en dehors de la liste !\e[1;0m\n";
+        write(2, err, strlen(err));
+        abort();
+        return 0;
+
+    }
+    
+    // Vérification de la taille (va rallonger la taille si besoin).
+    check_size(self);
+    
+    printf("index = %lu\n", index);
+
+    // Décalage de tous les éléments de 1 à partir de index.
+    for (size_t i = self->last_index; i>index; i--)
+        self->dyn_array[i] = self->dyn_array[i-1];
+        
+    // Ajout de l'objet (ou son clone)
+    self->dyn_array[index] = (clone) ? obj_clone(object) : object;
+    self->last_index++; // Mise à jour de l'indice du dernier élément.
+
+    return 1;
+
+}
