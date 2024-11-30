@@ -14,6 +14,8 @@
 #include <readline/readline.h>
 #include <readline/history.h>
 #include <assert.h>
+#include "base/ArrayList.h"
+#include "command/For.h"
 #include "command/all_cmd.h"
 #include "command/ExternalCommand.h"
 #include "base/String.h"
@@ -91,6 +93,10 @@ int Shell_start(){
     rl_outstream = stderr;
 
     while(1){
+
+        // On vide les identificateurs des boucles for
+        ArrayList_clear(For_files);
+        ArrayList_clear(For_ids);
         
         // Mise à jour du prompt.
         update_prompt();
@@ -155,9 +161,10 @@ ArrayList Shell_parse(char **prompt){
     ArrayList file_principale = obj_new(_ArrayList_, 0);
     ArrayList file_secondaire = obj_new(_ArrayList_, 0);	
     while(1){
+
         // On récupère le caractère pointé par user_prompt puis on incrémente pour les caractères suivant.
         char res = **prompt;
-
+        
         if(res == '\0'){
             fin:
             //en faire une fonction
