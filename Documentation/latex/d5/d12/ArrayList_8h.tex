@@ -6,12 +6,19 @@ Fichier d\textquotesingle{}en-\/tête contenant les déclarations des variables 
 
 
 {\ttfamily \#include \char`\"{}Class.\+h\char`\"{}}\newline
-Graphe des dépendances par inclusion de Array\+List.\+h\+:
-\nopagebreak
+Graphe des dépendances par inclusion de Array\+List.\+h\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=210pt]{d3/d61/ArrayList_8h__incl}
+\end{center}
+\end{figure}
+Ce graphe montre quels fichiers incluent directement ou indirectement ce fichier \+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d9/d9b/ArrayList_8h__dep__incl}
 \end{center}
 \end{figure}
 \doxysubsection*{Classes}
@@ -27,30 +34,32 @@ typedef struct \mbox{\hyperlink{struct__ArrayList__}{\+\_\+\+Array\+List\+\_\+}}
 \doxysubsection*{Fonctions}
 \begin{DoxyCompactItemize}
 \item 
-size\+\_\+t \mbox{\hyperlink{ArrayList_8h_a393639df581f802384be612c05196957}{Array\+List\+\_\+size}} (\mbox{\hyperlink{ArrayList_8c_a9136afaa09bea0a69505480c5fb29d4b}{Array\+List}} self\+\_\+)
+size\+\_\+t \mbox{\hyperlink{ArrayList_8h_a7fb37214b265abc1e42494741b9bc8d1}{Array\+List\+\_\+size}} (\mbox{\hyperlink{ArrayList_8c_a9136afaa09bea0a69505480c5fb29d4b}{Array\+List}} self)
 \begin{DoxyCompactList}\small\item\em Fonction qui renvoie la taille de la liste. \end{DoxyCompactList}\item 
-int \mbox{\hyperlink{ArrayList_8h_a7da131588b0830b4eb807687921a54e0}{Array\+List\+\_\+add\+\_\+first}} (\mbox{\hyperlink{ArrayList_8c_a9136afaa09bea0a69505480c5fb29d4b}{Array\+List}} self\+\_\+, void $\ast$object\+\_\+, int clone)
+int \mbox{\hyperlink{ArrayList_8h_a1941fadf72dd05bcaa6d1f61bc5a2c26}{Array\+List\+\_\+add\+\_\+first}} (\mbox{\hyperlink{ArrayList_8c_a9136afaa09bea0a69505480c5fb29d4b}{Array\+List}} self, void $\ast$object\+\_\+, int clone)
 \begin{DoxyCompactList}\small\item\em Fonction qui va rajouter un élément en tête de liste. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{ArrayList_8h_aa224d29891c7a1483b070d7c211d2ea5}{Array\+List\+\_\+add\+\_\+last}} (\mbox{\hyperlink{ArrayList_8c_a9136afaa09bea0a69505480c5fb29d4b}{Array\+List}} self, void $\ast$object\+\_\+, int clone)
 \begin{DoxyCompactList}\small\item\em Fonction qui va rajouter un élément en fin de liste. \end{DoxyCompactList}\item 
-void $\ast$ \mbox{\hyperlink{ArrayList_8h_a0e439f99a97276429b65dc4e69727e61}{Array\+List\+\_\+remove\+\_\+first}} (\mbox{\hyperlink{ArrayList_8c_a9136afaa09bea0a69505480c5fb29d4b}{Array\+List}} self, int clone)
+void $\ast$ \mbox{\hyperlink{ArrayList_8h_aeb51865efd56557d9cf0462c5a84eb02}{Array\+List\+\_\+remove\+\_\+first}} (\mbox{\hyperlink{ArrayList_8c_a9136afaa09bea0a69505480c5fb29d4b}{Array\+List}} self, int destroy)
 \begin{DoxyCompactList}\small\item\em Cette fonction va retirer le premier élément de la liste. \end{DoxyCompactList}\item 
-void $\ast$ \mbox{\hyperlink{ArrayList_8h_a8a3f8a02feb79677a2db6958a62dd473}{Array\+List\+\_\+remove\+\_\+last}} (\mbox{\hyperlink{ArrayList_8c_a9136afaa09bea0a69505480c5fb29d4b}{Array\+List}} self, int clone)
+void $\ast$ \mbox{\hyperlink{ArrayList_8h_a2a1e13e4039cbcd3a30fc2cc8a44bafd}{Array\+List\+\_\+remove\+\_\+last}} (\mbox{\hyperlink{ArrayList_8c_a9136afaa09bea0a69505480c5fb29d4b}{Array\+List}} self, int destroy)
 \begin{DoxyCompactList}\small\item\em Cette fonction va retirer le dernier élément de la liste. \end{DoxyCompactList}\item 
 void $\ast$ \mbox{\hyperlink{ArrayList_8h_a087e76304e650e70b50a19e84dc91b36}{Array\+List\+\_\+get\+\_\+first}} (\mbox{\hyperlink{ArrayList_8c_a9136afaa09bea0a69505480c5fb29d4b}{Array\+List}} self, int clone)
 \begin{DoxyCompactList}\small\item\em Fonction qui renvoie la valeur du premier élément de la liste. \end{DoxyCompactList}\item 
 void $\ast$ \mbox{\hyperlink{ArrayList_8h_a4a5615ad13e481eaa032133bab72eb0d}{Array\+List\+\_\+get\+\_\+last}} (\mbox{\hyperlink{ArrayList_8c_a9136afaa09bea0a69505480c5fb29d4b}{Array\+List}} self, int clone)
 \begin{DoxyCompactList}\small\item\em Fonction qui renvoie la valeur du dernier élément de la liste. \end{DoxyCompactList}\item 
-void $\ast$ \mbox{\hyperlink{ArrayList_8h_a2d207484485934736935a0cb6e514039}{Array\+List\+\_\+get}} (\mbox{\hyperlink{ArrayList_8c_a9136afaa09bea0a69505480c5fb29d4b}{Array\+List}} self, int index, int clone)
+void $\ast$ \mbox{\hyperlink{ArrayList_8h_a9f48f49bc48159ea308cf952d1407616}{Array\+List\+\_\+get}} (\mbox{\hyperlink{ArrayList_8c_a9136afaa09bea0a69505480c5fb29d4b}{Array\+List}} self, size\+\_\+t index, int clone)
 \begin{DoxyCompactList}\small\item\em Fonction qui renvoie la valeur d\textquotesingle{} élément de la liste qui se trouve à une position donnée. \end{DoxyCompactList}\item 
-int \mbox{\hyperlink{ArrayList_8h_aa3f9e6675bafd96b36f9316b116e0bdc}{Array\+List\+\_\+add}} (\mbox{\hyperlink{ArrayList_8c_a9136afaa09bea0a69505480c5fb29d4b}{Array\+List}} self, void $\ast$object, int index, int clone)
+int \mbox{\hyperlink{ArrayList_8h_a3e9dadf84ef8f73d38f8071b872073c1}{Array\+List\+\_\+add}} (\mbox{\hyperlink{ArrayList_8c_a9136afaa09bea0a69505480c5fb29d4b}{Array\+List}} self, void $\ast$object, size\+\_\+t index, int clone)
 \begin{DoxyCompactList}\small\item\em Fonction qui ajoute un élément à une position précise dans la liste. \end{DoxyCompactList}\item 
-void $\ast$ \mbox{\hyperlink{ArrayList_8h_a2c3616ae85e23d5182a077c8506a26ca}{Array\+List\+\_\+remove}} (\mbox{\hyperlink{ArrayList_8c_a9136afaa09bea0a69505480c5fb29d4b}{Array\+List}} self, int index, int clone)
+void $\ast$ \mbox{\hyperlink{ArrayList_8h_afb629e08764520a9e5f745e109960d7a}{Array\+List\+\_\+remove}} (\mbox{\hyperlink{ArrayList_8c_a9136afaa09bea0a69505480c5fb29d4b}{Array\+List}} self, size\+\_\+t index, int destroy)
 \begin{DoxyCompactList}\small\item\em Fonction qui va retirer un élément de la liste qui se trouve à une position donnée. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{ArrayList_8h_ad51f30052eebb1ce46a7f274efe049ed}{Array\+List\+\_\+contains}} (\mbox{\hyperlink{ArrayList_8c_a9136afaa09bea0a69505480c5fb29d4b}{Array\+List}} self, void $\ast$object)
 \begin{DoxyCompactList}\small\item\em Fonction qui vérifie si oui ou non un élément se trouve dans la liste. \end{DoxyCompactList}\item 
-size\+\_\+t \mbox{\hyperlink{ArrayList_8h_a335ca07efa2f91e6e86a5315a4aa5f01}{Array\+List\+\_\+index\+\_\+of}} (\mbox{\hyperlink{ArrayList_8c_a9136afaa09bea0a69505480c5fb29d4b}{Array\+List}} self, void $\ast$object)
-\begin{DoxyCompactList}\small\item\em Fonction qui renvoie l\textquotesingle{}indice de la première occurence d\textquotesingle{}un élément qui se trouve dans la liste. \end{DoxyCompactList}\end{DoxyCompactItemize}
+long long int \mbox{\hyperlink{ArrayList_8h_adca02e85e96825c360fbff47d3179927}{Array\+List\+\_\+index\+\_\+of}} (\mbox{\hyperlink{ArrayList_8c_a9136afaa09bea0a69505480c5fb29d4b}{Array\+List}} self, void $\ast$object)
+\begin{DoxyCompactList}\small\item\em Fonction qui renvoie l\textquotesingle{}indice de la première occurence d\textquotesingle{}un élément qui se trouve dans la liste. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{ArrayList_8h_a41f67420e6ce4a0dcf0eef2d180444d4}{Array\+List\+\_\+clear}} (\mbox{\hyperlink{ArrayList_8c_a9136afaa09bea0a69505480c5fb29d4b}{Array\+List}} self)
+\end{DoxyCompactItemize}
 \doxysubsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
@@ -94,11 +103,11 @@ Construction {\ttfamily {\bfseries{ obj\+\_\+new( {\ttfamily \mbox{\hyperlink{st
 \end{DoxyItemize}
 
 \doxysubsection{Documentation des fonctions}
-\mbox{\Hypertarget{ArrayList_8h_aa3f9e6675bafd96b36f9316b116e0bdc}\label{ArrayList_8h_aa3f9e6675bafd96b36f9316b116e0bdc}} 
+\mbox{\Hypertarget{ArrayList_8h_a3e9dadf84ef8f73d38f8071b872073c1}\label{ArrayList_8h_a3e9dadf84ef8f73d38f8071b872073c1}} 
 \index{ArrayList.h@{ArrayList.h}!ArrayList\_add@{ArrayList\_add}}
 \index{ArrayList\_add@{ArrayList\_add}!ArrayList.h@{ArrayList.h}}
 \doxysubsubsection{\texorpdfstring{ArrayList\_add()}{ArrayList\_add()}}
-{\footnotesize\ttfamily int Array\+List\+\_\+add (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ArrayList_8c_a9136afaa09bea0a69505480c5fb29d4b}{Array\+List}}}]{self,  }\item[{void $\ast$}]{object,  }\item[{int}]{index,  }\item[{int}]{clone }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily int Array\+List\+\_\+add (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ArrayList_8c_a9136afaa09bea0a69505480c5fb29d4b}{Array\+List}}}]{self,  }\item[{void $\ast$}]{object,  }\item[{size\+\_\+t}]{index,  }\item[{int}]{clone }\end{DoxyParamCaption})}
 
 
 
@@ -128,11 +137,11 @@ Chaque ajout ne se fait pas en temps constant O(size-\/index).
 \begin{DoxyReturn}{Renvoie}
 0 Si l\textquotesingle{}ajout a échoué 1 sinon. 
 \end{DoxyReturn}
-\mbox{\Hypertarget{ArrayList_8h_a7da131588b0830b4eb807687921a54e0}\label{ArrayList_8h_a7da131588b0830b4eb807687921a54e0}} 
+\mbox{\Hypertarget{ArrayList_8h_a1941fadf72dd05bcaa6d1f61bc5a2c26}\label{ArrayList_8h_a1941fadf72dd05bcaa6d1f61bc5a2c26}} 
 \index{ArrayList.h@{ArrayList.h}!ArrayList\_add\_first@{ArrayList\_add\_first}}
 \index{ArrayList\_add\_first@{ArrayList\_add\_first}!ArrayList.h@{ArrayList.h}}
 \doxysubsubsection{\texorpdfstring{ArrayList\_add\_first()}{ArrayList\_add\_first()}}
-{\footnotesize\ttfamily int Array\+List\+\_\+add\+\_\+first (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ArrayList_8c_a9136afaa09bea0a69505480c5fb29d4b}{Array\+List}}}]{self\+\_\+,  }\item[{void $\ast$}]{object\+\_\+,  }\item[{int}]{clone }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily int Array\+List\+\_\+add\+\_\+first (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ArrayList_8c_a9136afaa09bea0a69505480c5fb29d4b}{Array\+List}}}]{self,  }\item[{void $\ast$}]{object\+\_\+,  }\item[{int}]{clone }\end{DoxyParamCaption})}
 
 
 
@@ -188,6 +197,23 @@ Chaque ajout en fin de liste se fait en temps constant O(1).
 \begin{DoxyReturn}{Renvoie}
 0 si l\textquotesingle{}ajout à échoué, 1 sinon. 
 \end{DoxyReturn}
+\mbox{\Hypertarget{ArrayList_8h_a41f67420e6ce4a0dcf0eef2d180444d4}\label{ArrayList_8h_a41f67420e6ce4a0dcf0eef2d180444d4}} 
+\index{ArrayList.h@{ArrayList.h}!ArrayList\_clear@{ArrayList\_clear}}
+\index{ArrayList\_clear@{ArrayList\_clear}!ArrayList.h@{ArrayList.h}}
+\doxysubsubsection{\texorpdfstring{ArrayList\_clear()}{ArrayList\_clear()}}
+{\footnotesize\ttfamily void Array\+List\+\_\+clear (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ArrayList_8c_a9136afaa09bea0a69505480c5fb29d4b}{Array\+List}}}]{self }\end{DoxyParamCaption})}
+
+@biref Fonction qui va vider la liste.
+
+La fonction va détruire tous les objets qui se trouve à l\textquotesingle{}intérieur de la liste. 
+
+Penser à cloner les éléments avant de vider la liste !
+
+
+\begin{DoxyParams}{Paramètres}
+{\em self} & La liste à vider. \\
+\hline
+\end{DoxyParams}
 \mbox{\Hypertarget{ArrayList_8h_ad51f30052eebb1ce46a7f274efe049ed}\label{ArrayList_8h_ad51f30052eebb1ce46a7f274efe049ed}} 
 \index{ArrayList.h@{ArrayList.h}!ArrayList\_contains@{ArrayList\_contains}}
 \index{ArrayList\_contains@{ArrayList\_contains}!ArrayList.h@{ArrayList.h}}
@@ -213,11 +239,11 @@ La fonction va comparer les éléments avec la méthode {\ttfamily \mbox{\hyperl
 \begin{DoxySeeAlso}{Voir également}
 \mbox{\hyperlink{new_8c_a80d4746b01a9f4a30386f83993065802}{obj\+\_\+equals()}} 
 \end{DoxySeeAlso}
-\mbox{\Hypertarget{ArrayList_8h_a2d207484485934736935a0cb6e514039}\label{ArrayList_8h_a2d207484485934736935a0cb6e514039}} 
+\mbox{\Hypertarget{ArrayList_8h_a9f48f49bc48159ea308cf952d1407616}\label{ArrayList_8h_a9f48f49bc48159ea308cf952d1407616}} 
 \index{ArrayList.h@{ArrayList.h}!ArrayList\_get@{ArrayList\_get}}
 \index{ArrayList\_get@{ArrayList\_get}!ArrayList.h@{ArrayList.h}}
 \doxysubsubsection{\texorpdfstring{ArrayList\_get()}{ArrayList\_get()}}
-{\footnotesize\ttfamily void$\ast$ Array\+List\+\_\+get (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ArrayList_8c_a9136afaa09bea0a69505480c5fb29d4b}{Array\+List}}}]{self,  }\item[{int}]{index,  }\item[{int}]{clone }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void$\ast$ Array\+List\+\_\+get (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ArrayList_8c_a9136afaa09bea0a69505480c5fb29d4b}{Array\+List}}}]{self,  }\item[{size\+\_\+t}]{index,  }\item[{int}]{clone }\end{DoxyParamCaption})}
 
 
 
@@ -289,11 +315,11 @@ La fonction peut être appelée pour tout objet de type {\ttfamily \mbox{\hyperl
 \begin{DoxyReturn}{Renvoie}
 La valeur du dernier élément ou NULL si la liste est vide. 
 \end{DoxyReturn}
-\mbox{\Hypertarget{ArrayList_8h_a335ca07efa2f91e6e86a5315a4aa5f01}\label{ArrayList_8h_a335ca07efa2f91e6e86a5315a4aa5f01}} 
+\mbox{\Hypertarget{ArrayList_8h_adca02e85e96825c360fbff47d3179927}\label{ArrayList_8h_adca02e85e96825c360fbff47d3179927}} 
 \index{ArrayList.h@{ArrayList.h}!ArrayList\_index\_of@{ArrayList\_index\_of}}
 \index{ArrayList\_index\_of@{ArrayList\_index\_of}!ArrayList.h@{ArrayList.h}}
 \doxysubsubsection{\texorpdfstring{ArrayList\_index\_of()}{ArrayList\_index\_of()}}
-{\footnotesize\ttfamily size\+\_\+t Array\+List\+\_\+index\+\_\+of (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ArrayList_8c_a9136afaa09bea0a69505480c5fb29d4b}{Array\+List}}}]{self,  }\item[{void $\ast$}]{object }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily long long int Array\+List\+\_\+index\+\_\+of (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ArrayList_8c_a9136afaa09bea0a69505480c5fb29d4b}{Array\+List}}}]{self,  }\item[{void $\ast$}]{object }\end{DoxyParamCaption})}
 
 
 
@@ -314,11 +340,11 @@ L\textquotesingle{}indice dans la liste de l\textquotesingle{}élément. -\/1 Si
 \begin{DoxySeeAlso}{Voir également}
 \mbox{\hyperlink{new_8c_a80d4746b01a9f4a30386f83993065802}{obj\+\_\+equals()}} 
 \end{DoxySeeAlso}
-\mbox{\Hypertarget{ArrayList_8h_a2c3616ae85e23d5182a077c8506a26ca}\label{ArrayList_8h_a2c3616ae85e23d5182a077c8506a26ca}} 
+\mbox{\Hypertarget{ArrayList_8h_afb629e08764520a9e5f745e109960d7a}\label{ArrayList_8h_afb629e08764520a9e5f745e109960d7a}} 
 \index{ArrayList.h@{ArrayList.h}!ArrayList\_remove@{ArrayList\_remove}}
 \index{ArrayList\_remove@{ArrayList\_remove}!ArrayList.h@{ArrayList.h}}
 \doxysubsubsection{\texorpdfstring{ArrayList\_remove()}{ArrayList\_remove()}}
-{\footnotesize\ttfamily void$\ast$ Array\+List\+\_\+remove (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ArrayList_8c_a9136afaa09bea0a69505480c5fb29d4b}{Array\+List}}}]{self,  }\item[{int}]{index,  }\item[{int}]{clone }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void$\ast$ Array\+List\+\_\+remove (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ArrayList_8c_a9136afaa09bea0a69505480c5fb29d4b}{Array\+List}}}]{self,  }\item[{size\+\_\+t}]{index,  }\item[{int}]{destroy }\end{DoxyParamCaption})}
 
 
 
@@ -342,11 +368,11 @@ Chaque suppression ne se fait pas en temps constant O(size-\/index).
 \begin{DoxyReturn}{Renvoie}
 La valeur retirée (ou NULL si on ne souhaite pas la récupérer) Si le dernier élément est bien retiré de la liste, NULL sinon. 
 \end{DoxyReturn}
-\mbox{\Hypertarget{ArrayList_8h_a0e439f99a97276429b65dc4e69727e61}\label{ArrayList_8h_a0e439f99a97276429b65dc4e69727e61}} 
+\mbox{\Hypertarget{ArrayList_8h_aeb51865efd56557d9cf0462c5a84eb02}\label{ArrayList_8h_aeb51865efd56557d9cf0462c5a84eb02}} 
 \index{ArrayList.h@{ArrayList.h}!ArrayList\_remove\_first@{ArrayList\_remove\_first}}
 \index{ArrayList\_remove\_first@{ArrayList\_remove\_first}!ArrayList.h@{ArrayList.h}}
 \doxysubsubsection{\texorpdfstring{ArrayList\_remove\_first()}{ArrayList\_remove\_first()}}
-{\footnotesize\ttfamily void$\ast$ Array\+List\+\_\+remove\+\_\+first (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ArrayList_8c_a9136afaa09bea0a69505480c5fb29d4b}{Array\+List}}}]{self,  }\item[{int}]{clone }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void$\ast$ Array\+List\+\_\+remove\+\_\+first (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ArrayList_8c_a9136afaa09bea0a69505480c5fb29d4b}{Array\+List}}}]{self,  }\item[{int}]{destroy }\end{DoxyParamCaption})}
 
 
 
@@ -370,11 +396,11 @@ Chaque suppression en tête de liste se fait en temps θ(n).
 \begin{DoxyReturn}{Renvoie}
 La valeur retirée (ou NULL si on ne souhaite pas la récupérer) Si le premier élément est bien retiré de la liste, NULL sinon. 
 \end{DoxyReturn}
-\mbox{\Hypertarget{ArrayList_8h_a8a3f8a02feb79677a2db6958a62dd473}\label{ArrayList_8h_a8a3f8a02feb79677a2db6958a62dd473}} 
+\mbox{\Hypertarget{ArrayList_8h_a2a1e13e4039cbcd3a30fc2cc8a44bafd}\label{ArrayList_8h_a2a1e13e4039cbcd3a30fc2cc8a44bafd}} 
 \index{ArrayList.h@{ArrayList.h}!ArrayList\_remove\_last@{ArrayList\_remove\_last}}
 \index{ArrayList\_remove\_last@{ArrayList\_remove\_last}!ArrayList.h@{ArrayList.h}}
 \doxysubsubsection{\texorpdfstring{ArrayList\_remove\_last()}{ArrayList\_remove\_last()}}
-{\footnotesize\ttfamily void$\ast$ Array\+List\+\_\+remove\+\_\+last (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ArrayList_8c_a9136afaa09bea0a69505480c5fb29d4b}{Array\+List}}}]{self,  }\item[{int}]{clone }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void$\ast$ Array\+List\+\_\+remove\+\_\+last (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ArrayList_8c_a9136afaa09bea0a69505480c5fb29d4b}{Array\+List}}}]{self,  }\item[{int}]{destroy }\end{DoxyParamCaption})}
 
 
 
@@ -398,11 +424,11 @@ Chaque suppression en fin de liste se fait en temps constant O(1).
 \begin{DoxyReturn}{Renvoie}
 La valeur retirée (ou NULL si on ne souhaite pas la récupérer) si le dernier élément est bien retiré de la liste, NULL sinon. 
 \end{DoxyReturn}
-\mbox{\Hypertarget{ArrayList_8h_a393639df581f802384be612c05196957}\label{ArrayList_8h_a393639df581f802384be612c05196957}} 
+\mbox{\Hypertarget{ArrayList_8h_a7fb37214b265abc1e42494741b9bc8d1}\label{ArrayList_8h_a7fb37214b265abc1e42494741b9bc8d1}} 
 \index{ArrayList.h@{ArrayList.h}!ArrayList\_size@{ArrayList\_size}}
 \index{ArrayList\_size@{ArrayList\_size}!ArrayList.h@{ArrayList.h}}
 \doxysubsubsection{\texorpdfstring{ArrayList\_size()}{ArrayList\_size()}}
-{\footnotesize\ttfamily size\+\_\+t Array\+List\+\_\+size (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ArrayList_8c_a9136afaa09bea0a69505480c5fb29d4b}{Array\+List}}}]{self\+\_\+ }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily size\+\_\+t Array\+List\+\_\+size (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ArrayList_8c_a9136afaa09bea0a69505480c5fb29d4b}{Array\+List}}}]{self }\end{DoxyParamCaption})}
 
 
 

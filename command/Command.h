@@ -100,5 +100,13 @@
      * le pointeur vers le prompte de l'utilisateur est valide.
      */
     int Command_actual_char_is_legal(int quoted, int double_quoted, int esc, char** prompt);
-    
+
+    /**
+     * @brief Il s'agit du nombre d'accolades ouverts pendant le traitement d'un prompt.
+     *
+     * Ce champs permet de savoir si une accolade fermante ferme réelement une accolande ouvrante.
+     *
+     */
+    extern int opened_brackets;
+
 #endif

@@ -17,7 +17,8 @@
 #include "command/all_cmd.h"
 #include "command/ExternalCommand.h"
 #include "base/String.h"
-		
+#include "shell.h"
+
 #include "base/new.h"
 
 
@@ -34,9 +35,8 @@ static int init_working_dir();
  * Fonction qui cré le texte du prompt
  */
 static void update_prompt();
-void parse_prompt();
 static Class get_internal_cmd(char *char_lu);
-static Command apply_cmd(char *char_lu, ArrayList file_secondaire);
+static Command apply_cmd(char *char_lu, ArrayList file_secondaire, char** prompt);
 
 /**********************************************/
 
@@ -61,11 +61,21 @@ static char path[PROMPT_CHAR_LIMITS];
  */
 static char prompt[50];
 
-/**
- * @internal
- * Chaine de caractère qui va stocker la saisie de l'utilisateur.
- */
-char *usr_prompt = "";
+
+static void Shell_print_syntaxe_error(char* usr_prompt, char* cp_prompt){
+
+    char tmp[] = "\nErreur de syntaxe :\n\n\t\e[1;35m";
+    write(2, tmp, strlen(tmp));
+    write(2, cp_prompt, strlen(cp_prompt));
+    write(2, "\n\t", 2);
+    // Calcul de la position où a eut lieu l'erreur.
+    int pos = usr_prompt - cp_prompt;
+
+    for (int i = 0; i<pos-1; i++)
+        write(1, "~", 1);
+    write(1, "^\n\e[1;0m", 8);
+
+}
 
 /**
  * @internal
@@ -85,11 +95,18 @@ int Shell_start(){
         // Mise à jour du prompt.
         update_prompt();
         // Récupération de la saisie de l'utilisateur.
-        usr_prompt = readline(prompt);
+        char* usr_prompt = readline(prompt);
         // Copie du pointeur pour sa destruction.
         char *cp_prompt = usr_prompt;
         if (usr_prompt){ // Si le pointeur vers la saisie n'est pas NULL (Pas de EOF)
-            ArrayList file_principal = Shell_parse(); // Parsing de la saisie, pour en extraire les commandes.
+            ArrayList file_principal = Shell_parse(&usr_prompt); // Parsing de la saisie, pour en extraire les commandes.
+                
+            if (!file_principal) {// Si la file renvoyée est NULL alors il y a une erreur de syntaxe.
+                Shell_print_syntaxe_error(usr_prompt, cp_prompt);
+                previous_cmd_finish = 1;
+                free(cp_prompt); continue;
+            }
+
             obj_print(file_principal); printf("\n"); // debug
             previous_cmd_finish = Shell_execute_all(file_principal); // Exécution de la file principale.
             obj_destroy(file_principal); // Destruction de la file principale.
@@ -127,7 +144,7 @@ int Shell_start(){
  * @return La file principale qui va contenir l'ensemble des pipelines tapés par l'utilisateur (Si une erreur de syntaxe est identifié,
  * alors le programme renvoie la liste NULL)
  */
-ArrayList Shell_parse(){
+ArrayList Shell_parse(char **prompt){
     // Variable qui stock le nombre de caractères que nous avons lu.
     int lu1lettre = 0;
     // Espace mémoire qui va servir à stocker le nom de la commande
@@ -139,13 +156,19 @@ ArrayList Shell_parse(){
     ArrayList file_secondaire = obj_new(_ArrayList_, 0);	
     while(1){
         // On récupère le caractère pointé par user_prompt puis on incrémente pour les caractères suivant.
-        char res = *(usr_prompt);
+        char res = **prompt;
 
         if(res == '\0'){
             fin:
             //en faire une fonction
             if(lu1lettre > 0){ // Si on a lu au moins une lettre alors il y a une commande à ajouter avant
-                apply_cmd(char_lu, file_secondaire);
+                if (!apply_cmd(char_lu, file_secondaire, prompt)) {// Si la commande n'est pas créée il y a une erreur de syntaxe.
+                    // Annulation du parsing;
+                    obj_destroy(file_principale); // Destruction de la file principale.
+                    obj_destroy(file_secondaire); // Destruction de la file secondaire en cours de création.
+                    free(char_lu);
+                    return NULL; // On ne créé pas de file, on renvoie NULL
+                }
             }
 
             // Ajout de la pipeline (si et seulement si elle n'est pas vide)
@@ -161,30 +184,45 @@ ArrayList Shell_parse(){
         
         if(res == '|'){
             if (lu1lettre){ // Si on a lu au moins une lettre alors il y a une commande à ajouter avant
-                apply_cmd(char_lu, file_secondaire);
+                if (!apply_cmd(char_lu, file_secondaire, prompt)) {// Si la commande n'est pas créée il y a une erreur de syntaxe.
+                    // Annulation du parsing;
+                    obj_destroy(file_principale); // Destruction de la file principale.
+                    obj_destroy(file_secondaire); // Destruction de la file secondaire en cours de création.
+                    free(char_lu);
+                    return NULL; // On ne créé pas de file, on renvoie NULL
+                }
                 lu1lettre = 0;
             }
 
-            usr_prompt++; // Décalage vers le caractère suivant
+            (*prompt)++; // Décalage vers le caractère suivant
             continue;
         }
 
         if(res == '}'){
-            usr_prompt++;
-            goto fin;
-            // if(For_is_open() == 1){   
-            // }else{
-            //     char erreur[] = "erreur de syntaxe";
-            //     write(2, erreur, strlen(erreur));
-            //     return NULL;
-            // }
+            if (opened_brackets)
+                // Si une accolade est ouverte.
+                goto fin;
+            else { // Sinon erreur de syntaxe
+                char tmp[] = "\e[1;31m[Erreur] Il y a une accolade en trop ! \e[1;0m\n";
+                write(1,tmp, strlen(tmp));
+                obj_destroy(file_principale); // Destruction de la file principale.
+                obj_destroy(file_secondaire); // Destruction de la file secondaire en cours de création.
+                free(char_lu);
+                return NULL; // On ne créé pas de file, on renvoie NULL
+            }
         }
 
 
         // on check si res est arrivé à la fin d'une PipeLine
         if(res == ';'){
             if (lu1lettre){ // Si on a lu au moins une lettre alors il y a une commande à ajouter avant
-                apply_cmd(char_lu, file_secondaire);
+                if (!apply_cmd(char_lu, file_secondaire, prompt)) {// Si la commande n'est pas créée il y a une erreur de syntaxe.
+                    // Annulation du parsing;
+                    obj_destroy(file_principale); // Destruction de la file principale.
+                    obj_destroy(file_secondaire); // Destruction de la file secondaire en cours de création.
+                    free(char_lu);
+                    return NULL; // On ne créé pas de file, on renvoie NULL
+                }
                 lu1lettre = 0;
             }
             
@@ -197,7 +235,7 @@ ArrayList Shell_parse(){
             }
                 
 
-            usr_prompt++; // Décalage vers le caractère suivant
+            (*prompt)++; // Décalage vers le caractère suivant
             continue;
         }
 
@@ -207,15 +245,20 @@ ArrayList Shell_parse(){
             if(!lu1lettre){
                 // ...alors on continue
             
-                usr_prompt++; // Décalage vers le caractère suivant
+                (*prompt)++; // Décalage vers le caractère suivant
                 continue;
             }
             // si on arrive ici, c'est qu'il y a un espace et qu'on à déjà lu un caractère
             // donc char_lu contient le nom de la commande
             // on remet lu1lettre à 0 car nous voulons relire une commande
             lu1lettre = 0;
-        
-            apply_cmd(char_lu, file_secondaire);
+            if (!apply_cmd(char_lu, file_secondaire, prompt)) {// Si la commande n'est pas créée il y a une erreur de syntaxe.
+                // Annulation du parsing;
+                obj_destroy(file_principale); // Destruction de la file principale.
+                obj_destroy(file_secondaire); // Destruction de la file secondaire en cours de création.
+                free(char_lu);
+                return NULL; // On ne créé pas de file, on renvoie NULL
+            }
 
             // on trunk l'espace alloué par l'ancienne commande afin de pouvoir stocker le nom de la nouvelle commande sans l'avoir à la concatener avec l'ancienne
             char_lu = realloc(char_lu, sizeof(char));
@@ -231,7 +274,7 @@ ArrayList Shell_parse(){
         assert(char_lu);
         char_lu[lu1lettre-1] = res;
         char_lu[lu1lettre] = '\0';
-        usr_prompt++;
+        (*prompt)++; // Décalage vers le caractère suivant
     }
     free(char_lu);
     return file_principale;
@@ -279,24 +322,30 @@ int Shell_execute_all(ArrayList struct_cmds){
  * à ce que l'utilisateur à tapé sur le prompt.
  * Et va l'ajouter dans la file de la pipleline qu'on parse actuellement
  */
-static Command apply_cmd(char *char_lu, ArrayList file_secondaire){
+static Command apply_cmd(char *char_lu, ArrayList file_secondaire, char** prompt){
 	Class tmp = get_internal_cmd(char_lu);
 	Command cmd;
 	if(tmp){
 
 		// je cré l'objet associé à ma commande
-		cmd = obj_new(tmp, char_lu, &usr_prompt);
+		cmd = obj_new(tmp, char_lu, prompt);
+        
+        // Si la commande interne n'est pas créée alors il y a une erreur de syntaxe, on renvoie NULL
+        if(!cmd)
+            return NULL;
+
 		//j'ajoute la commande interne à ma file
 		ArrayList_add_last(file_secondaire, cmd, 0);	
 
 	}else{
 
         // donc c'est une commande externe
-		cmd = obj_new(_ExternalCommand_, char_lu, &usr_prompt);
+		cmd = obj_new(_ExternalCommand_, char_lu, prompt);
         ArrayList_add_last(file_secondaire, cmd, 0);
 
 	}
-	return cmd;
+	
+    return cmd;
 }
 
 /**
@@ -350,7 +399,7 @@ static void update_prompt(){
     if (!previous_cmd_finish) // Si la précédente commande s'est bien terminée.
         snprintf(prompt, 50, "\033[32m[%d]\033[36m%s\033[00m$ ", previous_cmd_finish, path); // On le met en vert.
     else
-        snprintf(prompt, 60, "\033[91m[%d]\e[1;33m%s\033[00m$ ", previous_cmd_finish, path); // On le met en rouge.
+        snprintf(prompt, 50, "\033[91m[%d]\e[1;33m%s\033[00m$ ", previous_cmd_finish, path); // On le met en rouge.
 
 }
 

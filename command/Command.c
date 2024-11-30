@@ -17,6 +17,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+#include <time.h>
 #include <unistd.h>
 #include "../base/new.h"
 #include "../base/String.h"
@@ -138,6 +139,15 @@ static struct _Class_ __Command__ = {
  *  </ul>
  */
 const Class _Command_ = &__Command__;
+
+/**
+ * @internal
+ * @brief Il s'agit du nombre d'accolades ouverts pendant le traitement d'un prompt.
+ *
+ * Ce champs permet de savoir si une accolade fermante ferme réelement une accolande ouvrante.
+ *
+ */
+int opened_brackets = 0;
 
 /***************************************************/
 /************** Corps des fonctions ****************/
@@ -415,6 +425,7 @@ static void Command_print(const void* self_){
     obj_print(self->args);
     write(1, ". Params=", 9);
     obj_print(self->params);
+    write(1, " \e[1;0m", 7);
 
 }
 
@@ -453,8 +464,6 @@ int Command_execute(Command self){
     return self->execute(self);
 
 }
-
-
 
 
 

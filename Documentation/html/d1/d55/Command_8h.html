@@ -78,18 +78,17 @@ $(function() {
 
 <p>Fichier d'en-tête contenant les déclarations des variables publiques et de toutes les méthodes public de <code><a class="el" href="../../d4/df5/struct__Command__.html" title="Classe de toutes les commandes.">_Command_</a></code>.  
 <a href="#details">Plus de détails...</a></p>
-<div class="textblock"><code>#include &quot;<a class="el" href="../../db/d44/LinkedList_8h_source.html">../base/LinkedList.h</a>&quot;</code><br />
+<div class="textblock"><code>#include &quot;<a class="el" href="../../d5/d12/ArrayList_8h_source.html">../base/ArrayList.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Graphe des dépendances par inclusion de Command.h:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../d4/d3c/Command_8h__incl.png" border="0" usemap="#acommand_2Command_8h" alt=""/></div>
 <map name="acommand_2Command_8h" id="acommand_2Command_8h">
 <area shape="rect" title="Fichier d&#39;en&#45;tête contenant les déclarations des variables publiques et de toutes les méthodes public..." alt="" coords="7,5,177,32"/>
-<area shape="rect" href="../../db/d44/LinkedList_8h.html" title="Fichier d&#39;en&#45;tête contenant les déclarations de toutes les méthodes utilisées pour manipuler les obje..." alt="" coords="19,80,165,107"/>
-<area shape="rect" href="../../d6/d82/ListCell_8h.html" title="Fichier d&#39;en&#45;tête contenant les déclarations de toutes les méthodes utilisées pour manipuler les obje..." alt="" coords="51,155,133,181"/>
-<area shape="rect" href="../../d4/d05/Class_8h.html" title="Fichier d&#39;en&#45;tête contenant la définition du type Class." alt="" coords="57,229,127,256"/>
-<area shape="rect" title=" " alt="" coords="5,304,80,331"/>
-<area shape="rect" title=" " alt="" coords="104,304,179,331"/>
+<area shape="rect" href="../../d5/d12/ArrayList_8h.html" title="Fichier d&#39;en&#45;tête contenant les déclarations des variables publiques et de toutes les méthodes public..." alt="" coords="23,80,161,107"/>
+<area shape="rect" href="../../d4/d05/Class_8h.html" title="Fichier d&#39;en&#45;tête contenant la définition du type Class." alt="" coords="57,155,127,181"/>
+<area shape="rect" title=" " alt="" coords="5,229,80,256"/>
+<area shape="rect" title=" " alt="" coords="104,229,179,256"/>
 </map>
 </div>
 </div><div class="textblock"><div class="dynheader">
@@ -141,6 +140,9 @@ Variables</h2></td></tr>
 <tr class="memitem:a8095d9209f58cc46c7d8419393894b3b"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="../../d4/d05/Class_8h.html#a6ec2a8ccaeb1e924a80036ec40760377">Class</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d55/Command_8h.html#a8095d9209f58cc46c7d8419393894b3b">_Command_</a></td></tr>
 <tr class="memdesc:a8095d9209f58cc46c7d8419393894b3b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Classe de toutes les commandes.  <a href="../../d1/d55/Command_8h.html#a8095d9209f58cc46c7d8419393894b3b">Plus de détails...</a><br /></td></tr>
 <tr class="separator:a8095d9209f58cc46c7d8419393894b3b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a69cc983d19f391807b02546c6f0929b2"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d55/Command_8h.html#a69cc983d19f391807b02546c6f0929b2">opened_brackets</a></td></tr>
+<tr class="memdesc:a69cc983d19f391807b02546c6f0929b2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Il s'agit du nombre d'accolades ouverts pendant le traitement d'un prompt.  <a href="../../d1/d55/Command_8h.html#a69cc983d19f391807b02546c6f0929b2">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a69cc983d19f391807b02546c6f0929b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Description détaillée</h2>
 <div class="textblock"><p>Fichier d'en-tête contenant les déclarations des variables publiques et de toutes les méthodes public de <code><a class="el" href="../../d4/df5/struct__Command__.html" title="Classe de toutes les commandes.">_Command_</a></code>. </p>
@@ -283,6 +285,31 @@ Variables</h2></td></tr>
 . <code>char **</code> permet de modifier directement la chaine du prompt sans faire de copie. Alors NB que la chaine <br  />
  est modifiée pendant la création de la commande. </li>
 </ul>
+
+</div>
+</div>
+<a id="a69cc983d19f391807b02546c6f0929b2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a69cc983d19f391807b02546c6f0929b2">&#9670;&nbsp;</a></span>opened_brackets</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int opened_brackets</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Il s'agit du nombre d'accolades ouverts pendant le traitement d'un prompt. </p>
+<p>Ce champs permet de savoir si une accolade fermante ferme réelement une accolande ouvrante. </p>
 
 </div>
 </div>

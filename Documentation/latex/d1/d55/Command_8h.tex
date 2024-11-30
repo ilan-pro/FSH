@@ -5,8 +5,9 @@
 Fichier d\textquotesingle{}en-\/tête contenant les déclarations des variables publiques et de toutes les méthodes public de {\ttfamily \mbox{\hyperlink{struct__Command__}{\+\_\+\+Command\+\_\+}}}.  
 
 
-{\ttfamily \#include \char`\"{}../base/\+Linked\+List.\+h\char`\"{}}\newline
-Graphe des dépendances par inclusion de Command.\+h\+:\nopagebreak
+{\ttfamily \#include \char`\"{}../base/\+Array\+List.\+h\char`\"{}}\newline
+Graphe des dépendances par inclusion de Command.\+h\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -41,7 +42,9 @@ int \mbox{\hyperlink{Command_8h_a0c8154af6719bb6797fee45a301f93f8}{Command\+\_\+
 \begin{DoxyCompactItemize}
 \item 
 const \mbox{\hyperlink{Class_8h_a6ec2a8ccaeb1e924a80036ec40760377}{Class}} \mbox{\hyperlink{Command_8h_a8095d9209f58cc46c7d8419393894b3b}{\+\_\+\+Command\+\_\+}}
-\begin{DoxyCompactList}\small\item\em Classe de toutes les commandes. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Classe de toutes les commandes. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{Command_8h_a69cc983d19f391807b02546c6f0929b2}{opened\+\_\+brackets}}
+\begin{DoxyCompactList}\small\item\em Il s\textquotesingle{}agit du nombre d\textquotesingle{}accolades ouverts pendant le traitement d\textquotesingle{}un prompt. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Description détaillée}
@@ -139,4 +142,14 @@ Construction \+: {\ttfamily obj\+\_\+new(}\mbox{\hyperlink{struct__Command__}{\+
 \item {\ttfamily {\bfseries{ prompt }}} Un pointeur vers le reste du {\ttfamily prompt} (les commandes prennent souvent un certain nombre de paramètre ainsi que des arguments).~\newline
 . {\ttfamily char $\ast$$\ast$} permet de modifier directement la chaine du prompt sans faire de copie. Alors NB que la chaine ~\newline
  est modifiée pendant la création de la commande. 
-\end{DoxyItemize}
+\end{DoxyItemize}\mbox{\Hypertarget{Command_8h_a69cc983d19f391807b02546c6f0929b2}\label{Command_8h_a69cc983d19f391807b02546c6f0929b2}} 
+\index{Command.h@{Command.h}!opened\_brackets@{opened\_brackets}}
+\index{opened\_brackets@{opened\_brackets}!Command.h@{Command.h}}
+\doxysubsubsection{\texorpdfstring{opened\_brackets}{opened\_brackets}}
+{\footnotesize\ttfamily int opened\+\_\+brackets\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Il s\textquotesingle{}agit du nombre d\textquotesingle{}accolades ouverts pendant le traitement d\textquotesingle{}un prompt. 
+
+Ce champs permet de savoir si une accolade fermante ferme réelement une accolande ouvrante. 

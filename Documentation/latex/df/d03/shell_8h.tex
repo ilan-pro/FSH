@@ -5,8 +5,9 @@
 Fichier contenant la déclration des variables globales du shell ainsi que les fonctions utilisées par le shell pour le traitement, la construction et l\textquotesingle{}exécution des commandes.  
 
 
-{\ttfamily \#include \char`\"{}base/\+Linked\+List.\+h\char`\"{}}\newline
-Graphe des dépendances par inclusion de shell.\+h\+:\nopagebreak
+{\ttfamily \#include \char`\"{}base/\+Array\+List.\+h\char`\"{}}\newline
+Graphe des dépendances par inclusion de shell.\+h\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -30,9 +31,9 @@ Ce graphe montre quels fichiers incluent directement ou indirectement ce fichier
 \item 
 int \mbox{\hyperlink{shell_8h_a0dabbf807290a3a452d301797493bad4}{Shell\+\_\+start}} ()
 \begin{DoxyCompactList}\small\item\em Fonction qui va démarrer l\textquotesingle{}interpreteur de commande. \end{DoxyCompactList}\item 
-int \mbox{\hyperlink{shell_8h_ab600c5244daa49aa7fc5c7d66035aa5f}{Shell\+\_\+execute\+\_\+all}} (\mbox{\hyperlink{LinkedList_8c_a9e97ddb0b652fc6241b56a6f723e4dc0}{Linked\+List}} struct\+\_\+cmds, int delete\+\_\+list)
+int \mbox{\hyperlink{shell_8h_a4c2b36900844ff0db4cf2be2ac3ddc43}{Shell\+\_\+execute\+\_\+all}} (\mbox{\hyperlink{ArrayList_8c_a9136afaa09bea0a69505480c5fb29d4b}{Array\+List}} struct\+\_\+cmds)
 \begin{DoxyCompactList}\small\item\em Fonction qui va exécuter toutes les pipelines d\textquotesingle{}une commande structurée (par appel de la méthode execute() de chaque commande). \end{DoxyCompactList}\item 
-\mbox{\hyperlink{LinkedList_8c_a9e97ddb0b652fc6241b56a6f723e4dc0}{Linked\+List}} \mbox{\hyperlink{shell_8h_a848375151232c50f09afa8c52a15aa95}{Shell\+\_\+parse}} ()
+\mbox{\hyperlink{ArrayList_8c_a9136afaa09bea0a69505480c5fb29d4b}{Array\+List}} \mbox{\hyperlink{shell_8h_ad97f4dc09115d9c2a14b5f78b1070d44}{Shell\+\_\+parse}} (char $\ast$$\ast$prompt)
 \end{DoxyCompactItemize}
 \doxysubsection*{Variables}
 \begin{DoxyCompactItemize}
@@ -62,11 +63,11 @@ Il s\textquotesingle{}agit du nombre de caractère maximal que doit avoir le pro
 
 
 \doxysubsection{Documentation des fonctions}
-\mbox{\Hypertarget{shell_8h_ab600c5244daa49aa7fc5c7d66035aa5f}\label{shell_8h_ab600c5244daa49aa7fc5c7d66035aa5f}} 
+\mbox{\Hypertarget{shell_8h_a4c2b36900844ff0db4cf2be2ac3ddc43}\label{shell_8h_a4c2b36900844ff0db4cf2be2ac3ddc43}} 
 \index{shell.h@{shell.h}!Shell\_execute\_all@{Shell\_execute\_all}}
 \index{Shell\_execute\_all@{Shell\_execute\_all}!shell.h@{shell.h}}
 \doxysubsubsection{\texorpdfstring{Shell\_execute\_all()}{Shell\_execute\_all()}}
-{\footnotesize\ttfamily int Shell\+\_\+execute\+\_\+all (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{LinkedList_8c_a9e97ddb0b652fc6241b56a6f723e4dc0}{Linked\+List}}}]{struct\+\_\+cmds,  }\item[{int}]{delete\+\_\+list }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily int Shell\+\_\+execute\+\_\+all (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ArrayList_8c_a9136afaa09bea0a69505480c5fb29d4b}{Array\+List}}}]{struct\+\_\+cmds }\end{DoxyParamCaption})}
 
 
 
@@ -78,17 +79,15 @@ La fonction va créer un nouveau processus pour chaque éxécution de commande e
 \begin{DoxyParams}{Paramètres}
 {\em struct\+\_\+cmds} & La commande structurée. Une commande structurée est une liste de listes \\
 \hline
-{\em delete\+\_\+list} & Un boolean pour savoir si nous devons détruire la liste ou non. Ceci sert pour les boucles for. Afin de ne pas perdre la liste si nous voulons plusieurs répetition de la liste dont chaque liste est une pipeline (commande simple ou plusieurs commandes simples CMD\+\_\+1 $\vert$ CMD\+\_\+2 $\vert$ ... ).\\
-\hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Renvoie}
 La valeur de retour de la dernière exécution (si elle échoue alors ce sera la valeur de son code d\textquotesingle{}erreur). 
 \end{DoxyReturn}
-\mbox{\Hypertarget{shell_8h_a848375151232c50f09afa8c52a15aa95}\label{shell_8h_a848375151232c50f09afa8c52a15aa95}} 
+\mbox{\Hypertarget{shell_8h_ad97f4dc09115d9c2a14b5f78b1070d44}\label{shell_8h_ad97f4dc09115d9c2a14b5f78b1070d44}} 
 \index{shell.h@{shell.h}!Shell\_parse@{Shell\_parse}}
 \index{Shell\_parse@{Shell\_parse}!shell.h@{shell.h}}
 \doxysubsubsection{\texorpdfstring{Shell\_parse()}{Shell\_parse()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{LinkedList_8c_a9e97ddb0b652fc6241b56a6f723e4dc0}{Linked\+List}} Shell\+\_\+parse (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \mbox{\hyperlink{ArrayList_8c_a9136afaa09bea0a69505480c5fb29d4b}{Array\+List}} Shell\+\_\+parse (\begin{DoxyParamCaption}\item[{char $\ast$$\ast$}]{prompt }\end{DoxyParamCaption})}
 
 \mbox{\Hypertarget{shell_8h_a0dabbf807290a3a452d301797493bad4}\label{shell_8h_a0dabbf807290a3a452d301797493bad4}} 
 \index{shell.h@{shell.h}!Shell\_start@{Shell\_start}}

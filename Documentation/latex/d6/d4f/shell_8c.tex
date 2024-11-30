@@ -19,7 +19,8 @@ Fichier contenant l\textquotesingle{}implémentation des fonctions utilisé par 
 {\ttfamily \#include \char`\"{}command/\+External\+Command.\+h\char`\"{}}\newline
 {\ttfamily \#include \char`\"{}base/\+String.\+h\char`\"{}}\newline
 {\ttfamily \#include \char`\"{}base/new.\+h\char`\"{}}\newline
-Graphe des dépendances par inclusion de shell.\+c\+:\nopagebreak
+Graphe des dépendances par inclusion de shell.\+c\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -29,13 +30,11 @@ Graphe des dépendances par inclusion de shell.\+c\+:\nopagebreak
 \doxysubsection*{Fonctions}
 \begin{DoxyCompactItemize}
 \item 
-void \mbox{\hyperlink{shell_8c_af5bcf670ed5210c7f347de1bb0715d2a}{parse\+\_\+prompt}} ()
-\item 
 int \mbox{\hyperlink{shell_8c_a0dabbf807290a3a452d301797493bad4}{Shell\+\_\+start}} ()
 \begin{DoxyCompactList}\small\item\em Fonction qui va démarrer l\textquotesingle{}interpreteur de commande. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{LinkedList_8c_a9e97ddb0b652fc6241b56a6f723e4dc0}{Linked\+List}} \mbox{\hyperlink{shell_8c_a848375151232c50f09afa8c52a15aa95}{Shell\+\_\+parse}} ()
+\mbox{\hyperlink{ArrayList_8c_a9136afaa09bea0a69505480c5fb29d4b}{Array\+List}} \mbox{\hyperlink{shell_8c_ad97f4dc09115d9c2a14b5f78b1070d44}{Shell\+\_\+parse}} (char $\ast$$\ast$prompt)
 \item 
-int \mbox{\hyperlink{shell_8c_ab600c5244daa49aa7fc5c7d66035aa5f}{Shell\+\_\+execute\+\_\+all}} (\mbox{\hyperlink{LinkedList_8c_a9e97ddb0b652fc6241b56a6f723e4dc0}{Linked\+List}} struct\+\_\+cmds, int delete\+\_\+list)
+int \mbox{\hyperlink{shell_8c_a4c2b36900844ff0db4cf2be2ac3ddc43}{Shell\+\_\+execute\+\_\+all}} (\mbox{\hyperlink{ArrayList_8c_a9136afaa09bea0a69505480c5fb29d4b}{Array\+List}} struct\+\_\+cmds)
 \begin{DoxyCompactList}\small\item\em Fonction qui va exécuter toutes les pipelines d\textquotesingle{}une commande structurée (par appel de la méthode execute() de chaque commande). \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Variables}
 \begin{DoxyCompactItemize}
@@ -43,9 +42,7 @@ int \mbox{\hyperlink{shell_8c_ab600c5244daa49aa7fc5c7d66035aa5f}{Shell\+\_\+exec
 int \mbox{\hyperlink{shell_8c_af05a0983be2d71bcc3bdb9cbb25e68cf}{previous\+\_\+cmd\+\_\+finish}} = 0
 \item 
 char \mbox{\hyperlink{shell_8c_af1d59d6d50ca8965f4eb0e160c8a5e42}{working\+\_\+dir}} \mbox{[}4096\mbox{]}
-\begin{DoxyCompactList}\small\item\em Il s\textquotesingle{}agit du chemin absolue vers le repertoire courant. \end{DoxyCompactList}\item 
-char $\ast$ \mbox{\hyperlink{shell_8c_ad5f0370ef35eb011706a0cb8bc299885}{usr\+\_\+prompt}} = \char`\"{}\char`\"{}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Il s\textquotesingle{}agit du chemin absolue vers le repertoire courant. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Description détaillée}
@@ -54,17 +51,11 @@ Fichier contenant l\textquotesingle{}implémentation des fonctions utilisé par 
 On y retrouve notament la fonction {\ttfamily \mbox{\hyperlink{shell_8c_a0dabbf807290a3a452d301797493bad4}{Shell\+\_\+start()}}} qui va démarrer le shell et l\textquotesingle{}intéraction avec l\textquotesingle{}utilisateur. 
 
 \doxysubsection{Documentation des fonctions}
-\mbox{\Hypertarget{shell_8c_af5bcf670ed5210c7f347de1bb0715d2a}\label{shell_8c_af5bcf670ed5210c7f347de1bb0715d2a}} 
-\index{shell.c@{shell.c}!parse\_prompt@{parse\_prompt}}
-\index{parse\_prompt@{parse\_prompt}!shell.c@{shell.c}}
-\doxysubsubsection{\texorpdfstring{parse\_prompt()}{parse\_prompt()}}
-{\footnotesize\ttfamily void parse\+\_\+prompt (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
-
-\mbox{\Hypertarget{shell_8c_ab600c5244daa49aa7fc5c7d66035aa5f}\label{shell_8c_ab600c5244daa49aa7fc5c7d66035aa5f}} 
+\mbox{\Hypertarget{shell_8c_a4c2b36900844ff0db4cf2be2ac3ddc43}\label{shell_8c_a4c2b36900844ff0db4cf2be2ac3ddc43}} 
 \index{shell.c@{shell.c}!Shell\_execute\_all@{Shell\_execute\_all}}
 \index{Shell\_execute\_all@{Shell\_execute\_all}!shell.c@{shell.c}}
 \doxysubsubsection{\texorpdfstring{Shell\_execute\_all()}{Shell\_execute\_all()}}
-{\footnotesize\ttfamily int Shell\+\_\+execute\+\_\+all (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{LinkedList_8c_a9e97ddb0b652fc6241b56a6f723e4dc0}{Linked\+List}}}]{struct\+\_\+cmds,  }\item[{int}]{delete\+\_\+list }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily int Shell\+\_\+execute\+\_\+all (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ArrayList_8c_a9136afaa09bea0a69505480c5fb29d4b}{Array\+List}}}]{struct\+\_\+cmds }\end{DoxyParamCaption})}
 
 
 
@@ -76,17 +67,15 @@ La fonction va créer un nouveau processus pour chaque éxécution de commande e
 \begin{DoxyParams}{Paramètres}
 {\em struct\+\_\+cmds} & La commande structurée. Une commande structurée est une liste de listes \\
 \hline
-{\em delete\+\_\+list} & Un boolean pour savoir si nous devons détruire la liste ou non. Ceci sert pour les boucles for. Afin de ne pas perdre la liste si nous voulons plusieurs répetition de la liste dont chaque liste est une pipeline (commande simple ou plusieurs commandes simples CMD\+\_\+1 $\vert$ CMD\+\_\+2 $\vert$ ... ).\\
-\hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Renvoie}
 La valeur de retour de la dernière exécution (si elle échoue alors ce sera la valeur de son code d\textquotesingle{}erreur). 
 \end{DoxyReturn}
-\mbox{\Hypertarget{shell_8c_a848375151232c50f09afa8c52a15aa95}\label{shell_8c_a848375151232c50f09afa8c52a15aa95}} 
+\mbox{\Hypertarget{shell_8c_ad97f4dc09115d9c2a14b5f78b1070d44}\label{shell_8c_ad97f4dc09115d9c2a14b5f78b1070d44}} 
 \index{shell.c@{shell.c}!Shell\_parse@{Shell\_parse}}
 \index{Shell\_parse@{Shell\_parse}!shell.c@{shell.c}}
 \doxysubsubsection{\texorpdfstring{Shell\_parse()}{Shell\_parse()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{LinkedList_8c_a9e97ddb0b652fc6241b56a6f723e4dc0}{Linked\+List}} Shell\+\_\+parse (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \mbox{\hyperlink{ArrayList_8c_a9136afaa09bea0a69505480c5fb29d4b}{Array\+List}} Shell\+\_\+parse (\begin{DoxyParamCaption}\item[{char $\ast$$\ast$}]{prompt }\end{DoxyParamCaption})}
 
 \mbox{\Hypertarget{shell_8c_a0dabbf807290a3a452d301797493bad4}\label{shell_8c_a0dabbf807290a3a452d301797493bad4}} 
 \index{shell.c@{shell.c}!Shell\_start@{Shell\_start}}
@@ -110,13 +99,7 @@ Le code de retour au moment de la fermture du terminal.
 \doxysubsubsection{\texorpdfstring{previous\_cmd\_finish}{previous\_cmd\_finish}}
 {\footnotesize\ttfamily int previous\+\_\+cmd\+\_\+finish = 0}
 
-Le résultat de la dernière commande. \mbox{\Hypertarget{shell_8c_ad5f0370ef35eb011706a0cb8bc299885}\label{shell_8c_ad5f0370ef35eb011706a0cb8bc299885}} 
-\index{shell.c@{shell.c}!usr\_prompt@{usr\_prompt}}
-\index{usr\_prompt@{usr\_prompt}!shell.c@{shell.c}}
-\doxysubsubsection{\texorpdfstring{usr\_prompt}{usr\_prompt}}
-{\footnotesize\ttfamily char$\ast$ usr\+\_\+prompt = \char`\"{}\char`\"{}}
-
-\mbox{\Hypertarget{shell_8c_af1d59d6d50ca8965f4eb0e160c8a5e42}\label{shell_8c_af1d59d6d50ca8965f4eb0e160c8a5e42}} 
+Le résultat de la dernière commande. \mbox{\Hypertarget{shell_8c_af1d59d6d50ca8965f4eb0e160c8a5e42}\label{shell_8c_af1d59d6d50ca8965f4eb0e160c8a5e42}} 
 \index{shell.c@{shell.c}!working\_dir@{working\_dir}}
 \index{working\_dir@{working\_dir}!shell.c@{shell.c}}
 \doxysubsubsection{\texorpdfstring{working\_dir}{working\_dir}}

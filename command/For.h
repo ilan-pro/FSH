@@ -15,7 +15,8 @@
     #define FOR_FILEDS \
         COMMAND_FIELDS /* Doit toujours être déclaré en premier pour pouvoir réduire l'objet à un objet de type Command pour le polymorphisme */\
         ArrayList commands; /* Il s'agit de la commande structruée à exécuter dans le `for`.*/ \
-
+        char* dir; /** Répertoire de trvaille de For */\
+        char* id_var; /** identificateur de la variable de boucle */
     
     typedef struct _For_* For;
     
@@ -25,6 +26,8 @@
     /** @cond HIDE_THIS*/
     typedef struct __for_private_fields{
        ArrayList commands; 
+       char* dir;
+       char* id_var;
     } __for_private_fields;
 
     #define FOR_H_FIELDS \
@@ -77,20 +80,6 @@
      */
     char* For_get_file(char* id);
     
-    /**
-     * @internal 
-     * @brief Fonction qui va renvoyer si oui ou non il existe 
-     * une boucle for en cours d'exécution.
-     *
-     * Cette fonction va servir au moment de la rencontre d'un caractère `}` 
-     * pendant le parsing de la saisie de l'utilisateur pour tester si oui ou non 
-     * il fait partie d'une boucle for (ou `if` pour la fonction définie dans `If.h`).
-     *
-     * @return Si oui ou non il y a une boucle en cours d'exécution.
-     */
-    int For_exists();
-    
-
     /** 
      * @brief Il s'agit de la liste qui va contenir les identificateurs des différentes variables 
      * utilisées dans les boucles `for`.

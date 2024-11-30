@@ -7,18 +7,18 @@ Fichier contenant la fonction main de l\textquotesingle{}application.
 
 {\ttfamily \#include $<$readline/readline.\+h$>$}\newline
 {\ttfamily \#include $<$readline/history.\+h$>$}\newline
-{\ttfamily \#include $<$stdio.\+h$>$}\newline
-{\ttfamily \#include $<$stdlib.\+h$>$}\newline
-{\ttfamily \#include $<$string.\+h$>$}\newline
 {\ttfamily \#include $<$unistd.\+h$>$}\newline
 {\ttfamily \#include $<$sys/types.\+h$>$}\newline
 {\ttfamily \#include $<$sys/wait.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}base/\+Array\+List.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}base/\+String.\+h\char`\"{}}\newline
 {\ttfamily \#include \char`\"{}base/new.\+h\char`\"{}}\newline
 {\ttfamily \#include \char`\"{}command/\+External\+Command.\+h\char`\"{}}\newline
 {\ttfamily \#include \char`\"{}command/\+For.\+h\char`\"{}}\newline
 {\ttfamily \#include \char`\"{}command/all\+\_\+cmd.\+h\char`\"{}}\newline
 {\ttfamily \#include \char`\"{}shell.\+h\char`\"{}}\newline
-Graphe des dépendances par inclusion de fsh.\+c\+:\nopagebreak
+Graphe des dépendances par inclusion de fsh.\+c\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -34,8 +34,6 @@ void \mbox{\hyperlink{fsh_8c_ab0a6d40889442f4e3dee5b822b67a51d}{initialize\+\_\+
 \begin{DoxyCompactList}\small\item\em Fonction qui va initialiser les listes chainées utilsées pour stocker les identificateurs et les noms des fichiers en cours de traitement. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{fsh_8c_a4293c5ef3a67946c49acf30c56cc0889}{destroy\+\_\+for\+\_\+lists}} ()
 \begin{DoxyCompactList}\small\item\em Fonction qui va détruire les listes chainées utilsées pour stocker les identificateurs et les noms des fichiers en cours de traitement. \end{DoxyCompactList}\item 
-int \mbox{\hyperlink{fsh_8c_acfa41c134d52dbd5a4a1cfa25b8fda3b}{run\+\_\+commande}} ()
-\item 
 int \mbox{\hyperlink{fsh_8c_ae66f6b31b5ad750f1fe042a706a4e3d4}{main}} ()
 \end{DoxyCompactItemize}
 
@@ -82,9 +80,10 @@ Fonction qui va initialiser les listes chainées utilsées pour stocker les iden
 \doxysubsubsection{\texorpdfstring{main()}{main()}}
 {\footnotesize\ttfamily int main (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{fsh_8c_acfa41c134d52dbd5a4a1cfa25b8fda3b}\label{fsh_8c_acfa41c134d52dbd5a4a1cfa25b8fda3b}} 
-\index{fsh.c@{fsh.c}!run\_commande@{run\_commande}}
-\index{run\_commande@{run\_commande}!fsh.c@{fsh.c}}
-\doxysubsubsection{\texorpdfstring{run\_commande()}{run\_commande()}}
-{\footnotesize\ttfamily int run\+\_\+commande (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+char$\ast$ prompt = \char`\"{} -\/l\char`\"{};
 
+External\+Command e = obj\+\_\+new({\itshape External\+Command}, \char`\"{}ls\char`\"{}, \&prompt);
+
+Command\+\_\+execute((\+Command)e);
+
+obj\+\_\+destroy(e);

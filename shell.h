@@ -41,7 +41,7 @@ int Shell_execute_all(ArrayList struct_cmds);
 extern char working_dir[4096];
 
 // commentaire
-ArrayList Shell_parse();
+ArrayList Shell_parse(char** prompt);
 
 extern int previous_cmd_finish;
 
