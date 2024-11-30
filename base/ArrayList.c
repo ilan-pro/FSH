@@ -228,7 +228,7 @@ static void* ArrayList_destructor(void* self_){
     
     // destruction de tous les objets qui sont dans le tableau.
     for (size_t i = 0; i<ArrayList_size(self); i++)
-        obj_destroy(self->dyn_array);
+        obj_destroy(self->dyn_array[i]);
     
     free(self->dyn_array);
 
@@ -358,6 +358,7 @@ size_t ArrayList_size( ArrayList self ){
 
 
 /**
+ * @internal
  * @brief Fonction qui va rajouter un élément en tête de liste.
  *
  * **ATTENTION** : Au moment de la destruction de la liste les valeurs 
@@ -395,6 +396,7 @@ int ArrayList_add_first( ArrayList self, void* object, int clone ){
 
 
 /**
+ * @internal
  * @brief Fonction qui va rajouter un élément en fin de liste.
  *
  * **ATTENTION** : Au moment de la destruction de la liste les valeurs 
@@ -432,6 +434,7 @@ int ArrayList_add_last( ArrayList self, void* object, int clone ){
 
 
 /**
+ * @internal
  * @brief Fonction qui ajoute un élément à une position précise dans la liste.
  * 
  * Mettre le paramètre `clone` à 1 pour renvoyer une copie au lieu de la 
@@ -497,3 +500,5 @@ int ArrayList_add( ArrayList self, void *object, size_t index, int clone ){
     return 1;
 
 }
+
+

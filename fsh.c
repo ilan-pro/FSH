@@ -105,7 +105,8 @@ int main(){
     ArrayList_add_first(a, obj_new(_String_, "Natale"), 0);
     ArrayList_add_first(a, obj_new(_String_, "Natale"), 0);
     obj_print(a);
-
+    
+    obj_destroy(a);
     /** char* prompt = " -l"; */
     /** ExternalCommand e = obj_new(_ExternalCommand_, "ls", &prompt); */
 
