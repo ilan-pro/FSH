@@ -149,9 +149,9 @@ static void* ExternalCommand_constructor(void* self_, va_list* args){
     
     // Récupération du reste du prompt.
     char** prompt = va_arg(*args, char**);
-
-    self->args = obj_new(_LinkedList_);
-    self->params = obj_new(_LinkedList_);
+    // Initialisation de la liste des arguments et des paramètres de commandes
+    self->args = obj_new(_ArrayList_, 0);
+    self->params = obj_new(_ArrayList_, 0);
 
     int cmd_length = strlen(cmd_name);
     char* command = malloc((2 + cmd_length) * sizeof(char));
@@ -198,7 +198,7 @@ static void* ExternalCommand_constructor(void* self_, va_list* args){
                     
                     // Ajout du mot dans la liste des arguments de la commande.
                     // L'ajout se fait à la fin pour préserver l'ordre de déclaration des arguments (sait-on jamais).
-                    LinkedList_add_last(self->args, obj_new(_String_, command), 0);
+                    ArrayList_add_last(self->args, obj_new(_String_, command), 0);
                     
                     // Remise à 0 du compteur
                     cmd_length = 0;
@@ -241,7 +241,7 @@ static void* ExternalCommand_constructor(void* self_, va_list* args){
         
         // Ajout du mot dans la liste des arguments de la commande.
         // L'ajout se fait à la fin pour préserver l'ordre de déclaration des arguments (sait-on jamais).
-        LinkedList_add_last(self->args, obj_new(_String_, command), 0);
+        ArrayList_add_last(self->args, obj_new(_String_, command), 0);
         
         // Remise à 0 du compteur
         cmd_length = 0;
@@ -288,7 +288,7 @@ static int ExternalCommand_execute(Command self_){
             // le fils
             // ExternalCommand cmd = _ExternalCommand_->ctor(self_, );
             ExternalCommand self = (ExternalCommand) (void*) self_;
-            int size = LinkedList_size(self->args);
+            int size = ArrayList_size(self->args);
             char **cmd = malloc((size + 1) * sizeof(char*));
 
             if(!cmd){
@@ -297,7 +297,7 @@ static int ExternalCommand_execute(Command self_){
             }
             
             for(int i=0; i < size; i++){
-                char* tmp = obj_to_string((String) LinkedList_get(self->args, i, 0));
+                char* tmp = obj_to_string((String) ArrayList_get(self->args, i, 0));
                 cmd[i] = malloc((1 + strlen(tmp)) * sizeof(char));
                 strcpy(cmd[i], tmp);
             }

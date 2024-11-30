@@ -36,7 +36,7 @@ static int init_working_dir();
 static void update_prompt();
 void parse_prompt();
 static Class get_internal_cmd(char *char_lu);
-static Command apply_cmd(char *char_lu, LinkedList file_secondaire);
+static Command apply_cmd(char *char_lu, ArrayList file_secondaire);
 
 /**********************************************/
 
@@ -77,26 +77,30 @@ int Shell_start(){
     if (init_working_dir())
         return 1;
 
+    // Redirection vers stderr
     rl_outstream = stderr;
 
     while(1){
         
         // Mise à jour du prompt.
         update_prompt();
+        // Récupération de la saisie de l'utilisateur.
         usr_prompt = readline(prompt);
+        // Copie du pointeur pour sa destruction.
         char *cp_prompt = usr_prompt;
-        if (usr_prompt){
-            LinkedList file_principal = Shell_parse();
-            obj_print(file_principal); printf("\n"); 
-            previous_cmd_finish = Shell_execute_all(file_principal,1);
-            free(cp_prompt);
+        if (usr_prompt){ // Si le pointeur vers la saisie n'est pas NULL (Pas de EOF)
+            ArrayList file_principal = Shell_parse(); // Parsing de la saisie, pour en extraire les commandes.
+            obj_print(file_principal); printf("\n"); // debug
+            previous_cmd_finish = Shell_execute_all(file_principal); // Exécution de la file principale.
+            free(cp_prompt); // Destruction du pointeur alloué par readline.
         }
-        else{
-            break;
+        else{ // Si on est ici c'est qu'il y reception de EOF
+            break; // Alors on arrête le shell.
         }
         rl_free_line_state();
     }
     
+    // On vide l'historique.
     rl_clear_history();
     return 0;
 
@@ -122,7 +126,7 @@ int Shell_start(){
  * @return La file principale qui va contenir l'ensemble des pipelines tapés par l'utilisateur (Si une erreur de syntaxe est identifié,
  * alors le programme renvoie la liste NULL)
  */
-LinkedList Shell_parse(){
+ArrayList Shell_parse(){
     // Variable qui stock le nombre de caractères que nous avons lu.
     int lu1lettre = 0;
     // Espace mémoire qui va servir à stocker le nom de la commande
@@ -130,8 +134,8 @@ LinkedList Shell_parse(){
     assert(char_lu);
     char_lu[0] = '\0';
     // tant qu'il y a quelque chose à lire (différent \0)
-    LinkedList file_principale = obj_new(_LinkedList_);
-    LinkedList file_secondaire = obj_new(_LinkedList_);	
+    ArrayList file_principale = obj_new(_ArrayList_, 0);
+    ArrayList file_secondaire = obj_new(_ArrayList_, 0);	
     while(1){
         // On récupère le caractère pointé par user_prompt puis on incrémente pour les caractères suivant.
         char res = *(usr_prompt);
@@ -144,8 +148,8 @@ LinkedList Shell_parse(){
             }
 
             // Ajout de la pipeline (si et seulement si elle n'est pas vide)
-            if (LinkedList_size(file_secondaire) > 0)
-                LinkedList_add_last(file_principale, file_secondaire, 0);
+            if (ArrayList_size(file_secondaire) > 0)
+                ArrayList_add_last(file_principale, file_secondaire, 0);
             else // Si elle est vide on la détruit
                 obj_destroy(file_secondaire);
                 
@@ -185,10 +189,10 @@ LinkedList Shell_parse(){
             
             // Si nous ne rencontrons un ';' c'est que nous avons fini notre PipeLine et que nous pouvons stocker dans la liste, le résultat de cette dernière.
             // Ajout de la pipeline (si et seulement si elle n'est pas vide)
-            if (LinkedList_size(file_secondaire) > 0){
-                LinkedList_add_last(file_principale, file_secondaire, 0);
+            if (ArrayList_size(file_secondaire) > 0){
+                ArrayList_add_last(file_principale, file_secondaire, 0);
                 // Nous pouvons maintenant commencer une nouvelle file afin de stocker la futur PipeLine
-                file_secondaire = obj_new(_LinkedList_);	
+                file_secondaire = obj_new(_ArrayList_, 0);	
             }
                 
 
@@ -240,56 +244,32 @@ LinkedList Shell_parse(){
  * La fonction s'occupera également de faire les redirections de sorties 
  * si jamais il y en a.
  *
- * @param struct_cmds La commande structurée. Une commande structurée est une liste de listes 
- * @param delete_list Un boolean pour savoir si nous devons détruire la liste ou non. Ceci sert pour les boucles for.
- * Afin de ne pas perdre la liste si nous voulons plusieurs répetition de la liste
- * dont chaque liste est une pipeline (commande simple ou plusieurs commandes simples CMD_1 | CMD_2 | ... ).
- *
+ * @param struct_cmds La commande structurée. Une commande structurée est une liste de listes.
  * @return La valeur de retour de la dernière exécution (si elle échoue alors ce sera la valeur de 
  * son code d'erreur).
  */
-int Shell_execute_all(LinkedList struct_cmds, int delete_list){
+int Shell_execute_all(ArrayList struct_cmds){
     // Sert à stocker le status des processus enfant afin de retourner le dernier éxecuter.
     int last_status = 0;
 
-
-    LinkedList struct_cmds_copy;
-
-    if(!delete_list){
-        struct_cmds_copy = obj_clone(struct_cmds);
-    }else{
-        struct_cmds_copy = struct_cmds;
-    }
-
-    // Afin de garantir un coup constant pour chaque extraction d'éléments, nous allons favoriser le while car avec un for,
-    // nous devrions faire un get qui parcours toute la liste. Voir le while comme une boucle
-    while(LinkedList_size(struct_cmds_copy) != 0){
+    // Parcours de la liste des pipeline (toute récupération se fait en O(1))
+    for (size_t i = 0; i<ArrayList_size(struct_cmds); i++){
 
         // on récupère la list chaîné de chaque pipeline
-        LinkedList pipeline = LinkedList_get_first(struct_cmds_copy, 0);
+        ArrayList pipeline = ArrayList_get(struct_cmds, i, 0);
         
-        while(LinkedList_size(pipeline) != 0){
+        for (size_t j = 0; j<ArrayList_size(pipeline); j++){
             
-            // Récupération de la commande
-            Command cmd = LinkedList_get_first(pipeline, 0); 
+            // Récupération de la commande.
+            Command cmd = ArrayList_get(pipeline, j, 0); 
             
-            // Suppression de la commande exécutée de la file.
+            // Exécution de la commande.
             last_status = Command_execute(cmd);
-            previous_cmd_finish = last_status;
-            if(last_status != 0){
-                goto clear;
-            }
-            LinkedList_remove_first(pipeline, 0);
+            if(last_status != 0)
+                return last_status;
         }
-        LinkedList_remove_first(struct_cmds_copy, 0);
-
-    }
-    clear:
-    if(delete_list){
-        obj_destroy(struct_cmds_copy);
     }
 
-    // si tout à réussi, on retourne la valeur de la dernière éxécution
     return last_status;
 }
 
@@ -298,7 +278,7 @@ int Shell_execute_all(LinkedList struct_cmds, int delete_list){
  * à ce que l'utilisateur à tapé sur le prompt.
  * Et va l'ajouter dans la file de la pipleline qu'on parse actuellement
  */
-static Command apply_cmd(char *char_lu, LinkedList file_secondaire){
+static Command apply_cmd(char *char_lu, ArrayList file_secondaire){
 	Class tmp = get_internal_cmd(char_lu);
 	Command cmd;
 	if(tmp){
@@ -306,13 +286,13 @@ static Command apply_cmd(char *char_lu, LinkedList file_secondaire){
 		// je cré l'objet associé à ma commande
 		cmd = obj_new(tmp, char_lu, &usr_prompt);
 		//j'ajoute la commande interne à ma file
-		LinkedList_add_last(file_secondaire, cmd, 0);	
+		ArrayList_add_last(file_secondaire, cmd, 0);	
 
 	}else{
 
         // donc c'est une commande externe
 		cmd = obj_new(_ExternalCommand_, char_lu, &usr_prompt);
-        LinkedList_add_last(file_secondaire, cmd, 0);
+        ArrayList_add_last(file_secondaire, cmd, 0);
 
 	}
 	return cmd;

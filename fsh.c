@@ -45,8 +45,8 @@ void initialize_cmd(){
  */
 void initialize_for_lists(){
         
-   For_ids = obj_new(_LinkedList_);   
-   For_files = obj_new(_LinkedList_);   
+   For_ids = obj_new(_ArrayList_, 0);   
+   For_files = obj_new(_ArrayList_, 0);   
 
 }
 
@@ -102,7 +102,7 @@ int main(){
     /** Command_execute((Command)e); */
 
     /** obj_destroy(e); */
-    //Shell_start();
+    Shell_start();
     destroy_for_lists();
     return 0; 
 }

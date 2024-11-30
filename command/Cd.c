@@ -163,17 +163,17 @@ static int Cd_execute(Command self_){
     Cd self = (Cd) self_;
     char *path;
 
-    if (LinkedList_size(self->args) > 1){
+    if (ArrayList_size(self->args) > 1){
         char tmp1[] = "\e[1;31m[Erreur] de syntaxe : la commande ne prend qu'un seul argument.\e[1;0m";
         write(2, tmp1, strlen(tmp1));
         return 1;
     }
-    else if(LinkedList_size(self->args)== 0){
+    else if(ArrayList_size(self->args)== 0){
         path = getenv("HOME");
         assert(path != NULL);
     }
     else{
-        String tmp = (String) LinkedList_get_first(self->args, 0);
+        String tmp = (String) ArrayList_get_first(self->args, 0);
         path = obj_to_string(tmp);
     }
 

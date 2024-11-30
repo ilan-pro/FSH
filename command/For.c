@@ -121,14 +121,14 @@ const Class _For_ = &__For__;
  * L'indice de l'identificateur est le même que celui du nom du fichier contenu dans 
  * L'autre liste.
  */
-LinkedList For_ids;
+ArrayList For_ids;
 
     
 /**
  * Il s'agit de la liste contenant les noms des fichiers en cours de 
  * traitement dans la boucle `for`.
  */
-LinkedList For_files;
+ArrayList For_files;
     
 /**
  * Il s'agit du répertoire ouvert par `for`
@@ -216,7 +216,7 @@ static void* For_constructor(void* self_, va_list* args){
     }
     // Le mot parsé est l'identificateur des fichiers dans la boucle.
     // Ajout de ce fichier.
-    LinkedList_add_last(For_ids, obj_new(_String_, mot), 0);
+    ArrayList_add_last(For_ids, obj_new(_String_, mot), 0);
     
     // troncage du mot en mot vide.
     mot = realloc(mot, sizeof(char));

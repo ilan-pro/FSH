@@ -8,7 +8,7 @@
  */
 
 
-#include "../base/LinkedList.h"
+#include "../base/ArrayList.h"
 #ifndef COMMAND_H 
 /**@cond HIDE_THIS */
 #define COMMAND_H
@@ -20,8 +20,8 @@
     #define COMMAND_FIELDS \
         const char* const name; /* Nom de la commande */ \
         int (*const execute) (struct _Command_*); /* Fonction qui va faire exécuter la commande */\
-        LinkedList params; /* L'ensemble des paramètres de la commande */ \
-        LinkedList args; /* L'ensemble des arguments de la commande */  
+        ArrayList params; /* L'ensemble des paramètres de la commande */ \
+        ArrayList args; /* L'ensemble des arguments de la commande */  
         // Ajouter d'autres attributs ici.
     
     typedef struct _Command_* Command;
@@ -31,8 +31,8 @@
     /** @cond HIDE_THIS*/
     // Champs privées des commandes.
     typedef struct __command_private_fields{
-        LinkedList params;
-        LinkedList args;
+        ArrayList params;
+        ArrayList args;
     } __command_priv_fields;
     
     // Champs visible depuis l'extérieur, les champs privés sont cachés par un pointeur opaque

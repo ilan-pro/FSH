@@ -204,7 +204,7 @@ static void Command_parse_usr_prompt_params(Command self, char** prompt){
         param[1] = '\0';
         
         // Ajout du paramètre dans la liste.
-        LinkedList_add_last(self->params, obj_new(_String_, param), 0);
+        ArrayList_add_last(self->params, obj_new(_String_, param), 0);
 
     }
 }
@@ -273,7 +273,7 @@ static void Command_parse_usr_prompt(Command self, char** prompt){
                     
                     // Ajout du mot dans la liste des arguments de la commande.
                     // L'ajout se fait à la fin pour préserver l'ordre de déclaration des arguments (sait-on jamais).
-                    LinkedList_add_last(self->args, obj_new(_String_, mot), 0);
+                    ArrayList_add_last(self->args, obj_new(_String_, mot), 0);
                     
                     // Remise à 0 du compteur
                     char_compteur = 0;
@@ -343,7 +343,7 @@ static void Command_parse_usr_prompt(Command self, char** prompt){
     }
     
     if(char_compteur)  // Si on a lu au moins un mot.
-        LinkedList_add_last(self->args,obj_new(_String_, mot), 0); // On ajoute le mot
+        ArrayList_add_last(self->args,obj_new(_String_, mot), 0); // On ajoute le mot
 
     free(mot);
 
@@ -359,8 +359,8 @@ static void* Command_constructor(void* self_, va_list* args){
     Command self = (Command) self_;
     
     // Initialisation de la liste des arguments et des paramètres.
-    self->args = obj_new(_LinkedList_);
-    self->params = obj_new(_LinkedList_);
+    self->args = obj_new(_ArrayList_, 0);
+    self->params = obj_new(_ArrayList_, 0);
         
     // Récupération du nom de la commande
     char* cmd_name = va_arg(*args, char*);

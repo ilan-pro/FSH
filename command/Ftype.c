@@ -154,17 +154,17 @@ static int Ftype_execute(Command self_){
 
     struct stat statbuf;
 
-    if(LinkedList_size(self->args) > 1){
+    if(ArrayList_size(self->args) > 1){
         char tmp[] = "\e[1;31mErreur : trop d'arguments !\n\e[1;0m";
         write(2, tmp, strlen(tmp));
         return 1;
-    }else if(LinkedList_size(self->args) == 0){
+    }else if(ArrayList_size(self->args) == 0){
         char tmp[] = "\e[1;31mErreur : pas d'arguments !\n\e[1;0m";
         write(2,tmp, strlen(tmp));
         return 1;
     }else{
 
-        char* first_arg = obj_to_string((String) LinkedList_get_first(self->args, 0));
+        char* first_arg = obj_to_string((String) ArrayList_get_first(self->args, 0));
 
         // faire lstat car si on a un deux fichiers qui forment un lien circulaire (chacun pointe sur l'autre), il y aura un stackoverflow.
         if (lstat(first_arg, &statbuf) == -1) {

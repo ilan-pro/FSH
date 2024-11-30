@@ -154,10 +154,10 @@ static int Exit_execute(Command self_){
     Exit self = (Exit) self_;
     
     int exit_code = previous_cmd_finish; // Par défaut, on quitte avec un code de sortie 0
-    if (LinkedList_size(self->args) == 1) {
+    if (ArrayList_size(self->args) == 1) {
         // Tente de convertir l'argument en un entier pour le code de sortie
         char *endptr;
-        char *nombre = obj_to_string((String)LinkedList_get_first(self->args, 0)) ;
+        char *nombre = obj_to_string((String)ArrayList_get_first(self->args, 0)) ;
         exit_code = strtol(nombre, &endptr, 10);
 
         if (*endptr != '\0') {
@@ -169,7 +169,7 @@ static int Exit_execute(Command self_){
             else
                 exit(1);
         }
-    }else if (LinkedList_size(self->args) > 1){
+    }else if (ArrayList_size(self->args) > 1){
         
         char tmp1[] = "\e[1;31m[Erreur] La commande ne prend pas plusieurs arguments\e[1;0m\n";
         write(2, tmp1, strlen(tmp1));

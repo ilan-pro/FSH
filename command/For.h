@@ -14,7 +14,7 @@
     
     #define FOR_FILEDS \
         COMMAND_FIELDS /* Doit toujours être déclaré en premier pour pouvoir réduire l'objet à un objet de type Command pour le polymorphisme */\
-        LinkedList commands; /* Il s'agit de la commande structruée à exécuter dans le `for`.*/ \
+        ArrayList commands; /* Il s'agit de la commande structruée à exécuter dans le `for`.*/ \
 
     
     typedef struct _For_* For;
@@ -24,7 +24,7 @@
     
     /** @cond HIDE_THIS*/
     typedef struct __for_private_fields{
-       LinkedList commands; 
+       ArrayList commands; 
     } __for_private_fields;
 
     #define FOR_H_FIELDS \
@@ -98,13 +98,13 @@
      * L'indice de l'identificateur est le même que celui du nom du fichier contenu dans 
      * L'autre liste qui contient les noms (une HashMap serait plus intérressant mais pas le temps).
      */
-    extern LinkedList For_ids;
+    extern ArrayList For_ids;
     
     /**
      * @brief Il s'agit de la liste contenant les noms des fichiers en cours de 
      * traitement dans la boucle `for`.
      */
-    extern LinkedList For_files;
+    extern ArrayList For_files;
 
 #endif
 
