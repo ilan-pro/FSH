@@ -21,6 +21,7 @@
 #include <sys/wait.h>
 #include <sys/types.h>
 #include <unistd.h>
+#include <errno.h>
 
 /** @cond HIDE_THIS*/
 #define EXTERNAL_COMMAND_CLASS "ExternalCommand"
@@ -276,11 +277,12 @@ static void* ExternalCommand_destroy(void* self_){
 // Execute.
 static int ExternalCommand_execute(Command self_){
     
+    // Code de retour du processus fils.
+    int process_ret;
     /**Nous allons fork afin de pouvoir exécuter les commandes externes car les commandes externes, aux antipodes des commandes
      * internes,
      * nous devons les exécuter dans un processus différent car il ne vont pas modifier l'état du shell.
      */
-
     pid_t pid = fork();
     
     switch(pid){
@@ -308,7 +310,13 @@ static int ExternalCommand_execute(Command self_){
                     free(cmd[i]);
                 free(cmd);
 
-                perror("execvp"); 
+                write(2,"\e[1;31m", 7);
+                write(2,self->name, strlen(self->name));
+                write(2," : ", 3);
+                char* err = strerror(errno);
+                write(2,err,strlen(err));
+                write(2,"\e[1;0m", 6);
+                write(2,"\n", 1);
                 exit(1);
             }
 
@@ -323,12 +331,12 @@ static int ExternalCommand_execute(Command self_){
 
         default:
             // le père
-            if(waitpid(pid, NULL, 0) < 0){
+            if(waitpid(pid, &process_ret, 0) < 0){
                 perror("waitpid");
                 return 1;
             }
             break;
     }
 
-    return 0;
+    return WEXITSTATUS(process_ret);
 }
