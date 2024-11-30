@@ -3,9 +3,9 @@ var indexSectionsWithContent =
   0: "_acdefilmnoprstuw",
   1: "_",
   2: "aceflnps",
-  3: "cdfilmoprs",
+  3: "acdfilmoprs",
   4: "_cdefnpstuw",
-  5: "ceflps",
+  5: "aceflps",
   6: "p",
   7: "ap"
 };

@@ -1,0 +1,62 @@
+\hypertarget{ArrayList_8c}{}\doxysection{Référence du fichier base/\+Array\+List.c}
+\label{ArrayList_8c}\index{base/ArrayList.c@{base/ArrayList.c}}
+
+
+Fichier contenant l\textquotesingle{}implémentation de la classe {\ttfamily \mbox{\hyperlink{struct__ArrayList__}{\+\_\+\+Array\+List\+\_\+}}}.  
+
+
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct__ArrayList__}{\+\_\+\+Array\+List\+\_\+}}
+\begin{DoxyCompactList}\small\item\em Classe des objets de type {\ttfamily \mbox{\hyperlink{struct__ArrayList__}{\+\_\+\+Array\+List\+\_\+}}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Définitions de type}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \mbox{\hyperlink{struct__ArrayList__}{\+\_\+\+Array\+List\+\_\+}} $\ast$ \mbox{\hyperlink{ArrayList_8c_a9136afaa09bea0a69505480c5fb29d4b}{Array\+List}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const \mbox{\hyperlink{Class_8h_a6ec2a8ccaeb1e924a80036ec40760377}{Class}} \mbox{\hyperlink{ArrayList_8c_ae9a47e6c37963aba432f1dcc7b9088b2}{\+\_\+\+Array\+List\+\_\+}} = \&\+\_\+\+\_\+\+Array\+List\+\_\+\+\_\+
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Description détaillée}
+Fichier contenant l\textquotesingle{}implémentation de la classe {\ttfamily \mbox{\hyperlink{struct__ArrayList__}{\+\_\+\+Array\+List\+\_\+}}}. 
+
+Une {\ttfamily Array\+List} est un tableau dynamique qui dont la taille augmente au fur et à mesure que l\textquotesingle{}on ajoute des éléments à l\textquotesingle{}intérieur. Cette structure de donnée est idéale pour récupérer les élements qui y sont stockés en temps constant (bien que la suppression d\textquotesingle{}un élément et l\textquotesingle{}ajout d\textquotesingle{}élément ailleurs qu\textquotesingle{}à la fin ne le soit pas). ~\newline
+ Tous les objets peuvent êtres de type différent. ~\newline
+
+
+Construction {\ttfamily {\bfseries{ obj\+\_\+new( {\ttfamily \mbox{\hyperlink{struct__ArrayList__}{\+\_\+\+Array\+List\+\_\+}}}, int initial\+\_\+size ) }}} où \+: 
+\begin{DoxyItemize}
+\item {\ttfamily \mbox{\hyperlink{struct__ArrayList__}{\+\_\+\+Array\+List\+\_\+}}} désigne la classe des objets de type {\ttfamily Array\+List}. 
+\item {\ttfamily {\bfseries{ initial\+\_\+size }}} désigne la taille initiale de la liste. Idéale si on a l\textquotesingle{}intention de stocker une grande quantité de donnée sans trop redimensionner. 
+\end{DoxyItemize}
+
+\doxysubsection{Documentation des définitions de type}
+\mbox{\Hypertarget{ArrayList_8c_a9136afaa09bea0a69505480c5fb29d4b}\label{ArrayList_8c_a9136afaa09bea0a69505480c5fb29d4b}} 
+\index{ArrayList.c@{ArrayList.c}!ArrayList@{ArrayList}}
+\index{ArrayList@{ArrayList}!ArrayList.c@{ArrayList.c}}
+\doxysubsubsection{\texorpdfstring{ArrayList}{ArrayList}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{struct__ArrayList__}{\+\_\+\+Array\+List\+\_\+}}$\ast$ \mbox{\hyperlink{ArrayList_8c_a9136afaa09bea0a69505480c5fb29d4b}{Array\+List}}}
+
+
+
+\doxysubsection{Documentation des variables}
+\mbox{\Hypertarget{ArrayList_8c_ae9a47e6c37963aba432f1dcc7b9088b2}\label{ArrayList_8c_ae9a47e6c37963aba432f1dcc7b9088b2}} 
+\index{ArrayList.c@{ArrayList.c}!\_ArrayList\_@{\_ArrayList\_}}
+\index{\_ArrayList\_@{\_ArrayList\_}!ArrayList.c@{ArrayList.c}}
+\doxysubsubsection{\texorpdfstring{\_ArrayList\_}{\_ArrayList\_}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{Class_8h_a6ec2a8ccaeb1e924a80036ec40760377}{Class}} \mbox{\hyperlink{struct__ArrayList__}{\+\_\+\+Array\+List\+\_\+}} = \&\+\_\+\+\_\+\+Array\+List\+\_\+\+\_\+}
+
+Classe de tous les objets de type {\ttfamily \mbox{\hyperlink{struct__ArrayList__}{\+\_\+\+Array\+List\+\_\+}}}.
+
+Construction {\ttfamily {\bfseries{ obj\+\_\+new( {\ttfamily \mbox{\hyperlink{struct__ArrayList__}{\+\_\+\+Array\+List\+\_\+}}}, int initial\+\_\+size ) }}} où \+: 
+\begin{DoxyItemize}
+\item {\ttfamily \mbox{\hyperlink{struct__ArrayList__}{\+\_\+\+Array\+List\+\_\+}}} désigne la classe des objets de type {\ttfamily Array\+List}. 
+\item {\ttfamily {\bfseries{ initial\+\_\+size }}} désigne la taille initiale de la liste. Idéale si on a l\textquotesingle{}intention de stocker une grande quantité de donnée sans trop redimensionner. 
+\end{DoxyItemize}
+
+Elle est définie dans {\ttfamily \mbox{\hyperlink{ArrayList_8c}{Array\+List.\+c}}} 

@@ -14,7 +14,6 @@
 #include <readline/readline.h>
 #include <readline/history.h>
 #include <assert.h>
-#include "base/Class.h"
 #include "command/all_cmd.h"
 #include "command/ExternalCommand.h"
 #include "base/String.h"
@@ -354,7 +353,7 @@ static void update_prompt(){
 
     // Calcul de la longueur de la chaine (chemin absolue vers le répertoire courant)
     int len = strlen(working_dir);
-    // pointeur vers la chaine de caractère.
+    // pointeur vers la chaine de caractère. 
     char* tr = working_dir; 
 
     if (len>PROMPT_CHAR_LIMITS){

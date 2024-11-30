@@ -1,0 +1,440 @@
+\hypertarget{ArrayList_8h}{}\doxysection{Référence du fichier base/\+Array\+List.h}
+\label{ArrayList_8h}\index{base/ArrayList.h@{base/ArrayList.h}}
+
+
+Fichier d\textquotesingle{}en-\/tête contenant les déclarations des variables publiques et de toutes les méthodes public de la classe {\ttfamily \mbox{\hyperlink{struct__ArrayList__}{\+\_\+\+Array\+List\+\_\+}}}.  
+
+
+{\ttfamily \#include \char`\"{}Class.\+h\char`\"{}}\newline
+Graphe des dépendances par inclusion de Array\+List.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=210pt]{d3/d61/ArrayList_8h__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct__ArrayList__}{\+\_\+\+Array\+List\+\_\+}}
+\begin{DoxyCompactList}\small\item\em Classe des objets de type {\ttfamily \mbox{\hyperlink{struct__ArrayList__}{\+\_\+\+Array\+List\+\_\+}}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Définitions de type}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \mbox{\hyperlink{struct__ArrayList__}{\+\_\+\+Array\+List\+\_\+}} $\ast$ \mbox{\hyperlink{ArrayList_8h_a9136afaa09bea0a69505480c5fb29d4b}{Array\+List}}
+\begin{DoxyCompactList}\small\item\em Classe des objets de type {\ttfamily \mbox{\hyperlink{struct__ArrayList__}{\+\_\+\+Array\+List\+\_\+}}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Fonctions}
+\begin{DoxyCompactItemize}
+\item 
+size\+\_\+t \mbox{\hyperlink{ArrayList_8h_a393639df581f802384be612c05196957}{Array\+List\+\_\+size}} (\mbox{\hyperlink{ArrayList_8c_a9136afaa09bea0a69505480c5fb29d4b}{Array\+List}} self\+\_\+)
+\begin{DoxyCompactList}\small\item\em Fonction qui renvoie la taille de la liste. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{ArrayList_8h_a7da131588b0830b4eb807687921a54e0}{Array\+List\+\_\+add\+\_\+first}} (\mbox{\hyperlink{ArrayList_8c_a9136afaa09bea0a69505480c5fb29d4b}{Array\+List}} self\+\_\+, void $\ast$object\+\_\+, int clone)
+\begin{DoxyCompactList}\small\item\em Fonction qui va rajouter un élément en tête de liste. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{ArrayList_8h_aa224d29891c7a1483b070d7c211d2ea5}{Array\+List\+\_\+add\+\_\+last}} (\mbox{\hyperlink{ArrayList_8c_a9136afaa09bea0a69505480c5fb29d4b}{Array\+List}} self, void $\ast$object\+\_\+, int clone)
+\begin{DoxyCompactList}\small\item\em Fonction qui va rajouter un élément en fin de liste. \end{DoxyCompactList}\item 
+void $\ast$ \mbox{\hyperlink{ArrayList_8h_a0e439f99a97276429b65dc4e69727e61}{Array\+List\+\_\+remove\+\_\+first}} (\mbox{\hyperlink{ArrayList_8c_a9136afaa09bea0a69505480c5fb29d4b}{Array\+List}} self, int clone)
+\begin{DoxyCompactList}\small\item\em Cette fonction va retirer le premier élément de la liste. \end{DoxyCompactList}\item 
+void $\ast$ \mbox{\hyperlink{ArrayList_8h_a8a3f8a02feb79677a2db6958a62dd473}{Array\+List\+\_\+remove\+\_\+last}} (\mbox{\hyperlink{ArrayList_8c_a9136afaa09bea0a69505480c5fb29d4b}{Array\+List}} self, int clone)
+\begin{DoxyCompactList}\small\item\em Cette fonction va retirer le dernier élément de la liste. \end{DoxyCompactList}\item 
+void $\ast$ \mbox{\hyperlink{ArrayList_8h_a087e76304e650e70b50a19e84dc91b36}{Array\+List\+\_\+get\+\_\+first}} (\mbox{\hyperlink{ArrayList_8c_a9136afaa09bea0a69505480c5fb29d4b}{Array\+List}} self, int clone)
+\begin{DoxyCompactList}\small\item\em Fonction qui renvoie la valeur du premier élément de la liste. \end{DoxyCompactList}\item 
+void $\ast$ \mbox{\hyperlink{ArrayList_8h_a4a5615ad13e481eaa032133bab72eb0d}{Array\+List\+\_\+get\+\_\+last}} (\mbox{\hyperlink{ArrayList_8c_a9136afaa09bea0a69505480c5fb29d4b}{Array\+List}} self, int clone)
+\begin{DoxyCompactList}\small\item\em Fonction qui renvoie la valeur du dernier élément de la liste. \end{DoxyCompactList}\item 
+void $\ast$ \mbox{\hyperlink{ArrayList_8h_a2d207484485934736935a0cb6e514039}{Array\+List\+\_\+get}} (\mbox{\hyperlink{ArrayList_8c_a9136afaa09bea0a69505480c5fb29d4b}{Array\+List}} self, int index, int clone)
+\begin{DoxyCompactList}\small\item\em Fonction qui renvoie la valeur d\textquotesingle{} élément de la liste qui se trouve à une position donnée. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{ArrayList_8h_aa3f9e6675bafd96b36f9316b116e0bdc}{Array\+List\+\_\+add}} (\mbox{\hyperlink{ArrayList_8c_a9136afaa09bea0a69505480c5fb29d4b}{Array\+List}} self, void $\ast$object, int index, int clone)
+\begin{DoxyCompactList}\small\item\em Fonction qui ajoute un élément à une position précise dans la liste. \end{DoxyCompactList}\item 
+void $\ast$ \mbox{\hyperlink{ArrayList_8h_a2c3616ae85e23d5182a077c8506a26ca}{Array\+List\+\_\+remove}} (\mbox{\hyperlink{ArrayList_8c_a9136afaa09bea0a69505480c5fb29d4b}{Array\+List}} self, int index, int clone)
+\begin{DoxyCompactList}\small\item\em Fonction qui va retirer un élément de la liste qui se trouve à une position donnée. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{ArrayList_8h_ad51f30052eebb1ce46a7f274efe049ed}{Array\+List\+\_\+contains}} (\mbox{\hyperlink{ArrayList_8c_a9136afaa09bea0a69505480c5fb29d4b}{Array\+List}} self, void $\ast$object)
+\begin{DoxyCompactList}\small\item\em Fonction qui vérifie si oui ou non un élément se trouve dans la liste. \end{DoxyCompactList}\item 
+size\+\_\+t \mbox{\hyperlink{ArrayList_8h_a335ca07efa2f91e6e86a5315a4aa5f01}{Array\+List\+\_\+index\+\_\+of}} (\mbox{\hyperlink{ArrayList_8c_a9136afaa09bea0a69505480c5fb29d4b}{Array\+List}} self, void $\ast$object)
+\begin{DoxyCompactList}\small\item\em Fonction qui renvoie l\textquotesingle{}indice de la première occurence d\textquotesingle{}un élément qui se trouve dans la liste. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const \mbox{\hyperlink{Class_8h_a6ec2a8ccaeb1e924a80036ec40760377}{Class}} \mbox{\hyperlink{ArrayList_8h_ae9a47e6c37963aba432f1dcc7b9088b2}{\+\_\+\+Array\+List\+\_\+}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Description détaillée}
+Fichier d\textquotesingle{}en-\/tête contenant les déclarations des variables publiques et de toutes les méthodes public de la classe {\ttfamily \mbox{\hyperlink{struct__ArrayList__}{\+\_\+\+Array\+List\+\_\+}}}. 
+
+Une {\ttfamily Array\+List} est un tableau dynamique qui dont la taille augmente au fur et à mesure que l\textquotesingle{}on ajoute des éléments à l\textquotesingle{}intérieur. Cette structure de donnée est idéale pour récupérer les élements qui y sont stockés en temps constant (bien que la suppression d\textquotesingle{}un élément et l\textquotesingle{}ajout d\textquotesingle{}élément ailleurs qu\textquotesingle{}à la fin ne le soit pas). ~\newline
+ Tous les objets peuvent êtres de type différent. ~\newline
+
+
+Construction {\ttfamily {\bfseries{ obj\+\_\+new( {\ttfamily \mbox{\hyperlink{struct__ArrayList__}{\+\_\+\+Array\+List\+\_\+}}}, int initial\+\_\+size ) }}} où \+: 
+\begin{DoxyItemize}
+\item {\ttfamily \mbox{\hyperlink{struct__ArrayList__}{\+\_\+\+Array\+List\+\_\+}}} désigne la classe des objets de type {\ttfamily Array\+List}. 
+\item {\ttfamily {\bfseries{ initial\+\_\+size }}} désigne la taille initiale de la liste. Idéale si on a l\textquotesingle{}intention de stocker une grande quantité de donnée sans trop redimensionner. 
+\end{DoxyItemize}
+
+\doxysubsection{Documentation des définitions de type}
+\mbox{\Hypertarget{ArrayList_8h_a9136afaa09bea0a69505480c5fb29d4b}\label{ArrayList_8h_a9136afaa09bea0a69505480c5fb29d4b}} 
+\index{ArrayList.h@{ArrayList.h}!ArrayList@{ArrayList}}
+\index{ArrayList@{ArrayList}!ArrayList.h@{ArrayList.h}}
+\doxysubsubsection{\texorpdfstring{ArrayList}{ArrayList}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{struct__ArrayList__}{\+\_\+\+Array\+List\+\_\+}}$\ast$ \mbox{\hyperlink{ArrayList_8c_a9136afaa09bea0a69505480c5fb29d4b}{Array\+List}}}
+
+
+
+Classe des objets de type {\ttfamily \mbox{\hyperlink{struct__ArrayList__}{\+\_\+\+Array\+List\+\_\+}}}. 
+
+Une {\ttfamily Array\+List} est un tableau dynamique qui dont la taille augmente au fur et à mesure que l\textquotesingle{}on ajoute des éléments à l\textquotesingle{}intérieur. Cette structure de donnée est idéale pour récupérer les élements qui y sont stockés en temps constant (bien que la suppression d\textquotesingle{}un élément et l\textquotesingle{}ajout d\textquotesingle{}élément ailleurs qu\textquotesingle{}à la fin ne le soit pas). ~\newline
+ ~\newline
+ Tous les objets peuvent êtres de type différent. ~\newline
+
+
+Construction {\ttfamily {\bfseries{ obj\+\_\+new( {\ttfamily \mbox{\hyperlink{struct__ArrayList__}{\+\_\+\+Array\+List\+\_\+}}}, int initial\+\_\+size ) }}} où \+: 
+\begin{DoxyItemize}
+\item {\ttfamily \mbox{\hyperlink{struct__ArrayList__}{\+\_\+\+Array\+List\+\_\+}}} désigne la classe des objets de type {\ttfamily Array\+List}. 
+\item {\ttfamily {\bfseries{ initial\+\_\+size }}} désigne la taille initiale de la liste. Idéale si on a l\textquotesingle{}intention de stocker une grande quantité de donnée sans trop redimensionner. 
+\end{DoxyItemize}
+
+\doxysubsection{Documentation des fonctions}
+\mbox{\Hypertarget{ArrayList_8h_aa3f9e6675bafd96b36f9316b116e0bdc}\label{ArrayList_8h_aa3f9e6675bafd96b36f9316b116e0bdc}} 
+\index{ArrayList.h@{ArrayList.h}!ArrayList\_add@{ArrayList\_add}}
+\index{ArrayList\_add@{ArrayList\_add}!ArrayList.h@{ArrayList.h}}
+\doxysubsubsection{\texorpdfstring{ArrayList\_add()}{ArrayList\_add()}}
+{\footnotesize\ttfamily int Array\+List\+\_\+add (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ArrayList_8c_a9136afaa09bea0a69505480c5fb29d4b}{Array\+List}}}]{self,  }\item[{void $\ast$}]{object,  }\item[{int}]{index,  }\item[{int}]{clone }\end{DoxyParamCaption})}
+
+
+
+Fonction qui ajoute un élément à une position précise dans la liste. 
+
+Mettre le paramètre {\ttfamily clone} à 1 pour renvoyer une copie au lieu de la la vraie valeur.
+
+{\bfseries{ATTENTION}} \+: Au moment de la destruction de la liste les valeurs sont également désallouées. Faire une copie (avec {\ttfamily \mbox{\hyperlink{new_8c_abd38a6858dfc530b8466440559c2531b}{obj\+\_\+clone()}}}) (ou mettre le paramètre {\ttfamily clone} à 1 pour que la fonction le fasse) de l\textquotesingle{}objet avant de l\textquotesingle{}ajouter dans la liste, si on tient à garder l\textquotesingle{}objet intact après la destruction de la liste. 
+
+Si on souhaite insérer 2 fois un élément (deux fois la même référence) dans la liste il est important de mettre {\ttfamily clone} à 1 pour que la fonction puisse clonner l\textquotesingle{}objet car au moment de la destruction il sera supprimé deux fois ce qui va générer une erreur.
+
+La fonction peut être appelée pour tout objet de type {\ttfamily \mbox{\hyperlink{struct__ArrayList__}{\+\_\+\+Array\+List\+\_\+}}} ou sous-\/type de {\ttfamily \mbox{\hyperlink{struct__ArrayList__}{\+\_\+\+Array\+List\+\_\+}}}.
+
+Chaque ajout ne se fait pas en temps constant O(size-\/index).
+
+
+\begin{DoxyParams}{Paramètres}
+{\em self} & La liste dont on cherche le dernier élément. \\
+\hline
+{\em object} & L\textquotesingle{}objet à insérer dans la liste (copier l\textquotesingle{}objet si on souhaite le garder après la destruction de la liste). \\
+\hline
+{\em index} & Position dans laquelle on souhaite insérer l\textquotesingle{}objet dans la liste. \\
+\hline
+{\em clone} & Boolean dont 1 permet d\textquotesingle{}indiquer à la fonction si on souhaite qu\textquotesingle{}elle ajoute une copie de l\textquotesingle{}objet (copié avec {\ttfamily \mbox{\hyperlink{new_8c_abd38a6858dfc530b8466440559c2531b}{obj\+\_\+clone()}}}) plutôt que l\textquotesingle{}objet lui-\/même. Cela va permettre de garentir que l\textquotesingle{}objet ne sera pas détruit avec la liste. Mettre à 0 sinon.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+0 Si l\textquotesingle{}ajout a échoué 1 sinon. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{ArrayList_8h_a7da131588b0830b4eb807687921a54e0}\label{ArrayList_8h_a7da131588b0830b4eb807687921a54e0}} 
+\index{ArrayList.h@{ArrayList.h}!ArrayList\_add\_first@{ArrayList\_add\_first}}
+\index{ArrayList\_add\_first@{ArrayList\_add\_first}!ArrayList.h@{ArrayList.h}}
+\doxysubsubsection{\texorpdfstring{ArrayList\_add\_first()}{ArrayList\_add\_first()}}
+{\footnotesize\ttfamily int Array\+List\+\_\+add\+\_\+first (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ArrayList_8c_a9136afaa09bea0a69505480c5fb29d4b}{Array\+List}}}]{self\+\_\+,  }\item[{void $\ast$}]{object\+\_\+,  }\item[{int}]{clone }\end{DoxyParamCaption})}
+
+
+
+Fonction qui va rajouter un élément en tête de liste. 
+
+{\bfseries{ATTENTION}} \+: Au moment de la destruction de la liste les valeurs sont également désallouées. Faire une copie (avec {\ttfamily \mbox{\hyperlink{new_8c_abd38a6858dfc530b8466440559c2531b}{obj\+\_\+clone()}}}) (ou mettre le paramètre {\ttfamily clone} à 1 pour que la fonction le face) de l\textquotesingle{}objet avant de l\textquotesingle{}ajouter dans la liste, si on tient à garder l\textquotesingle{}objet intact après la destruction de la liste. 
+
+Si on souhaite insérer 2 fois un élément (avec la même référence) dans la liste il est important de mettre {\ttfamily clone} à 1 pour que la fonction puisse clonner l\textquotesingle{}objet car au moment de la destruction il sera supprimé deux fois ce qui va générer une erreur.
+
+La fonction peut être appelée pour tout objet de type {\ttfamily \mbox{\hyperlink{struct__ArrayList__}{\+\_\+\+Array\+List\+\_\+}}} ou sous-\/type de {\ttfamily \mbox{\hyperlink{struct__ArrayList__}{\+\_\+\+Array\+List\+\_\+}}}.
+
+L\textquotesingle{}ajout d\textquotesingle{}un élément en tête de liste est θ(n)
+
+
+\begin{DoxyParams}{Paramètres}
+{\em self\+\_\+} & La liste dans laquelle on souhaite ajouter l\textquotesingle{}objet. \\
+\hline
+{\em object\+\_\+} & L\textquotesingle{}objet à insérer dans la liste (copier l\textquotesingle{}objet si on souhaite le garder après la destruction de la liste).\\
+\hline
+{\em clone} & Boolean dont 1 permet d\textquotesingle{}indiquer à la fonction si on souhaite qu\textquotesingle{}elle ajoute une copie de l\textquotesingle{}objet (copié avec {\ttfamily \mbox{\hyperlink{new_8c_abd38a6858dfc530b8466440559c2531b}{obj\+\_\+clone()}}}) plutôt que l\textquotesingle{}objet lui-\/même. Cela va permettre de garentir que l\textquotesingle{}objet ne sera pas détruit avec la liste. Mettre à 0 sinon.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+0 si l\textquotesingle{}ajout à échoué, 1 sinon. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{ArrayList_8h_aa224d29891c7a1483b070d7c211d2ea5}\label{ArrayList_8h_aa224d29891c7a1483b070d7c211d2ea5}} 
+\index{ArrayList.h@{ArrayList.h}!ArrayList\_add\_last@{ArrayList\_add\_last}}
+\index{ArrayList\_add\_last@{ArrayList\_add\_last}!ArrayList.h@{ArrayList.h}}
+\doxysubsubsection{\texorpdfstring{ArrayList\_add\_last()}{ArrayList\_add\_last()}}
+{\footnotesize\ttfamily int Array\+List\+\_\+add\+\_\+last (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ArrayList_8c_a9136afaa09bea0a69505480c5fb29d4b}{Array\+List}}}]{self,  }\item[{void $\ast$}]{object\+\_\+,  }\item[{int}]{clone }\end{DoxyParamCaption})}
+
+
+
+Fonction qui va rajouter un élément en fin de liste. 
+
+{\bfseries{ATTENTION}} \+: Au moment de la destruction de la liste les valeurs sont également désallouées. Faire une copie (avec {\ttfamily \mbox{\hyperlink{new_8c_abd38a6858dfc530b8466440559c2531b}{obj\+\_\+clone()}}}) (ou mettre le paramètre {\ttfamily clone} à 1 pour que la fonction le fasse) de l\textquotesingle{}objet avant de l\textquotesingle{}ajouter dans la liste, si on tient à garder l\textquotesingle{}objet intact après la destruction de la liste. 
+
+Si on souhaite insérer 2 fois un élément (avec la même référence) dans la liste il est important de mettre {\ttfamily clone} à 1 pour que la fonction puisse clonner l\textquotesingle{}objet car au moment de la destruction il sera supprimé deux fois ce qui va générer une erreur.
+
+La fonction peut être appelée pour tout objet de type {\ttfamily \mbox{\hyperlink{struct__ArrayList__}{\+\_\+\+Array\+List\+\_\+}}} ou sous-\/type de {\ttfamily \mbox{\hyperlink{struct__ArrayList__}{\+\_\+\+Array\+List\+\_\+}}}.
+
+Chaque ajout en fin de liste se fait en temps constant O(1).
+
+
+\begin{DoxyParams}{Paramètres}
+{\em self\+\_\+} & La liste dans laquelle on souhaite ajouter l\textquotesingle{}objet. \\
+\hline
+{\em object\+\_\+} & L\textquotesingle{}objet à insérer dans la liste (copier l\textquotesingle{}objet si on souhaite le garder après la destruction de la liste).\\
+\hline
+{\em clone} & Boolean dont 1 permet d\textquotesingle{}indiquer à la fonction si on souhaite qu\textquotesingle{}elle ajoute une copie de l\textquotesingle{}objet (copié avec {\ttfamily \mbox{\hyperlink{new_8c_abd38a6858dfc530b8466440559c2531b}{obj\+\_\+clone()}}}) plutôt que l\textquotesingle{}objet lui-\/même. Cela va permettre de garentir que l\textquotesingle{}objet ne sera pas détruit avec la liste. Mettre à 0 sinon.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+0 si l\textquotesingle{}ajout à échoué, 1 sinon. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{ArrayList_8h_ad51f30052eebb1ce46a7f274efe049ed}\label{ArrayList_8h_ad51f30052eebb1ce46a7f274efe049ed}} 
+\index{ArrayList.h@{ArrayList.h}!ArrayList\_contains@{ArrayList\_contains}}
+\index{ArrayList\_contains@{ArrayList\_contains}!ArrayList.h@{ArrayList.h}}
+\doxysubsubsection{\texorpdfstring{ArrayList\_contains()}{ArrayList\_contains()}}
+{\footnotesize\ttfamily int Array\+List\+\_\+contains (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ArrayList_8c_a9136afaa09bea0a69505480c5fb29d4b}{Array\+List}}}]{self,  }\item[{void $\ast$}]{object }\end{DoxyParamCaption})}
+
+
+
+Fonction qui vérifie si oui ou non un élément se trouve dans la liste. 
+
+La fonction va comparer les éléments avec la méthode {\ttfamily \mbox{\hyperlink{new_8c_a80d4746b01a9f4a30386f83993065802}{obj\+\_\+equals()}}}, qui va appeler dynamiquement sa redéfinition sur les objets de la liste (si redefinie).
+
+
+\begin{DoxyParams}{Paramètres}
+{\em self} & La liste à parcourir. \\
+\hline
+{\em object} & L\textquotesingle{}élément à rechercher. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+1 Si l\textquotesingle{}élément se trouve dans la liste et 0 sinon. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{Voir également}
+\mbox{\hyperlink{new_8c_a80d4746b01a9f4a30386f83993065802}{obj\+\_\+equals()}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{ArrayList_8h_a2d207484485934736935a0cb6e514039}\label{ArrayList_8h_a2d207484485934736935a0cb6e514039}} 
+\index{ArrayList.h@{ArrayList.h}!ArrayList\_get@{ArrayList\_get}}
+\index{ArrayList\_get@{ArrayList\_get}!ArrayList.h@{ArrayList.h}}
+\doxysubsubsection{\texorpdfstring{ArrayList\_get()}{ArrayList\_get()}}
+{\footnotesize\ttfamily void$\ast$ Array\+List\+\_\+get (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ArrayList_8c_a9136afaa09bea0a69505480c5fb29d4b}{Array\+List}}}]{self,  }\item[{int}]{index,  }\item[{int}]{clone }\end{DoxyParamCaption})}
+
+
+
+Fonction qui renvoie la valeur d\textquotesingle{} élément de la liste qui se trouve à une position donnée. 
+
+Mettre le paramètre {\ttfamily clone} à 1 pour renvoyer une copie au lieu de la la vraie valeur.
+
+Une recherche se fait en temps constant, O(1). 
+
+La fonction peut être appelée pour tout objet de type {\ttfamily \mbox{\hyperlink{struct__ArrayList__}{\+\_\+\+Array\+List\+\_\+}}} ou sous-\/type de {\ttfamily \mbox{\hyperlink{struct__ArrayList__}{\+\_\+\+Array\+List\+\_\+}}}.
+
+
+\begin{DoxyParams}{Paramètres}
+{\em self} & La liste dont on cherche l\textquotesingle{} élément. \\
+\hline
+{\em index} & La position de l\textquotesingle{}élément. \\
+\hline
+{\em clone} & Booléen dont 1 permet d\textquotesingle{}indiquer à la fonction qu\textquotesingle{}on souhaite qu\textquotesingle{}elle renvoie une copie de l\textquotesingle{}objet au lieu de la vraie référence. Au cas où on souhaite la récupérer avant la destruction de la liste.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+La valeur de l\textquotesingle{}élément ou NULL si la liste est vide. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{ArrayList_8h_a087e76304e650e70b50a19e84dc91b36}\label{ArrayList_8h_a087e76304e650e70b50a19e84dc91b36}} 
+\index{ArrayList.h@{ArrayList.h}!ArrayList\_get\_first@{ArrayList\_get\_first}}
+\index{ArrayList\_get\_first@{ArrayList\_get\_first}!ArrayList.h@{ArrayList.h}}
+\doxysubsubsection{\texorpdfstring{ArrayList\_get\_first()}{ArrayList\_get\_first()}}
+{\footnotesize\ttfamily void$\ast$ Array\+List\+\_\+get\+\_\+first (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ArrayList_8c_a9136afaa09bea0a69505480c5fb29d4b}{Array\+List}}}]{self,  }\item[{int}]{clone }\end{DoxyParamCaption})}
+
+
+
+Fonction qui renvoie la valeur du premier élément de la liste. 
+
+Mettre le paramètre {\ttfamily clone} à 1 pour renvoyer une copie au lieu de la la vraie valeur.
+
+La fonction peut être appelée pour tout objet de type {\ttfamily \mbox{\hyperlink{struct__ArrayList__}{\+\_\+\+Array\+List\+\_\+}}} ou sous-\/type de {\ttfamily \mbox{\hyperlink{struct__ArrayList__}{\+\_\+\+Array\+List\+\_\+}}}.
+
+
+\begin{DoxyParams}{Paramètres}
+{\em self} & La liste dont on cherche le premier élément. \\
+\hline
+{\em clone} & Booléen dont 1 permet d\textquotesingle{}indiquer à la fonction qu\textquotesingle{}on souhaite qu\textquotesingle{}elle renvoie une copie de l\textquotesingle{}objet au lieu de la vraie référence. Au cas où on souhaite la récupérer avant la destruction de la liste.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+La valeur du premier élément ou NULL si la liste est vide. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{ArrayList_8h_a4a5615ad13e481eaa032133bab72eb0d}\label{ArrayList_8h_a4a5615ad13e481eaa032133bab72eb0d}} 
+\index{ArrayList.h@{ArrayList.h}!ArrayList\_get\_last@{ArrayList\_get\_last}}
+\index{ArrayList\_get\_last@{ArrayList\_get\_last}!ArrayList.h@{ArrayList.h}}
+\doxysubsubsection{\texorpdfstring{ArrayList\_get\_last()}{ArrayList\_get\_last()}}
+{\footnotesize\ttfamily void$\ast$ Array\+List\+\_\+get\+\_\+last (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ArrayList_8c_a9136afaa09bea0a69505480c5fb29d4b}{Array\+List}}}]{self,  }\item[{int}]{clone }\end{DoxyParamCaption})}
+
+
+
+Fonction qui renvoie la valeur du dernier élément de la liste. 
+
+Mettre le paramètre {\ttfamily clone} à 1 pour renvoyer une copie au lieu de la la vraie valeur.
+
+La fonction peut être appelée pour tout objet de type {\ttfamily \mbox{\hyperlink{struct__ArrayList__}{\+\_\+\+Array\+List\+\_\+}}} ou sous-\/type de {\ttfamily \mbox{\hyperlink{struct__ArrayList__}{\+\_\+\+Array\+List\+\_\+}}}.
+
+
+\begin{DoxyParams}{Paramètres}
+{\em self} & La liste dont on cherche le dernier élément. \\
+\hline
+{\em clone} & Booléen dont 1 permet d\textquotesingle{}indiquer à la fonction qu\textquotesingle{}on souhaite qu\textquotesingle{}elle renvoie une copie de l\textquotesingle{}objet au lieu de la vraie référence. Au cas où on souhaite la récupérer avant la destruction de la liste.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+La valeur du dernier élément ou NULL si la liste est vide. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{ArrayList_8h_a335ca07efa2f91e6e86a5315a4aa5f01}\label{ArrayList_8h_a335ca07efa2f91e6e86a5315a4aa5f01}} 
+\index{ArrayList.h@{ArrayList.h}!ArrayList\_index\_of@{ArrayList\_index\_of}}
+\index{ArrayList\_index\_of@{ArrayList\_index\_of}!ArrayList.h@{ArrayList.h}}
+\doxysubsubsection{\texorpdfstring{ArrayList\_index\_of()}{ArrayList\_index\_of()}}
+{\footnotesize\ttfamily size\+\_\+t Array\+List\+\_\+index\+\_\+of (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ArrayList_8c_a9136afaa09bea0a69505480c5fb29d4b}{Array\+List}}}]{self,  }\item[{void $\ast$}]{object }\end{DoxyParamCaption})}
+
+
+
+Fonction qui renvoie l\textquotesingle{}indice de la première occurence d\textquotesingle{}un élément qui se trouve dans la liste. 
+
+La fonction va comparer les éléments avec la méthode {\ttfamily \mbox{\hyperlink{new_8c_a80d4746b01a9f4a30386f83993065802}{obj\+\_\+equals()}}}, qui va appeler dynamiquement sa redéfinition sur les objets de la liste (si redefinie).
+
+
+\begin{DoxyParams}{Paramètres}
+{\em self} & La liste à parcourir. \\
+\hline
+{\em object} & L\textquotesingle{}élément à rechercher. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+L\textquotesingle{}indice dans la liste de l\textquotesingle{}élément. -\/1 Si l\textquotesingle{}élément n\textquotesingle{}est pas dans la liste. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{Voir également}
+\mbox{\hyperlink{new_8c_a80d4746b01a9f4a30386f83993065802}{obj\+\_\+equals()}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{ArrayList_8h_a2c3616ae85e23d5182a077c8506a26ca}\label{ArrayList_8h_a2c3616ae85e23d5182a077c8506a26ca}} 
+\index{ArrayList.h@{ArrayList.h}!ArrayList\_remove@{ArrayList\_remove}}
+\index{ArrayList\_remove@{ArrayList\_remove}!ArrayList.h@{ArrayList.h}}
+\doxysubsubsection{\texorpdfstring{ArrayList\_remove()}{ArrayList\_remove()}}
+{\footnotesize\ttfamily void$\ast$ Array\+List\+\_\+remove (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ArrayList_8c_a9136afaa09bea0a69505480c5fb29d4b}{Array\+List}}}]{self,  }\item[{int}]{index,  }\item[{int}]{clone }\end{DoxyParamCaption})}
+
+
+
+Fonction qui va retirer un élément de la liste qui se trouve à une position donnée. 
+
+Si la liste est vide alors la fonction va renvoyer NULL.
+
+$\ast$$\ast$ Important $\ast$$\ast$ \+: L\textquotesingle{}objet retiré n\textquotesingle{}est pas détruit mais est renvoyé par la fonction, mettre le paramètre {\ttfamily destroy} à 1 pour détruire l\textquotesingle{}objet après sa suppression dans la liste, dans ce cas la fonction renvoie NULL.
+
+La fonction peut être appelée pour tout objet de type {\ttfamily \mbox{\hyperlink{struct__ArrayList__}{\+\_\+\+Array\+List\+\_\+}}} ou sous-\/type de {\ttfamily \mbox{\hyperlink{struct__ArrayList__}{\+\_\+\+Array\+List\+\_\+}}}.
+
+Chaque suppression ne se fait pas en temps constant O(size-\/index).
+
+
+\begin{DoxyParams}{Paramètres}
+{\em self} & La liste dont on souhaite retirer le dernier élément. \\
+\hline
+{\em destroy} & Booléen dont 1 permet d\textquotesingle{}indiquer à la fonction qu\textquotesingle{}on souhaite qu\textquotesingle{}elle détruise l\textquotesingle{}objet après suppression. La fonction renvoie NULL alors.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+La valeur retirée (ou NULL si on ne souhaite pas la récupérer) Si le dernier élément est bien retiré de la liste, NULL sinon. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{ArrayList_8h_a0e439f99a97276429b65dc4e69727e61}\label{ArrayList_8h_a0e439f99a97276429b65dc4e69727e61}} 
+\index{ArrayList.h@{ArrayList.h}!ArrayList\_remove\_first@{ArrayList\_remove\_first}}
+\index{ArrayList\_remove\_first@{ArrayList\_remove\_first}!ArrayList.h@{ArrayList.h}}
+\doxysubsubsection{\texorpdfstring{ArrayList\_remove\_first()}{ArrayList\_remove\_first()}}
+{\footnotesize\ttfamily void$\ast$ Array\+List\+\_\+remove\+\_\+first (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ArrayList_8c_a9136afaa09bea0a69505480c5fb29d4b}{Array\+List}}}]{self,  }\item[{int}]{clone }\end{DoxyParamCaption})}
+
+
+
+Cette fonction va retirer le premier élément de la liste. 
+
+Si la liste est vide alors la fonction va renvoyer NULL.
+
+$\ast$$\ast$ Important $\ast$$\ast$ \+: L\textquotesingle{}objet retiré n\textquotesingle{}est pas détruit mais est renvoyé par la fonction, mettre le paramètre {\ttfamily destroy} à 1 pour détruire l\textquotesingle{}objet après sa suppression dans la liste, dans ce cas la fonction renvoie NULL.
+
+La fonction peut être appelée pour tout objet de type {\ttfamily \mbox{\hyperlink{struct__ArrayList__}{\+\_\+\+Array\+List\+\_\+}}} ou sous-\/type de {\ttfamily \mbox{\hyperlink{struct__ArrayList__}{\+\_\+\+Array\+List\+\_\+}}}.
+
+Chaque suppression en tête de liste se fait en temps θ(n).
+
+
+\begin{DoxyParams}{Paramètres}
+{\em self} & La liste dont on souhaite retirer le premier élément. \\
+\hline
+{\em destroy} & Booléen dont 1 permet d\textquotesingle{}indiquer à la fonction qu\textquotesingle{}on souhaite qu\textquotesingle{}elle détruise l\textquotesingle{}objet après suppression. La fonction renvoie NULL alors.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+La valeur retirée (ou NULL si on ne souhaite pas la récupérer) Si le premier élément est bien retiré de la liste, NULL sinon. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{ArrayList_8h_a8a3f8a02feb79677a2db6958a62dd473}\label{ArrayList_8h_a8a3f8a02feb79677a2db6958a62dd473}} 
+\index{ArrayList.h@{ArrayList.h}!ArrayList\_remove\_last@{ArrayList\_remove\_last}}
+\index{ArrayList\_remove\_last@{ArrayList\_remove\_last}!ArrayList.h@{ArrayList.h}}
+\doxysubsubsection{\texorpdfstring{ArrayList\_remove\_last()}{ArrayList\_remove\_last()}}
+{\footnotesize\ttfamily void$\ast$ Array\+List\+\_\+remove\+\_\+last (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ArrayList_8c_a9136afaa09bea0a69505480c5fb29d4b}{Array\+List}}}]{self,  }\item[{int}]{clone }\end{DoxyParamCaption})}
+
+
+
+Cette fonction va retirer le dernier élément de la liste. 
+
+Si la liste est vide alors la fonction va renvoyer NULL.
+
+$\ast$$\ast$ Important $\ast$$\ast$ \+: L\textquotesingle{}objet retiré n\textquotesingle{}est pas détruit mais est renvoyé par la fonction, mettre le paramètre {\ttfamily destroy} à 1 pour détruire l\textquotesingle{}objet après sa suppression dans la liste, dans ce cas la fonction renvoie NULL.
+
+La fonction peut être appelée pour tout objet de type {\ttfamily \mbox{\hyperlink{struct__ArrayList__}{\+\_\+\+Array\+List\+\_\+}}} ou sous-\/type de {\ttfamily \mbox{\hyperlink{struct__ArrayList__}{\+\_\+\+Array\+List\+\_\+}}}.
+
+Chaque suppression en fin de liste se fait en temps constant O(1).
+
+
+\begin{DoxyParams}{Paramètres}
+{\em self} & La liste dont on souhaite retirer le dernier élément. \\
+\hline
+{\em destroy} & Booléen dont 1 permet d\textquotesingle{}indiquer à la fonction qu\textquotesingle{}on souhaite qu\textquotesingle{}elle détruise l\textquotesingle{}objet après suppression. La fonction renvoie NULL alors.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+La valeur retirée (ou NULL si on ne souhaite pas la récupérer) si le dernier élément est bien retiré de la liste, NULL sinon. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{ArrayList_8h_a393639df581f802384be612c05196957}\label{ArrayList_8h_a393639df581f802384be612c05196957}} 
+\index{ArrayList.h@{ArrayList.h}!ArrayList\_size@{ArrayList\_size}}
+\index{ArrayList\_size@{ArrayList\_size}!ArrayList.h@{ArrayList.h}}
+\doxysubsubsection{\texorpdfstring{ArrayList\_size()}{ArrayList\_size()}}
+{\footnotesize\ttfamily size\+\_\+t Array\+List\+\_\+size (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ArrayList_8c_a9136afaa09bea0a69505480c5fb29d4b}{Array\+List}}}]{self\+\_\+ }\end{DoxyParamCaption})}
+
+
+
+Fonction qui renvoie la taille de la liste. 
+
+Cette fonction renvoie la taille de la liste, elle peut être appelé pour tout objet de type {\ttfamily \mbox{\hyperlink{struct__ArrayList__}{\+\_\+\+Array\+List\+\_\+}}} ou sous-\/type de {\ttfamily \mbox{\hyperlink{struct__ArrayList__}{\+\_\+\+Array\+List\+\_\+}}}.
+
+La récupération de la taille se fait en temps constant O(1).
+
+
+\begin{DoxyParams}{Paramètres}
+{\em self\+\_\+} & L\textquotesingle{}objet de type {\ttfamily Array\+List} (ou sous-\/type). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+La taille de la liste. 
+\end{DoxyReturn}
+
+
+\doxysubsection{Documentation des variables}
+\mbox{\Hypertarget{ArrayList_8h_ae9a47e6c37963aba432f1dcc7b9088b2}\label{ArrayList_8h_ae9a47e6c37963aba432f1dcc7b9088b2}} 
+\index{ArrayList.h@{ArrayList.h}!\_ArrayList\_@{\_ArrayList\_}}
+\index{\_ArrayList\_@{\_ArrayList\_}!ArrayList.h@{ArrayList.h}}
+\doxysubsubsection{\texorpdfstring{\_ArrayList\_}{\_ArrayList\_}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{Class_8h_a6ec2a8ccaeb1e924a80036ec40760377}{Class}} \mbox{\hyperlink{struct__ArrayList__}{\+\_\+\+Array\+List\+\_\+}}\hspace{0.3cm}{\ttfamily [extern]}}
+
+Classe de tous les objets de type {\ttfamily \mbox{\hyperlink{struct__ArrayList__}{\+\_\+\+Array\+List\+\_\+}}}.
+
+Construction {\ttfamily {\bfseries{ obj\+\_\+new( {\ttfamily \mbox{\hyperlink{struct__ArrayList__}{\+\_\+\+Array\+List\+\_\+}}}, int initial\+\_\+size ) }}} où \+: 
+\begin{DoxyItemize}
+\item {\ttfamily \mbox{\hyperlink{struct__ArrayList__}{\+\_\+\+Array\+List\+\_\+}}} désigne la classe des objets de type {\ttfamily Array\+List}. 
+\item {\ttfamily {\bfseries{ initial\+\_\+size }}} désigne la taille initiale de la liste. Idéale si on a l\textquotesingle{}intention de stocker une grande quantité de donnée sans trop redimensionner. 
+\end{DoxyItemize}
+
+Elle est définie dans {\ttfamily \mbox{\hyperlink{ArrayList_8c}{Array\+List.\+c}}} 
