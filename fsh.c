@@ -13,6 +13,7 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 
+#include "base/ArrayList.h"
 #include "base/new.h"
 #include "command/ExternalCommand.h"
 #include "command/For.h"
@@ -93,14 +94,14 @@ int run_commande(){
 int main(){ 
     initialize_cmd();
     initialize_for_lists();
-    
+
     char* prompt = " -l";
     ExternalCommand e = obj_new(_ExternalCommand_, "ls", &prompt);
-        
+
     Command_execute((Command)e);
 
     obj_destroy(e);
-    //Shell_start(); 
+    //Shell_start();
     destroy_for_lists();
     return 0; 
 }
