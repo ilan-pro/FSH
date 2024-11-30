@@ -266,7 +266,8 @@ static int ArrayList_equals( const void* self_, const void* object_ ){
     assert(self_);
     assert(object_);
     assert(obj_instance_of(self_, _ArrayList_));
-    assert(obj_instance_of(object_, _ArrayList_));
+    if (!obj_instance_of(object_, _ArrayList_))
+        return 0;
 
     // Conversion en objets de type ArrayList
     ArrayList self = (ArrayList) self_;
@@ -331,10 +332,9 @@ static void ArrayList_print( const void* self_ ){
     ArrayList self = (ArrayList) self_;
     
     write(1, "[ ", 2); 
-    for (size_t i = 0; i<self->size; i++){
+    for (size_t i = 0; i<ArrayList_size(self); i++){
 
-        if (i<self->last_index) obj_print(self->dyn_array[i]);
-        else write(1, " _, ", 4);
+        obj_print(self->dyn_array[i]);
         if (i<ArrayList_size(self)-1)
             write(1, ", ", 2);
     }
@@ -367,6 +367,72 @@ size_t ArrayList_size( ArrayList self ){
     
 }
 
+
+/**
+ * @internal
+ * @brief Fonction qui ajoute un élément à une position précise dans la liste.
+ * 
+ * Mettre le paramètre `clone` à 1 pour renvoyer une copie au lieu de la 
+ * la vraie valeur.
+ * 
+ * **ATTENTION** : Au moment de la destruction de la liste les valeurs 
+ * sont également désallouées. Faire une copie (avec `obj_clone()`) (ou 
+ * mettre le paramètre `clone` à 1 pour que la fonction le fasse)
+ * de l'objet avant de l'ajouter dans la liste, si on tient à garder l'objet 
+ * intact après la destruction de la liste.
+ * <p>Si on souhaite insérer 2 fois un élément (deux fois la même référence) dans la 
+ * liste il est important de mettre `clone` à 1 pour que la fonction puisse 
+ * clonner l'objet car au moment de la destruction il sera supprimé deux fois 
+ * ce qui va générer une erreur.
+ * 
+ * <p>
+ * La fonction peut être appelée pour tout objet de type `_ArrayList_` 
+ * ou sous-type de `_ArrayList_`.
+ *
+ * <p>Chaque ajout ne se fait pas en temps constant O(size-index).
+ * 
+ * @param self La liste dont on cherche le dernier élément.
+ * @param object L'objet à insérer dans la liste (copier l'objet si on 
+ * souhaite le garder après la destruction de la liste).
+ * @param index Position dans laquelle on souhaite insérer l'objet dans la liste.
+ * @param clone Boolean dont 1 permet d'indiquer à la fonction si on souhaite qu'elle 
+ * ajoute une copie de l'objet (copié avec `obj_clone()`) plutôt que l'objet lui-même. 
+ * Cela va permettre de garentir que l'objet ne sera pas détruit avec la liste. Mettre 
+ * à 0 sinon.
+ * 
+ * @return 0 Si l'ajout a échoué 1 sinon.
+ */
+int ArrayList_add( ArrayList self, void *object, size_t index, int clone ){
+
+    
+    // Vérifications.
+    assert(self);
+    assert(obj_instance_of(self, _ArrayList_));
+    
+    // Vérification de l'indice.
+    if(index<0 || index > self->last_index){
+            
+        char err[] = "\e[1;31m[Erreur] L'indice de l'élément est en dehors de la liste !\e[1;0m\n";
+        write(2, err, strlen(err));
+        abort();
+        return 0;
+
+    }
+    
+    // Vérification de la taille (va rallonger la taille si besoin).
+    check_size(self);
+    
+    // Décalage de tous les éléments de 1 à partir de index.
+    for (size_t i = self->last_index; i>index; i--)
+        self->dyn_array[i] = self->dyn_array[i-1];
+        
+    // Ajout de l'objet (ou son clone)
+    self->dyn_array[index] = (clone) ? obj_clone(object) : object;
+    self->last_index++; // Mise à jour de l'indice du dernier élément.
+
+    return 1;
+
+}
 
 
 
@@ -445,74 +511,6 @@ int ArrayList_add_last( ArrayList self, void* object, int clone ){
 
 }
 
-
-/**
- * @internal
- * @brief Fonction qui ajoute un élément à une position précise dans la liste.
- * 
- * Mettre le paramètre `clone` à 1 pour renvoyer une copie au lieu de la 
- * la vraie valeur.
- * 
- * **ATTENTION** : Au moment de la destruction de la liste les valeurs 
- * sont également désallouées. Faire une copie (avec `obj_clone()`) (ou 
- * mettre le paramètre `clone` à 1 pour que la fonction le fasse)
- * de l'objet avant de l'ajouter dans la liste, si on tient à garder l'objet 
- * intact après la destruction de la liste.
- * <p>Si on souhaite insérer 2 fois un élément (deux fois la même référence) dans la 
- * liste il est important de mettre `clone` à 1 pour que la fonction puisse 
- * clonner l'objet car au moment de la destruction il sera supprimé deux fois 
- * ce qui va générer une erreur.
- * 
- * <p>
- * La fonction peut être appelée pour tout objet de type `_ArrayList_` 
- * ou sous-type de `_ArrayList_`.
- *
- * <p>Chaque ajout ne se fait pas en temps constant O(size-index).
- * 
- * @param self La liste dont on cherche le dernier élément.
- * @param object L'objet à insérer dans la liste (copier l'objet si on 
- * souhaite le garder après la destruction de la liste).
- * @param index Position dans laquelle on souhaite insérer l'objet dans la liste.
- * @param clone Boolean dont 1 permet d'indiquer à la fonction si on souhaite qu'elle 
- * ajoute une copie de l'objet (copié avec `obj_clone()`) plutôt que l'objet lui-même. 
- * Cela va permettre de garentir que l'objet ne sera pas détruit avec la liste. Mettre 
- * à 0 sinon.
- * 
- * @return 0 Si l'ajout a échoué 1 sinon.
- */
-int ArrayList_add( ArrayList self, void *object, size_t index, int clone ){
-
-    
-    // Vérifications.
-    assert(self);
-    assert(obj_instance_of(self, _ArrayList_));
-    
-    // Vérification de l'indice.
-    if(index<0 || index > self->last_index){
-            
-        char err[] = "\e[1;31m[Erreur] L'indice de l'élément est en dehors de la liste !\e[1;0m\n";
-        write(2, err, strlen(err));
-        abort();
-        return 0;
-
-    }
-    
-    // Vérification de la taille (va rallonger la taille si besoin).
-    check_size(self);
-    
-    // Décalage de tous les éléments de 1 à partir de index.
-    for (size_t i = self->last_index; i>index; i--)
-        self->dyn_array[i] = self->dyn_array[i-1];
-        
-    // Ajout de l'objet (ou son clone)
-    self->dyn_array[index] = (clone) ? obj_clone(object) : object;
-    self->last_index++; // Mise à jour de l'indice du dernier élément.
-
-    return 1;
-
-}
-
-
 /**
  * @internal
  * @brief Fonction qui va retirer un élément de la liste qui se trouve à une position donnée.
@@ -576,6 +574,7 @@ void* ArrayList_remove( ArrayList self, size_t index, int destroy ){
 
 
 /**
+ * @internal
  * @brief Cette fonction va retirer le premier élément de la liste.
  *
  * Si la liste est vide alors la fonction va renvoyer NULL.
@@ -598,10 +597,13 @@ void* ArrayList_remove( ArrayList self, size_t index, int destroy ){
  * élément est bien retiré de la liste, NULL sinon.
  */
 void* ArrayList_remove_first(ArrayList self, int destroy){
+    if (!ArrayList_size(self))
+        return NULL;
     return ArrayList_remove(self, 0, destroy);
 }
 
 /**
+ * @internal
  * @brief Cette fonction va retirer le dernier élément de la liste.
  *
  * Si la liste est vide alors la fonction va renvoyer NULL.
@@ -624,6 +626,179 @@ void* ArrayList_remove_first(ArrayList self, int destroy){
  * élément est bien retiré de la liste, NULL sinon.
  */
 void* ArrayList_remove_last(ArrayList self, int destroy){
+    if (!ArrayList_size(self))
+        return NULL;
     return ArrayList_remove(self, self->last_index-1, destroy);
+}
+
+/**
+ * @brief Fonction qui renvoie la valeur d' élément de la liste qui se trouve à une position donnée.
+ * 
+ * Mettre le paramètre `clone` à 1 pour renvoyer une copie au lieu de la 
+ * la vraie valeur.
+ * 
+ * <p>Une recherche se fait en temps constant, O(1).
+ *<p>
+ * La fonction peut être appelée pour tout objet de type `_ArrayList_` 
+ * ou sous-type de `_ArrayList_`.
+ * 
+ * @param self La liste dont on cherche l' élément.
+ * @param index La position de l'élément.
+ * @param clone Booléen dont 1 permet d'indiquer à la fonction qu'on souhaite qu'elle renvoie 
+ * une copie de l'objet au lieu de la vraie référence. Au cas où on souhaite la récupérer 
+ * avant la destruction de la liste.
+ * 
+ * @return La valeur de l'élément ou NULL si la liste est vide.
+ */
+void* ArrayList_get(ArrayList self, size_t index, int clone){
+
+   // Vérifications.
+    assert(self);
+    assert(obj_instance_of(self, _ArrayList_));
+    
+    // Vérification de l'indice.
+    if(index<0 || index >= self->last_index){
+            
+        char err[] = "\e[1;31m[Erreur] L'indice de l'élément est en dehors de la liste !\e[1;0m\n";
+        write(2, err, strlen(err));
+        abort();
+        return NULL;
+
+    }
+
+    return (clone) ? obj_clone(self->dyn_array[index]) : self->dyn_array[index];
+
+}
+
+
+/**
+ * @brief Fonction qui renvoie la valeur du premier élément de la liste.
+ * 
+ * Mettre le paramètre `clone` à 1 pour renvoyer une copie au lieu de la 
+ * la vraie valeur.
+ * 
+ *<p>
+ * La fonction peut être appelée pour tout objet de type `_ArrayList_` 
+ * ou sous-type de `_ArrayList_`.
+ * 
+ * @param self La liste dont on cherche le premier élément.
+ * @param clone Booléen dont 1 permet d'indiquer à la fonction qu'on souhaite qu'elle renvoie 
+ * une copie de l'objet au lieu de la vraie référence. Au cas où on souhaite la récupérer 
+ * avant la destruction de la liste.
+ * 
+ * @return La valeur du premier élément ou NULL si la liste est vide.
+ */
+void* ArrayList_get_first(ArrayList self, int clone){
+    if (!ArrayList_size(self))
+        return NULL;
+    return ArrayList_get(self, 0, clone);
+}
+
+/**
+ * @brief Fonction qui renvoie la valeur du dernier élément de la liste.
+ * 
+ * Mettre le paramètre `clone` à 1 pour renvoyer une copie au lieu de la 
+ * la vraie valeur.
+ * 
+ *<p>
+ * La fonction peut être appelée pour tout objet de type `_ArrayList_` 
+ * ou sous-type de `_ArrayList_`.
+ * 
+ * @param self La liste dont on cherche le dernier élément.
+ * @param clone Booléen dont 1 permet d'indiquer à la fonction qu'on souhaite qu'elle renvoie 
+ * une copie de l'objet au lieu de la vraie référence. Au cas où on souhaite la récupérer 
+ * avant la destruction de la liste.
+ * 
+ * @return La valeur du dernier élément ou NULL si la liste est vide.
+ */
+void* ArrayList_get_last(ArrayList self, int clone){
+    if (!ArrayList_size(self))
+        return NULL;
+    return ArrayList_get(self, self->last_index-1, clone);
+}
+
+
+
+/**
+ * @brief Fonction qui vérifie si oui ou non un élément se trouve dans la liste.
+ * 
+ * La fonction va comparer les éléments avec la méthode `obj_equals()`, qui va appeler 
+ * dynamiquement sa redéfinition sur les objets de la liste (si redefinie).
+ * 
+ * @param self La liste à parcourir.
+ * @param object L'élément à rechercher.
+ * @return 1 Si l'élément se trouve dans la liste et 0 sinon.
+ * @see obj_equals()
+ */
+int ArrayList_contains( ArrayList self, void* object ){
+
+   // Vérifications.
+    assert(self);
+    assert(obj_instance_of(self, _ArrayList_));
+    
+    // Parcours de tous les éléments
+    for (size_t i = 0; i<ArrayList_size(self); i++)
+        if(obj_equals(object, self->dyn_array[i]))
+            return 1;
+
+    return 0;
+}
+
+/**
+ * @brief Fonction qui renvoie l'indice de la première occurence d'un élément 
+ * qui se trouve dans la liste.
+ * 
+ * La fonction va comparer les éléments avec la méthode `obj_equals()`, qui va appeler 
+ * dynamiquement sa redéfinition sur les objets de la liste (si redefinie).
+ * 
+ * @param self La liste à parcourir.
+ * @param object L'élément à rechercher.
+ * @return L'indice dans la liste de l'élément. -1 Si l'élément n'est pas dans la liste.
+ * @see obj_equals()
+ */
+long long int ArrayList_index_of( ArrayList self, void* object){
+    
+    
+   // Vérifications.
+    assert(self);
+    assert(obj_instance_of(self, _ArrayList_));
+    
+    // Parcours de tous les éléments
+    for (size_t i = 0; i<ArrayList_size(self); i++)
+        if(obj_equals(object, self->dyn_array[i]))
+            return i;
+
+    return -1;
+
+}
+
+
+/**
+ * @biref Fonction qui va vider la liste.
+ *
+ * La fonction va détruire tous les objets qui se trouve à l'intérieur de la liste.
+ * <p>Penser à cloner les éléments avant de vider la liste !
+ *
+ * @param self La liste à vider.
+ */
+void ArrayList_clear( ArrayList self ){
+
+   // Vérifications.
+    assert(self);
+    assert(obj_instance_of(self, _ArrayList_));
+    
+    // Parcours de la liste est suppréssion de tous les éléments.
+    for (size_t i = 0; i<ArrayList_size(self); i++){
+            
+        // Destruction de l'élément.
+        obj_destroy(self->dyn_array[i]);
+        self->dyn_array[i] = NULL;
+
+    }
+
+    self->last_index = 0;
+    // Réduction de la taille (si possible)
+    check_size(self);
+
 }
 

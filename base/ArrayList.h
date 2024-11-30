@@ -374,7 +374,16 @@
      * @return L'indice dans la liste de l'élément. -1 Si l'élément n'est pas dans la liste.
      * @see obj_equals()
      */
-    size_t ArrayList_index_of( ArrayList self, void* object);
+    long long int ArrayList_index_of( ArrayList self, void* object);
 
+    /**
+     * @biref Fonction qui va vider la liste.
+     *
+     * La fonction va détruire tous les objets qui se trouve à l'intérieur de la liste.
+     * <p>Penser à cloner les éléments avant de vider la liste !
+     *
+     * @param self La liste à vider.
+     */
+    void ArrayList_clear(ArrayList self);
 
 #endif
