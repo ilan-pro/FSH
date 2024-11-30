@@ -96,17 +96,6 @@ int main(){
     initialize_cmd();
     initialize_for_lists();
         
-    ArrayList a = obj_new(_ArrayList_, 0);
-    ArrayList_add_first(a, obj_new(_String_, "Poisson"), 0);
-    ArrayList_add_first(a, obj_new(_String_, "De"), 0);
-    ArrayList_add_first(a, obj_new(_String_, "Ta"), 0);
-    ArrayList_add_first(a, obj_new(_String_, "Ville"), 0);
-    ArrayList_add_first(a, obj_new(_String_, "Natale"), 0);
-    ArrayList_add_first(a, obj_new(_String_, "Natale"), 0);
-    ArrayList_add_first(a, obj_new(_String_, "Natale"), 0);
-    obj_print(a);
-    
-    obj_destroy(a);
     /** char* prompt = " -l"; */
     /** ExternalCommand e = obj_new(_ExternalCommand_, "ls", &prompt); */
 

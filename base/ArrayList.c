@@ -165,12 +165,25 @@ static void check_size( ArrayList self ){
     assert(self);
     assert(self->last_index<=self->size); // Si l'indice du dernier élément n'est pas inférieur ou égal alors c'est mauvais signe.
 
-    if (self->last_index < self->size) // Si l'indice est strictement inférieur alors on peut toujours rajouter un élément.
-        return;
-    
-    printf("Ici : new_size=%lu\n", self->size + self->size/2);
+    if (self->last_index < self->size) {// Si l'indice est strictement inférieur alors on peut toujours rajouter un élément.
+        
+        if (self->reduce && self->size > 2 && self->last_index < self->size/2){ // Si la taille réele de la liste est plus petite que la moitié de sa taille en mémoire
+            // On libère les espaces inutiles.
+            self->dyn_array = realloc(self->dyn_array, sizeof(void**)*(self->size - self->size/2));
+            assert(self->dyn_array);
+            self->size = self->size - self->size/2;
 
+        }
+
+        return;
+        
+    }
+    
     // Sinon on ralonge la liste de size/2
+    // à partir de la première fois où l'on rallonge la liste, la liste peut être réduite 
+    // si on détecte que sa taille réel est trop petite que sa taille en mémoire.
+    self->reduce = 1;
+    
     self->dyn_array = realloc(self->dyn_array, sizeof(void**)*(self->size + self->size/2));
     assert(self->dyn_array);
     self->size = self->size + self->size/2;
@@ -295,9 +308,9 @@ static void* ArrayList_clone( const void* self_ ){
     
     // Création de la copie.
     ArrayList copy = obj_new(_ArrayList_, ArrayList_size(self)); // On lui donne initialement la taille de self pour éviter le redimensionnement.
-    
+    copy->last_index = self->last_index;
     for (size_t i = 0; i<ArrayList_size(self); i++)
-        ArrayList_add_last(copy, self->dyn_array[i], 1); // On ajoute une copie du i-ème élément à la fin.
+        copy->dyn_array[i] = obj_clone(self->dyn_array[i]);
 
     return copy;
 }
@@ -487,8 +500,6 @@ int ArrayList_add( ArrayList self, void *object, size_t index, int clone ){
     // Vérification de la taille (va rallonger la taille si besoin).
     check_size(self);
     
-    printf("index = %lu\n", index);
-
     // Décalage de tous les éléments de 1 à partir de index.
     for (size_t i = self->last_index; i>index; i--)
         self->dyn_array[i] = self->dyn_array[i-1];
@@ -501,4 +512,118 @@ int ArrayList_add( ArrayList self, void *object, size_t index, int clone ){
 
 }
 
+
+/**
+ * @internal
+ * @brief Fonction qui va retirer un élément de la liste qui se trouve à une position donnée.
+ *
+ * Si la liste est vide alors la fonction va renvoyer NULL.
+ *
+ * ** Important ** : L'objet retiré n'est pas détruit mais est renvoyé par la fonction, 
+ * mettre le paramètre `destroy` à 1 pour détruire l'objet après sa suppression dans la liste, 
+ * dans ce cas la fonction renvoie NULL.
+ *
+ * <p>
+ * La fonction peut être appelée pour tout objet de type `_ArrayList_` 
+ * ou sous-type de `_ArrayList_`.
+ *
+ * <p>Chaque suppression ne se fait pas en temps constant O(size-index).
+ * 
+ * @param self La liste dont on souhaite retirer le dernier élément.
+ * @param destroy Booléen dont 1 permet d'indiquer à la fonction qu'on souhaite qu'elle détruise 
+ * l'objet après suppression. La fonction renvoie NULL alors. 
+ *  
+ * @return La valeur retirée (ou NULL si on ne souhaite pas la récupérer) Si le dernier
+ * élément est bien retiré de la liste, NULL sinon.
+ */
+void* ArrayList_remove( ArrayList self, size_t index, int destroy ){
+
+    // Vérifications.
+    assert(self);
+    assert(obj_instance_of(self, _ArrayList_));
+    
+    // Vérification de l'indice.
+    if(index<0 || index >= self->last_index){
+            
+        char err[] = "\e[1;31m[Erreur] L'indice de l'élément est en dehors de la liste !\e[1;0m\n";
+        write(2, err, strlen(err));
+        abort();
+        return NULL;
+
+    }
+        
+    // Récupération de l'élément.
+    void* elt = self->dyn_array[index];
+    
+    // Décalage vers la gauche de 1 à partir de index.
+    for (size_t i = index; i<ArrayList_size(self)-1; i++)
+        self->dyn_array[i] = self->dyn_array[i+1];
+        
+    // On met la dernière référence à NULL
+    self->dyn_array[(self->last_index--) -1] = NULL; 
+    
+    // Si elt doit être détruit.
+    if (destroy){
+        obj_destroy(elt); // On le détruit
+        elt = NULL;
+    }
+
+    // Vérification de la taille (va reduire la taille en mémoire si elle devient trop petite).
+    check_size(self);
+    
+    return elt;
+}
+
+
+/**
+ * @brief Cette fonction va retirer le premier élément de la liste.
+ *
+ * Si la liste est vide alors la fonction va renvoyer NULL.
+ *
+ * ** Important ** : L'objet retiré n'est pas détruit mais est renvoyé par la fonction, 
+ * mettre le paramètre `destroy` à 1 pour détruire l'objet après sa suppression dans la liste, 
+ * dans ce cas la fonction renvoie NULL.
+ *
+ *<p>
+ * La fonction peut être appelée pour tout objet de type `_ArrayList_` 
+ * ou sous-type de `_ArrayList_`.
+ * 
+ * <p>Chaque suppression en tête de liste se fait en temps θ(n).
+ * 
+ * @param self La liste dont on souhaite retirer le premier élément.
+ * @param destroy Booléen dont 1 permet d'indiquer à la fonction qu'on souhaite qu'elle détruise 
+ * l'objet après suppression. La fonction renvoie NULL alors. 
+ * 
+ * @return La valeur retirée (ou NULL si on ne souhaite pas la récupérer) Si le premier 
+ * élément est bien retiré de la liste, NULL sinon.
+ */
+void* ArrayList_remove_first(ArrayList self, int destroy){
+    return ArrayList_remove(self, 0, destroy);
+}
+
+/**
+ * @brief Cette fonction va retirer le dernier élément de la liste.
+ *
+ * Si la liste est vide alors la fonction va renvoyer NULL.
+ *
+ * ** Important ** : L'objet retiré n'est pas détruit mais est renvoyé par la fonction, 
+ * mettre le paramètre `destroy` à 1 pour détruire l'objet après sa suppression dans la liste, 
+ * dans ce cas la fonction renvoie NULL.
+ *
+ *<p>
+ * La fonction peut être appelée pour tout objet de type `_ArrayList_` 
+ * ou sous-type de `_ArrayList_`.
+ *
+ * <p>Chaque suppression en fin de liste se fait en temps constant O(1).
+ * 
+ * @param self La liste dont on souhaite retirer le dernier élément.
+ * @param destroy Booléen dont 1 permet d'indiquer à la fonction qu'on souhaite qu'elle détruise 
+ * l'objet après suppression. La fonction renvoie NULL alors. 
+ * 
+ * @return La valeur retirée (ou NULL si on ne souhaite pas la récupérer) si le dernier
+ * élément est bien retiré de la liste, NULL sinon.
+ */
+void* ArrayList_remove_last(ArrayList self, int destroy){
+    return ArrayList_remove(self, self->last_index-1, destroy);
+}
 

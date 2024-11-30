@@ -26,6 +26,18 @@
         size_t size; /** Il s'agit de la taille de la liste. */ \
         size_t last_index; /** IL s'agit de de l'indice de la première place liste dans la liste. Il permet de déterminer le nombre d'élément dans la liste, ainsi que la saturation de la liste. */ \
         void** dyn_array; /** Il s'agit du tableau dynamique qui va contenir les éléments. Il augemente de 50% à chaque fois qu'il est plein. */ \
+        \
+        /**  Booléen indiquant si on doit réduire la liste ou pas lorsqu'on détecte que la taille réel est trop petite que la taille en mémoire 
+         *   Cela va permettre de créer une ArrayList avec initialement une grande taille (pour éviter de redimentionnement pendant l'ajout 
+         *   si on ajoute une grande quantité de données), sans que la liste ne soit réduite (car si on détecte que la taille réel de la liste 
+         *   est torp petite que sa taille en mémoire, on réduit sa taille en mémoire pour libérer de l'espace) à cause sa taille réel qui sera 
+         *   très petite à l'initialisation.
+         *
+         *   En revanche à partir du moment où la liste à été saturée au moins une fois, ce champs est remis à 1 donc une fois la liste remplie 
+         *   pour la première fois, on considère que si après plusieurs suppression la taille est de nouveau très faible alors on peut réduire la 
+         *   taille de la liste.
+         * */ \
+        int reduce; 
     
     typedef struct _ArrayList_* ArrayList;
     
@@ -193,7 +205,7 @@
      * @return La valeur retirée (ou NULL si on ne souhaite pas la récupérer) Si le premier 
      * élément est bien retiré de la liste, NULL sinon.
      */
-    void* ArrayList_remove_first(ArrayList self, int clone);
+    void* ArrayList_remove_first(ArrayList self, int destroy);
 
     /**
      * @brief Cette fonction va retirer le dernier élément de la liste.
@@ -217,7 +229,7 @@
      * @return La valeur retirée (ou NULL si on ne souhaite pas la récupérer) si le dernier
      * élément est bien retiré de la liste, NULL sinon.
      */
-    void* ArrayList_remove_last(ArrayList self, int clone);
+    void* ArrayList_remove_last(ArrayList self, int destroy);
     
     /**
      * @brief Fonction qui renvoie la valeur du premier élément de la liste.
@@ -335,7 +347,7 @@
      * @return La valeur retirée (ou NULL si on ne souhaite pas la récupérer) Si le dernier
      * élément est bien retiré de la liste, NULL sinon.
      */
-    void* ArrayList_remove( ArrayList self, size_t index, int clone );
+    void* ArrayList_remove( ArrayList self, size_t index, int destroy );
 
     /**
      * @brief Fonction qui vérifie si oui ou non un élément se trouve dans la liste.
