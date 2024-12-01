@@ -36,31 +36,8 @@ void initialize_cmd(){
 }
 
 
-/**
- * @brief Fonction qui va initialiser les listes chainées utilsées pour stocker 
- * les identificateurs et les noms des fichiers en cours de traitement.
- */
-void initialize_for_lists(){
-        
-   For_ids = obj_new(_ArrayList_, 0);   
-   For_files = obj_new(_ArrayList_, 0);   
-
-}
-
-/**
- * @brief Fonction qui va détruire les listes chainées utilsées pour stocker 
- * les identificateurs et les noms des fichiers en cours de traitement.
- */
-void destroy_for_lists(){
-        
-    obj_destroy(For_ids);
-    obj_destroy(For_files);
-
-}
-
 int main(){ 
     initialize_cmd();
-    initialize_for_lists();
     
     /** char* prompt = " -l"; */
     /** ExternalCommand e = obj_new(_ExternalCommand_, "ls", &prompt); */
@@ -69,6 +46,5 @@ int main(){
 
     /** obj_destroy(e); */
     Shell_start();
-    destroy_for_lists();
     return 0; 
 }

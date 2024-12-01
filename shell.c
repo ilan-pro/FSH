@@ -40,6 +40,31 @@ static void update_prompt();
 static Class get_internal_cmd(char *char_lu);
 static Command apply_cmd(char *char_lu, ArrayList file_secondaire, char** prompt);
 
+/**
+ * Fonction qui va initialiser la tables des variables qui seront utilisées 
+ * dans le Shell.
+ * 
+ * Les boucles for par exemple viendront stocker les différents identificateurs dans la table.
+ * 
+ * La table n'est pas vraiment une table (pas une table de Hachage mais c'est envisageable, si 
+ * le temps le premet).
+ * 
+ * Il s'agit de deux listes dont l'une contient les indentificateurs et l'autre les valeurs.
+ * 
+ * Les fonctions qui gère ces deux listes vont garentir que les indices des valeurs et des identificateurs 
+ * seront les mêmes.
+ * L'encapsulation de ces deux listes permet d'éviter qu'un élément extérieur vienne casser cet invariant. 
+ */
+static void init_var_table();
+
+/**
+ * Fonction qui va détruire la tables des variables qui seront utilisées 
+ * dans le Shell.
+ * 
+ * Les boucles for par exemple viendront stocker les différents identificateurs dans la liste.
+ */
+static void destroy_var_table();
+
 /**********************************************/
 
 /**
@@ -63,6 +88,28 @@ static char path[PROMPT_CHAR_LIMITS];
  */
 static char prompt[50];
 
+/** 
+ * @brief Il s'agit de la liste qui va contenir les identificateurs des différentes variables 
+ * utilisées dans le shell.
+ *
+ * L'indice de l'identificateur est le même que sa valeur  contenu dans 
+ * l'autre liste qui contient les valeurs (`Ids_values_table`) (une HashMap serait plus intérressant mais pas le temps).
+ */
+static ArrayList Ids_tables;
+
+/**
+ * @brief Il s'agit de la liste contenant les valeurs des différentes variables dont les identificateurs sont 
+ * dans la liste : `Ids_tables`.
+ * 
+ * L'indice de la vlaeur est le même que celui de son identificateur contenu dans 
+ * l'autre liste qui continent les identificateurs (`Ids_values_table`) (une HashMap serait plus intérressant mais pas le temps).
+ */
+static ArrayList Ids_values_table;
+
+
+
+//****************** Fonctions **************** */
+/********************************************** */
 
 static void Shell_print_syntaxe_error(char* usr_prompt, char* cp_prompt){
 
@@ -89,14 +136,13 @@ int Shell_start(){
     if (init_working_dir())
         return 1;
 
+    // initialisation de la liste des variables qui seront utilisées dans le shell.
+    init_var_table();
+
     // Redirection vers stderr
     rl_outstream = stderr;
 
     while(1){
-
-        // On vide les identificateurs des boucles for
-        ArrayList_clear(For_files);
-        ArrayList_clear(For_ids);
         
         // Mise à jour du prompt.
         update_prompt();
@@ -124,6 +170,8 @@ int Shell_start(){
         rl_free_line_state();
     }
     
+    // Destruction de la liste des variables utilisées dans le shell.
+    destroy_var_table();
     // On vide l'historique.
     rl_clear_history();
     return 0;
@@ -411,5 +459,237 @@ static void update_prompt(){
 }
 
 
+/**
+ * Fonction qui va initialiser la tables des variables qui seront utilisées 
+ * dans le Shell.
+ * 
+ * Les boucles for par exemple viendront stocker les différents identificateurs dans la table.
+ * 
+ * La table n'est pas vraiment une table (pas une table de Hachage mais c'est envisageable, si 
+ * le temps le premet).
+ * 
+ * Il s'agit de deux listes dont l'une contient les indentificateurs et l'autre les valeurs.
+ * 
+ * Les fonctions qui gère ces deux listes vont garentir que les indices des valeurs et des identificateurs 
+ * seront les mêmes.
+ * L'encapsulation de ces deux listes permet d'éviter qu'un élément extérieur vienne casser cet invariant. 
+ */
+static void init_var_table(){
+
+    // Initialisation de la liste des identificateurs des variables
+    Ids_tables = obj_new(_ArrayList_, 0);
+
+    // Initialisation de la liste des valeurs des variables.
+    Ids_values_table = obj_new(_ArrayList_, 0);
+
+}
+
+/**
+ * Fonction qui va détruire la tables des variables qui seront utilisées 
+ * dans le Shell.
+ * 
+ * Les boucles for par exemple viendront stocker les différents identificateurs dans la liste.
+ */
+static void destroy_var_table(){
+
+    // Destruction de la liste des identificateurs des variables
+    obj_destroy(Ids_tables);
+
+    // Destruction de la liste des valeurs des variables.
+    obj_destroy(Ids_values_table);
+
+}
 
 
+
+/**
+ * @internal
+ * @brief Fonction qui va ajouter une variable dans la table des 
+ * variables du shell.
+ * 
+ * Si la variable existe déjà dans la table, elle ne sera pas écrasée, 
+ * la fonction va juste renvoyer 0. <br>
+ * Pour écraser une variable déjà existante dans la table, utiliser 
+ * plutôt `Shell_update_var()`.
+ * 
+ * NB : Le liste des variables est détruite à la sortie du shell.
+ * @param id_ L'identificateur (nom) de la variable.
+ * @param value_ La valeur à stocker dans la variable.
+ * 
+ * @return 1 Si l'ajout à réussi. 0 Sinon (La virable existe probablement 
+ * dans la table).
+ */
+int Shell_add_var(const char* id_, const char* value_){
+
+    // Vérifications.
+    assert(id_);
+    assert(value_);
+    assert(ArrayList_size(Ids_tables) == ArrayList_size(Ids_values_table));
+
+    // Création des objets String qui vont stocker les chaines.
+    String id = obj_new(_String_, id_);
+
+
+    // Vérification de l'existance de l'identificateur de la variable.
+    if (ArrayList_contains(Ids_tables, id)){
+        // Destruction de l'objet String créé.
+        obj_destroy(id);
+        return 0;
+    }
+
+    // Création du String de la valeur.
+    String value = obj_new(_String_, value_);
+    
+    ArrayList_add_last(Ids_tables, id, 0);
+    ArrayList_add_last(Ids_values_table, value, 0);
+
+    // Vérification de la taille (c'est suffisant).
+    assert(ArrayList_size(Ids_tables) == ArrayList_size(Ids_values_table));
+    return 1; 
+
+}
+
+
+
+/**
+ * @internal
+ * @brief Fonction qui va retirer une variable dans la table des 
+ * variables du shell.
+ * 
+ * Si la variable n'existe pas déjà dans la table la fonction va renvoyer 0.
+ * La fonction ne renvoie pas la valeur supprimée, utiliser `Shell_get_val()` 
+ * si on souhaite la récupérer avant.
+ * 
+ * NB : Le liste des variables est détruite à la sortie du shell.
+ * 
+ * @param id L'identificateur (nom) de la variable.
+ * 
+ * @return 1 Si la suppression a réussi. 0 sinon (la variable n'existe probablement pas 
+ * dans la table).
+ */
+int Shell_remove_var(const char* id_){
+
+    // Vérifications.
+    assert(id_);
+    assert(ArrayList_size(Ids_tables) == ArrayList_size(Ids_values_table));
+
+    
+    // Création de l'objet String qui va contenir l'identificateur.
+    String id = obj_new(_String_, id_);
+
+    // Récupération de l'indice dans la liste des identificateurs.
+    long long int index = ArrayList_index_of(Ids_tables, id);
+
+    if (index == -1){ // Si l'indice est -1 alors l'ID n'existe pas.
+
+        obj_destroy(id); // On détruit la chaine.
+        return 0; // On revoie 0
+
+    }
+
+    // Suppression de l'identificateur.
+    ArrayList_remove(Ids_tables, index, 1);
+    // Suppression de la valeur dans la liste table 
+    ArrayList_remove(Ids_values_table, index, 1);
+
+    // Vérification de la taille (c'est suffisant).
+    assert(ArrayList_size(Ids_tables) == ArrayList_size(Ids_values_table));
+
+    return 1;
+}
+
+
+
+/**
+ * @internal
+ * @brief Fonction qui va mettre à jour la valeur d'une variable dans la table des 
+ * variables du shell.
+ * 
+ * Si la variable n'existe pas déjà dans la table la fonction va renvoyer O.
+ * La fonction ne renvoie pas la valeur supprimée (celle qui était là avant), 
+ * utiliser `Shell_get_val()` si on souhaite la récupérer avant.
+ * 
+ * NB : Le liste des variables est détruite à la sortie du shell.
+ * 
+ * @param id_ L'identificateur (nom) de la variable.
+ * @param new_value_ La nouvelle valeur à stocker dans la variable.
+ * 
+ * @return 1 Si la mise à jour a réussie. 0 sinon (la variable n'existe probablement pas 
+ * dans la table).
+ */
+int Shell_update_var(const char* id_, const char* new_value_){
+
+    // Vérifications.
+    assert(id_);
+    assert(new_value_);
+    assert(ArrayList_size(Ids_tables) == ArrayList_size(Ids_values_table));
+
+    // Création de l'objet String qui va contenir l'identificateur.
+    String id = obj_new(_String_, id_);
+
+    // Récupération de l'indice de l'identificateur dans la liste des identificateurs.
+    long long int index = ArrayList_index_of(Ids_tables, id);
+
+
+    // Destruction de l'objet String créé (il existe déjà dans la table).
+    obj_destroy(id);
+    // Vérification de l'existance de l'identificateur de la variable.
+    if (index == -1) // Si l'indice est -1 alors l'ID n'existe pas.
+        return 0; // On renvoie 0.
+    
+
+    // Création du String de la nouvelle valeur.
+    String new_value = obj_new(_String_, new_value_);
+    
+    // Suppréssion de la précédente valeur (on a son indice pour placer la nouvelle)
+    ArrayList_remove(Ids_values_table, index, 1);
+    ArrayList_add(Ids_values_table, new_value, index, 0);
+
+    // Vérification de la taille (c'est suffisant).
+    assert(ArrayList_size(Ids_tables) == ArrayList_size(Ids_values_table));
+    return 1; 
+
+}
+
+
+
+/**
+ * @internal
+ * @brief Fonction qui va renvoyer la valeur contenu dans une variable de 
+ * la table des variables du shell.
+ * 
+ * Si la variable n'existe pas déjà dans la table la fonction va renvoyer NULL.
+ * **Attention** : La chaine de caractère renvoyée ne peut pas être modifiée, 
+ * la copier si on souhaite l'utiliser.
+ * 
+ * NB : Le liste des variables est détruite à la sortie du shell.
+ * 
+ * @param id_ L'identificateur (nom) de la variable.
+ * 
+ * @return La valeur stockée dans la variable. NULL sinon (la variable n'existe probablement pas 
+ * dans la table).
+ */
+const char*  Shell_get_val(const char* id_){
+
+    // Vérifications.
+    assert(id_);
+    assert(ArrayList_size(Ids_tables) == ArrayList_size(Ids_values_table));
+
+    // Création de l'objet String qui va contenir l'identificateur.
+    String id = obj_new(_String_, id_);
+
+    // Récupération de l'indice de l'identificateur dans la liste des identificateurs.
+    long long int index = ArrayList_index_of(Ids_tables, id);
+
+    // Destruction de l'objet String créé (il existe déjà dans la table).
+    obj_destroy(id);
+    // Vérification de l'existance de l'identificateur de la variable.
+    if (index == -1) // Si l'indice est -1 alors l'ID n'existe pas.
+        return NULL; // On renvoie NULL.
+    
+    String value = ArrayList_get(Ids_values_table, index, 0); // On ne le clone il est immuable de toute façon.
+    // pas besoin de détruire l'objet ce n'est pas un clone.
+
+    return obj_to_string(value);
+    
+}

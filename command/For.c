@@ -115,23 +115,6 @@ static struct _Class_ __For__ = {
  */
 const Class _For_ = &__For__;
     
-/**
- * Il s'agit de la liste qui va contenir les identificateurs des différentes variables 
- * utilisées dans les boucles `for`.
- *
- * L'indice de l'identificateur est le même que celui du nom du fichier contenu dans 
- * L'autre liste.
- */
-ArrayList For_ids;
-
-    
-/**
- * Il s'agit de la liste contenant les noms des fichiers en cours de 
- * traitement dans la boucle `for`.
- */
-ArrayList For_files;
-    
-
 /***************************************************/
 /************** Corps des fonctions ****************/
 
@@ -217,21 +200,18 @@ static int add_file_id( For self, char** prompt ){
         free(mot);
         return 0;
     }
-    // Création de l'objet String de l'identificateur.
-    String s = obj_new(_String_, mot);
     // Vérification de l'existance de l'identificateur (S'il existe alors il y a une erreur).
-    if (ArrayList_contains(For_ids, s)){
+    if (Shell_get_val(mot)){ // Si il existe une valeur pour cet identificateur alors on il existe.
         char tmp[50];
-        snprintf(tmp, 50, "L'indentificateur '%s' existe déjà !", obj_to_string(s));
+        snprintf(tmp, 50, "L'indentificateur '%s' existe déjà !", obj_to_string(mot));
         For_print_syntax_err(tmp);
-        obj_destroy(s);
         free(mot);
         return 0;
     }
 
     // Le mot parsé est l'identificateur des fichiers dans la boucle.
     // Ajout de ce fichier.
-    ArrayList_add_last(For_ids,s, 0);
+    Shell_add_var(mot, ""); // Pas de valeur pour le moment.
     char* tmp = malloc((1 + strlen(mot) * sizeof(char)));
     assert(tmp);
     strcpy(tmp, mot);
@@ -310,10 +290,9 @@ static int add_dir( For self, char** prompt ){
         return 0;
     }
     // Ajout du repertoire de recherche.
-    char* tmp = malloc((1 + strlen(mot)) * sizeof(char));
-    assert(tmp);
-    assert(strcpy(tmp, mot));
-    self->dir = tmp;
+    size_t index = ArrayList_size(self->args);
+    ArrayList_add_last(self->args, obj_new(mot), 0);
+    self->index_dir = index;
     
     free(mot);
     return 1;
@@ -436,6 +415,8 @@ static void* For_constructor(void* self_, va_list* args){
     
     self->params = obj_new(_ArrayList_, 0);
     self->args = obj_new(_ArrayList_, 0);
+    self->args_tmp =obj_new(_ArrayList_, 0);
+
     
     // Ajout de l'identificateur de la variable de boucle
     if (!add_file_id(self, prompt)){
@@ -498,7 +479,7 @@ static void* For_destroy(void* self_){
     
     For self = (For) self_;
     obj_destroy(self->commands);
-    free(self->dir);
+    Shell_remove_var(self->id_var); // Suppression de la variable de la boucle for.
     free(self->id_var);
 
     return _Command_->dtor(self_);
@@ -509,7 +490,8 @@ static void* For_destroy(void* self_){
 static int For_execute(Command self_){
         
     //// Ecrire le corps de la fonction ici ! 
-        
+       
+
     return 0;
 }
 
@@ -529,7 +511,8 @@ static void For_print (const void* self_) {
 
     // Ecriture du répertoire de travail de for
     write(1, "Dir= \"",6);
-    write(1, self->dir, strlen(self->dir));
+    char* dir = obj_to_string(ArrayList_get(self->args, self->index_dir, 0));
+    write(1, dir, strlen(dir));
     write(1, "\"  ", 3);
 
     

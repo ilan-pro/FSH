@@ -21,7 +21,8 @@
         const char* const name; /* Nom de la commande */ \
         int (*const execute) (struct _Command_*); /* Fonction qui va faire exécuter la commande */\
         ArrayList params; /* L'ensemble des paramètres de la commande */ \
-        ArrayList args; /* L'ensemble des arguments de la commande */  
+        ArrayList args; /* L'ensemble des arguments de la commande */  \
+        ArrayList args_tmp; /* Liste temporaire qui va stocker les arguments (dont ceux qui commencent par $ seront remplacés) pendant l'exécution. */
         // Ajouter d'autres attributs ici.
     
     typedef struct _Command_* Command;

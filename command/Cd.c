@@ -174,7 +174,10 @@ static int Cd_execute(Command self_){
     }
     else{
         String tmp = (String) ArrayList_get_first(self->args, 0);
-        path = obj_to_string(tmp);
+        if (!tmp) // Si pas d'arguement ($ qui n'existe pas)
+            path = getenv("HOME"); // On va dans home.
+        else 
+            path = obj_to_string(tmp);
     }
 
     if(strcmp(path, "-")==0){

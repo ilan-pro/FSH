@@ -153,6 +153,7 @@ static void* ExternalCommand_constructor(void* self_, va_list* args){
     // Initialisation de la liste des arguments et des paramètres de commandes
     self->args = obj_new(_ArrayList_, 0);
     self->params = obj_new(_ArrayList_, 0);
+    self->args_tmp =obj_new(_ArrayList_, 0);
 
     int cmd_length = strlen(cmd_name);
     char* command = malloc((2 + cmd_length) * sizeof(char));
@@ -297,13 +298,20 @@ static int ExternalCommand_execute(Command self_){
                 perror("malloc");
                 exit(1);
             }
+
+            // Taille de cmd (au cas où des variables $ n'existe pas donc sont sautés)
+            int cmd_size = 0;
             
             for(int i=0; i < size; i++){
-                char* tmp = obj_to_string((String) ArrayList_get(self->args, i, 0));
+                String arg = (String) ArrayList_get(self->args, i, 0);
+                if (!arg) 
+                    continue;
+                char* tmp = obj_to_string(arg);
                 cmd[i] = malloc((1 + strlen(tmp)) * sizeof(char));
+                cmd_size ++;
                 strcpy(cmd[i], tmp);
             }
-            cmd[size] = NULL;
+            cmd[cmd_size] = NULL;
             
             if(execvp(self->name, cmd) < 0 ){
                 for(int i=0; i < size; i++)

@@ -15,7 +15,7 @@
     #define FOR_FILEDS \
         COMMAND_FIELDS /* Doit toujours être déclaré en premier pour pouvoir réduire l'objet à un objet de type Command pour le polymorphisme */\
         ArrayList commands; /* Il s'agit de la commande structruée à exécuter dans le `for`.*/ \
-        char* dir; /** Répertoire de trvaille de For */\
+        size_t index_dir ; /** Indice du répertoire de trvaille de For dans la liste des arguments*/\
         char* id_var; /** identificateur de la variable de boucle */
     
     typedef struct _For_* For;
@@ -65,35 +65,6 @@
      */
     extern const Class _For_;
     
-    /**
-     * @internal 
-     * @brief Fonction qui renvoie le nom du fichier identifié par un identificateur (ex : $F ou $Poisson).
-     *
-     * Dans le fichier `for.c` se trouvent les identificateurs données aux noms des fichiers 
-     * en cours de traitement dans la boucle ainsi que le nom des fichiers qu'ils désignent. 
-     * 
-     * La fonction va donc rechercher l'indentificateur et renvoyer le chaine contenant le nom du fichier 
-     * correspondant.
-     *
-     * @param id Identificateur du fichier.
-     * @return Le nom du fichier identifié, ou NULL si l'identificateur n'existe pas dans la boucle.
-     */
-    char* For_get_file(char* id);
-    
-    /** 
-     * @brief Il s'agit de la liste qui va contenir les identificateurs des différentes variables 
-     * utilisées dans les boucles `for`.
-     *
-     * L'indice de l'identificateur est le même que celui du nom du fichier contenu dans 
-     * L'autre liste qui contient les noms (une HashMap serait plus intérressant mais pas le temps).
-     */
-    extern ArrayList For_ids;
-    
-    /**
-     * @brief Il s'agit de la liste contenant les noms des fichiers en cours de 
-     * traitement dans la boucle `for`.
-     */
-    extern ArrayList For_files;
 
 #endif
 

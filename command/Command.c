@@ -21,6 +21,7 @@
 #include <unistd.h>
 #include "../base/new.h"
 #include "../base/String.h"
+#include "../shell.h"
 /**@cond HIDE_THIS*/
 #define COMMAND_CLASS "Command"  
 #include "Command.h"
@@ -371,6 +372,11 @@ static void* Command_constructor(void* self_, va_list* args){
     // Initialisation de la liste des arguments et des paramètres.
     self->args = obj_new(_ArrayList_, 0);
     self->params = obj_new(_ArrayList_, 0);
+    
+    // Cette liste servira de copie des arguments pour remplacer les variables $ par leurs 
+    // valeurs si elles existent au moment de l'exécution de la commande. 
+    // On fait une copie pour ne pas modifier la liste originale. 
+    self->args_tmp = obj_new(_ArrayList_, 0); 
         
     // Récupération du nom de la commande
     char* cmd_name = va_arg(*args, char*);
@@ -404,6 +410,7 @@ static void* Command_destroy(void* self_){
     //Destructions des listes.
     obj_destroy(self->args);
     obj_destroy(self->params);
+    obj_destroy(self->args_tmp);
     free(*((char**) &self->name));
     return self;
 
@@ -429,6 +436,50 @@ static void Command_print(const void* self_){
 
 }
 
+/**
+ * Fonction qui va parcourir les arguments de la command et 
+ * va remplacer s'il trouve, les variable de boucles par leur valeurs.
+ * 
+ * @param self La commande à traiter.
+ */
+static void Command_replace_variable( Command self, ArrayList new_args ){
+
+    // Parcours des arguments.
+    for (size_t i = 0; i<ArrayList_size(self->args); i++){
+
+        String arg = ArrayList_get(self->args, i, 0);
+        char* str = obj_to_string(arg);
+
+        // Si le premier caractère est $ alors il est interprété comme une variable.
+        if (*str == '$'){
+            
+            // On détermine l'indice de l'élément dans la liste des identificateurs du shell.
+            const char* value = Shell_get_val(str+1);
+            if (value != NULL){ // Si la valeur existe.
+                ArrayList_add_last(new_args, obj_new(_String_, value), 0); // Ajout de la valeur.
+                continue;
+            }
+            
+            // Si on est ici c'est que la valeur est NULL et donc que la variable n'existe pas.
+            // Recherche dans les variables d'environement.
+            value = getenv(str+1);
+            if (value != NULL){
+                ArrayList_add_last(new_args, obj_new(_String_, value), 0); // Ajout de la valeur.
+                continue;
+            }
+
+            // Arrivée ici, la variable n'a pas de valeur, alors on l'ignore. NULL sera mis à la place (pour garder l'indice).
+            ArrayList_add_last(new_args, NULL, 0);
+            
+        }
+        else{ // Sinon on rajoute une copie de la variable telle quelle.
+            ArrayList_add_last(new_args, obj_new(_String_, str), 0); // Ajout de la valeur.
+            continue;
+        }
+
+    }
+
+}
 
 
 /**
@@ -450,6 +501,15 @@ int Command_execute(Command self){
 
     // Vérification de si self est un sous-type.
     assert(obj_instance_of(self, _Command_));
+    
+    // Parcours des arguments pour vérifier s'il n'y a pas de variable $...
+    Command_replace_variable(self, self->args_tmp);
+    
+    // On garde la liste originale des arguments pour ne pas perdre sa référence.
+    ArrayList origin_args = self->args;
+    
+    // Remplacement de la liste des arguments par la nouvelle.
+    self->args = self->args_tmp;
 
     if (!self->execute){ // Si self n'a pas définie une méthode execute() on arrête tout.
         char tmp1[] = "\e[1;31m[Erreur] La commande \"";
@@ -461,8 +521,14 @@ int Command_execute(Command self){
     }
 
     // Sinon on éxécute la commande.
-    return self->execute(self);
-
+    int ret_val = self->execute(self);
+    
+    // Changement de la liste des arguments, remise de l'original.
+    self->args = origin_args;
+    // suppression de tous les éléments de la liste temporaire.
+    ArrayList_clear(self->args);
+    
+    return ret_val;
 }
 
 
