@@ -191,7 +191,7 @@ static int Cd_execute(Command self_){
         }else{
             int res = chdir(prev_path);
             if(res != 0){
-                perror("changement de chemin");
+                perror("cd");
                 return 1;
             }else{
                 strcpy(prev_path, working_dir); 
@@ -201,7 +201,7 @@ static int Cd_execute(Command self_){
     }
     if(chdir(path) != 0){ 
 
-        perror("changement de chemin");
+        perror("cd");
         return 1;
 
     }else{

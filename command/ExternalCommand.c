@@ -144,7 +144,7 @@ static void* ExternalCommand_constructor(void* self_, va_list* args){
     
     // Récupération du nom de la commande.
     char* cmd_name = va_arg(*args, char*);
-    printf("'%s'\n", cmd_name);
+    // printf("'%s'\n", cmd_name);
     char* tmp = malloc((1 + strlen(cmd_name)) * sizeof(char));
     *(char**)&self->name = strcpy(tmp, cmd_name); // Mise à jour du nom de la commande.
     

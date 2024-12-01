@@ -159,7 +159,7 @@ int Shell_start(){
                 free(cp_prompt); continue;
             }
 
-            obj_print(file_principal); printf("\n"); // debug
+            // obj_print(file_principal); printf("\n"); // debug
             previous_cmd_finish = Shell_execute_all(file_principal); // Exécution de la file principale.
             obj_destroy(file_principal); // Destruction de la file principale.
             free(cp_prompt); // Destruction du pointeur alloué par readline.
@@ -174,7 +174,7 @@ int Shell_start(){
     destroy_var_table();
     // On vide l'historique.
     rl_clear_history();
-    return 0;
+    return previous_cmd_finish; // On revoie le résultat de la dernière commande.
 
 }
 
@@ -348,6 +348,11 @@ ArrayList Shell_parse(char **prompt){
  * son code d'erreur).
  */
 int Shell_execute_all(ArrayList struct_cmds){
+    
+    // S'il n'y a rien à exécuter alors on ne fait rien, on renvoie le résultat de la commande précédente.
+    if (ArrayList_size(struct_cmds) == 0)
+        return previous_cmd_finish;
+
     // Sert à stocker le status des processus enfant afin de retourner le dernier éxecuter.
     int last_status = 0;
 
@@ -431,6 +436,7 @@ static int init_working_dir(){
     return 0;
 
 }
+
 /**
  * Fonction qui créer le texte du prompt
  */
@@ -441,9 +447,12 @@ static void update_prompt(){
     // pointeur vers la chaine de caractère. 
     char* tr = working_dir; 
 
+    char val_ret[10]; // Chaine qui va stocker le code de retour.
+    snprintf(val_ret, 10, "%d", previous_cmd_finish);
+
     if (len>PROMPT_CHAR_LIMITS){
         // On pointe vers les 33 derniers caracètres (Les 3 sont pour les  ...)
-        tr = working_dir + (len-PROMPT_CHAR_LIMITS+8);
+        tr = working_dir + (len-PROMPT_CHAR_LIMITS+7+strlen(val_ret));
         snprintf(path, 30, "...%s", tr);
     }
     else
@@ -454,7 +463,7 @@ static void update_prompt(){
     if (!previous_cmd_finish) // Si la précédente commande s'est bien terminée.
         snprintf(prompt, 50, "\033[32m[%d]\033[36m%s\033[00m$ ", previous_cmd_finish, path); // On le met en vert.
     else
-        snprintf(prompt, 50, "\033[91m[%d]\e[1;33m%s\033[00m$ ", previous_cmd_finish, path); // On le met en rouge.
+        snprintf(prompt, 50, "\033[91m[%d]\033[00m%s$ ", previous_cmd_finish, path); // On le met en rouge.
 
 }
 
@@ -550,7 +559,6 @@ int Shell_add_var(const char* id_, const char* value_){
 }
 
 
-
 /**
  * @internal
  * @brief Fonction qui va retirer une variable dans la table des 
@@ -580,9 +588,10 @@ int Shell_remove_var(const char* id_){
     // Récupération de l'indice dans la liste des identificateurs.
     long long int index = ArrayList_index_of(Ids_tables, id);
 
+    // Destruction de l'objet String créé (il existe déjà dans la table).
+    obj_destroy(id);
     if (index == -1){ // Si l'indice est -1 alors l'ID n'existe pas.
 
-        obj_destroy(id); // On détruit la chaine.
         return 0; // On revoie 0
 
     }
@@ -624,12 +633,12 @@ int Shell_update_var(const char* id_, const char* new_value_){
     assert(new_value_);
     assert(ArrayList_size(Ids_tables) == ArrayList_size(Ids_values_table));
 
+
     // Création de l'objet String qui va contenir l'identificateur.
     String id = obj_new(_String_, id_);
 
     // Récupération de l'indice de l'identificateur dans la liste des identificateurs.
     long long int index = ArrayList_index_of(Ids_tables, id);
-
 
     // Destruction de l'objet String créé (il existe déjà dans la table).
     obj_destroy(id);
@@ -637,13 +646,14 @@ int Shell_update_var(const char* id_, const char* new_value_){
     if (index == -1) // Si l'indice est -1 alors l'ID n'existe pas.
         return 0; // On renvoie 0.
     
-
+    // printf("AE ? %s\n", new_value_);
     // Création du String de la nouvelle valeur.
-    String new_value = obj_new(_String_, new_value_);
-    
+    String new_value = obj_new(_String_, new_value_); 
+
     // Suppréssion de la précédente valeur (on a son indice pour placer la nouvelle)
     ArrayList_remove(Ids_values_table, index, 1);
     ArrayList_add(Ids_values_table, new_value, index, 0);
+
 
     // Vérification de la taille (c'est suffisant).
     assert(ArrayList_size(Ids_tables) == ArrayList_size(Ids_values_table));

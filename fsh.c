@@ -45,6 +45,5 @@ int main(){
     /** Command_execute((Command)e); */
 
     /** obj_destroy(e); */
-    Shell_start();
-    return 0; 
+    return Shell_start(); 
 }

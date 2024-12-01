@@ -526,7 +526,7 @@ int Command_execute(Command self){
     // Changement de la liste des arguments, remise de l'original.
     self->args = origin_args;
     // suppression de tous les éléments de la liste temporaire.
-    ArrayList_clear(self->args);
+    ArrayList_clear(self->args_tmp);
     
     return ret_val;
 }

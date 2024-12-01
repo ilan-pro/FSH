@@ -10,6 +10,7 @@
 
 
 #include <assert.h>
+#include <dirent.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include <unistd.h>
@@ -203,7 +204,7 @@ static int add_file_id( For self, char** prompt ){
     // Vérification de l'existance de l'identificateur (S'il existe alors il y a une erreur).
     if (Shell_get_val(mot)){ // Si il existe une valeur pour cet identificateur alors on il existe.
         char tmp[50];
-        snprintf(tmp, 50, "L'indentificateur '%s' existe déjà !", obj_to_string(mot));
+        snprintf(tmp, 50, "L'indentificateur '%s' existe déjà !", mot);
         For_print_syntax_err(tmp);
         free(mot);
         return 0;
@@ -211,7 +212,7 @@ static int add_file_id( For self, char** prompt ){
 
     // Le mot parsé est l'identificateur des fichiers dans la boucle.
     // Ajout de ce fichier.
-    Shell_add_var(mot, ""); // Pas de valeur pour le moment.
+    Shell_add_var(mot, "d"); // Pas de valeur pour le moment.
     char* tmp = malloc((1 + strlen(mot) * sizeof(char)));
     assert(tmp);
     strcpy(tmp, mot);
@@ -291,7 +292,7 @@ static int add_dir( For self, char** prompt ){
     }
     // Ajout du repertoire de recherche.
     size_t index = ArrayList_size(self->args);
-    ArrayList_add_last(self->args, obj_new(mot), 0);
+    ArrayList_add_last(self->args, obj_new(_String_, mot), 0);
     self->index_dir = index;
     
     free(mot);
@@ -479,20 +480,147 @@ static void* For_destroy(void* self_){
     
     For self = (For) self_;
     obj_destroy(self->commands);
-    Shell_remove_var(self->id_var); // Suppression de la variable de la boucle for.
+    if (self->id_var)
+        Shell_remove_var(self->id_var); // Suppression de la variable de la boucle for.
     free(self->id_var);
 
     return _Command_->dtor(self_);
     
 }
 
+
+/**
+ * Fonction qui va vérifier si l'entrée est '.' ou '..'
+ */
+static int ent_is_p_or_pp(struct dirent* ent){
+
+    // Récupération du nom.
+    char* name = ent->d_name;
+    // Si le premier caractère n'est pas .
+    if (*name != '.')
+        return 0; // Alors ce n'est pas . ni ..
+    
+    // Si le premier carctère est . mais le second n'est ni \0 ni .
+    else if (*(name+1) != '\0' && *(name+1) != '.')
+        return 0; // Alors ce n'est pas . ni ..
+    
+    else if (*(name+1) != '\0' && *(name+2) != '\0')
+        return 0;
+    
+    else 
+        return 1;
+
+}
+
+/**
+ * Fonction qui va créer le chemin vers le fichier. en cours de traitement à l'aide du 
+ * chemin vers le répertoire qui le contient.
+ */
+static void assemble_path_and_add(char** path, struct dirent* ent, ArrayList all_files){
+
+    char* name = ent->d_name;
+    //////// S'il y a des traitement à faire sur le nom ///////
+
+    ///////////////////////////////////////////////////////////
+    // Concaténation des deux chaines avec ajout d'une séparation '/'
+    char* tmp = (char*) malloc((2+ strlen(*path) + strlen(name)) * sizeof(char));
+    assert(strcat(strcat(strcpy(tmp, *path), "/"), name));
+    String s = obj_new(_String_, tmp); // Création de la chaine qui va contenir le chemin.
+    free(tmp); // libération de tmp, plus besoin.
+
+    ArrayList_add_last(all_files, s, 0);
+
+}
+
+/**
+ * Fonction qui de va récupérer les fichiers du répertoire et va également se charger d'appliquer 
+ * les filtres donnée
+ */
+static void For_get_files(For self, DIR* dir, char** path, ArrayList all_files){
+
+    struct dirent* ent;
+
+    while((ent = readdir(dir))){
+        
+        // Si l'entrée est . ou ..
+        if (ent_is_p_or_pp(ent)) 
+            continue; // on continue.
+
+        ////////// SI IL Y a d'autres conditions ////////
+
+        /////////////////////////////////////////////////
+
+        // Assemblage du chemin vers le fichier.
+        assemble_path_and_add(path, ent, all_files);
+
+    }
+
+}
+
+static int For_execute_for_each_file(For self, ArrayList all_files){
+
+    ////////// La parallèlisation c'est ici (enfin je crois :) ) /////////////////////
+    for (size_t i = 0; i<ArrayList_size(all_files); i++){
+
+        char* name = obj_to_string((String)ArrayList_get(all_files, i, 0));
+
+        // On copie au cas où obj_to_string renvoie pointeur vers une mémoire tampon qui risque d'être remplie par autre chaose à tout moment.
+        char* tmp = (char*) malloc((1 + strlen(name)) * sizeof(char));
+        strcpy(tmp, name);
+
+        // Mise à jour de la variable de boucle avec le i-ème élément de la liste.
+        assert(Shell_update_var(self->id_var, tmp));
+        free(tmp); // Libération de la copie.
+
+        // Exécution de bloc de commandes.
+        int val_ret = Shell_execute_all(self->commands);
+        if (val_ret) // Si la valeur de retour n'est pas nulle.
+            return val_ret; // On arrête l'exécution.
+
+    }
+
+    return 0; 
+
+}
+
 // Execute.
 static int For_execute(Command self_){
         
-    //// Ecrire le corps de la fonction ici ! 
-       
+    int ret = 0;
 
-    return 0;
+    // Conversion en objet For
+    For self = (For) self_;
+
+    // Ouverture du dossier
+        // Récupération du chemin
+        char* tmp = obj_to_string((String) ArrayList_get(self->args, self->index_dir, 0));
+        char* dir = malloc((1 + strlen(tmp))*sizeof(char));
+        assert(strcpy(dir, tmp));
+
+    DIR* dir_opened = opendir(dir);
+    if (!dir_opened){ // Si le répertoire ne s'ouvre pas.
+        // Affichage de l'erreur
+        write(2, "\e[1;31m", 7);
+        char tmp[50];
+        snprintf(tmp, 50, "Ouverture du répertoire \"%s\"", dir);
+        perror(tmp);
+        write(2, "\e[1;0m", 6);
+        return 1;
+    }
+
+    // List qui va contenir tous les fichiers qui seront traités
+    ArrayList all_files = obj_new(_ArrayList_, 0);
+    // Récupération des fichiers qui seront utilisés.
+    For_get_files(self, dir_opened, &dir, all_files);
+
+    // Exécution du bloc des commandes pour chaque fichier.
+    ret = For_execute_for_each_file(self, all_files);
+
+    // Libération des ressources.
+    obj_destroy(all_files);
+    closedir(dir_opened);
+    free(dir);
+    return ret;
 }
 
 static void For_print (const void* self_) {
