@@ -12,6 +12,7 @@
 #include <sys/wait.h>
 #include <dirent.h>
 #include <unistd.h>
+#include <fcntl.h>
 #include <readline/readline.h>
 #include <readline/history.h>
 #include <assert.h>
@@ -108,10 +109,23 @@ static ArrayList Ids_tables;
 static ArrayList Ids_values_table;
 
 
-
 //****************** Fonctions **************** */
 /********************************************** */
 
+/**
+ * Fonction qui va écire dans le shell tout le prompt suivi de la 
+ * d'une ligne rempli de '~' jusqu'à la dernière position pointé 
+ * par `usr_prompt` (position qui a déclanché l'erreur de syntaxe).
+ * 
+ * Cette fonction permet de signaler une erreur de syntaxe dans 
+ * la saisie de l'utilisateur.
+ *
+ * @param usr_prompt Le pointeur original de la saisie de l'utilisateur (celui 
+ * qui a été parsé donc décalé jusqu'au caractère déclanchant l'erreur).
+ *
+ * @param cp_prompt Une copie de la saisie de l'utilisateur (permettant d'indiquer 
+ * sur la chaine le caractère qui a déclancher l'erreur.)
+ */
 static void Shell_print_syntaxe_error(char* usr_prompt, char* cp_prompt){
 
     char tmp[] = "\nErreur de syntaxe :\n\n\t\e[1;35m";
@@ -157,10 +171,9 @@ int Shell_start(){
             if (!file_principal) {// Si la file renvoyée est NULL alors il y a une erreur de syntaxe.
                 Shell_print_syntaxe_error(usr_prompt, cp_prompt);
                 previous_cmd_finish = 1;
-                free(cp_prompt); continue;
             }
 
-            //obj_print(file_principal); printf("\n"); // debug
+            // obj_print(file_principal); printf("\n"); // debug
             previous_cmd_finish = Shell_execute_all(file_principal); // Exécution de la file principale.
             obj_destroy(file_principal); // Destruction de la file principale.
             free(cp_prompt); // Destruction du pointeur alloué par readline.
@@ -335,7 +348,106 @@ ArrayList Shell_parse(char **prompt){
     free(char_lu);
     return file_principale;
 }
+
+/**
+ * Fonction qui va échanger les descripteurs de deux tubes.
+ */
+static void swap_pipes(int* const pipe1, int* const pipe2){
     
+    int tmp[2];
+    tmp[0] = pipe1[0];
+    tmp[1] = pipe1[1];
+
+    pipe1[0] = pipe2[0];
+    pipe1[1] = pipe2[1];
+
+    pipe2[0] = tmp[0];
+    pipe2[1] = tmp[1];
+
+}   
+   
+/**
+ * Fonction qui va s'occuper de faire les redirections des entrées 
+ * et sorties standards sur les tubes (si elles sont possibles).
+ *
+ * @param pipe1 Les descripteurs du premier tube (tube entrant).
+ * @param pipe2 Les descripteurs du second tube (tube sortant).
+ * @param stdout_def La duplication de la sortie standard (permet de remettre la sortie 
+ * de départ).
+ *
+ * @param command_index La position de la commande dans la pipeline (pour pourvoir savoir quelles redirections lui appliquer).
+ * @param pipleline_size La taille de la pipeline.
+ */
+static void pipe_redirection(int* pipe1, const int* const pipe2, const int stdout_def, const int command_index, const size_t pipeline_size ){
+    
+    /**
+     * Remplacement de la sortie standard par le coté 'écriture' 
+     * du tube `pipe2`. (le second tube, tube de sortie)
+     *
+     * Sauf la dernière commande qui est redirigée vers le `stdout` 
+     * par défaut.
+     */
+    if( command_index < pipeline_size - 1 ){
+        if( dup2(pipe2[1], 1) == -1 )
+            perror("dup2 - stdout");
+    }
+    else{ // Ce cas conserne la dernière commande
+        if ( dup2(stdout_def, 1) == -1) // Redirection vers `stdout`
+            perror("dup2 - Redirection vers `stdout` de la dernière commande");
+    }
+    
+    /**
+     * Remplacement de l'entrée standard par le coté 'lecture' 
+     * du tube `pipe1`. (le premier tube, tube d'entrée).
+     *
+     * La première commande ne subit aucune redirection.
+     */
+    if ( command_index > 0 ){ // Première commande ignorée.
+        if ( dup2(pipe1[0], 0) == -1 )
+            perror("dup2 - stdin");
+    }
+
+    /**
+     * L'écrivain de `pipe1` doit impérativement être fermé sinon 
+     * la commande ne pourra jamais recevoir EOF dans au moment 
+     * de la lecture du tube, qui est son `stdin` (en général 
+     * ce n'est qu'à partir de la seconde commande du pipleline
+     * que pipe1[0] est le `stdin`, voir ci-dessus).
+     */
+    close(pipe1[1]); // Peut retourner -1 s'il est déjà fermé (Ex: redirection au sein de Command_execute())
+    
+    
+}
+
+/**
+ * @brief Fonction qui va afficher des informations sur l'endroit 
+ * où sont redirigées la sortie et l'entrée standard.
+ *
+ * Cette fonction peut servir pour débuger.
+ * 
+ * @param cmd La commande actuelle.
+ * @param Le numéro du terminal (tout est écrit sur le terminal directement et non dans stdout)
+ */
+void show_std_new_location(Command cmd, int term_num){
+    
+    char ter[20];
+    snprintf(ter, 20, "/dev/pts/%d", term_num);
+
+    int fd = open(ter, O_RDWR);
+    char tmp[400];
+    char target_stdin[128];
+    char target_stdout[128];
+    ssize_t len1 = readlink("/proc/self/fd/0", target_stdin, sizeof(target_stdin) - 1);
+    ssize_t len2 = readlink("/proc/self/fd/1", target_stdout, sizeof(target_stdout) - 1);
+    target_stdin[len1] = '\0';
+    target_stdout[len2] = '\0';
+    snprintf(tmp, 400, "\e[1;36mCommande : %s\nDescripteur stdin : %s | stdout : %s\n", cmd->name, target_stdin , target_stdout);;
+    write(fd, tmp, strlen(tmp));
+    write(fd, "\e[1;0m\n", 7);
+    close(fd);
+
+}
+
 /**
  * @internal
  * @brief Fonction qui va exécuter toutes les pipelines d'une 
@@ -356,13 +468,29 @@ int Shell_execute_all(ArrayList struct_cmds){
 
     // Sert à stocker le status des processus enfant afin de retourner le dernier éxecuter.
     int last_status = 0;
-
+    
+    /**
+     * Création de deux tubes, entrant et sortant dont l'un (pipe1) sera celui qui 
+     * remplacera `stdin` (tube entrant, en lecture) et l'autre (pipe2) remplacera 
+     * `stdout` (tube sortant, en écriture).
+     */
     int pipe1[2];
     int pipe2[2];
     
     pipe(pipe1);
     pipe(pipe2);
 
+
+    /**
+     * On fait une copie des descripteurs 
+     * de stdin et stdout actuels.
+     *
+     * La copie est faite ici car `stdin` et `stdout` peuvent être redirigées
+     * avant l'exécution, 
+     *      Ex: pwd | for i in . {ftype $i|wc} | sort.
+     * Dans cet exemple lors de l'éxécution de {ftype $i|wc} stdin et stdout 
+     * seront des tubes.
+     */
     int stdin_def = dup(0);
     int stdout_def = dup(1);
 
@@ -374,60 +502,49 @@ int Shell_execute_all(ArrayList struct_cmds){
         
         for (size_t j = 0; j<ArrayList_size(pipeline); j++){
             
-            if( j < ArrayList_size(pipeline) - 1 ){
-                if( dup2(pipe2[1], 1) == -1 )
-                    perror("dup2 - stdout");
-            }
-            else{
-                dup2(stdout_def, 1);
-            }
-            
-            if ( j > 0 ){
-                if ( dup2(pipe1[0], 0) == -1 )
-                    perror("dup2 - stdin");
-            }
-             
-            close(pipe1[1]); // Peu retourner -1 s'il est déjà ferme (Ex: redirection au sein de Command_execute())
+            // Redirection des entrées et sortie des commande la pipeline.
+            pipe_redirection(pipe1, pipe2, stdout_def, j, ArrayList_size(pipeline));
 
             // Récupération de la commande.
             Command cmd = ArrayList_get(pipeline, j, 0); 
-            
+
+            //Debug
+            // show_std_new_location(cmd, 2);
+            assert(fcntl(pipe1[1], F_GETFD)==-1); // pipe1[1] doit toujours être fermé !
+
             // Exécution de la commande.
             last_status = Command_execute(cmd);
             if(last_status != 0)
                 goto exit;
-        
-            close(pipe1[0]);
-
-            pipe(pipe1);
-//            printf("Avant : \nPipe1 (%d, %d)\nPipe2 (%d, %d)\n\n", pipe1[0], pipe1[1], pipe2[0], pipe2[1]);
             
-            int tmp[2];
-            tmp[0] = pipe1[0];
-            tmp[1] = pipe1[1];
+            // Pipe1 est inutilisable car son écrivain est fermé (donc il en faut un nouveau)
+            close(pipe1[0]); 
+            
+            // Pas besoin de créer un Pipe pour le dernier (c'est juste une optimisation)
+            if (j < ArrayList_size(pipeline)-1) 
+                pipe(pipe1);
+            
+            // échange de pipe1 et pipe2.
+            swap_pipes(pipe1, pipe2);
 
-            pipe1[0] = pipe2[0];
-            pipe1[1] = pipe2[1];
-
-            pipe2[0] = tmp[0];
-            pipe2[1] = tmp[1];
-
-//            printf("Après :\nPipe1 (%d, %d)\nPipe2 (%d, %d)\n\n", pipe1[0], pipe1[1], pipe2[0], pipe2[1]);
-        
         }
         
-        // Remise de stdin et stdout
+        // Remise de stdin comme entrée standard (stdout est toujours remis après la dernière commande chaque pipeline)
         dup2(stdin_def, 0);
-        dup2(stdout_def, 1);
     }
     
     exit:
     dup2(stdin_def, 0);
     dup2(stdout_def, 1);
+    // Fermeture des tube utilisés
     close(pipe1[0]);
     close(pipe2[0]);
     close(pipe1[1]);
     close(pipe2[1]);
+
+    // fermeture des copie des descFic de stdin et stdout copiés (surtout si c'était des tubes, à fermer absolument !)
+    close(stdin_def);
+    close(stdout_def);
     return last_status;
 }
 
