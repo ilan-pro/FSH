@@ -6,6 +6,7 @@
  */
 #include "shell.h"
 #include <stddef.h>
+#include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
 #include <sys/wait.h>
@@ -356,24 +357,77 @@ int Shell_execute_all(ArrayList struct_cmds){
     // Sert à stocker le status des processus enfant afin de retourner le dernier éxecuter.
     int last_status = 0;
 
+    int pipe1[2];
+    int pipe2[2];
+    
+    pipe(pipe1);
+    pipe(pipe2);
+
+    int stdin_def = dup(0);
+    int stdout_def = dup(1);
+
     // Parcours de la liste des pipeline (toute récupération se fait en O(1))
     for (size_t i = 0; i<ArrayList_size(struct_cmds); i++){
-
+        
         // on récupère la list chaîné de chaque pipeline
         ArrayList pipeline = ArrayList_get(struct_cmds, i, 0);
         
         for (size_t j = 0; j<ArrayList_size(pipeline); j++){
             
+            if( j < ArrayList_size(pipeline) - 1 ){
+                if( dup2(pipe2[1], 1) == -1 )
+                    perror("dup2 - stdout");
+            }
+            else{
+                dup2(stdout_def, 1);
+            }
+            
+            if ( j > 0 ){
+                if ( dup2(pipe1[0], 0) == -1 )
+                    perror("dup2 - stdin");
+            }
+             
+            close(pipe1[1]); // Peu retourner -1 s'il est déjà ferme (Ex: redirection au sein de Command_execute())
+
             // Récupération de la commande.
             Command cmd = ArrayList_get(pipeline, j, 0); 
             
             // Exécution de la commande.
             last_status = Command_execute(cmd);
             if(last_status != 0)
-                return last_status;
-        }
-    }
+                goto exit;
+        
+            close(pipe1[0]);
 
+            pipe(pipe1);
+//            printf("Avant : \nPipe1 (%d, %d)\nPipe2 (%d, %d)\n\n", pipe1[0], pipe1[1], pipe2[0], pipe2[1]);
+            
+            int tmp[2];
+            tmp[0] = pipe1[0];
+            tmp[1] = pipe1[1];
+
+            pipe1[0] = pipe2[0];
+            pipe1[1] = pipe2[1];
+
+            pipe2[0] = tmp[0];
+            pipe2[1] = tmp[1];
+
+//            printf("Après :\nPipe1 (%d, %d)\nPipe2 (%d, %d)\n\n", pipe1[0], pipe1[1], pipe2[0], pipe2[1]);
+        
+        }
+        
+        // Remise de stdin et stdout
+        dup2(stdin_def, 0);
+        dup2(stdout_def, 1);
+    }
+    
+    exit:
+    dup2(stdin_def, 0);
+    dup2(stdout_def, 1);
+    close(pipe1[0]);
+    close(pipe2[0]);
+    close(pipe1[1]);
+    close(pipe2[1]);
     return last_status;
 }
 
@@ -451,7 +505,7 @@ static void update_prompt(){
     snprintf(val_ret, 10, "%d", previous_cmd_finish);
 
     if (len>PROMPT_CHAR_LIMITS){
-        // On pointe vers les 33 derniers caracètres (Les 3 sont pour les  ...)
+        // On pointe vers les 30 derniers caracètres (7 = 3 sont pour les ... + '[' + ']' + '$' + ' ' )
         tr = working_dir + (len-PROMPT_CHAR_LIMITS+7+strlen(val_ret));
         snprintf(path, 30, "...%s", tr);
     }
