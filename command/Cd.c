@@ -12,18 +12,12 @@
  */
 
 
-#include <assert.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <stdio.h>
-#include <string.h>
 #include "../shell.h"
+#include "../base/String.h"
 
 /** @cond HIDE_THIS*/
 #define CD_CLASS "Cd"
 #include "Cd.h"
-#include "../base/String.h"
-#include "../base/new.h"
 /**@endcond*/
 
 

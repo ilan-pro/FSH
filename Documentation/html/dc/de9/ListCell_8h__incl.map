@@ -1,6 +1,11 @@
 <map id="base/ListCell.h" name="base/ListCell.h">
-<area shape="rect" id="node1" title="Fichier d&#39;en&#45;tête contenant les déclarations de toutes les méthodes utilisées pour manipuler les obje..." alt="" coords="33,5,151,32"/>
-<area shape="rect" id="node2" href="$d4/d05/Class_8h.html" title="Fichier d&#39;en&#45;tête contenant la définition du type Class." alt="" coords="57,80,127,107"/>
+<area shape="rect" id="node1" title="Fichier d&#39;en&#45;tête contenant les déclarations de toutes les méthodes utilisées pour manipuler les obje..." alt="" coords="271,5,388,32"/>
+<area shape="rect" id="node2" href="$d4/d05/Class_8h.html" title="Fichier d&#39;en&#45;tête contenant la définition du type Class." alt="" coords="295,80,364,107"/>
 <area shape="rect" id="node3" title=" " alt="" coords="5,155,80,181"/>
 <area shape="rect" id="node4" title=" " alt="" coords="104,155,179,181"/>
+<area shape="rect" id="node5" title=" " alt="" coords="203,155,269,181"/>
+<area shape="rect" id="node6" title=" " alt="" coords="294,155,365,181"/>
+<area shape="rect" id="node7" title=" " alt="" coords="389,155,464,181"/>
+<area shape="rect" id="node8" title=" " alt="" coords="488,155,563,181"/>
+<area shape="rect" id="node9" title=" " alt="" coords="587,155,658,181"/>
 </map>

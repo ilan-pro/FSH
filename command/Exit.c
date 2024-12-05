@@ -9,18 +9,10 @@
  * `_Exit_` désigne la classe des commandes exit. et la chaine "exit" est le nom de la commande.
  */
 
-
-#include <assert.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <stdio.h> 
-#include <string.h>
-
 /** @cond HIDE_THIS*/
 #define EXIT_CLASS "Exit"
 #include "Exit.h"
 #include "../base/String.h"
-#include "../base/new.h"
 #include "../shell.h"
 /**@endcond*/
 

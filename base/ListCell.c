@@ -6,10 +6,7 @@
  * En plus des méthodes publique de `ListCell.h`.
  */
 
-#include <assert.h>
-#include <unistd.h>
 #include "new.h"
-#include <stdio.h>
 
 /**@cond HIDE_THIS*/
 #define LISTCELL_CLASS "ListCell"

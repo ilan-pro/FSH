@@ -19,7 +19,7 @@
 #ifndef ARRAY_LIST_H
 #define ARRAY_LIST_H
 
-#include "Class.h"
+#include "new.h"
 #ifdef ARRAY_LIST_CLASS 
 
     #define ARRAY_LIST_FIELDS \

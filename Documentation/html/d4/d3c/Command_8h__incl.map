@@ -1,7 +1,13 @@
 <map id="command/Command.h" name="command/Command.h">
-<area shape="rect" id="node1" title="Fichier d&#39;en&#45;tête contenant les déclarations des variables publiques et de toutes les méthodes public..." alt="" coords="7,5,177,32"/>
-<area shape="rect" id="node2" href="$d5/d12/ArrayList_8h.html" title="Fichier d&#39;en&#45;tête contenant les déclarations des variables publiques et de toutes les méthodes public..." alt="" coords="23,80,161,107"/>
-<area shape="rect" id="node3" href="$d4/d05/Class_8h.html" title="Fichier d&#39;en&#45;tête contenant la définition du type Class." alt="" coords="57,155,127,181"/>
-<area shape="rect" id="node4" title=" " alt="" coords="5,229,80,256"/>
-<area shape="rect" id="node5" title=" " alt="" coords="104,229,179,256"/>
+<area shape="rect" id="node1" title="Fichier d&#39;en&#45;tête contenant les déclarations des variables publiques et de toutes les méthodes public..." alt="" coords="244,5,415,32"/>
+<area shape="rect" id="node2" href="$d5/d12/ArrayList_8h.html" title="Fichier d&#39;en&#45;tête contenant les déclarations des variables publiques et de toutes les méthodes public..." alt="" coords="260,80,399,107"/>
+<area shape="rect" id="node3" href="$d7/d58/new_8h.html" title="Fichier d&#39;en&#45;tête contenant les déclarations de toutes les méthodes génériques agissant sur des objet..." alt="" coords="299,155,359,181"/>
+<area shape="rect" id="node4" href="$d4/d05/Class_8h.html" title="Fichier d&#39;en&#45;tête contenant la définition du type Class." alt="" coords="295,229,364,256"/>
+<area shape="rect" id="node5" title=" " alt="" coords="5,304,80,331"/>
+<area shape="rect" id="node6" title=" " alt="" coords="104,304,179,331"/>
+<area shape="rect" id="node7" title=" " alt="" coords="203,304,269,331"/>
+<area shape="rect" id="node8" title=" " alt="" coords="294,304,365,331"/>
+<area shape="rect" id="node9" title=" " alt="" coords="389,304,464,331"/>
+<area shape="rect" id="node10" title=" " alt="" coords="488,304,563,331"/>
+<area shape="rect" id="node11" title=" " alt="" coords="587,304,658,331"/>
 </map>

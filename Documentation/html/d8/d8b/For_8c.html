@@ -77,13 +77,8 @@ $(function() {
 
 <p>Fichier contenant l'implémentation des fonctions déclarées dans <code><a class="el" href="../../d8/d41/For_8h.html" title="Fichier d&#39;en-tête contenant les déclarations des variables publiques et de toutes les méthodes public...">For.h</a></code>  
 <a href="#details">Plus de détails...</a></p>
-<div class="textblock"><code>#include &lt;assert.h&gt;</code><br />
-<code>#include &lt;stdlib.h&gt;</code><br />
-<code>#include &lt;stdio.h&gt;</code><br />
-<code>#include &lt;unistd.h&gt;</code><br />
-<code>#include &lt;string.h&gt;</code><br />
+<div class="textblock"><code>#include &lt;dirent.h&gt;</code><br />
 <code>#include &quot;<a class="el" href="../../df/d03/shell_8h_source.html">../shell.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="../../d7/d58/new_8h_source.html">../base/new.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="../../d9/dba/String_8h_source.html">../base/String.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="../../d8/d41/For_8h_source.html">For.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
@@ -91,21 +86,22 @@ Graphe des dépendances par inclusion de For.c:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../d1/d9e/For_8c__incl.png" border="0" usemap="#acommand_2For_8c" alt=""/></div>
 <map name="acommand_2For_8c" id="acommand_2For_8c">
-<area shape="rect" title="Fichier contenant l&#39;implémentation des fonctions déclarées dans For.h" alt="" coords="365,5,486,32"/>
-<area shape="rect" title=" " alt="" coords="5,80,80,107"/>
-<area shape="rect" title=" " alt="" coords="105,80,175,107"/>
-<area shape="rect" title=" " alt="" coords="200,80,267,107"/>
-<area shape="rect" title=" " alt="" coords="291,80,365,107"/>
-<area shape="rect" title=" " alt="" coords="390,80,461,107"/>
-<area shape="rect" href="../../df/d03/shell_8h.html" title="Fichier contenant la déclration des variables globales du shell ainsi que les fonctions utilisées par..." alt="" coords="661,155,739,181"/>
-<area shape="rect" href="../../d7/d58/new_8h.html" title="Fichier d&#39;en&#45;tête contenant les déclarations de toutes les méthodes génériques agissant sur des objet..." alt="" coords="475,229,581,256"/>
-<area shape="rect" href="../../d9/dba/String_8h.html" title="Fichier d&#39;en&#45;tête contenant les déclarations des variables publiques et de toutes les méthodes public..." alt="" coords="763,155,882,181"/>
-<area shape="rect" href="../../d8/d41/For_8h.html" title="Fichier d&#39;en&#45;tête contenant les déclarations des variables publiques et de toutes les méthodes public..." alt="" coords="548,80,601,107"/>
-<area shape="rect" href="../../d5/d12/ArrayList_8h.html" title="Fichier d&#39;en&#45;tête contenant les déclarations des variables publiques et de toutes les méthodes public..." alt="" coords="621,229,747,256"/>
-<area shape="rect" href="../../d4/d05/Class_8h.html" title="Fichier d&#39;en&#45;tête contenant la définition du type Class." alt="" coords="649,304,719,331"/>
-<area shape="rect" title=" " alt="" coords="597,379,672,405"/>
-<area shape="rect" title=" " alt="" coords="696,379,771,405"/>
-<area shape="rect" href="../../d1/d55/Command_8h.html" title="Fichier d&#39;en&#45;tête contenant les déclarations des variables publiques et de toutes les méthodes public..." alt="" coords="536,155,637,181"/>
+<area shape="rect" title="Fichier contenant l&#39;implémentation des fonctions déclarées dans For.h" alt="" coords="223,5,345,32"/>
+<area shape="rect" title=" " alt="" coords="143,80,215,107"/>
+<area shape="rect" href="../../df/d03/shell_8h.html" title="Fichier contenant la déclration des variables globales du shell ainsi que les fonctions utilisées par..." alt="" coords="164,155,241,181"/>
+<area shape="rect" href="../../d9/dba/String_8h.html" title="Fichier d&#39;en&#45;tête contenant les déclarations des variables publiques et de toutes les méthodes public..." alt="" coords="345,229,463,256"/>
+<area shape="rect" href="../../d8/d41/For_8h.html" title="Fichier d&#39;en&#45;tête contenant les déclarations des variables publiques et de toutes les méthodes public..." alt="" coords="289,80,343,107"/>
+<area shape="rect" href="../../d5/d12/ArrayList_8h.html" title="Fichier d&#39;en&#45;tête contenant les déclarations des variables publiques et de toutes les méthodes public..." alt="" coords="194,229,321,256"/>
+<area shape="rect" href="../../d7/d58/new_8h.html" title="Fichier d&#39;en&#45;tête contenant les déclarations de toutes les méthodes génériques agissant sur des objet..." alt="" coords="266,304,326,331"/>
+<area shape="rect" href="../../d4/d05/Class_8h.html" title="Fichier d&#39;en&#45;tête contenant la définition du type Class." alt="" coords="295,379,364,405"/>
+<area shape="rect" title=" " alt="" coords="5,453,80,480"/>
+<area shape="rect" title=" " alt="" coords="104,453,179,480"/>
+<area shape="rect" title=" " alt="" coords="203,453,269,480"/>
+<area shape="rect" title=" " alt="" coords="294,453,365,480"/>
+<area shape="rect" title=" " alt="" coords="389,453,464,480"/>
+<area shape="rect" title=" " alt="" coords="488,453,563,480"/>
+<area shape="rect" title=" " alt="" coords="587,453,658,480"/>
+<area shape="rect" href="../../d1/d55/Command_8h.html" title="Fichier d&#39;en&#45;tête contenant les déclarations des variables publiques et de toutes les méthodes public..." alt="" coords="265,155,367,181"/>
 </map>
 </div>
 </div><table class="memberdecls">
@@ -126,12 +122,6 @@ Variables</h2></td></tr>
 <tr class="memitem:a2ac2f94c439d462de131635ede59ea09"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="../../d4/d05/Class_8h.html#a6ec2a8ccaeb1e924a80036ec40760377">Class</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d8b/For_8c.html#a2ac2f94c439d462de131635ede59ea09">_For_</a> = &amp;__For__</td></tr>
 <tr class="memdesc:a2ac2f94c439d462de131635ede59ea09"><td class="mdescLeft">&#160;</td><td class="mdescRight">Classe des commandes for.  <a href="../../d8/d8b/For_8c.html#a2ac2f94c439d462de131635ede59ea09">Plus de détails...</a><br /></td></tr>
 <tr class="separator:a2ac2f94c439d462de131635ede59ea09"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afb7f82b11e81f4aa3b27ad1fcd9c5d64"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d6/d2e/ArrayList_8c.html#a9136afaa09bea0a69505480c5fb29d4b">ArrayList</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d8b/For_8c.html#afb7f82b11e81f4aa3b27ad1fcd9c5d64">For_ids</a></td></tr>
-<tr class="memdesc:afb7f82b11e81f4aa3b27ad1fcd9c5d64"><td class="mdescLeft">&#160;</td><td class="mdescRight">Il s'agit de la liste qui va contenir les identificateurs des différentes variables utilisées dans les boucles <code>for</code>.  <a href="../../d8/d8b/For_8c.html#afb7f82b11e81f4aa3b27ad1fcd9c5d64">Plus de détails...</a><br /></td></tr>
-<tr class="separator:afb7f82b11e81f4aa3b27ad1fcd9c5d64"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4c98fc4161d023e16958897d870a77be"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d6/d2e/ArrayList_8c.html#a9136afaa09bea0a69505480c5fb29d4b">ArrayList</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d8b/For_8c.html#a4c98fc4161d023e16958897d870a77be">For_files</a></td></tr>
-<tr class="memdesc:a4c98fc4161d023e16958897d870a77be"><td class="mdescLeft">&#160;</td><td class="mdescRight">Il s'agit de la liste contenant les noms des fichiers en cours de traitement dans la boucle <code>for</code>.  <a href="../../d8/d8b/For_8c.html#a4c98fc4161d023e16958897d870a77be">Plus de détails...</a><br /></td></tr>
-<tr class="separator:a4c98fc4161d023e16958897d870a77be"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Description détaillée</h2>
 <div class="textblock"><p>Fichier contenant l'implémentation des fonctions déclarées dans <code><a class="el" href="../../d8/d41/For_8h.html" title="Fichier d&#39;en-tête contenant les déclarations des variables publiques et de toutes les méthodes public...">For.h</a></code> </p>
@@ -173,41 +163,6 @@ Variables</h2></td></tr>
 <p>Classe des commandes for. </p>
 <p><code>for</code> est la commande qui permet d'afficher le chemin absolue du vers le répertoire dans lequel on se trouve.</p>
 <p>Construction : <code><b>obj_new(<em>For</em>, "for");</b></code> <code><a class="el" href="../../dd/d05/struct__For__.html" title="Classe For de la commande For qui affiche le chemin absolu du répertoire courant.">_For_</a></code> désigne la classe des commandes for. et la chaine "for" est le nom de la commande. </p>
-
-</div>
-</div>
-<a id="a4c98fc4161d023e16958897d870a77be"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4c98fc4161d023e16958897d870a77be">&#9670;&nbsp;</a></span>For_files</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="../../d6/d2e/ArrayList_8c.html#a9136afaa09bea0a69505480c5fb29d4b">ArrayList</a> For_files</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Il s'agit de la liste contenant les noms des fichiers en cours de traitement dans la boucle <code>for</code>. </p>
-<p>Il s'agit de la liste contenant les noms des fichiers en cours de traitement dans la boucle <code>for</code>. </p>
-
-</div>
-</div>
-<a id="afb7f82b11e81f4aa3b27ad1fcd9c5d64"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afb7f82b11e81f4aa3b27ad1fcd9c5d64">&#9670;&nbsp;</a></span>For_ids</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="../../d6/d2e/ArrayList_8c.html#a9136afaa09bea0a69505480c5fb29d4b">ArrayList</a> For_ids</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Il s'agit de la liste qui va contenir les identificateurs des différentes variables utilisées dans les boucles <code>for</code>. </p>
-<p>Il s'agit de la liste qui va contenir les identificateurs des différentes variables utilisées dans les boucles <code>for</code>.</p>
-<p>L'indice de l'identificateur est le même que celui du nom du fichier contenu dans L'autre liste. </p>
 
 </div>
 </div>

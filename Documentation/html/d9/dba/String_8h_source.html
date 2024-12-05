@@ -72,45 +72,44 @@ $(function() {
 <div class="contents">
 <a href="../../d9/dba/String_8h.html">Aller à la documentation de ce fichier.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="../../d4/d05/Class_8h.html">Class.h</a>&quot;</span></div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#ifndef STRING_H</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#define STRING_H</span></div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#ifdef STRING_CLASS</span></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    </div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">    #define STRING_FIELD \</span></div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">        const int size; \</span></div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">        const char* str; </span></div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    </div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#else</span></div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160; </div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="keyword">typedef</span> <span class="keyword">struct </span>string_private {</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        <span class="keyword">const</span> <span class="keywordtype">char</span>* str;</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    } __string_private;</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    </div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="preprocessor">    #define STRING_H_FIELD  \</span></div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="preprocessor">        const int size; \</span></div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="preprocessor">        \</span></div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="preprocessor">        const char _[sizeof(__string_private)]; </span><span class="comment">// Les champs privés rendus opaques par un pointeur vers une zone &quot;vide&quot;.</span></div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    </div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="../../db/dfa/struct__String__.html">_String_</a> {</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        <span class="keyword">const</span> <a class="code" href="../../d8/d36/struct__Class__.html">Class</a> <a class="code" href="../../db/dfa/struct__String__.html#aeef4416163c021d74dd4bc31ac67ebfa">_String_</a>;</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        STRING_H_FIELD</div>
-<div class="line"><a name="l00078"></a><span class="lineno"><a class="line" href="../../d9/dba/String_8h.html#aef4dfc8829b0dbeb22460f55ddf63556">   78</a></span>&#160;    }* <a class="code" href="../../d9/dba/String_8h.html#aef4dfc8829b0dbeb22460f55ddf63556">String</a>;</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160; </div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    </div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    <span class="keyword">extern</span> <span class="keyword">const</span> <a class="code" href="../../d8/d36/struct__Class__.html">Class</a> <a class="code" href="../../d9/dba/String_8h.html#a4214d31023a4324712b709579c53fedb">_String_</a>;</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160; </div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#ifndef STRING_H</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#define STRING_H</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#ifdef STRING_CLASS</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    </div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">    #define STRING_FIELD \</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">        const int size; \</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">        const char* str; </span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    </div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor">#else</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <span class="keyword">typedef</span> <span class="keyword">struct </span>string_private {</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        <span class="keyword">const</span> <span class="keywordtype">char</span>* str;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    } __string_private;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    </div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="preprocessor">    #define STRING_H_FIELD  \</span></div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="preprocessor">        const int size; \</span></div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="preprocessor">        \</span></div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="preprocessor">        const char _[sizeof(__string_private)]; </span><span class="comment">// Les champs privés rendus opaques par un pointeur vers une zone &quot;vide&quot;.</span></div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    </div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="../../db/dfa/struct__String__.html">_String_</a> {</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        <span class="keyword">const</span> <a class="code" href="../../d8/d36/struct__Class__.html">Class</a> <a class="code" href="../../db/dfa/struct__String__.html#aeef4416163c021d74dd4bc31ac67ebfa">_String_</a>;</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        STRING_H_FIELD</div>
+<div class="line"><a name="l00077"></a><span class="lineno"><a class="line" href="../../d9/dba/String_8h.html#aef4dfc8829b0dbeb22460f55ddf63556">   77</a></span>&#160;    }* <a class="code" href="../../d9/dba/String_8h.html#aef4dfc8829b0dbeb22460f55ddf63556">String</a>;</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160; </div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    </div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    <span class="keyword">extern</span> <span class="keyword">const</span> <a class="code" href="../../d8/d36/struct__Class__.html">Class</a> <a class="code" href="../../d9/dba/String_8h.html#a4214d31023a4324712b709579c53fedb">_String_</a>;</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160; </div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="ttc" id="aClass_8h_html"><div class="ttname"><a href="../../d4/d05/Class_8h.html">Class.h</a></div><div class="ttdoc">Fichier d'en-tête contenant la définition du type Class.</div></div>
-<div class="ttc" id="aString_8h_html_a4214d31023a4324712b709579c53fedb"><div class="ttname"><a href="../../d9/dba/String_8h.html#a4214d31023a4324712b709579c53fedb">_String_</a></div><div class="ttdeci">const Class _String_</div><div class="ttdef"><b>Definition:</b> String.c:109</div></div>
+<div class="ttc" id="aString_8h_html_a4214d31023a4324712b709579c53fedb"><div class="ttname"><a href="../../d9/dba/String_8h.html#a4214d31023a4324712b709579c53fedb">_String_</a></div><div class="ttdeci">const Class _String_</div><div class="ttdef"><b>Definition:</b> String.c:106</div></div>
 <div class="ttc" id="aString_8h_html_aef4dfc8829b0dbeb22460f55ddf63556"><div class="ttname"><a href="../../d9/dba/String_8h.html#aef4dfc8829b0dbeb22460f55ddf63556">String</a></div><div class="ttdeci">struct _String_ * String</div></div>
-<div class="ttc" id="astruct__Class___html"><div class="ttname"><a href="../../d8/d36/struct__Class__.html">_Class_</a></div><div class="ttdoc">Structure représentant la classe dans laquelle appratient un objet.</div><div class="ttdef"><b>Definition:</b> Class.h:52</div></div>
-<div class="ttc" id="astruct__String___html"><div class="ttname"><a href="../../db/dfa/struct__String__.html">_String_</a></div><div class="ttdoc">Classe String des chaines de caractères.</div><div class="ttdef"><b>Definition:</b> String.c:88</div></div>
-<div class="ttc" id="astruct__String___html_aeef4416163c021d74dd4bc31ac67ebfa"><div class="ttname"><a href="../../db/dfa/struct__String__.html#aeef4416163c021d74dd4bc31ac67ebfa">_String_::_String_</a></div><div class="ttdeci">const Class _String_</div><div class="ttdoc">Classe d'un objet String.</div><div class="ttdef"><b>Definition:</b> String.c:92</div></div>
+<div class="ttc" id="astruct__Class___html"><div class="ttname"><a href="../../d8/d36/struct__Class__.html">_Class_</a></div><div class="ttdoc">Structure représentant la classe dans laquelle appratient un objet.</div><div class="ttdef"><b>Definition:</b> Class.h:57</div></div>
+<div class="ttc" id="astruct__String___html"><div class="ttname"><a href="../../db/dfa/struct__String__.html">_String_</a></div><div class="ttdoc">Classe String des chaines de caractères.</div><div class="ttdef"><b>Definition:</b> String.c:85</div></div>
+<div class="ttc" id="astruct__String___html_aeef4416163c021d74dd4bc31ac67ebfa"><div class="ttname"><a href="../../db/dfa/struct__String__.html#aeef4416163c021d74dd4bc31ac67ebfa">_String_::_String_</a></div><div class="ttdeci">const Class _String_</div><div class="ttdoc">Classe d'un objet String.</div><div class="ttdef"><b>Definition:</b> String.c:89</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

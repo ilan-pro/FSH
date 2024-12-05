@@ -6,6 +6,14 @@
 #include "Exit.h"
 #include "Cd.h"
 #include "Ftype.h"
+#include "For.h"
+#include "If.h"
+
+/**
+ * Macro contenant le nombre total de commandes 
+ * interne du shell.
+ */
+#define ALL_COMMAND_SIZE 6
 
 /**
  * @brief L'ensemble de toutes les commandes internes du shell.

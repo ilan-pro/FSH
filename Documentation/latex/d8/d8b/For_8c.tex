@@ -5,17 +5,11 @@
 Fichier contenant l\textquotesingle{}implémentation des fonctions déclarées dans {\ttfamily \mbox{\hyperlink{For_8h}{For.\+h}}}  
 
 
-{\ttfamily \#include $<$assert.\+h$>$}\newline
-{\ttfamily \#include $<$stdlib.\+h$>$}\newline
-{\ttfamily \#include $<$stdio.\+h$>$}\newline
-{\ttfamily \#include $<$unistd.\+h$>$}\newline
-{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$dirent.\+h$>$}\newline
 {\ttfamily \#include \char`\"{}../shell.\+h\char`\"{}}\newline
-{\ttfamily \#include \char`\"{}../base/new.\+h\char`\"{}}\newline
 {\ttfamily \#include \char`\"{}../base/\+String.\+h\char`\"{}}\newline
 {\ttfamily \#include \char`\"{}For.\+h\char`\"{}}\newline
-Graphe des dépendances par inclusion de For.\+c\+:
-\nopagebreak
+Graphe des dépendances par inclusion de For.\+c\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -36,11 +30,7 @@ typedef struct \mbox{\hyperlink{struct__For__}{\+\_\+\+For\+\_\+}} $\ast$ \mbox{
 \begin{DoxyCompactItemize}
 \item 
 const \mbox{\hyperlink{Class_8h_a6ec2a8ccaeb1e924a80036ec40760377}{Class}} \mbox{\hyperlink{For_8c_a2ac2f94c439d462de131635ede59ea09}{\+\_\+\+For\+\_\+}} = \&\+\_\+\+\_\+\+For\+\_\+\+\_\+
-\begin{DoxyCompactList}\small\item\em Classe des commandes for. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{ArrayList_8c_a9136afaa09bea0a69505480c5fb29d4b}{Array\+List}} \mbox{\hyperlink{For_8c_afb7f82b11e81f4aa3b27ad1fcd9c5d64}{For\+\_\+ids}}
-\begin{DoxyCompactList}\small\item\em Il s\textquotesingle{}agit de la liste qui va contenir les identificateurs des différentes variables utilisées dans les boucles {\ttfamily for}. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{ArrayList_8c_a9136afaa09bea0a69505480c5fb29d4b}{Array\+List}} \mbox{\hyperlink{For_8c_a4c98fc4161d023e16958897d870a77be}{For\+\_\+files}}
-\begin{DoxyCompactList}\small\item\em Il s\textquotesingle{}agit de la liste contenant les noms des fichiers en cours de traitement dans la boucle {\ttfamily for}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Classe des commandes for. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Description détaillée}
@@ -78,26 +68,4 @@ Classe des commandes for.
 
 {\ttfamily for} est la commande qui permet d\textquotesingle{}afficher le chemin absolue du vers le répertoire dans lequel on se trouve.
 
-Construction \+: {\ttfamily {\bfseries{obj\+\_\+new({\itshape For}, \char`\"{}for\char`\"{});}}} {\ttfamily \mbox{\hyperlink{struct__For__}{\+\_\+\+For\+\_\+}}} désigne la classe des commandes for. et la chaine \char`\"{}for\char`\"{} est le nom de la commande. \mbox{\Hypertarget{For_8c_a4c98fc4161d023e16958897d870a77be}\label{For_8c_a4c98fc4161d023e16958897d870a77be}} 
-\index{For.c@{For.c}!For\_files@{For\_files}}
-\index{For\_files@{For\_files}!For.c@{For.c}}
-\doxysubsubsection{\texorpdfstring{For\_files}{For\_files}}
-{\footnotesize\ttfamily \mbox{\hyperlink{ArrayList_8c_a9136afaa09bea0a69505480c5fb29d4b}{Array\+List}} For\+\_\+files}
-
-
-
-Il s\textquotesingle{}agit de la liste contenant les noms des fichiers en cours de traitement dans la boucle {\ttfamily for}. 
-
-Il s\textquotesingle{}agit de la liste contenant les noms des fichiers en cours de traitement dans la boucle {\ttfamily for}. \mbox{\Hypertarget{For_8c_afb7f82b11e81f4aa3b27ad1fcd9c5d64}\label{For_8c_afb7f82b11e81f4aa3b27ad1fcd9c5d64}} 
-\index{For.c@{For.c}!For\_ids@{For\_ids}}
-\index{For\_ids@{For\_ids}!For.c@{For.c}}
-\doxysubsubsection{\texorpdfstring{For\_ids}{For\_ids}}
-{\footnotesize\ttfamily \mbox{\hyperlink{ArrayList_8c_a9136afaa09bea0a69505480c5fb29d4b}{Array\+List}} For\+\_\+ids}
-
-
-
-Il s\textquotesingle{}agit de la liste qui va contenir les identificateurs des différentes variables utilisées dans les boucles {\ttfamily for}. 
-
-Il s\textquotesingle{}agit de la liste qui va contenir les identificateurs des différentes variables utilisées dans les boucles {\ttfamily for}.
-
-L\textquotesingle{}indice de l\textquotesingle{}identificateur est le même que celui du nom du fichier contenu dans L\textquotesingle{}autre liste. 
+Construction \+: {\ttfamily {\bfseries{obj\+\_\+new({\itshape For}, \char`\"{}for\char`\"{});}}} {\ttfamily \mbox{\hyperlink{struct__For__}{\+\_\+\+For\+\_\+}}} désigne la classe des commandes for. et la chaine \char`\"{}for\char`\"{} est le nom de la commande. 

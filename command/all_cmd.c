@@ -12,5 +12,6 @@ const void* cmd[][2] = {
     {"exit", NULL},
     {"cd", NULL},
     {"ftype", NULL},
-    {"for", NULL}
+    {"for", NULL},
+    {"if", NULL}
 };

@@ -6,9 +6,6 @@
  * les constructeurs, les destructeurs, etc ...
  */
 
-#include <assert.h>
-#include <stdlib.h>
-#include <string.h>
 #include "new.h"
 
 /**@cond HIDE_THIS*/

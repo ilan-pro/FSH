@@ -11,16 +11,9 @@
  */
 
 
-#include <assert.h>
-#include <stdlib.h>
-#include <stdio.h>
-#include <unistd.h>
-#include <string.h>
-#include "../base/new.h"
 #include "../shell.h"
 #include <sys/wait.h>
 #include <sys/types.h>
-#include <unistd.h>
 #include <errno.h>
 
 /** @cond HIDE_THIS*/

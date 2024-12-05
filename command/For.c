@@ -9,14 +9,8 @@
  */
 
 
-#include <assert.h>
 #include <dirent.h>
-#include <stdlib.h>
-#include <stdio.h>
-#include <unistd.h>
-#include <string.h>
 #include "../shell.h"
-#include "../base/new.h"
 #include "../base/String.h"
 
 /** @cond HIDE_THIS*/

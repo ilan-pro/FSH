@@ -6,19 +6,19 @@ Fichier d\textquotesingle{}en-\/tête contenant les déclarations des variables 
 
 
 {\ttfamily \#include \char`\"{}Command.\+h\char`\"{}}\newline
-Graphe des dépendances par inclusion de For.\+h\+:
+Graphe des dépendances par inclusion de For.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d4/d16/For_8h__incl}
+\end{center}
+\end{figure}
+Ce graphe montre quels fichiers incluent directement ou indirectement ce fichier \+:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=210pt]{d4/d16/For_8h__incl}
-\end{center}
-\end{figure}
-Ce graphe montre quels fichiers incluent directement ou indirectement ce fichier \+:\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=230pt]{de/dd4/For_8h__dep__incl}
+\includegraphics[width=350pt]{de/dd4/For_8h__dep__incl}
 \end{center}
 \end{figure}
 \doxysubsection*{Classes}
@@ -31,20 +31,11 @@ struct \mbox{\hyperlink{struct__For__}{\+\_\+\+For\+\_\+}}
 \item 
 typedef struct \mbox{\hyperlink{struct__For__}{\+\_\+\+For\+\_\+}} $\ast$ \mbox{\hyperlink{For_8h_a99bcdba67d272a896984c5e4520b8a2a}{For}}
 \end{DoxyCompactItemize}
-\doxysubsection*{Fonctions}
-\begin{DoxyCompactItemize}
-\item 
-char $\ast$ \mbox{\hyperlink{For_8h_aea63591fa163f1ba20103d1cf8d6676d}{For\+\_\+get\+\_\+file}} (char $\ast$id)
-\end{DoxyCompactItemize}
 \doxysubsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
 const \mbox{\hyperlink{Class_8h_a6ec2a8ccaeb1e924a80036ec40760377}{Class}} \mbox{\hyperlink{For_8h_a2ac2f94c439d462de131635ede59ea09}{\+\_\+\+For\+\_\+}}
-\begin{DoxyCompactList}\small\item\em Classe des commandes for. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{ArrayList_8c_a9136afaa09bea0a69505480c5fb29d4b}{Array\+List}} \mbox{\hyperlink{For_8h_afb7f82b11e81f4aa3b27ad1fcd9c5d64}{For\+\_\+ids}}
-\begin{DoxyCompactList}\small\item\em Il s\textquotesingle{}agit de la liste qui va contenir les identificateurs des différentes variables utilisées dans les boucles {\ttfamily for}. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{ArrayList_8c_a9136afaa09bea0a69505480c5fb29d4b}{Array\+List}} \mbox{\hyperlink{For_8h_a4c98fc4161d023e16958897d870a77be}{For\+\_\+files}}
-\begin{DoxyCompactList}\small\item\em Il s\textquotesingle{}agit de la liste contenant les noms des fichiers en cours de traitement dans la boucle {\ttfamily for}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Classe des commandes for. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Description détaillée}
@@ -61,15 +52,6 @@ Construction \+: {\ttfamily {\bfseries{obj\+\_\+new({\itshape For}, \char`\"{}fo
 
 
 
-\doxysubsection{Documentation des fonctions}
-\mbox{\Hypertarget{For_8h_aea63591fa163f1ba20103d1cf8d6676d}\label{For_8h_aea63591fa163f1ba20103d1cf8d6676d}} 
-\index{For.h@{For.h}!For\_get\_file@{For\_get\_file}}
-\index{For\_get\_file@{For\_get\_file}!For.h@{For.h}}
-\doxysubsubsection{\texorpdfstring{For\_get\_file()}{For\_get\_file()}}
-{\footnotesize\ttfamily char$\ast$ For\+\_\+get\+\_\+file (\begin{DoxyParamCaption}\item[{char $\ast$}]{id }\end{DoxyParamCaption})}
-
-
-
 \doxysubsection{Documentation des variables}
 \mbox{\Hypertarget{For_8h_a2ac2f94c439d462de131635ede59ea09}\label{For_8h_a2ac2f94c439d462de131635ede59ea09}} 
 \index{For.h@{For.h}!\_For\_@{\_For\_}}
@@ -83,28 +65,4 @@ Classe des commandes for.
 
 {\ttfamily for} est la commande qui permet d\textquotesingle{}afficher le chemin absolue du vers le répertoire dans lequel on se trouve.
 
-Construction \+: {\ttfamily {\bfseries{obj\+\_\+new({\itshape For}, \char`\"{}for\char`\"{});}}} {\ttfamily \mbox{\hyperlink{struct__For__}{\+\_\+\+For\+\_\+}}} désigne la classe des commandes for. et la chaine \char`\"{}for\char`\"{} est le nom de la commande. \mbox{\Hypertarget{For_8h_a4c98fc4161d023e16958897d870a77be}\label{For_8h_a4c98fc4161d023e16958897d870a77be}} 
-\index{For.h@{For.h}!For\_files@{For\_files}}
-\index{For\_files@{For\_files}!For.h@{For.h}}
-\doxysubsubsection{\texorpdfstring{For\_files}{For\_files}}
-{\footnotesize\ttfamily \mbox{\hyperlink{ArrayList_8c_a9136afaa09bea0a69505480c5fb29d4b}{Array\+List}} For\+\_\+files\hspace{0.3cm}{\ttfamily [extern]}}
-
-
-
-Il s\textquotesingle{}agit de la liste contenant les noms des fichiers en cours de traitement dans la boucle {\ttfamily for}. 
-
-Il s\textquotesingle{}agit de la liste contenant les noms des fichiers en cours de traitement dans la boucle {\ttfamily for}. \mbox{\Hypertarget{For_8h_afb7f82b11e81f4aa3b27ad1fcd9c5d64}\label{For_8h_afb7f82b11e81f4aa3b27ad1fcd9c5d64}} 
-\index{For.h@{For.h}!For\_ids@{For\_ids}}
-\index{For\_ids@{For\_ids}!For.h@{For.h}}
-\doxysubsubsection{\texorpdfstring{For\_ids}{For\_ids}}
-{\footnotesize\ttfamily \mbox{\hyperlink{ArrayList_8c_a9136afaa09bea0a69505480c5fb29d4b}{Array\+List}} For\+\_\+ids\hspace{0.3cm}{\ttfamily [extern]}}
-
-
-
-Il s\textquotesingle{}agit de la liste qui va contenir les identificateurs des différentes variables utilisées dans les boucles {\ttfamily for}. 
-
-L\textquotesingle{}indice de l\textquotesingle{}identificateur est le même que celui du nom du fichier contenu dans L\textquotesingle{}autre liste qui contient les noms (une Hash\+Map serait plus intérressant mais pas le temps).
-
-Il s\textquotesingle{}agit de la liste qui va contenir les identificateurs des différentes variables utilisées dans les boucles {\ttfamily for}.
-
-L\textquotesingle{}indice de l\textquotesingle{}identificateur est le même que celui du nom du fichier contenu dans L\textquotesingle{}autre liste. 
+Construction \+: {\ttfamily {\bfseries{obj\+\_\+new({\itshape For}, \char`\"{}for\char`\"{});}}} {\ttfamily \mbox{\hyperlink{struct__For__}{\+\_\+\+For\+\_\+}}} désigne la classe des commandes for. et la chaine \char`\"{}for\char`\"{} est le nom de la commande. 

@@ -6,12 +6,11 @@ Fichier contenant la déclration des variables globales du shell ainsi que les f
 
 
 {\ttfamily \#include \char`\"{}base/\+Array\+List.\+h\char`\"{}}\newline
-Graphe des dépendances par inclusion de shell.\+h\+:
-\nopagebreak
+Graphe des dépendances par inclusion de shell.\+h\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=210pt]{df/d55/shell_8h__incl}
+\includegraphics[width=350pt]{df/d55/shell_8h__incl}
 \end{center}
 \end{figure}
 Ce graphe montre quels fichiers incluent directement ou indirectement ce fichier \+:\nopagebreak
@@ -34,14 +33,22 @@ int \mbox{\hyperlink{shell_8h_a0dabbf807290a3a452d301797493bad4}{Shell\+\_\+star
 int \mbox{\hyperlink{shell_8h_a4c2b36900844ff0db4cf2be2ac3ddc43}{Shell\+\_\+execute\+\_\+all}} (\mbox{\hyperlink{ArrayList_8c_a9136afaa09bea0a69505480c5fb29d4b}{Array\+List}} struct\+\_\+cmds)
 \begin{DoxyCompactList}\small\item\em Fonction qui va exécuter toutes les pipelines d\textquotesingle{}une commande structurée (par appel de la méthode execute() de chaque commande). \end{DoxyCompactList}\item 
 \mbox{\hyperlink{ArrayList_8c_a9136afaa09bea0a69505480c5fb29d4b}{Array\+List}} \mbox{\hyperlink{shell_8h_ad97f4dc09115d9c2a14b5f78b1070d44}{Shell\+\_\+parse}} (char $\ast$$\ast$prompt)
-\end{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{shell_8h_a53d2d19803a6841d304a8413ec6900e9}{Shell\+\_\+add\+\_\+var}} (const char $\ast$id\+\_\+, const char $\ast$value\+\_\+)
+\begin{DoxyCompactList}\small\item\em Fonction qui va ajouter une variable dans la table des variables du shell. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{shell_8h_ac3e30ea07c6dec6595dd2e8748967459}{Shell\+\_\+remove\+\_\+var}} (const char $\ast$id\+\_\+)
+\begin{DoxyCompactList}\small\item\em Fonction qui va retirer une variable dans la table des variables du shell. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{shell_8h_a5de69fd8256ebfb5a6ecdd58b6e07af9}{Shell\+\_\+update\+\_\+var}} (const char $\ast$id\+\_\+, const char $\ast$new\+\_\+value\+\_\+)
+\begin{DoxyCompactList}\small\item\em Fonction qui va mettre à jour la valeur d\textquotesingle{}une variable dans la table des variables du shell. \end{DoxyCompactList}\item 
+const char $\ast$ \mbox{\hyperlink{shell_8h_a0541836870ed3c14c04d3b1150461e5d}{Shell\+\_\+get\+\_\+val}} (const char $\ast$id\+\_\+)
+\begin{DoxyCompactList}\small\item\em Fonction qui va renvoyer la valeur contenu dans une variable de la table des variables du shell. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
 char \mbox{\hyperlink{shell_8h_af1d59d6d50ca8965f4eb0e160c8a5e42}{working\+\_\+dir}} \mbox{[}4096\mbox{]}
 \begin{DoxyCompactList}\small\item\em Il s\textquotesingle{}agit du chemin absolue vers le repertoire courant. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{shell_8h_af05a0983be2d71bcc3bdb9cbb25e68cf}{previous\+\_\+cmd\+\_\+finish}}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Il s\textquotesingle{}agit de la valeur de retour de la dernière commande exécutée. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Description détaillée}
@@ -63,6 +70,28 @@ Il s\textquotesingle{}agit du nombre de caractère maximal que doit avoir le pro
 
 
 \doxysubsection{Documentation des fonctions}
+\mbox{\Hypertarget{shell_8h_a53d2d19803a6841d304a8413ec6900e9}\label{shell_8h_a53d2d19803a6841d304a8413ec6900e9}} 
+\index{shell.h@{shell.h}!Shell\_add\_var@{Shell\_add\_var}}
+\index{Shell\_add\_var@{Shell\_add\_var}!shell.h@{shell.h}}
+\doxysubsubsection{\texorpdfstring{Shell\_add\_var()}{Shell\_add\_var()}}
+{\footnotesize\ttfamily int Shell\+\_\+add\+\_\+var (\begin{DoxyParamCaption}\item[{const char $\ast$}]{id\+\_\+,  }\item[{const char $\ast$}]{value\+\_\+ }\end{DoxyParamCaption})}
+
+
+
+Fonction qui va ajouter une variable dans la table des variables du shell. 
+
+Si la variable existe déjà dans la table, elle ne sera pas écrasée. La fonction va renvoyer 0. Pour écraser une variable déjà existante dans la table, utiliser plutôt {\ttfamily \mbox{\hyperlink{shell_8h_a5de69fd8256ebfb5a6ecdd58b6e07af9}{Shell\+\_\+update\+\_\+var()}}}.
+
+NB \+: Le liste des variables est détruite à la sortie du shell. 
+\begin{DoxyParams}{Paramètres}
+{\em id\+\_\+} & L\textquotesingle{}identificateur (nom) de la variable. \\
+\hline
+{\em value\+\_\+} & La valeur à stocker dans la variable.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+1 Si l\textquotesingle{}ajout à réussi. 0 Sinon (La virable existe probablement dans la table). 
+\end{DoxyReturn}
 \mbox{\Hypertarget{shell_8h_a4c2b36900844ff0db4cf2be2ac3ddc43}\label{shell_8h_a4c2b36900844ff0db4cf2be2ac3ddc43}} 
 \index{shell.h@{shell.h}!Shell\_execute\_all@{Shell\_execute\_all}}
 \index{Shell\_execute\_all@{Shell\_execute\_all}!shell.h@{shell.h}}
@@ -83,12 +112,60 @@ La fonction va créer un nouveau processus pour chaque éxécution de commande e
 \begin{DoxyReturn}{Renvoie}
 La valeur de retour de la dernière exécution (si elle échoue alors ce sera la valeur de son code d\textquotesingle{}erreur). 
 \end{DoxyReturn}
+Création de deux tubes, entrant et sortant dont l\textquotesingle{}un (pipe1) sera celui qui remplacera {\ttfamily stdin} (tube entrant, en lecture) et l\textquotesingle{}autre (pipe2) remplacera {\ttfamily stdout} (tube sortant, en écriture).
+
+On fait une copie des descripteurs de stdin et stdout actuels.
+
+La copie est faite ici car {\ttfamily stdin} et {\ttfamily stdout} peuvent être redirigées avant l\textquotesingle{}exécution, Ex\+: pwd $\vert$ for i in . \{ftype \$i$\vert$wc\} $\vert$ sort. Dans cet exemple lors de l\textquotesingle{}éxécution de \{ftype \$i$\vert$wc\} stdin et stdout seront des tubes.\mbox{\Hypertarget{shell_8h_a0541836870ed3c14c04d3b1150461e5d}\label{shell_8h_a0541836870ed3c14c04d3b1150461e5d}} 
+\index{shell.h@{shell.h}!Shell\_get\_val@{Shell\_get\_val}}
+\index{Shell\_get\_val@{Shell\_get\_val}!shell.h@{shell.h}}
+\doxysubsubsection{\texorpdfstring{Shell\_get\_val()}{Shell\_get\_val()}}
+{\footnotesize\ttfamily const char$\ast$ Shell\+\_\+get\+\_\+val (\begin{DoxyParamCaption}\item[{const char $\ast$}]{id\+\_\+ }\end{DoxyParamCaption})}
+
+
+
+Fonction qui va renvoyer la valeur contenu dans une variable de la table des variables du shell. 
+
+Si la variable n\textquotesingle{}existe pas déjà dans la table la fonction va renvoyer NULL. {\bfseries{Attention}} \+: La chaine de caractère renvoyée ne peut pas être modifiée, la copier si on souhaite l\textquotesingle{}utiliser.
+
+NB \+: Le liste des variables est détruite à la sortie du shell.
+
+
+\begin{DoxyParams}{Paramètres}
+{\em id\+\_\+} & L\textquotesingle{}identificateur (nom) de la variable.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+La valeur stockée dans la variable. NULL sinon (la variable n\textquotesingle{}existe probablement pas dans la table). 
+\end{DoxyReturn}
 \mbox{\Hypertarget{shell_8h_ad97f4dc09115d9c2a14b5f78b1070d44}\label{shell_8h_ad97f4dc09115d9c2a14b5f78b1070d44}} 
 \index{shell.h@{shell.h}!Shell\_parse@{Shell\_parse}}
 \index{Shell\_parse@{Shell\_parse}!shell.h@{shell.h}}
 \doxysubsubsection{\texorpdfstring{Shell\_parse()}{Shell\_parse()}}
 {\footnotesize\ttfamily \mbox{\hyperlink{ArrayList_8c_a9136afaa09bea0a69505480c5fb29d4b}{Array\+List}} Shell\+\_\+parse (\begin{DoxyParamCaption}\item[{char $\ast$$\ast$}]{prompt }\end{DoxyParamCaption})}
 
+\mbox{\Hypertarget{shell_8h_ac3e30ea07c6dec6595dd2e8748967459}\label{shell_8h_ac3e30ea07c6dec6595dd2e8748967459}} 
+\index{shell.h@{shell.h}!Shell\_remove\_var@{Shell\_remove\_var}}
+\index{Shell\_remove\_var@{Shell\_remove\_var}!shell.h@{shell.h}}
+\doxysubsubsection{\texorpdfstring{Shell\_remove\_var()}{Shell\_remove\_var()}}
+{\footnotesize\ttfamily int Shell\+\_\+remove\+\_\+var (\begin{DoxyParamCaption}\item[{const char $\ast$}]{id\+\_\+ }\end{DoxyParamCaption})}
+
+
+
+Fonction qui va retirer une variable dans la table des variables du shell. 
+
+Si la variable n\textquotesingle{}existe pas déjà dans la table la fonction va renvoyer O. La fonction ne renvoie pas la valeur supprimée, utiliser {\ttfamily \mbox{\hyperlink{shell_8h_a0541836870ed3c14c04d3b1150461e5d}{Shell\+\_\+get\+\_\+val()}}} si on souhaite la récupérer avant.
+
+NB \+: Le liste des variables est détruite à la sortie du shell.
+
+
+\begin{DoxyParams}{Paramètres}
+{\em id\+\_\+} & L\textquotesingle{}identificateur (nom) de la variable.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+1 Si la suppression a réussi. 0 sinon (la variable n\textquotesingle{}existe probablement pas dans la table). 
+\end{DoxyReturn}
 \mbox{\Hypertarget{shell_8h_a0dabbf807290a3a452d301797493bad4}\label{shell_8h_a0dabbf807290a3a452d301797493bad4}} 
 \index{shell.h@{shell.h}!Shell\_start@{Shell\_start}}
 \index{Shell\_start@{Shell\_start}!shell.h@{shell.h}}
@@ -102,6 +179,30 @@ Fonction qui va démarrer l\textquotesingle{}interpreteur de commande.
 \begin{DoxyReturn}{Renvoie}
 Le code de retour au moment de la fermture du terminal. 
 \end{DoxyReturn}
+\mbox{\Hypertarget{shell_8h_a5de69fd8256ebfb5a6ecdd58b6e07af9}\label{shell_8h_a5de69fd8256ebfb5a6ecdd58b6e07af9}} 
+\index{shell.h@{shell.h}!Shell\_update\_var@{Shell\_update\_var}}
+\index{Shell\_update\_var@{Shell\_update\_var}!shell.h@{shell.h}}
+\doxysubsubsection{\texorpdfstring{Shell\_update\_var()}{Shell\_update\_var()}}
+{\footnotesize\ttfamily int Shell\+\_\+update\+\_\+var (\begin{DoxyParamCaption}\item[{const char $\ast$}]{id\+\_\+,  }\item[{const char $\ast$}]{new\+\_\+value\+\_\+ }\end{DoxyParamCaption})}
+
+
+
+Fonction qui va mettre à jour la valeur d\textquotesingle{}une variable dans la table des variables du shell. 
+
+Si la variable n\textquotesingle{}existe pas déjà dans la table la fonction va renvoyer O. La fonction ne renvoie pas la valeur supprimée (celle qui était là avant), utiliser {\ttfamily \mbox{\hyperlink{shell_8h_a0541836870ed3c14c04d3b1150461e5d}{Shell\+\_\+get\+\_\+val()}}} si on souhaite la récupérer avant.
+
+NB \+: Le liste des variables est détruite à la sortie du shell.
+
+
+\begin{DoxyParams}{Paramètres}
+{\em id\+\_\+} & L\textquotesingle{}identificateur (nom) de la variable. \\
+\hline
+{\em new\+\_\+value\+\_\+} & La nouvelle valeur à stocker dans la variable.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+1 Si la mise à jour a réussie. 0 sinon (la variable n\textquotesingle{}existe probablement pas dans la table). 
+\end{DoxyReturn}
 
 
 \doxysubsection{Documentation des variables}
@@ -110,6 +211,12 @@ Le code de retour au moment de la fermture du terminal.
 \index{previous\_cmd\_finish@{previous\_cmd\_finish}!shell.h@{shell.h}}
 \doxysubsubsection{\texorpdfstring{previous\_cmd\_finish}{previous\_cmd\_finish}}
 {\footnotesize\ttfamily int previous\+\_\+cmd\+\_\+finish\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Il s\textquotesingle{}agit de la valeur de retour de la dernière commande exécutée. 
+
+Il peut aussi stocker le numéro du signale qui a intérrompu la commande pendant son processus.
 
 Le résultat de la dernière commande. \mbox{\Hypertarget{shell_8h_af1d59d6d50ca8965f4eb0e160c8a5e42}\label{shell_8h_af1d59d6d50ca8965f4eb0e160c8a5e42}} 
 \index{shell.h@{shell.h}!working\_dir@{working\_dir}}

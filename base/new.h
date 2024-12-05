@@ -12,6 +12,10 @@
 #ifndef NEW_H // protection contre les multiples inclusions.
 #define NEW_H 
 
+/**@cond HIDE_THIS*/
+typedef struct _Class_* Class; // Il ne s'agit pas de la vrai définition, la vraie se trouve dans `Class.h`
+/**@endcond*/
+
 /**
  * @brief Fonction qui crée un objet à partir de sa classe.
  *

@@ -6,15 +6,10 @@
  */
 #include <readline/readline.h>
 #include <readline/history.h>
-#include <unistd.h>
 #include <sys/types.h>
 #include <sys/wait.h>
-
-#include "base/ArrayList.h"
 #include "base/String.h"
 #include "base/new.h"
-#include "command/ExternalCommand.h"
-#include "command/For.h"
 #include "command/all_cmd.h"
 #include "shell.h"
 
@@ -32,6 +27,7 @@ void initialize_cmd(){
     cmd[2][1] = _Cd_;
     cmd[3][1] = _Ftype_;
     cmd[4][1] = _For_;
+    cmd[5][1] = _If_;
 
 }
 

@@ -10,11 +10,7 @@
  */
 
 
-#include <assert.h>
 #include "../shell.h"
-#include <unistd.h>
-#include <string.h>
-#include <stdio.h>
 
 /** @cond HIDE_THIS*/
 #define PWD_CLASS "Pwd"

@@ -173,7 +173,7 @@ int Shell_start(){
                 previous_cmd_finish = 1;
             }
 
-            // obj_print(file_principal); printf("\n"); // debug
+            obj_print(file_principal); printf("\n"); // debug
             previous_cmd_finish = Shell_execute_all(file_principal); // Exécution de la file principale.
             obj_destroy(file_principal); // Destruction de la file principale.
             free(cp_prompt); // Destruction du pointeur alloué par readline.
@@ -583,7 +583,7 @@ static Command apply_cmd(char *char_lu, ArrayList file_secondaire, char** prompt
  * Fonction qui récupère la commande interne correspondante.
  */
 static Class get_internal_cmd(char *char_lu){
-    for(int i=0; i<5; i++){
+    for(int i=0; i<ALL_COMMAND_SIZE; i++){
         if(strcmp(char_lu, cmd[i][0]) == 0){
             return (Class)cmd[i][1];
         }

@@ -73,14 +73,10 @@ $(function() {
 <a href="#details">Plus de détails...</a></p>
 <div class="textblock"><code>#include &lt;readline/readline.h&gt;</code><br />
 <code>#include &lt;readline/history.h&gt;</code><br />
-<code>#include &lt;unistd.h&gt;</code><br />
 <code>#include &lt;sys/types.h&gt;</code><br />
 <code>#include &lt;sys/wait.h&gt;</code><br />
-<code>#include &quot;<a class="el" href="../../d5/d12/ArrayList_8h_source.html">base/ArrayList.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="../../d9/dba/String_8h_source.html">base/String.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="../../d7/d58/new_8h_source.html">base/new.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="../../d3/d2f/ExternalCommand_8h_source.html">command/ExternalCommand.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="../../d8/d41/For_8h_source.html">command/For.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="../../d8/dd0/all__cmd_8h_source.html">command/all_cmd.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="../../df/d03/shell_8h_source.html">shell.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
@@ -88,27 +84,31 @@ Graphe des dépendances par inclusion de fsh.c:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../d4/d96/fsh_8c__incl.png" border="0" usemap="#afsh_8c" alt=""/></div>
 <map name="afsh_8c" id="afsh_8c">
-<area shape="rect" title="Fichier contenant la fonction main de l&#39;application." alt="" coords="676,5,729,32"/>
+<area shape="rect" title="Fichier contenant la fonction main de l&#39;application." alt="" coords="511,5,564,32"/>
 <area shape="rect" title=" " alt="" coords="5,80,149,107"/>
 <area shape="rect" title=" " alt="" coords="174,80,309,107"/>
-<area shape="rect" title=" " alt="" coords="333,80,408,107"/>
-<area shape="rect" title=" " alt="" coords="432,80,528,107"/>
-<area shape="rect" title=" " alt="" coords="552,80,640,107"/>
-<area shape="rect" href="../../d5/d12/ArrayList_8h.html" title="Fichier d&#39;en&#45;tête contenant les déclarations des variables publiques et de toutes les méthodes public..." alt="" coords="802,304,929,331"/>
-<area shape="rect" href="../../d9/dba/String_8h.html" title="Fichier d&#39;en&#45;tête contenant les déclarations des variables publiques et de toutes les méthodes public..." alt="" coords="584,229,691,256"/>
-<area shape="rect" href="../../d7/d58/new_8h.html" title="Fichier d&#39;en&#45;tête contenant les déclarations de toutes les méthodes génériques agissant sur des objet..." alt="" coords="681,304,775,331"/>
-<area shape="rect" href="../../d3/d2f/ExternalCommand_8h.html" title="Fichier d&#39;en&#45;tête contenant les déclarations des variables publiques et de toutes les méthodes public..." alt="" coords="867,155,1091,181"/>
-<area shape="rect" href="../../d8/d41/For_8h.html" title="Fichier d&#39;en&#45;tête contenant les déclarations des variables publiques et de toutes les méthodes public..." alt="" coords="1453,155,1576,181"/>
-<area shape="rect" href="../../d8/dd0/all__cmd_8h.html" title=" " alt="" coords="1152,80,1307,107"/>
-<area shape="rect" href="../../df/d03/shell_8h.html" title="Fichier contenant la déclration des variables globales du shell ainsi que les fonctions utilisées par..." alt="" coords="766,229,831,256"/>
-<area shape="rect" href="../../d4/d05/Class_8h.html" title="Fichier d&#39;en&#45;tête contenant la définition du type Class." alt="" coords="693,379,763,405"/>
-<area shape="rect" title=" " alt="" coords="641,453,716,480"/>
-<area shape="rect" title=" " alt="" coords="740,453,815,480"/>
-<area shape="rect" href="../../d1/d55/Command_8h.html" title="Fichier d&#39;en&#45;tête contenant les déclarations des variables publiques et de toutes les méthodes public..." alt="" coords="1179,229,1280,256"/>
-<area shape="rect" href="../../da/d49/Pwd_8h.html" title="Fichier d&#39;en&#45;tête contenant les déclarations des variables publiques et de toutes les méthodes public..." alt="" coords="1115,155,1176,181"/>
-<area shape="rect" href="../../d0/d58/Exit_8h.html" title="Fichier d&#39;en&#45;tête contenant les déclarations des variables publiques et de toutes les méthodes public..." alt="" coords="1200,155,1259,181"/>
-<area shape="rect" href="../../dd/df0/Cd_8h.html" title="Fichier d&#39;en&#45;tête contenant les déclarations des variables publiques et de toutes les méthodes public..." alt="" coords="1283,155,1333,181"/>
-<area shape="rect" href="../../dd/db8/Ftype_8h.html" title="Fichier d&#39;en&#45;tête contenant les déclarations des variables publiques et de toutes les méthodes public..." alt="" coords="1358,155,1429,181"/>
+<area shape="rect" title=" " alt="" coords="333,80,429,107"/>
+<area shape="rect" title=" " alt="" coords="453,80,541,107"/>
+<area shape="rect" href="../../d9/dba/String_8h.html" title="Fichier d&#39;en&#45;tête contenant les déclarations des variables publiques et de toutes les méthodes public..." alt="" coords="485,229,592,256"/>
+<area shape="rect" href="../../d7/d58/new_8h.html" title="Fichier d&#39;en&#45;tête contenant les déclarations de toutes les méthodes génériques agissant sur des objet..." alt="" coords="582,379,677,405"/>
+<area shape="rect" href="../../d8/dd0/all__cmd_8h.html" title=" " alt="" coords="783,80,937,107"/>
+<area shape="rect" href="../../df/d03/shell_8h.html" title="Fichier contenant la déclration des variables globales du shell ainsi que les fonctions utilisées par..." alt="" coords="1075,229,1141,256"/>
+<area shape="rect" href="../../d4/d05/Class_8h.html" title="Fichier d&#39;en&#45;tête contenant la définition du type Class." alt="" coords="549,453,619,480"/>
+<area shape="rect" title=" " alt="" coords="260,528,335,555"/>
+<area shape="rect" title=" " alt="" coords="359,528,433,555"/>
+<area shape="rect" title=" " alt="" coords="457,528,524,555"/>
+<area shape="rect" title=" " alt="" coords="549,528,619,555"/>
+<area shape="rect" title=" " alt="" coords="644,528,719,555"/>
+<area shape="rect" title=" " alt="" coords="743,528,817,555"/>
+<area shape="rect" title=" " alt="" coords="842,528,913,555"/>
+<area shape="rect" href="../../da/d49/Pwd_8h.html" title="Fichier d&#39;en&#45;tête contenant les déclarations des variables publiques et de toutes les méthodes public..." alt="" coords="667,155,728,181"/>
+<area shape="rect" href="../../d0/d58/Exit_8h.html" title="Fichier d&#39;en&#45;tête contenant les déclarations des variables publiques et de toutes les méthodes public..." alt="" coords="752,155,811,181"/>
+<area shape="rect" href="../../dd/df0/Cd_8h.html" title="Fichier d&#39;en&#45;tête contenant les déclarations des variables publiques et de toutes les méthodes public..." alt="" coords="835,155,885,181"/>
+<area shape="rect" href="../../dd/db8/Ftype_8h.html" title="Fichier d&#39;en&#45;tête contenant les déclarations des variables publiques et de toutes les méthodes public..." alt="" coords="910,155,981,181"/>
+<area shape="rect" href="../../d8/d41/For_8h.html" title="Fichier d&#39;en&#45;tête contenant les déclarations des variables publiques et de toutes les méthodes public..." alt="" coords="1005,155,1059,181"/>
+<area shape="rect" href="../../d8/dd9/If_8h.html" title="Fichier d&#39;en&#45;tête contenant les déclarations des variables publiques et de toutes les méthodes public..." alt="" coords="1083,155,1125,181"/>
+<area shape="rect" href="../../d1/d55/Command_8h.html" title="Fichier d&#39;en&#45;tête contenant les déclarations des variables publiques et de toutes les méthodes public..." alt="" coords="852,229,953,256"/>
+<area shape="rect" href="../../d5/d12/ArrayList_8h.html" title="Fichier d&#39;en&#45;tête contenant les déclarations des variables publiques et de toutes les méthodes public..." alt="" coords="833,304,972,331"/>
 </map>
 </div>
 </div><table class="memberdecls">
@@ -117,12 +117,6 @@ Fonctions</h2></td></tr>
 <tr class="memitem:a2f4dbf5d30e18b6c18dab724885aebc6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/de7/fsh_8c.html#a2f4dbf5d30e18b6c18dab724885aebc6">initialize_cmd</a> ()</td></tr>
 <tr class="memdesc:a2f4dbf5d30e18b6c18dab724885aebc6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fonction qui va ajouter les classes des commandes internes dans le la table qui contient les commandes internes.  <a href="../../da/de7/fsh_8c.html#a2f4dbf5d30e18b6c18dab724885aebc6">Plus de détails...</a><br /></td></tr>
 <tr class="separator:a2f4dbf5d30e18b6c18dab724885aebc6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab0a6d40889442f4e3dee5b822b67a51d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/de7/fsh_8c.html#ab0a6d40889442f4e3dee5b822b67a51d">initialize_for_lists</a> ()</td></tr>
-<tr class="memdesc:ab0a6d40889442f4e3dee5b822b67a51d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fonction qui va initialiser les listes chainées utilsées pour stocker les identificateurs et les noms des fichiers en cours de traitement.  <a href="../../da/de7/fsh_8c.html#ab0a6d40889442f4e3dee5b822b67a51d">Plus de détails...</a><br /></td></tr>
-<tr class="separator:ab0a6d40889442f4e3dee5b822b67a51d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4293c5ef3a67946c49acf30c56cc0889"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/de7/fsh_8c.html#a4293c5ef3a67946c49acf30c56cc0889">destroy_for_lists</a> ()</td></tr>
-<tr class="memdesc:a4293c5ef3a67946c49acf30c56cc0889"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fonction qui va détruire les listes chainées utilsées pour stocker les identificateurs et les noms des fichiers en cours de traitement.  <a href="../../da/de7/fsh_8c.html#a4293c5ef3a67946c49acf30c56cc0889">Plus de détails...</a><br /></td></tr>
-<tr class="separator:a4293c5ef3a67946c49acf30c56cc0889"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae66f6b31b5ad750f1fe042a706a4e3d4"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/de7/fsh_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4">main</a> ()</td></tr>
 <tr class="separator:ae66f6b31b5ad750f1fe042a706a4e3d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
@@ -130,25 +124,6 @@ Fonctions</h2></td></tr>
 <div class="textblock"><p>Fichier contenant la fonction main de l'application. </p>
 <p>C'est cette fonction qui va initialiser les commandes et démarrer le shell. </p>
 </div><h2 class="groupheader">Documentation des fonctions</h2>
-<a id="a4293c5ef3a67946c49acf30c56cc0889"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4293c5ef3a67946c49acf30c56cc0889">&#9670;&nbsp;</a></span>destroy_for_lists()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void destroy_for_lists </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Fonction qui va détruire les listes chainées utilsées pour stocker les identificateurs et les noms des fichiers en cours de traitement. </p>
-
-</div>
-</div>
 <a id="a2f4dbf5d30e18b6c18dab724885aebc6"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a2f4dbf5d30e18b6c18dab724885aebc6">&#9670;&nbsp;</a></span>initialize_cmd()</h2>
 
@@ -166,25 +141,6 @@ Fonctions</h2></td></tr>
 
 <p>Fonction qui va ajouter les classes des commandes internes dans le la table qui contient les commandes internes. </p>
 <p>Ajouter directement les classes dans la déclaration faite dans le fichier <code><a class="el" href="../../d8/dd0/all__cmd_8h.html">all_cmd.h</a></code> est impossible car les structures des classes ne sont pas constantes au moment de la compilation. </p>
-
-</div>
-</div>
-<a id="ab0a6d40889442f4e3dee5b822b67a51d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab0a6d40889442f4e3dee5b822b67a51d">&#9670;&nbsp;</a></span>initialize_for_lists()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void initialize_for_lists </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Fonction qui va initialiser les listes chainées utilsées pour stocker les identificateurs et les noms des fichiers en cours de traitement. </p>
 
 </div>
 </div>

@@ -10,12 +10,8 @@
  */
 
 
-#include <assert.h>
 #include <sys/stat.h>
 #include "../base/String.h"
-#include "../base/new.h"
-#include <string.h>
-#include <unistd.h>
 
 /** @cond HIDE_THIS*/
 #define FTYPE_CLASS "Ftype"
