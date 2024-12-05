@@ -1,5 +1,20 @@
-#include <unistd.h>
+/**
+ * @file If.c
+ * @brief Fichier contenant l'implémentation de la classe `_If_`.
+ *
+ * La classe `_If_` est une classe de commande permettant de contrôler l'exécution 
+ * d'un bloc de commandes en l'exécutant sous une certaine condition (un ensemble de commande Test).
+ * 
+ * Construction <code><strong> obj_new( `_If_`, char** prompt ); </strong></code>
+ * où : <ul>
+ *          <li>`_If_` désigne de la classe des objets `Command` de type `If`. </li>
+ *          <li><code><strong>char** prompt</strong></code> La suite du prompt (qui permet 
+ *          d'initialiser le reste de la commande).</li>
+ * </ul>
+ *
+ */
 
+#include "../shell.h"
 
 /**@cond HIDE_THIS*/
 #define IF_CLASS "If"
@@ -42,18 +57,20 @@ static int If_execute( Command );
 /************* Structure de la classe ****************/
 
 /**
-* Structure de la classe `_If_`.
-*
-* Construction <code><strong> obj_new( `_If_`, char** prompt ); </strong></code>
-* où : <ul>
-*          <li>`_If_` désigne de la classe des objets `Command` de type `If`. </li>
-*          <li><code><strong>char** prompt</strong></code> La suite du prompt (qui permet 
-*          d'initialiser le reste de la commande).</li>
-* </ul>
-*/
+ * @cond HIDE_THIS
+ * @internal
+ * @brief Structure de la classe `_If_`.
+ *
+ * Construction <code><strong> obj_new( `_If_`, char** prompt ); </strong></code>
+ * où : <ul>
+ *          <li>`_If_` désigne de la classe des objets `Command` de type `If`. </li>
+ *          <li><code><strong>char** prompt</strong></code> La suite du prompt (qui permet 
+ *          d'initialiser le reste de la commande).</li>
+ * </ul>
+ */
 typedef struct _If_ {
     /**
-     * Classe des objets de type `_If_`.
+     * @brief Classe des objets de type `_If_`.
      *
      * Construction <code><strong> obj_new( `_If_`, char** prompt ); </strong></code>
      * où : <ul>
@@ -65,6 +82,7 @@ typedef struct _If_ {
     Class _If_;
     IF_FIELDS
 }* If;
+/**@endcond*/
 
 static struct _Class_ __If__ = {
     NULL,
@@ -79,7 +97,8 @@ static struct _Class_ __If__ = {
 };
 
 /**
- * Classe des objets de type `_If_`.
+ * @internal
+ * @brief Classe des objets de type `_If_`.
  *
  * Construction <code><strong> obj_new( `_If_`, char** prompt ); </strong></code>
  * où : <ul>
@@ -98,26 +117,29 @@ Class _If_ = &__If__;
  */
 static void* If_constructor( void* self_, va_list* args ){
     
+    /// Mise à jour de _Cd_ en tant que héritier de _Command_ (si ce n'est pas déjà le cas)
+    if(!_If_->_super_)
+        *(Class*)& (_If_->_super_) = _Command_;
+
     // Vérifications
     assert( self_ );
     assert( args );
     
     // Conversion en objet de type If
     If self = (If) self_;
-    
-    printf("Size : %lu\n", self->_If_->size);
 
-    // Ajout du parent
-    *(Class*)& (self->_If_->_super_) = _Command_;     
+    // Appel du constructeur de la classe Command ( parent )
+    _Command_->ctor(self, args);   
+    
     // Ajout de la méthode Exécute.
     *( int (**) (Command) )& (self->execute) = If_execute;
-   
-    self->args = obj_new(_ArrayList_, 0);
-    self->args_tmp = obj_new(_ArrayList_, 0);
-    self->params = obj_new(_ArrayList_, 0);
 
-
-
+    // Récupération du prompt.
+    char** prompt = va_arg(*args, char**);
+    
+    //Parsing du TestCmd
+    self->test_command = Shell_parse(prompt);
+     
     return self;
 }
 
@@ -131,7 +153,7 @@ static void* If_destructor( void* self_ ){
 
     // Conversion en objet de type `If`
     If self = ( If ) self_;
-
+    
     // Les éléments hérités de command ne sont pas initialisés.
     
 

@@ -1,10 +1,11 @@
 <map id="base/String.h" name="base/String.h">
-<area shape="rect" id="node1" title="Fichier d&#39;en&#45;tête contenant les déclarations des variables publiques et de toutes les méthodes public..." alt="" coords="595,5,702,32"/>
+<area shape="rect" id="node1" title="Fichier d&#39;en&#45;tête contenant les déclarations des variables publiques et de toutes les méthodes public..." alt="" coords="673,5,779,32"/>
 <area shape="rect" id="node2" href="$db/d84/Cd_8c.html" title="Fichier contenant l&#39;implémentation des fonctions déclarées dans Cd.h" alt="" coords="5,80,124,107"/>
 <area shape="rect" id="node3" href="$d7/d41/Command_8c.html" title="Fichier source de la classe _Command_ contenant l&#39;implémentation des variables et de toutes les métho..." alt="" coords="148,80,317,107"/>
 <area shape="rect" id="node4" href="$db/d86/ExternalCommand_8c.html" title="Fichier contenant l&#39;implémentation des fonctions déclarées dans ExternalCommand.h" alt="" coords="341,80,564,107"/>
 <area shape="rect" id="node5" href="$d8/d8b/For_8c.html" title="Fichier contenant l&#39;implémentation des fonctions déclarées dans For.h" alt="" coords="588,80,709,107"/>
 <area shape="rect" id="node6" href="$d2/d1d/Ftype_8c.html" title="Fichier contenant l&#39;implémentation des fonctions déclarées dans Ftype.h" alt="" coords="734,80,873,107"/>
-<area shape="rect" id="node7" href="$da/de7/fsh_8c.html" title="Fichier contenant la fonction main de l&#39;application." alt="" coords="897,80,950,107"/>
-<area shape="rect" id="node8" href="$d6/d4f/shell_8c.html" title="Fichier contenant l&#39;implémentation des fonctions utilisé par le shell pour le traitement et construct..." alt="" coords="974,80,1038,107"/>
+<area shape="rect" id="node7" href="$dd/d67/SimpleCmd_8c.html" title="Fichier contenant l&#39;implémentation de la classe _SimpleCmd_." alt="" coords="897,80,1075,107"/>
+<area shape="rect" id="node8" href="$da/de7/fsh_8c.html" title="Fichier contenant la fonction main de l&#39;application." alt="" coords="1099,80,1153,107"/>
+<area shape="rect" id="node9" href="$d6/d4f/shell_8c.html" title="Fichier contenant l&#39;implémentation des fonctions utilisé par le shell pour le traitement et construct..." alt="" coords="1177,80,1241,107"/>
 </map>

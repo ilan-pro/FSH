@@ -178,183 +178,6 @@ int Command_actual_char_is_legal(int quoted, int double_quoted, int esc, char** 
 
 }
 
-/**
- * Fonction qui va lire les paramètres d'une commande.
- *
- * Cette fonction est appelée par la fonction `Command_parse_usr_prompt()` 
- * au moment elle rencontre un caractère '-'. 
- * La fonction va lire toutes les lettres qu'elle croisera comme étant un 
- * paramètre, jusqu'à ce qu'elle rencontre `;`, `}` ou `|`, ou bien que la 
- * chaine soit terminé (la chaine est toujours le prompt de l'utilisateur).
- * 
- * @param self La commande en cours de construction.
- * @param prompt Le prompt en cours de paring.
- */
-static void Command_parse_usr_prompt_params(Command self, char** prompt){
-
-
-    /** 
-     * Lecture du prompt dans la boucle tant que l'on a pas fini le prompt 
-     * ou qu'on a pas rencontré l'un des caractères `;`, `}` ou `|`
-     */
-    while(**prompt && *(*prompt) != '|' && *(*prompt) != ';' && *(*prompt) != '}' ){
-        
-        if (**prompt== ' ') // Si on tombe sur un espace alors on a fini de lire.
-            break;
-
-        // On crée une chaine à un seul caractère pour le paramètre.
-        // TODO : Penser à créer une classe Character (si le temps le permet)
-        char param[2];
-        param[0] = *(*prompt++);
-        param[1] = '\0';
-        
-        // Ajout du paramètre dans la liste.
-        ArrayList_add_last(self->params, obj_new(_String_, param), 0);
-
-    }
-}
-
-
-/**
- * Fonction qui va continuer la lecture du prompt de l'utilisateur en récupérant tous 
- * les paramètres de la commande ainsi que les arguments.
- *
- * La fonction s'arrête si le prompt est fini, ou si elle rencontre `;`, `}` ou `|` 
- * pendant le parcours.
- * Si la fonction rencontre l'un des caractères le pointeur n'est pas incrémenté (
- * c'est à dire que l'on ne va pas référencer le pointeur au caractère suivant). 
- * 
- * L'implémentation de la fonction est inspirée de la fonction `parse_prompt()` 
- * écrite dans le fichier `shell.c`
- *
- * @param self La commande en cours de construction.
- * @param prompt Le prompt en cours de paring.
- */
-static void Command_parse_usr_prompt(Command self, char** prompt){
-    
-    // Nombre de caractère lu. (Si ce nombre vaut 0 alors on a encore rien lu dans le prompt et donc tous les espaces sont ignorés. Le nombre est mis à 0 après chaque lecture d'un mot)
-    int char_compteur = 0;
-    
-    /** 
-     * Chaine de caractère qui va contenir le mot en cours de lecture, 
-     * cette chaine est troquée après chaque lecture d'un mot (après 
-     * avoir rencontré le premier caractère espace depuis la lecture du mot).
-     */
-    char* mot = (char*)malloc(sizeof(char));
-    assert(mot);
-    // On ajoute le caractère de fin de chaine au mot.
-    mot[0] = '\0';
-    
-    int quoted = 0; // Booléean indiquant si oui ou non on se trouve dans des guillemets.
-    int double_quoted = 0; // Booléean indiquant si oui ou non on se trouve dans des guillemets double.
-    int esc = 0; // Booléean indiquant si oui ou non le caractère suivant est echappé.
-
-    /** 
-     * Lecture du prompt dans la boucle tant que le caractère pointé est 
-     * valide (voir documentation de la fonction actual_char_is_legal()).
-     */
-    while(Command_actual_char_is_legal(quoted, double_quoted, esc, prompt)){
-        // Récupération du caractère pointé par le pointeur, et incémentation de la posisiton.
-        char c = *((*prompt)++);
-        switch (c) {
-            default : // par défaut on ajoute le caractère à la chaine en cours de lecture. 
-                h_default: // label 
-
-                esc = 0; // On met l'echappement à 0 (si jamais le caractère était échappé)
-                // Incrémentation du compteur.
-                char_compteur ++;
-                // Réallocation pour accueillir le nouveau caractère.
-                mot = realloc(mot, (1 + char_compteur) * sizeof(char));
-                mot[char_compteur] = '\0';
-                mot[char_compteur - 1] = c;
-                break; 
-
-            case ' ': // Le cas où le caractère lu est un espace.
-    
-                if (quoted || double_quoted || esc) // Si on est dans une expression entre guillemets ou que ' ' est echapé
-                    goto h_default; // On va dans default
-
-                if (char_compteur){ // Si il y a au moins une lettre lue.
-                    
-                    // Ajout du mot dans la liste des arguments de la commande.
-                    // L'ajout se fait à la fin pour préserver l'ordre de déclaration des arguments (sait-on jamais).
-                    ArrayList_add_last(self->args, obj_new(_String_, mot), 0);
-                    
-                    // Remise à 0 du compteur
-                    char_compteur = 0;
-
-                    // troncage du mot en mot vide.
-                    mot = realloc(mot, sizeof(char));
-                    assert(mot);
-                    mot[0] = '\0';
-                    continue;
-
-                }
-                else // Si on aucun caractère n'est lu alors on ignore l'espace.
-                    continue;    
-            
-            case '-' :  // Pour les paramètres.
-
-                if (char_compteur) {
-                    /** 
-                     * Si il y a au moins une lettre lue, alors 
-                     * le caractère '-' est considéré comme faisant partie du mot 
-                     * Donc on va exécuter `default` à la place
-                     */
-                    goto h_default;
-                }
-                else if (!Command_actual_char_is_legal(quoted, double_quoted, esc, prompt) || *(*prompt)==' '){
-                    /**
-                     * Si le prochain caractère (car on a fait usr_prompt++) n'est pas valide
-                     * (et donc qu'il n'y aura pas de prochaine itération) ou que le prochain 
-                     * caractère est un espace, alors il n'y pas de paramètre à chercher '-' 
-                     * est considéré comme un argument (ex : cd - ou cat - ).
-                     */
-                    goto h_default;
-                }
-
-
-                // Sinon on récupère les paramètres.
-                Command_parse_usr_prompt_params(self, prompt);
-                break;
-
-            case '"': // Le cas où on a des guillemets doubles
-                if (!quoted && !esc) // S'ils sont dans des guillemets simples ou explicitement echapés alors ils sont échapés
-                    double_quoted = !double_quoted;
-
-                goto h_default;
-                break;
-
-            case '\'': // Le cas où on a des guillemets simples
-                if (!double_quoted && !esc) // S'ils sont dans des guillemets doubles ou explicitement echapés alors ils sont échapés
-                    quoted = !quoted;
-
-                goto h_default;
-                break;
-            
-            case '\\': // Il n'y a pas d'échappement mais ça ne coûte rien
-            
-                if (esc) // Si il est echappé
-                    goto h_default;
-                
-                esc = 1;
-                break;
-
-            // TODO on peut rajouter le case '>' pour les redirection (pas pour le moment).
-            
-            
-        }
-
-    }
-    
-    if(char_compteur)  // Si on a lu au moins un mot.
-        ArrayList_add_last(self->args,obj_new(_String_, mot), 0); // On ajoute le mot
-
-    free(mot);
-
-}
-
-
 // Constructeur
 static void* Command_constructor(void* self_, va_list* args){
         
@@ -374,20 +197,12 @@ static void* Command_constructor(void* self_, va_list* args){
         
     // Récupération du nom de la commande
     char* cmd_name = va_arg(*args, char*);
-
-    // Récupération du prompt
-    char** prompt = va_arg(*args, char**);
-
     char *name = malloc(sizeof(char) * (1+strlen(cmd_name)));
     strcpy(name, cmd_name);
-
     *((char**) &self->name) = name; // On change le nom (en trichant un peu, cela viole la contrainte sur les const)
 
     // La fonction execute() est mise à 0 pour déclancher une erreur si la classe fille n'a pas fourni une implémentation.
     *(int(**))&self->execute = 0;
-
-    // Lecture du prompt de l'utilisateur
-    Command_parse_usr_prompt(self, prompt);
 
     return self;
 }
@@ -495,15 +310,6 @@ int Command_execute(Command self){
 
     // Vérification de si self est un sous-type.
     assert(obj_instance_of(self, _Command_));
-    
-    // Parcours des arguments pour vérifier s'il n'y a pas de variable $...
-    Command_replace_variable(self, self->args_tmp);
-    
-    // On garde la liste originale des arguments pour ne pas perdre sa référence.
-    ArrayList origin_args = self->args;
-    
-    // Remplacement de la liste des arguments par la nouvelle.
-    self->args = self->args_tmp;
 
     if (!self->execute){ // Si self n'a pas définie une méthode execute() on arrête tout.
         char tmp1[] = "\e[1;31m[Erreur] La commande \"";
@@ -513,6 +319,16 @@ int Command_execute(Command self){
         write(2, tmp2, strlen(tmp2));
         abort();
     }
+
+
+    // Parcours des arguments pour vérifier s'il n'y a pas de variable $...
+    Command_replace_variable(self, self->args_tmp);
+    
+    // On garde la liste originale des arguments pour ne pas perdre sa référence.
+    ArrayList origin_args = self->args;
+    
+    // Remplacement de la liste des arguments par la nouvelle.
+    self->args = self->args_tmp;
 
     // Sinon on éxécute la commande.
     int ret_val = self->execute(self);

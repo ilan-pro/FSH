@@ -11,16 +11,16 @@
 #ifndef FTYPE_H
 #define FTYPE_H
 #ifdef FTYPE_CLASS
-#define COMMAND_CLASS
-#include "Command.h"
+#define SIMPLE_CMD_CLASS
+#include "SimpleCmd.h"
     
     #define FTYPE_FILEDS \
-        COMMAND_FIELDS /* Doit toujours être déclaré en premier pour pouvoir réduire l'objet à un objet de type Command pour le polymorphisme */\ 
+        SIMPLE_CMD_FIELDS /* Doit toujours être déclaré en premier pour pouvoir réduire l'objet à un objet de type Command pour le polymorphisme */\ 
     
     typedef struct _Ftype_* Ftype;
     
 #else
-#include "Command.h"
+#include "SimpleCmd.h"
     
     /** @cond HIDE_THIS*/
     typedef struct __ftype_private_fields{
@@ -28,7 +28,7 @@
     } __ftype_private_fields;
 
     #define FTYPE_H_FIELDS \
-        COMMAND_H_FIELDS /* Doit toujours être déclaré en premier pour pouvoir réduire l'objet à un objet de type Command pour le polymorphisme */ \
+        SIMPLE_CMD_H_FIELDS /* Doit toujours être déclaré en premier pour pouvoir réduire l'objet à un objet de type Command pour le polymorphisme */ \
         const char _Ftype_private[sizeof(__ftype_private_fields)];
     /**@endcond*/    
 

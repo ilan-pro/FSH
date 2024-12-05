@@ -118,14 +118,18 @@ const Class _ExternalCommand_ = &__ExternalCommand__;
 // Constructeur.
 static void* ExternalCommand_constructor(void* self_, va_list* args){
     
+    /// Mise à jour de _Cd_ en tant que héritier de _Command_ (si ce n'est pas déjà le cas)
+    if(!_ExternalCommand_->_super_)
+        *(Class*)& (_ExternalCommand_->_super_) = _Command_;
+
     // Vérification des arguments.
     assert(self_ && args);    
     
     // Conversion en objet de type ExternalCommand.
     ExternalCommand self = (ExternalCommand) self_;
 
-    // On ajoute le parent à EXTERNAL_COMMAND (en contournant la contrainte sur const).
-    *(Class*)&(self->_ExternalCommand_->_super_) = _Command_; 
+    // Appel du constructeur de la classe Command ( parent )
+    _Command_->ctor(self, args);
 
     // On met la fonction print du parent comme fonction d'affichage de l'enfant.
     *((void (**)) &(self->_ExternalCommand_->print)) = _Command_->print;
@@ -133,29 +137,14 @@ static void* ExternalCommand_constructor(void* self_, va_list* args){
     // Ajout de la fonction execute de la classe fille.
     *((int (**) (Command)) &(self->execute)) = ExternalCommand_execute;
 
-    // Les champs arguments et paramètres ( qui sont des listes chainées ) ne seront pas initialisés.
-    
-    // Récupération du nom de la commande.
-    char* cmd_name = va_arg(*args, char*);
-    // printf("'%s'\n", cmd_name);
-    char* tmp = malloc((1 + strlen(cmd_name)) * sizeof(char));
-    *(char**)&self->name = strcpy(tmp, cmd_name); // Mise à jour du nom de la commande.
-    
+    int cmd_length = strlen(self->name);
+    char* command = malloc((1 + cmd_length) * sizeof(char));
+    assert(command);
+    strcpy(command, self->name);
+    command[cmd_length] = '\0';
+
     // Récupération du reste du prompt.
     char** prompt = va_arg(*args, char**);
-    // Initialisation de la liste des arguments et des paramètres de commandes
-    self->args = obj_new(_ArrayList_, 0);
-    self->params = obj_new(_ArrayList_, 0);
-    self->args_tmp =obj_new(_ArrayList_, 0);
-
-    int cmd_length = strlen(cmd_name);
-    char* command = malloc((2 + cmd_length) * sizeof(char));
-    assert(command);
-    strcpy(command, cmd_name);
-    
-    command[cmd_length] = ' ';
-    command[cmd_length+1] = '\0';
-    cmd_length ++;
 
     int quoted = 0; // Booléean indiquant si oui ou non on se trouve dans des guillemets.
     int double_quoted = 0; // Booléean indiquant si oui ou non on se trouve dans des guillemets double.
@@ -262,10 +251,7 @@ static void* ExternalCommand_destroy(void* self_){
     assert(self_);    
     assert(obj_instance_of(self_, _ExternalCommand_));
 
-    ExternalCommand self = _Command_->dtor(self_);
-    // Aucun autre champ n'est à libérer il n'y a pas de liste d'argument ni de liste de paramètre.
-
-    return self;
+    return _Command_->dtor(self_);
 }
 
 // Execute.

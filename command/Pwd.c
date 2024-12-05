@@ -116,17 +116,16 @@ const Class _Pwd_ = &__Pwd__;
 // Constructeur.
 static void* Pwd_constructor(void* self_, va_list* args){
     
+    /// Mise à jour de _Pwd_ en tant que héritier de _SimpleCmd_ (si ce n'est pas déjà le cas)
+    if(!_Pwd_->_super_)
+        *(Class*)& (_Pwd_->_super_) = _SimpleCmd_;
+
     // Vérification des arguments.
     assert(self_ && args);    
     
     // Conversion en objet de type Pwd.
-    Pwd self = _Command_->ctor(self_, args);
+    Pwd self = _SimpleCmd_->ctor(self_, args);
 
-    // On ajoute le parent à PWD (en controunant la contrainte sur const).
-    *(Class*)&(self->_Pwd_->_super_) = _Command_; 
-    // On met la fonction print du parent comme fonction d'affichage de l'enfant.
-    *((void (**)) &(self->_Pwd_->print)) = _Command_->print;
-        
     // Ajout de la fonction execute de la classe fille.
     *((int (**) (Command)) &(self->execute)) = Pwd_execute;
     
@@ -139,7 +138,7 @@ static void* Pwd_destroy(void* self_){
     // Vérification des arguments.
     assert(self_);    
     
-    return _Command_->dtor(self_);
+    return _SimpleCmd_->dtor(self_);
     
 }
 

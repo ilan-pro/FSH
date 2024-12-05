@@ -47,7 +47,7 @@
     /**@endcond*/
     
    /**
-    * Structure de la classe `_If_`.
+    * @brief Structure de la classe `_If_`.
     *
     * Construction <code><strong> obj_new( `_If_`, char** prompt ); </strong></code>
     * où : <ul>
@@ -58,7 +58,7 @@
     */
     typedef struct _If_ {
         /**
-         * Classe des objets de type `_If_`.
+         * @brief Classe des objets de type `_If_`.
          *
          * Construction <code><strong> obj_new( `_If_`, char** prompt ); </strong></code>
          * où : <ul>
@@ -74,7 +74,7 @@
 #endif
 
 /**
- * Classe des objets de type `_If_`.
+ * @brief Classe des objets de type `_If_`.
  *
  * Construction <code><strong> obj_new( `_If_`, char** prompt ); </strong></code>
  * où : <ul>

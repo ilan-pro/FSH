@@ -390,29 +390,27 @@ static int add_params( For self,  char ** prompt ){
 // Constructeur.
 static void* For_constructor(void* self_, va_list* args){
     
+    /// Mise à jour de _Cd_ en tant que héritier de _Command_ (si ce n'est pas déjà le cas)
+    if(!_For_->_super_)
+        *(Class*)& (_For_->_super_) = _Command_;
+
     // Vérification des arguments.
     assert(self_ && args);    
     
     // Conversion en objet de type For.
     For self = (For) self_;
 
-    // On ajoute le parent à FOR (en controunant la contrainte sur const).
-    *(Class*)&(self->_For_->_super_) = _Command_; 
+    // Appel du constructeur de la classe Command ( parent )
+    _Command_->ctor(self, args);
     // On met la fonction print du parent comme fonction d'affichage de l'enfant.
     *((void (**)) &(self->_For_->print)) = For_print;
-        
+
     // Ajout de la fonction execute de la classe fille.
     *((int (**) (Command)) &(self->execute)) = For_execute;
-    va_arg(*args, char*);
+
     //Récupération du reste du prompt.
     char** prompt = va_arg(*args, char**);
-    
-    
-    self->params = obj_new(_ArrayList_, 0);
-    self->args = obj_new(_ArrayList_, 0);
-    self->args_tmp =obj_new(_ArrayList_, 0);
 
-    
     // Ajout de l'identificateur de la variable de boucle
     if (!add_file_id(self, prompt)){
         obj_destroy(self);

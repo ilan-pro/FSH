@@ -171,12 +171,14 @@ int Shell_start(){
             if (!file_principal) {// Si la file renvoyée est NULL alors il y a une erreur de syntaxe.
                 Shell_print_syntaxe_error(usr_prompt, cp_prompt);
                 previous_cmd_finish = 1;
+                free(cp_prompt); // Destruction du pointeur alloué par readline.
             }
-
-            obj_print(file_principal); printf("\n"); // debug
-            previous_cmd_finish = Shell_execute_all(file_principal); // Exécution de la file principale.
-            obj_destroy(file_principal); // Destruction de la file principale.
-            free(cp_prompt); // Destruction du pointeur alloué par readline.
+            else {
+                //obj_print(file_principal); printf("\n"); // debug
+                previous_cmd_finish = Shell_execute_all(file_principal); // Exécution de la file principale.
+                obj_destroy(file_principal); // Destruction de la file principale.
+                free(cp_prompt); // Destruction du pointeur alloué par readline.
+            }
         }
         else{ // Si on est ici c'est qu'il y reception de EOF
             break; // Alors on arrête le shell.
@@ -226,19 +228,12 @@ ArrayList Shell_parse(char **prompt){
 
         // On récupère le caractère pointé par user_prompt puis on incrémente pour les caractères suivant.
         char res = **prompt;
-        
         if(res == '\0'){
             fin:
             //en faire une fonction
-            if(lu1lettre > 0){ // Si on a lu au moins une lettre alors il y a une commande à ajouter avant
-                if (!apply_cmd(char_lu, file_secondaire, prompt)) {// Si la commande n'est pas créée il y a une erreur de syntaxe.
-                    // Annulation du parsing;
-                    obj_destroy(file_principale); // Destruction de la file principale.
-                    obj_destroy(file_secondaire); // Destruction de la file secondaire en cours de création.
-                    free(char_lu);
-                    return NULL; // On ne créé pas de file, on renvoie NULL
-                }
-            }
+            if(lu1lettre > 0) // Si on a lu au moins une lettre alors il y a une commande à ajouter avant
+                if (!apply_cmd(char_lu, file_secondaire, prompt)) // Si la commande n'est pas créée il y a une erreur de syntaxe.
+                    goto error;
 
             // Ajout de la pipeline (si et seulement si elle n'est pas vide)
             if (ArrayList_size(file_secondaire) > 0)
@@ -249,17 +244,14 @@ ArrayList Shell_parse(char **prompt){
             break;
         }
         
-
+        if (res == '{') // L'ouverture d'une accolade marque la fin d'un parsing.
+            goto fin;    
         
         if(res == '|'){
             if (lu1lettre){ // Si on a lu au moins une lettre alors il y a une commande à ajouter avant
-                if (!apply_cmd(char_lu, file_secondaire, prompt)) {// Si la commande n'est pas créée il y a une erreur de syntaxe.
-                    // Annulation du parsing;
-                    obj_destroy(file_principale); // Destruction de la file principale.
-                    obj_destroy(file_secondaire); // Destruction de la file secondaire en cours de création.
-                    free(char_lu);
-                    return NULL; // On ne créé pas de file, on renvoie NULL
-                }
+                if (!apply_cmd(char_lu, file_secondaire, prompt)) // Si la commande n'est pas créée il y a une erreur de syntaxe.
+                    goto error;
+
                 lu1lettre = 0;
             }
 
@@ -274,10 +266,7 @@ ArrayList Shell_parse(char **prompt){
             else { // Sinon erreur de syntaxe
                 char tmp[] = "\e[1;31m[Erreur] Il y a une accolade en trop ! \e[1;0m\n";
                 write(1,tmp, strlen(tmp));
-                obj_destroy(file_principale); // Destruction de la file principale.
-                obj_destroy(file_secondaire); // Destruction de la file secondaire en cours de création.
-                free(char_lu);
-                return NULL; // On ne créé pas de file, on renvoie NULL
+                goto error;
             }
         }
 
@@ -285,13 +274,9 @@ ArrayList Shell_parse(char **prompt){
         // on check si res est arrivé à la fin d'une PipeLine
         if(res == ';'){
             if (lu1lettre){ // Si on a lu au moins une lettre alors il y a une commande à ajouter avant
-                if (!apply_cmd(char_lu, file_secondaire, prompt)) {// Si la commande n'est pas créée il y a une erreur de syntaxe.
-                    // Annulation du parsing;
-                    obj_destroy(file_principale); // Destruction de la file principale.
-                    obj_destroy(file_secondaire); // Destruction de la file secondaire en cours de création.
-                    free(char_lu);
-                    return NULL; // On ne créé pas de file, on renvoie NULL
-                }
+                if (!apply_cmd(char_lu, file_secondaire, prompt)) // Si la commande n'est pas créée il y a une erreur de syntaxe.
+                    goto error;
+
                 lu1lettre = 0;
             }
             
@@ -321,13 +306,8 @@ ArrayList Shell_parse(char **prompt){
             // donc char_lu contient le nom de la commande
             // on remet lu1lettre à 0 car nous voulons relire une commande
             lu1lettre = 0;
-            if (!apply_cmd(char_lu, file_secondaire, prompt)) {// Si la commande n'est pas créée il y a une erreur de syntaxe.
-                // Annulation du parsing;
-                obj_destroy(file_principale); // Destruction de la file principale.
-                obj_destroy(file_secondaire); // Destruction de la file secondaire en cours de création.
-                free(char_lu);
-                return NULL; // On ne créé pas de file, on renvoie NULL
-            }
+            if (!apply_cmd(char_lu, file_secondaire, prompt)) // Si la commande n'est pas créée il y a une erreur de syntaxe.
+                goto error;
 
             // on trunk l'espace alloué par l'ancienne commande afin de pouvoir stocker le nom de la nouvelle commande sans l'avoir à la concatener avec l'ancienne
             char_lu = realloc(char_lu, sizeof(char));
@@ -347,6 +327,14 @@ ArrayList Shell_parse(char **prompt){
     }
     free(char_lu);
     return file_principale;
+
+error:
+    // Annulation du parsing;
+    obj_destroy(file_principale); // Destruction de la file principale.
+    obj_destroy(file_secondaire); // Destruction de la file secondaire en cours de création.
+    free(char_lu);
+    return NULL; // On ne créé pas de file, on renvoie NULL
+
 }
 
 /**

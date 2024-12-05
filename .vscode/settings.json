@@ -3,6 +3,8 @@
         "wait.h": "c",
         "types.h": "c",
         "shell.h": "c",
-        "listcell.h": "c"
+        "listcell.h": "c",
+        "command.h": "c",
+        "externalcommand.h": "c"
     }
 }

@@ -143,7 +143,7 @@ static int instanceof(const Class _object_, const Class _class_){
     if (_object_ == _class_)
         return 1;
     else if (_object_->_super_)
-        return instanceof((const Class)_object_->_super_, _class_);
+        return instanceof((const Class)(_object_->_super_), _class_);
     else 
         return 0;
 

@@ -1,0 +1,133 @@
+\hypertarget{SimpleCmd_8h}{}\doxysection{Référence du fichier command/\+Simple\+Cmd.h}
+\label{SimpleCmd_8h}\index{command/SimpleCmd.h@{command/SimpleCmd.h}}
+
+
+Fichier d\textquotesingle{}en-\/tête contenant les déclarations des variables publiques et de toutes les méthodes public de {\ttfamily \mbox{\hyperlink{struct__SimpleCmd__}{\+\_\+\+Simple\+Cmd\+\_\+}}}.  
+
+
+{\ttfamily \#include \char`\"{}Command.\+h\char`\"{}}\newline
+Graphe des dépendances par inclusion de Simple\+Cmd.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{db/d26/SimpleCmd_8h__incl}
+\end{center}
+\end{figure}
+Ce graphe montre quels fichiers incluent directement ou indirectement ce fichier \+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{da/d83/SimpleCmd_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct__SimpleCmd__}{\+\_\+\+Simple\+Cmd\+\_\+}}
+\begin{DoxyCompactList}\small\item\em Classe de toutes les commandes simples. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Définitions de type}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \mbox{\hyperlink{struct__SimpleCmd__}{\+\_\+\+Simple\+Cmd\+\_\+}} $\ast$ \mbox{\hyperlink{SimpleCmd_8h_a9e1532b7cb26a13531df2f8c5bdf1f6c}{Simple\+Cmd}}
+\begin{DoxyCompactList}\small\item\em Classe de toutes les commandes simples. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Fonctions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{SimpleCmd_8h_a6e7cb96a29a5b4c98c6e5f2cf643cf2b}{Simple\+Cmd\+\_\+actual\+\_\+char\+\_\+is\+\_\+legal}} (int quoted, int double\+\_\+quoted, int esc, char $\ast$$\ast$prompt)
+\begin{DoxyCompactList}\small\item\em Fonction qui vérifie si oui ou non le caractère actuellement pointé par le pointeur vers le prompte de l\textquotesingle{}utilisateur est valide, c\textquotesingle{}est à dire si on doit oui ou non arrêter la parsing de la commande. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const \mbox{\hyperlink{Class_8h_a6ec2a8ccaeb1e924a80036ec40760377}{Class}} \mbox{\hyperlink{SimpleCmd_8h_a8f16e55c1d44c062082e7b85fae75a34}{\+\_\+\+Simple\+Cmd\+\_\+}}
+\begin{DoxyCompactList}\small\item\em Classe de toutes les commandes simples. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Description détaillée}
+Fichier d\textquotesingle{}en-\/tête contenant les déclarations des variables publiques et de toutes les méthodes public de {\ttfamily \mbox{\hyperlink{struct__SimpleCmd__}{\+\_\+\+Simple\+Cmd\+\_\+}}}. 
+
+Un objet de type {\ttfamily \mbox{\hyperlink{struct__SimpleCmd__}{\+\_\+\+Simple\+Cmd\+\_\+}}} est une commande dont les arguments et les paramètre sont récupéré directement (avec un parsing) dans le construteur. Ces commandes sont donc tous de la forme {\ttfamily Cmd\+\_\+name -\/param1 -\/param2 arg1 -\/parm3 ...}. Les arguments et les paramètres pouvant êtres déclarés dans un ordre quelconque et les paramètre peuvent être concaténés (Ex\+: {\ttfamily cmd -\/Ab\+Cd} = {\ttfamily cmd -\/A -\/b -\/C -\/d}). 
+
+Cette classe ne fourni pas de méthode {\ttfamily execute()}, elle doit donc être héritée par une classe qui implémentera la méthode sinon l\textquotesingle{}exécution déclanchera une erreur. 
+
+NB \+: Les commandes ayant une définition complexe comme les commandes avec des paramètres non-\/booléens (Ex \+: {\ttfamily cmd -\/-\/param=oiseau -\/param1 Wazo} ou {\ttfamily for i in ... \{\}} ). Ne peuvent pas être construit directement avec le constructeur, alors il est conseillé d\textquotesingle{}hériter directement de la classe {\ttfamily \mbox{\hyperlink{struct__Command__}{\+\_\+\+Command\+\_\+}}} au lieu de celle-\/ci et de définir un constructeur qui gère la construction de la commande. 
+
+Construction \+: {\ttfamily {\bfseries{ obj\+\_\+new( {\ttfamily \mbox{\hyperlink{struct__SimpleCmd__}{\+\_\+\+Simple\+Cmd\+\_\+}}}, char$\ast$ cmd\+\_\+name, char$\ast$$\ast$ prompt ); }}} où \+: 
+\begin{DoxyItemize}
+\item 
+\end{DoxyItemize}~\newline
+  {\ttfamily \mbox{\hyperlink{struct__SimpleCmd__}{\+\_\+\+Simple\+Cmd\+\_\+}}} désigne la classe des objets de type {\ttfamily Simple\+Cmd}.   {\ttfamily char$\ast$ cmd\+\_\+name} Le nom de la commande.  {\ttfamily char$\ast$$\ast$ prompt} Le reste du prompt qui va servir à construire la comande.  
+
+\doxysubsection{Documentation des définitions de type}
+\mbox{\Hypertarget{SimpleCmd_8h_a9e1532b7cb26a13531df2f8c5bdf1f6c}\label{SimpleCmd_8h_a9e1532b7cb26a13531df2f8c5bdf1f6c}} 
+\index{SimpleCmd.h@{SimpleCmd.h}!SimpleCmd@{SimpleCmd}}
+\index{SimpleCmd@{SimpleCmd}!SimpleCmd.h@{SimpleCmd.h}}
+\doxysubsubsection{\texorpdfstring{SimpleCmd}{SimpleCmd}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{struct__SimpleCmd__}{\+\_\+\+Simple\+Cmd\+\_\+}}$\ast$ \mbox{\hyperlink{SimpleCmd_8c_a9e1532b7cb26a13531df2f8c5bdf1f6c}{Simple\+Cmd}}}
+
+
+
+Classe de toutes les commandes simples. 
+
+Un objet de type {\ttfamily \mbox{\hyperlink{struct__SimpleCmd__}{\+\_\+\+Simple\+Cmd\+\_\+}}} est une commande dont les arguments et les paramètre sont récupéré directement (avec un parsing) dans le construteur. Ces commandes sont donc tous de la forme {\ttfamily Cmd\+\_\+name -\/param1 -\/param2 arg1 -\/parm3 ...}. Les arguments et les paramètres pouvant êtres déclarés dans un ordre quelconque et les paramètre peuvent être concaténés (Ex\+: {\ttfamily cmd -\/Ab\+Cd} = {\ttfamily cmd -\/A -\/b -\/C -\/d}). 
+
+Construction \+: {\ttfamily {\bfseries{ obj\+\_\+new( {\ttfamily \mbox{\hyperlink{struct__SimpleCmd__}{\+\_\+\+Simple\+Cmd\+\_\+}}}, char$\ast$ cmd\+\_\+name, char$\ast$$\ast$ prompt ); }}} où \+: 
+\begin{DoxyItemize}
+\item {\ttfamily \mbox{\hyperlink{struct__SimpleCmd__}{\+\_\+\+Simple\+Cmd\+\_\+}}} désigne la classe des objets de type {\ttfamily Simple\+Cmd}.  
+\item {\ttfamily char$\ast$ cmd\+\_\+name} Le nom de la commande. 
+\item {\ttfamily char$\ast$$\ast$ prompt} Le reste du prompt qui va servir à construire la comande. 
+\end{DoxyItemize}
+
+\doxysubsection{Documentation des fonctions}
+\mbox{\Hypertarget{SimpleCmd_8h_a6e7cb96a29a5b4c98c6e5f2cf643cf2b}\label{SimpleCmd_8h_a6e7cb96a29a5b4c98c6e5f2cf643cf2b}} 
+\index{SimpleCmd.h@{SimpleCmd.h}!SimpleCmd\_actual\_char\_is\_legal@{SimpleCmd\_actual\_char\_is\_legal}}
+\index{SimpleCmd\_actual\_char\_is\_legal@{SimpleCmd\_actual\_char\_is\_legal}!SimpleCmd.h@{SimpleCmd.h}}
+\doxysubsubsection{\texorpdfstring{SimpleCmd\_actual\_char\_is\_legal()}{SimpleCmd\_actual\_char\_is\_legal()}}
+{\footnotesize\ttfamily int Simple\+Cmd\+\_\+actual\+\_\+char\+\_\+is\+\_\+legal (\begin{DoxyParamCaption}\item[{int}]{quoted,  }\item[{int}]{double\+\_\+quoted,  }\item[{int}]{esc,  }\item[{char $\ast$$\ast$}]{prompt }\end{DoxyParamCaption})}
+
+
+
+Fonction qui vérifie si oui ou non le caractère actuellement pointé par le pointeur vers le prompte de l\textquotesingle{}utilisateur est valide, c\textquotesingle{}est à dire si on doit oui ou non arrêter la parsing de la commande. 
+
+Un caractère est valide si et seulement si \+:
+\begin{DoxyItemize}
+\item Ce n\textquotesingle{}est pas le caracètre null (fin de chaine).
+\item Ce n\textquotesingle{}est pas l\textquotesingle{}un des caracètres \textquotesingle{}$\vert$\textquotesingle{}, \textquotesingle{};\textquotesingle{} ou \textquotesingle{}\}\textquotesingle{}.
+\end{DoxyItemize}
+
+Si le caractère n\textquotesingle{}est pas null (fin de chaine) et qu\textquotesingle{}il est entre guillemets (simple ou double) ou échapé alors il est autamatiquement valide (\textquotesingle{}$\vert$\textquotesingle{}, \textquotesingle{};\textquotesingle{} et \textquotesingle{}\}\textquotesingle{} seront considérés comme des caracètres normaux).
+
+
+\begin{DoxyParams}{Paramètres}
+{\em quoted} & Booléen indiquant si le caracètre est entre guillemets simple. \\
+\hline
+{\em double\+\_\+quoted} & Booléen indiquant si le caracètre est entre guillemets doubles. \\
+\hline
+{\em esc} & Booléen indiquant si le caracètre est echapé par \textbackslash{} . \\
+\hline
+{\em prompt} & Le prompt en cours de paring. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+Si oui ou non le caractère actuellement pointé par le pointeur vers le prompte de l\textquotesingle{}utilisateur est valide. 
+\end{DoxyReturn}
+
+
+\doxysubsection{Documentation des variables}
+\mbox{\Hypertarget{SimpleCmd_8h_a8f16e55c1d44c062082e7b85fae75a34}\label{SimpleCmd_8h_a8f16e55c1d44c062082e7b85fae75a34}} 
+\index{SimpleCmd.h@{SimpleCmd.h}!\_SimpleCmd\_@{\_SimpleCmd\_}}
+\index{\_SimpleCmd\_@{\_SimpleCmd\_}!SimpleCmd.h@{SimpleCmd.h}}
+\doxysubsubsection{\texorpdfstring{\_SimpleCmd\_}{\_SimpleCmd\_}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{Class_8h_a6ec2a8ccaeb1e924a80036ec40760377}{Class}} \mbox{\hyperlink{struct__SimpleCmd__}{\+\_\+\+Simple\+Cmd\+\_\+}}\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Classe de toutes les commandes simples. 
+
+Un objet de type {\ttfamily \mbox{\hyperlink{struct__SimpleCmd__}{\+\_\+\+Simple\+Cmd\+\_\+}}} est une commande dont les arguments et les paramètre sont récupéré directement (avec un parsing) dans le construteur. Ces commandes sont donc tous de la forme {\ttfamily Cmd\+\_\+name -\/param1 -\/param2 arg1 -\/parm3 ...}. Les arguments et les paramètres pouvant êtres déclarés dans un ordre quelconque et les paramètre peuvent être concaténés (Ex\+: {\ttfamily cmd -\/Ab\+Cd} = {\ttfamily cmd -\/A -\/b -\/C -\/d}). 
+
+Construction \+: {\ttfamily {\bfseries{ obj\+\_\+new( {\ttfamily \mbox{\hyperlink{struct__SimpleCmd__}{\+\_\+\+Simple\+Cmd\+\_\+}}}, char$\ast$ cmd\+\_\+name, char$\ast$$\ast$ prompt ); }}} où \+: 
+\begin{DoxyItemize}
+\item {\ttfamily \mbox{\hyperlink{struct__SimpleCmd__}{\+\_\+\+Simple\+Cmd\+\_\+}}} désigne la classe des objets de type {\ttfamily Simple\+Cmd}.  
+\item {\ttfamily char$\ast$ cmd\+\_\+name} Le nom de la commande. 
+\item {\ttfamily char$\ast$$\ast$ prompt} Le reste du prompt qui va servir à construire la comande. 
+\end{DoxyItemize}

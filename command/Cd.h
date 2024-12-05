@@ -11,16 +11,16 @@
 #ifndef CD_H
 #define CD_H
 #ifdef CD_CLASS
-#define COMMAND_CLASS
-#include "Command.h"
+    #define SIMPLE_CMD_CLASS
+    #include "SimpleCmd.h"
     
     #define CD_FILEDS \
-        COMMAND_FIELDS /* Doit toujours être déclaré en premier pour pouvoir réduire l'objet à un objet de type Command pour le polymorphisme */\ 
+        SIMPLE_CMD_FIELDS /* Doit toujours être déclaré en premier pour pouvoir réduire l'objet à un objet de type Command pour le polymorphisme */
     
     typedef struct _Cd_* Cd;
     
 #else
-#include "Command.h"
+#include "SimpleCmd.h"
     
     /** @cond HIDE_THIS*/
     typedef struct __cd_private_fields{
@@ -28,7 +28,7 @@
     } __cd_private_fields;
 
     #define CD_H_FIELDS \
-        COMMAND_H_FIELDS /* Doit toujours être déclaré en premier pour pouvoir réduire l'objet à un objet de type Command pour le polymorphisme */ \
+        SIMPLE_CMD_H_FIELDS /* Doit toujours être déclaré en premier pour pouvoir réduire l'objet à un objet de type Command pour le polymorphisme */ \
         const char _Cd_private[sizeof(__cd_private_fields)];
     /**@endcond*/    
 

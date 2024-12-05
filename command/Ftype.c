@@ -114,17 +114,17 @@ const Class _Ftype_ = &__Ftype__;
 // Constructeur.
 static void* Ftype_constructor(void* self_, va_list* args){
     
+    /// Mise à jour de _Ftype_ en tant que héritier de _SimpleCmd_ (si ce n'est pas déjà le cas)
+    if(!_Ftype_->_super_)
+        *(Class*)& (_Ftype_->_super_) = _SimpleCmd_;
+
     // Vérification des arguments.
     assert(self_ && args);    
     
     // Conversion en objet de type Ftype.
-    Ftype self = _Command_->ctor(self_, args);
+    Ftype self = _SimpleCmd_->ctor(self_, args);
     // (Ftype) self_;
 
-    // On ajoute le parent à FTYPE (en controunant la contrainte sur const).
-    *(Class*)&(self->_Ftype_->_super_) = _Command_; 
-    // On met la fonction print du parent comme fonction d'affichage de l'enfant.
-    *((void (**)) &(self->_Ftype_->print)) = _Command_->print;
         
     // Ajout de la fonction execute de la classe fille.
     *((int (**) (Command)) &(self->execute)) = Ftype_execute;
@@ -139,7 +139,7 @@ static void* Ftype_destroy(void* self_){
     // Vérification des arguments.
     assert(self_);    
     
-    return _Command_->dtor(self_);
+    return _SimpleCmd_->dtor(self_);
     
 }
 

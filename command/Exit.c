@@ -111,17 +111,15 @@ const Class _Exit_ = &__Exit__;
 // Constructeur.
 static void* Exit_constructor(void* self_, va_list* args){
     
+    /// Mise à jour de _Exit_ en tant que héritier de _SimpleCmd_ (si ce n'est pas déjà le cas)
+    if(!_Exit_->_super_)
+        *(Class*)& (_Exit_->_super_) = _SimpleCmd_;
+
     // Vérification des arguments.
     assert(self_ && args);    
     
     // Conversion en objet de type Exit.
-    Exit self =  _Command_->ctor(self_, args);
-    // (Exit) self_;
-
-    // On ajoute le parent à EXIT (en controunant la contrainte sur const).
-    *(Class*)&(self->_Exit_->_super_) = _Command_; 
-    // On met la fonction print du parent comme fonction d'affichage de l'enfant.
-    *((void (**)) &(self->_Exit_->print)) = _Command_->print;
+    Exit self = _SimpleCmd_->ctor(self_, args);
         
     // Ajout de la fonction execute de la classe fille.
     *((int (**) (Command)) &(self->execute)) = Exit_execute;
@@ -134,9 +132,8 @@ static void* Exit_constructor(void* self_, va_list* args){
 static void* Exit_destroy(void* self_){
     
     // Vérification des arguments.
-    assert(self_);    
-    
-    return _Command_->dtor(self_);
+    assert(self_);
+    return _SimpleCmd_->dtor(self_);
     
 }
 

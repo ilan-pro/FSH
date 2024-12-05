@@ -75,23 +75,23 @@ $(function() {
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#ifndef PWD_H</span></div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#define PWD_H</span></div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#ifdef PWD_CLASS</span></div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#define COMMAND_CLASS</span></div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="../../d1/d55/Command_8h.html">Command.h</a>&quot;</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#define SIMPLE_CMD_CLASS</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="../../d2/ded/SimpleCmd_8h.html">SimpleCmd.h</a>&quot;</span></div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    </div>
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">    #define PWD_FILEDS \</span></div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">        COMMAND_FIELDS </span><span class="comment">/* Doit toujours être déclaré en premier pour pouvoir réduire l&#39;objet à un objet de type Command pour le polymorphisme */</span><span class="preprocessor">\ </span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">        SIMPLE_CMD_FIELDS </span><span class="comment">/* Doit toujours être déclaré en premier pour pouvoir réduire l&#39;objet à un objet de type Command pour le polymorphisme */</span><span class="preprocessor">\ </span></div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    </div>
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="../../d6/d46/struct__Pwd__.html">_Pwd_</a>* <a class="code" href="../../da/d49/Pwd_8h.html#a1a7a125daef5c253df65b7e165f08538">Pwd</a>;</div>
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    </div>
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#else</span></div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="../../d1/d55/Command_8h.html">Command.h</a>&quot;</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="../../d2/ded/SimpleCmd_8h.html">SimpleCmd.h</a>&quot;</span></div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    </div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="keyword">typedef</span> <span class="keyword">struct </span>__pwd_private_fields{</div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;       <span class="comment">// Attribut qu&#39;on veut rendre privée ici. </span></div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    } __pwd_private_fields;</div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">    #define PWD_H_FIELDS \</span></div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">        COMMAND_H_FIELDS </span><span class="comment">/* Doit toujours être déclaré en premier pour pouvoir réduire l&#39;objet à un objet de type Command pour le polymorphisme */</span><span class="preprocessor"> \</span></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">        SIMPLE_CMD_H_FIELDS </span><span class="comment">/* Doit toujours être déclaré en premier pour pouvoir réduire l&#39;objet à un objet de type Command pour le polymorphisme */</span><span class="preprocessor"> \</span></div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">        const char _Pwd_private[sizeof(__pwd_private_fields)];</span></div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="../../d6/d46/struct__Pwd__.html">_Pwd_</a> {</div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;       <a class="code" href="../../d8/d36/struct__Class__.html">Class</a> <a class="code" href="../../d6/d46/struct__Pwd__.html#ab00078213102b9e6855b83abc988f65d">_Pwd_</a>;</div>
@@ -103,9 +103,9 @@ $(function() {
 <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="keyword">extern</span> <span class="keyword">const</span> <a class="code" href="../../d8/d36/struct__Class__.html">Class</a> <a class="code" href="../../da/d49/Pwd_8h.html#aecc85893af0940f3d98b7fd63e841927">_Pwd_</a>;</div>
 <div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160; </div>
 <div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="ttc" id="aCommand_8h_html"><div class="ttname"><a href="../../d1/d55/Command_8h.html">Command.h</a></div><div class="ttdoc">Fichier d'en-tête contenant les déclarations des variables publiques et de toutes les méthodes public...</div></div>
 <div class="ttc" id="aPwd_8h_html_a1a7a125daef5c253df65b7e165f08538"><div class="ttname"><a href="../../da/d49/Pwd_8h.html#a1a7a125daef5c253df65b7e165f08538">Pwd</a></div><div class="ttdeci">struct _Pwd_ * Pwd</div></div>
 <div class="ttc" id="aPwd_8h_html_aecc85893af0940f3d98b7fd63e841927"><div class="ttname"><a href="../../da/d49/Pwd_8h.html#aecc85893af0940f3d98b7fd63e841927">_Pwd_</a></div><div class="ttdeci">const Class _Pwd_</div><div class="ttdoc">Classe des commandes pwd.</div><div class="ttdef"><b>Definition:</b> Pwd.c:110</div></div>
+<div class="ttc" id="aSimpleCmd_8h_html"><div class="ttname"><a href="../../d2/ded/SimpleCmd_8h.html">SimpleCmd.h</a></div><div class="ttdoc">Fichier d'en-tête contenant les déclarations des variables publiques et de toutes les méthodes public...</div></div>
 <div class="ttc" id="astruct__Class___html"><div class="ttname"><a href="../../d8/d36/struct__Class__.html">_Class_</a></div><div class="ttdoc">Structure représentant la classe dans laquelle appratient un objet.</div><div class="ttdef"><b>Definition:</b> Class.h:57</div></div>
 <div class="ttc" id="astruct__Pwd___html"><div class="ttname"><a href="../../d6/d46/struct__Pwd__.html">_Pwd_</a></div><div class="ttdoc">Classe Pwd de la commande Pwd qui affiche le chemin absolu du répertoire courant.</div><div class="ttdef"><b>Definition:</b> Pwd.c:68</div></div>
 <div class="ttc" id="astruct__Pwd___html_ab00078213102b9e6855b83abc988f65d"><div class="ttname"><a href="../../d6/d46/struct__Pwd__.html#ab00078213102b9e6855b83abc988f65d">_Pwd_::_Pwd_</a></div><div class="ttdeci">Class _Pwd_</div><div class="ttdoc">Classe des commandes pwd.</div><div class="ttdef"><b>Definition:</b> Pwd.c:80</div></div>

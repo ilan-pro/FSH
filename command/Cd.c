@@ -12,14 +12,14 @@
  */
 
 
-#include "../shell.h"
-#include "../base/String.h"
 
 /** @cond HIDE_THIS*/
 #define CD_CLASS "Cd"
 #include "Cd.h"
 /**@endcond*/
 
+#include "../shell.h"
+#include "../base/String.h"
 
 /*****************************************************/
 /************ Déclaration des fonctions **************/
@@ -118,17 +118,15 @@ const Class _Cd_ = &__Cd__;
 // Constructeur.
 static void* Cd_constructor(void* self_, va_list* args){
     
+    /// Mise à jour de _Cd_ en tant que héritier de _SimpleCmd_ (si ce n'est pas déjà le cas)
+    if(!_Cd_->_super_)
+        *(Class*)& (_Cd_->_super_) = _SimpleCmd_;
+
     // Vérification des arguments.
     assert(self_ && args);    
     
     // Conversion en objet de type Cd.
-    Cd self = _Command_->ctor(self_, args);
-    // (Cd) self_;
-
-    // On ajoute le parent à Cd (en controunant la contrainte sur const).
-    *(Class*)&(self->_Cd_->_super_) = _Command_; 
-    // On met la fonction print du parent comme fonction d'affichage de l'enfant.
-    *((void (**)) &(self->_Cd_->print)) = _Command_->print;
+    Cd self = _SimpleCmd_->ctor(self_, args);
         
     // Ajout de la fonction execute de la classe fille.
     *((int (**) (Command)) &(self->execute)) = Cd_execute;
@@ -144,7 +142,7 @@ static void* Cd_destroy(void* self_){
     // Vérification des arguments.
     assert(self_);    
     
-    return _Command_->dtor(self_);
+    return _SimpleCmd_->dtor(self_);
     
 }
 
