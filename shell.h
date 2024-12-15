@@ -79,11 +79,11 @@ extern int previous_cmd_finish;
  * Pour écraser une variable déjà existante dans la table, utiliser 
  * plutôt `Shell_update_var()`.
  * 
- * NB : Le liste des variables est détruite à la sortie du shell.
+ * NB : La liste des variables est détruite à la sortie du shell.
  * @param id_ L'identificateur (nom) de la variable.
  * @param value_ La valeur à stocker dans la variable.
  * 
- * @return 1 Si l'ajout à réussi. 0 Sinon (La virable existe probablement 
+ * @return 1 Si l'ajout à réussi. 0 Sinon (La variable existe probablement 
  * dans la table).
  */
 int Shell_add_var(const char* id_, const char* value_);
