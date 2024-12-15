@@ -267,52 +267,81 @@ static int ExternalCommand_execute(Command self_){
     
     switch(pid){
         case 0:
-            // le fils
-            // ExternalCommand cmd = _ExternalCommand_->ctor(self_, );
-            ExternalCommand self = (ExternalCommand) (void*) self_;
-            int size = ArrayList_size(self->args);
-            char **cmd = malloc((size + 1) * sizeof(char*));
+            {
+                // le fils
+                // ExternalCommand cmd = _ExternalCommand_->ctor(self_, );
+                ExternalCommand self = (ExternalCommand) (void*) self_;
+                
+                /**
+                 * Construction de la liste des arguments à donner à l'appel de la commande 
+                 * avec exec().
+                 */
+                int size = ArrayList_size(self->args); // Récupération de la taille de la liste des arguments.
+                char **cmd = malloc((size + 1) * sizeof(char*)); // Création du tableau d'arguments.
+    
+                if(!cmd){
+                    perror("malloc");
+                    exit(1);
+                }
+                
+                /** Il s'agit de la taille réel qu'aura la liste des arguments 
+                 * cette taille peut être différente de `size` car avant d'exécuter la 
+                 * commande, La fonction `Command_execute` remplace les argments de la 
+                 * forme `$...` (qui sont des identificateurs de variables) par leur valeur,
+                 * et met NULL si jamais aucune valeur n'est trouvée. Lorsque ce dernier cas 
+                 * arrive (l'argument est mis à NULL) alors on ne l'insère pas dans le tableau 
+                 * `cmd` (car sinon il marquerai la fin de la liste), ainsi à la fin rien ne 
+                 * garenti que `size` est la vrai taille `cmd` d'où le faite de créer une 
+                 * variable `cmd_size` qui va compter exactement le nombre de commande ajoutés.
+                 */
+                int cmd_size = 0;
+                
+                /**
+                 * Parcours de la liste des arguments.
+                 * Les arguments marqués à NULL sont sautés.
+                 */
+                for(int i=0; i < size; i++){
+                    // Récupération de l'argument.
+                    String arg = (String) ArrayList_get(self->args, i, 0);
+                    // Si l'argument est NULL
+                    if (!arg) 
+                        continue; // Alors on continue.
+                    
+                    /**
+                     * Copie de la valeur de l'argument.
+                     */
+                    char* tmp = obj_to_string(arg); // Récupération de la chaine de l'argument.
+                    cmd[i] = malloc((1 + strlen(tmp)) * sizeof(char)); // Création d'une zone mémoire pour la copie. 
+                    strcpy(cmd[i], tmp); // Copie de la valeur de l'argument.
+                    cmd_size ++; // incrémentation du nombre d'argument de la liste.
+                }
 
-            if(!cmd){
-                perror("malloc");
-                exit(1);
-            }
+                cmd[cmd_size] = NULL; // Ajout de NULL pour marquer la fin de la liste.
+                        
+                
+                if(execvp(self->name, cmd) < 0 ){
+                    for(int i=0; i < size; i++)
+                        free(cmd[i]);
+                    free(cmd);
 
-            // Taille de cmd (au cas où des variables $ n'existe pas donc sont sautés)
-            int cmd_size = 0;
-            
-            for(int i=0; i < size; i++){
-                String arg = (String) ArrayList_get(self->args, i, 0);
-                if (!arg) 
-                    continue;
-                char* tmp = obj_to_string(arg);
-                cmd[i] = malloc((1 + strlen(tmp)) * sizeof(char));
-                cmd_size ++;
-                strcpy(cmd[i], tmp);
-            }
-            cmd[cmd_size] = NULL;
-            
-            if(execvp(self->name, cmd) < 0 ){
+                    write(2,"\e[1;31m", 7);
+                    write(2,self->name, strlen(self->name));
+                    write(2," : ", 3);
+                    char* err = strerror(errno);
+                    write(2,err,strlen(err));
+                    write(2,"\e[1;0m", 6);
+                    write(2,"\n", 1);
+                    exit(1);
+                }
+                
+                // Libération de toutes les chaines qui ont servie à la création de la liste des arguments.
                 for(int i=0; i < size; i++)
                     free(cmd[i]);
                 free(cmd);
-
-                write(2,"\e[1;31m", 7);
-                write(2,self->name, strlen(self->name));
-                write(2," : ", 3);
-                char* err = strerror(errno);
-                write(2,err,strlen(err));
-                write(2,"\e[1;0m", 6);
-                write(2,"\n", 1);
-                exit(1);
-            }
-
-            for(int i=0; i < size; i++)
-                free(cmd[i]);
-            free(cmd);
-            
-            exit(0);
-        case -1:
+                
+                exit(0);
+               }
+        case -1: // Echec du fork.
             perror("fork,");
             return 1;
 
