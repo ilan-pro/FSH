@@ -24,7 +24,7 @@
         const int size; \
         const char* str; 
 
-    
+    typedef struct _String_* String;
 
 #else
 
@@ -86,4 +86,5 @@
      */
     extern const Class _String_;
 
+    String String_concat(String s1_, String s2_);
 #endif
