@@ -73,6 +73,46 @@
     extern const Class _Command_;
     
     /**
+     * @brief Il s'agit d'un code d'echec lors de la création de la consturction d'une commande.
+     * 
+     * Le message d'arreur peut être affiché en faisant Command_perror(Command_FAIL_CODE).
+     */
+    extern int Command_FAIL_CODE;
+
+    /**
+     * @brief Il s'agit du nombre d'accolades ouverts pendant le traitement d'un prompt.
+     *
+     * Ce champs permet de savoir si une accolade fermante ferme réelement une accolande ouvrante.
+     *
+     */
+    extern int opened_brackets;
+    
+    /**
+     * @brief Fonction qui va afficher le message d'erreur lié au code d'erreur 
+     * envoyé par la dernière commande échouée.
+     */
+     void Command_perror(); 
+
+    /**
+     * @brief Fonction qui va mettre à jour la valeur du code d'erreur 
+     * liée au résultat de la création ou exécution d'une commande.
+     *
+     * La fonction va également mettre à jour le  message d'erreur 
+     * lié au code d'erreur
+     *
+     * @param self La référence vers la commande (pour récupérer son nom);
+     * @param err Le code d'erreur que la commande souhaite stocker.
+     */
+    void Command_fail_with_message(Command self, int err);
+
+    /**
+     * @brief Fonction qui va mettre à jour la valeur du code d'erreur 
+     * liée au résultat de la création ou exécution d'une commande.
+     *
+     * @param err Le code d'erreur que la commande souhaite stocker.
+     */
+    void Command_fail(int err);
+    /**
      * @brief Fonction qui va exécuter la commande.
      *
      * Cette fonction est abstraite (déclanche une erreur si aucune redéfinition
@@ -84,14 +124,6 @@
      * @return La valeur de retour de la commande après exécution.
      */
     int Command_execute(Command self);
-
-    /**
-     * @brief Il s'agit du nombre d'accolades ouverts pendant le traitement d'un prompt.
-     *
-     * Ce champs permet de savoir si une accolade fermante ferme réelement une accolande ouvrante.
-     *
-     */
-    extern int opened_brackets;
 
 /**
  * @brief Fonction qui vérifie si oui ou non le caractère actuellement pointé par 

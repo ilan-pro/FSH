@@ -43,6 +43,14 @@
      * charger du reste ).
      */
     int Command_parse_all_sub(ArrayList collect_list, char **prompt, int stop_in_next, Redirector redirector);
+    
+    /**
+     * Fonction défini dans le fichier `Command.h`.
+     * Elle a été déclarée ici pour éviter les import multiples ( le linker va 
+     * charger du reste ).
+     */
+    void Command_fail(int err);
+    
     /**@endcond*/
 
     /**
@@ -74,6 +82,6 @@
      * 
      * @param self L'objet `Redirector` s'occupant des redirections.
      */
-    void Redirector_redirect( Redirector self );
+    void Redirector_apply_redirection( Redirector self );
 
 #endif

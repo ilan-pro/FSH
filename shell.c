@@ -127,11 +127,11 @@ static ArrayList Ids_values_table;
  * sur la chaine le caractère qui a déclancher l'erreur.)
  */
 static void Shell_print_syntaxe_error(char* usr_prompt, char* cp_prompt){
-
-    char tmp[] = "\nErreur de syntaxe :\n\n\t\e[1;35m";
-    write(2, tmp, strlen(tmp));
+    
+    Command_perror();
+    write(2, "\e[1;35m\n\t", 9);
     write(2, cp_prompt, strlen(cp_prompt));
-    write(2, "\n\t", 2);
+    write(2, "\e[1;36m\n\t", 9);
     // Calcul de la position où a eut lieu l'erreur.
     int pos = usr_prompt - cp_prompt;
 

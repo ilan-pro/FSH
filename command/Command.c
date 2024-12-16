@@ -13,6 +13,7 @@
  *  </ul>
  */
 
+#include <errno.h>
 #include <time.h>
 #include "../base/String.h"
 #include "../shell.h"
@@ -145,8 +146,83 @@ const Class _Command_ = &__Command__;
  */
 int opened_brackets = 0;
 
+
+/**
+ * @internal
+ * @brief Il s'agit d'un code d'echec lors de la création de la consturction d'une commande.
+ * 
+ * Le message d'arreur peut être affiché en faisant Command_perror(Command_FAIL_CODE).
+ */
+int Command_FAIL_CODE;
+    
+/**
+ * Il s'agit d'une mémoire tampon qui permet de stocker le 
+ * message d'erreur renoyé par une commande.
+ */
+static char FAIL_BUFF[1024];
+
 /***************************************************/
 /************** Corps des fonctions ****************/
+
+/**
+ * @internal
+ * @brief Fonction qui va afficher le message d'erreur lié au code d'erreur 
+ * envoyé par la dernière commande échouée.
+ */
+void Command_perror(){
+    
+    write(2, FAIL_BUFF, strlen(FAIL_BUFF));     
+    
+}
+
+/**
+ * @internal 
+ * @brief Fonction qui va mettre à jour la valeur du code d'erreur 
+ * liée au résultat de la création ou exécution d'une commande.
+ *
+ * La fonction va également mettre à jour le  message d'erreur 
+ * lié au code d'erreur
+ *
+ * @param self La référence vers la commande (pour récupérer son nom);
+ * @param err Le code d'erreur que la commande souhaite stocker.
+ */
+void Command_fail_with_message(Command self, int err){
+    
+    // Mise à jour du code de l'erreur.
+    Command_FAIL_CODE = err;
+    switch (Command_FAIL_CODE){
+        default:
+            snprintf(FAIL_BUFF, 1024, "%s: uknown error.\n", self->name);
+            break;
+        case 0 : 
+            snprintf(FAIL_BUFF, 1024, "%s: sucess.\n", self->name);
+            break;
+        case 1 : 
+            snprintf(FAIL_BUFF, 1024, "%s: syntaxe error.\n", self->name);
+            break;
+        case 2 : 
+            snprintf(FAIL_BUFF, 1024, "%s: redirection error.\n%s\n", self->name, strerror(errno));
+            break;
+        case 3 : 
+            snprintf(FAIL_BUFF, 1024, "%s: too many arguments.\n", self->name);
+            break;
+    }
+
+}
+
+/**
+ * @internal 
+ * @brief Fonction qui va mettre à jour la valeur du code d'erreur 
+ * liée au résultat de la création ou exécution d'une commande.
+ *
+ * @param err Le code d'erreur que la commande souhaite stocker.
+ */
+void Command_fail( int err ){
+    
+    // Mise à jour du code de l'erreur.
+    Command_FAIL_CODE = err;
+
+}
 
 /**
  * @internal
@@ -489,10 +565,12 @@ int Command_execute(Command self){
         abort();
     }
 
-
+    // Application de la redirection.
+    Redirector_apply_redirection(self->redirector);
+    
     // Parcours des arguments pour vérifier s'il n'y a pas de variable $...
     Command_replace_variable(self, self->args_tmp);
-    
+
     // On garde la liste originale des arguments pour ne pas perdre sa référence.
     ArrayList origin_args = self->args;
     

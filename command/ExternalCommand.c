@@ -144,7 +144,10 @@ static void* ExternalCommand_constructor(void* self_, va_list* args){
     char** prompt = va_arg(*args, char**);
     
     // Récupération des arguments.
-    Command_parse_all_sub(self->args, prompt, 0, self->redirector);
+    if (!Command_parse_all_sub(self->args, prompt, 0, self->redirector)){
+        Command_fail_with_message((Command)self, Command_FAIL_CODE);
+        return NULL;
+    }
 
     // La commande externe est correctement initialisée.
     return self;
