@@ -146,6 +146,7 @@ static void* ExternalCommand_constructor(void* self_, va_list* args){
     // Récupération des arguments.
     if (!Command_parse_all_sub(self->args, prompt, 0, self->redirector)){
         Command_fail_with_message((Command)self, Command_FAIL_CODE);
+        obj_destroy(self);
         return NULL;
     }
 

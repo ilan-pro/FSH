@@ -198,8 +198,10 @@ static String get_file(char** prompt){
     ArrayList tmp = obj_new(_ArrayList_, 0);
         
     // Ajout du nom du fichier (la prochaine sous chaine délimité par des ' ').
-    if (!Command_parse_all_sub(tmp, prompt, 1, NULL))
+    if (!Command_parse_all_sub(tmp, prompt, 1, NULL)){
+        obj_destroy(tmp);
         return NULL;
+    }
   
     // Vérification de si on a bien une seule chaine de caractère.
     assert(ArrayList_size(tmp) == 1);
@@ -261,7 +263,7 @@ static int out_redirection(Redirector self, char** prompt, int fd, int overwrite
                 // Récupération du nom du fichier.
                 String file = get_file(prompt);
                 
-                printf("Trunc ? %s [%d]. Excl ? %s[%d]. Append ? %s[%d]. \n", (trunc ? "Oui" : "Non"),trunc, (excl ? "Oui" : "Non"), excl, (apnd ? "Oui" : "Non"),apnd); 
+                /** printf("Trunc ? %s [%d]. Excl ? %s[%d]. Append ? %s[%d]. \n", (trunc ? "Oui" : "Non"),trunc, (excl ? "Oui" : "Non"), excl, (apnd ? "Oui" : "Non"),apnd); */
 
                 // On peut vérifier ici si le fichier n'est pas une variable (si le temps le permet)
                 
@@ -514,9 +516,9 @@ static int stderr_redirect( Redirector self ){
  * de la liste des fichiers de redirection. 
  *
  * Si la reidrection multiple est activée, alors le shell fait une 
- * copie de stderr avant la redirection  vers le fichier.
  *
  * @param self L'objet de redirection.
+ * copie de stderr avant la redirection  vers le fichier.
  */
 static int stdin_redirect( Redirector self ){
 
@@ -550,8 +552,8 @@ static int stdin_redirect( Redirector self ){
 
 /**
  * @internal
- * @brief Fonction qui rediriger les entrée/sortie de la commande avant son exécution.
  * 
+ * @brief Fonction qui rediriger les entrée/sortie de la commande avant son exécution.
  * 
  * @param self L'objet `Redirector` s'occupant des redirections.
  */
