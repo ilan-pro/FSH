@@ -199,6 +199,25 @@ static void* String_clone(const void* self_){
 
 }
 
+String String_concat(String s1_, String s2_){
+
+    assert(s1_);
+    assert(s2_);
+    assert(obj_instance_of(s1_, _String_));
+    assert(obj_instance_of(s2_, _String_));
+    
+    String s1 = (String) s1_; 
+    String s2 = (String) s2_; 
+    
+    char* conc = (char*) malloc((1 + s1->size + s2->size) * sizeof(char));
+    
+    conc = strcat(strcpy(conc, s1->str), s2->str);
+    String new_string = obj_new(_String_, conc);
+    free(conc);
+    return new_string;
+    
+}
+
 /*****************************************************/
 /*****************************************************/
 /*****************************************************/

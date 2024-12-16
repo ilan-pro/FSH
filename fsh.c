@@ -41,5 +41,16 @@ int main(){
     /** Command_execute((Command)e); */
 
     /** obj_destroy(e); */
-    return Shell_start(); 
+    /** return Shell_start();  */
+    String s1 = obj_new(_String_, "Hello");
+    String s2 = obj_new(_String_, "World");
+
+    String c = String_concat(s1, s2);
+
+    obj_print(c);
+    printf("\n");
+
+    obj_destroy(s1);
+    obj_destroy(s2);
+    obj_destroy(c);
 }
