@@ -1,0 +1,17 @@
+-rw-rw-r-- 1 xbm xbm      0 Dec 16 10:46 1
+-rw-rw-r-- 1 xbm xbm      0 Dec 16 12:16 test
+-rw-rw-r-- 1 xbm xbm    130 Dec 14 12:38 Makefile
+-rw-rw-r-- 1 xbm xbm    213 Dec 14 12:37 AUTHORS.md
+-rw-rw-r-- 1 xbm xbm    288 Dec 14 12:38 test.sh:Zone.Identifier
+-rw-rw-r-- 1 xbm xbm   1117 Dec 14 12:38 fsh.c
+-rw-rw-r-- 1 xbm xbm   5882 Dec 14 12:38 shell.h
+-rw-rw-r-- 1 xbm xbm  15210 Dec 14 12:37 projet.md
+-rw-rw-r-- 1 xbm xbm  17634 Dec 15 22:46 :
+-rw-rw-r-- 1 xbm xbm  30483 Dec 15 22:43 shell.c
+-rw-rw-r-- 1 xbm xbm 116434 Dec 14 12:38 Doxyfile
+-rwxrwxr-x 1 xbm xbm   1272 Dec 14 12:38 test.sh
+-rwxrwxr-x 1 xbm xbm 180504 Dec 16 11:17 fsh
+drwxrwxr-x 2 xbm xbm   4096 Dec 15 21:32 base
+drwxrwxr-x 2 xbm xbm   4096 Dec 16 12:16 command
+drwxrwxr-x 4 xbm xbm   4096 Dec 14 12:38 Documentation
+total 404

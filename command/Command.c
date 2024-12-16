@@ -198,8 +198,11 @@ int Command_actual_char_is_legal(int quoted, int double_quoted, int esc, char** 
  * est rencontré.
  * @param stop_in_next Booléen indiquant si oui ou non la fonction doit s'arrêter après la première sous-chaine.
  */
-void Command_parse_all_sub(ArrayList collect_list, char **prompt, int stop_in_next, Redirector redirector){
+int Command_parse_all_sub(ArrayList collect_list, char **prompt, int stop_in_next, Redirector redirector){
     
+    // La valeur de retour de la commande.
+    int ret = 1;
+        
     int cmd_length = 0;
     char* command = malloc((1 + cmd_length) * sizeof(char));
     assert(command);
@@ -276,8 +279,13 @@ void Command_parse_all_sub(ArrayList collect_list, char **prompt, int stop_in_ne
                 (*prompt)--; // On repointe sur '>'.
                 assert(**prompt=='>' || **prompt=='<');
 
-                if (!cmd_length) // Si on a rien lu avant alors il n'y a rien à faire on redirige
-                    Redirector_add_redirection(redirector, prompt);
+                if (!cmd_length){ // Si on a rien lu avant alors il n'y a rien à faire on redirige
+                    if (!Redirector_add_redirection(redirector, prompt)){
+                        ret = 0;
+                        goto exit;
+                    }
+                    continue;
+                }
                 
                 // On vérifie si la lettre précédent '>' est 1 ou 2
                 char prec = *((*prompt)-1);
@@ -291,11 +299,18 @@ void Command_parse_all_sub(ArrayList collect_list, char **prompt, int stop_in_ne
                     command[cmd_length] = '\0';
 
                     // Redirection
-                    Redirector_add_redirection(redirector, prompt);
+                    if (!Redirector_add_redirection(redirector, prompt)){
+                        ret = 0;
+                        goto exit;
+                    }
                 }
                 else 
                     // Redirection
-                    Redirector_add_redirection(redirector, prompt);
+                    if (!Redirector_add_redirection(redirector, prompt)){
+                        ret = 0;
+                        goto exit;
+                    }
+
                 break;
             case '\'': // Le cas où on a des guillemets simples
                 if (!double_quoted && !esc) // S'ils sont dans des guillemets doubles ou explicitement echapés alors ils sont échapés
@@ -322,7 +337,7 @@ void Command_parse_all_sub(ArrayList collect_list, char **prompt, int stop_in_ne
 exit :
     // Mise à jour de la commande
     free(command);
-
+    return ret;
 }
 
 

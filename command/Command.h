@@ -131,6 +131,6 @@ int Command_actual_char_is_legal(int quoted, int double_quoted, int esc, char** 
  * est rencontré.
  * @param stop_in_next Booléen indiquant si oui ou non la fonction doit s'arrêter après la première sous-chaine.
  */
-void Command_parse_all_sub(ArrayList collect_list, char **prompt, int stop_in_next, Redirector redirector);
+int Command_parse_all_sub(ArrayList collect_list, char **prompt, int stop_in_next, Redirector redirector);
 
 #endif

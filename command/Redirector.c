@@ -198,7 +198,8 @@ static String get_file(char** prompt){
     ArrayList tmp = obj_new(_ArrayList_, 0);
         
     // Ajout du nom du fichier (la prochaine sous chaine délimité par des ' ').
-    Command_parse_all_sub(tmp, prompt, 1, NULL);
+    if (!Command_parse_all_sub(tmp, prompt, 1, NULL))
+        return NULL;
   
     // Vérification de si on a bien une seule chaine de caractère.
     assert(ArrayList_size(tmp) == 1);
@@ -223,14 +224,15 @@ static String get_file(char** prompt){
  * (si non alors la liste des redirection est vidée seul ce dernier fichier contiendera la sortie).
  * @return 1 Si la redirection est enregistrée, 0 sinon.
  */
-static int out_redirection(Redirector self, char** prompt, int fd, int overwrite, int mult_redirect){
+static int out_redirection(Redirector self, char** prompt, int fd, int overwrite, int mult_redirect, int append){
     
     // Incrémentation du pointeur (caractère suivant).
     (*prompt)++;
-    
+    printf("Test '%c'\n", **prompt);
     // Si on est à la fin alors il y a une erreur de syntaxe.
     if (!(**prompt)){
         print_syntax_err("Fichier non renseigné !");
+        assert(0);
         return 0;
     }
     
@@ -239,11 +241,12 @@ static int out_redirection(Redirector self, char** prompt, int fd, int overwrite
 
     switch (c){
         case '|' : // écrasement
-            out_redirection(self, prompt, fd, 1, mult_redirect);
-            break;
+            return out_redirection(self, prompt, fd, 1, mult_redirect, 0);
         case '!' : // activation multiple redirection
-            out_redirection(self, prompt, fd, overwrite, 1);
-            break;
+            return out_redirection(self, prompt, fd, overwrite, 1, append);
+        case '>' : // Ajout à la fin (Append)
+            printf("??\n");
+            return out_redirection(self, prompt, fd, 0, mult_redirect, 1);
         default : // Maintenant on redirige
             {
                 // On active O_TRUNC si la valeur `overwrite` est activé sinon 0 (ne change rien dans le | ).
@@ -251,16 +254,21 @@ static int out_redirection(Redirector self, char** prompt, int fd, int overwrite
 
                 // On active O_EXCL si la valeur `overwrite` n'est pas activée sinon 0. (ne change rien dans le | ).
                 int excl = (overwrite ? 0 : O_EXCL);
+
+                // On active O_APPEND si la valeur `append` n'est pas activée sinon 0. (ne change rien dans le | ).
+                int apnd = (append ? 0 : O_APPEND);
                 
                 // Récupération du nom du fichier.
                 String file = get_file(prompt);
                 
+                printf("Trunc ? %s. Excl ? %s. Append ? %s. \n", (trunc ? "Oui" : "Non"), (excl ? "Oui" : "Non"), (append ? "Oui" : "Non")); 
+
                 // On peut vérifier ici si le fichier n'est pas une variable (si le temps le permet)
                 
                 /////////////////////////////////////////////////////////////////////////////////////
 
                 // Ouverture du fichier
-                int file_d = open(obj_to_string(file), O_CREAT | trunc | excl | O_WRONLY, 0666);
+                int file_d = open(obj_to_string(file), O_CREAT | trunc | excl | apnd | O_WRONLY, 0666);
                             
                 // Destruction du nom du fichier
                 obj_destroy(file);
@@ -297,9 +305,9 @@ static int out_redirection(Redirector self, char** prompt, int fd, int overwrite
                         ArrayList_add_last(self->out_descriptors, obj_new(_Integer_, file_d), 0); // Ajout du descripteur actuel.
                     }
                 }
-                break;
 
             }
+            break;
 
     }
 
@@ -340,7 +348,9 @@ static int in_redirection(Redirector self, char** prompt, int mult_redirect ){
             {
                 // Récupération du nom du fichier.
                 String file = get_file(prompt);
-                
+                if (!file) // Si la fonction a échoué (renvoie NULL)
+                    return 0; // On quitte.
+
                 // On peut vérifier ici si le fichier n'est pas une variable (si le temps le permet)
 
                 /////////////////////////////////////////////////////////////////////////////////////
@@ -374,8 +384,6 @@ static int in_redirection(Redirector self, char** prompt, int mult_redirect ){
     }
 
     return 1;
-
-
     
 }
 
@@ -411,7 +419,7 @@ int Redirector_add_redirection( Redirector self, char** prompt ){
     int std_fd = get_wich_std(prompt);
 
     if (std_fd) // S'il s'agit d'une sortie.
-        return out_redirection(self, prompt, std_fd, 0, 0);
+        return out_redirection(self, prompt, std_fd, 0, 0, 0);
     else{
         int mult_redirect = 0;
         if (*((*prompt)-1)=='!')

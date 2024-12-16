@@ -42,7 +42,7 @@
      * Elle a été déclarée ici pour éviter les import multiples ( le linker va 
      * charger du reste ).
      */
-    void Command_parse_all_sub(ArrayList collect_list, char **prompt, int stop_in_next, Redirector redirector);
+    int Command_parse_all_sub(ArrayList collect_list, char **prompt, int stop_in_next, Redirector redirector);
     /**@endcond*/
 
     /**
