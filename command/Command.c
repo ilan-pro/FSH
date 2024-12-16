@@ -245,7 +245,8 @@ void Command_parse_all_sub(ArrayList collect_list, char **prompt, int stop_in_ne
                     
                     if (stop_in_next)
                         goto exit;
-
+                    
+                    /** clean_buffer: */
                     // Remise à 0 du compteur
                     cmd_length = 0;
 
@@ -268,19 +269,34 @@ void Command_parse_all_sub(ArrayList collect_list, char **prompt, int stop_in_ne
 
             case '>':
             case '<':
-                if (quoted || double_quoted || esc || !redirector) // Si on est dans une expression entre guillemets, que '>' est echapé ou redirector est NULL
+                // Si on est dans une expression entre guillemets, que '>' est echapé ou redirector est NULL
+                if (quoted || double_quoted || esc || !redirector) 
                     goto h_default; // On va dans default
+                
                 (*prompt)--; // On repointe sur '>'.
-                Redirector_add_redirection(redirector, prompt);
-                // Remise à 0 du compteur
-                cmd_length = 0;
+                assert(**prompt=='>' || **prompt=='<');
 
-                // troncage du mot en mot vide.
-                command = realloc(command, sizeof(char));
-                assert(command);
-                command[0] = '\0';
-                continue;
+                if (!cmd_length) // Si on a rien lu avant alors il n'y a rien à faire on redirige
+                    Redirector_add_redirection(redirector, prompt);
+                
+                // On vérifie si la lettre précédent '>' est 1 ou 2
+                char prec = *((*prompt)-1);
+                if (prec=='1' || prec=='2'){
+                    // On diminue le compteur de 1 (pour ignorer le nombre)
+                    cmd_length--;
 
+                    // Troncage du mot.
+                    command = realloc(command, (1 + cmd_length) * sizeof(char));
+                    assert(command);
+                    command[cmd_length] = '\0';
+
+                    // Redirection
+                    Redirector_add_redirection(redirector, prompt);
+                }
+                else 
+                    // Redirection
+                    Redirector_add_redirection(redirector, prompt);
+                break;
             case '\'': // Le cas où on a des guillemets simples
                 if (!double_quoted && !esc) // S'ils sont dans des guillemets doubles ou explicitement echapés alors ils sont échapés
                     quoted = !quoted;
