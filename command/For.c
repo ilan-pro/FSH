@@ -512,10 +512,7 @@ static int ent_is_p_or_pp(struct dirent* ent){
  * Fonction qui va créer le chemin vers le fichier. en cours de traitement à l'aide du 
  * chemin vers le répertoire qui le contient.
  */
-static void assemble_path_and_add(char** path, struct dirent* ent, ArrayList all_files){
-
-    char* name = ent->d_name;
-    //////// S'il y a des traitement à faire sur le nom ///////
+static void assemble_path_and_add(char** path, const char* name, ArrayList all_files){
 
     ///////////////////////////////////////////////////////////
     // Concaténation des deux chaines avec ajout d'une séparation '/'
@@ -538,18 +535,34 @@ const char* get_file_extension(const char* filename) {
     return dot + 1;
 }
 
-// Fonction qui va parcourir la liste des elements
-const char* get_user_extension(ArrayList options, const char* option ){
+const int get_option(ArrayList options, const char option){
     for (size_t i = 0 ; i < ArrayList_size(options) ; i++){
         String s = (String) ArrayList_get(options, i , 0);
         const char* extension = obj_to_string(s);
-        if (extension[0] == option[0]){
+        if (extension[0] == option){
             // si le e est trouvé, alors renvoyé le pointeur sur le premier caractère après l'espace
-            return extension + 2;
+            return i;
         }
     }
-    return "";
+    return -1;
 }
+
+
+// Fonction qui va parcourir la liste des elements
+const char* get_user_extension(ArrayList options, const char* option ){
+    const int indice = get_option(options, option[0]);
+
+    if(indice == -1){
+        return NULL;
+    }
+
+    String s = (String) ArrayList_get(options, indice , 0);
+    const char* extension = obj_to_string(s);
+
+    // si le e est trouvé, alors renvoyé le pointeur sur le premier caractère après l'espace
+    return extension + 2;
+}
+
 
 /**
  * Fonction qui de va récupérer les fichiers du répertoire et va également se charger d'appliquer 
@@ -566,14 +579,15 @@ static void For_get_files(For self, DIR* dir, char** path, ArrayList all_files){
             continue; // on continue.
 
         /////////////////////////////////////////////////
+        
+
         // -A
-        if(ent->d_name[0] == '.' && !(ArrayList_contains(self->params, obj_new(_String_, "A")))){
+        if(ent->d_name[0] == '.' && get_option(self->params, 'A') == -1){
             continue; 
         }
         
         // -r
-        if (ArrayList_contains(self->params, obj_new(_String_, "r"))){
-            // write(1,",", 1);
+        if (get_option(self->params, 'r') != -1){
             // on ouvre pas le père ni lui-meme (risque de boucle infinie)
             if(ent->d_type == DT_DIR){
                 char *tmp = malloc(strlen(*path) + strlen(ent->d_name) + 2);
@@ -581,55 +595,62 @@ static void For_get_files(For self, DIR* dir, char** path, ArrayList all_files){
                 strcpy(tmp, *path);
                 // quelque chose de la forme /home/.../dossier
                 strcat(strcat(tmp, "/"), ent->d_name);
+                tmp[strlen(*path) + strlen(ent->d_name) + 1] = '\0';
                 
                 DIR* dir_opened = opendir(tmp);
+                if(!dir_opened){
+                    perror("ouverture du dossier");
+                }
                 For_get_files(self, dir_opened, &tmp, all_files);
-                
+
+                closedir(dir_opened);
                 free(tmp);
             }   
         }
 
-        // -e
-        const char* extension = get_file_extension(ent->d_name);
-
-        const char *found_option_e = get_user_extension(self->params, "e");
-        if (strcmp(found_option_e, "") != 0 && strcmp(found_option_e, extension) != 0){
-            continue;
-        }else{
-            // pour les
-            // autres fichiers, la variable de boucle F prend pour valeur la
-            // référence du fichier amputée de son extension
-            char* tmp = (char*) malloc((strlen(ent->d_name) + 1) * sizeof(char));
-            strcpy(tmp, ent->d_name);
-            // on cherche le dernier point (de l'extension)
-            char* extension = strrchr(tmp, '.');
-            if (extension)
-                // on remplace le point par un \0 pour supprimer l'extension
-                *extension = '\0';
-            assert(Shell_update_var(self->id_var, tmp));
-            free(tmp);
-
-        }
-
         // -t
-        const char *found_option_t = get_user_extension(self->params, "t");
+        const char *found_option_t;
 
-        if(strcmp(found_option_t, "") != 0){
-            write(1, "zozo", 4);
-            if (strcmp(found_option_t, "f") == 0 && ent->d_type == DT_REG)
+        if((found_option_t = get_user_extension(self->params, "t"))){
+            if (strcmp(found_option_t, "f") == 0 && ent->d_type != DT_REG)
                 continue;
-            if (strcmp(found_option_t, "d") == 0 && ent->d_type == DT_DIR)
+            else if (strcmp(found_option_t, "d") == 0 && ent->d_type != DT_DIR)
                 continue;
-            if (strcmp(found_option_t, "l") == 0 && ent->d_type == DT_LNK)
+            else if (strcmp(found_option_t, "l") == 0 && ent->d_type != DT_LNK)
                 continue;                                                  
-            if (strcmp(found_option_t, "p") == 0 && ent->d_type == DT_FIFO)
+            else if (strcmp(found_option_t, "p") == 0 && ent->d_type != DT_FIFO)
                 continue;
+        }
+        
+        // -e
+        const char *found_option_e;
+
+        if ((found_option_e = get_user_extension(self->params, "e"))){
+            const char* extension = get_file_extension(ent->d_name);
+            if(strcmp(found_option_e, extension) != 0){
+                continue;
+            }else{
+                // pour les
+                // autres fichiers, la variable de boucle F prend pour valeur la
+                // référence du fichier amputée de son extension
+                char* tmp = (char*) malloc((strlen(ent->d_name) + 1) * sizeof(char));
+                strcpy(tmp, ent->d_name);
+                // on cherche le dernier point (de l'extension)
+                char* extension = strrchr(tmp, '.');
+                if (extension)
+                    // on remplace le point par un \0 pour supprimer l'extension
+                    *extension = '\0';
+                // assert(Shell_update_var(self->id_var, tmp));
+                assemble_path_and_add(path, tmp, all_files);    
+                free(tmp);
+                continue;
+            }
         }
 
         /////////////////////////////////////////////////
 
         // Assemblage du chemin vers le fichier.
-        assemble_path_and_add(path, ent, all_files);
+        assemble_path_and_add(path, ent->d_name, all_files);
 
     }
 
@@ -690,7 +711,7 @@ static int For_execute(Command self_){
     ArrayList all_files = obj_new(_ArrayList_, 0);
     // Récupération des fichiers qui seront utilisés.
     For_get_files(self, dir_opened, &dir, all_files);
-
+    
     // Exécution du bloc des commandes pour chaque fichier.
     ret = For_execute_for_each_file(self, all_files);
 
