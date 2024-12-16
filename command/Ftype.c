@@ -125,6 +125,9 @@ static void* Ftype_constructor(void* self_, va_list* args){
     Ftype self = _SimpleCmd_->ctor(self_, args);
     // (Ftype) self_;
 
+    if (!self) // Si la construction échoue alors on renvoie NULL
+        return NULL;
+
         
     // Ajout de la fonction execute de la classe fille.
     *((int (**) (Command)) &(self->execute)) = Ftype_execute;
