@@ -114,6 +114,11 @@ const Class _For_ = &__For__;
 /************** Corps des fonctions ****************/
 
 
+/**
+ * Fonction qui va afficher un message d'erreur.
+ *
+ * @param msg Le message d'erreur qui sera affiché.
+ */
 static void For_print_syntax_err( const char* msg ){
 
     char tmp[] = "\e[1;31m[Erreur] Boucle for mal écrite : ";
@@ -539,7 +544,7 @@ static void For_get_files(For self, DIR* dir, char** path, ArrayList all_files){
             continue; // on continue.
 
         ////////// SI IL Y a d'autres conditions ////////
-
+     
         /////////////////////////////////////////////////
 
         // Assemblage du chemin vers le fichier.

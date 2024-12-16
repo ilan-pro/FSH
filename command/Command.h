@@ -9,6 +9,7 @@
 
 
 #include "../base/ArrayList.h"
+#include "Redirector.h"
 #ifndef COMMAND_H 
 /**@cond HIDE_THIS */
 #define COMMAND_H
@@ -22,7 +23,8 @@
         int (*const execute) (struct _Command_*); /* Fonction qui va faire exécuter la commande */\
         ArrayList params; /* L'ensemble des paramètres de la commande */ \
         ArrayList args; /* L'ensemble des arguments de la commande */  \
-        ArrayList args_tmp; /* Liste temporaire qui va stocker les arguments (dont ceux qui commencent par $ seront remplacés) pendant l'exécution. */
+        ArrayList args_tmp; /* Liste temporaire qui va stocker les arguments (dont ceux qui commencent par $ seront remplacés) pendant l'exécution. */\
+        Redirector redirector; /* Objet qui va s'occuper de la redirection de l'entrée/sortie. */
         // Ajouter d'autres attributs ici.
     
     typedef struct _Command_* Command;
@@ -34,6 +36,8 @@
     typedef struct __command_private_fields{
         ArrayList params;
         ArrayList args;
+        ArrayList args_tmp;
+        Redirector redirector;
     } __command_priv_fields;
     
     // Champs visible depuis l'extérieur, les champs privés sont cachés par un pointeur opaque
@@ -109,4 +113,24 @@
  * le pointeur vers le prompte de l'utilisateur est valide.
  */
 int Command_actual_char_is_legal(int quoted, int double_quoted, int esc, char** prompt);
+    
+/**
+ * @brief Fonction qui va récupérer tous les sous chaines séparées par des ' ' (espaces) 
+ * dans le prompt jusqu'à la fin de ce dernier (rencontre avec `\0`).
+ *
+ * Les espace consécutives sont ignorés sauf s'ils font parti d'une chaine délimitée 
+ * par des guillemets (' ou ").
+ * <br>
+ * Lorsque la fonction rencontre un caractère '\' le caractère suivant est échappé. Les 
+ * espace sont échapés (c'est à dire qu'ils ne vont pas couper la chaine) s'ils se trouvent 
+ * entre guillemets.
+ * 
+ * @param collect_list La liste qui va contenir les résultats.
+ * @param prompt Le prompt qui sera utilisé (la chaine pointée est modifiée).
+ * @param redirector L'objet qui s'occupe de la redirection de la commande au cas où un caractère '>'
+ * est rencontré.
+ * @param stop_in_next Booléen indiquant si oui ou non la fonction doit s'arrêter après la première sous-chaine.
+ */
+void Command_parse_all_sub(ArrayList collect_list, char **prompt, int stop_in_next, Redirector redirector);
+
 #endif

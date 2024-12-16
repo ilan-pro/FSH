@@ -136,109 +136,15 @@ static void* ExternalCommand_constructor(void* self_, va_list* args){
         
     // Ajout de la fonction execute de la classe fille.
     *((int (**) (Command)) &(self->execute)) = ExternalCommand_execute;
-
-    int cmd_length = strlen(self->name);
-    char* command = malloc((1 + cmd_length) * sizeof(char));
-    assert(command);
-    strcpy(command, self->name);
-    command[cmd_length] = '\0';
+    
+    // Ajout du nom de la commande comme premier argument.
+    ArrayList_add_first(self->args, obj_new(_String_, self->name), 0);
 
     // Récupération du reste du prompt.
     char** prompt = va_arg(*args, char**);
-
-    int quoted = 0; // Booléean indiquant si oui ou non on se trouve dans des guillemets.
-    int double_quoted = 0; // Booléean indiquant si oui ou non on se trouve dans des guillemets double.
-    int esc = 0; // Booléean indiquant si oui ou non le caractère suivant est echappé.
     
-    /** 
-     * Lecture du prompt dans la boucle tant que le caractère pointé est 
-     * valide (voir documentation de la fonction actual_char_is_legal()).
-     */
-    while(Command_actual_char_is_legal(quoted, double_quoted, esc, prompt)){
-        
-        // Récupération du caractère pointé par le pointeur, et incémentation de la posisiton.
-        char c = *((*prompt)++);
-        switch (c){
-            default : 
-                h_default: // label 
-
-                esc = 0; // On met l'echappement à 0 (si jamais le caractère était échappé)
-                // Incrémentation du compteur.
-                cmd_length++;
-                // Réallocation pour accueillir le nouveau caractère.
-                command = realloc(command, (1 + cmd_length) * sizeof(char));
-                assert(command);
-                command[cmd_length] = '\0';
-                command[cmd_length- 1] = c;
-                break; 
-
-
-            case ' ': // Le cas où le caractère lu est un espace.
-    
-                if (quoted || double_quoted || esc) // Si on est dans une expression entre guillemets ou que ' ' est echapé
-                    goto h_default; // On va dans default
-
-                if (cmd_length){ // Si il y a au moins une lettre lue.
-                    
-                    // Ajout du mot dans la liste des arguments de la commande.
-                    // L'ajout se fait à la fin pour préserver l'ordre de déclaration des arguments (sait-on jamais).
-                    ArrayList_add_last(self->args, obj_new(_String_, command), 0);
-                    
-                    // Remise à 0 du compteur
-                    cmd_length = 0;
-
-                    // troncage du mot en mot vide.
-                    command = realloc(command, sizeof(char));
-                    assert(command);
-                    command[0] = '\0';
-                    continue;
-
-                }
-                else // Si on aucun caractère n'est lu alors on ignore l'espace.
-                    continue;    
-
-            case '"': // Le cas où on a des guillemets doubles
-                if (!quoted && !esc) // S'ils sont dans des guillemets simples ou explicitement echapés alors ils sont échapés
-                    double_quoted = !double_quoted;
-
-                goto h_default;
-                break;
-
-            case '\'': // Le cas où on a des guillemets simples
-                if (!double_quoted && !esc) // S'ils sont dans des guillemets doubles ou explicitement echapés alors ils sont échapés
-                    quoted = !quoted;
-
-                goto h_default;
-                break;
-            
-            case '\\': // Les echapement peuvent exister dans les commandes externes ex: find ... -exec rm {} \; ici ; est echapé
-            
-                if (esc) // Si il est echappé
-                    goto h_default;
-                
-                esc = 1;
-                break;
-        }
-    }
-    
-    if (cmd_length){ // Si il y a au moins une lettre lue.
-        
-        // Ajout du mot dans la liste des arguments de la commande.
-        // L'ajout se fait à la fin pour préserver l'ordre de déclaration des arguments (sait-on jamais).
-        ArrayList_add_last(self->args, obj_new(_String_, command), 0);
-        
-        // Remise à 0 du compteur
-        cmd_length = 0;
-
-        // troncage du mot en mot vide.
-        command = realloc(command, sizeof(char));
-        assert(command);
-        command[0] = '\0';
-
-    }
-    
-    // Mise à jour de la commande
-    free(command);
+    // Récupération des arguments.
+    Command_parse_all_sub(self->args, prompt, 0, self->redirector);
 
     // La commande externe est correctement initialisée.
     return self;
