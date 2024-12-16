@@ -16,6 +16,7 @@
 #include <time.h>
 #include "../base/String.h"
 #include "../shell.h"
+#include <ctype.h>
 /**@cond HIDE_THIS*/
 #define COMMAND_CLASS "Command"  
 #include "Command.h"
@@ -245,49 +246,104 @@ static void Command_print(const void* self_){
 
 }
 
+static ArrayList getSplit(String arg){
+    char* debut;
+    char* fin;
+
+    size_t size_of_arg = arg->size;
+    char* str = malloc(sizeof(char) * (size_of_arg + 1));
+    strcpy(str, obj_to_string(arg));
+
+    debut = str;
+    fin = str;
+
+    ArrayList rad = obj_new(_ArrayList_, 0);
+    ArrayList var = obj_new(_ArrayList_, 0);
+
+    while (*fin){
+
+        if (*fin == '$'){
+            *fin = '\0';
+            ArrayList_add_last(rad, obj_new(_String_, debut), 0);
+            fin++;
+            debut = fin;
+
+            while (*fin){
+
+                if (isalnum(*fin) || *fin == '_'){
+                    fin++;
+                    if(*fin)
+                        continue;
+                }
+                
+                if (*fin == '$'){
+                    *fin = '\0';
+                    ArrayList_add_last(var, obj_new(_String_, debut), 0);
+                    ArrayList_add_last(rad, obj_new(_String_, ""), 0);
+                    fin++;
+                    debut = fin;
+                    continue;
+                }
+
+
+                if (!*fin) {
+                    ArrayList_add_last(var, obj_new(_String_, debut), 0);
+                    debut = fin;
+                    goto continuer;
+                }
+
+                char tmp = *fin;
+                    
+                *fin = '\0';
+                ArrayList_add_last(var, obj_new(_String_, debut), 0);
+
+                *fin = tmp;
+                
+                debut = fin++;
+                goto continuer;
+            }
+        }
+        fin++;
+        continuer :
+    }
+    ArrayList_add_last(rad, obj_new(_String_, debut), 0);
+    ArrayList res_split = obj_new(_ArrayList_, 0);
+
+    ArrayList_add_last(res_split, rad, 0);
+    ArrayList_add_last(res_split, var, 0);
+    free(str);
+    return res_split;
+}
+
 /**
  * Fonction qui va parcourir les arguments de la command et 
  * va remplacer s'il trouve, les variable de boucles par leur valeurs.
  * 
+    
  * @param self La commande à traiter.
  */
-static void Command_replace_variable( Command self, ArrayList new_args ){
+static void Command_remplace_variable( Command self, ArrayList new_args ){
 
     // Parcours des arguments.
-    for (size_t i = 0; i<ArrayList_size(self->args); i++){
+    for (size_t i = 0; i < ArrayList_size(self->args); i++){
 
         String arg = ArrayList_get(self->args, i, 0);
-        char* str = obj_to_string(arg);
+        ArrayList split = getSplit(arg);
+        ArrayList rad = ArrayList_get_first(split, 0);
+        ArrayList var = ArrayList_get_last(split, 0);
+        
+        assert(ArrayList_size(rad)+1 == ArrayList_size(var));
 
-        // Si le premier caractère est $ alors il est interprété comme une variable.
-        if (*str == '$'){
-            
-            // On détermine l'indice de l'élément dans la liste des identificateurs du shell.
-            const char* value = Shell_get_val(str+1);
-            if (value != NULL){ // Si la valeur existe.
-                ArrayList_add_last(new_args, obj_new(_String_, value), 0); // Ajout de la valeur.
-                continue;
-            }
-            
-            // Si on est ici c'est que la valeur est NULL et donc que la variable n'existe pas.
-            // Recherche dans les variables d'environement.
-            value = getenv(str+1);
-            if (value != NULL){
-                ArrayList_add_last(new_args, obj_new(_String_, value), 0); // Ajout de la valeur.
-                continue;
-            }
+        arg = ArrayList_remove_first(rad, 0);
 
-            // Arrivée ici, la variable n'a pas de valeur, alors on l'ignore. NULL sera mis à la place (pour garder l'indice).
-            ArrayList_add_last(new_args, NULL, 0);
-            
+        for (size_t j = 0; j < ArrayList_size(var); j++){
+            String s1 = ArrayList_remove(var, j, 0);
+            String s2 = ArrayList_remove(rad, j + 1, 0);
         }
-        else{ // Sinon on rajoute une copie de la variable telle quelle.
-            ArrayList_add_last(new_args, obj_new(_String_, str), 0); // Ajout de la valeur.
-            continue;
-        }
+
+        obj_destroy(split);
 
     }
-
 }
 
 
@@ -322,7 +378,7 @@ int Command_execute(Command self){
 
 
     // Parcours des arguments pour vérifier s'il n'y a pas de variable $...
-    Command_replace_variable(self, self->args_tmp);
+    Command_remplace_variable(self, self->args_tmp);
     
     // On garde la liste originale des arguments pour ne pas perdre sa référence.
     ArrayList origin_args = self->args;
