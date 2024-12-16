@@ -160,7 +160,7 @@ static int Exit_execute(Command self_){
         }
     }else if (ArrayList_size(self->args) > 1){
         
-        char tmp1[] = "\e[1;31m[Erreur] La commande ne prend pas plusieurs arguments\e[1;0m\n";
+        char tmp1[] = "\e[1;31mexit: too many arguments\e[1;0m\n";
         write(2, tmp1, strlen(tmp1));
         return 1;
 

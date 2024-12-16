@@ -156,7 +156,7 @@ static int Cd_execute(Command self_){
     char *path;
 
     if (ArrayList_size(self->args) > 1){
-        char tmp1[] = "\e[1;31m[Erreur] de syntaxe : la commande ne prend qu'un seul argument.\e[1;0m";
+        char tmp1[] = "\e[1;31mcd: too many arguments\e[1;0m\n";
         write(2, tmp1, strlen(tmp1));
         return 1;
     }

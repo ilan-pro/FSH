@@ -332,17 +332,47 @@ static void Command_remplace_variable( Command self, ArrayList new_args ){
         ArrayList rad = ArrayList_get_first(split, 0);
         ArrayList var = ArrayList_get_last(split, 0);
         
-        assert(ArrayList_size(rad)+1 == ArrayList_size(var));
+        assert(ArrayList_size(rad) == ArrayList_size(var)+1);
 
-        arg = ArrayList_remove_first(rad, 0);
-
+        arg = ArrayList_get_first(rad, 1);
+        
         for (size_t j = 0; j < ArrayList_size(var); j++){
-            String s1 = ArrayList_remove(var, j, 0);
-            String s2 = ArrayList_remove(rad, j + 1, 0);
+            String s1 = ArrayList_get(var, j, 1);
+            String s2 = ArrayList_get(rad, j + 1, 1);
+            const char* value = Shell_get_val(obj_to_string(s1));
+            
+            if (value){
+                obj_destroy(s1);
+                s1 = obj_new(_String_, value);
+            }else{
+                value = getenv(obj_to_string(s1));
+                if (value){
+                    obj_destroy(s1);
+                    s1 = obj_new(_String_, value);
+                }else{
+                    obj_destroy(s1);
+                    obj_destroy(s2);
+                    obj_destroy(arg);
+                    arg = NULL;
+                    break;
+                }
+            }
+
+            // arg = String_concat(arg, s1);
+            String tmp = String_concat(arg, s1);
+            obj_destroy(arg);
+            arg = tmp;
+            tmp = String_concat(arg, s2);
+            obj_destroy(arg);
+            arg = tmp;
+            obj_destroy(s1);
+            obj_destroy(s2);
         }
-
+        // obj_print(arg);
+        // write(1, "\n", 1);         
+        ArrayList_add_last(new_args, arg, 1);
+        obj_destroy(arg);
         obj_destroy(split);
-
     }
 }
 
