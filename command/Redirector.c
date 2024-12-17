@@ -356,6 +356,14 @@ static int out_redirection(Redirector self, char** prompt, int fd, int overwrite
 /**
  * Fonction qui va rediriger l'entrée sur un fichier.
  *
+ * Pour `stdin` les documents sont lu dans l'ordre de leur insertion, 
+ * c'est à dire que le dernier document n'est pas le premier lu comme pour les 
+ * redirections de sortie où c'est le dernier document qui est écrit et 
+ * copié sur tous les autres par la suite.
+ *
+ * Donc dans la commande `sort <+a <+b <+c <!` `a` est lu puis `b` ensuite `c` (et `stdin` 
+ * n'est pas lu à cause de `<!`).
+ *
  * @param self L'objet `Redirector` s'occupant des redirections.
  * @param prompt Le prompt de l'utilisateur.
  * @param mult_redirect Booléen indiquant si oui ou non une redirection multiple est spécifié 
@@ -424,10 +432,10 @@ static int in_redirection(Redirector self, char** prompt, int mult_redirect ){
                     self->red_in = 0;
 
                 if (self->red_in) // Si la redirection multiple est activée pour la commande
-                    ArrayList_add_first(self->in_descriptors, obj_new(_Integer_, file_d), 0); // On ajoute seulement à la fin.
+                    ArrayList_add_last(self->in_descriptors, obj_new(_Integer_, file_d), 0); // On ajoute seulement à la fin.
                 else { // Sinon
                     close_descriptor(self->in_descriptors); // Fermeture des descripteur et supresion des éléments de la liste.
-                    ArrayList_add_first(self->in_descriptors, obj_new(_Integer_, file_d), 0); // Ajout du descripteur actuel.
+                    ArrayList_add_last(self->in_descriptors, obj_new(_Integer_, file_d), 0); // Ajout du descripteur actuel.
                 }
                     
                 break;
@@ -575,24 +583,41 @@ static int stdin_redirect( Redirector self ){
         return 1; // Alors on a fini.
 
     // Si la redirection multiple est active.
-    if (self->red_in){
+    if (self->red_in)
+        // On ajoute une duplication de stdin à la fin de la liste, pour qu'il soit écrit.
+        ArrayList_add_last(self->in_descriptors, obj_new(_Integer_, dup(STDIN_FILENO)), 0);
         
-
-    }
-    else{ // Sinon
-          
+    else{ // Sinon on redirige stdout et on continue le programme
         // Récupération du descripteur du fichier à rediriger.
         int file_d = ((Integer)ArrayList_get_first(self->in_descriptors, 0))->val;
 
-        // Fermeture de stdout et écriture dans le fichier.
+        // Fermeture de stdin et lecture dans le fichier.
         int fd = dup2( file_d, STDIN_FILENO );
         if ( fd == -1 ){ // Si la redirection a échoueé.
             Command_fail(2);
             return 0;    
         }
-        
+
+        return 1;
     }
 
+    /**
+     * Dans le code qui suit, un tube annonyme sera créé pour accueillir 
+     * le contenu de tous les fichier qui doivent être lu.
+     */
+    // tableau des descripteurs d'entrée et sortie du tube.
+    int _pipe_[2];
+    
+    // Création du tube
+    pipe(_pipe_);
+
+    // Parcours des descripteurs
+    for (int i = 0; i<ArrayList_size(self->in_descriptors); i++){
+    
+    }
+
+    
+    
     return 1;
 
 }
