@@ -159,6 +159,35 @@ static int add_if_block( If self, char** prompt ){
     }
     (*prompt)++; // Avance d'un caractère.
     opened_brackets --; // Décrémentation du nombre d'accorlade ouverts.
+    
+    return 1;
+}
+
+static int add_else_bloc( If self, char** prompt){
+    if(*prompt) return 1;
+    char* tmp = strdup(strchr(*prompt, 'e'));
+    assert(tmp == NULL); // si tmp échoue 
+    char* tmp2 = tmp;
+
+    // Si le bloc du else existe.
+    // *prompt = tmp;
+    tmp2 = strchr(tmp, '{');
+    *tmp2 = '\0';
+
+    if(strcmp(tmp, "else") != 0){
+        write(1, "i\n", 2);
+        If_print_syntax_err("Else mal formé");
+        return 0;
+    }
+    if(!(self->else_block = Shell_parse(prompt))){
+        return 0; 
+    }
+    if(**prompt != '}'){
+        If_print_syntax_err("Accolade fermante abscente !");
+        return 0;
+    }
+    //(*prompt)++; // Avance d'un caractère.
+    //opened_brackets --; 
 
     return 1;
 }
@@ -196,6 +225,9 @@ static void* If_constructor( void* self_, va_list* args ){
     if (!add_if_block(self, prompt))
         return NULL; // On revnoie NULL
     
+    // if(!add_else_bloc(self, prompt)){
+    //     return NULL;
+    // }
 
     return self;
 }
