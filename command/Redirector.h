@@ -58,14 +58,22 @@
      * et va les mettre dans la liste des descripteur de redirection.
      *
      * Le Shell `FSH` est conçu pour permettre de faire des redirections multiples, 
-     * c'est à dire que l'on peut rediriger la sortie d'une commande dans plusieurs fichiers, 
-     * en plus de la sortie standard (seulement si on le spécifie avec `!`, 
-     * Ex : `ls >! achirafi` va rediriger la commande vers le fichier 
-     * `./achirafi` en plus de l'afficher sur la sortie standard).
+     * c'est à dire que l'on peut rediriger la sortie (ou l'entrée) d'une commande dans plusieurs fichiers, 
+     * en plus de la sortie standard, mais seulement si on le spécifie avec `+`, 
+     * Ex : `ls >+ achirafi` va rediriger la commande vers le fichier 
+     * `./achirafi` en plus de l'afficher sur la sortie standard. `sort <+ achirafi` va appeler la commande 
+     * sorte avec comme entrée le fichier 'achriafi' ET l'entrée standard (donc attendra que l'utilisateur 
+     * saisisse jusqu'à EOF)
      * <p>
-     * Si l'un des fichiers (au moins) n'a pas '!' dans la redirection alors, la sortie standard sera 
-     * redirigée vers le dernier fichier de redirection déclaré. <br>Exemple : `ls >!a >!b >c >!d`. 
-     * L'abscence de '!' dans la redirection implique que stdout sera redirigé uniquement dans le 
+     * On peut également spécifier que l'on ne souhaite pas inclure la sortie ou l'entrée source, 
+     * mais seulement les fichiers en ajoutant `>!` après avoir déclaré AU MOINS une redirection.
+     * Ex2: `ls >! >+ach` échouera tandis que `ls >+ach >! -l -A >+irafi >+am` marchera et va écrire STDOUT
+     * uniquement sur les fichier `ach`, `irafi`, `am`.<br>
+     * Cela concerne également `stdin` et `stderr`.
+     * <p>
+     * Si l'un des fichiers (au moins) n'a pas '+' dans la redirection alors, la sortie standard sera 
+     * redirigée vers le dernier fichier de redirection déclaré. <br>Exemple : `ls >+a >+b >c >+d`. 
+     * L'abscence de '+' dans la redirection vers `c` implique que `stdout` sera redirigé uniquement dans le 
      * fichier './d'.
      * <p>
      * Cela concerne également `stdin` et `stderr`.
@@ -83,5 +91,15 @@
      * @param self L'objet `Redirector` s'occupant des redirections.
      */
     void Redirector_apply_redirection( Redirector self );
+
+    /**
+     * @brief il s'agit d'une fonction qui va écrire sur tous les fichiers à 
+     * vers lesquels la redirection multiple doit être faite doit être faite.
+     *
+     * La fonction va également remettre 
+     * 
+     * @param self L'objet `Redirector` s'occupant des redirections.
+     */
+    void Redirector_multiple_redirection( Redirector self );
 
 #endif

@@ -184,6 +184,7 @@ static int get_wich_std( char ** prompt ){
 
 }
 
+
 /**
  * Fonction qui renvoie le fichier dans lequel la 
  * sortie ou l'entrée est redirigée.
@@ -215,6 +216,7 @@ static String get_file(char** prompt){
     return s;
 }
 
+
 /**
  * Fonction qui va rediriger la sortie vers un fichier.
  *
@@ -244,7 +246,35 @@ static int out_redirection(Redirector self, char** prompt, int fd, int overwrite
     switch (c){
         case '|' : // écrasement
             return out_redirection(self, prompt, fd, 1, mult_redirect, 0);
-        case '!' : // activation multiple redirection
+        case '!' : // Redirection exclusive
+            (*prompt)++;
+            if (fd == 2){ // Si c'est stderr
+                if (!ArrayList_size(self->err_descriptors)){ // Si aucun fichier n'est redirigé 
+                    print_syntax_err("Une redirection exclusive a été déclarée mais aucun fichier n'est redirigé !\nIl faut au moins indiquer une redirection avant `>!`.");
+                    Command_fail(2);
+                    return 0;
+                }
+                if (self->red_err == 0) // S'il n'y a pas de redirection multiple alors on ne fait rien
+                    return 1; // On a fini.
+                
+                self->red_err = 2;
+            }
+            else{
+                if (!ArrayList_size(self->out_descriptors)){ // Si aucun fichier n'est redirigé 
+                    (*prompt)++;
+                    print_syntax_err("Une redirection exclusive a été déclarée mais aucun fichier n'est redirigé !\nIl faut au moins indiquer une redirection avant `>!`.");
+                    Command_fail(2);
+                    return 0;
+                }
+                if (self->red_out == 0) // S'il n'y a pas de redirection multiple alors on ne fait rien
+                    return 1; // On a fini.
+                
+                self->red_out = 2;
+            }
+            break;
+                
+
+        case '+' : // activation multiple redirection
             return out_redirection(self, prompt, fd, overwrite, 1, append);
         case '>' : // Ajout à la fin (Append)
             printf("??\n");
@@ -320,7 +350,6 @@ static int out_redirection(Redirector self, char** prompt, int fd, int overwrite
 }
 
 
-
 /**
  * Fonction qui va rediriger l'entrée sur un fichier.
  *
@@ -346,6 +375,8 @@ static int in_redirection(Redirector self, char** prompt, int mult_redirect ){
     char c =  **prompt;
 
     switch (c){
+        case '!' : // activation multiple redirection
+            return in_redirection(self, prompt, 1);
         case '<': // Here-Document mode (si le temps le permet)
             return in_redirection(self, prompt, mult_redirect);
 
@@ -393,6 +424,7 @@ static int in_redirection(Redirector self, char** prompt, int mult_redirect ){
     
 }
 
+
 /**
  * @internal
  * @brief Fonction qui va récupérer les fichiers dans lesquels on souhaite faire une redirection 
@@ -434,6 +466,7 @@ int Redirector_add_redirection( Redirector self, char** prompt ){
     }
 }
 
+
 /**
  * Fonction qui rediriger stdout sur le descripteur du premier fichier
  * de la liste des fichiers de redirection. 
@@ -450,11 +483,10 @@ static int stdout_redirect( Redirector self ){
         return 1; // Alors on a fini.
 
     // Si la redirection multiple est active.
-    if (self->red_out){
-        
-        return 1; // (Pour l'instant on ne fait rien)        
+    if (self->red_out)
+        // On ajoute une duplication de stdout à la fin de la liste, pour qu'il soit écrit.
+        ArrayList_add_last(self->out_descriptors, obj_new(_Integer_, dup(STDOUT_FILENO)), 0);
 
-    }
     else{ // Sinon
           
         // Récupération du descripteur du fichier à rediriger.
@@ -472,6 +504,7 @@ static int stdout_redirect( Redirector self ){
 
 }
 
+
 /**
  * Fonction qui rediriger stderr sur le descripteur du premier fichier
  * de la liste des fichiers de redirection. 
@@ -488,11 +521,10 @@ static int stderr_redirect( Redirector self ){
         return 1; // Alors on a fini.
 
     // Si la redirection multiple est active.
-    if (self->red_err){
-        
-        return 1; // (Pour l'instant on ne fait rien)        
+    if (self->red_err)
+        // On ajoute une duplication de stdout à la fin de la liste, pour qu'il soit écrit.
+        ArrayList_add_last(self->err_descriptors, obj_new(_Integer_, dup(STDERR_FILENO)), 0);
 
-    }
     else{ // Sinon
           
         // Récupération du descripteur du fichier à rediriger.
@@ -510,6 +542,7 @@ static int stderr_redirect( Redirector self ){
     return 1;
 
 }
+
 
 /**
  * Fonction qui rediriger stderr sur le descripteur du premier fichier
@@ -550,6 +583,7 @@ static int stdin_redirect( Redirector self ){
 
 }
 
+
 /**
  * @internal
  * 
@@ -575,6 +609,7 @@ void Redirector_apply_redirection (Redirector self ){
     return ;    
 
 }
+
 
 static void Redirector_print( const void* self_ ){
     

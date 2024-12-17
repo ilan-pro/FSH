@@ -315,7 +315,8 @@ int Command_parse_all_sub(ArrayList collect_list, char **prompt, int stop_in_nex
     
                 if (quoted || double_quoted || esc) // Si on est dans une expression entre guillemets ou que ' ' est echapé
                     goto h_default; // On va dans default
-
+                
+                add_cmd:
                 if (cmd_length){ // Si il y a au moins une lettre lue.
                     
                     // Ajout du mot dans la liste des arguments de la commande.
@@ -360,7 +361,7 @@ int Command_parse_all_sub(ArrayList collect_list, char **prompt, int stop_in_nex
                         ret = 0;
                         goto exit;
                     }
-                    continue;
+                    goto add_cmd;
                 }
                 
                 // On vérifie si la lettre précédent '>' est 1 ou 2
@@ -379,14 +380,17 @@ int Command_parse_all_sub(ArrayList collect_list, char **prompt, int stop_in_nex
                         ret = 0;
                         goto exit;
                     }
+                    goto add_cmd;
+
                 }
-                else 
+                else{ 
                     // Redirection
                     if (!Redirector_add_redirection(redirector, prompt)){
                         ret = 0;
                         goto exit;
                     }
-
+                    goto add_cmd;
+                }
                 break;
             case '\'': // Le cas où on a des guillemets simples
                 if (!double_quoted && !esc) // S'ils sont dans des guillemets doubles ou explicitement echapés alors ils sont échapés

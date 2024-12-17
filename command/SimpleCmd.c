@@ -151,11 +151,12 @@ const Class _SimpleCmd_ = &__SimpleCmd__;
  */
 static void SimpleCmd_parse_usr_prompt_params(SimpleCmd self, char** prompt){
 
+
     /** 
      * Lecture du prompt dans la boucle tant que l'on a pas fini le prompt 
      * ou qu'on a pas rencontré l'un des caractères `;`, `}` ou `|`
      */
-    while(**prompt && *(*prompt) != '|' && *(*prompt) != ';' && *(*prompt) != '}' ){
+    while( **prompt && *(*prompt) != '|' && *(*prompt) != '>' && *(*prompt) != '<' && *(*prompt) != ';' && *(*prompt) != '}' ){
         
         if (**prompt== ' ') // Si on tombe sur un espace alors on a fini de lire.
             break;
@@ -163,7 +164,7 @@ static void SimpleCmd_parse_usr_prompt_params(SimpleCmd self, char** prompt){
         // On crée une chaine à un seul caractère pour le paramètre.
         // TODO : Penser à créer une classe Character (si le temps le permet)
         char param[2];
-        param[0] = *(*prompt++);
+        param[0] = *((*prompt)++);
         param[1] = '\0';
         
         // Ajout du paramètre dans la liste.
@@ -234,7 +235,8 @@ static int SimpleCmd_parse_usr_prompt(SimpleCmd self, char** prompt){
     
                 if (quoted || double_quoted || esc) // Si on est dans une expression entre guillemets ou que ' ' est echapé
                     goto h_default; // On va dans default
-
+                
+                add_mot:
                 if (char_compteur){ // Si il y a au moins une lettre lue.
                     
                     // Ajout du mot dans la liste des arguments de la commande.
@@ -293,7 +295,7 @@ static int SimpleCmd_parse_usr_prompt(SimpleCmd self, char** prompt){
                         ret = 0;
                         goto exit;
                     }
-                    continue;
+                    goto add_mot;
                 }
                 
                 // On vérifie si la lettre précédent '>' est 1 ou 2
@@ -312,14 +314,16 @@ static int SimpleCmd_parse_usr_prompt(SimpleCmd self, char** prompt){
                         ret = 0;
                         goto exit;
                     }
+                    goto add_mot;
                 }
-                else 
+                else{ 
                     // Redirection
                     if (!Redirector_add_redirection(self->redirector, prompt)){
                         ret = 0;
                         goto exit;
                     }
-
+                    goto add_mot;
+                }
                 break;
             case '"': // Le cas où on a des guillemets doubles
                 if (!quoted && !esc) // S'ils sont dans des guillemets simples ou explicitement echapés alors ils sont échapés
