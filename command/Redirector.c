@@ -233,7 +233,7 @@ static int out_redirection(Redirector self, char** prompt, int fd, int overwrite
     
     // Incrémentation du pointeur (caractère suivant).
     (*prompt)++;
-    printf("Test '%c'\n", **prompt);
+    /** printf("Test '%c'\n", **prompt); */
     // Si on est à la fin alors il y a une erreur de syntaxe.
     if (!(**prompt)){
         print_syntax_err("Fichier non renseigné !");
@@ -251,8 +251,8 @@ static int out_redirection(Redirector self, char** prompt, int fd, int overwrite
             (*prompt)++;
             if (fd == 2){ // Si c'est stderr
                 if (!ArrayList_size(self->err_descriptors)){ // Si aucun fichier n'est redirigé 
-                    print_syntax_err("Une redirection exclusive a été déclarée pour `stderr` mais aucun fichier n'est redirigé !\nIl faut au moins indiquer une redirection avant `>!`.");
                     Command_fail(2);
+                    print_syntax_err("Une redirection exclusive a été déclarée pour `stderr` mais aucun fichier n'est redirigé !\nIl faut au moins indiquer une redirection avant `>!`.");
                     return 0;
                 }
                 if (self->red_err == 0) // S'il n'y a pas de redirection multiple alors on ne fait rien
@@ -278,7 +278,6 @@ static int out_redirection(Redirector self, char** prompt, int fd, int overwrite
         case '+' : // activation multiple redirection
             return out_redirection(self, prompt, fd, overwrite, 1, append);
         case '>' : // Ajout à la fin (Append)
-            printf("??\n");
             return out_redirection(self, prompt, fd, 0, mult_redirect, 1);
         default : // Maintenant on redirige
             {
@@ -294,9 +293,9 @@ static int out_redirection(Redirector self, char** prompt, int fd, int overwrite
                 // Récupération du nom du fichier.
                 String file = get_file(prompt);
                 
-                printf("\nTrunc ? %s [%d]. Excl ? %s[%d]. Append ? %s[%d]. \nMult-Redir ? %s[out=%d, err=%d].\n\n", 
-                        (trunc ? "Oui" : "Non"),trunc, (excl ? "Oui" : "Non"), excl, (apnd ? "Oui" : "Non"),apnd,
-                        (mult_redirect ? "Oui" : "Non"), self->red_out, self->red_err);
+                /** printf("\nTrunc ? %s [%d]. Excl ? %s[%d]. Append ? %s[%d]. \nMult-Redir ? %s[out=%d, err=%d].\n\n",  */
+                        /** (trunc ? "Oui" : "Non"),trunc, (excl ? "Oui" : "Non"), excl, (apnd ? "Oui" : "Non"),apnd, */
+                        /** (mult_redirect ? "Oui" : "Non"), self->red_out, self->red_err); */
 
                 // On peut vérifier ici si le fichier n'est pas une variable (si le temps le permet)
                 
@@ -339,7 +338,6 @@ static int out_redirection(Redirector self, char** prompt, int fd, int overwrite
                     if (self->red_out) // Si la redirection multiple est activée pour la commande
                         ArrayList_add_first(self->out_descriptors, obj_new(_Integer_, file_d), 0); // On ajoute seulement à la fin.
                     else { // Sinon
-                        printf("ça ? %d\n", file_d);
                         close_descriptor(self->out_descriptors); // Fermeture des descripteur et supresion des éléments de la liste.
                         ArrayList_add_first(self->out_descriptors, obj_new(_Integer_, file_d), 0); // Ajout du descripteur actuel.
                     }
@@ -380,7 +378,20 @@ static int in_redirection(Redirector self, char** prompt, int mult_redirect ){
     char c =  **prompt;
 
     switch (c){
-        case '!' : // activation multiple redirection
+        case '!' : // Redirection exclusive
+            (*prompt)++;
+            if (!ArrayList_size(self->in_descriptors)){ // Si aucun fichier n'est redirigé 
+                Command_fail(2);
+                print_syntax_err("Une redirection exclusive a été déclarée pour `stdin` mais aucun fichier n'est redirigé !\nIl faut au moins indiquer une redirection avant `<!`.");
+                return 0;
+            }
+            if (self->red_in == 0) // S'il n'y a pas de redirection multiple alors on ne fait rien
+                return 1; // On a fini.
+            
+            self->red_in = 2;
+            break;
+
+        case '+' : // activation multiple redirection
             return in_redirection(self, prompt, 1);
         case '<': // Here-Document mode (si le temps le permet)
             return in_redirection(self, prompt, mult_redirect);
@@ -548,7 +559,11 @@ static int stderr_redirect( Redirector self ){
  * Fonction qui rediriger stderr sur le descripteur du premier fichier
  * de la liste des fichiers de redirection. 
  *
- * Si la reidrection multiple est activée, alors le shell fait une 
+ * Si la reidrection multiple est activée, alors le shell va 
+ * copier `stdin` ainsi que tous les fichiers dans un tube annonyme
+ * dont le coté écriture sera fermé (Une fois que tous les données
+ * lu dans `stdin`) pour permettre à la commande de lire le contenu 
+ * en tant qu'entrée.
  *
  * @param self L'objet de redirection.
  * copie de stderr avant la redirection  vers le fichier.
@@ -562,7 +577,6 @@ static int stdin_redirect( Redirector self ){
     // Si la redirection multiple est active.
     if (self->red_in){
         
-        return 1; // (Pour l'instant on ne fait rien)        
 
     }
     else{ // Sinon
@@ -780,80 +794,6 @@ static void err_multiple_redirection(Redirector self){
     // On ferme le duplication de sterr
     close(((Integer) ArrayList_get_last(self->err_descriptors, 0))->val);
 }
-/**
- * @brief il s'agit d'une fonction qui va écrire sur tous les fichiers à 
- * vers lesquels la redirection multiple de `stdin` doit être faite.
- *
- * La fonction va également remettre le descripteur `stdin`
- * source (qui était là au départ) si '>!' (Redirection exclusive) n'était 
- * pas déclaré dans le prompte.
- * 
- * @param self L'objet `Redirector` s'occupant des redirections.
- */
-static void in_multiple_redirection(Redirector self){
-    
-    if (!self->red_out || !ArrayList_size(self->in_descriptors)) 
-        return;
-    
-    // Le premier descripteur est celui dans lequel le résultat de la commande a été écrit.
-    int file_d = ((Integer) ArrayList_get_first(self->out_descriptors, 0))->val;
-    
-    for (size_t i = 0; i< ArrayList_size(self->out_descriptors)-1; i++){ // Parcours de tous descripteurs sauf l'ancien stdout
-        // Récupération de leur FD
-        int fd = ((Integer) ArrayList_get(self->out_descriptors, i, 0))->val;
-        
-        // Remise de leur curseur au début.
-        // Cela ne va pas gêner ceux ouvert avec APPEND car tout 
-        // écriture se ferra à la fin quoi qu'il arrive.
-        lseek(fd, 0, SEEK_SET);
-    }
-    
-    // Buffer pour lire le contenue du fichier.
-    char buff[4096];
-    int nb;
-
-    // Lecture de tout le fichier
-    while ((nb=read(file_d, buff, 4096)) >0){
-        for (size_t i = 1; i< ArrayList_size(self->out_descriptors); i++){ // Parcours de tous descripteurs()
-            // Récupération de leur FD
-            int fd = ((Integer) ArrayList_get(self->out_descriptors, i, 0))->val;
-            
-            // Si la redirection est exclusive alors stdout n'affiche rien
-            if (i==ArrayList_size(self->out_descriptors)-1 && self->red_out == 2)
-                continue;
-            
-            // Ecriture dans le fichier.
-            int nb2 = write(fd, buff, nb);
-
-            // Vérfication de nb2
-            if (nb2 == -1){
-                perror("write");
-                return;
-            }
-        }
-    }
-
-    // Vérification de nb
-    if (nb == -1){
-        perror("read");
-        return;
-    }
-
-
-    if (self->red_out == 1){ // Si la redirection n'est pas exclusive
-        // On remet stdout à sa place.
-        int fd = dup2(((Integer) ArrayList_get_last(self->out_descriptors, 0))->val, STDOUT_FILENO);
-        if (fd==-1){
-            perror("dup2");
-            return;
-        }
-        // On ferme le duplication de stdout
-        close(((Integer) ArrayList_get_last(self->out_descriptors, 0))->val);
-    }
-    else  
-        // On ferme le duplication de stdout
-        close(((Integer) ArrayList_get_last(self->out_descriptors, 0))->val);
-}
 
 /**
  * @brief il s'agit d'une fonction qui va écrire sur tous les fichiers à 
@@ -865,7 +805,7 @@ static void in_multiple_redirection(Redirector self){
  * 
  * @param self L'objet `Redirector` s'occupant des redirections.
  */
-void Redirector_multiple_redirection( Redirector self ){
+void Redirector_out_multiple_redirection( Redirector self ){
     // Vérifications
     assert( self );
     assert( obj_instance_of(self, _Redirector_) );
