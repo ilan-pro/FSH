@@ -174,6 +174,7 @@ int Command_actual_char_is_legal(int quoted, int double_quoted, int esc, char** 
     && (quoted || double_quoted || esc || (
         *(*prompt) != '|' && 
         *(*prompt) != ';' && 
+        *(*prompt) != '{' &&
         *(*prompt) != '}')
     );
 

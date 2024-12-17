@@ -112,6 +112,57 @@ Class _If_ = &__If__;
 /***************************************************/
 /************** Corps des fonctions ****************/
 
+static void If_print_syntax_err( const char* msg ){
+
+    char tmp[] = "\e[1;31m[Erreur] Instruction `If` mal écrite : ";
+    write(2,tmp, strlen(tmp));
+    write(2, msg, strlen(msg));
+    write(2, "\n\e[1;0m", 7);
+
+}
+
+static int add_test_block( If self, char** prompt ){
+    
+    //Parsing du TestCmd
+    if (!(self->test_command = Shell_parse(prompt))) // Si la création du bloc a échouée on renvoie NULL
+        return 0;
+    
+    // Si aucun bloc de commande n'est lu.
+    if (ArrayList_size( self->test_command ) == 0){
+        If_print_syntax_err("Bloc de test abscent !");
+        return 0;
+    }
+    // Si le prochain caractère n'est pas pas `{`
+    // alors c'est la fin du prompt qui a arrêté `Shell_parse()`
+    if (**prompt != '{'){
+        If_print_syntax_err("Bloc de commande '{...}' abscent");
+        return 0;
+    }
+    (*prompt)++; // Avance d'un caractère.
+    opened_brackets ++; // Augmentation du nombre d'accorlade ouverts.
+
+    return 1;
+
+}
+
+static int add_if_block( If self, char** prompt ){
+    
+    // Récupération du bloc du if.
+    if (!(self->if_block = Shell_parse(prompt))) // Si la création du bloc a échouée on renvoie NULL.
+        return 0; 
+
+    // Si le prochain caractère n'est pas pas `}`
+    // alors c'est la fin du prompt qui a arrêté `Shell_parse()`
+    if (**prompt != '}'){
+        If_print_syntax_err("Accolade fermante abscente !");
+        return 0;
+    }
+    (*prompt)++; // Avance d'un caractère.
+    opened_brackets --; // Décrémentation du nombre d'accorlade ouverts.
+
+    return 1;
+}
+
 /**
  * Constructeur d'un objet de type `If`.
  */
@@ -136,10 +187,16 @@ static void* If_constructor( void* self_, va_list* args ){
 
     // Récupération du prompt.
     char** prompt = va_arg(*args, char**);
+
+    // Si l'ajout du bloc de test a échoué on renvoie NULL
+    if (!add_test_block(self, prompt))
+        return NULL;
+
+    // Si l'ajout du block d'instruction du 'if' a échoué
+    if (!add_if_block(self, prompt))
+        return NULL; // On revnoie NULL
     
-    //Parsing du TestCmd
-    self->test_command = Shell_parse(prompt);
-     
+
     return self;
 }
 
@@ -153,9 +210,9 @@ static void* If_destructor( void* self_ ){
 
     // Conversion en objet de type `If`
     If self = ( If ) self_;
-    
-    // Les éléments hérités de command ne sont pas initialisés.
-    
+    obj_destroy( self->if_block );
+    obj_destroy( self->test_command );
+    obj_destroy( self->else_block );
 
     return self->_If_->_super_->dtor(self);
 
@@ -191,9 +248,19 @@ static int If_execute( Command self_ ){
     // Conversion en objet de type If
     If self  = (If) self_;
 
-    ///// Execute ici !
+    int ret_val = 0;
+
+    // Exécution du bloc de test et récupération de la valeur de retour
+    int ret = Shell_execute_all(self->test_command); 
     
-    return 0; 
+    if (!ret)  // Si l'exécution du block test a réussi (valeur de retour 0)
+        ret_val = Shell_execute_all(self->if_block);  // Alors on éxécute le bloc du if et on recupère sa vlaeur de retour. 
+    else { // Sinon 
+        if (self->else_block) // Si le bloc else exist .
+            ret_val = Shell_execute_all(self->else_block); // On exécute le bloc du else.
+    }
+
+    return ret_val; 
 }
 
 

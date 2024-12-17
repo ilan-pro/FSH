@@ -174,7 +174,7 @@ int Shell_start(){
                 free(cp_prompt); // Destruction du pointeur alloué par readline.
             }
             else {
-                //obj_print(file_principal); printf("\n"); // debug
+                obj_print(file_principal); printf("\n"); // debug
                 previous_cmd_finish = Shell_execute_all(file_principal); // Exécution de la file principale.
                 obj_destroy(file_principal); // Destruction de la file principale.
                 free(cp_prompt); // Destruction du pointeur alloué par readline.
@@ -245,7 +245,7 @@ ArrayList Shell_parse(char **prompt){
         }
         
         if (res == '{') // L'ouverture d'une accolade marque la fin d'un parsing.
-            goto fin;    
+            goto fin;   
         
         if(res == '|'){
             if (lu1lettre){ // Si on a lu au moins une lettre alors il y a une commande à ajouter avant
