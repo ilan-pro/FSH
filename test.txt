@@ -1,0 +1,3589 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+            
+            
+            
+            
+            
+            
+                
+                
+                
+                
+                
+                
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                            
+                            
+                            
+                            
+                            
+                            
+                                
+                                
+                                
+                                
+                                
+                                
+                                        //Ce n'est pas grave, cela est due au fait que tous les éléments ne sont pas encore initilisés au début du Thread.
+                                        //Ce n'est pas grave, cela est due au fait que tous les éléments ne sont pas encore initilisés au début du Thread.
+                                        //Ce n'est pas grave, cela est due au fait que tous les éléments ne sont pas encore initilisés au début du Thread.
+                                        //Ce n'est pas grave, cela est due au fait que tous les éléments ne sont pas encore initilisés au début du Thread.
+                                        //Ce n'est pas grave, cela est due au fait que tous les éléments ne sont pas encore initilisés au début du Thread.
+                                        //Ce n'est pas grave, cela est due au fait que tous les éléments ne sont pas encore initilisés au début du Thread.
+                                        System.out.println("Thread d'animation d'arrière plan stoppé !");
+                                        System.out.println("Thread d'animation d'arrière plan stoppé !");
+                                        System.out.println("Thread d'animation d'arrière plan stoppé !");
+                                        System.out.println("Thread d'animation d'arrière plan stoppé !");
+                                        System.out.println("Thread d'animation d'arrière plan stoppé !");
+                                        System.out.println("Thread d'animation d'arrière plan stoppé !");
+                                        Thread.sleep(20);
+                                        Thread.sleep(20);
+                                        Thread.sleep(20);
+                                        Thread.sleep(20);
+                                        Thread.sleep(20);
+                                        Thread.sleep(20);
+                                        updateBackgroundLocation();
+                                        updateBackgroundLocation();
+                                        updateBackgroundLocation();
+                                        updateBackgroundLocation();
+                                        updateBackgroundLocation();
+                                        updateBackgroundLocation();
+                                    0,
+                                    0,
+                                    0,
+                                    0,
+                                    0,
+                                    0,
+                                    0,
+                                    0,
+                                    0,
+                                    0,
+                                    0,
+                                    0,
+                                    GameView.this.map.resetFov(GameView.this.map.getFov()+1);
+                                    GameView.this.map.resetFov(GameView.this.map.getFov()+1);
+                                    GameView.this.map.resetFov(GameView.this.map.getFov()+1);
+                                    GameView.this.map.resetFov(GameView.this.map.getFov()+1);
+                                    GameView.this.map.resetFov(GameView.this.map.getFov()+1);
+                                    GameView.this.map.resetFov(GameView.this.map.getFov()+1);
+                                    GameView.this.map.resetFov(GameView.this.map.getFov()-1);
+                                    GameView.this.map.resetFov(GameView.this.map.getFov()-1);
+                                    GameView.this.map.resetFov(GameView.this.map.getFov()-1);
+                                    GameView.this.map.resetFov(GameView.this.map.getFov()-1);
+                                    GameView.this.map.resetFov(GameView.this.map.getFov()-1);
+                                    GameView.this.map.resetFov(GameView.this.map.getFov()-1);
+                                    catch(IllegalComponentStateException e){
+                                    catch(IllegalComponentStateException e){
+                                    catch(IllegalComponentStateException e){
+                                    catch(IllegalComponentStateException e){
+                                    catch(IllegalComponentStateException e){
+                                    catch(IllegalComponentStateException e){
+                                    this. background.getY() + this.bacgroundDY,
+                                    this. background.getY() + this.bacgroundDY,
+                                    this. background.getY() + this.bacgroundDY,
+                                    this. background.getY() + this.bacgroundDY,
+                                    this. background.getY() + this.bacgroundDY,
+                                    this. background.getY() + this.bacgroundDY,
+                                    this.background.getHeight()
+                                    this.background.getHeight()
+                                    this.background.getHeight()
+                                    this.background.getHeight()
+                                    this.background.getHeight()
+                                    this.background.getHeight()
+                                    this.background.getHeight()
+                                    this.background.getHeight()
+                                    this.background.getHeight()
+                                    this.background.getHeight()
+                                    this.background.getHeight()
+                                    this.background.getHeight()
+                                    this.background.getWidth(),
+                                    this.background.getWidth(),
+                                    this.background.getWidth(),
+                                    this.background.getWidth(),
+                                    this.background.getWidth(),
+                                    this.background.getWidth(),
+                                    this.background.getWidth(),
+                                    this.background.getWidth(),
+                                    this.background.getWidth(),
+                                    this.background.getWidth(),
+                                    this.background.getWidth(),
+                                    this.background.getWidth(),
+                                    this.getY() + Config.adaptValueToScreen(-10000, -1),
+                                    this.getY() + Config.adaptValueToScreen(-10000, -1),
+                                    this.getY() + Config.adaptValueToScreen(-10000, -1),
+                                    this.getY() + Config.adaptValueToScreen(-10000, -1),
+                                    this.getY() + Config.adaptValueToScreen(-10000, -1),
+                                    this.getY() + Config.adaptValueToScreen(-10000, -1),
+                                    try{
+                                    try{
+                                    try{
+                                    try{
+                                    try{
+                                    try{
+                                    updateScopePanel();
+                                    updateScopePanel();
+                                    updateScopePanel();
+                                    updateScopePanel();
+                                    updateScopePanel();
+                                    updateScopePanel();
+                                    updateScopePanel();
+                                    updateScopePanel();
+                                    updateScopePanel();
+                                    updateScopePanel();
+                                    updateScopePanel();
+                                    updateScopePanel();
+                                    }
+                                    }
+                                    }
+                                    }
+                                    }
+                                    }
+                                    }
+                                    }
+                                    }
+                                    }
+                                    }
+                                    }
+                                    }catch(InterruptedException e){
+                                    }catch(InterruptedException e){
+                                    }catch(InterruptedException e){
+                                    }catch(InterruptedException e){
+                                    }catch(InterruptedException e){
+                                    }catch(InterruptedException e){
+                                );
+                                );
+                                );
+                                );
+                                );
+                                );
+                                );
+                                );
+                                );
+                                );
+                                );
+                                );
+                                //     return;
+                                //     return;
+                                //     return;
+                                //     return;
+                                //     return;
+                                //     return;
+                                // System.out.println("Haut");
+                                // System.out.println("Haut");
+                                // System.out.println("Haut");
+                                // System.out.println("Haut");
+                                // System.out.println("Haut");
+                                // System.out.println("Haut");
+                                // System.out.println("bas");
+                                // System.out.println("bas");
+                                // System.out.println("bas");
+                                // System.out.println("bas");
+                                // System.out.println("bas");
+                                // System.out.println("bas");
+                                // delay = System.currentTimeMillis();
+                                // delay = System.currentTimeMillis();
+                                // delay = System.currentTimeMillis();
+                                // delay = System.currentTimeMillis();
+                                // delay = System.currentTimeMillis();
+                                // delay = System.currentTimeMillis();
+                                // if (System.currentTimeMillis() - delay < 200)
+                                // if (System.currentTimeMillis() - delay < 200)
+                                // if (System.currentTimeMillis() - delay < 200)
+                                // if (System.currentTimeMillis() - delay < 200)
+                                // if (System.currentTimeMillis() - delay < 200)
+                                // if (System.currentTimeMillis() - delay < 200)
+                                //"Molette tournée vers le bas"
+                                //"Molette tournée vers le bas"
+                                //"Molette tournée vers le bas"
+                                //"Molette tournée vers le bas"
+                                //"Molette tournée vers le bas"
+                                //"Molette tournée vers le bas"
+                                //"Molette tournée vers le haut"
+                                //"Molette tournée vers le haut"
+                                //"Molette tournée vers le haut"
+                                //"Molette tournée vers le haut"
+                                //"Molette tournée vers le haut"
+                                //"Molette tournée vers le haut"
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                Config.adaptValueToScreen(-10000, 1),
+                                Config.adaptValueToScreen(-10000, 1),
+                                Config.adaptValueToScreen(-10000, 1),
+                                Config.adaptValueToScreen(-10000, 1),
+                                Config.adaptValueToScreen(-10000, 1),
+                                Config.adaptValueToScreen(-10000, 1),
+                                InGameView.this.getHeight() + Config.adaptValueToScreen(10000, -1)
+                                InGameView.this.getHeight() + Config.adaptValueToScreen(10000, -1)
+                                InGameView.this.getHeight() + Config.adaptValueToScreen(10000, -1)
+                                InGameView.this.getHeight() + Config.adaptValueToScreen(10000, -1)
+                                InGameView.this.getHeight() + Config.adaptValueToScreen(10000, -1)
+                                InGameView.this.getHeight() + Config.adaptValueToScreen(10000, -1)
+                                InGameView.this.getWidth(),
+                                InGameView.this.getWidth(),
+                                InGameView.this.getWidth(),
+                                InGameView.this.getWidth(),
+                                InGameView.this.getWidth(),
+                                InGameView.this.getWidth(),
+                                if(GameView.this.map.getFov()<20) //Si le FOV est en dessous de vingt.
+                                if(GameView.this.map.getFov()<20) //Si le FOV est en dessous de vingt.
+                                if(GameView.this.map.getFov()<20) //Si le FOV est en dessous de vingt.
+                                if(GameView.this.map.getFov()<20) //Si le FOV est en dessous de vingt.
+                                if(GameView.this.map.getFov()<20) //Si le FOV est en dessous de vingt.
+                                if(GameView.this.map.getFov()<20) //Si le FOV est en dessous de vingt.
+                                if(GameView.this.map.getFov()>12) {//Si le FOV est au dessus de douze.
+                                if(GameView.this.map.getFov()>12) {//Si le FOV est au dessus de douze.
+                                if(GameView.this.map.getFov()>12) {//Si le FOV est au dessus de douze.
+                                if(GameView.this.map.getFov()>12) {//Si le FOV est au dessus de douze.
+                                if(GameView.this.map.getFov()>12) {//Si le FOV est au dessus de douze.
+                                if(GameView.this.map.getFov()>12) {//Si le FOV est au dessus de douze.
+                                this.background.setBounds(
+                                this.background.setBounds(
+                                this.background.setBounds(
+                                this.background.setBounds(
+                                this.background.setBounds(
+                                this.background.setBounds(
+                                this.background.setBounds(
+                                this.background.setBounds(
+                                this.background.setBounds(
+                                this.background.setBounds(
+                                this.background.setBounds(
+                                this.background.setBounds(
+                                while(backgroundThreadactive && GameUpdater.isThreadWorking){ //Tant qu'il est possible d'animer l'arrière plan.
+                                while(backgroundThreadactive && GameUpdater.isThreadWorking){ //Tant qu'il est possible d'animer l'arrière plan.
+                                while(backgroundThreadactive && GameUpdater.isThreadWorking){ //Tant qu'il est possible d'animer l'arrière plan.
+                                while(backgroundThreadactive && GameUpdater.isThreadWorking){ //Tant qu'il est possible d'animer l'arrière plan.
+                                while(backgroundThreadactive && GameUpdater.isThreadWorking){ //Tant qu'il est possible d'animer l'arrière plan.
+                                while(backgroundThreadactive && GameUpdater.isThreadWorking){ //Tant qu'il est possible d'animer l'arrière plan.
+                                }
+                                }
+                                }
+                                }
+                                }
+                                }
+                                }
+                                }
+                                }
+                                }
+                                }
+                                }
+                            "GameView - Background Moving Thread"
+                            "GameView - Background Moving Thread"
+                            "GameView - Background Moving Thread"
+                            "GameView - Background Moving Thread"
+                            "GameView - Background Moving Thread"
+                            "GameView - Background Moving Thread"
+                            ()->{
+                            ()->{
+                            ()->{
+                            ()->{
+                            ()->{
+                            ()->{
+                            );
+                            );
+                            );
+                            );
+                            );
+                            );
+                            /////////////////////////////////
+                            /////////////////////////////////
+                            /////////////////////////////////
+                            /////////////////////////////////
+                            /////////////////////////////////
+                            /////////////////////////////////
+                            //Délai pour éviter que l'intervalle d'exécution de la fonction ne soit trop rapide.
+                            //Délai pour éviter que l'intervalle d'exécution de la fonction ne soit trop rapide.
+                            //Délai pour éviter que l'intervalle d'exécution de la fonction ne soit trop rapide.
+                            //Délai pour éviter que l'intervalle d'exécution de la fonction ne soit trop rapide.
+                            //Délai pour éviter que l'intervalle d'exécution de la fonction ne soit trop rapide.
+                            //Délai pour éviter que l'intervalle d'exécution de la fonction ne soit trop rapide.
+                            Graphics2D g2d = (Graphics2D)g;
+                            Graphics2D g2d = (Graphics2D)g;
+                            Graphics2D g2d = (Graphics2D)g;
+                            Graphics2D g2d = (Graphics2D)g;
+                            Graphics2D g2d = (Graphics2D)g;
+                            Graphics2D g2d = (Graphics2D)g;
+                            else{
+                            else{
+                            else{
+                            else{
+                            else{
+                            else{
+                            g2d.drawImage(background, 0, 0, this.getWidth(), this.getHeight(), null);
+                            g2d.drawImage(background, 0, 0, this.getWidth(), this.getHeight(), null);
+                            g2d.drawImage(background, 0, 0, this.getWidth(), this.getHeight(), null);
+                            g2d.drawImage(background, 0, 0, this.getWidth(), this.getHeight(), null);
+                            g2d.drawImage(background, 0, 0, this.getWidth(), this.getHeight(), null);
+                            g2d.drawImage(background, 0, 0, this.getWidth(), this.getHeight(), null);
+                            if (dir < 0) { 
+                            if (dir < 0) { 
+                            if (dir < 0) { 
+                            if (dir < 0) { 
+                            if (dir < 0) { 
+                            if (dir < 0) { 
+                            if(GameView.this.getLocationOnScreen().y <= this.background.getLocationOnScreen().y){
+                            if(GameView.this.getLocationOnScreen().y <= this.background.getLocationOnScreen().y){
+                            if(GameView.this.getLocationOnScreen().y <= this.background.getLocationOnScreen().y){
+                            if(GameView.this.getLocationOnScreen().y <= this.background.getLocationOnScreen().y){
+                            if(GameView.this.getLocationOnScreen().y <= this.background.getLocationOnScreen().y){
+                            if(GameView.this.getLocationOnScreen().y <= this.background.getLocationOnScreen().y){
+                            int dir = e.getWheelRotation(); //Direction actuelle de la rotation de la molette.
+                            int dir = e.getWheelRotation(); //Direction actuelle de la rotation de la molette.
+                            int dir = e.getWheelRotation(); //Direction actuelle de la rotation de la molette.
+                            int dir = e.getWheelRotation(); //Direction actuelle de la rotation de la molette.
+                            int dir = e.getWheelRotation(); //Direction actuelle de la rotation de la molette.
+                            int dir = e.getWheelRotation(); //Direction actuelle de la rotation de la molette.
+                            super.paintComponent(g);
+                            super.paintComponent(g);
+                            super.paintComponent(g);
+                            super.paintComponent(g);
+                            super.paintComponent(g);
+                            super.paintComponent(g);
+                            this.setBounds(
+                            this.setBounds(
+                            this.setBounds(
+                            this.setBounds(
+                            this.setBounds(
+                            this.setBounds(
+                            this.setOpaque(false);
+                            this.setOpaque(false);
+                            this.setOpaque(false);
+                            this.setOpaque(false);
+                            this.setOpaque(false);
+                            this.setOpaque(false);
+                            }
+                            }
+                            }
+                            }
+                            }
+                            }
+                            }
+                            }
+                            }
+                            }
+                            }
+                            }
+                            }
+                            }
+                            }
+                            }
+                            }
+                            }
+                            } else {
+                            } else {
+                            } else {
+                            } else {
+                            } else {
+                            } else {
+                            },
+                            },
+                            },
+                            },
+                            },
+                            },
+                         * @throws IllegalComponentStateException Lorsque tous les éléments ne sont pas encore initilisés au début du Thread.
+                         * @throws IllegalComponentStateException Lorsque tous les éléments ne sont pas encore initilisés au début du Thread.
+                         * @throws IllegalComponentStateException Lorsque tous les éléments ne sont pas encore initilisés au début du Thread.
+                         * @throws IllegalComponentStateException Lorsque tous les éléments ne sont pas encore initilisés au début du Thread.
+                         * @throws IllegalComponentStateException Lorsque tous les éléments ne sont pas encore initilisés au début du Thread.
+                         * @throws IllegalComponentStateException Lorsque tous les éléments ne sont pas encore initilisés au début du Thread.
+                         * Fonction qui mets à jour la position de l'arrière plan pour faire l'animation.
+                         * Fonction qui mets à jour la position de l'arrière plan pour faire l'animation.
+                         * Fonction qui mets à jour la position de l'arrière plan pour faire l'animation.
+                         * Fonction qui mets à jour la position de l'arrière plan pour faire l'animation.
+                         * Fonction qui mets à jour la position de l'arrière plan pour faire l'animation.
+                         * Fonction qui mets à jour la position de l'arrière plan pour faire l'animation.
+                         */
+                         */
+                         */
+                         */
+                         */
+                         */
+                        );
+                        );
+                        );
+                        );
+                        );
+                        );
+                        /**
+                        /**
+                        /**
+                        /**
+                        /**
+                        /**
+                        @Override
+                        @Override
+                        @Override
+                        @Override
+                        @Override
+                        @Override
+                        @Override
+                        @Override
+                        @Override
+                        @Override
+                        @Override
+                        @Override
+                        ScopeIcon sI = ((GameView)Config.window.getContentPane()).getScopePanel().scopeIcon;
+                        ScopeIcon sI = ((GameView)Config.window.getContentPane()).getScopePanel().scopeIcon;
+                        ScopeIcon sI = ((GameView)Config.window.getContentPane()).getScopePanel().scopeIcon;
+                        ScopeIcon sI = ((GameView)Config.window.getContentPane()).getScopePanel().scopeIcon;
+                        ScopeIcon sI = ((GameView)Config.window.getContentPane()).getScopePanel().scopeIcon;
+                        ScopeIcon sI = ((GameView)Config.window.getContentPane()).getScopePanel().scopeIcon;
+                        ScopeManage sM = ((GameView)Config.window.getContentPane()).getScopePanel().scopeManage;
+                        ScopeManage sM = ((GameView)Config.window.getContentPane()).getScopePanel().scopeManage;
+                        ScopeManage sM = ((GameView)Config.window.getContentPane()).getScopePanel().scopeManage;
+                        ScopeManage sM = ((GameView)Config.window.getContentPane()).getScopePanel().scopeManage;
+                        ScopeManage sM = ((GameView)Config.window.getContentPane()).getScopePanel().scopeManage;
+                        ScopeManage sM = ((GameView)Config.window.getContentPane()).getScopePanel().scopeManage;
+                        System.out.println(percentage);
+                        System.out.println(percentage);
+                        System.out.println(percentage);
+                        System.out.println(percentage);
+                        System.out.println(percentage);
+                        System.out.println(percentage);
+                        int Ysep = scopeBarHeight * percentage / 100;
+                        int Ysep = scopeBarHeight * percentage / 100;
+                        int Ysep = scopeBarHeight * percentage / 100;
+                        int Ysep = scopeBarHeight * percentage / 100;
+                        int Ysep = scopeBarHeight * percentage / 100;
+                        int Ysep = scopeBarHeight * percentage / 100;
+                        int fov = GameView.this.map.getFov();
+                        int fov = GameView.this.map.getFov();
+                        int fov = GameView.this.map.getFov();
+                        int fov = GameView.this.map.getFov();
+                        int fov = GameView.this.map.getFov();
+                        int fov = GameView.this.map.getFov();
+                        int percentage = (fov-12) * 100 / 8;
+                        int percentage = (fov-12) * 100 / 8;
+                        int percentage = (fov-12) * 100 / 8;
+                        int percentage = (fov-12) * 100 / 8;
+                        int percentage = (fov-12) * 100 / 8;
+                        int percentage = (fov-12) * 100 / 8;
+                        int scopeBarHeight = ((GameView)Config.window.getContentPane()).getScopePanel().scopeManage.getHeight();
+                        int scopeBarHeight = ((GameView)Config.window.getContentPane()).getScopePanel().scopeManage.getHeight();
+                        int scopeBarHeight = ((GameView)Config.window.getContentPane()).getScopePanel().scopeManage.getHeight();
+                        int scopeBarHeight = ((GameView)Config.window.getContentPane()).getScopePanel().scopeManage.getHeight();
+                        int scopeBarHeight = ((GameView)Config.window.getContentPane()).getScopePanel().scopeManage.getHeight();
+                        int scopeBarHeight = ((GameView)Config.window.getContentPane()).getScopePanel().scopeManage.getHeight();
+                        new Thread(
+                        new Thread(
+                        new Thread(
+                        new Thread(
+                        new Thread(
+                        new Thread(
+                        private Image background = new ImageIcon(backgroundLocation).getImage();
+                        private Image background = new ImageIcon(backgroundLocation).getImage();
+                        private Image background = new ImageIcon(backgroundLocation).getImage();
+                        private Image background = new ImageIcon(backgroundLocation).getImage();
+                        private Image background = new ImageIcon(backgroundLocation).getImage();
+                        private Image background = new ImageIcon(backgroundLocation).getImage();
+                        private void updateBackgroundLocation() throws IllegalComponentStateException{
+                        private void updateBackgroundLocation() throws IllegalComponentStateException{
+                        private void updateBackgroundLocation() throws IllegalComponentStateException{
+                        private void updateBackgroundLocation() throws IllegalComponentStateException{
+                        private void updateBackgroundLocation() throws IllegalComponentStateException{
+                        private void updateBackgroundLocation() throws IllegalComponentStateException{
+                        public void mouseWheelMoved(MouseWheelEvent e){
+                        public void mouseWheelMoved(MouseWheelEvent e){
+                        public void mouseWheelMoved(MouseWheelEvent e){
+                        public void mouseWheelMoved(MouseWheelEvent e){
+                        public void mouseWheelMoved(MouseWheelEvent e){
+                        public void mouseWheelMoved(MouseWheelEvent e){
+                        public void paintComponent(Graphics g){
+                        public void paintComponent(Graphics g){
+                        public void paintComponent(Graphics g){
+                        public void paintComponent(Graphics g){
+                        public void paintComponent(Graphics g){
+                        public void paintComponent(Graphics g){
+                        sI.setLocation(sI.getX(), Ysep + Config.adaptValueToScreen(80, -1) - sI.getHeight()/2);
+                        sI.setLocation(sI.getX(), Ysep + Config.adaptValueToScreen(80, -1) - sI.getHeight()/2);
+                        sI.setLocation(sI.getX(), Ysep + Config.adaptValueToScreen(80, -1) - sI.getHeight()/2);
+                        sI.setLocation(sI.getX(), Ysep + Config.adaptValueToScreen(80, -1) - sI.getHeight()/2);
+                        sI.setLocation(sI.getX(), Ysep + Config.adaptValueToScreen(80, -1) - sI.getHeight()/2);
+                        sI.setLocation(sI.getX(), Ysep + Config.adaptValueToScreen(80, -1) - sI.getHeight()/2);
+                        sM.updateYSep(Ysep);
+                        sM.updateYSep(Ysep);
+                        sM.updateYSep(Ysep);
+                        sM.updateYSep(Ysep);
+                        sM.updateYSep(Ysep);
+                        sM.updateYSep(Ysep);
+                        {
+                        {
+                        {
+                        {
+                        {
+                        {
+                        }
+                        }
+                        }
+                        }
+                        }
+                        }
+                        }
+                        }
+                        }
+                        }
+                        }
+                        }
+                        }
+                        }
+                        }
+                        }
+                        }
+                        }
+                        }
+                        }
+                        }
+                        }
+                        }
+                        }
+                    Config.toInterupt.add(thread);
+                    Config.toInterupt.add(thread);
+                    Config.toInterupt.add(thread);
+                    Config.toInterupt.add(thread);
+                    Config.toInterupt.add(thread);
+                    Config.toInterupt.add(thread);
+                    Thread thread = 
+                    Thread thread = 
+                    Thread thread = 
+                    Thread thread = 
+                    Thread thread = 
+                    Thread thread = 
+                    private void updateScopePanel(){
+                    private void updateScopePanel(){
+                    private void updateScopePanel(){
+                    private void updateScopePanel(){
+                    private void updateScopePanel(){
+                    private void updateScopePanel(){
+                    this.addMouseWheelListener(new MouseWheelListener() {
+                    this.addMouseWheelListener(new MouseWheelListener() {
+                    this.addMouseWheelListener(new MouseWheelListener() {
+                    this.addMouseWheelListener(new MouseWheelListener() {
+                    this.addMouseWheelListener(new MouseWheelListener() {
+                    this.addMouseWheelListener(new MouseWheelListener() {
+                    this.background = new JPanel(){
+                    this.background = new JPanel(){
+                    this.background = new JPanel(){
+                    this.background = new JPanel(){
+                    this.background = new JPanel(){
+                    this.background = new JPanel(){
+                    thread.start();
+                    thread.start();
+                    thread.start();
+                    thread.start();
+                    thread.start();
+                    thread.start();
+                    }
+                    }
+                    }
+                    }
+                    }
+                    }
+                    });
+                    });
+                    });
+                    });
+                    });
+                    });
+                    };
+                    };
+                    };
+                    };
+                    };
+                    };
+                 * Cette fonction lance un Thread qui va faire descendre le background vers le bas en permanence.
+                 * Cette fonction lance un Thread qui va faire descendre le background vers le bas en permanence.
+                 * Cette fonction lance un Thread qui va faire descendre le background vers le bas en permanence.
+                 * Cette fonction lance un Thread qui va faire descendre le background vers le bas en permanence.
+                 * Cette fonction lance un Thread qui va faire descendre le background vers le bas en permanence.
+                 * Cette fonction lance un Thread qui va faire descendre le background vers le bas en permanence.
+                 * Fonction qui ajoute les actions à faire lorsque molette de la souris est enclenchée.
+                 * Fonction qui ajoute les actions à faire lorsque molette de la souris est enclenchée.
+                 * Fonction qui ajoute les actions à faire lorsque molette de la souris est enclenchée.
+                 * Fonction qui ajoute les actions à faire lorsque molette de la souris est enclenchée.
+                 * Fonction qui ajoute les actions à faire lorsque molette de la souris est enclenchée.
+                 * Fonction qui ajoute les actions à faire lorsque molette de la souris est enclenchée.
+                 */
+                 */
+                 */
+                 */
+                 */
+                 */
+                 */
+                 */
+                 */
+                 */
+                 */
+                 */
+                /**
+                /**
+                /**
+                /**
+                /**
+                /**
+                /**
+                /**
+                /**
+                /**
+                /**
+                /**
+                Config.adaptValueToScreen(decalageX, 1), 
+                Config.adaptValueToScreen(decalageX, 1), 
+                Config.adaptValueToScreen(decalageX, 1), 
+                Config.adaptValueToScreen(decalageX, 1), 
+                Config.adaptValueToScreen(decalageX, 1), 
+                Config.adaptValueToScreen(decalageX, 1), 
+                Config.adaptValueToScreen(decalageY, -1),
+                Config.adaptValueToScreen(decalageY, -1),
+                Config.adaptValueToScreen(decalageY, -1),
+                Config.adaptValueToScreen(decalageY, -1),
+                Config.adaptValueToScreen(decalageY, -1),
+                Config.adaptValueToScreen(decalageY, -1),
+                Config.adaptValueToScreen(this.getHeight(), -1)
+                Config.adaptValueToScreen(this.getHeight(), -1)
+                Config.adaptValueToScreen(this.getHeight(), -1)
+                Config.adaptValueToScreen(this.getHeight(), -1)
+                Config.adaptValueToScreen(this.getHeight(), -1)
+                Config.adaptValueToScreen(this.getHeight(), -1)
+                Config.adaptValueToScreen(this.getWidth(), 1),
+                Config.adaptValueToScreen(this.getWidth(), 1),
+                Config.adaptValueToScreen(this.getWidth(), 1),
+                Config.adaptValueToScreen(this.getWidth(), 1),
+                Config.adaptValueToScreen(this.getWidth(), 1),
+                Config.adaptValueToScreen(this.getWidth(), 1),
+                decalageX,
+                decalageX,
+                decalageX,
+                decalageX,
+                decalageX,
+                decalageX,
+                decalageY,
+                decalageY,
+                decalageY,
+                decalageY,
+                decalageY,
+                decalageY,
+                height
+                height
+                height
+                height
+                height
+                height
+                private void addMouseWheelActions(){
+                private void addMouseWheelActions(){
+                private void addMouseWheelActions(){
+                private void addMouseWheelActions(){
+                private void addMouseWheelActions(){
+                private void addMouseWheelActions(){
+                private void initBackground(String backgroundLocation){
+                private void initBackground(String backgroundLocation){
+                private void initBackground(String backgroundLocation){
+                private void initBackground(String backgroundLocation){
+                private void initBackground(String backgroundLocation){
+                private void initBackground(String backgroundLocation){
+                private void makeThreadBackgroundMoving(){
+                private void makeThreadBackgroundMoving(){
+                private void makeThreadBackgroundMoving(){
+                private void makeThreadBackgroundMoving(){
+                private void makeThreadBackgroundMoving(){
+                private void makeThreadBackgroundMoving(){
+                this.add(scopePanel, 0);
+                this.add(scopePanel, 0);
+                this.add(scopePanel, 0);
+                this.add(scopePanel, 0);
+                this.add(scopePanel, 0);
+                this.add(scopePanel, 0);
+                this.add(scopePanel.scopeIcon.textScope, 0);
+                this.add(scopePanel.scopeIcon.textScope, 0);
+                this.add(scopePanel.scopeIcon.textScope, 0);
+                this.add(scopePanel.scopeIcon.textScope, 0);
+                this.add(scopePanel.scopeIcon.textScope, 0);
+                this.add(scopePanel.scopeIcon.textScope, 0);
+                this.entityPanel = new JPanel(); //Création du panneau des entités dans le jeu.
+                this.entityPanel = new JPanel(); //Création du panneau des entités dans le jeu.
+                this.entityPanel = new JPanel(); //Création du panneau des entités dans le jeu.
+                this.entityPanel = new JPanel(); //Création du panneau des entités dans le jeu.
+                this.entityPanel = new JPanel(); //Création du panneau des entités dans le jeu.
+                this.entityPanel = new JPanel(); //Création du panneau des entités dans le jeu.
+                this.entityPanel.setBounds(0, 0, w, h); //Mise à l'échelle du panneau. (Le panneau possède les même dimension que InGameView)
+                this.entityPanel.setBounds(0, 0, w, h); //Mise à l'échelle du panneau. (Le panneau possède les même dimension que InGameView)
+                this.entityPanel.setBounds(0, 0, w, h); //Mise à l'échelle du panneau. (Le panneau possède les même dimension que InGameView)
+                this.entityPanel.setBounds(0, 0, w, h); //Mise à l'échelle du panneau. (Le panneau possède les même dimension que InGameView)
+                this.entityPanel.setBounds(0, 0, w, h); //Mise à l'échelle du panneau. (Le panneau possède les même dimension que InGameView)
+                this.entityPanel.setBounds(0, 0, w, h); //Mise à l'échelle du panneau. (Le panneau possède les même dimension que InGameView)
+                this.entityPanel.setLayout(null); //Suppression de la diposition prédéfinie.
+                this.entityPanel.setLayout(null); //Suppression de la diposition prédéfinie.
+                this.entityPanel.setLayout(null); //Suppression de la diposition prédéfinie.
+                this.entityPanel.setLayout(null); //Suppression de la diposition prédéfinie.
+                this.entityPanel.setLayout(null); //Suppression de la diposition prédéfinie.
+                this.entityPanel.setLayout(null); //Suppression de la diposition prédéfinie.
+                this.entityPanel.setOpaque(false); //Suppréssion de l'opacité (mise en transparence du JPanel).
+                this.entityPanel.setOpaque(false); //Suppréssion de l'opacité (mise en transparence du JPanel).
+                this.entityPanel.setOpaque(false); //Suppréssion de l'opacité (mise en transparence du JPanel).
+                this.entityPanel.setOpaque(false); //Suppréssion de l'opacité (mise en transparence du JPanel).
+                this.entityPanel.setOpaque(false); //Suppréssion de l'opacité (mise en transparence du JPanel).
+                this.entityPanel.setOpaque(false); //Suppréssion de l'opacité (mise en transparence du JPanel).
+                this.fxPanel = new JPanel(); //Création du panneau des entités dans le jeu.
+                this.fxPanel = new JPanel(); //Création du panneau des entités dans le jeu.
+                this.fxPanel = new JPanel(); //Création du panneau des entités dans le jeu.
+                this.fxPanel = new JPanel(); //Création du panneau des entités dans le jeu.
+                this.fxPanel = new JPanel(); //Création du panneau des entités dans le jeu.
+                this.fxPanel = new JPanel(); //Création du panneau des entités dans le jeu.
+                this.fxPanel.setBounds(0, 0, w, h); //Mise à l'échelle du panneau. (Le panneau possède les même dimension que InGameView)
+                this.fxPanel.setBounds(0, 0, w, h); //Mise à l'échelle du panneau. (Le panneau possède les même dimension que InGameView)
+                this.fxPanel.setBounds(0, 0, w, h); //Mise à l'échelle du panneau. (Le panneau possède les même dimension que InGameView)
+                this.fxPanel.setBounds(0, 0, w, h); //Mise à l'échelle du panneau. (Le panneau possède les même dimension que InGameView)
+                this.fxPanel.setBounds(0, 0, w, h); //Mise à l'échelle du panneau. (Le panneau possède les même dimension que InGameView)
+                this.fxPanel.setBounds(0, 0, w, h); //Mise à l'échelle du panneau. (Le panneau possède les même dimension que InGameView)
+                this.fxPanel.setLayout(null); //Suppression de la diposition prédéfinie.
+                this.fxPanel.setLayout(null); //Suppression de la diposition prédéfinie.
+                this.fxPanel.setLayout(null); //Suppression de la diposition prédéfinie.
+                this.fxPanel.setLayout(null); //Suppression de la diposition prédéfinie.
+                this.fxPanel.setLayout(null); //Suppression de la diposition prédéfinie.
+                this.fxPanel.setLayout(null); //Suppression de la diposition prédéfinie.
+                this.fxPanel.setOpaque(false); //Suppréssion de l'opacité (mise en transparence du JPanel).
+                this.fxPanel.setOpaque(false); //Suppréssion de l'opacité (mise en transparence du JPanel).
+                this.fxPanel.setOpaque(false); //Suppréssion de l'opacité (mise en transparence du JPanel).
+                this.fxPanel.setOpaque(false); //Suppréssion de l'opacité (mise en transparence du JPanel).
+                this.fxPanel.setOpaque(false); //Suppréssion de l'opacité (mise en transparence du JPanel).
+                this.fxPanel.setOpaque(false); //Suppréssion de l'opacité (mise en transparence du JPanel).
+                this.inGameView.add(this.entityPanel,0); //Ajout du panneau dans l'interface de jeu.
+                this.inGameView.add(this.entityPanel,0); //Ajout du panneau dans l'interface de jeu.
+                this.inGameView.add(this.entityPanel,0); //Ajout du panneau dans l'interface de jeu.
+                this.inGameView.add(this.entityPanel,0); //Ajout du panneau dans l'interface de jeu.
+                this.inGameView.add(this.entityPanel,0); //Ajout du panneau dans l'interface de jeu.
+                this.inGameView.add(this.entityPanel,0); //Ajout du panneau dans l'interface de jeu.
+                this.inGameView.add(this.fxPanel,0); //Ajout du panneau dans l'interface de jeu.
+                this.inGameView.add(this.fxPanel,0); //Ajout du panneau dans l'interface de jeu.
+                this.inGameView.add(this.fxPanel,0); //Ajout du panneau dans l'interface de jeu.
+                this.inGameView.add(this.fxPanel,0); //Ajout du panneau dans l'interface de jeu.
+                this.inGameView.add(this.fxPanel,0); //Ajout du panneau dans l'interface de jeu.
+                this.inGameView.add(this.fxPanel,0); //Ajout du panneau dans l'interface de jeu.
+                this.inGameView.add(this.itemPanel,0); //Ajout du panneau dans l'interface de jeu.
+                this.inGameView.add(this.itemPanel,0); //Ajout du panneau dans l'interface de jeu.
+                this.inGameView.add(this.itemPanel,0); //Ajout du panneau dans l'interface de jeu.
+                this.inGameView.add(this.itemPanel,0); //Ajout du panneau dans l'interface de jeu.
+                this.inGameView.add(this.itemPanel,0); //Ajout du panneau dans l'interface de jeu.
+                this.inGameView.add(this.itemPanel,0); //Ajout du panneau dans l'interface de jeu.
+                this.inGameView.add(this.wallsPanel,0); //Ajout du panneau dans l'interface de jeu.
+                this.inGameView.add(this.wallsPanel,0); //Ajout du panneau dans l'interface de jeu.
+                this.inGameView.add(this.wallsPanel,0); //Ajout du panneau dans l'interface de jeu.
+                this.inGameView.add(this.wallsPanel,0); //Ajout du panneau dans l'interface de jeu.
+                this.inGameView.add(this.wallsPanel,0); //Ajout du panneau dans l'interface de jeu.
+                this.inGameView.add(this.wallsPanel,0); //Ajout du panneau dans l'interface de jeu.
+                this.itemPanel = new JPanel(); //Création du panneau des entités dans le jeu.
+                this.itemPanel = new JPanel(); //Création du panneau des entités dans le jeu.
+                this.itemPanel = new JPanel(); //Création du panneau des entités dans le jeu.
+                this.itemPanel = new JPanel(); //Création du panneau des entités dans le jeu.
+                this.itemPanel = new JPanel(); //Création du panneau des entités dans le jeu.
+                this.itemPanel = new JPanel(); //Création du panneau des entités dans le jeu.
+                this.itemPanel.setBounds(0, 0, w, h); //Mise à l'échelle du panneau. (Le panneau possède les même dimension que InGameView)
+                this.itemPanel.setBounds(0, 0, w, h); //Mise à l'échelle du panneau. (Le panneau possède les même dimension que InGameView)
+                this.itemPanel.setBounds(0, 0, w, h); //Mise à l'échelle du panneau. (Le panneau possède les même dimension que InGameView)
+                this.itemPanel.setBounds(0, 0, w, h); //Mise à l'échelle du panneau. (Le panneau possède les même dimension que InGameView)
+                this.itemPanel.setBounds(0, 0, w, h); //Mise à l'échelle du panneau. (Le panneau possède les même dimension que InGameView)
+                this.itemPanel.setBounds(0, 0, w, h); //Mise à l'échelle du panneau. (Le panneau possède les même dimension que InGameView)
+                this.itemPanel.setLayout(null); //Suppression de la diposition prédéfinie.
+                this.itemPanel.setLayout(null); //Suppression de la diposition prédéfinie.
+                this.itemPanel.setLayout(null); //Suppression de la diposition prédéfinie.
+                this.itemPanel.setLayout(null); //Suppression de la diposition prédéfinie.
+                this.itemPanel.setLayout(null); //Suppression de la diposition prédéfinie.
+                this.itemPanel.setLayout(null); //Suppression de la diposition prédéfinie.
+                this.itemPanel.setOpaque(false); //Suppréssion de l'opacité (mise en transparence du JPanel).
+                this.itemPanel.setOpaque(false); //Suppréssion de l'opacité (mise en transparence du JPanel).
+                this.itemPanel.setOpaque(false); //Suppréssion de l'opacité (mise en transparence du JPanel).
+                this.itemPanel.setOpaque(false); //Suppréssion de l'opacité (mise en transparence du JPanel).
+                this.itemPanel.setOpaque(false); //Suppréssion de l'opacité (mise en transparence du JPanel).
+                this.itemPanel.setOpaque(false); //Suppréssion de l'opacité (mise en transparence du JPanel).
+                this.scopePanel = new ScopePanel();
+                this.scopePanel = new ScopePanel();
+                this.scopePanel = new ScopePanel();
+                this.scopePanel = new ScopePanel();
+                this.scopePanel = new ScopePanel();
+                this.scopePanel = new ScopePanel();
+                this.wallsPanel = new JPanel(); //Création du panneau des entités dans le jeu.
+                this.wallsPanel = new JPanel(); //Création du panneau des entités dans le jeu.
+                this.wallsPanel = new JPanel(); //Création du panneau des entités dans le jeu.
+                this.wallsPanel = new JPanel(); //Création du panneau des entités dans le jeu.
+                this.wallsPanel = new JPanel(); //Création du panneau des entités dans le jeu.
+                this.wallsPanel = new JPanel(); //Création du panneau des entités dans le jeu.
+                this.wallsPanel.setBounds(0, 0, w, h); //Mise à l'échelle du panneau. (Le panneau possède les même dimension que InGameView)
+                this.wallsPanel.setBounds(0, 0, w, h); //Mise à l'échelle du panneau. (Le panneau possède les même dimension que InGameView)
+                this.wallsPanel.setBounds(0, 0, w, h); //Mise à l'échelle du panneau. (Le panneau possède les même dimension que InGameView)
+                this.wallsPanel.setBounds(0, 0, w, h); //Mise à l'échelle du panneau. (Le panneau possède les même dimension que InGameView)
+                this.wallsPanel.setBounds(0, 0, w, h); //Mise à l'échelle du panneau. (Le panneau possède les même dimension que InGameView)
+                this.wallsPanel.setBounds(0, 0, w, h); //Mise à l'échelle du panneau. (Le panneau possède les même dimension que InGameView)
+                this.wallsPanel.setLayout(null); //Suppression de la diposition prédéfinie.
+                this.wallsPanel.setLayout(null); //Suppression de la diposition prédéfinie.
+                this.wallsPanel.setLayout(null); //Suppression de la diposition prédéfinie.
+                this.wallsPanel.setLayout(null); //Suppression de la diposition prédéfinie.
+                this.wallsPanel.setLayout(null); //Suppression de la diposition prédéfinie.
+                this.wallsPanel.setLayout(null); //Suppression de la diposition prédéfinie.
+                this.wallsPanel.setOpaque(false); //Suppréssion de l'opacité (mise en transparence du JPanel).
+                this.wallsPanel.setOpaque(false); //Suppréssion de l'opacité (mise en transparence du JPanel).
+                this.wallsPanel.setOpaque(false); //Suppréssion de l'opacité (mise en transparence du JPanel).
+                this.wallsPanel.setOpaque(false); //Suppréssion de l'opacité (mise en transparence du JPanel).
+                this.wallsPanel.setOpaque(false); //Suppréssion de l'opacité (mise en transparence du JPanel).
+                this.wallsPanel.setOpaque(false); //Suppréssion de l'opacité (mise en transparence du JPanel).
+                width,
+                width,
+                width,
+                width,
+                width,
+                width,
+                }
+                }
+                }
+                }
+                }
+                }
+                }
+                }
+                }
+                }
+                }
+                }
+                }
+                }
+                }
+                }
+                }
+                }
+             * 
+             * 
+             * 
+             * 
+             * 
+             * 
+             *  
+             *  
+             *  
+             *  
+             *  
+             *  
+             *  
+             *  
+             *  
+             *  
+             *  
+             *  
+             *  
+             *  
+             *  
+             *  
+             *  
+             *  
+             * @param h La hauteur des panneaux.
+             * @param h La hauteur des panneaux.
+             * @param h La hauteur des panneaux.
+             * @param h La hauteur des panneaux.
+             * @param h La hauteur des panneaux.
+             * @param h La hauteur des panneaux.
+             * @param h La hauteur des panneaux.
+             * @param h La hauteur des panneaux.
+             * @param h La hauteur des panneaux.
+             * @param h La hauteur des panneaux.
+             * @param h La hauteur des panneaux.
+             * @param h La hauteur des panneaux.
+             * @param h La hauteur des panneaux.
+             * @param h La hauteur des panneaux.
+             * @param h La hauteur des panneaux.
+             * @param h La hauteur des panneaux.
+             * @param h La hauteur des panneaux.
+             * @param h La hauteur des panneaux.
+             * @param h La hauteur des panneaux.
+             * @param h La hauteur des panneaux.
+             * @param h La hauteur des panneaux.
+             * @param h La hauteur des panneaux.
+             * @param h La hauteur des panneaux.
+             * @param h La hauteur des panneaux.
+             * @param w La largeur des panneaux.
+             * @param w La largeur des panneaux.
+             * @param w La largeur des panneaux.
+             * @param w La largeur des panneaux.
+             * @param w La largeur des panneaux.
+             * @param w La largeur des panneaux.
+             * @param w La largeur des panneaux.
+             * @param w La largeur des panneaux.
+             * @param w La largeur des panneaux.
+             * @param w La largeur des panneaux.
+             * @param w La largeur des panneaux.
+             * @param w La largeur des panneaux.
+             * @param w La largeur des panneaux.
+             * @param w La largeur des panneaux.
+             * @param w La largeur des panneaux.
+             * @param w La largeur des panneaux.
+             * @param w La largeur des panneaux.
+             * @param w La largeur des panneaux.
+             * @param w La largeur des panneaux.
+             * @param w La largeur des panneaux.
+             * @param w La largeur des panneaux.
+             * @param w La largeur des panneaux.
+             * @param w La largeur des panneaux.
+             * @param w La largeur des panneaux.
+             * Fonction qui initialise le panneau affichant le facteur de zoom de la carte.
+             * Fonction qui initialise le panneau affichant le facteur de zoom de la carte.
+             * Fonction qui initialise le panneau affichant le facteur de zoom de la carte.
+             * Fonction qui initialise le panneau affichant le facteur de zoom de la carte.
+             * Fonction qui initialise le panneau affichant le facteur de zoom de la carte.
+             * Fonction qui initialise le panneau affichant le facteur de zoom de la carte.
+             * Fonction qui initilise un JPanel qui sera utilisé comme calque dans le jeu.
+             * Fonction qui initilise un JPanel qui sera utilisé comme calque dans le jeu.
+             * Fonction qui initilise un JPanel qui sera utilisé comme calque dans le jeu.
+             * Fonction qui initilise un JPanel qui sera utilisé comme calque dans le jeu.
+             * Fonction qui initilise un JPanel qui sera utilisé comme calque dans le jeu.
+             * Fonction qui initilise un JPanel qui sera utilisé comme calque dans le jeu.
+             * Fonction qui initilise un JPanel qui sera utilisé comme calque dans le jeu.
+             * Fonction qui initilise un JPanel qui sera utilisé comme calque dans le jeu.
+             * Fonction qui initilise un JPanel qui sera utilisé comme calque dans le jeu.
+             * Fonction qui initilise un JPanel qui sera utilisé comme calque dans le jeu.
+             * Fonction qui initilise un JPanel qui sera utilisé comme calque dans le jeu.
+             * Fonction qui initilise un JPanel qui sera utilisé comme calque dans le jeu.
+             * Fonction qui initilise un JPanel qui sera utilisé comme calque dans le jeu.
+             * Fonction qui initilise un JPanel qui sera utilisé comme calque dans le jeu.
+             * Fonction qui initilise un JPanel qui sera utilisé comme calque dans le jeu.
+             * Fonction qui initilise un JPanel qui sera utilisé comme calque dans le jeu.
+             * Fonction qui initilise un JPanel qui sera utilisé comme calque dans le jeu.
+             * Fonction qui initilise un JPanel qui sera utilisé comme calque dans le jeu.
+             * Fonction qui initilise un JPanel qui sera utilisé comme calque dans le jeu.
+             * Fonction qui initilise un JPanel qui sera utilisé comme calque dans le jeu.
+             * Fonction qui initilise un JPanel qui sera utilisé comme calque dans le jeu.
+             * Fonction qui initilise un JPanel qui sera utilisé comme calque dans le jeu.
+             * Fonction qui initilise un JPanel qui sera utilisé comme calque dans le jeu.
+             * Fonction qui initilise un JPanel qui sera utilisé comme calque dans le jeu.
+             */
+             */
+             */
+             */
+             */
+             */
+             */
+             */
+             */
+             */
+             */
+             */
+             */
+             */
+             */
+             */
+             */
+             */
+             */
+             */
+             */
+             */
+             */
+             */
+             */
+             */
+             */
+             */
+             */
+             */
+            );
+            );
+            );
+            );
+            );
+            );
+            );
+            );
+            );
+            );
+            );
+            );
+            /**
+            /**
+            /**
+            /**
+            /**
+            /**
+            /**
+            /**
+            /**
+            /**
+            /**
+            /**
+            /**
+            /**
+            /**
+            /**
+            /**
+            /**
+            /**
+            /**
+            /**
+            /**
+            /**
+            /**
+            /**
+            /**
+            /**
+            /**
+            /**
+            /**
+            // System.out.println("inGameView : [X = "+decalageX+", Y = "+decalageY+", Width = "+width+", Height = "+height); //debug
+            // System.out.println("inGameView : [X = "+decalageX+", Y = "+decalageY+", Width = "+width+", Height = "+height); //debug
+            // System.out.println("inGameView : [X = "+decalageX+", Y = "+decalageY+", Width = "+width+", Height = "+height); //debug
+            // System.out.println("inGameView : [X = "+decalageX+", Y = "+decalageY+", Width = "+width+", Height = "+height); //debug
+            // System.out.println("inGameView : [X = "+decalageX+", Y = "+decalageY+", Width = "+width+", Height = "+height); //debug
+            // System.out.println("inGameView : [X = "+decalageX+", Y = "+decalageY+", Width = "+width+", Height = "+height); //debug
+            // this.setBackground(new Color(200, 111, 33));
+            // this.setBackground(new Color(200, 111, 33));
+            // this.setBackground(new Color(200, 111, 33));
+            // this.setBackground(new Color(200, 111, 33));
+            // this.setBackground(new Color(200, 111, 33));
+            // this.setBackground(new Color(200, 111, 33));
+            Config.adaptValueToScreen(30, 1),
+            Config.adaptValueToScreen(30, 1),
+            Config.adaptValueToScreen(30, 1),
+            Config.adaptValueToScreen(30, 1),
+            Config.adaptValueToScreen(30, 1),
+            Config.adaptValueToScreen(30, 1),
+            Config.screenH - Config.adaptValueToScreen(100, -1)
+            Config.screenH - Config.adaptValueToScreen(100, -1)
+            Config.screenH - Config.adaptValueToScreen(100, -1)
+            Config.screenH - Config.adaptValueToScreen(100, -1)
+            Config.screenH - Config.adaptValueToScreen(100, -1)
+            Config.screenH - Config.adaptValueToScreen(100, -1)
+            private void initEntityPanel(int w, int h){
+            private void initEntityPanel(int w, int h){
+            private void initEntityPanel(int w, int h){
+            private void initEntityPanel(int w, int h){
+            private void initEntityPanel(int w, int h){
+            private void initEntityPanel(int w, int h){
+            private void initFxPanel(int w, int h){
+            private void initFxPanel(int w, int h){
+            private void initFxPanel(int w, int h){
+            private void initFxPanel(int w, int h){
+            private void initFxPanel(int w, int h){
+            private void initFxPanel(int w, int h){
+            private void initItemPanel(int w, int h){
+            private void initItemPanel(int w, int h){
+            private void initItemPanel(int w, int h){
+            private void initItemPanel(int w, int h){
+            private void initItemPanel(int w, int h){
+            private void initItemPanel(int w, int h){
+            private void initScopePanel(){
+            private void initScopePanel(){
+            private void initScopePanel(){
+            private void initScopePanel(){
+            private void initScopePanel(){
+            private void initScopePanel(){
+            private void initWallsPanel(int w, int h){
+            private void initWallsPanel(int w, int h){
+            private void initWallsPanel(int w, int h){
+            private void initWallsPanel(int w, int h){
+            private void initWallsPanel(int w, int h){
+            private void initWallsPanel(int w, int h){
+            return this.bacgroundDY;
+            return this.bacgroundDY;
+            return this.bacgroundDY;
+            return this.bacgroundDY;
+            return this.bacgroundDY;
+            return this.bacgroundDY;
+            this. bacgroundDY= bacgroundDY;
+            this. bacgroundDY= bacgroundDY;
+            this. bacgroundDY= bacgroundDY;
+            this. bacgroundDY= bacgroundDY;
+            this. bacgroundDY= bacgroundDY;
+            this. bacgroundDY= bacgroundDY;
+            this.add(background);
+            this.add(background);
+            this.add(background);
+            this.add(background);
+            this.add(background);
+            this.add(background);
+            this.addMouseWheelActions();
+            this.addMouseWheelActions();
+            this.addMouseWheelActions();
+            this.addMouseWheelActions();
+            this.addMouseWheelActions();
+            this.addMouseWheelActions();
+            this.backgroundThreadactive = false;
+            this.backgroundThreadactive = false;
+            this.backgroundThreadactive = false;
+            this.backgroundThreadactive = false;
+            this.backgroundThreadactive = false;
+            this.backgroundThreadactive = false;
+            this.decalageX = decalageX; //Mise à jour du décalage en X
+            this.decalageX = decalageX; //Mise à jour du décalage en X
+            this.decalageX = decalageX; //Mise à jour du décalage en X
+            this.decalageX = decalageX; //Mise à jour du décalage en X
+            this.decalageX = decalageX; //Mise à jour du décalage en X
+            this.decalageX = decalageX; //Mise à jour du décalage en X
+            this.decalageY = decalageY; //Mise à jour du décalage en Y
+            this.decalageY = decalageY; //Mise à jour du décalage en Y
+            this.decalageY = decalageY; //Mise à jour du décalage en Y
+            this.decalageY = decalageY; //Mise à jour du décalage en Y
+            this.decalageY = decalageY; //Mise à jour du décalage en Y
+            this.decalageY = decalageY; //Mise à jour du décalage en Y
+            this.initBackground(backgroundLocation);
+            this.initBackground(backgroundLocation);
+            this.initBackground(backgroundLocation);
+            this.initBackground(backgroundLocation);
+            this.initBackground(backgroundLocation);
+            this.initBackground(backgroundLocation);
+            this.makeThreadBackgroundMoving();
+            this.makeThreadBackgroundMoving();
+            this.makeThreadBackgroundMoving();
+            this.makeThreadBackgroundMoving();
+            this.makeThreadBackgroundMoving();
+            this.makeThreadBackgroundMoving();
+            this.setBounds( //Mise à l'échelle de l'interface de jeu
+            this.setBounds( //Mise à l'échelle de l'interface de jeu
+            this.setBounds( //Mise à l'échelle de l'interface de jeu
+            this.setBounds( //Mise à l'échelle de l'interface de jeu
+            this.setBounds( //Mise à l'échelle de l'interface de jeu
+            this.setBounds( //Mise à l'échelle de l'interface de jeu
+            this.setBounds( //Mise à l'échelle de l'interface de jeu
+            this.setBounds( //Mise à l'échelle de l'interface de jeu
+            this.setBounds( //Mise à l'échelle de l'interface de jeu
+            this.setBounds( //Mise à l'échelle de l'interface de jeu
+            this.setBounds( //Mise à l'échelle de l'interface de jeu
+            this.setBounds( //Mise à l'échelle de l'interface de jeu
+            this.setFocusable(true);
+            this.setFocusable(true);
+            this.setFocusable(true);
+            this.setFocusable(true);
+            this.setFocusable(true);
+            this.setFocusable(true);
+            this.setLayout(null); //Pas de Layout
+            this.setLayout(null); //Pas de Layout
+            this.setLayout(null); //Pas de Layout
+            this.setLayout(null); //Pas de Layout
+            this.setLayout(null); //Pas de Layout
+            this.setLayout(null); //Pas de Layout
+            this.setLayout(null); //Pas de Layout
+            this.setLayout(null); //Pas de Layout
+            this.setLayout(null); //Pas de Layout
+            this.setLayout(null); //Pas de Layout
+            this.setLayout(null); //Pas de Layout
+            this.setLayout(null); //Pas de Layout
+            this.setOpaque(false); //Activation de la transparence
+            this.setOpaque(false); //Activation de la transparence
+            this.setOpaque(false); //Activation de la transparence
+            this.setOpaque(false); //Activation de la transparence
+            this.setOpaque(false); //Activation de la transparence
+            this.setOpaque(false); //Activation de la transparence
+            }
+            }
+            }
+            }
+            }
+            }
+            }
+            }
+            }
+            }
+            }
+            }
+            }
+            }
+            }
+            }
+            }
+            }
+            }
+            }
+            }
+            }
+            }
+            }
+            }
+            }
+            }
+            }
+            }
+            }
+         * 
+         * 
+         * 
+         * 
+         * 
+         * 
+         * 
+         * 
+         * 
+         * 
+         * 
+         * 
+         * 
+         * 
+         * 
+         * 
+         * 
+         * 
+         * 
+         * 
+         * 
+         * 
+         * 
+         * 
+         *  de l'écran (C'est à dire en gros que certains éléments seront en dehors de l'écran, exprès). Cela permettera 
+         *  de l'écran (C'est à dire en gros que certains éléments seront en dehors de l'écran, exprès). Cela permettera 
+         *  de l'écran (C'est à dire en gros que certains éléments seront en dehors de l'écran, exprès). Cela permettera 
+         *  de l'écran (C'est à dire en gros que certains éléments seront en dehors de l'écran, exprès). Cela permettera 
+         *  de l'écran (C'est à dire en gros que certains éléments seront en dehors de l'écran, exprès). Cela permettera 
+         *  de l'écran (C'est à dire en gros que certains éléments seront en dehors de l'écran, exprès). Cela permettera 
+         *  de l'écran (C'est à dire en gros que certains éléments seront en dehors de l'écran, exprès). Cela permettera 
+         *  de l'écran (C'est à dire en gros que certains éléments seront en dehors de l'écran, exprès). Cela permettera 
+         *  de l'écran (C'est à dire en gros que certains éléments seront en dehors de l'écran, exprès). Cela permettera 
+         *  de l'écran (C'est à dire en gros que certains éléments seront en dehors de l'écran, exprès). Cela permettera 
+         *  de l'écran (C'est à dire en gros que certains éléments seront en dehors de l'écran, exprès). Cela permettera 
+         *  de l'écran (C'est à dire en gros que certains éléments seront en dehors de l'écran, exprès). Cela permettera 
+         * (Le mode sniper ne changera pas la vue de haut en bas mais uniquement de droite à gauche)
+         * (Le mode sniper ne changera pas la vue de haut en bas mais uniquement de droite à gauche)
+         * (Le mode sniper ne changera pas la vue de haut en bas mais uniquement de droite à gauche)
+         * (Le mode sniper ne changera pas la vue de haut en bas mais uniquement de droite à gauche)
+         * (Le mode sniper ne changera pas la vue de haut en bas mais uniquement de droite à gauche)
+         * (Le mode sniper ne changera pas la vue de haut en bas mais uniquement de droite à gauche)
+         * (sniper), dans lesquels la map deviendra de plus petite et affichera plus d'éléments, selon le type de zoom
+         * (sniper), dans lesquels la map deviendra de plus petite et affichera plus d'éléments, selon le type de zoom
+         * (sniper), dans lesquels la map deviendra de plus petite et affichera plus d'éléments, selon le type de zoom
+         * (sniper), dans lesquels la map deviendra de plus petite et affichera plus d'éléments, selon le type de zoom
+         * (sniper), dans lesquels la map deviendra de plus petite et affichera plus d'éléments, selon le type de zoom
+         * (sniper), dans lesquels la map deviendra de plus petite et affichera plus d'éléments, selon le type de zoom
+         * <p>
+         * <p>
+         * <p>
+         * <p>
+         * <p>
+         * <p>
+         * <p>
+         * <p>
+         * <p>
+         * <p>
+         * <p>
+         * <p>
+         * <p>Tant qu'il vaut {@code true} le background du jeu sera animé.
+         * <p>Tant qu'il vaut {@code true} le background du jeu sera animé.
+         * <p>Tant qu'il vaut {@code true} le background du jeu sera animé.
+         * <p>Tant qu'il vaut {@code true} le background du jeu sera animé.
+         * <p>Tant qu'il vaut {@code true} le background du jeu sera animé.
+         * <p>Tant qu'il vaut {@code true} le background du jeu sera animé.
+         * <strong>Explication :</strong> La carte du jeu sera faite de manière à avoir un peu plus d'éléments en dehors
+         * <strong>Explication :</strong> La carte du jeu sera faite de manière à avoir un peu plus d'éléments en dehors
+         * <strong>Explication :</strong> La carte du jeu sera faite de manière à avoir un peu plus d'éléments en dehors
+         * <strong>Explication :</strong> La carte du jeu sera faite de manière à avoir un peu plus d'éléments en dehors
+         * <strong>Explication :</strong> La carte du jeu sera faite de manière à avoir un peu plus d'éléments en dehors
+         * <strong>Explication :</strong> La carte du jeu sera faite de manière à avoir un peu plus d'éléments en dehors
+         * <strong>Explication :</strong> La carte du jeu sera faite de manière à avoir un peu plus d'éléments en dehors
+         * <strong>Explication :</strong> La carte du jeu sera faite de manière à avoir un peu plus d'éléments en dehors
+         * <strong>Explication :</strong> La carte du jeu sera faite de manière à avoir un peu plus d'éléments en dehors
+         * <strong>Explication :</strong> La carte du jeu sera faite de manière à avoir un peu plus d'éléments en dehors
+         * <strong>Explication :</strong> La carte du jeu sera faite de manière à avoir un peu plus d'éléments en dehors
+         * <strong>Explication :</strong> La carte du jeu sera faite de manière à avoir un peu plus d'éléments en dehors
+         * @param bacgroundDY Nouveau décalage de l'arrière plan
+         * @param bacgroundDY Nouveau décalage de l'arrière plan
+         * @param bacgroundDY Nouveau décalage de l'arrière plan
+         * @param bacgroundDY Nouveau décalage de l'arrière plan
+         * @param bacgroundDY Nouveau décalage de l'arrière plan
+         * @param bacgroundDY Nouveau décalage de l'arrière plan
+         * @return Décalage de l'arrière plan.
+         * @return Décalage de l'arrière plan.
+         * @return Décalage de l'arrière plan.
+         * @return Décalage de l'arrière plan.
+         * @return Décalage de l'arrière plan.
+         * @return Décalage de l'arrière plan.
+         * Booléen utilisé pour faire fonctionner le Thread qui faitb bouger la carte.
+         * Booléen utilisé pour faire fonctionner le Thread qui faitb bouger la carte.
+         * Booléen utilisé pour faire fonctionner le Thread qui faitb bouger la carte.
+         * Booléen utilisé pour faire fonctionner le Thread qui faitb bouger la carte.
+         * Booléen utilisé pour faire fonctionner le Thread qui faitb bouger la carte.
+         * Booléen utilisé pour faire fonctionner le Thread qui faitb bouger la carte.
+         * Constructeur de l'interface, il prend en argument les dimension de l'interface
+         * Constructeur de l'interface, il prend en argument les dimension de l'interface
+         * Constructeur de l'interface, il prend en argument les dimension de l'interface
+         * Constructeur de l'interface, il prend en argument les dimension de l'interface
+         * Constructeur de l'interface, il prend en argument les dimension de l'interface
+         * Constructeur de l'interface, il prend en argument les dimension de l'interface
+         * Eniter représentant le décalage à ajouter à l'arrière plan pour le décaler en haut ou en bas.
+         * Eniter représentant le décalage à ajouter à l'arrière plan pour le décaler en haut ou en bas.
+         * Eniter représentant le décalage à ajouter à l'arrière plan pour le décaler en haut ou en bas.
+         * Eniter représentant le décalage à ajouter à l'arrière plan pour le décaler en haut ou en bas.
+         * Eniter représentant le décalage à ajouter à l'arrière plan pour le décaler en haut ou en bas.
+         * Eniter représentant le décalage à ajouter à l'arrière plan pour le décaler en haut ou en bas.
+         * Fonction qui arrête l'animation de l'arrière plan du jeu.
+         * Fonction qui arrête l'animation de l'arrière plan du jeu.
+         * Fonction qui arrête l'animation de l'arrière plan du jeu.
+         * Fonction qui arrête l'animation de l'arrière plan du jeu.
+         * Fonction qui arrête l'animation de l'arrière plan du jeu.
+         * Fonction qui arrête l'animation de l'arrière plan du jeu.
+         * Fonction qui change le décalage de l'arrière plan.
+         * Fonction qui change le décalage de l'arrière plan.
+         * Fonction qui change le décalage de l'arrière plan.
+         * Fonction qui change le décalage de l'arrière plan.
+         * Fonction qui change le décalage de l'arrière plan.
+         * Fonction qui change le décalage de l'arrière plan.
+         * Fonction qui revoie la valeur actuelle du décalage de l'arrière plan.
+         * Fonction qui revoie la valeur actuelle du décalage de l'arrière plan.
+         * Fonction qui revoie la valeur actuelle du décalage de l'arrière plan.
+         * Fonction qui revoie la valeur actuelle du décalage de l'arrière plan.
+         * Fonction qui revoie la valeur actuelle du décalage de l'arrière plan.
+         * Fonction qui revoie la valeur actuelle du décalage de l'arrière plan.
+         * Fonction qui va rafraichir la dimension des éléments à l'écran, si jamais l'écran est redimensionné pendant la 
+         * Fonction qui va rafraichir la dimension des éléments à l'écran, si jamais l'écran est redimensionné pendant la 
+         * Fonction qui va rafraichir la dimension des éléments à l'écran, si jamais l'écran est redimensionné pendant la 
+         * Fonction qui va rafraichir la dimension des éléments à l'écran, si jamais l'écran est redimensionné pendant la 
+         * Fonction qui va rafraichir la dimension des éléments à l'écran, si jamais l'écran est redimensionné pendant la 
+         * Fonction qui va rafraichir la dimension des éléments à l'écran, si jamais l'écran est redimensionné pendant la 
+         * Fonctionalité abandonnée
+         * Fonctionalité abandonnée
+         * Fonctionalité abandonnée
+         * Fonctionalité abandonnée
+         * Fonctionalité abandonnée
+         * Fonctionalité abandonnée
+         * Il s'agit ici d'un décalage, vers la gauche du panneau.
+         * Il s'agit ici d'un décalage, vers la gauche du panneau.
+         * Il s'agit ici d'un décalage, vers la gauche du panneau.
+         * Il s'agit ici d'un décalage, vers la gauche du panneau.
+         * Il s'agit ici d'un décalage, vers la gauche du panneau.
+         * Il s'agit ici d'un décalage, vers la gauche du panneau.
+         * Il s'agit ici d'un décalage, vers le bas du panneau.
+         * Il s'agit ici d'un décalage, vers le bas du panneau.
+         * Il s'agit ici d'un décalage, vers le bas du panneau.
+         * Il s'agit ici d'un décalage, vers le bas du panneau.
+         * Il s'agit ici d'un décalage, vers le bas du panneau.
+         * Il s'agit ici d'un décalage, vers le bas du panneau.
+         * Le décalage en X est alors le décalage vers la gauche qui ferra que le joueur verra ce qui est au centre, mais 
+         * Le décalage en X est alors le décalage vers la gauche qui ferra que le joueur verra ce qui est au centre, mais 
+         * Le décalage en X est alors le décalage vers la gauche qui ferra que le joueur verra ce qui est au centre, mais 
+         * Le décalage en X est alors le décalage vers la gauche qui ferra que le joueur verra ce qui est au centre, mais 
+         * Le décalage en X est alors le décalage vers la gauche qui ferra que le joueur verra ce qui est au centre, mais 
+         * Le décalage en X est alors le décalage vers la gauche qui ferra que le joueur verra ce qui est au centre, mais 
+         * Le décalage en Y est alors le décalage vers le bas qui ferra que le joueur verra ce qui est au centre, mais 
+         * Le décalage en Y est alors le décalage vers le bas qui ferra que le joueur verra ce qui est au centre, mais 
+         * Le décalage en Y est alors le décalage vers le bas qui ferra que le joueur verra ce qui est au centre, mais 
+         * Le décalage en Y est alors le décalage vers le bas qui ferra que le joueur verra ce qui est au centre, mais 
+         * Le décalage en Y est alors le décalage vers le bas qui ferra que le joueur verra ce qui est au centre, mais 
+         * Le décalage en Y est alors le décalage vers le bas qui ferra que le joueur verra ce qui est au centre, mais 
+         * Mais également cela permettra de rajouter des fonctionnalités comme les zooms avec des armes de précision, 
+         * Mais également cela permettra de rajouter des fonctionnalités comme les zooms avec des armes de précision, 
+         * Mais également cela permettra de rajouter des fonctionnalités comme les zooms avec des armes de précision, 
+         * Mais également cela permettra de rajouter des fonctionnalités comme les zooms avec des armes de précision, 
+         * Mais également cela permettra de rajouter des fonctionnalités comme les zooms avec des armes de précision, 
+         * Mais également cela permettra de rajouter des fonctionnalités comme les zooms avec des armes de précision, 
+         * Panneau qui contiendera l'image d'arrière plan du jeu.
+         * Panneau qui contiendera l'image d'arrière plan du jeu.
+         * Panneau qui contiendera l'image d'arrière plan du jeu.
+         * Panneau qui contiendera l'image d'arrière plan du jeu.
+         * Panneau qui contiendera l'image d'arrière plan du jeu.
+         * Panneau qui contiendera l'image d'arrière plan du jeu.
+         * de faire l'implémentation de fonctionnalités très intéressantes dans le jeu, comme par exemple, des effets de 
+         * de faire l'implémentation de fonctionnalités très intéressantes dans le jeu, comme par exemple, des effets de 
+         * de faire l'implémentation de fonctionnalités très intéressantes dans le jeu, comme par exemple, des effets de 
+         * de faire l'implémentation de fonctionnalités très intéressantes dans le jeu, comme par exemple, des effets de 
+         * de faire l'implémentation de fonctionnalités très intéressantes dans le jeu, comme par exemple, des effets de 
+         * de faire l'implémentation de fonctionnalités très intéressantes dans le jeu, comme par exemple, des effets de 
+         * de faire l'implémentation de fonctionnalités très intéressantes dans le jeu, comme par exemple, des effets de 
+         * de faire l'implémentation de fonctionnalités très intéressantes dans le jeu, comme par exemple, des effets de 
+         * de faire l'implémentation de fonctionnalités très intéressantes dans le jeu, comme par exemple, des effets de 
+         * de faire l'implémentation de fonctionnalités très intéressantes dans le jeu, comme par exemple, des effets de 
+         * de faire l'implémentation de fonctionnalités très intéressantes dans le jeu, comme par exemple, des effets de 
+         * de faire l'implémentation de fonctionnalités très intéressantes dans le jeu, comme par exemple, des effets de 
+         * partie
+         * partie
+         * partie
+         * partie
+         * partie
+         * partie
+         * pas les alentours.
+         * pas les alentours.
+         * pas les alentours.
+         * pas les alentours.
+         * pas les alentours.
+         * pas les alentours.
+         * pas les alentours.
+         * pas les alentours.
+         * pas les alentours.
+         * pas les alentours.
+         * pas les alentours.
+         * pas les alentours.
+         * tremblement de l'écran (Shake), de plus en plus grand pour simuler des effet de caméra lors du tir.
+         * tremblement de l'écran (Shake), de plus en plus grand pour simuler des effet de caméra lors du tir.
+         * tremblement de l'écran (Shake), de plus en plus grand pour simuler des effet de caméra lors du tir.
+         * tremblement de l'écran (Shake), de plus en plus grand pour simuler des effet de caméra lors du tir.
+         * tremblement de l'écran (Shake), de plus en plus grand pour simuler des effet de caméra lors du tir.
+         * tremblement de l'écran (Shake), de plus en plus grand pour simuler des effet de caméra lors du tir.
+         * tremblement de l'écran (Shake), de plus en plus grand pour simuler des effet de caméra lors du tir.
+         * tremblement de l'écran (Shake), de plus en plus grand pour simuler des effet de caméra lors du tir.
+         * tremblement de l'écran (Shake), de plus en plus grand pour simuler des effet de caméra lors du tir.
+         * tremblement de l'écran (Shake), de plus en plus grand pour simuler des effet de caméra lors du tir.
+         * tremblement de l'écran (Shake), de plus en plus grand pour simuler des effet de caméra lors du tir.
+         * tremblement de l'écran (Shake), de plus en plus grand pour simuler des effet de caméra lors du tir.
+         */
+         */
+         */
+         */
+         */
+         */
+         */
+         */
+         */
+         */
+         */
+         */
+         */
+         */
+         */
+         */
+         */
+         */
+         */
+         */
+         */
+         */
+         */
+         */
+         */
+         */
+         */
+         */
+         */
+         */
+         */
+         */
+         */
+         */
+         */
+         */
+         */
+         */
+         */
+         */
+         */
+         */
+         */
+         */
+         */
+         */
+         */
+         */
+         */
+         */
+         */
+         */
+         */
+         */
+         */
+         */
+         */
+         */
+         */
+         */
+         */
+         */
+         */
+         */
+         */
+         */
+        /**
+        /**
+        /**
+        /**
+        /**
+        /**
+        /**
+        /**
+        /**
+        /**
+        /**
+        /**
+        /**
+        /**
+        /**
+        /**
+        /**
+        /**
+        /**
+        /**
+        /**
+        /**
+        /**
+        /**
+        /**
+        /**
+        /**
+        /**
+        /**
+        /**
+        /**
+        /**
+        /**
+        /**
+        /**
+        /**
+        /**
+        /**
+        /**
+        /**
+        /**
+        /**
+        /**
+        /**
+        /**
+        /**
+        /**
+        /**
+        /**
+        /**
+        /**
+        /**
+        /**
+        /**
+        /**
+        /**
+        /**
+        /**
+        /**
+        /**
+        /**
+        /**
+        /**
+        /**
+        /**
+        /**
+        //             Thread.sleep(1);
+        //             Thread.sleep(1);
+        //             Thread.sleep(1);
+        //             Thread.sleep(1);
+        //             Thread.sleep(1);
+        //             Thread.sleep(1);
+        //         repaint();
+        //         repaint();
+        //         repaint();
+        //         repaint();
+        //         repaint();
+        //         repaint();
+        //         try {
+        //         try {
+        //         try {
+        //         try {
+        //         try {
+        //         try {
+        //         }
+        //         }
+        //         }
+        //         }
+        //         }
+        //         }
+        //         } catch (InterruptedException e) {
+        //         } catch (InterruptedException e) {
+        //         } catch (InterruptedException e) {
+        //         } catch (InterruptedException e) {
+        //         } catch (InterruptedException e) {
+        //         } catch (InterruptedException e) {
+        //     while(repaint){
+        //     while(repaint){
+        //     while(repaint){
+        //     while(repaint){
+        //     while(repaint){
+        //     while(repaint){
+        //     }
+        //     }
+        //     }
+        //     }
+        //     }
+        //     }
+        // new Thread(()->{
+        // new Thread(()->{
+        // new Thread(()->{
+        // new Thread(()->{
+        // new Thread(()->{
+        // new Thread(()->{
+        // this.inGameView.add(lootMenuPanel); //Ajout du menu des loot.
+        // this.inGameView.add(lootMenuPanel); //Ajout du menu des loot.
+        // this.inGameView.add(lootMenuPanel); //Ajout du menu des loot.
+        // this.inGameView.add(lootMenuPanel); //Ajout du menu des loot.
+        // this.inGameView.add(lootMenuPanel); //Ajout du menu des loot.
+        // this.inGameView.add(lootMenuPanel); //Ajout du menu des loot.
+        // },"GameView - Repainting").start();
+        // },"GameView - Repainting").start();
+        // },"GameView - Repainting").start();
+        // },"GameView - Repainting").start();
+        // },"GameView - Repainting").start();
+        // },"GameView - Repainting").start();
+        @Override
+        @Override
+        @Override
+        @Override
+        @Override
+        @Override
+        Config.elementRefreshables.add(this); //Ajout de l'interface de jeu comme étant un refreshable, dans Config.
+        Config.elementRefreshables.add(this); //Ajout de l'interface de jeu comme étant un refreshable, dans Config.
+        Config.elementRefreshables.add(this); //Ajout de l'interface de jeu comme étant un refreshable, dans Config.
+        Config.elementRefreshables.add(this); //Ajout de l'interface de jeu comme étant un refreshable, dans Config.
+        Config.elementRefreshables.add(this); //Ajout de l'interface de jeu comme étant un refreshable, dans Config.
+        Config.elementRefreshables.add(this); //Ajout de l'interface de jeu comme étant un refreshable, dans Config.
+        Config.updatable.add(this);
+        Config.updatable.add(this);
+        Config.updatable.add(this);
+        Config.updatable.add(this);
+        Config.updatable.add(this);
+        Config.updatable.add(this);
+        Config.window.setContentPane(this); //GameView devient le paneau principale de l'interface.
+        Config.window.setContentPane(this); //GameView devient le paneau principale de l'interface.
+        Config.window.setContentPane(this); //GameView devient le paneau principale de l'interface.
+        Config.window.setContentPane(this); //GameView devient le paneau principale de l'interface.
+        Config.window.setContentPane(this); //GameView devient le paneau principale de l'interface.
+        Config.window.setContentPane(this); //GameView devient le paneau principale de l'interface.
+        InGameView(int decalageX, int decalageY, int width, int height, String backgroundLocation){
+        InGameView(int decalageX, int decalageY, int width, int height, String backgroundLocation){
+        InGameView(int decalageX, int decalageY, int width, int height, String backgroundLocation){
+        InGameView(int decalageX, int decalageY, int width, int height, String backgroundLocation){
+        InGameView(int decalageX, int decalageY, int width, int height, String backgroundLocation){
+        InGameView(int decalageX, int decalageY, int width, int height, String backgroundLocation){
+        Integer [] coords = {
+        Integer [] coords = {
+        Integer [] coords = {
+        Integer [] coords = {
+        Integer [] coords = {
+        Integer [] coords = {
+        initEntityPanel(w, h); //Création de du panneau des entités.
+        initEntityPanel(w, h); //Création de du panneau des entités.
+        initEntityPanel(w, h); //Création de du panneau des entités.
+        initEntityPanel(w, h); //Création de du panneau des entités.
+        initEntityPanel(w, h); //Création de du panneau des entités.
+        initEntityPanel(w, h); //Création de du panneau des entités.
+        initFxPanel(w, h);
+        initFxPanel(w, h);
+        initFxPanel(w, h);
+        initFxPanel(w, h);
+        initFxPanel(w, h);
+        initFxPanel(w, h);
+        initItemPanel(w, h);
+        initItemPanel(w, h);
+        initItemPanel(w, h);
+        initItemPanel(w, h);
+        initItemPanel(w, h);
+        initItemPanel(w, h);
+        initScopePanel();
+        initScopePanel();
+        initScopePanel();
+        initScopePanel();
+        initScopePanel();
+        initScopePanel();
+        initWallsPanel(w, h);
+        initWallsPanel(w, h);
+        initWallsPanel(w, h);
+        initWallsPanel(w, h);
+        initWallsPanel(w, h);
+        initWallsPanel(w, h);
+        private JPanel background;
+        private JPanel background;
+        private JPanel background;
+        private JPanel background;
+        private JPanel background;
+        private JPanel background;
+        private boolean backgroundThreadactive = true;
+        private boolean backgroundThreadactive = true;
+        private boolean backgroundThreadactive = true;
+        private boolean backgroundThreadactive = true;
+        private boolean backgroundThreadactive = true;
+        private boolean backgroundThreadactive = true;
+        private int bacgroundDY = 1;
+        private int bacgroundDY = 1;
+        private int bacgroundDY = 1;
+        private int bacgroundDY = 1;
+        private int bacgroundDY = 1;
+        private int bacgroundDY = 1;
+        private int decalageX; 
+        private int decalageX; 
+        private int decalageX; 
+        private int decalageX; 
+        private int decalageX; 
+        private int decalageX; 
+        private int decalageY;
+        private int decalageY;
+        private int decalageY;
+        private int decalageY;
+        private int decalageY;
+        private int decalageY;
+        public int getBackgroundDY(){
+        public int getBackgroundDY(){
+        public int getBackgroundDY(){
+        public int getBackgroundDY(){
+        public int getBackgroundDY(){
+        public int getBackgroundDY(){
+        public void refreshGraphics(){
+        public void refreshGraphics(){
+        public void refreshGraphics(){
+        public void refreshGraphics(){
+        public void refreshGraphics(){
+        public void refreshGraphics(){
+        public void setBackgroundDY(int bacgroundDY){
+        public void setBackgroundDY(int bacgroundDY){
+        public void setBackgroundDY(int bacgroundDY){
+        public void setBackgroundDY(int bacgroundDY){
+        public void setBackgroundDY(int bacgroundDY){
+        public void setBackgroundDY(int bacgroundDY){
+        public void stopBackgroundAnime(){
+        public void stopBackgroundAnime(){
+        public void stopBackgroundAnime(){
+        public void stopBackgroundAnime(){
+        public void stopBackgroundAnime(){
+        public void stopBackgroundAnime(){
+        return this.armingPanel;
+        return this.armingPanel;
+        return this.armingPanel;
+        return this.armingPanel;
+        return this.armingPanel;
+        return this.armingPanel;
+        return this.backpackmenu;
+        return this.backpackmenu;
+        return this.backpackmenu;
+        return this.backpackmenu;
+        return this.backpackmenu;
+        return this.backpackmenu;
+        return this.entityPanel;
+        return this.entityPanel;
+        return this.entityPanel;
+        return this.entityPanel;
+        return this.entityPanel;
+        return this.entityPanel;
+        return this.fxPanel;
+        return this.fxPanel;
+        return this.fxPanel;
+        return this.fxPanel;
+        return this.fxPanel;
+        return this.fxPanel;
+        return this.itemPanel;
+        return this.itemPanel;
+        return this.itemPanel;
+        return this.itemPanel;
+        return this.itemPanel;
+        return this.itemPanel;
+        return this.wallsPanel;
+        return this.wallsPanel;
+        return this.wallsPanel;
+        return this.wallsPanel;
+        return this.wallsPanel;
+        return this.wallsPanel;
+        this.add(backpackmenu, 0);
+        this.add(backpackmenu, 0);
+        this.add(backpackmenu, 0);
+        this.add(backpackmenu, 0);
+        this.add(backpackmenu, 0);
+        this.add(backpackmenu, 0);
+        this.add(inGameView); //Ajout dans l'interface de jeu dans l'interface global GameView.
+        this.add(inGameView); //Ajout dans l'interface de jeu dans l'interface global GameView.
+        this.add(inGameView); //Ajout dans l'interface de jeu dans l'interface global GameView.
+        this.add(inGameView); //Ajout dans l'interface de jeu dans l'interface global GameView.
+        this.add(inGameView); //Ajout dans l'interface de jeu dans l'interface global GameView.
+        this.add(inGameView); //Ajout dans l'interface de jeu dans l'interface global GameView.
+        this.add(this.armingPanel,0);
+        this.add(this.armingPanel,0);
+        this.add(this.armingPanel,0);
+        this.add(this.armingPanel,0);
+        this.add(this.armingPanel,0);
+        this.add(this.armingPanel,0);
+        this.backpackmenu = new BackPackPanel(null);
+        this.backpackmenu = new BackPackPanel(null);
+        this.backpackmenu = new BackPackPanel(null);
+        this.backpackmenu = new BackPackPanel(null);
+        this.backpackmenu = new BackPackPanel(null);
+        this.backpackmenu = new BackPackPanel(null);
+        this.backpackmenu.setPlayer(player);
+        this.backpackmenu.setPlayer(player);
+        this.backpackmenu.setPlayer(player);
+        this.backpackmenu.setPlayer(player);
+        this.backpackmenu.setPlayer(player);
+        this.backpackmenu.setPlayer(player);
+        this.barrierEnergyPanel = new TextPopUp("Energie : 0", Color.white, 10, Ressources.PATH+"null.png", coords);
+        this.barrierEnergyPanel = new TextPopUp("Energie : 0", Color.white, 10, Ressources.PATH+"null.png", coords);
+        this.barrierEnergyPanel = new TextPopUp("Energie : 0", Color.white, 10, Ressources.PATH+"null.png", coords);
+        this.barrierEnergyPanel = new TextPopUp("Energie : 0", Color.white, 10, Ressources.PATH+"null.png", coords);
+        this.barrierEnergyPanel = new TextPopUp("Energie : 0", Color.white, 10, Ressources.PATH+"null.png", coords);
+        this.barrierEnergyPanel = new TextPopUp("Energie : 0", Color.white, 10, Ressources.PATH+"null.png", coords);
+        this.inGameView = new InGameView(decalageX, decalageY, width, height, bakcgroundLocation); //Création d'une view du jeu, 
+        this.inGameView = new InGameView(decalageX, decalageY, width, height, bakcgroundLocation); //Création d'une view du jeu, 
+        this.inGameView = new InGameView(decalageX, decalageY, width, height, bakcgroundLocation); //Création d'une view du jeu, 
+        this.inGameView = new InGameView(decalageX, decalageY, width, height, bakcgroundLocation); //Création d'une view du jeu, 
+        this.inGameView = new InGameView(decalageX, decalageY, width, height, bakcgroundLocation); //Création d'une view du jeu, 
+        this.inGameView = new InGameView(decalageX, decalageY, width, height, bakcgroundLocation); //Création d'une view du jeu, 
+        this.inGameView.refreshGraphics(); //Remise à l'echelle du JPanel contenant tous les éléments du jeu.
+        this.inGameView.refreshGraphics(); //Remise à l'echelle du JPanel contenant tous les éléments du jeu.
+        this.inGameView.refreshGraphics(); //Remise à l'echelle du JPanel contenant tous les éléments du jeu.
+        this.inGameView.refreshGraphics(); //Remise à l'echelle du JPanel contenant tous les éléments du jeu.
+        this.inGameView.refreshGraphics(); //Remise à l'echelle du JPanel contenant tous les éléments du jeu.
+        this.inGameView.refreshGraphics(); //Remise à l'echelle du JPanel contenant tous les éléments du jeu.
+        this.initilizeCanvas(width, height);
+        this.initilizeCanvas(width, height);
+        this.initilizeCanvas(width, height);
+        this.initilizeCanvas(width, height);
+        this.initilizeCanvas(width, height);
+        this.initilizeCanvas(width, height);
+        this.map = map;
+        this.map = map;
+        this.map = map;
+        this.map = map;
+        this.map = map;
+        this.map = map;
+        this.setBounds(0,0,Config.screenW, Config.screenH);
+        this.setBounds(0,0,Config.screenW, Config.screenH);
+        this.setBounds(0,0,Config.screenW, Config.screenH);
+        this.setBounds(0,0,Config.screenW, Config.screenH);
+        this.setBounds(0,0,Config.screenW, Config.screenH);
+        this.setBounds(0,0,Config.screenW, Config.screenH);
+        this.setBounds(0,0,Config.screenW, Config.screenH); //Remise à l'échelle du GameView.
+        this.setBounds(0,0,Config.screenW, Config.screenH); //Remise à l'échelle du GameView.
+        this.setBounds(0,0,Config.screenW, Config.screenH); //Remise à l'échelle du GameView.
+        this.setBounds(0,0,Config.screenW, Config.screenH); //Remise à l'échelle du GameView.
+        this.setBounds(0,0,Config.screenW, Config.screenH); //Remise à l'échelle du GameView.
+        this.setBounds(0,0,Config.screenW, Config.screenH); //Remise à l'échelle du GameView.
+        this.setLayout(null); //GameView n'a pas de Layout.
+        this.setLayout(null); //GameView n'a pas de Layout.
+        this.setLayout(null); //GameView n'a pas de Layout.
+        this.setLayout(null); //GameView n'a pas de Layout.
+        this.setLayout(null); //GameView n'a pas de Layout.
+        this.setLayout(null); //GameView n'a pas de Layout.
+        this.setPreferredSize(new Dimension(Config.screenW, Config.screenH));
+        this.setPreferredSize(new Dimension(Config.screenW, Config.screenH));
+        this.setPreferredSize(new Dimension(Config.screenW, Config.screenH));
+        this.setPreferredSize(new Dimension(Config.screenW, Config.screenH));
+        this.setPreferredSize(new Dimension(Config.screenW, Config.screenH));
+        this.setPreferredSize(new Dimension(Config.screenW, Config.screenH));
+        }
+        }
+        }
+        }
+        }
+        }
+        }
+        }
+        }
+        }
+        }
+        }
+        }
+        }
+        }
+        }
+        }
+        }
+        }
+        }
+        }
+        }
+        }
+        }
+        }
+        }
+        }
+        }
+        }
+        }
+        };
+        };
+        };
+        };
+        };
+        };
+       inGameView.decalageY = y;
+       inGameView.decalageY = y;
+       inGameView.decalageY = y;
+       inGameView.decalageY = y;
+       inGameView.decalageY = y;
+       inGameView.decalageY = y;
+       inGameView.refreshGraphics();
+       inGameView.refreshGraphics();
+       inGameView.refreshGraphics();
+       inGameView.refreshGraphics();
+       inGameView.refreshGraphics();
+       inGameView.refreshGraphics();
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * <p>Tous ces panneaux seront contenu dans {@link InGameView}, ainsi ils auront les mêmes dimensions que le inGameView.
+     * <p>Tous ces panneaux seront contenu dans {@link InGameView}, ainsi ils auront les mêmes dimensions que le inGameView.
+     * <p>Tous ces panneaux seront contenu dans {@link InGameView}, ainsi ils auront les mêmes dimensions que le inGameView.
+     * <p>Tous ces panneaux seront contenu dans {@link InGameView}, ainsi ils auront les mêmes dimensions que le inGameView.
+     * <p>Tous ces panneaux seront contenu dans {@link InGameView}, ainsi ils auront les mêmes dimensions que le inGameView.
+     * <p>Tous ces panneaux seront contenu dans {@link InGameView}, ainsi ils auront les mêmes dimensions que le inGameView.
+     * <p>Va servir lors de l'ajout des effets visuels dans  le jeu.
+     * <p>Va servir lors de l'ajout des effets visuels dans  le jeu.
+     * <p>Va servir lors de l'ajout des effets visuels dans  le jeu.
+     * <p>Va servir lors de l'ajout des effets visuels dans  le jeu.
+     * <p>Va servir lors de l'ajout des effets visuels dans  le jeu.
+     * <p>Va servir lors de l'ajout des effets visuels dans  le jeu.
+     * <p>Va servir lors de l'ajout des entités dans le jeu tels que le joueur ou les ennemis.
+     * <p>Va servir lors de l'ajout des entités dans le jeu tels que le joueur ou les ennemis.
+     * <p>Va servir lors de l'ajout des entités dans le jeu tels que le joueur ou les ennemis.
+     * <p>Va servir lors de l'ajout des entités dans le jeu tels que le joueur ou les ennemis.
+     * <p>Va servir lors de l'ajout des entités dans le jeu tels que le joueur ou les ennemis.
+     * <p>Va servir lors de l'ajout des entités dans le jeu tels que le joueur ou les ennemis.
+     * <p>Va servir lors de l'ajout des items dans le jeu.
+     * <p>Va servir lors de l'ajout des items dans le jeu.
+     * <p>Va servir lors de l'ajout des items dans le jeu.
+     * <p>Va servir lors de l'ajout des items dans le jeu.
+     * <p>Va servir lors de l'ajout des items dans le jeu.
+     * <p>Va servir lors de l'ajout des items dans le jeu.
+     * <p>Va servir lors de l'ajout des murs dans le jeu.
+     * <p>Va servir lors de l'ajout des murs dans le jeu.
+     * <p>Va servir lors de l'ajout des murs dans le jeu.
+     * <p>Va servir lors de l'ajout des murs dans le jeu.
+     * <p>Va servir lors de l'ajout des murs dans le jeu.
+     * <p>Va servir lors de l'ajout des murs dans le jeu.
+     * @param dX Le décalage dans l'axe X du panneau.
+     * @param dX Le décalage dans l'axe X du panneau.
+     * @param dX Le décalage dans l'axe X du panneau.
+     * @param dX Le décalage dans l'axe X du panneau.
+     * @param dX Le décalage dans l'axe X du panneau.
+     * @param dX Le décalage dans l'axe X du panneau.
+     * @param dY Le décalage dans l'axe Y du panneau.
+     * @param dY Le décalage dans l'axe Y du panneau.
+     * @param dY Le décalage dans l'axe Y du panneau.
+     * @param dY Le décalage dans l'axe Y du panneau.
+     * @param dY Le décalage dans l'axe Y du panneau.
+     * @param dY Le décalage dans l'axe Y du panneau.
+     * @param h La hauteur des panneaux.
+     * @param h La hauteur des panneaux.
+     * @param h La hauteur des panneaux.
+     * @param h La hauteur des panneaux.
+     * @param h La hauteur des panneaux.
+     * @param h La hauteur des panneaux.
+     * @param map La nouvelle carte.
+     * @param map La nouvelle carte.
+     * @param map La nouvelle carte.
+     * @param map La nouvelle carte.
+     * @param map La nouvelle carte.
+     * @param map La nouvelle carte.
+     * @param player la nouvelle référence du joueur.
+     * @param player la nouvelle référence du joueur.
+     * @param player la nouvelle référence du joueur.
+     * @param player la nouvelle référence du joueur.
+     * @param player la nouvelle référence du joueur.
+     * @param player la nouvelle référence du joueur.
+     * @param w La largeur des panneaux.
+     * @param w La largeur des panneaux.
+     * @param w La largeur des panneaux.
+     * @param w La largeur des panneaux.
+     * @param w La largeur des panneaux.
+     * @param w La largeur des panneaux.
+     * @return La référence de la carte.
+     * @return La référence de la carte.
+     * @return La référence de la carte.
+     * @return La référence de la carte.
+     * @return La référence de la carte.
+     * @return La référence de la carte.
+     * @return Le panneau affichant le facteur d'echelle de la carte.
+     * @return Le panneau affichant le facteur d'echelle de la carte.
+     * @return Le panneau affichant le facteur d'echelle de la carte.
+     * @return Le panneau affichant le facteur d'echelle de la carte.
+     * @return Le panneau affichant le facteur d'echelle de la carte.
+     * @return Le panneau affichant le facteur d'echelle de la carte.
+     * @return Le panneau de l'inventaire.
+     * @return Le panneau de l'inventaire.
+     * @return Le panneau de l'inventaire.
+     * @return Le panneau de l'inventaire.
+     * @return Le panneau de l'inventaire.
+     * @return Le panneau de l'inventaire.
+     * @return Le panneau des effets visuels du jeu.
+     * @return Le panneau des effets visuels du jeu.
+     * @return Le panneau des effets visuels du jeu.
+     * @return Le panneau des effets visuels du jeu.
+     * @return Le panneau des effets visuels du jeu.
+     * @return Le panneau des effets visuels du jeu.
+     * @return Le panneau des entités dans le jeu.
+     * @return Le panneau des entités dans le jeu.
+     * @return Le panneau des entités dans le jeu.
+     * @return Le panneau des entités dans le jeu.
+     * @return Le panneau des entités dans le jeu.
+     * @return Le panneau des entités dans le jeu.
+     * @return Le panneau des items dans le jeu.
+     * @return Le panneau des items dans le jeu.
+     * @return Le panneau des items dans le jeu.
+     * @return Le panneau des items dans le jeu.
+     * @return Le panneau des items dans le jeu.
+     * @return Le panneau des items dans le jeu.
+     * @return Le panneau des murs dans le jeu.
+     * @return Le panneau des murs dans le jeu.
+     * @return Le panneau des murs dans le jeu.
+     * @return Le panneau des murs dans le jeu.
+     * @return Le panneau des murs dans le jeu.
+     * @return Le panneau des murs dans le jeu.
+     * C'est cette Objet de l'interface graphique qui va contenir tous les éléments du jeu comme le joueurs, les énnemis.
+     * C'est cette Objet de l'interface graphique qui va contenir tous les éléments du jeu comme le joueurs, les énnemis.
+     * C'est cette Objet de l'interface graphique qui va contenir tous les éléments du jeu comme le joueurs, les énnemis.
+     * C'est cette Objet de l'interface graphique qui va contenir tous les éléments du jeu comme le joueurs, les énnemis.
+     * C'est cette Objet de l'interface graphique qui va contenir tous les éléments du jeu comme le joueurs, les énnemis.
+     * C'est cette Objet de l'interface graphique qui va contenir tous les éléments du jeu comme le joueurs, les énnemis.
+     * Cet attribut sera utilisé dans un Thread qui va repaindre en permanence le JPanel pour éviter les effets de glich à l'écran.
+     * Cet attribut sera utilisé dans un Thread qui va repaindre en permanence le JPanel pour éviter les effets de glich à l'écran.
+     * Cet attribut sera utilisé dans un Thread qui va repaindre en permanence le JPanel pour éviter les effets de glich à l'écran.
+     * Cet attribut sera utilisé dans un Thread qui va repaindre en permanence le JPanel pour éviter les effets de glich à l'écran.
+     * Cet attribut sera utilisé dans un Thread qui va repaindre en permanence le JPanel pour éviter les effets de glich à l'écran.
+     * Cet attribut sera utilisé dans un Thread qui va repaindre en permanence le JPanel pour éviter les effets de glich à l'écran.
+     * Cette fonction va initialiser tous les panneaux du jeu qui vonte servir de calques pour les différents éléments du jeu,  
+     * Cette fonction va initialiser tous les panneaux du jeu qui vonte servir de calques pour les différents éléments du jeu,  
+     * Cette fonction va initialiser tous les panneaux du jeu qui vonte servir de calques pour les différents éléments du jeu,  
+     * Cette fonction va initialiser tous les panneaux du jeu qui vonte servir de calques pour les différents éléments du jeu,  
+     * Cette fonction va initialiser tous les panneaux du jeu qui vonte servir de calques pour les différents éléments du jeu,  
+     * Cette fonction va initialiser tous les panneaux du jeu qui vonte servir de calques pour les différents éléments du jeu,  
+     * Constructeur de GameView, il prend en argument les dimension de l'interface de jeu (InGameView)
+     * Constructeur de GameView, il prend en argument les dimension de l'interface de jeu (InGameView)
+     * Constructeur de GameView, il prend en argument les dimension de l'interface de jeu (InGameView)
+     * Constructeur de GameView, il prend en argument les dimension de l'interface de jeu (InGameView)
+     * Constructeur de GameView, il prend en argument les dimension de l'interface de jeu (InGameView)
+     * Constructeur de GameView, il prend en argument les dimension de l'interface de jeu (InGameView)
+     * Fonction qui change la réfénrence du joueur.
+     * Fonction qui change la réfénrence du joueur.
+     * Fonction qui change la réfénrence du joueur.
+     * Fonction qui change la réfénrence du joueur.
+     * Fonction qui change la réfénrence du joueur.
+     * Fonction qui change la réfénrence du joueur.
+     * Fonction qui met à jour la référence de la carte actuelle du jeu.
+     * Fonction qui met à jour la référence de la carte actuelle du jeu.
+     * Fonction qui met à jour la référence de la carte actuelle du jeu.
+     * Fonction qui met à jour la référence de la carte actuelle du jeu.
+     * Fonction qui met à jour la référence de la carte actuelle du jeu.
+     * Fonction qui met à jour la référence de la carte actuelle du jeu.
+     * Fonction qui renvoi le panneau de l'inventaire du joueur. 
+     * Fonction qui renvoi le panneau de l'inventaire du joueur. 
+     * Fonction qui renvoi le panneau de l'inventaire du joueur. 
+     * Fonction qui renvoi le panneau de l'inventaire du joueur. 
+     * Fonction qui renvoi le panneau de l'inventaire du joueur. 
+     * Fonction qui renvoi le panneau de l'inventaire du joueur. 
+     * Fonction qui renvoi le panneau des effets visuels du jeu.
+     * Fonction qui renvoi le panneau des effets visuels du jeu.
+     * Fonction qui renvoi le panneau des effets visuels du jeu.
+     * Fonction qui renvoi le panneau des effets visuels du jeu.
+     * Fonction qui renvoi le panneau des effets visuels du jeu.
+     * Fonction qui renvoi le panneau des effets visuels du jeu.
+     * Fonction qui renvoi le panneau des entités.
+     * Fonction qui renvoi le panneau des entités.
+     * Fonction qui renvoi le panneau des entités.
+     * Fonction qui renvoi le panneau des entités.
+     * Fonction qui renvoi le panneau des entités.
+     * Fonction qui renvoi le panneau des entités.
+     * Fonction qui renvoi le panneau des items du jeu.
+     * Fonction qui renvoi le panneau des items du jeu.
+     * Fonction qui renvoi le panneau des items du jeu.
+     * Fonction qui renvoi le panneau des items du jeu.
+     * Fonction qui renvoi le panneau des items du jeu.
+     * Fonction qui renvoi le panneau des items du jeu.
+     * Fonction qui renvoi le panneau des murs du jeu.
+     * Fonction qui renvoi le panneau des murs du jeu.
+     * Fonction qui renvoi le panneau des murs du jeu.
+     * Fonction qui renvoi le panneau des murs du jeu.
+     * Fonction qui renvoi le panneau des murs du jeu.
+     * Fonction qui renvoi le panneau des murs du jeu.
+     * Fonction qui renvoie la référence de la carte.
+     * Fonction qui renvoie la référence de la carte.
+     * Fonction qui renvoie la référence de la carte.
+     * Fonction qui renvoie la référence de la carte.
+     * Fonction qui renvoie la référence de la carte.
+     * Fonction qui renvoie la référence de la carte.
+     * Fonction qui renvoie le panneau affichant le facteur d'echelle de la carte.
+     * Fonction qui renvoie le panneau affichant le facteur d'echelle de la carte.
+     * Fonction qui renvoie le panneau affichant le facteur d'echelle de la carte.
+     * Fonction qui renvoie le panneau affichant le facteur d'echelle de la carte.
+     * Fonction qui renvoie le panneau affichant le facteur d'echelle de la carte.
+     * Fonction qui renvoie le panneau affichant le facteur d'echelle de la carte.
+     * Fonction qui va rafraichir la dimension des éléments à l'écran, si jamais l'écran est redimensionné pendant la 
+     * Fonction qui va rafraichir la dimension des éléments à l'écran, si jamais l'écran est redimensionné pendant la 
+     * Fonction qui va rafraichir la dimension des éléments à l'écran, si jamais l'écran est redimensionné pendant la 
+     * Fonction qui va rafraichir la dimension des éléments à l'écran, si jamais l'écran est redimensionné pendant la 
+     * Fonction qui va rafraichir la dimension des éléments à l'écran, si jamais l'écran est redimensionné pendant la 
+     * Fonction qui va rafraichir la dimension des éléments à l'écran, si jamais l'écran est redimensionné pendant la 
+     * Getter de l'interface de jeu
+     * Getter de l'interface de jeu
+     * Getter de l'interface de jeu
+     * Getter de l'interface de jeu
+     * Getter de l'interface de jeu
+     * Getter de l'interface de jeu
+     * Il s'agit d'un panneau qui sera utilisé comme calque dans le jeu, qui va contenir les Murs du jeu.
+     * Il s'agit d'un panneau qui sera utilisé comme calque dans le jeu, qui va contenir les Murs du jeu.
+     * Il s'agit d'un panneau qui sera utilisé comme calque dans le jeu, qui va contenir les Murs du jeu.
+     * Il s'agit d'un panneau qui sera utilisé comme calque dans le jeu, qui va contenir les Murs du jeu.
+     * Il s'agit d'un panneau qui sera utilisé comme calque dans le jeu, qui va contenir les Murs du jeu.
+     * Il s'agit d'un panneau qui sera utilisé comme calque dans le jeu, qui va contenir les Murs du jeu.
+     * Il s'agit d'un panneau qui sera utilisé comme calque dans le jeu, qui va contenir les effets visuels du jeu.
+     * Il s'agit d'un panneau qui sera utilisé comme calque dans le jeu, qui va contenir les effets visuels du jeu.
+     * Il s'agit d'un panneau qui sera utilisé comme calque dans le jeu, qui va contenir les effets visuels du jeu.
+     * Il s'agit d'un panneau qui sera utilisé comme calque dans le jeu, qui va contenir les effets visuels du jeu.
+     * Il s'agit d'un panneau qui sera utilisé comme calque dans le jeu, qui va contenir les effets visuels du jeu.
+     * Il s'agit d'un panneau qui sera utilisé comme calque dans le jeu, qui va contenir les effets visuels du jeu.
+     * Il s'agit d'un panneau qui sera utilisé comme calque dans le jeu, qui va contenir les entités tels que les ennemis et le joueur.
+     * Il s'agit d'un panneau qui sera utilisé comme calque dans le jeu, qui va contenir les entités tels que les ennemis et le joueur.
+     * Il s'agit d'un panneau qui sera utilisé comme calque dans le jeu, qui va contenir les entités tels que les ennemis et le joueur.
+     * Il s'agit d'un panneau qui sera utilisé comme calque dans le jeu, qui va contenir les entités tels que les ennemis et le joueur.
+     * Il s'agit d'un panneau qui sera utilisé comme calque dans le jeu, qui va contenir les entités tels que les ennemis et le joueur.
+     * Il s'agit d'un panneau qui sera utilisé comme calque dans le jeu, qui va contenir les entités tels que les ennemis et le joueur.
+     * Il s'agit d'un panneau qui sera utilisé comme calque dans le jeu, qui va contenir les items du jeu.
+     * Il s'agit d'un panneau qui sera utilisé comme calque dans le jeu, qui va contenir les items du jeu.
+     * Il s'agit d'un panneau qui sera utilisé comme calque dans le jeu, qui va contenir les items du jeu.
+     * Il s'agit d'un panneau qui sera utilisé comme calque dans le jeu, qui va contenir les items du jeu.
+     * Il s'agit d'un panneau qui sera utilisé comme calque dans le jeu, qui va contenir les items du jeu.
+     * Il s'agit d'un panneau qui sera utilisé comme calque dans le jeu, qui va contenir les items du jeu.
+     * Il s'agit de la référence à la carte actuel de la partie.
+     * Il s'agit de la référence à la carte actuel de la partie.
+     * Il s'agit de la référence à la carte actuel de la partie.
+     * Il s'agit de la référence à la carte actuel de la partie.
+     * Il s'agit de la référence à la carte actuel de la partie.
+     * Il s'agit de la référence à la carte actuel de la partie.
+     * Il s'agit du menu de l'inventaire du joueur.
+     * Il s'agit du menu de l'inventaire du joueur.
+     * Il s'agit du menu de l'inventaire du joueur.
+     * Il s'agit du menu de l'inventaire du joueur.
+     * Il s'agit du menu de l'inventaire du joueur.
+     * Il s'agit du menu de l'inventaire du joueur.
+     * Il s'agit du panneau affichant la valeur actuelle du facteur d'echelle de la carte.
+     * Il s'agit du panneau affichant la valeur actuelle du facteur d'echelle de la carte.
+     * Il s'agit du panneau affichant la valeur actuelle du facteur d'echelle de la carte.
+     * Il s'agit du panneau affichant la valeur actuelle du facteur d'echelle de la carte.
+     * Il s'agit du panneau affichant la valeur actuelle du facteur d'echelle de la carte.
+     * Il s'agit du panneau affichant la valeur actuelle du facteur d'echelle de la carte.
+     * Panneau donnant des informations sur les armes.
+     * Panneau donnant des informations sur les armes.
+     * Panneau donnant des informations sur les armes.
+     * Panneau donnant des informations sur les armes.
+     * Panneau donnant des informations sur les armes.
+     * Panneau donnant des informations sur les armes.
+     * l'interface graphique qui va contenir toutes les objet de jeu jeu comme le joueurs, les énnemis, etc
+     * l'interface graphique qui va contenir toutes les objet de jeu jeu comme le joueurs, les énnemis, etc
+     * l'interface graphique qui va contenir toutes les objet de jeu jeu comme le joueurs, les énnemis, etc
+     * l'interface graphique qui va contenir toutes les objet de jeu jeu comme le joueurs, les énnemis, etc
+     * l'interface graphique qui va contenir toutes les objet de jeu jeu comme le joueurs, les énnemis, etc
+     * l'interface graphique qui va contenir toutes les objet de jeu jeu comme le joueurs, les énnemis, etc
+     * partie
+     * partie
+     * partie
+     * partie
+     * partie
+     * partie
+     * tels que les entités les murs, les effets visuels, etc.
+     * tels que les entités les murs, les effets visuels, etc.
+     * tels que les entités les murs, les effets visuels, etc.
+     * tels que les entités les murs, les effets visuels, etc.
+     * tels que les entités les murs, les effets visuels, etc.
+     * tels que les entités les murs, les effets visuels, etc.
+     */
+     */
+     */
+     */
+     */
+     */
+     */
+     */
+     */
+     */
+     */
+     */
+     */
+     */
+     */
+     */
+     */
+     */
+     */
+     */
+     */
+     */
+     */
+     */
+     */
+     */
+     */
+     */
+     */
+     */
+     */
+     */
+     */
+     */
+     */
+     */
+     */
+     */
+     */
+     */
+     */
+     */
+     */
+     */
+     */
+     */
+     */
+     */
+     */
+     */
+     */
+     */
+     */
+     */
+     */
+     */
+     */
+     */
+     */
+     */
+     */
+     */
+     */
+     */
+     */
+     */
+     */
+     */
+     */
+     */
+     */
+     */
+     */
+     */
+     */
+     */
+     */
+     */
+     */
+     */
+     */
+     */
+     */
+     */
+     */
+     */
+     */
+     */
+     */
+     */
+     */
+     */
+     */
+     */
+     */
+     */
+     */
+     */
+     */
+     */
+     */
+     */
+     */
+     */
+     */
+     */
+     */
+     */
+     */
+     */
+     */
+     */
+     */
+     */
+     */
+     */
+     */
+     */
+     */
+     */
+     */
+     */
+     */
+     */
+     */
+     */
+     */
+     */
+     */
+     */
+     */
+     */
+     */
+     */
+     */
+     */
+     */
+     */
+     */
+     */
+     */
+     */
+     */
+     */
+    /**
+    /**
+    /**
+    /**
+    /**
+    /**
+    /**
+    /**
+    /**
+    /**
+    /**
+    /**
+    /**
+    /**
+    /**
+    /**
+    /**
+    /**
+    /**
+    /**
+    /**
+    /**
+    /**
+    /**
+    /**
+    /**
+    /**
+    /**
+    /**
+    /**
+    /**
+    /**
+    /**
+    /**
+    /**
+    /**
+    /**
+    /**
+    /**
+    /**
+    /**
+    /**
+    /**
+    /**
+    /**
+    /**
+    /**
+    /**
+    /**
+    /**
+    /**
+    /**
+    /**
+    /**
+    /**
+    /**
+    /**
+    /**
+    /**
+    /**
+    /**
+    /**
+    /**
+    /**
+    /**
+    /**
+    /**
+    /**
+    /**
+    /**
+    /**
+    /**
+    /**
+    /**
+    /**
+    /**
+    /**
+    /**
+    /**
+    /**
+    /**
+    /**
+    /**
+    /**
+    /**
+    /**
+    /**
+    /**
+    /**
+    /**
+    /**
+    /**
+    /**
+    /**
+    /**
+    /**
+    /**
+    /**
+    /**
+    /**
+    /**
+    /**
+    /**
+    /**
+    /**
+    /**
+    /**
+    /**
+    /**
+    /**
+    /**
+    /**
+    /**
+    /**
+    /**
+    /**
+    /**
+    /**
+    /**
+    /**
+    /**
+    /**
+    /**
+    /**
+    /**
+    /**
+    /**
+    /**
+    /**
+    /**
+    /**
+    /**
+    /**
+    /**
+    /**
+    /**
+    /**
+    /**
+    /**
+    /**
+    /**
+    /**
+    /**
+    /**
+    //     return lootMenuPanel;
+    //     return lootMenuPanel;
+    //     return lootMenuPanel;
+    //     return lootMenuPanel;
+    //     return lootMenuPanel;
+    //     return lootMenuPanel;
+    //     this.lootMenuPanel = lootMenuPanel;
+    //     this.lootMenuPanel = lootMenuPanel;
+    //     this.lootMenuPanel = lootMenuPanel;
+    //     this.lootMenuPanel = lootMenuPanel;
+    //     this.lootMenuPanel = lootMenuPanel;
+    //     this.lootMenuPanel = lootMenuPanel;
+    //  * 
+    //  * 
+    //  * 
+    //  * 
+    //  * 
+    //  * 
+    //  * @return Le menu des items.
+    //  * @return Le menu des items.
+    //  * @return Le menu des items.
+    //  * @return Le menu des items.
+    //  * @return Le menu des items.
+    //  * @return Le menu des items.
+    //  * @return Le nouveau menu des items.
+    //  * @return Le nouveau menu des items.
+    //  * @return Le nouveau menu des items.
+    //  * @return Le nouveau menu des items.
+    //  * @return Le nouveau menu des items.
+    //  * @return Le nouveau menu des items.
+    //  * @see LootMenu
+    //  * @see LootMenu
+    //  * @see LootMenu
+    //  * @see LootMenu
+    //  * @see LootMenu
+    //  * @see LootMenu
+    //  * @see LootMenu
+    //  * @see LootMenu
+    //  * @see LootMenu
+    //  * @see LootMenu
+    //  * @see LootMenu
+    //  * @see LootMenu
+    //  * Fonction qui change le menu des item.
+    //  * Fonction qui change le menu des item.
+    //  * Fonction qui change le menu des item.
+    //  * Fonction qui change le menu des item.
+    //  * Fonction qui change le menu des item.
+    //  * Fonction qui change le menu des item.
+    //  * Fonction qui renvoi le menu des items.
+    //  * Fonction qui renvoi le menu des items.
+    //  * Fonction qui renvoi le menu des items.
+    //  * Fonction qui renvoi le menu des items.
+    //  * Fonction qui renvoi le menu des items.
+    //  * Fonction qui renvoi le menu des items.
+    //  */
+    //  */
+    //  */
+    //  */
+    //  */
+    //  */
+    //  */
+    //  */
+    //  */
+    //  */
+    //  */
+    //  */
+    // * Fonctionalité abandonnée
+    // * Fonctionalité abandonnée
+    // * Fonctionalité abandonnée
+    // * Fonctionalité abandonnée
+    // * Fonctionalité abandonnée
+    // * Fonctionalité abandonnée
+    // * Paneau affichant le menu des item à ramasser.
+    // * Paneau affichant le menu des item à ramasser.
+    // * Paneau affichant le menu des item à ramasser.
+    // * Paneau affichant le menu des item à ramasser.
+    // * Paneau affichant le menu des item à ramasser.
+    // * Paneau affichant le menu des item à ramasser.
+    // */
+    // */
+    // */
+    // */
+    // */
+    // */
+    // */
+    // */
+    // */
+    // */
+    // */
+    // */
+    // /**
+    // /**
+    // /**
+    // /**
+    // /**
+    // /**
+    // /**
+    // /**
+    // /**
+    // /**
+    // /**
+    // /**
+    // @Deprecated
+    // @Deprecated
+    // @Deprecated
+    // @Deprecated
+    // @Deprecated
+    // @Deprecated
+    // private LootMenu lootMenuPanel = new LootMenu();
+    // private LootMenu lootMenuPanel = new LootMenu();
+    // private LootMenu lootMenuPanel = new LootMenu();
+    // private LootMenu lootMenuPanel = new LootMenu();
+    // private LootMenu lootMenuPanel = new LootMenu();
+    // private LootMenu lootMenuPanel = new LootMenu();
+    // public LootMenu getLootMenuPanel() {
+    // public LootMenu getLootMenuPanel() {
+    // public LootMenu getLootMenuPanel() {
+    // public LootMenu getLootMenuPanel() {
+    // public LootMenu getLootMenuPanel() {
+    // public LootMenu getLootMenuPanel() {
+    // public void setLootMenuPanel(LootMenu lootMenuPanel) {
+    // public void setLootMenuPanel(LootMenu lootMenuPanel) {
+    // public void setLootMenuPanel(LootMenu lootMenuPanel) {
+    // public void setLootMenuPanel(LootMenu lootMenuPanel) {
+    // public void setLootMenuPanel(LootMenu lootMenuPanel) {
+    // public void setLootMenuPanel(LootMenu lootMenuPanel) {
+    // }
+    // }
+    // }
+    // }
+    // }
+    // }
+    // }
+    // }
+    // }
+    // }
+    // }
+    // }
+    ///**
+    ///**
+    ///**
+    ///**
+    ///**
+    ///**
+    ///**
+    ///**
+    ///**
+    ///**
+    ///**
+    ///**
+    //Fonctionnalité abandonnée
+    //Fonctionnalité abandonnée
+    //Fonctionnalité abandonnée
+    //Fonctionnalité abandonnée
+    //Fonctionnalité abandonnée
+    //Fonctionnalité abandonnée
+    //Fonctionnalité abandonnée
+    //Fonctionnalité abandonnée
+    //Fonctionnalité abandonnée
+    //Fonctionnalité abandonnée
+    //Fonctionnalité abandonnée
+    //Fonctionnalité abandonnée
+    @Override
+    @Override
+    @Override
+    @Override
+    @Override
+    @Override
+    private ArmingInterface armingPanel = new ArmingInterface();
+    private ArmingInterface armingPanel = new ArmingInterface();
+    private ArmingInterface armingPanel = new ArmingInterface();
+    private ArmingInterface armingPanel = new ArmingInterface();
+    private ArmingInterface armingPanel = new ArmingInterface();
+    private ArmingInterface armingPanel = new ArmingInterface();
+    private BackPackPanel backpackmenu;
+    private BackPackPanel backpackmenu;
+    private BackPackPanel backpackmenu;
+    private BackPackPanel backpackmenu;
+    private BackPackPanel backpackmenu;
+    private BackPackPanel backpackmenu;
+    private InGameView inGameView;
+    private InGameView inGameView;
+    private InGameView inGameView;
+    private InGameView inGameView;
+    private InGameView inGameView;
+    private InGameView inGameView;
+    private JPanel entityPanel;
+    private JPanel entityPanel;
+    private JPanel entityPanel;
+    private JPanel entityPanel;
+    private JPanel entityPanel;
+    private JPanel entityPanel;
+    private JPanel fxPanel;
+    private JPanel fxPanel;
+    private JPanel fxPanel;
+    private JPanel fxPanel;
+    private JPanel fxPanel;
+    private JPanel fxPanel;
+    private JPanel itemPanel;
+    private JPanel itemPanel;
+    private JPanel itemPanel;
+    private JPanel itemPanel;
+    private JPanel itemPanel;
+    private JPanel itemPanel;
+    private JPanel wallsPanel;
+    private JPanel wallsPanel;
+    private JPanel wallsPanel;
+    private JPanel wallsPanel;
+    private JPanel wallsPanel;
+    private JPanel wallsPanel;
+    private Map map;
+    private Map map;
+    private Map map;
+    private Map map;
+    private Map map;
+    private Map map;
+    private ScopePanel scopePanel = new ScopePanel();
+    private ScopePanel scopePanel = new ScopePanel();
+    private ScopePanel scopePanel = new ScopePanel();
+    private ScopePanel scopePanel = new ScopePanel();
+    private ScopePanel scopePanel = new ScopePanel();
+    private ScopePanel scopePanel = new ScopePanel();
+    private TextPopUp barrierEnergyPanel;
+    private TextPopUp barrierEnergyPanel;
+    private TextPopUp barrierEnergyPanel;
+    private TextPopUp barrierEnergyPanel;
+    private TextPopUp barrierEnergyPanel;
+    private TextPopUp barrierEnergyPanel;
+    private void initilizeCanvas(int w, int h){
+    private void initilizeCanvas(int w, int h){
+    private void initilizeCanvas(int w, int h){
+    private void initilizeCanvas(int w, int h){
+    private void initilizeCanvas(int w, int h){
+    private void initilizeCanvas(int w, int h){
+    public ArmingInterface getArmingInterface(){
+    public ArmingInterface getArmingInterface(){
+    public ArmingInterface getArmingInterface(){
+    public ArmingInterface getArmingInterface(){
+    public ArmingInterface getArmingInterface(){
+    public ArmingInterface getArmingInterface(){
+    public BackPackPanel getBackPackPanel(){
+    public BackPackPanel getBackPackPanel(){
+    public BackPackPanel getBackPackPanel(){
+    public BackPackPanel getBackPackPanel(){
+    public BackPackPanel getBackPackPanel(){
+    public BackPackPanel getBackPackPanel(){
+    public GameView(int decalageX, int decalageY, int width, int height, String bakcgroundLocation){
+    public GameView(int decalageX, int decalageY, int width, int height, String bakcgroundLocation){
+    public GameView(int decalageX, int decalageY, int width, int height, String bakcgroundLocation){
+    public GameView(int decalageX, int decalageY, int width, int height, String bakcgroundLocation){
+    public GameView(int decalageX, int decalageY, int width, int height, String bakcgroundLocation){
+    public GameView(int decalageX, int decalageY, int width, int height, String bakcgroundLocation){
+    public InGameView getInGameView(){return this.inGameView;}
+    public InGameView getInGameView(){return this.inGameView;}
+    public InGameView getInGameView(){return this.inGameView;}
+    public InGameView getInGameView(){return this.inGameView;}
+    public InGameView getInGameView(){return this.inGameView;}
+    public InGameView getInGameView(){return this.inGameView;}
+    public JPanel getEntityPanel(){
+    public JPanel getEntityPanel(){
+    public JPanel getEntityPanel(){
+    public JPanel getEntityPanel(){
+    public JPanel getEntityPanel(){
+    public JPanel getEntityPanel(){
+    public JPanel getFxPanel(){
+    public JPanel getFxPanel(){
+    public JPanel getFxPanel(){
+    public JPanel getFxPanel(){
+    public JPanel getFxPanel(){
+    public JPanel getFxPanel(){
+    public JPanel getItemPanel(){
+    public JPanel getItemPanel(){
+    public JPanel getItemPanel(){
+    public JPanel getItemPanel(){
+    public JPanel getItemPanel(){
+    public JPanel getItemPanel(){
+    public JPanel getWallsPanel(){
+    public JPanel getWallsPanel(){
+    public JPanel getWallsPanel(){
+    public JPanel getWallsPanel(){
+    public JPanel getWallsPanel(){
+    public JPanel getWallsPanel(){
+    public Map getMap(){return this.map;}
+    public Map getMap(){return this.map;}
+    public Map getMap(){return this.map;}
+    public Map getMap(){return this.map;}
+    public Map getMap(){return this.map;}
+    public Map getMap(){return this.map;}
+    public ScopePanel getScopePanel(){return this.scopePanel;}
+    public ScopePanel getScopePanel(){return this.scopePanel;}
+    public ScopePanel getScopePanel(){return this.scopePanel;}
+    public ScopePanel getScopePanel(){return this.scopePanel;}
+    public ScopePanel getScopePanel(){return this.scopePanel;}
+    public ScopePanel getScopePanel(){return this.scopePanel;}
+    public boolean repaint = true;
+    public boolean repaint = true;
+    public boolean repaint = true;
+    public boolean repaint = true;
+    public boolean repaint = true;
+    public boolean repaint = true;
+    public class InGameView extends JPanel implements Refreshable{
+    public class InGameView extends JPanel implements Refreshable{
+    public class InGameView extends JPanel implements Refreshable{
+    public class InGameView extends JPanel implements Refreshable{
+    public class InGameView extends JPanel implements Refreshable{
+    public class InGameView extends JPanel implements Refreshable{
+    public void refreshGraphics(){
+    public void refreshGraphics(){
+    public void refreshGraphics(){
+    public void refreshGraphics(){
+    public void refreshGraphics(){
+    public void refreshGraphics(){
+    public void setBackPackMenuPlayer(Player player){
+    public void setBackPackMenuPlayer(Player player){
+    public void setBackPackMenuPlayer(Player player){
+    public void setBackPackMenuPlayer(Player player){
+    public void setBackPackMenuPlayer(Player player){
+    public void setBackPackMenuPlayer(Player player){
+    public void setDecalageY(int y){
+    public void setDecalageY(int y){
+    public void setDecalageY(int y){
+    public void setDecalageY(int y){
+    public void setDecalageY(int y){
+    public void setDecalageY(int y){
+    public void setMap(Map map){
+    public void setMap(Map map){
+    public void setMap(Map map){
+    public void setMap(Map map){
+    public void setMap(Map map){
+    public void setMap(Map map){
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }   
+    }   
+    }   
+    }   
+    }   
+    }   
+ * Cette classe représente l'interface de jeu à part entière, elle va contenir le HUD (les boutons, la barre de vie, etc), 
+ * Cette classe représente l'interface de jeu à part entière, elle va contenir le HUD (les boutons, la barre de vie, etc), 
+ * Cette classe représente l'interface de jeu à part entière, elle va contenir le HUD (les boutons, la barre de vie, etc), 
+ * Cette classe représente l'interface de jeu à part entière, elle va contenir le HUD (les boutons, la barre de vie, etc), 
+ * Cette classe représente l'interface de jeu à part entière, elle va contenir le HUD (les boutons, la barre de vie, etc), 
+ * Cette classe représente l'interface de jeu à part entière, elle va contenir le HUD (les boutons, la barre de vie, etc), 
+ * ainsi que tous les éléments du jeu comme, le joueur, le ennemis,etc
+ * ainsi que tous les éléments du jeu comme, le joueur, le ennemis,etc
+ * ainsi que tous les éléments du jeu comme, le joueur, le ennemis,etc
+ * ainsi que tous les éléments du jeu comme, le joueur, le ennemis,etc
+ * ainsi que tous les éléments du jeu comme, le joueur, le ennemis,etc
+ * ainsi que tous les éléments du jeu comme, le joueur, le ennemis,etc
+ */
+ */
+ */
+ */
+ */
+ */
+-rw-r--r-- 1 achirafia achirafia      0 Dec 17 18:35 z.txt
+-rw-r--r-- 1 achirafia achirafia      0 Dec 17 18:37 test.txt
+-rw-r--r-- 1 achirafia achirafia      8 Dec 17 18:35 a
+-rw-r--r-- 1 achirafia achirafia    130 Nov 17 13:32 Makefile
+-rw-r--r-- 1 achirafia achirafia    213 Nov 16 15:39 AUTHORS.md
+-rw-r--r-- 1 achirafia achirafia    288 Nov 28 23:00 test.sh:Zone.Identifier
+-rw-r--r-- 1 achirafia achirafia    799 Dec 17 14:09 test
+-rw-r--r-- 1 achirafia achirafia   1117 Dec 17 14:09 fsh.c
+-rw-r--r-- 1 achirafia achirafia   5882 Dec 17 14:09 shell.h
+-rw-r--r-- 1 achirafia achirafia  15210 Nov 16 15:39 projet.md
+-rw-r--r-- 1 achirafia achirafia  30733 Dec 17 14:09 shell.c
+-rw-r--r-- 1 achirafia achirafia 116434 Nov 16 15:39 Doxyfile
+-rw-r--r-- 1 achirafia achirafia 151044 Dec 17 17:11 GameView.java
+-rwx------ 1 achirafia achirafia   1272 Nov 28 23:00 test.sh
+-rwxr-xr-x 1 achirafia achirafia 165808 Dec 17 18:37 fsh
+/**
+/**
+/**
+/**
+/**
+/**
+//  [IMPORTANT] Pour une meilleur lisibilité, masquer les pavés de commentaire avec l'IDE, ces commentaires sont surtout reservés à la documentation HTML (Javadoc).
+//  [IMPORTANT] Pour une meilleur lisibilité, masquer les pavés de commentaire avec l'IDE, ces commentaires sont surtout reservés à la documentation HTML (Javadoc).
+//  [IMPORTANT] Pour une meilleur lisibilité, masquer les pavés de commentaire avec l'IDE, ces commentaires sont surtout reservés à la documentation HTML (Javadoc).
+//  [IMPORTANT] Pour une meilleur lisibilité, masquer les pavés de commentaire avec l'IDE, ces commentaires sont surtout reservés à la documentation HTML (Javadoc).
+//  [IMPORTANT] Pour une meilleur lisibilité, masquer les pavés de commentaire avec l'IDE, ces commentaires sont surtout reservés à la documentation HTML (Javadoc).
+//  [IMPORTANT] Pour une meilleur lisibilité, masquer les pavés de commentaire avec l'IDE, ces commentaires sont surtout reservés à la documentation HTML (Javadoc).
+///////////////////////////   [==  Star Quest  ==]   ///////////////////////////////
+///////////////////////////   [==  Star Quest  ==]   ///////////////////////////////
+///////////////////////////   [==  Star Quest  ==]   ///////////////////////////////
+///////////////////////////   [==  Star Quest  ==]   ///////////////////////////////
+///////////////////////////   [==  Star Quest  ==]   ///////////////////////////////
+///////////////////////////   [==  Star Quest  ==]   ///////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
+drwxr-xr-x 2 achirafia achirafia   4096 Dec 17 14:09 base
+drwxr-xr-x 2 achirafia achirafia   4096 Dec 17 18:31 command
+drwxr-xr-x 4 achirafia achirafia   4096 Nov 22 15:40 Documentation
+import controller.Config;
+import controller.Config;
+import controller.Config;
+import controller.Config;
+import controller.Config;
+import controller.Config;
+import controller.GameUpdater;
+import controller.GameUpdater;
+import controller.GameUpdater;
+import controller.GameUpdater;
+import controller.GameUpdater;
+import controller.GameUpdater;
+import gui.Refreshable;
+import gui.Refreshable;
+import gui.Refreshable;
+import gui.Refreshable;
+import gui.Refreshable;
+import gui.Refreshable;
+import gui.gameview.backpackpanel.BackPackPanel;
+import gui.gameview.backpackpanel.BackPackPanel;
+import gui.gameview.backpackpanel.BackPackPanel;
+import gui.gameview.backpackpanel.BackPackPanel;
+import gui.gameview.backpackpanel.BackPackPanel;
+import gui.gameview.backpackpanel.BackPackPanel;
+import gui.gameview.scope.ScopeIcon;
+import gui.gameview.scope.ScopeIcon;
+import gui.gameview.scope.ScopeIcon;
+import gui.gameview.scope.ScopeIcon;
+import gui.gameview.scope.ScopeIcon;
+import gui.gameview.scope.ScopeIcon;
+import gui.gameview.scope.ScopeManage;
+import gui.gameview.scope.ScopeManage;
+import gui.gameview.scope.ScopeManage;
+import gui.gameview.scope.ScopeManage;
+import gui.gameview.scope.ScopeManage;
+import gui.gameview.scope.ScopeManage;
+import gui.gameview.scope.ScopePanel;
+import gui.gameview.scope.ScopePanel;
+import gui.gameview.scope.ScopePanel;
+import gui.gameview.scope.ScopePanel;
+import gui.gameview.scope.ScopePanel;
+import gui.gameview.scope.ScopePanel;
+import gui.gameview.textpopup.TextPopUp;
+import gui.gameview.textpopup.TextPopUp;
+import gui.gameview.textpopup.TextPopUp;
+import gui.gameview.textpopup.TextPopUp;
+import gui.gameview.textpopup.TextPopUp;
+import gui.gameview.textpopup.TextPopUp;
+import java.awt.Color;
+import java.awt.Color;
+import java.awt.Color;
+import java.awt.Color;
+import java.awt.Color;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Dimension;
+import java.awt.Dimension;
+import java.awt.Dimension;
+import java.awt.Dimension;
+import java.awt.Dimension;
+import java.awt.Graphics2D;
+import java.awt.Graphics2D;
+import java.awt.Graphics2D;
+import java.awt.Graphics2D;
+import java.awt.Graphics2D;
+import java.awt.Graphics2D;
+import java.awt.Graphics;
+import java.awt.Graphics;
+import java.awt.Graphics;
+import java.awt.Graphics;
+import java.awt.Graphics;
+import java.awt.Graphics;
+import java.awt.IllegalComponentStateException;
+import java.awt.IllegalComponentStateException;
+import java.awt.IllegalComponentStateException;
+import java.awt.IllegalComponentStateException;
+import java.awt.IllegalComponentStateException;
+import java.awt.IllegalComponentStateException;
+import java.awt.Image;
+import java.awt.Image;
+import java.awt.Image;
+import java.awt.Image;
+import java.awt.Image;
+import java.awt.Image;
+import java.awt.event.MouseWheelEvent;
+import java.awt.event.MouseWheelEvent;
+import java.awt.event.MouseWheelEvent;
+import java.awt.event.MouseWheelEvent;
+import java.awt.event.MouseWheelEvent;
+import java.awt.event.MouseWheelEvent;
+import java.awt.event.MouseWheelListener;
+import java.awt.event.MouseWheelListener;
+import java.awt.event.MouseWheelListener;
+import java.awt.event.MouseWheelListener;
+import java.awt.event.MouseWheelListener;
+import java.awt.event.MouseWheelListener;
+import javax.swing.ImageIcon;
+import javax.swing.ImageIcon;
+import javax.swing.ImageIcon;
+import javax.swing.ImageIcon;
+import javax.swing.ImageIcon;
+import javax.swing.ImageIcon;
+import javax.swing.JPanel;
+import javax.swing.JPanel;
+import javax.swing.JPanel;
+import javax.swing.JPanel;
+import javax.swing.JPanel;
+import javax.swing.JPanel;
+import model.Player;
+import model.Player;
+import model.Player;
+import model.Player;
+import model.Player;
+import model.Player;
+import model.map.Map;
+import model.map.Map;
+import model.map.Map;
+import model.map.Map;
+import model.map.Map;
+import model.map.Map;
+import model.memRes.Ressources;
+import model.memRes.Ressources;
+import model.memRes.Ressources;
+import model.memRes.Ressources;
+import model.memRes.Ressources;
+import model.memRes.Ressources;
+package gui.gameview;
+package gui.gameview;
+package gui.gameview;
+package gui.gameview;
+package gui.gameview;
+package gui.gameview;
+public class GameView extends JPanel implements Refreshable{
+public class GameView extends JPanel implements Refreshable{
+public class GameView extends JPanel implements Refreshable{
+public class GameView extends JPanel implements Refreshable{
+public class GameView extends JPanel implements Refreshable{
+public class GameView extends JPanel implements Refreshable{
+total 524
+}
+}
+}
+}
+}
+}
