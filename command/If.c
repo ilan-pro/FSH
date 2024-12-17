@@ -218,12 +218,16 @@ static void* If_constructor( void* self_, va_list* args ){
     char** prompt = va_arg(*args, char**);
 
     // Si l'ajout du bloc de test a échoué on renvoie NULL
-    if (!add_test_block(self, prompt))
+    if (!add_test_block(self, prompt)){
+        obj_destroy(self);
         return NULL;
+    }
 
     // Si l'ajout du block d'instruction du 'if' a échoué
-    if (!add_if_block(self, prompt))
+    if (!add_if_block(self, prompt)){
+        obj_destroy(self);
         return NULL; // On revnoie NULL
+    }
     
     // if(!add_else_bloc(self, prompt)){
     //     return NULL;
