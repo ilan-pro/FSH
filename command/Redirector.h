@@ -102,6 +102,6 @@
      * 
      * @param self L'objet `Redirector` s'occupant des redirections.
      */
-    void Redirector_out_multiple_redirection( Redirector self );
+    void Redirector_multiple_redirection( Redirector self );
 
 #endif

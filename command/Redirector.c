@@ -593,10 +593,8 @@ static int stdin_redirect( Redirector self ){
 
         // Fermeture de stdin et lecture dans le fichier.
         int fd = dup2( file_d, STDIN_FILENO );
-        if ( fd == -1 ){ // Si la redirection a échoueé.
-            Command_fail(2);
-            return 0;    
-        }
+        if ( fd == -1 ) // Si la redirection a échoueé.
+            goto failure; 
 
         return 1;
     }
@@ -611,15 +609,59 @@ static int stdin_redirect( Redirector self ){
     // Création du tube
     pipe(_pipe_);
 
-    // Parcours des descripteurs
-    for (int i = 0; i<ArrayList_size(self->in_descriptors); i++){
+    // Buffer qui va contenir la lecture (assez grand pour ne pas ralentir).
+    char buff[4096];
     
+    // Parcours des descripteurs
+    for (int i = 0; i<ArrayList_size(self->in_descriptors); i++){ 
+            
+        // Récupération du descripteur du fichier.
+        int fd = ((Integer)ArrayList_get(self->in_descriptors, i, 0))->val;
+        int nb;
+        
+        // Si on est arriver au dernier (stdin) on saut la mise à jour du curseur 
+        // car elle ne s'applique pas à ce genre de flux.
+        if (i == ArrayList_size(self->in_descriptors) - 1){
+            // Mais avant on vérifie si la redirection exclue stdin
+            if (self->red_in == 2) // Si oui alors on ne fait rien.
+                continue;
+
+            goto reading; 
+        }
+
+        // Remise du curseur au début.
+        int seek = lseek( fd, 0, SEEK_SET );
+    
+        // Vérification
+        if (seek == -1) goto failure; 
+
+        reading :
+
+        // Lecture du fichier et écriture dans le pipe.
+        while( (nb=read(fd, buff, 4096)) > 0)
+            // Ecriture dans le tube.
+            write(_pipe_[1], buff, nb);
+        
+        // Vérification
+        if (nb == -1) goto failure;
     }
 
-    
-    
+    // Fermeture du coté écrivain du tube.
+    // pour permettre une terminaison de la lecture.
+    close( _pipe_[1] );
+
+    // Redirection de stdin sur le tube.
+    int dp = dup2( _pipe_[0], STDIN_FILENO );
+    if (dp == -1)  goto failure; // En cas d'echec de redirection.
+
+    //Fermeture du coté lecteur du tube (seul stdin maintenant est lecteur)
+    close( _pipe_[0] );
+
     return 1;
 
+    failure : 
+    Command_fail(2);
+    return 0;
 }
 
 
@@ -765,7 +807,8 @@ static void err_multiple_redirection(Redirector self){
     // Le premier descripteur est celui dans lequel le résultat (erreur) de la commande a été écrit.
     int file_d = ((Integer) ArrayList_get_first(self->err_descriptors, 0))->val;
     
-    for (size_t i = 0; i< ArrayList_size(self->err_descriptors)-1; i++){ // Parcours de tous descripteurs sauf l'ancien stderr
+    // Parcours de tous descripteurs sauf l'ancien stderr
+    for (size_t i = 0; i< ArrayList_size(self->err_descriptors)-1; i++){ 
         // Récupération de leur FD
         int fd = ((Integer) ArrayList_get(self->err_descriptors, i, 0))->val;
         
@@ -821,6 +864,29 @@ static void err_multiple_redirection(Redirector self){
 }
 
 /**
+ * @brief Fonction qui va remettre stdin.
+ *
+ * La fonction va seulement remttre l'entrée standard ( car la 
+ * redirection est faite avant exécution et non après) si la redirection 
+ * n'est pas exlusive.
+ * 
+ * @param self L'objet `Redirector` s'occupant des redirections.
+ */
+static void in_multiple_redirection (Redirector self){
+
+    if (!self->red_in || !ArrayList_size(self->in_descriptors)) 
+        return;
+        
+    // Si la redirection est exclusive, on ne fait rien.
+    if(self->red_in == 2) return;
+    assert(self->red_in == 1);
+    
+    // Redirection de stdin vers son ancien descripteur (le tube est complètement fermé)
+    dup2(((Integer) ArrayList_get_last(self->in_descriptors, 0))->val, STDIN_FILENO);
+
+}
+
+/**
  * @brief il s'agit d'une fonction qui va écrire sur tous les fichiers à 
  * vers lesquels la redirection multiple doit être faite.
  *
@@ -828,13 +894,17 @@ static void err_multiple_redirection(Redirector self){
  * source (qui était là au départ) si '>!' (Redirection exclusive) n'était 
  * pas déclaré dans le prompte.
  * 
+ * <p>
+ * Pour stdin la fonction va seulement remttre l'entrée standard ( car la 
+ * redirection est faite avant exécution et non après) si la redirection 
+ * n'est pas exlisive.
+ *
  * @param self L'objet `Redirector` s'occupant des redirections.
  */
-void Redirector_out_multiple_redirection( Redirector self ){
+void Redirector_multiple_redirection( Redirector self ){
     // Vérifications
     assert( self );
     assert( obj_instance_of(self, _Redirector_) );
-    
     
     //Redirection multiple pour stdout.
     out_multiple_redirection(self);
@@ -842,6 +912,9 @@ void Redirector_out_multiple_redirection( Redirector self ){
     //Redirection multiple pour stderr.
     err_multiple_redirection(self);
     
+    // Cette fonction va juste remettre `stdin` si la redirection 
+    // d'entrée n'était pas exclusive.
+    in_multiple_redirection(self);
 }
 
 
