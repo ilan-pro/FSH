@@ -94,9 +94,11 @@
 
     /**
      * @brief il s'agit d'une fonction qui va écrire sur tous les fichiers à 
-     * vers lesquels la redirection multiple doit être faite doit être faite.
+     * vers lesquels la redirection multiple doit être faite.
      *
-     * La fonction va également remettre 
+     * La fonction va également remettre les descripteurs d'entrée et sortie 
+     * source (qui était là au départ) si '>!' (Redirection exclusive) n'était 
+     * pas déclaré dans le prompte.
      * 
      * @param self L'objet `Redirector` s'occupant des redirections.
      */

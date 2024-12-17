@@ -584,6 +584,9 @@ int Command_execute(Command self){
     // Sinon on éxécute la commande.
     int ret_val = self->execute(self);
     
+    // Redirection multiple si activé
+    Redirector_multiple_redirection(self->redirector);
+
     // Changement de la liste des arguments, remise de l'original.
     self->args = origin_args;
     // suppression de tous les éléments de la liste temporaire.

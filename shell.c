@@ -478,9 +478,13 @@ int Shell_execute_all(ArrayList struct_cmds){
      *      Ex: pwd | for i in . {ftype $i|wc} | sort.
      * Dans cet exemple lors de l'éxécution de {ftype $i|wc} stdin et stdout 
      * seront des tubes.
+     *
+     * Mais ça peut tout simplement être une reidrection vers des fichiers 
+     * donc il est important de remettre les descripteurs à leur place après chaque pipeline.
      */
     int stdin_def = dup(0);
     int stdout_def = dup(1);
+    int stderr_def = dup(1);
 
     // Parcours de la liste des pipeline (toute récupération se fait en O(1))
     for (size_t i = 0; i<ArrayList_size(struct_cmds); i++){
@@ -519,11 +523,13 @@ int Shell_execute_all(ArrayList struct_cmds){
         
         // Remise de stdin comme entrée standard (stdout est toujours remis après la dernière commande chaque pipeline)
         dup2(stdin_def, 0);
+        dup2(stderr_def, 2);
     }
     
     exit:
     dup2(stdin_def, 0);
     dup2(stdout_def, 1);
+    dup2(stderr_def, 2);
     // Fermeture des tube utilisés
     close(pipe1[0]);
     close(pipe2[0]);
