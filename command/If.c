@@ -150,7 +150,6 @@ static int add_if_block( If self, char** prompt ){
     // Récupération du bloc du if.
     if (!(self->if_block = Shell_parse(prompt))) // Si la création du bloc a échouée on renvoie NULL.
         return 0; 
-
     // Si le prochain caractère n'est pas pas `}`
     // alors c'est la fin du prompt qui a arrêté `Shell_parse()`
     if (**prompt != '}'){
@@ -164,31 +163,55 @@ static int add_if_block( If self, char** prompt ){
 }
 
 static int add_else_bloc( If self, char** prompt){
-    if(*prompt) return 1;
-    char* tmp = strdup(strchr(*prompt, 'e'));
-    assert(tmp == NULL); // si tmp échoue 
-    char* tmp2 = tmp;
+    if(**prompt == '\0' || **prompt == ';') return 1;
 
-    // Si le bloc du else existe.
-    // *prompt = tmp;
-    tmp2 = strchr(tmp, '{');
-    *tmp2 = '\0';
+    char *tmp = *prompt;
+    char *tmp2 = malloc(sizeof(char) * 2);
+    tmp2[0] = '\0';
+    while(*tmp == ' ') tmp++;
 
-    if(strcmp(tmp, "else") != 0){
-        write(1, "i\n", 2);
+    size_t index = 1;
+    while(*tmp != ' ' && *tmp != '&') {
+        tmp2 = realloc(tmp2, sizeof(char) * (index+1));
+        assert(tmp2 != NULL);
+       
+        tmp2[index-1] = *tmp;
+        tmp2[index] = '\0';
+
+        tmp++;
+        index++;
+    }
+
+    while(*tmp == ' ' || *tmp == '{'){
+        if( *tmp == '&'){
+            If_print_syntax_err("Else mal formé : rien à éxecuter");
+            return 0;
+        }
+        tmp++;
+    } 
+    opened_brackets++;
+
+    *prompt = tmp;
+    
+
+    if(strcmp(tmp2, "else") != 0){
         If_print_syntax_err("Else mal formé");
         return 0;
     }
+
     if(!(self->else_block = Shell_parse(prompt))){
         return 0; 
-    }
+    }   
+    
     if(**prompt != '}'){
         If_print_syntax_err("Accolade fermante abscente !");
         return 0;
     }
-    //(*prompt)++; // Avance d'un caractère.
-    //opened_brackets --; 
 
+    (*prompt)++; // Avance d'un caractère.
+    opened_brackets--;
+
+    free(tmp2);
     return 1;
 }
 
@@ -229,9 +252,9 @@ static void* If_constructor( void* self_, va_list* args ){
         return NULL; // On revnoie NULL
     }
     
-    // if(!add_else_bloc(self, prompt)){
-    //     return NULL;
-    // }
+    if(!add_else_bloc(self, prompt)){
+        return NULL;
+    }
 
     return self;
 }
