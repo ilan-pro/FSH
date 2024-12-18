@@ -166,12 +166,12 @@ static int add_else_bloc( If self, char** prompt){
     if(**prompt == '\0' || **prompt == ';') return 1;
 
     char *tmp = *prompt;
-    char *tmp2 = malloc(sizeof(char) * 2);
+    char *tmp2 = malloc(sizeof(char));
     tmp2[0] = '\0';
     while(*tmp == ' ') tmp++;
 
     size_t index = 1;
-    while(*tmp != ' ' && *tmp != '&') {
+    while(*tmp != ' ' && *tmp != '\0') {
         tmp2 = realloc(tmp2, sizeof(char) * (index+1));
         assert(tmp2 != NULL);
        
@@ -181,23 +181,21 @@ static int add_else_bloc( If self, char** prompt){
         tmp++;
         index++;
     }
-
-    while(*tmp == ' ' || *tmp == '{'){
-        if( *tmp == '&'){
-            If_print_syntax_err("Else mal formé : rien à éxecuter");
-            return 0;
-        }
-        tmp++;
-    } 
-    opened_brackets++;
-
-    *prompt = tmp;
     
+    if(strcmp(tmp2, "else") != 0) return 1;
 
-    if(strcmp(tmp2, "else") != 0){
+    while(*tmp == ' ') tmp++;
+
+    if(*tmp != '{') {
         If_print_syntax_err("Else mal formé");
         return 0;
     }
+
+    tmp++;
+
+    opened_brackets++;
+    
+    *prompt = tmp;
 
     if(!(self->else_block = Shell_parse(prompt))){
         return 0; 
