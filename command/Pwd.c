@@ -150,7 +150,7 @@ static int Pwd_execute(Command self_){
     Pwd self = (Pwd) self_;
     //// Ecrire le corps de la fonction ici ! 
     if(ArrayList_size(self->args)>0){
-        write(2, "pwd: too many arguments", 23);
+        Command_fail_with_message((Command)self, 3); 
         return 1;
     }
     write(1, working_dir, strlen(working_dir));

@@ -173,7 +173,7 @@ static char FAIL_BUFF[1024];
 void Command_perror(){
     
     write(2, FAIL_BUFF, strlen(FAIL_BUFF));     
-    
+    *FAIL_BUFF = '\0';
 }
 
 /**
@@ -206,6 +206,9 @@ void Command_fail_with_message(Command self, int err){
             break;
         case 3 : 
             snprintf(FAIL_BUFF, 1024, "%s: too many arguments.\n", self->name);
+            break;
+        case 4 : 
+            snprintf(FAIL_BUFF, 1024, "%s: arguments missing.\n", self->name);
             break;
     }
 

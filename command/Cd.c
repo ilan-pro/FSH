@@ -159,8 +159,7 @@ static int Cd_execute(Command self_){
     char *path;
 
     if (ArrayList_size(self->args) > 1){
-        char tmp1[] = "\e[1;31mcd: too many arguments\e[1;0m\n";
-        write(2, tmp1, strlen(tmp1));
+        Command_fail_with_message((Command)self, 3);
         return 1;
     }
     else if(ArrayList_size(self->args)== 0){
@@ -178,7 +177,6 @@ static int Cd_execute(Command self_){
     if(strcmp(path, "-")==0){
         // prev_pass garde le dernier chemin depuis lequel on à fait cd
         if(strcmp(prev_path, "") == 0){
-
             char tmp1[] = "\e[1;31m[Erreur] : prev_path non défini\e[1;0m\n";
             write(2, tmp1, strlen(tmp1));
             return 1;

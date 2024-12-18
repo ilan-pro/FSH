@@ -506,8 +506,10 @@ int Shell_execute_all(ArrayList struct_cmds){
 
             // Exécution de la commande.
             last_status = Command_execute(cmd);
-            if(last_status != 0)
+            if(last_status != 0){
+                Command_perror();
                 goto exit;
+            }
             
             // Pipe1 est inutilisable car son écrivain est fermé (donc il en faut un nouveau)
             close(pipe1[0]); 

@@ -154,19 +154,16 @@ static int Ftype_execute(Command self_){
     struct stat statbuf;
 
     if(ArrayList_size(self->args) > 1){
-        char tmp[] = "\e[1;31mErreur : trop d'arguments !\n\e[1;0m";
-        write(2, tmp, strlen(tmp));
+        Command_fail_with_message((Command)self, 3); 
         return 1;
     }else if(ArrayList_size(self->args) == 0){
-        char tmp[] = "\e[1;31mErreur : pas d'arguments !\n\e[1;0m";
-        write(2,tmp, strlen(tmp));
+        Command_fail_with_message((Command)self, 4);
         return 1;
     }else{
 
         String arg = (String) ArrayList_get_first(self->args, 0);
         if (!arg){
-            char tmp[] = "\e[1;31mErreur : Pas d'arguments !\n\e[1;0m";
-            write(2,tmp, strlen(tmp));
+            Command_fail_with_message((Command)self, 4);
             return 1;
         }
         char* first_arg = obj_to_string(arg);

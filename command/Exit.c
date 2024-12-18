@@ -10,6 +10,7 @@
  */
 
 /** @cond HIDE_THIS*/
+#include "Redirector.h"
 #define EXIT_CLASS "Exit"
 #include "Exit.h"
 #include "../base/String.h"
@@ -162,9 +163,7 @@ static int Exit_execute(Command self_){
                 exit(1);
         }
     }else if (ArrayList_size(self->args) > 1){
-        
-        char tmp1[] = "\e[1;31mexit: too many arguments\e[1;0m\n";
-        write(2, tmp1, strlen(tmp1));
+        Command_fail_with_message((Command)self, 3);
         return 1;
 
     }   
