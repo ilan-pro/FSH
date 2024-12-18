@@ -1,0 +1,222 @@
+\hypertarget{new_8h}{}\doxysection{Référence du fichier base/new.h}
+\label{new_8h}\index{base/new.h@{base/new.h}}
+
+
+Fichier d\textquotesingle{}en-\/tête contenant les déclarations de toutes les méthodes génériques agissant sur des objets.  
+
+
+{\ttfamily \#include \char`\"{}Class.\+h\char`\"{}}\newline
+Graphe des dépendances par inclusion de new.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{da/d63/new_8h__incl}
+\end{center}
+\end{figure}
+Ce graphe montre quels fichiers incluent directement ou indirectement ce fichier \+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{dc/dae/new_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Fonctions}
+\begin{DoxyCompactItemize}
+\item 
+void $\ast$ \mbox{\hyperlink{new_8h_a13ef2db84cbf848c09facc92d80b5b21}{obj\+\_\+new}} (void $\ast$\+\_\+class\+\_\+,...)
+\begin{DoxyCompactList}\small\item\em Fonction qui crée un objet à partir de sa classe. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{new_8h_a0f1db85eee610ac2a243f51a430c90c3}{obj\+\_\+destroy}} (void $\ast$self\+\_\+)
+\begin{DoxyCompactList}\small\item\em Fonction qui détruit et desalloue l\textquotesingle{}espace mémoire alloué pour l\textquotesingle{}objet. \end{DoxyCompactList}\item 
+char $\ast$ \mbox{\hyperlink{new_8h_a982170ff95dbd729473188fea16f8db5}{obj\+\_\+to\+\_\+string}} (const void $\ast$self\+\_\+)
+\begin{DoxyCompactList}\small\item\em Fonction qui renvoie une chaine de caractère représentative de l\textquotesingle{}objet. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{new_8h_a80d4746b01a9f4a30386f83993065802}{obj\+\_\+equals}} (const void $\ast$self\+\_\+, const void $\ast$object\+\_\+)
+\begin{DoxyCompactList}\small\item\em Fonction qui renvoie si oui ou non les deux objets sont egaux. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{new_8h_a67f8f5d0f756a4091614a6838c3e5df0}{obj\+\_\+instance\+\_\+of}} (const void $\ast$self\+\_\+, const \mbox{\hyperlink{Class_8h_a6ec2a8ccaeb1e924a80036ec40760377}{Class}} \+\_\+class\+\_\+)
+\begin{DoxyCompactList}\small\item\em Fonction qui permet de vérifier si un objet est l\textquotesingle{}instance d\textquotesingle{}une classe donnée. \end{DoxyCompactList}\item 
+void $\ast$ \mbox{\hyperlink{new_8h_a6ff9f32c798498f2fa7939e466803f48}{obj\+\_\+clone}} (const void $\ast$self\+\_\+)
+\begin{DoxyCompactList}\small\item\em Fonction qui crée et renvoie la copie d\textquotesingle{}un objet. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{new_8h_a11068f7ed73976ed547957c4ca0c66cc}{obj\+\_\+print}} (const void $\ast$self\+\_\+)
+\begin{DoxyCompactList}\small\item\em Fonction qui affiche le contenu d\textquotesingle{}un objet. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+char \mbox{\hyperlink{new_8h_af5dbbe0ca6412092210d1165a49c2377}{to\+\_\+string\+\_\+buffer}} \mbox{[}1024\mbox{]}
+\begin{DoxyCompactList}\small\item\em Mémoire tampon qui doit être utilisée dans les fonctions {\ttfamily to\+\_\+string} des objets. Cette mémmoire est généralement statique, afin d\textquotesingle{}éviter les allocations dynamiques. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Description détaillée}
+Fichier d\textquotesingle{}en-\/tête contenant les déclarations de toutes les méthodes génériques agissant sur des objets. 
+
+Ce fichier contient les signatures publiques des fonctions générique agissant sur des objets, par exemple {\ttfamily \mbox{\hyperlink{new_8h_a13ef2db84cbf848c09facc92d80b5b21}{obj\+\_\+new()}}} qui est une fonction qui initialise un nouvel objet, à partir d\textquotesingle{}une classe. 
+
+\doxysubsection{Documentation des fonctions}
+\mbox{\Hypertarget{new_8h_a6ff9f32c798498f2fa7939e466803f48}\label{new_8h_a6ff9f32c798498f2fa7939e466803f48}} 
+\index{new.h@{new.h}!obj\_clone@{obj\_clone}}
+\index{obj\_clone@{obj\_clone}!new.h@{new.h}}
+\doxysubsubsection{\texorpdfstring{obj\_clone()}{obj\_clone()}}
+{\footnotesize\ttfamily void$\ast$ obj\+\_\+clone (\begin{DoxyParamCaption}\item[{const void $\ast$}]{self\+\_\+ }\end{DoxyParamCaption})}
+
+
+
+Fonction qui crée et renvoie la copie d\textquotesingle{}un objet. 
+
+La fonction appelle la fonction {\ttfamily clone()} définie dans la classe de l\textquotesingle{}objet et il est conseillé d\textquotesingle{}en avoir une.
+
+Si la fonction n\textquotesingle{}est pas définie dans la classe alors cette fonction réalisera une copie bit à bit de l\textquotesingle{}espace mémoire dédié à l\textquotesingle{}objet, avec {\ttfamily memcpy()} ce qui peut être très risqué car si l\textquotesingle{}objet avait des références dans ses attributs (pointeurs vers d\textquotesingle{}autres objets) sa copie aura les mêmes références. Cela peut déclancher une erreur au moment de la destruction des objets car le destructeur va détruire deux fois la même réfénrence.
+
+
+\begin{DoxyParams}{Paramètres}
+{\em self\+\_\+} & L\textquotesingle{}objet à cloner. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+Une copie de l\textquotesingle{}objet. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{new_8h_a0f1db85eee610ac2a243f51a430c90c3}\label{new_8h_a0f1db85eee610ac2a243f51a430c90c3}} 
+\index{new.h@{new.h}!obj\_destroy@{obj\_destroy}}
+\index{obj\_destroy@{obj\_destroy}!new.h@{new.h}}
+\doxysubsubsection{\texorpdfstring{obj\_destroy()}{obj\_destroy()}}
+{\footnotesize\ttfamily void obj\+\_\+destroy (\begin{DoxyParamCaption}\item[{void $\ast$}]{self\+\_\+ }\end{DoxyParamCaption})}
+
+
+
+Fonction qui détruit et desalloue l\textquotesingle{}espace mémoire alloué pour l\textquotesingle{}objet. 
+
+La fonction va appeler la fonction {\ttfamily dtor()} définie dans la classe de l\textquotesingle{}objet, qui va désallouer tous les éléments utilisés dans l\textquotesingle{}objet, puis après l\textquotesingle{}appel, va désallouer l\textquotesingle{}objet avec {\ttfamily free()}.
+
+NB \+: La desallocation du pointeur vers l\textquotesingle{}objet {\ttfamily self\+\_\+} ne doit pas se faire dans {\ttfamily dtor()}, cela va générer une erreur car au retour de l\textquotesingle{}appel cette fonction le fait également (il y aura donc deux {\ttfamily free()} sur une référence)).
+
+
+\begin{DoxyParams}{Paramètres}
+{\em self\+\_\+} & L\textquotesingle{}objet à détruire. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Abort.} & Le programme est interrompu si une fonction de destruction n\textquotesingle{}est pas définie dans la classe. Cela permet de garantir une destruction profonde de l\textquotesingle{}objet, évitant les fuites de mémoire. \\
+\hline
+\end{DoxyExceptions}
+\mbox{\Hypertarget{new_8h_a80d4746b01a9f4a30386f83993065802}\label{new_8h_a80d4746b01a9f4a30386f83993065802}} 
+\index{new.h@{new.h}!obj\_equals@{obj\_equals}}
+\index{obj\_equals@{obj\_equals}!new.h@{new.h}}
+\doxysubsubsection{\texorpdfstring{obj\_equals()}{obj\_equals()}}
+{\footnotesize\ttfamily int obj\+\_\+equals (\begin{DoxyParamCaption}\item[{const void $\ast$}]{self\+\_\+,  }\item[{const void $\ast$}]{object\+\_\+ }\end{DoxyParamCaption})}
+
+
+
+Fonction qui renvoie si oui ou non les deux objets sont egaux. 
+
+La fonction appelle la fonction {\ttfamily equals()} définie dans la classe de l\textquotesingle{}objet. Si la fonction n\textquotesingle{}est pas définie elle compare bit à bit les deux objets en mémoire. (avec la fonction {\ttfamily memcmp()})
+
+
+\begin{DoxyParams}{Paramètres}
+{\em self\+\_\+} & L\textquotesingle{}objet 1. \\
+\hline
+{\em object\+\_\+} & L\textquotesingle{}objet 2. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+Si oui (1) ou non (0) objet1 et objet2 sont égaux. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{new_8h_a67f8f5d0f756a4091614a6838c3e5df0}\label{new_8h_a67f8f5d0f756a4091614a6838c3e5df0}} 
+\index{new.h@{new.h}!obj\_instance\_of@{obj\_instance\_of}}
+\index{obj\_instance\_of@{obj\_instance\_of}!new.h@{new.h}}
+\doxysubsubsection{\texorpdfstring{obj\_instance\_of()}{obj\_instance\_of()}}
+{\footnotesize\ttfamily int obj\+\_\+instance\+\_\+of (\begin{DoxyParamCaption}\item[{const void $\ast$}]{self\+\_\+,  }\item[{const \mbox{\hyperlink{Class_8h_a6ec2a8ccaeb1e924a80036ec40760377}{Class}}}]{\+\_\+class\+\_\+ }\end{DoxyParamCaption})}
+
+
+
+Fonction qui permet de vérifier si un objet est l\textquotesingle{}instance d\textquotesingle{}une classe donnée. 
+
+Cette fonction fonctionne également sur les objets dont la classe hérite d\textquotesingle{}une autre ( elle vérifie récursivement avec les ancètres).
+
+
+\begin{DoxyParams}{Paramètres}
+{\em self\+\_\+} & L\textquotesingle{}objet dont on souhaite vérifier l\textquotesingle{}appartenance à la classe. \\
+\hline
+{\em \+\_\+class\+\_\+} & La classe. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+Si oui (1) ou non (0) l\textquotesingle{}objet est une instance de la classe. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{new_8h_a13ef2db84cbf848c09facc92d80b5b21}\label{new_8h_a13ef2db84cbf848c09facc92d80b5b21}} 
+\index{new.h@{new.h}!obj\_new@{obj\_new}}
+\index{obj\_new@{obj\_new}!new.h@{new.h}}
+\doxysubsubsection{\texorpdfstring{obj\_new()}{obj\_new()}}
+{\footnotesize\ttfamily void$\ast$ obj\+\_\+new (\begin{DoxyParamCaption}\item[{void $\ast$}]{\+\_\+class\+\_\+,  }\item[{}]{... }\end{DoxyParamCaption})}
+
+
+
+Fonction qui crée un objet à partir de sa classe. 
+
+La fonction alloue dynamiquement la mémoire l\textquotesingle{}objet avec calloc(), et appelle le constructeur définie dans la classe (Liaison dynamique). Si un constructeur n\textquotesingle{}est pas définie alors la fonction {\ttfamily \mbox{\hyperlink{new_8h_a13ef2db84cbf848c09facc92d80b5b21}{obj\+\_\+new()}}} renvoie l\textquotesingle{}objet avec tous les attribut à 0 (à cause calloc()).
+
+
+\begin{DoxyParams}{Paramètres}
+{\em \+\_\+class\+\_\+} & La classe de l\textquotesingle{}objet à construire. \\
+\hline
+{\em ...} & La liste des arguments que prend le constructeur.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+L\textquotesingle{}objet renvoyé par le constructeur définie dans sa classe ou la structure telle qu\textquotesingle{}elle a été alloué avec {\ttfamily calloc()} (si il n\textquotesingle{}y avait pas de constructeur). 
+\end{DoxyReturn}
+\mbox{\Hypertarget{new_8h_a11068f7ed73976ed547957c4ca0c66cc}\label{new_8h_a11068f7ed73976ed547957c4ca0c66cc}} 
+\index{new.h@{new.h}!obj\_print@{obj\_print}}
+\index{obj\_print@{obj\_print}!new.h@{new.h}}
+\doxysubsubsection{\texorpdfstring{obj\_print()}{obj\_print()}}
+{\footnotesize\ttfamily void obj\+\_\+print (\begin{DoxyParamCaption}\item[{const void $\ast$}]{self\+\_\+ }\end{DoxyParamCaption})}
+
+
+
+Fonction qui affiche le contenu d\textquotesingle{}un objet. 
+
+La fonction appelle la fonction {\ttfamily print()} définie dans la classe de l\textquotesingle{}objet.
+
+Si la fonction n\textquotesingle{}est pas définie dans la classe alors cette fonction affichera le résultat de l\textquotesingle{}appel à {\ttfamily to\+\_\+string()} sur l\textquotesingle{}objet.
+
+
+\begin{DoxyParams}{Paramètres}
+{\em self\+\_\+} & L\textquotesingle{}objet à afficher. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{new_8h_a982170ff95dbd729473188fea16f8db5}\label{new_8h_a982170ff95dbd729473188fea16f8db5}} 
+\index{new.h@{new.h}!obj\_to\_string@{obj\_to\_string}}
+\index{obj\_to\_string@{obj\_to\_string}!new.h@{new.h}}
+\doxysubsubsection{\texorpdfstring{obj\_to\_string()}{obj\_to\_string()}}
+{\footnotesize\ttfamily char$\ast$ obj\+\_\+to\+\_\+string (\begin{DoxyParamCaption}\item[{const void $\ast$}]{self\+\_\+ }\end{DoxyParamCaption})}
+
+
+
+Fonction qui renvoie une chaine de caractère représentative de l\textquotesingle{}objet. 
+
+La fonction appelle la fonction {\ttfamily to\+\_\+string()} définie dans la classe de l\textquotesingle{}objet qui doit renvoyer une chaine de caractère.
+
+Si la fonction n\textquotesingle{}est pas définie, {\ttfamily \mbox{\hyperlink{new_8h_a982170ff95dbd729473188fea16f8db5}{obj\+\_\+to\+\_\+string()}}} renvoie le nom de la classe suivi de l\textquotesingle{}adresse du pointeur de l\textquotesingle{}objet.
+
+ATTENTION \+: NE JAMAIS RENVOYER UNE CHAINE DE CARACTERE ALLOUEE DYNAMIQUEMENT !~\newline
+ Il est impératif d\textquotesingle{}écrire directement dans le buffer {\ttfamily to\+\_\+string\+\_\+buffer} situé en dessous et de laisser au code appelant la responsabilité de décider s\textquotesingle{}il souhaite en faire une copie ou non.
+
+
+\begin{DoxyParams}{Paramètres}
+{\em self\+\_\+} & L\textquotesingle{}objet à interroger. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+La chaine de caractère renvoyé par {\ttfamily to\+\_\+string}, qui est généralement un pointeur vers {\ttfamily to\+\_\+string\+\_\+buffer} ci-\/dessous. 
+\end{DoxyReturn}
+
+
+\doxysubsection{Documentation des variables}
+\mbox{\Hypertarget{new_8h_af5dbbe0ca6412092210d1165a49c2377}\label{new_8h_af5dbbe0ca6412092210d1165a49c2377}} 
+\index{new.h@{new.h}!to\_string\_buffer@{to\_string\_buffer}}
+\index{to\_string\_buffer@{to\_string\_buffer}!new.h@{new.h}}
+\doxysubsubsection{\texorpdfstring{to\_string\_buffer}{to\_string\_buffer}}
+{\footnotesize\ttfamily char to\+\_\+string\+\_\+buffer\mbox{[}1024\mbox{]}\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Mémoire tampon qui doit être utilisée dans les fonctions {\ttfamily to\+\_\+string} des objets. Cette mémmoire est généralement statique, afin d\textquotesingle{}éviter les allocations dynamiques. 
+
+De cette façon on réduit les risques de fuites mémoire et on confie au code appelant la responsabilité de gérer, si nécessaire, une copie de la chaîne résultante. 

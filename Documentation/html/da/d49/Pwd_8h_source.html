@@ -1,0 +1,118 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>FSH - Projet Système:  Fichier source de command/Pwd.h</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">FSH - Projet Système
+   </div>
+   <div id="projectbrief">Projet de la matière Sy5 - U Paris Cité</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "../../search",false,'Recherche','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="../../menudata.js"></script>
+<script type="text/javascript" src="../../menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('../../',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="../../dir_689a8946103f9323d050afa7f32bd943.html">command</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">Pwd.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="../../da/d49/Pwd_8h.html">Aller à la documentation de ce fichier.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160; </div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#ifndef PWD_H</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#define PWD_H</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#ifdef PWD_CLASS</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#define SIMPLE_CMD_CLASS</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="../../d2/ded/SimpleCmd_8h.html">SimpleCmd.h</a>&quot;</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    </div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">    #define PWD_FILEDS \</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">        SIMPLE_CMD_FIELDS </span><span class="comment">/* Doit toujours être déclaré en premier pour pouvoir réduire l&#39;objet à un objet de type Command pour le polymorphisme */</span><span class="preprocessor">\ </span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    </div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="../../d6/d46/struct__Pwd__.html">_Pwd_</a>* <a class="code" href="../../da/d49/Pwd_8h.html#a1a7a125daef5c253df65b7e165f08538">Pwd</a>;</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    </div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#else</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="../../d2/ded/SimpleCmd_8h.html">SimpleCmd.h</a>&quot;</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    </div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="keyword">typedef</span> <span class="keyword">struct </span>__pwd_private_fields{</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;       <span class="comment">// Attribut qu&#39;on veut rendre privée ici. </span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    } __pwd_private_fields;</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">    #define PWD_H_FIELDS \</span></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">        SIMPLE_CMD_H_FIELDS </span><span class="comment">/* Doit toujours être déclaré en premier pour pouvoir réduire l&#39;objet à un objet de type Command pour le polymorphisme */</span><span class="preprocessor"> \</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">        const char _Pwd_private[sizeof(__pwd_private_fields)];</span></div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="../../d6/d46/struct__Pwd__.html">_Pwd_</a> {</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;       <a class="code" href="../../d8/d36/struct__Class__.html">Class</a> <a class="code" href="../../d6/d46/struct__Pwd__.html#ab00078213102b9e6855b83abc988f65d">_Pwd_</a>;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;       PWD_H_FIELDS</div>
+<div class="line"><a name="l00048"></a><span class="lineno"><a class="line" href="../../da/d49/Pwd_8h.html#a1a7a125daef5c253df65b7e165f08538">   48</a></span>&#160;    }* <a class="code" href="../../da/d49/Pwd_8h.html#a1a7a125daef5c253df65b7e165f08538">Pwd</a>;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="keyword">extern</span> <span class="keyword">const</span> <a class="code" href="../../d8/d36/struct__Class__.html">Class</a> <a class="code" href="../../da/d49/Pwd_8h.html#aecc85893af0940f3d98b7fd63e841927">_Pwd_</a>;</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160; </div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aPwd_8h_html_a1a7a125daef5c253df65b7e165f08538"><div class="ttname"><a href="../../da/d49/Pwd_8h.html#a1a7a125daef5c253df65b7e165f08538">Pwd</a></div><div class="ttdeci">struct _Pwd_ * Pwd</div></div>
+<div class="ttc" id="aPwd_8h_html_aecc85893af0940f3d98b7fd63e841927"><div class="ttname"><a href="../../da/d49/Pwd_8h.html#aecc85893af0940f3d98b7fd63e841927">_Pwd_</a></div><div class="ttdeci">const Class _Pwd_</div><div class="ttdoc">Classe des commandes pwd.</div><div class="ttdef"><b>Definition:</b> Pwd.c:110</div></div>
+<div class="ttc" id="aSimpleCmd_8h_html"><div class="ttname"><a href="../../d2/ded/SimpleCmd_8h.html">SimpleCmd.h</a></div><div class="ttdoc">Fichier d'en-tête contenant les déclarations des variables publiques et de toutes les méthodes public...</div></div>
+<div class="ttc" id="astruct__Class___html"><div class="ttname"><a href="../../d8/d36/struct__Class__.html">_Class_</a></div><div class="ttdoc">Structure représentant la classe dans laquelle appratient un objet.</div><div class="ttdef"><b>Definition:</b> Class.h:57</div></div>
+<div class="ttc" id="astruct__Pwd___html"><div class="ttname"><a href="../../d6/d46/struct__Pwd__.html">_Pwd_</a></div><div class="ttdoc">Classe Pwd de la commande Pwd qui affiche le chemin absolu du répertoire courant.</div><div class="ttdef"><b>Definition:</b> Pwd.c:68</div></div>
+<div class="ttc" id="astruct__Pwd___html_ab00078213102b9e6855b83abc988f65d"><div class="ttname"><a href="../../d6/d46/struct__Pwd__.html#ab00078213102b9e6855b83abc988f65d">_Pwd_::_Pwd_</a></div><div class="ttdeci">Class _Pwd_</div><div class="ttdoc">Classe des commandes pwd.</div><div class="ttdef"><b>Definition:</b> Pwd.c:80</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré par&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+</small></address>
+</body>
+</html>

@@ -1,0 +1,64 @@
+\hypertarget{struct__SimpleCmd__}{}\doxysection{Référence de la structure \+\_\+\+Simple\+Cmd\+\_\+}
+\label{struct__SimpleCmd__}\index{\_SimpleCmd\_@{\_SimpleCmd\_}}
+
+
+Classe de toutes les commandes simples.  
+
+
+
+
+{\ttfamily \#include $<$Simple\+Cmd.\+h$>$}
+
+
+
+Graphe de collaboration de \+\_\+\+Simple\+Cmd\+\_\+\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=207pt]{d1/d00/struct__SimpleCmd____coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Attributs publics}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{Class_8h_a6ec2a8ccaeb1e924a80036ec40760377}{Class}} \mbox{\hyperlink{struct__SimpleCmd___a49906c3788e207a13abf0088675f9844}{\+\_\+\+Simple\+Cmd\+\_\+}}
+\begin{DoxyCompactList}\small\item\em Classe de toutes les commandes simples. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Description détaillée}
+Classe de toutes les commandes simples. 
+
+Un objet de type {\ttfamily \mbox{\hyperlink{struct__SimpleCmd__}{\+\_\+\+Simple\+Cmd\+\_\+}}} est une commande dont les arguments et les paramètre sont récupéré directement (avec un parsing) dans le construteur. Ces commandes sont donc tous de la forme {\ttfamily Cmd\+\_\+name -\/param1 -\/param2 arg1 -\/parm3 ...}. Les arguments et les paramètres pouvant êtres déclarés dans un ordre quelconque et les paramètre peuvent être concaténés (Ex\+: {\ttfamily cmd -\/Ab\+Cd} = {\ttfamily cmd -\/A -\/b -\/C -\/d}). 
+
+Construction \+: {\ttfamily {\bfseries{ obj\+\_\+new( {\ttfamily \mbox{\hyperlink{struct__SimpleCmd__}{\+\_\+\+Simple\+Cmd\+\_\+}}}, char$\ast$ cmd\+\_\+name, char$\ast$$\ast$ prompt ); }}} où \+: 
+\begin{DoxyItemize}
+\item {\ttfamily \mbox{\hyperlink{struct__SimpleCmd__}{\+\_\+\+Simple\+Cmd\+\_\+}}} désigne la classe des objets de type {\ttfamily Simple\+Cmd}.  
+\item {\ttfamily char$\ast$ cmd\+\_\+name} Le nom de la commande. 
+\item {\ttfamily char$\ast$$\ast$ prompt} Le reste du prompt qui va servir à construire la comande. 
+\end{DoxyItemize}
+
+\doxysubsection{Documentation des données membres}
+\mbox{\Hypertarget{struct__SimpleCmd___a49906c3788e207a13abf0088675f9844}\label{struct__SimpleCmd___a49906c3788e207a13abf0088675f9844}} 
+\index{\_SimpleCmd\_@{\_SimpleCmd\_}!\_SimpleCmd\_@{\_SimpleCmd\_}}
+\index{\_SimpleCmd\_@{\_SimpleCmd\_}!\_SimpleCmd\_@{\_SimpleCmd\_}}
+\doxysubsubsection{\texorpdfstring{\_SimpleCmd\_}{\_SimpleCmd\_}}
+{\footnotesize\ttfamily \mbox{\hyperlink{Class_8h_a6ec2a8ccaeb1e924a80036ec40760377}{Class}} \+\_\+\+Simple\+Cmd\+\_\+\+::\+\_\+\+Simple\+Cmd\+\_\+}
+
+
+
+Classe de toutes les commandes simples. 
+
+Un objet de type {\ttfamily \mbox{\hyperlink{struct__SimpleCmd__}{\+\_\+\+Simple\+Cmd\+\_\+}}} est une commande dont les arguments et les paramètre sont récupéré directement (avec un parsing) dans le construteur. Ces commandes sont donc tous de la forme {\ttfamily Cmd\+\_\+name -\/param1 -\/param2 arg1 -\/parm3 ...}. Les arguments et les paramètres pouvant êtres déclarés dans un ordre quelconque et les paramètre peuvent être concaténés (Ex\+: {\ttfamily cmd -\/Ab\+Cd} = {\ttfamily cmd -\/A -\/b -\/C -\/d}). 
+
+Construction \+: {\ttfamily {\bfseries{ obj\+\_\+new( {\ttfamily \mbox{\hyperlink{struct__SimpleCmd__}{\+\_\+\+Simple\+Cmd\+\_\+}}}, char$\ast$ cmd\+\_\+name, char$\ast$$\ast$ prompt ); }}} où \+: 
+\begin{DoxyItemize}
+\item {\ttfamily \mbox{\hyperlink{struct__SimpleCmd__}{\+\_\+\+Simple\+Cmd\+\_\+}}} désigne la classe des objets de type {\ttfamily Simple\+Cmd}.  
+\item {\ttfamily char$\ast$ cmd\+\_\+name} Le nom de la commande. 
+\item {\ttfamily char$\ast$$\ast$ prompt} Le reste du prompt qui va servir à construire la comande. 
+\end{DoxyItemize}
+
+La documentation de cette structure a été générée à partir du fichier suivant \+:\begin{DoxyCompactItemize}
+\item 
+command/\mbox{\hyperlink{SimpleCmd_8c}{Simple\+Cmd.\+c}}\item 
+command/\mbox{\hyperlink{SimpleCmd_8h}{Simple\+Cmd.\+h}}\end{DoxyCompactItemize}

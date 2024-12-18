@@ -1,0 +1,159 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>FSH - Projet Système:  Fichier source de base/ListCell.h</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">FSH - Projet Système
+   </div>
+   <div id="projectbrief">Projet de la matière Sy5 - U Paris Cité</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "../../search",false,'Recherche','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="../../menudata.js"></script>
+<script type="text/javascript" src="../../menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('../../',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="../../dir_e914ee4d4a44400f1fdb170cb4ead18a.html">base</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">ListCell.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="../../d6/d82/ListCell_8h.html">Aller à la documentation de ce fichier.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#ifndef LISTCELL_H</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#define LISTCELL_H</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="../../d4/d05/Class_8h.html">Class.h</a>&quot;</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#ifdef LISTCELL_CLASS</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    </div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">    #define LISTCELL_FIELDS \</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">        void* value; \</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">        ListCell next; \</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">        ListCell previous;</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="../../d7/d4c/struct__ListCell__.html">_ListCell_</a>* <a class="code" href="../../d6/d82/ListCell_8h.html#a0942caee76f24634f4b9ae7edba6aa57">ListCell</a>;</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160; </div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#else</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <span class="keyword">typedef</span> <span class="keyword">struct </span>__list_cell_prv{</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        <span class="keywordtype">void</span>* value;</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;        <span class="keywordtype">void</span>* next; <span class="comment">// Même taille que ListCell qui est aussi un pointeur.</span></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        <span class="keywordtype">void</span>* previous; <span class="comment">// Même taille que ListCell qui est aussi un pointeur.</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    }* __list_cell_private_fields;</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    </div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="preprocessor">    #define LISTCELL_H_FIELDS \</span></div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="preprocessor">        const char _[sizeof(__list_cell_private_fields)];</span></div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    </div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="../../d7/d4c/struct__ListCell__.html">_ListCell_</a>{</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        <a class="code" href="../../d8/d36/struct__Class__.html">Class</a> <a class="code" href="../../d7/d4c/struct__ListCell__.html#ac99320a94f8ebdb1a1b0bdb9d0f4eb80">_ListCell_</a>;</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        LISTCELL_H_FIELDS</div>
+<div class="line"><a name="l00065"></a><span class="lineno"><a class="line" href="../../d6/d82/ListCell_8h.html#a0942caee76f24634f4b9ae7edba6aa57">   65</a></span>&#160;    }* <a class="code" href="../../d6/d82/ListCell_8h.html#a0942caee76f24634f4b9ae7edba6aa57">ListCell</a> ;   </div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160; </div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160; </div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <span class="keyword">extern</span> <span class="keyword">const</span> <a class="code" href="../../d8/d36/struct__Class__.html">Class</a> <a class="code" href="../../d6/d82/ListCell_8h.html#aea761d264109a769a433619b9a62c1f1">_ListCell_</a>;</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160; </div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    <span class="keywordtype">int</span> <a class="code" href="../../d6/d82/ListCell_8h.html#a9ec761d5e0f3855a1bef7bb0d693358a">ListCell_add</a>(<a class="code" href="../../d7/d4c/struct__ListCell__.html">ListCell</a> <span class="keyword">self</span>, <span class="keywordtype">void</span>* <span class="keywordtype">object</span>, <span class="keywordtype">int</span> index);</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160; </div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    <span class="keywordtype">void</span>* <a class="code" href="../../d6/d82/ListCell_8h.html#aae2285ec6518af32de9cb67ad5f52b4b">ListCell_remove</a>(<a class="code" href="../../d7/d4c/struct__ListCell__.html">ListCell</a> <span class="keyword">self</span>, <span class="keywordtype">int</span> index, <span class="keywordtype">int</span> clone);</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160; </div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;    <span class="keywordtype">void</span>* <a class="code" href="../../d6/d82/ListCell_8h.html#a2019c9dcbf83335df581897980e8888c">ListCell_get</a>(<span class="keyword">const</span> <a class="code" href="../../d7/d4c/struct__ListCell__.html">ListCell</a> <span class="keyword">self</span>, <span class="keywordtype">int</span> index, <span class="keywordtype">int</span> clone);</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160; </div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;    <a class="code" href="../../d7/d4c/struct__ListCell__.html">ListCell</a> <a class="code" href="../../d6/d82/ListCell_8h.html#a7b77722320f2da555315b840619bf69f">ListCell_get_last</a>(<span class="keyword">const</span> <a class="code" href="../../d7/d4c/struct__ListCell__.html">ListCell</a> self_);</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160; </div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;    <span class="keywordtype">void</span>* <a class="code" href="../../d6/d82/ListCell_8h.html#ae289ee13ff633988c0f263a163b23075">ListCell_get_value</a>(<span class="keyword">const</span> <a class="code" href="../../d7/d4c/struct__ListCell__.html">ListCell</a> <span class="keyword">self</span>);</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;        </div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;    <a class="code" href="../../d7/d4c/struct__ListCell__.html">ListCell</a> <a class="code" href="../../d6/d82/ListCell_8h.html#a77083f155127e2465830aaab369fb80d">ListCell_get_previous</a>(<span class="keyword">const</span> <a class="code" href="../../d7/d4c/struct__ListCell__.html">ListCell</a> <span class="keyword">self</span>);</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160; </div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;    <a class="code" href="../../d7/d4c/struct__ListCell__.html">ListCell</a> <a class="code" href="../../d6/d82/ListCell_8h.html#aa07eaad054a81354dc31171104dfcae3">ListCell_get_next</a>(<span class="keyword">const</span> <a class="code" href="../../d7/d4c/struct__ListCell__.html">ListCell</a> <span class="keyword">self</span>);</div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160; </div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;    <span class="keywordtype">void</span>* <a class="code" href="../../d6/d82/ListCell_8h.html#a506b47fb4feb744dc0e361a63b5c03d7">ListCell_replace_previous</a>(<span class="keyword">const</span> <a class="code" href="../../d7/d4c/struct__ListCell__.html">ListCell</a> <span class="keyword">self</span>, <span class="keyword">const</span> <a class="code" href="../../d7/d4c/struct__ListCell__.html">ListCell</a> new_prev, <span class="keywordtype">int</span> clone);</div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160; </div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;    <span class="keywordtype">void</span>* <a class="code" href="../../d6/d82/ListCell_8h.html#a64d4db9bf1f58a6e706d84e92cde8684">ListCell_replace_next</a>(<span class="keyword">const</span> <a class="code" href="../../d7/d4c/struct__ListCell__.html">ListCell</a> <span class="keyword">self</span>, <span class="keyword">const</span> <a class="code" href="../../d7/d4c/struct__ListCell__.html">ListCell</a> new_next, <span class="keywordtype">int</span> clone);</div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160; </div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;    </div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;    <a class="code" href="../../d7/d4c/struct__ListCell__.html">ListCell</a> <a class="code" href="../../d6/d82/ListCell_8h.html#a515ed34793c0007331654f3ba077e9c7">ListCell_set_previous</a>(<span class="keyword">const</span> <a class="code" href="../../d7/d4c/struct__ListCell__.html">ListCell</a> <span class="keyword">self</span>, <span class="keyword">const</span> <a class="code" href="../../d7/d4c/struct__ListCell__.html">ListCell</a> new_next);</div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;    </div>
+<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;    <a class="code" href="../../d7/d4c/struct__ListCell__.html">ListCell</a> <a class="code" href="../../d6/d82/ListCell_8h.html#ab7b9c59a1a1db8f09219c9748fa45fdf">ListCell_set_next</a>(<span class="keyword">const</span> <a class="code" href="../../d7/d4c/struct__ListCell__.html">ListCell</a> <span class="keyword">self</span>, <span class="keyword">const</span> <a class="code" href="../../d7/d4c/struct__ListCell__.html">ListCell</a> new_next);</div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160; </div>
+<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160; </div>
+<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;    <span class="keywordtype">int</span> <a class="code" href="../../d6/d82/ListCell_8h.html#aca7a11018f4af0785137785463aefe1e">ListCell_contains</a>(<a class="code" href="../../d7/d4c/struct__ListCell__.html">ListCell</a> <span class="keyword">self</span>, <span class="keywordtype">void</span>* value);</div>
+<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160; </div>
+<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;    <span class="keywordtype">long</span> <span class="keywordtype">long</span> <span class="keywordtype">int</span> <a class="code" href="../../d6/d82/ListCell_8h.html#a25b8a97605e09c7d997c5b87d5969b2e">ListCell_index_of</a>( <a class="code" href="../../d7/d4c/struct__ListCell__.html">ListCell</a> <span class="keyword">self</span>, <span class="keywordtype">void</span>* value, <span class="keywordtype">long</span> <span class="keywordtype">long</span> <span class="keywordtype">int</span> index );</div>
+<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aClass_8h_html"><div class="ttname"><a href="../../d4/d05/Class_8h.html">Class.h</a></div><div class="ttdoc">Fichier d'en-tête contenant la définition du type Class.</div></div>
+<div class="ttc" id="aListCell_8h_html_a0942caee76f24634f4b9ae7edba6aa57"><div class="ttname"><a href="../../d6/d82/ListCell_8h.html#a0942caee76f24634f4b9ae7edba6aa57">ListCell</a></div><div class="ttdeci">struct _ListCell_ * ListCell</div></div>
+<div class="ttc" id="aListCell_8h_html_a2019c9dcbf83335df581897980e8888c"><div class="ttname"><a href="../../d6/d82/ListCell_8h.html#a2019c9dcbf83335df581897980e8888c">ListCell_get</a></div><div class="ttdeci">void * ListCell_get(const ListCell self, int index, int clone)</div><div class="ttdoc">Fonction qui va rechercher une valeur à l'aide de l'indice de la cellule qui la contient,...</div><div class="ttdef"><b>Definition:</b> ListCell.c:286</div></div>
+<div class="ttc" id="aListCell_8h_html_a25b8a97605e09c7d997c5b87d5969b2e"><div class="ttname"><a href="../../d6/d82/ListCell_8h.html#a25b8a97605e09c7d997c5b87d5969b2e">ListCell_index_of</a></div><div class="ttdeci">long long int ListCell_index_of(ListCell self, void *value, long long int index)</div><div class="ttdoc">Fonction qui renvoie l'indice de la première occurence d'un élément qui se trouve dans la liste à par...</div><div class="ttdef"><b>Definition:</b> ListCell.c:540</div></div>
+<div class="ttc" id="aListCell_8h_html_a506b47fb4feb744dc0e361a63b5c03d7"><div class="ttname"><a href="../../d6/d82/ListCell_8h.html#a506b47fb4feb744dc0e361a63b5c03d7">ListCell_replace_previous</a></div><div class="ttdeci">void * ListCell_replace_previous(const ListCell self, const ListCell new_prev, int clone)</div><div class="ttdoc">Fonction qui remplace la cellule qui précède self.</div><div class="ttdef"><b>Definition:</b> ListCell.c:368</div></div>
+<div class="ttc" id="aListCell_8h_html_a515ed34793c0007331654f3ba077e9c7"><div class="ttname"><a href="../../d6/d82/ListCell_8h.html#a515ed34793c0007331654f3ba077e9c7">ListCell_set_previous</a></div><div class="ttdeci">ListCell ListCell_set_previous(const ListCell self, const ListCell new_next)</div><div class="ttdoc">Fonction qui modifie la cellule qui précède self.</div><div class="ttdef"><b>Definition:</b> ListCell.c:461</div></div>
+<div class="ttc" id="aListCell_8h_html_a64d4db9bf1f58a6e706d84e92cde8684"><div class="ttname"><a href="../../d6/d82/ListCell_8h.html#a64d4db9bf1f58a6e706d84e92cde8684">ListCell_replace_next</a></div><div class="ttdeci">void * ListCell_replace_next(const ListCell self, const ListCell new_next, int clone)</div><div class="ttdoc">Fonction qui remplace la cellule qui suit self.</div><div class="ttdef"><b>Definition:</b> ListCell.c:409</div></div>
+<div class="ttc" id="aListCell_8h_html_a77083f155127e2465830aaab369fb80d"><div class="ttname"><a href="../../d6/d82/ListCell_8h.html#a77083f155127e2465830aaab369fb80d">ListCell_get_previous</a></div><div class="ttdeci">ListCell ListCell_get_previous(const ListCell self)</div><div class="ttdoc">Fonction qui renvoie la cellule qui précède self.</div><div class="ttdef"><b>Definition:</b> ListCell.c:335</div></div>
+<div class="ttc" id="aListCell_8h_html_a7b77722320f2da555315b840619bf69f"><div class="ttname"><a href="../../d6/d82/ListCell_8h.html#a7b77722320f2da555315b840619bf69f">ListCell_get_last</a></div><div class="ttdeci">ListCell ListCell_get_last(const ListCell self_)</div><div class="ttdoc">Fonction qui va rechercher à partir de cette cellule le dernier élément de la chaine.</div><div class="ttdef"><b>Definition:</b> ListCell.c:315</div></div>
+<div class="ttc" id="aListCell_8h_html_a9ec761d5e0f3855a1bef7bb0d693358a"><div class="ttname"><a href="../../d6/d82/ListCell_8h.html#a9ec761d5e0f3855a1bef7bb0d693358a">ListCell_add</a></div><div class="ttdeci">int ListCell_add(ListCell self, void *object, int index)</div><div class="ttdoc">Fonction qui ajoute un objet à une position donnée dans la liste, à partir de cette cellule.</div><div class="ttdef"><b>Definition:</b> ListCell.c:200</div></div>
+<div class="ttc" id="aListCell_8h_html_aa07eaad054a81354dc31171104dfcae3"><div class="ttname"><a href="../../d6/d82/ListCell_8h.html#aa07eaad054a81354dc31171104dfcae3">ListCell_get_next</a></div><div class="ttdeci">ListCell ListCell_get_next(const ListCell self)</div><div class="ttdoc">Fonction qui renvoie la cellule qui suit self.</div><div class="ttdef"><b>Definition:</b> ListCell.c:357</div></div>
+<div class="ttc" id="aListCell_8h_html_aae2285ec6518af32de9cb67ad5f52b4b"><div class="ttname"><a href="../../d6/d82/ListCell_8h.html#aae2285ec6518af32de9cb67ad5f52b4b">ListCell_remove</a></div><div class="ttdeci">void * ListCell_remove(ListCell self, int index, int clone)</div><div class="ttdoc">Fonction qui va retirer un object à une position donnée, à partir de cette cellule.</div><div class="ttdef"><b>Definition:</b> ListCell.c:243</div></div>
+<div class="ttc" id="aListCell_8h_html_ab7b9c59a1a1db8f09219c9748fa45fdf"><div class="ttname"><a href="../../d6/d82/ListCell_8h.html#ab7b9c59a1a1db8f09219c9748fa45fdf">ListCell_set_next</a></div><div class="ttdeci">ListCell ListCell_set_next(const ListCell self, const ListCell new_next)</div><div class="ttdoc">Fonction qui modifie la cellule qui suit self.</div><div class="ttdef"><b>Definition:</b> ListCell.c:485</div></div>
+<div class="ttc" id="aListCell_8h_html_aca7a11018f4af0785137785463aefe1e"><div class="ttname"><a href="../../d6/d82/ListCell_8h.html#aca7a11018f4af0785137785463aefe1e">ListCell_contains</a></div><div class="ttdeci">int ListCell_contains(ListCell self, void *value)</div><div class="ttdoc">Fonction qui compare la valeur contenue dans la cellule avec value.</div><div class="ttdef"><b>Definition:</b> ListCell.c:509</div></div>
+<div class="ttc" id="aListCell_8h_html_ae289ee13ff633988c0f263a163b23075"><div class="ttname"><a href="../../d6/d82/ListCell_8h.html#ae289ee13ff633988c0f263a163b23075">ListCell_get_value</a></div><div class="ttdeci">void * ListCell_get_value(const ListCell self)</div><div class="ttdoc">Fonction qui va renvoyer la valeur contenue dans la cellule.</div><div class="ttdef"><b>Definition:</b> ListCell.c:346</div></div>
+<div class="ttc" id="aListCell_8h_html_aea761d264109a769a433619b9a62c1f1"><div class="ttname"><a href="../../d6/d82/ListCell_8h.html#aea761d264109a769a433619b9a62c1f1">_ListCell_</a></div><div class="ttdeci">const Class _ListCell_</div><div class="ttdef"><b>Definition:</b> ListCell.c:95</div></div>
+<div class="ttc" id="astruct__Class___html"><div class="ttname"><a href="../../d8/d36/struct__Class__.html">_Class_</a></div><div class="ttdoc">Structure représentant la classe dans laquelle appratient un objet.</div><div class="ttdef"><b>Definition:</b> Class.h:57</div></div>
+<div class="ttc" id="astruct__ListCell___html"><div class="ttname"><a href="../../d7/d4c/struct__ListCell__.html">_ListCell_</a></div><div class="ttdoc">Class ListCell des cellules d'une liste doublement chainée.</div><div class="ttdef"><b>Definition:</b> ListCell.c:74</div></div>
+<div class="ttc" id="astruct__ListCell___html_ac99320a94f8ebdb1a1b0bdb9d0f4eb80"><div class="ttname"><a href="../../d7/d4c/struct__ListCell__.html#ac99320a94f8ebdb1a1b0bdb9d0f4eb80">_ListCell_::_ListCell_</a></div><div class="ttdeci">Class _ListCell_</div><div class="ttdef"><b>Definition:</b> ListCell.c:75</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré par&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+</small></address>
+</body>
+</html>

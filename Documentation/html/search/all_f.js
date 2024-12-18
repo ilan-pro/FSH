@@ -1,0 +1,4 @@
+var searchData=
+[
+  ['usr_5fprompt_130',['usr_prompt',['../d6/d4f/shell_8c.html#ad5f0370ef35eb011706a0cb8bc299885',1,'shell.c']]]
+];

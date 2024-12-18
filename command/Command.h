@@ -1,0 +1,168 @@
+/**
+ * @file Command.h
+ * @brief  Fichier d'en-tête contenant les déclarations des variables publiques et de toutes les méthodes public de `_Command_`.
+ * 
+ * Ce fichier d'en-tête définie les attributs publics et privés de la classe `_Command_` et déclare la méthode abstraite 
+ * `Command_execute()`.
+ * 
+ */
+
+
+#include "../base/ArrayList.h"
+#include "Redirector.h"
+#ifndef COMMAND_H 
+/**@cond HIDE_THIS */
+#define COMMAND_H
+/**@endcond */
+
+#ifdef COMMAND_CLASS
+
+    // Attributs d'une commande.
+    #define COMMAND_FIELDS \
+        const char* const name; /* Nom de la commande */ \
+        int (*const execute) (struct _Command_*); /* Fonction qui va faire exécuter la commande */\
+        ArrayList params; /* L'ensemble des paramètres de la commande */ \
+        ArrayList args; /* L'ensemble des arguments de la commande */  \
+        ArrayList args_tmp; /* Liste temporaire qui va stocker les arguments (dont ceux qui commencent par $ seront remplacés) pendant l'exécution. */\
+        Redirector redirector; /* Objet qui va s'occuper de la redirection de l'entrée/sortie. */
+        // Ajouter d'autres attributs ici.
+    
+    typedef struct _Command_* Command;
+        
+#else
+    
+    /** @cond HIDE_THIS*/
+    // Champs privées des commandes.
+    typedef struct __command_private_fields{
+        ArrayList params;
+        ArrayList args;
+        ArrayList args_tmp;
+        Redirector redirector;
+    } __command_priv_fields;
+    
+    // Champs visible depuis l'extérieur, les champs privés sont cachés par un pointeur opaque
+    #define COMMAND_H_FIELDS \
+        const char* const name; \
+        int (*const execute) (struct _Command_*); \
+        const char _[sizeof(__command_priv_fields)];
+    /**@endcond*/
+    
+    /**
+     * @brief Classe de toutes les commandes.
+     * 
+     * Il s'agit d'une classe abstraite qui représente une commande interne du shell. 
+     * Elle possède une méthode abstraite à redéfinir dans tout sous-type de commande 
+     * (sinon cela va déclancher une erreur), qui est la méthode `execute()` appelée par 
+     * `Command_execute()`, la fonction appelée pour exécuter la commande.
+     * 
+     * Construction : <code><strong>obj_new(\_Command\_, "Nom_de_la_commande" )</strong></code>
+     */
+    typedef struct _Command_ {
+        Class _Command_;
+        COMMAND_H_FIELDS
+    }* Command;
+        
+#endif
+    
+    /**
+     * @internal
+     * @brief Objet Class de toutes les commandes.
+     * 
+     * Construction : `obj_new(_Command_, <Nom_de_la_commande> )`
+     */
+    extern const Class _Command_;
+    
+    /**
+     * @brief Il s'agit d'un code d'echec lors de la création de la consturction d'une commande.
+     * 
+     * Le message d'arreur peut être affiché en faisant Command_perror(Command_FAIL_CODE).
+     */
+    extern int Command_FAIL_CODE;
+
+    /**
+     * @brief Il s'agit du nombre d'accolades ouverts pendant le traitement d'un prompt.
+     *
+     * Ce champs permet de savoir si une accolade fermante ferme réelement une accolande ouvrante.
+     *
+     */
+    extern int opened_brackets;
+    
+    /**
+     * @brief Fonction qui va afficher le message d'erreur lié au code d'erreur 
+     * envoyé par la dernière commande échouée.
+     */
+     void Command_perror(); 
+
+    /**
+     * @brief Fonction qui va mettre à jour la valeur du code d'erreur 
+     * liée au résultat de la création ou exécution d'une commande.
+     *
+     * La fonction va également mettre à jour le  message d'erreur 
+     * lié au code d'erreur
+     *
+     * @param self La référence vers la commande (pour récupérer son nom);
+     * @param err Le code d'erreur que la commande souhaite stocker.
+     */
+    void Command_fail_with_message(Command self, int err);
+
+    /**
+     * @brief Fonction qui va mettre à jour la valeur du code d'erreur 
+     * liée au résultat de la création ou exécution d'une commande.
+     *
+     * @param err Le code d'erreur que la commande souhaite stocker.
+     */
+    void Command_fail(int err);
+    /**
+     * @brief Fonction qui va exécuter la commande.
+     *
+     * Cette fonction est abstraite (déclanche une erreur si aucune redéfinition
+     * n'est trouvée), à chaque appel la fonction va appeller la méthode `execute()` 
+     * de l'objet (liason dynamique). Cela va permettre plus tard de créer une 
+     * file de commandes toutes distinctes et de les éxécuter.
+     * 
+     * @param self La commande à faire exécuter.
+     * @return La valeur de retour de la commande après exécution.
+     */
+    int Command_execute(Command self);
+
+/**
+ * @brief Fonction qui vérifie si oui ou non le caractère actuellement pointé par 
+ * le pointeur vers le prompte de l'utilisateur est valide, c'est à dire 
+ * si on doit oui ou non arrêter la parsing de la commande.
+ * 
+ * Un caractère est valide si et seulement si : 
+ *  - Ce n'est pas le caracètre null (fin de chaine).
+ *  - Ce n'est pas l'un des caracètres '|', ';' ou '}'.
+ * 
+ * Si le caractère n'est pas null (fin de chaine) et qu'il est entre guillemets (simple ou double) ou échapé 
+ * alors il est autamatiquement valide ('|', ';' et '}' seront considérés comme des caracètres normaux).
+ * 
+ * @param quoted Booléen indiquant si le caracètre est entre guillemets simple.
+ * @param double_quoted Booléen indiquant si le caracètre est entre guillemets doubles.
+ * @param esc Booléen indiquant si le caracètre est echapé par \ .
+ * @param prompt Le prompt en cours de paring.
+ * @return Si oui ou non le caractère actuellement pointé par 
+ * le pointeur vers le prompte de l'utilisateur est valide.
+ */
+int Command_actual_char_is_legal(int quoted, int double_quoted, int esc, char** prompt);
+    
+/**
+ * @brief Fonction qui va récupérer tous les sous chaines séparées par des ' ' (espaces) 
+ * dans le prompt jusqu'à la fin de ce dernier (rencontre avec `\0`).
+ *
+ * Les espace consécutives sont ignorés sauf s'ils font parti d'une chaine délimitée 
+ * par des guillemets (' ou ").
+ * <br>
+ * Lorsque la fonction rencontre un caractère '\' le caractère suivant est échappé. Les 
+ * espace sont échapés (c'est à dire qu'ils ne vont pas couper la chaine) s'ils se trouvent 
+ * entre guillemets.
+ * 
+ * @param collect_list La liste qui va contenir les résultats.
+ * @param prompt Le prompt qui sera utilisé (la chaine pointée est modifiée).
+ * @param redirector L'objet qui s'occupe de la redirection de la commande au cas où un caractère '>'
+ * est rencontré.
+ * @param stop_in_next Booléen indiquant si oui ou non la fonction doit s'arrêter après la première sous-chaine.
+ */
+int Command_parse_all_sub(ArrayList collect_list, char **prompt, int stop_in_next, Redirector redirector);
+
+#endif

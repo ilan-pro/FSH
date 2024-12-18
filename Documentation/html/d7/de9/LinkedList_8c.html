@@ -1,0 +1,745 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>FSH - Projet Système: Référence du fichier base/LinkedList.c</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">FSH - Projet Système
+   </div>
+   <div id="projectbrief">Projet de la matière Sy5 - U Paris Cité</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "../../search",false,'Recherche','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="../../menudata.js"></script>
+<script type="text/javascript" src="../../menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('../../',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="../../dir_e914ee4d4a44400f1fdb170cb4ead18a.html">base</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#typedef-members">Définitions de type</a> &#124;
+<a href="#func-members">Fonctions</a> &#124;
+<a href="#var-members">Variables</a>  </div>
+  <div class="headertitle">
+<div class="title">Référence du fichier LinkedList.c</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Fichier contenant l'implémentation des variables et de toutes les méthodes déclarés dans <code><a class="el" href="../../db/d44/LinkedList_8h.html" title="Fichier d&#39;en-tête contenant les déclarations de toutes les méthodes utilisées pour manipuler les obje...">LinkedList.h</a></code>.  
+<a href="#details">Plus de détails...</a></p>
+<div class="textblock"><code>#include &quot;<a class="el" href="../../d6/d82/ListCell_8h_source.html">ListCell.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="../../d7/d58/new_8h_source.html">new.h</a>&quot;</code><br />
+</div><div class="textblock"><div class="dynheader">
+Graphe des dépendances par inclusion de LinkedList.c:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../d6/d91/LinkedList_8c__incl.png" border="0" usemap="#abase_2LinkedList_8c" alt=""/></div>
+<map name="abase_2LinkedList_8c" id="abase_2LinkedList_8c">
+<area shape="rect" title="Fichier contenant l&#39;implémentation des variables et de toutes les méthodes déclarés dans LinkedList...." alt="" coords="263,5,396,32"/>
+<area shape="rect" href="../../d6/d82/ListCell_8h.html" title="Fichier d&#39;en&#45;tête contenant les déclarations de toutes les méthodes utilisées pour manipuler les obje..." alt="" coords="240,80,323,107"/>
+<area shape="rect" href="../../d7/d58/new_8h.html" title="Fichier d&#39;en&#45;tête contenant les déclarations de toutes les méthodes génériques agissant sur des objet..." alt="" coords="347,80,407,107"/>
+<area shape="rect" href="../../d4/d05/Class_8h.html" title="Fichier d&#39;en&#45;tête contenant la définition du type Class." alt="" coords="295,155,364,181"/>
+<area shape="rect" title=" " alt="" coords="5,229,80,256"/>
+<area shape="rect" title=" " alt="" coords="104,229,179,256"/>
+<area shape="rect" title=" " alt="" coords="203,229,269,256"/>
+<area shape="rect" title=" " alt="" coords="294,229,365,256"/>
+<area shape="rect" title=" " alt="" coords="389,229,464,256"/>
+<area shape="rect" title=" " alt="" coords="488,229,563,256"/>
+<area shape="rect" title=" " alt="" coords="587,229,658,256"/>
+</map>
+</div>
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d5f/struct__LinkedList__.html">_LinkedList_</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Classe <code>LinkedList</code> des listes doublement chainées.  <a href="../../d9/d5f/struct__LinkedList__.html#details">Plus de détails...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
+Définitions de type</h2></td></tr>
+<tr class="memitem:a9e97ddb0b652fc6241b56a6f723e4dc0"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="../../d9/d5f/struct__LinkedList__.html">_LinkedList_</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/de9/LinkedList_8c.html#a9e97ddb0b652fc6241b56a6f723e4dc0">LinkedList</a></td></tr>
+<tr class="memdesc:a9e97ddb0b652fc6241b56a6f723e4dc0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Classe <code>LinkedList</code> des listes doublement chainées.  <a href="../../d7/de9/LinkedList_8c.html#a9e97ddb0b652fc6241b56a6f723e4dc0">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a9e97ddb0b652fc6241b56a6f723e4dc0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Fonctions</h2></td></tr>
+<tr class="memitem:a2c247b5c6b58fdd87a52e1ebbdf1a9ae"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/de9/LinkedList_8c.html#a2c247b5c6b58fdd87a52e1ebbdf1a9ae">LinkedList_size</a> (<a class="el" href="../../d7/de9/LinkedList_8c.html#a9e97ddb0b652fc6241b56a6f723e4dc0">LinkedList</a> self)</td></tr>
+<tr class="memdesc:a2c247b5c6b58fdd87a52e1ebbdf1a9ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fonction qui renvoie la taille de la liste.  <a href="../../d7/de9/LinkedList_8c.html#a2c247b5c6b58fdd87a52e1ebbdf1a9ae">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a2c247b5c6b58fdd87a52e1ebbdf1a9ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a82c869507e3fa9c78178d47706a1bb62"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/de9/LinkedList_8c.html#a82c869507e3fa9c78178d47706a1bb62">LinkedList_add_first</a> (<a class="el" href="../../d7/de9/LinkedList_8c.html#a9e97ddb0b652fc6241b56a6f723e4dc0">LinkedList</a> self_, void *object_, int clone)</td></tr>
+<tr class="memdesc:a82c869507e3fa9c78178d47706a1bb62"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fonction qui va rajouter un élément en tête de liste.  <a href="../../d7/de9/LinkedList_8c.html#a82c869507e3fa9c78178d47706a1bb62">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a82c869507e3fa9c78178d47706a1bb62"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeec73e6b7504bc8cc6a26f10857b7c81"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/de9/LinkedList_8c.html#aeec73e6b7504bc8cc6a26f10857b7c81">LinkedList_add_last</a> (<a class="el" href="../../d7/de9/LinkedList_8c.html#a9e97ddb0b652fc6241b56a6f723e4dc0">LinkedList</a> self_, void *object_, int clone)</td></tr>
+<tr class="memdesc:aeec73e6b7504bc8cc6a26f10857b7c81"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fonction qui va rajouter un élément en fin de liste.  <a href="../../d7/de9/LinkedList_8c.html#aeec73e6b7504bc8cc6a26f10857b7c81">Plus de détails...</a><br /></td></tr>
+<tr class="separator:aeec73e6b7504bc8cc6a26f10857b7c81"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a19cd73bd53654ddeb3440b30b0b88b21"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/de9/LinkedList_8c.html#a19cd73bd53654ddeb3440b30b0b88b21">LinkedList_remove_first</a> (<a class="el" href="../../d7/de9/LinkedList_8c.html#a9e97ddb0b652fc6241b56a6f723e4dc0">LinkedList</a> self, int clone)</td></tr>
+<tr class="memdesc:a19cd73bd53654ddeb3440b30b0b88b21"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cette fonction va retirer le premier élément de la liste.  <a href="../../d7/de9/LinkedList_8c.html#a19cd73bd53654ddeb3440b30b0b88b21">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a19cd73bd53654ddeb3440b30b0b88b21"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3a984622be6a7d96d6cebdde37c6ea39"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/de9/LinkedList_8c.html#a3a984622be6a7d96d6cebdde37c6ea39">LinkedList_remove_last</a> (<a class="el" href="../../d7/de9/LinkedList_8c.html#a9e97ddb0b652fc6241b56a6f723e4dc0">LinkedList</a> self, int clone)</td></tr>
+<tr class="memdesc:a3a984622be6a7d96d6cebdde37c6ea39"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cette fonction va retirer le dernier élément de la liste.  <a href="../../d7/de9/LinkedList_8c.html#a3a984622be6a7d96d6cebdde37c6ea39">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a3a984622be6a7d96d6cebdde37c6ea39"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aedf8e74739973258efe4b13d29037b4c"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/de9/LinkedList_8c.html#aedf8e74739973258efe4b13d29037b4c">LinkedList_get_last</a> (<a class="el" href="../../d7/de9/LinkedList_8c.html#a9e97ddb0b652fc6241b56a6f723e4dc0">LinkedList</a> self, int clone)</td></tr>
+<tr class="memdesc:aedf8e74739973258efe4b13d29037b4c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fonction qui renvoie la valeur du dernier élément de la liste.  <a href="../../d7/de9/LinkedList_8c.html#aedf8e74739973258efe4b13d29037b4c">Plus de détails...</a><br /></td></tr>
+<tr class="separator:aedf8e74739973258efe4b13d29037b4c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a06a4c894cac52931188464b7652ddf5a"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/de9/LinkedList_8c.html#a06a4c894cac52931188464b7652ddf5a">LinkedList_get_first</a> (<a class="el" href="../../d7/de9/LinkedList_8c.html#a9e97ddb0b652fc6241b56a6f723e4dc0">LinkedList</a> self, int clone)</td></tr>
+<tr class="memdesc:a06a4c894cac52931188464b7652ddf5a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fonction qui renvoie la valeur du premier élément de la liste.  <a href="../../d7/de9/LinkedList_8c.html#a06a4c894cac52931188464b7652ddf5a">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a06a4c894cac52931188464b7652ddf5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a92fac81c68bf041a32f827830d335fbe"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/de9/LinkedList_8c.html#a92fac81c68bf041a32f827830d335fbe">LinkedList_add</a> (<a class="el" href="../../d7/de9/LinkedList_8c.html#a9e97ddb0b652fc6241b56a6f723e4dc0">LinkedList</a> self, void *object, int index, int clone)</td></tr>
+<tr class="memdesc:a92fac81c68bf041a32f827830d335fbe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fonction qui ajoute un élément à une position précise dans la liste.  <a href="../../d7/de9/LinkedList_8c.html#a92fac81c68bf041a32f827830d335fbe">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a92fac81c68bf041a32f827830d335fbe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa7918068dd2bcd899627bb6247318eea"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/de9/LinkedList_8c.html#aa7918068dd2bcd899627bb6247318eea">LinkedList_remove</a> (<a class="el" href="../../d7/de9/LinkedList_8c.html#a9e97ddb0b652fc6241b56a6f723e4dc0">LinkedList</a> self, int index, int clone)</td></tr>
+<tr class="memdesc:aa7918068dd2bcd899627bb6247318eea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fonction qui va retirer un élément de la liste qui se trouve à une position donnée.  <a href="../../d7/de9/LinkedList_8c.html#aa7918068dd2bcd899627bb6247318eea">Plus de détails...</a><br /></td></tr>
+<tr class="separator:aa7918068dd2bcd899627bb6247318eea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac1e9d14edb9e4d3d68e9f64559afb647"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/de9/LinkedList_8c.html#ac1e9d14edb9e4d3d68e9f64559afb647">LinkedList_get</a> (<a class="el" href="../../d7/de9/LinkedList_8c.html#a9e97ddb0b652fc6241b56a6f723e4dc0">LinkedList</a> self, int index, int clone)</td></tr>
+<tr class="memdesc:ac1e9d14edb9e4d3d68e9f64559afb647"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fonction qui renvoie la valeur d' élément de la liste qui se trouve à une position donnée.  <a href="../../d7/de9/LinkedList_8c.html#ac1e9d14edb9e4d3d68e9f64559afb647">Plus de détails...</a><br /></td></tr>
+<tr class="separator:ac1e9d14edb9e4d3d68e9f64559afb647"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a286c0772e27a8afc28bfdb8873b6948b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/de9/LinkedList_8c.html#a286c0772e27a8afc28bfdb8873b6948b">LinkedList_contains</a> (<a class="el" href="../../d7/de9/LinkedList_8c.html#a9e97ddb0b652fc6241b56a6f723e4dc0">LinkedList</a> self, void *object)</td></tr>
+<tr class="memdesc:a286c0772e27a8afc28bfdb8873b6948b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fonction qui vérifie si oui ou non un élément se trouve dans la liste.  <a href="../../d7/de9/LinkedList_8c.html#a286c0772e27a8afc28bfdb8873b6948b">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a286c0772e27a8afc28bfdb8873b6948b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4185653d9f545f45ca0e6df5dc12bc27"><td class="memItemLeft" align="right" valign="top">long long int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/de9/LinkedList_8c.html#a4185653d9f545f45ca0e6df5dc12bc27">LinkedList_index_of</a> (<a class="el" href="../../d7/de9/LinkedList_8c.html#a9e97ddb0b652fc6241b56a6f723e4dc0">LinkedList</a> self, void *object)</td></tr>
+<tr class="memdesc:a4185653d9f545f45ca0e6df5dc12bc27"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fonction qui renvoie l'indice de la première occurence d'un élément qui se trouve dans la liste.  <a href="../../d7/de9/LinkedList_8c.html#a4185653d9f545f45ca0e6df5dc12bc27">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a4185653d9f545f45ca0e6df5dc12bc27"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:a03d6d0ac2c5eac13d26bd81c6daab29c"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="../../d4/d05/Class_8h.html#a6ec2a8ccaeb1e924a80036ec40760377">Class</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/de9/LinkedList_8c.html#a03d6d0ac2c5eac13d26bd81c6daab29c">_LinkedList_</a> = &amp;__LinkedList__</td></tr>
+<tr class="memdesc:a03d6d0ac2c5eac13d26bd81c6daab29c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Classe de tous les objets <code><a class="el" href="../../d9/d5f/struct__LinkedList__.html" title="Classe LinkedList des listes doublement chainées.">_LinkedList_</a></code>. Construction : <code><b> obj_new( <code><a class="el" href="../../d9/d5f/struct__LinkedList__.html" title="Classe LinkedList des listes doublement chainées.">_LinkedList_</a></code>) </b></code> <br  />
+ <code><a class="el" href="../../d9/d5f/struct__LinkedList__.html" title="Classe LinkedList des listes doublement chainées.">_LinkedList_</a></code> étant la classe de la liste.  <a href="../../d7/de9/LinkedList_8c.html#a03d6d0ac2c5eac13d26bd81c6daab29c">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a03d6d0ac2c5eac13d26bd81c6daab29c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Description détaillée</h2>
+<div class="textblock"><p>Fichier contenant l'implémentation des variables et de toutes les méthodes déclarés dans <code><a class="el" href="../../db/d44/LinkedList_8h.html" title="Fichier d&#39;en-tête contenant les déclarations de toutes les méthodes utilisées pour manipuler les obje...">LinkedList.h</a></code>. </p>
+<p>C'est dans ce fichier que sont implémentés les constructeurs, destructeurs, etc, des objets de type <code><a class="el" href="../../d9/d5f/struct__LinkedList__.html" title="Classe LinkedList des listes doublement chainées.">_LinkedList_</a></code>, En plus des méthodes publique de <code><a class="el" href="../../db/d44/LinkedList_8h.html" title="Fichier d&#39;en-tête contenant les déclarations de toutes les méthodes utilisées pour manipuler les obje...">LinkedList.h</a></code>. </p>
+</div><h2 class="groupheader">Documentation des définitions de type</h2>
+<a id="a9e97ddb0b652fc6241b56a6f723e4dc0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9e97ddb0b652fc6241b56a6f723e4dc0">&#9670;&nbsp;</a></span>LinkedList</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef struct <a class="el" href="../../d9/d5f/struct__LinkedList__.html">_LinkedList_</a>* <a class="el" href="../../d7/de9/LinkedList_8c.html#a9e97ddb0b652fc6241b56a6f723e4dc0">LinkedList</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Classe <code>LinkedList</code> des listes doublement chainées. </p>
+<p>Construction : <code><b> obj_new( <code><a class="el" href="../../d9/d5f/struct__LinkedList__.html" title="Classe LinkedList des listes doublement chainées.">_LinkedList_</a></code>) </b></code> <br  />
+ <code><a class="el" href="../../d9/d5f/struct__LinkedList__.html" title="Classe LinkedList des listes doublement chainées.">_LinkedList_</a></code> étant la classe de la liste. </p>
+<p>NB : Tous les éléments de la liste peuvent être de plusieurs type différents </p>
+
+</div>
+</div>
+<h2 class="groupheader">Documentation des fonctions</h2>
+<a id="a92fac81c68bf041a32f827830d335fbe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a92fac81c68bf041a32f827830d335fbe">&#9670;&nbsp;</a></span>LinkedList_add()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int LinkedList_add </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d7/de9/LinkedList_8c.html#a9e97ddb0b652fc6241b56a6f723e4dc0">LinkedList</a>&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>object</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>index</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>clone</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Fonction qui ajoute un élément à une position précise dans la liste. </p>
+<p>Mettre le paramètre <code>clone</code> à 1 pour renvoyer une copie au lieu de la la vraie valeur.</p>
+<p><b>ATTENTION</b> : Au moment de la destruction de la liste les valeurs sont également désallouées. Faire une copie (avec <code><a class="el" href="../../d4/d0b/new_8c.html#abd38a6858dfc530b8466440559c2531b" title="Fonction qui crée et renvoie la copie d&#39;un objet.">obj_clone()</a></code>) (ou mettre le paramètre <code>clone</code> à 1 pour que la fonction le fasse) de l'objet avant de l'ajouter dans la liste, si on tient à garder l'objet intact après la destruction de la liste. </p>
+<p>Si on souhaite insérer 2 fois un élément (avec la même référence) dans la liste il est important de mettre <code>clone</code> à 1 pour que la fonction puisse clonner l'objet car au moment de la destruction il sera supprimé deux fois ce qui va générer une erreur.</p>
+<p>La fonction peut être appelée pour tout objet de type <code><a class="el" href="../../d9/d5f/struct__LinkedList__.html" title="Classe LinkedList des listes doublement chainées.">_LinkedList_</a></code> ou sous-type de <code><a class="el" href="../../d9/d5f/struct__LinkedList__.html" title="Classe LinkedList des listes doublement chainées.">_LinkedList_</a></code>.</p>
+<p>Chaque ajout ne se fait pas en temps constant O(index).</p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>La liste dont on cherche le dernier élément. </td></tr>
+    <tr><td class="paramname">object_</td><td>L'objet à insérer dans la liste (copier l'objet si on souhaite le garder après la destruction de la liste). </td></tr>
+    <tr><td class="paramname">index</td><td>Position dans laquelle on souhaite insérer l'objet dans la liste. </td></tr>
+    <tr><td class="paramname">clone</td><td>Boolean dont 1 permet d'indiquer à la fonction si on souhaite qu'elle ajoute une copie de l'objet (copié avec <code><a class="el" href="../../d4/d0b/new_8c.html#abd38a6858dfc530b8466440559c2531b" title="Fonction qui crée et renvoie la copie d&#39;un objet.">obj_clone()</a></code>) plutôt que l'objet lui-même. Cela va permettre de garentir que l'objet ne sera pas détruit avec la liste. Mettre à 0 sinon.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>0 Si l'ajout a échoué 1 sinon. </dd></dl>
+
+</div>
+</div>
+<a id="a82c869507e3fa9c78178d47706a1bb62"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a82c869507e3fa9c78178d47706a1bb62">&#9670;&nbsp;</a></span>LinkedList_add_first()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int LinkedList_add_first </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d7/de9/LinkedList_8c.html#a9e97ddb0b652fc6241b56a6f723e4dc0">LinkedList</a>&#160;</td>
+          <td class="paramname"><em>self_</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>object_</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>clone</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Fonction qui va rajouter un élément en tête de liste. </p>
+<p><b>ATTENTION</b> : Au moment de la destruction de la liste les valeurs sont également désallouées. Faire une copie (avec <code><a class="el" href="../../d4/d0b/new_8c.html#abd38a6858dfc530b8466440559c2531b" title="Fonction qui crée et renvoie la copie d&#39;un objet.">obj_clone()</a></code>) (ou mettre le paramètre <code>clone</code> à 1 pour que la fonction le face) de l'objet avant de l'ajouter dans la liste, si on tient à garder l'objet intact après la destruction de la liste. </p>
+<p>Si on souhaite insérer 2 fois un élément (avec la même référence) dans la liste il est important de mettre <code>clone</code> à 1 pour que la fonction puisse clonner l'objet car au moment de la destruction il sera supprimé deux fois ce qui va générer une erreur.</p>
+<p>La fonction peut être appelée pour tout objet de type <code><a class="el" href="../../d9/d5f/struct__LinkedList__.html" title="Classe LinkedList des listes doublement chainées.">_LinkedList_</a></code> ou sous-type de <code><a class="el" href="../../d9/d5f/struct__LinkedList__.html" title="Classe LinkedList des listes doublement chainées.">_LinkedList_</a></code>.</p>
+<p>Chaque ajout se fait en temps constant O(1).</p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self_</td><td>La liste dans laquelle on souhaite ajouter l'objet. </td></tr>
+    <tr><td class="paramname">object_</td><td>L'objet à insérer dans la liste (copier l'objet si on souhaite le garder après la destruction de la liste).</td></tr>
+    <tr><td class="paramname">clone</td><td>Boolean dont 1 permet d'indiquer à la fonction si on souhaite qu'elle ajoute une copie de l'objet (copié avec <code><a class="el" href="../../d4/d0b/new_8c.html#abd38a6858dfc530b8466440559c2531b" title="Fonction qui crée et renvoie la copie d&#39;un objet.">obj_clone()</a></code>) plutôt que l'objet lui-même. Cela va permettre de garentir que l'objet ne sera pas détruit avec la liste. Mettre à 0 sinon.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>0 si l'ajout à échoué, 1 sinon. </dd></dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">Abort</td><td>Le programme s'arrête si l'objet à ajouter n'est pas du même type (ou sous-type) que les autres. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aeec73e6b7504bc8cc6a26f10857b7c81"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeec73e6b7504bc8cc6a26f10857b7c81">&#9670;&nbsp;</a></span>LinkedList_add_last()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int LinkedList_add_last </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d7/de9/LinkedList_8c.html#a9e97ddb0b652fc6241b56a6f723e4dc0">LinkedList</a>&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>object_</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>clone</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Fonction qui va rajouter un élément en fin de liste. </p>
+<p><b>ATTENTION</b> : Au moment de la destruction de la liste les valeurs sont également désallouées. Faire une copie (avec <code><a class="el" href="../../d4/d0b/new_8c.html#abd38a6858dfc530b8466440559c2531b" title="Fonction qui crée et renvoie la copie d&#39;un objet.">obj_clone()</a></code>) (ou mettre le paramètre <code>clone</code> à 1 pour que la fonction le fasse) de l'objet avant de l'ajouter dans la liste, si on tient à garder l'objet intact après la destruction de la liste. </p>
+<p>Si on souhaite insérer 2 fois un élément (avec la même référence) dans la liste il est important de mettre <code>clone</code> à 1 pour que la fonction puisse clonner l'objet car au moment de la destruction il sera supprimé deux fois ce qui va générer une erreur.</p>
+<p>La fonction peut être appelée pour tout objet de type <code><a class="el" href="../../d9/d5f/struct__LinkedList__.html" title="Classe LinkedList des listes doublement chainées.">_LinkedList_</a></code> ou sous-type de <code><a class="el" href="../../d9/d5f/struct__LinkedList__.html" title="Classe LinkedList des listes doublement chainées.">_LinkedList_</a></code>.</p>
+<p>Chaque ajout se fait en temps constant O(1).</p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self_</td><td>La liste dans laquelle on souhaite ajouter l'objet. </td></tr>
+    <tr><td class="paramname">object_</td><td>L'objet à insérer dans la liste (copier l'objet si on souhaite le garder après la destruction de la liste).</td></tr>
+    <tr><td class="paramname">clone</td><td>Boolean dont 1 permet d'indiquer à la fonction si on souhaite qu'elle ajoute une copie de l'objet (copié avec <code><a class="el" href="../../d4/d0b/new_8c.html#abd38a6858dfc530b8466440559c2531b" title="Fonction qui crée et renvoie la copie d&#39;un objet.">obj_clone()</a></code>) plutôt que l'objet lui-même. Cela va permettre de garentir que l'objet ne sera pas détruit avec la liste. Mettre à 0 sinon.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>0 si l'ajout à échoué, 1 sinon.</dd></dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">Abort</td><td>Le programme s'arrête si l'objet à ajouter n'est pas du même type (ou sous-type) que les autres. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a286c0772e27a8afc28bfdb8873b6948b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a286c0772e27a8afc28bfdb8873b6948b">&#9670;&nbsp;</a></span>LinkedList_contains()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int LinkedList_contains </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d7/de9/LinkedList_8c.html#a9e97ddb0b652fc6241b56a6f723e4dc0">LinkedList</a>&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>object</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Fonction qui vérifie si oui ou non un élément se trouve dans la liste. </p>
+<p>La fonction va comparer les éléments avec la méthode <code><a class="el" href="../../d4/d0b/new_8c.html#a80d4746b01a9f4a30386f83993065802" title="Fonction qui renvoie si oui ou non les deux objets sont egaux.">obj_equals()</a></code>, qui va appeler dynamiquement sa redéfinition sur les objets de la liste (si redefinie).</p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>La liste à parcourir. </td></tr>
+    <tr><td class="paramname">object</td><td>L'élément à rechercher. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>1 Si l'élément se trouve dans la liste et 0 sinon. </dd></dl>
+<dl class="section see"><dt>Voir également</dt><dd><a class="el" href="../../d4/d0b/new_8c.html#a80d4746b01a9f4a30386f83993065802" title="Fonction qui renvoie si oui ou non les deux objets sont egaux.">obj_equals()</a> </dd></dl>
+
+</div>
+</div>
+<a id="ac1e9d14edb9e4d3d68e9f64559afb647"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac1e9d14edb9e4d3d68e9f64559afb647">&#9670;&nbsp;</a></span>LinkedList_get()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void* LinkedList_get </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d7/de9/LinkedList_8c.html#a9e97ddb0b652fc6241b56a6f723e4dc0">LinkedList</a>&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>index</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>clone</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Fonction qui renvoie la valeur d' élément de la liste qui se trouve à une position donnée. </p>
+<p>Mettre le paramètre <code>clone</code> à 1 pour renvoyer une copie au lieu de la la vraie valeur.</p>
+<p>Une recherche ne se fait pas en temps constant, O(index). </p>
+<p>La fonction peut être appelée pour tout objet de type <code><a class="el" href="../../d9/d5f/struct__LinkedList__.html" title="Classe LinkedList des listes doublement chainées.">_LinkedList_</a></code> ou sous-type de <code><a class="el" href="../../d9/d5f/struct__LinkedList__.html" title="Classe LinkedList des listes doublement chainées.">_LinkedList_</a></code>.</p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>La liste dont on cherche l' élément. </td></tr>
+    <tr><td class="paramname">index</td><td>La position de l'élément. </td></tr>
+    <tr><td class="paramname">clone</td><td>Booléen dont 1 permet d'indiquer à la fonction qu'on souhaite qu'elle renvoie une copie de l'objet au lieu de la vraie référence. Au cas où on souhaite la récupérer avant la destruction de la liste.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>La valeur de l'élément ou NULL si la liste est vide. </dd></dl>
+
+</div>
+</div>
+<a id="a06a4c894cac52931188464b7652ddf5a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a06a4c894cac52931188464b7652ddf5a">&#9670;&nbsp;</a></span>LinkedList_get_first()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void* LinkedList_get_first </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d7/de9/LinkedList_8c.html#a9e97ddb0b652fc6241b56a6f723e4dc0">LinkedList</a>&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>clone</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Fonction qui renvoie la valeur du premier élément de la liste. </p>
+<p>Mettre le paramètre <code>clone</code> à 1 pour renvoyer une copie au lieu de la la vraie valeur.</p>
+<p>La fonction peut être appelée pour tout objet de type <code><a class="el" href="../../d9/d5f/struct__LinkedList__.html" title="Classe LinkedList des listes doublement chainées.">_LinkedList_</a></code> ou sous-type de <code><a class="el" href="../../d9/d5f/struct__LinkedList__.html" title="Classe LinkedList des listes doublement chainées.">_LinkedList_</a></code>.</p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>La liste dont on cherche le premier élément. </td></tr>
+    <tr><td class="paramname">clone</td><td>Booléen dont 1 permet d'indiquer à la fonction qu'on souhaite qu'elle renvoie une copie de l'objet au lieu de la vraie référence. Au cas où on souhaite la récupérer avant la destruction de la liste.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>La valeur du premier élément ou NULL si la liste est vide. </dd></dl>
+
+</div>
+</div>
+<a id="aedf8e74739973258efe4b13d29037b4c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aedf8e74739973258efe4b13d29037b4c">&#9670;&nbsp;</a></span>LinkedList_get_last()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void* LinkedList_get_last </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d7/de9/LinkedList_8c.html#a9e97ddb0b652fc6241b56a6f723e4dc0">LinkedList</a>&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>clone</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Fonction qui renvoie la valeur du dernier élément de la liste. </p>
+<p>Mettre le paramètre <code>clone</code> à 1 pour renvoyer une copie au lieu de la la vraie valeur.</p>
+<p>La fonction peut être appelée pour tout objet de type <code><a class="el" href="../../d9/d5f/struct__LinkedList__.html" title="Classe LinkedList des listes doublement chainées.">_LinkedList_</a></code> ou sous-type de <code><a class="el" href="../../d9/d5f/struct__LinkedList__.html" title="Classe LinkedList des listes doublement chainées.">_LinkedList_</a></code>.</p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>La liste dont on cherche le dernier élément. </td></tr>
+    <tr><td class="paramname">clone</td><td>Booléen dont 1 permet d'indiquer à la fonction qu'on souhaite qu'elle renvoie une copie de l'objet au lieu de la vraie référence. Au cas où on souhaite la récupérer avant la destruction de la liste.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>La valeur du dernier élément ou NULL si la liste est vide. </dd></dl>
+
+</div>
+</div>
+<a id="a4185653d9f545f45ca0e6df5dc12bc27"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4185653d9f545f45ca0e6df5dc12bc27">&#9670;&nbsp;</a></span>LinkedList_index_of()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">long long int LinkedList_index_of </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d7/de9/LinkedList_8c.html#a9e97ddb0b652fc6241b56a6f723e4dc0">LinkedList</a>&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>object</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Fonction qui renvoie l'indice de la première occurence d'un élément qui se trouve dans la liste. </p>
+<p>La fonction va comparer les éléments avec la méthode <code><a class="el" href="../../d4/d0b/new_8c.html#a80d4746b01a9f4a30386f83993065802" title="Fonction qui renvoie si oui ou non les deux objets sont egaux.">obj_equals()</a></code>, qui va appeler dynamiquement sa redéfinition sur les objets de la liste (si redefinie).</p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>La liste à parcourir. </td></tr>
+    <tr><td class="paramname">object</td><td>L'élément à rechercher. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>L'indice dans la liste de l'élément. -1 Si l'élément n'est pas dans la liste. </dd></dl>
+<dl class="section see"><dt>Voir également</dt><dd><a class="el" href="../../d4/d0b/new_8c.html#a80d4746b01a9f4a30386f83993065802" title="Fonction qui renvoie si oui ou non les deux objets sont egaux.">obj_equals()</a> </dd></dl>
+
+</div>
+</div>
+<a id="aa7918068dd2bcd899627bb6247318eea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa7918068dd2bcd899627bb6247318eea">&#9670;&nbsp;</a></span>LinkedList_remove()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void* LinkedList_remove </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d7/de9/LinkedList_8c.html#a9e97ddb0b652fc6241b56a6f723e4dc0">LinkedList</a>&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>index</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>clone</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Fonction qui va retirer un élément de la liste qui se trouve à une position donnée. </p>
+<p>Si la liste est vide alors la fonction va renvoyer NULL.</p>
+<p>** Important ** : La cellule qui sera retirée sera immédiatement détruite (appelle à son destructeur). Ne pas rajouter d'objet dont on souhaite garder la référence après son retrait dans la liste. </p>
+<p>La fonction peut être appelée pour tout objet de type <code><a class="el" href="../../d9/d5f/struct__LinkedList__.html" title="Classe LinkedList des listes doublement chainées.">_LinkedList_</a></code> ou sous-type de <code><a class="el" href="../../d9/d5f/struct__LinkedList__.html" title="Classe LinkedList des listes doublement chainées.">_LinkedList_</a></code>.</p>
+<p>Chaque suppression se fait en temps constant O(1).</p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>La liste dont on souhaite retirer le dernier élément. </td></tr>
+    <tr><td class="paramname">clone</td><td>Booléen dont 1 permet d'indiquer à la fonction qu'on souhaite qu'elle nous renvoie une copie de l'objet après suppression. Pour rappel, l'objet sera détruit après sa suppression de la liste.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>La valeur retirée (ou NULL si on ne souhaite pas la récupérer) Si le dernier élément est bien retiré de la liste, NULL sinon. </dd></dl>
+
+</div>
+</div>
+<a id="a19cd73bd53654ddeb3440b30b0b88b21"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a19cd73bd53654ddeb3440b30b0b88b21">&#9670;&nbsp;</a></span>LinkedList_remove_first()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void* LinkedList_remove_first </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d7/de9/LinkedList_8c.html#a9e97ddb0b652fc6241b56a6f723e4dc0">LinkedList</a>&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>clone</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Cette fonction va retirer le premier élément de la liste. </p>
+<p>Si la liste est vide alors la fonction va renvoyer NULL.</p>
+<p>** Important ** : La cellule qui sera retirée sera immédiatement détruite (appelle à son destructeur). Ne pas rajouter d'objet dont on souhaite garder la référence après son retrait dans la liste.</p>
+<p>La fonction peut être appelée pour tout objet de type <code><a class="el" href="../../d9/d5f/struct__LinkedList__.html" title="Classe LinkedList des listes doublement chainées.">_LinkedList_</a></code> ou sous-type de <code><a class="el" href="../../d9/d5f/struct__LinkedList__.html" title="Classe LinkedList des listes doublement chainées.">_LinkedList_</a></code>.</p>
+<p>Chaque suppression se fait en temps constant O(1).</p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>La liste dont on souhaite retirer le premier élément. </td></tr>
+    <tr><td class="paramname">clone</td><td>Booléen dont 1 permet d'indiquer à la fonction qu'on souhaite qu'elle nous renvoie une copie de l'objet après suppression. Pour rappel, l'objet sera détruit après sa suppression de la liste.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>La valeur retirée (ou NULL si on ne souhaite pas la récupérer) Si le premier élément est bien retiré de la liste, NULL sinon. </dd></dl>
+
+</div>
+</div>
+<a id="a3a984622be6a7d96d6cebdde37c6ea39"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3a984622be6a7d96d6cebdde37c6ea39">&#9670;&nbsp;</a></span>LinkedList_remove_last()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void* LinkedList_remove_last </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d7/de9/LinkedList_8c.html#a9e97ddb0b652fc6241b56a6f723e4dc0">LinkedList</a>&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>clone</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Cette fonction va retirer le dernier élément de la liste. </p>
+<p>Si la liste est vide alors la fonction va renvoyer NULL.</p>
+<p>** Important ** : La cellule qui sera retirée sera immédiatement détruite (appelle à son destructeur). Ne pas rajouter d'objet dont on souhaite garder la référence après son retrait dans la liste. </p>
+<p>La fonction peut être appelée pour tout objet de type <code><a class="el" href="../../d9/d5f/struct__LinkedList__.html" title="Classe LinkedList des listes doublement chainées.">_LinkedList_</a></code> ou sous-type de <code><a class="el" href="../../d9/d5f/struct__LinkedList__.html" title="Classe LinkedList des listes doublement chainées.">_LinkedList_</a></code>.</p>
+<p>Chaque suppression se fait en temps constant O(1).</p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>La liste dont on souhaite retirer le dernier élément. </td></tr>
+    <tr><td class="paramname">clone</td><td>Booléen dont 1 permet d'indiquer à la fonction qu'on souhaite qu'elle nous renvoie une copie de l'objet après suppression. Pour rappel, l'objet sera détruit après sa suppression de la liste.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>La valeur retirée (ou NULL si on ne souhaite pas la récupérer) Si le dernier élément est bien retiré de la liste, NULL sinon. </dd></dl>
+
+</div>
+</div>
+<a id="a2c247b5c6b58fdd87a52e1ebbdf1a9ae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2c247b5c6b58fdd87a52e1ebbdf1a9ae">&#9670;&nbsp;</a></span>LinkedList_size()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t LinkedList_size </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d7/de9/LinkedList_8c.html#a9e97ddb0b652fc6241b56a6f723e4dc0">LinkedList</a>&#160;</td>
+          <td class="paramname"><em>self_</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Fonction qui renvoie la taille de la liste. </p>
+<p>Cette fonction renvoie la taille de la liste, elle peut être appelé pour tout objet de type <code><a class="el" href="../../d9/d5f/struct__LinkedList__.html" title="Classe LinkedList des listes doublement chainées.">_LinkedList_</a></code> ou sous-type de <code><a class="el" href="../../d9/d5f/struct__LinkedList__.html" title="Classe LinkedList des listes doublement chainées.">_LinkedList_</a></code>.</p>
+<p>La récupération de la taille se fait en temps constant O(1).</p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self_</td><td>L'objet de type <code>LinkedList</code> (ou sous-type). </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>La taille de la liste. </dd></dl>
+
+</div>
+</div>
+<h2 class="groupheader">Documentation des variables</h2>
+<a id="a03d6d0ac2c5eac13d26bd81c6daab29c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a03d6d0ac2c5eac13d26bd81c6daab29c">&#9670;&nbsp;</a></span>_LinkedList_</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="../../d4/d05/Class_8h.html#a6ec2a8ccaeb1e924a80036ec40760377">Class</a> <a class="el" href="../../d9/d5f/struct__LinkedList__.html">_LinkedList_</a> = &amp;__LinkedList__</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Classe de tous les objets <code><a class="el" href="../../d9/d5f/struct__LinkedList__.html" title="Classe LinkedList des listes doublement chainées.">_LinkedList_</a></code>. Construction : <code><b> obj_new( <code><a class="el" href="../../d9/d5f/struct__LinkedList__.html" title="Classe LinkedList des listes doublement chainées.">_LinkedList_</a></code>) </b></code> <br  />
+ <code><a class="el" href="../../d9/d5f/struct__LinkedList__.html" title="Classe LinkedList des listes doublement chainées.">_LinkedList_</a></code> étant la classe de la liste. </p>
+<p>NB : Tous les éléments de la liste peuvent être de plusieurs type différents </p>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré par&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+</small></address>
+</body>
+</html>

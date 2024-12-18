@@ -1,0 +1,434 @@
+\hypertarget{LinkedList_8c}{}\doxysection{Référence du fichier base/\+Linked\+List.c}
+\label{LinkedList_8c}\index{base/LinkedList.c@{base/LinkedList.c}}
+
+
+Fichier contenant l\textquotesingle{}implémentation des variables et de toutes les méthodes déclarés dans {\ttfamily \mbox{\hyperlink{LinkedList_8h}{Linked\+List.\+h}}}.  
+
+
+{\ttfamily \#include \char`\"{}List\+Cell.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}new.\+h\char`\"{}}\newline
+Graphe des dépendances par inclusion de Linked\+List.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d6/d91/LinkedList_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct__LinkedList__}{\+\_\+\+Linked\+List\+\_\+}}
+\begin{DoxyCompactList}\small\item\em Classe {\ttfamily Linked\+List} des listes doublement chainées. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Définitions de type}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \mbox{\hyperlink{struct__LinkedList__}{\+\_\+\+Linked\+List\+\_\+}} $\ast$ \mbox{\hyperlink{LinkedList_8c_a9e97ddb0b652fc6241b56a6f723e4dc0}{Linked\+List}}
+\begin{DoxyCompactList}\small\item\em Classe {\ttfamily Linked\+List} des listes doublement chainées. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Fonctions}
+\begin{DoxyCompactItemize}
+\item 
+size\+\_\+t \mbox{\hyperlink{LinkedList_8c_a2c247b5c6b58fdd87a52e1ebbdf1a9ae}{Linked\+List\+\_\+size}} (\mbox{\hyperlink{LinkedList_8c_a9e97ddb0b652fc6241b56a6f723e4dc0}{Linked\+List}} self)
+\begin{DoxyCompactList}\small\item\em Fonction qui renvoie la taille de la liste. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{LinkedList_8c_a82c869507e3fa9c78178d47706a1bb62}{Linked\+List\+\_\+add\+\_\+first}} (\mbox{\hyperlink{LinkedList_8c_a9e97ddb0b652fc6241b56a6f723e4dc0}{Linked\+List}} self\+\_\+, void $\ast$object\+\_\+, int clone)
+\begin{DoxyCompactList}\small\item\em Fonction qui va rajouter un élément en tête de liste. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{LinkedList_8c_aeec73e6b7504bc8cc6a26f10857b7c81}{Linked\+List\+\_\+add\+\_\+last}} (\mbox{\hyperlink{LinkedList_8c_a9e97ddb0b652fc6241b56a6f723e4dc0}{Linked\+List}} self\+\_\+, void $\ast$object\+\_\+, int clone)
+\begin{DoxyCompactList}\small\item\em Fonction qui va rajouter un élément en fin de liste. \end{DoxyCompactList}\item 
+void $\ast$ \mbox{\hyperlink{LinkedList_8c_a19cd73bd53654ddeb3440b30b0b88b21}{Linked\+List\+\_\+remove\+\_\+first}} (\mbox{\hyperlink{LinkedList_8c_a9e97ddb0b652fc6241b56a6f723e4dc0}{Linked\+List}} self, int clone)
+\begin{DoxyCompactList}\small\item\em Cette fonction va retirer le premier élément de la liste. \end{DoxyCompactList}\item 
+void $\ast$ \mbox{\hyperlink{LinkedList_8c_a3a984622be6a7d96d6cebdde37c6ea39}{Linked\+List\+\_\+remove\+\_\+last}} (\mbox{\hyperlink{LinkedList_8c_a9e97ddb0b652fc6241b56a6f723e4dc0}{Linked\+List}} self, int clone)
+\begin{DoxyCompactList}\small\item\em Cette fonction va retirer le dernier élément de la liste. \end{DoxyCompactList}\item 
+void $\ast$ \mbox{\hyperlink{LinkedList_8c_aedf8e74739973258efe4b13d29037b4c}{Linked\+List\+\_\+get\+\_\+last}} (\mbox{\hyperlink{LinkedList_8c_a9e97ddb0b652fc6241b56a6f723e4dc0}{Linked\+List}} self, int clone)
+\begin{DoxyCompactList}\small\item\em Fonction qui renvoie la valeur du dernier élément de la liste. \end{DoxyCompactList}\item 
+void $\ast$ \mbox{\hyperlink{LinkedList_8c_a06a4c894cac52931188464b7652ddf5a}{Linked\+List\+\_\+get\+\_\+first}} (\mbox{\hyperlink{LinkedList_8c_a9e97ddb0b652fc6241b56a6f723e4dc0}{Linked\+List}} self, int clone)
+\begin{DoxyCompactList}\small\item\em Fonction qui renvoie la valeur du premier élément de la liste. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{LinkedList_8c_a92fac81c68bf041a32f827830d335fbe}{Linked\+List\+\_\+add}} (\mbox{\hyperlink{LinkedList_8c_a9e97ddb0b652fc6241b56a6f723e4dc0}{Linked\+List}} self, void $\ast$object, int index, int clone)
+\begin{DoxyCompactList}\small\item\em Fonction qui ajoute un élément à une position précise dans la liste. \end{DoxyCompactList}\item 
+void $\ast$ \mbox{\hyperlink{LinkedList_8c_aa7918068dd2bcd899627bb6247318eea}{Linked\+List\+\_\+remove}} (\mbox{\hyperlink{LinkedList_8c_a9e97ddb0b652fc6241b56a6f723e4dc0}{Linked\+List}} self, int index, int clone)
+\begin{DoxyCompactList}\small\item\em Fonction qui va retirer un élément de la liste qui se trouve à une position donnée. \end{DoxyCompactList}\item 
+void $\ast$ \mbox{\hyperlink{LinkedList_8c_ac1e9d14edb9e4d3d68e9f64559afb647}{Linked\+List\+\_\+get}} (\mbox{\hyperlink{LinkedList_8c_a9e97ddb0b652fc6241b56a6f723e4dc0}{Linked\+List}} self, int index, int clone)
+\begin{DoxyCompactList}\small\item\em Fonction qui renvoie la valeur d\textquotesingle{} élément de la liste qui se trouve à une position donnée. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{LinkedList_8c_a286c0772e27a8afc28bfdb8873b6948b}{Linked\+List\+\_\+contains}} (\mbox{\hyperlink{LinkedList_8c_a9e97ddb0b652fc6241b56a6f723e4dc0}{Linked\+List}} self, void $\ast$object)
+\begin{DoxyCompactList}\small\item\em Fonction qui vérifie si oui ou non un élément se trouve dans la liste. \end{DoxyCompactList}\item 
+long long int \mbox{\hyperlink{LinkedList_8c_a4185653d9f545f45ca0e6df5dc12bc27}{Linked\+List\+\_\+index\+\_\+of}} (\mbox{\hyperlink{LinkedList_8c_a9e97ddb0b652fc6241b56a6f723e4dc0}{Linked\+List}} self, void $\ast$object)
+\begin{DoxyCompactList}\small\item\em Fonction qui renvoie l\textquotesingle{}indice de la première occurence d\textquotesingle{}un élément qui se trouve dans la liste. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const \mbox{\hyperlink{Class_8h_a6ec2a8ccaeb1e924a80036ec40760377}{Class}} \mbox{\hyperlink{LinkedList_8c_a03d6d0ac2c5eac13d26bd81c6daab29c}{\+\_\+\+Linked\+List\+\_\+}} = \&\+\_\+\+\_\+\+Linked\+List\+\_\+\+\_\+
+\begin{DoxyCompactList}\small\item\em Classe de tous les objets {\ttfamily \mbox{\hyperlink{struct__LinkedList__}{\+\_\+\+Linked\+List\+\_\+}}}. Construction \+: {\ttfamily {\bfseries{ obj\+\_\+new( {\ttfamily \mbox{\hyperlink{struct__LinkedList__}{\+\_\+\+Linked\+List\+\_\+}}}) }}} ~\newline
+ {\ttfamily \mbox{\hyperlink{struct__LinkedList__}{\+\_\+\+Linked\+List\+\_\+}}} étant la classe de la liste. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Description détaillée}
+Fichier contenant l\textquotesingle{}implémentation des variables et de toutes les méthodes déclarés dans {\ttfamily \mbox{\hyperlink{LinkedList_8h}{Linked\+List.\+h}}}. 
+
+C\textquotesingle{}est dans ce fichier que sont implémentés les constructeurs, destructeurs, etc, des objets de type {\ttfamily \mbox{\hyperlink{struct__LinkedList__}{\+\_\+\+Linked\+List\+\_\+}}}, En plus des méthodes publique de {\ttfamily \mbox{\hyperlink{LinkedList_8h}{Linked\+List.\+h}}}. 
+
+\doxysubsection{Documentation des définitions de type}
+\mbox{\Hypertarget{LinkedList_8c_a9e97ddb0b652fc6241b56a6f723e4dc0}\label{LinkedList_8c_a9e97ddb0b652fc6241b56a6f723e4dc0}} 
+\index{LinkedList.c@{LinkedList.c}!LinkedList@{LinkedList}}
+\index{LinkedList@{LinkedList}!LinkedList.c@{LinkedList.c}}
+\doxysubsubsection{\texorpdfstring{LinkedList}{LinkedList}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{struct__LinkedList__}{\+\_\+\+Linked\+List\+\_\+}}$\ast$ \mbox{\hyperlink{LinkedList_8c_a9e97ddb0b652fc6241b56a6f723e4dc0}{Linked\+List}}}
+
+
+
+Classe {\ttfamily Linked\+List} des listes doublement chainées. 
+
+Construction \+: {\ttfamily {\bfseries{ obj\+\_\+new( {\ttfamily \mbox{\hyperlink{struct__LinkedList__}{\+\_\+\+Linked\+List\+\_\+}}}) }}} ~\newline
+ {\ttfamily \mbox{\hyperlink{struct__LinkedList__}{\+\_\+\+Linked\+List\+\_\+}}} étant la classe de la liste. 
+
+NB \+: Tous les éléments de la liste peuvent être de plusieurs type différents 
+
+\doxysubsection{Documentation des fonctions}
+\mbox{\Hypertarget{LinkedList_8c_a92fac81c68bf041a32f827830d335fbe}\label{LinkedList_8c_a92fac81c68bf041a32f827830d335fbe}} 
+\index{LinkedList.c@{LinkedList.c}!LinkedList\_add@{LinkedList\_add}}
+\index{LinkedList\_add@{LinkedList\_add}!LinkedList.c@{LinkedList.c}}
+\doxysubsubsection{\texorpdfstring{LinkedList\_add()}{LinkedList\_add()}}
+{\footnotesize\ttfamily int Linked\+List\+\_\+add (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{LinkedList_8c_a9e97ddb0b652fc6241b56a6f723e4dc0}{Linked\+List}}}]{self,  }\item[{void $\ast$}]{object,  }\item[{int}]{index,  }\item[{int}]{clone }\end{DoxyParamCaption})}
+
+
+
+Fonction qui ajoute un élément à une position précise dans la liste. 
+
+Mettre le paramètre {\ttfamily clone} à 1 pour renvoyer une copie au lieu de la la vraie valeur.
+
+{\bfseries{ATTENTION}} \+: Au moment de la destruction de la liste les valeurs sont également désallouées. Faire une copie (avec {\ttfamily \mbox{\hyperlink{new_8c_abd38a6858dfc530b8466440559c2531b}{obj\+\_\+clone()}}}) (ou mettre le paramètre {\ttfamily clone} à 1 pour que la fonction le fasse) de l\textquotesingle{}objet avant de l\textquotesingle{}ajouter dans la liste, si on tient à garder l\textquotesingle{}objet intact après la destruction de la liste. 
+
+Si on souhaite insérer 2 fois un élément (avec la même référence) dans la liste il est important de mettre {\ttfamily clone} à 1 pour que la fonction puisse clonner l\textquotesingle{}objet car au moment de la destruction il sera supprimé deux fois ce qui va générer une erreur.
+
+La fonction peut être appelée pour tout objet de type {\ttfamily \mbox{\hyperlink{struct__LinkedList__}{\+\_\+\+Linked\+List\+\_\+}}} ou sous-\/type de {\ttfamily \mbox{\hyperlink{struct__LinkedList__}{\+\_\+\+Linked\+List\+\_\+}}}.
+
+Chaque ajout ne se fait pas en temps constant O(index).
+
+
+\begin{DoxyParams}{Paramètres}
+{\em self} & La liste dont on cherche le dernier élément. \\
+\hline
+{\em object\+\_\+} & L\textquotesingle{}objet à insérer dans la liste (copier l\textquotesingle{}objet si on souhaite le garder après la destruction de la liste). \\
+\hline
+{\em index} & Position dans laquelle on souhaite insérer l\textquotesingle{}objet dans la liste. \\
+\hline
+{\em clone} & Boolean dont 1 permet d\textquotesingle{}indiquer à la fonction si on souhaite qu\textquotesingle{}elle ajoute une copie de l\textquotesingle{}objet (copié avec {\ttfamily \mbox{\hyperlink{new_8c_abd38a6858dfc530b8466440559c2531b}{obj\+\_\+clone()}}}) plutôt que l\textquotesingle{}objet lui-\/même. Cela va permettre de garentir que l\textquotesingle{}objet ne sera pas détruit avec la liste. Mettre à 0 sinon.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+0 Si l\textquotesingle{}ajout a échoué 1 sinon. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{LinkedList_8c_a82c869507e3fa9c78178d47706a1bb62}\label{LinkedList_8c_a82c869507e3fa9c78178d47706a1bb62}} 
+\index{LinkedList.c@{LinkedList.c}!LinkedList\_add\_first@{LinkedList\_add\_first}}
+\index{LinkedList\_add\_first@{LinkedList\_add\_first}!LinkedList.c@{LinkedList.c}}
+\doxysubsubsection{\texorpdfstring{LinkedList\_add\_first()}{LinkedList\_add\_first()}}
+{\footnotesize\ttfamily int Linked\+List\+\_\+add\+\_\+first (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{LinkedList_8c_a9e97ddb0b652fc6241b56a6f723e4dc0}{Linked\+List}}}]{self\+\_\+,  }\item[{void $\ast$}]{object\+\_\+,  }\item[{int}]{clone }\end{DoxyParamCaption})}
+
+
+
+Fonction qui va rajouter un élément en tête de liste. 
+
+{\bfseries{ATTENTION}} \+: Au moment de la destruction de la liste les valeurs sont également désallouées. Faire une copie (avec {\ttfamily \mbox{\hyperlink{new_8c_abd38a6858dfc530b8466440559c2531b}{obj\+\_\+clone()}}}) (ou mettre le paramètre {\ttfamily clone} à 1 pour que la fonction le face) de l\textquotesingle{}objet avant de l\textquotesingle{}ajouter dans la liste, si on tient à garder l\textquotesingle{}objet intact après la destruction de la liste. 
+
+Si on souhaite insérer 2 fois un élément (avec la même référence) dans la liste il est important de mettre {\ttfamily clone} à 1 pour que la fonction puisse clonner l\textquotesingle{}objet car au moment de la destruction il sera supprimé deux fois ce qui va générer une erreur.
+
+La fonction peut être appelée pour tout objet de type {\ttfamily \mbox{\hyperlink{struct__LinkedList__}{\+\_\+\+Linked\+List\+\_\+}}} ou sous-\/type de {\ttfamily \mbox{\hyperlink{struct__LinkedList__}{\+\_\+\+Linked\+List\+\_\+}}}.
+
+Chaque ajout se fait en temps constant O(1).
+
+
+\begin{DoxyParams}{Paramètres}
+{\em self\+\_\+} & La liste dans laquelle on souhaite ajouter l\textquotesingle{}objet. \\
+\hline
+{\em object\+\_\+} & L\textquotesingle{}objet à insérer dans la liste (copier l\textquotesingle{}objet si on souhaite le garder après la destruction de la liste).\\
+\hline
+{\em clone} & Boolean dont 1 permet d\textquotesingle{}indiquer à la fonction si on souhaite qu\textquotesingle{}elle ajoute une copie de l\textquotesingle{}objet (copié avec {\ttfamily \mbox{\hyperlink{new_8c_abd38a6858dfc530b8466440559c2531b}{obj\+\_\+clone()}}}) plutôt que l\textquotesingle{}objet lui-\/même. Cela va permettre de garentir que l\textquotesingle{}objet ne sera pas détruit avec la liste. Mettre à 0 sinon.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+0 si l\textquotesingle{}ajout à échoué, 1 sinon. 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Abort} & Le programme s\textquotesingle{}arrête si l\textquotesingle{}objet à ajouter n\textquotesingle{}est pas du même type (ou sous-\/type) que les autres. \\
+\hline
+\end{DoxyExceptions}
+\mbox{\Hypertarget{LinkedList_8c_aeec73e6b7504bc8cc6a26f10857b7c81}\label{LinkedList_8c_aeec73e6b7504bc8cc6a26f10857b7c81}} 
+\index{LinkedList.c@{LinkedList.c}!LinkedList\_add\_last@{LinkedList\_add\_last}}
+\index{LinkedList\_add\_last@{LinkedList\_add\_last}!LinkedList.c@{LinkedList.c}}
+\doxysubsubsection{\texorpdfstring{LinkedList\_add\_last()}{LinkedList\_add\_last()}}
+{\footnotesize\ttfamily int Linked\+List\+\_\+add\+\_\+last (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{LinkedList_8c_a9e97ddb0b652fc6241b56a6f723e4dc0}{Linked\+List}}}]{self,  }\item[{void $\ast$}]{object\+\_\+,  }\item[{int}]{clone }\end{DoxyParamCaption})}
+
+
+
+Fonction qui va rajouter un élément en fin de liste. 
+
+{\bfseries{ATTENTION}} \+: Au moment de la destruction de la liste les valeurs sont également désallouées. Faire une copie (avec {\ttfamily \mbox{\hyperlink{new_8c_abd38a6858dfc530b8466440559c2531b}{obj\+\_\+clone()}}}) (ou mettre le paramètre {\ttfamily clone} à 1 pour que la fonction le fasse) de l\textquotesingle{}objet avant de l\textquotesingle{}ajouter dans la liste, si on tient à garder l\textquotesingle{}objet intact après la destruction de la liste. 
+
+Si on souhaite insérer 2 fois un élément (avec la même référence) dans la liste il est important de mettre {\ttfamily clone} à 1 pour que la fonction puisse clonner l\textquotesingle{}objet car au moment de la destruction il sera supprimé deux fois ce qui va générer une erreur.
+
+La fonction peut être appelée pour tout objet de type {\ttfamily \mbox{\hyperlink{struct__LinkedList__}{\+\_\+\+Linked\+List\+\_\+}}} ou sous-\/type de {\ttfamily \mbox{\hyperlink{struct__LinkedList__}{\+\_\+\+Linked\+List\+\_\+}}}.
+
+Chaque ajout se fait en temps constant O(1).
+
+
+\begin{DoxyParams}{Paramètres}
+{\em self\+\_\+} & La liste dans laquelle on souhaite ajouter l\textquotesingle{}objet. \\
+\hline
+{\em object\+\_\+} & L\textquotesingle{}objet à insérer dans la liste (copier l\textquotesingle{}objet si on souhaite le garder après la destruction de la liste).\\
+\hline
+{\em clone} & Boolean dont 1 permet d\textquotesingle{}indiquer à la fonction si on souhaite qu\textquotesingle{}elle ajoute une copie de l\textquotesingle{}objet (copié avec {\ttfamily \mbox{\hyperlink{new_8c_abd38a6858dfc530b8466440559c2531b}{obj\+\_\+clone()}}}) plutôt que l\textquotesingle{}objet lui-\/même. Cela va permettre de garentir que l\textquotesingle{}objet ne sera pas détruit avec la liste. Mettre à 0 sinon.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+0 si l\textquotesingle{}ajout à échoué, 1 sinon.
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Abort} & Le programme s\textquotesingle{}arrête si l\textquotesingle{}objet à ajouter n\textquotesingle{}est pas du même type (ou sous-\/type) que les autres. \\
+\hline
+\end{DoxyExceptions}
+\mbox{\Hypertarget{LinkedList_8c_a286c0772e27a8afc28bfdb8873b6948b}\label{LinkedList_8c_a286c0772e27a8afc28bfdb8873b6948b}} 
+\index{LinkedList.c@{LinkedList.c}!LinkedList\_contains@{LinkedList\_contains}}
+\index{LinkedList\_contains@{LinkedList\_contains}!LinkedList.c@{LinkedList.c}}
+\doxysubsubsection{\texorpdfstring{LinkedList\_contains()}{LinkedList\_contains()}}
+{\footnotesize\ttfamily int Linked\+List\+\_\+contains (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{LinkedList_8c_a9e97ddb0b652fc6241b56a6f723e4dc0}{Linked\+List}}}]{self,  }\item[{void $\ast$}]{object }\end{DoxyParamCaption})}
+
+
+
+Fonction qui vérifie si oui ou non un élément se trouve dans la liste. 
+
+La fonction va comparer les éléments avec la méthode {\ttfamily \mbox{\hyperlink{new_8c_a80d4746b01a9f4a30386f83993065802}{obj\+\_\+equals()}}}, qui va appeler dynamiquement sa redéfinition sur les objets de la liste (si redefinie).
+
+
+\begin{DoxyParams}{Paramètres}
+{\em self} & La liste à parcourir. \\
+\hline
+{\em object} & L\textquotesingle{}élément à rechercher. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+1 Si l\textquotesingle{}élément se trouve dans la liste et 0 sinon. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{Voir également}
+\mbox{\hyperlink{new_8c_a80d4746b01a9f4a30386f83993065802}{obj\+\_\+equals()}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{LinkedList_8c_ac1e9d14edb9e4d3d68e9f64559afb647}\label{LinkedList_8c_ac1e9d14edb9e4d3d68e9f64559afb647}} 
+\index{LinkedList.c@{LinkedList.c}!LinkedList\_get@{LinkedList\_get}}
+\index{LinkedList\_get@{LinkedList\_get}!LinkedList.c@{LinkedList.c}}
+\doxysubsubsection{\texorpdfstring{LinkedList\_get()}{LinkedList\_get()}}
+{\footnotesize\ttfamily void$\ast$ Linked\+List\+\_\+get (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{LinkedList_8c_a9e97ddb0b652fc6241b56a6f723e4dc0}{Linked\+List}}}]{self,  }\item[{int}]{index,  }\item[{int}]{clone }\end{DoxyParamCaption})}
+
+
+
+Fonction qui renvoie la valeur d\textquotesingle{} élément de la liste qui se trouve à une position donnée. 
+
+Mettre le paramètre {\ttfamily clone} à 1 pour renvoyer une copie au lieu de la la vraie valeur.
+
+Une recherche ne se fait pas en temps constant, O(index). 
+
+La fonction peut être appelée pour tout objet de type {\ttfamily \mbox{\hyperlink{struct__LinkedList__}{\+\_\+\+Linked\+List\+\_\+}}} ou sous-\/type de {\ttfamily \mbox{\hyperlink{struct__LinkedList__}{\+\_\+\+Linked\+List\+\_\+}}}.
+
+
+\begin{DoxyParams}{Paramètres}
+{\em self} & La liste dont on cherche l\textquotesingle{} élément. \\
+\hline
+{\em index} & La position de l\textquotesingle{}élément. \\
+\hline
+{\em clone} & Booléen dont 1 permet d\textquotesingle{}indiquer à la fonction qu\textquotesingle{}on souhaite qu\textquotesingle{}elle renvoie une copie de l\textquotesingle{}objet au lieu de la vraie référence. Au cas où on souhaite la récupérer avant la destruction de la liste.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+La valeur de l\textquotesingle{}élément ou NULL si la liste est vide. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{LinkedList_8c_a06a4c894cac52931188464b7652ddf5a}\label{LinkedList_8c_a06a4c894cac52931188464b7652ddf5a}} 
+\index{LinkedList.c@{LinkedList.c}!LinkedList\_get\_first@{LinkedList\_get\_first}}
+\index{LinkedList\_get\_first@{LinkedList\_get\_first}!LinkedList.c@{LinkedList.c}}
+\doxysubsubsection{\texorpdfstring{LinkedList\_get\_first()}{LinkedList\_get\_first()}}
+{\footnotesize\ttfamily void$\ast$ Linked\+List\+\_\+get\+\_\+first (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{LinkedList_8c_a9e97ddb0b652fc6241b56a6f723e4dc0}{Linked\+List}}}]{self,  }\item[{int}]{clone }\end{DoxyParamCaption})}
+
+
+
+Fonction qui renvoie la valeur du premier élément de la liste. 
+
+Mettre le paramètre {\ttfamily clone} à 1 pour renvoyer une copie au lieu de la la vraie valeur.
+
+La fonction peut être appelée pour tout objet de type {\ttfamily \mbox{\hyperlink{struct__LinkedList__}{\+\_\+\+Linked\+List\+\_\+}}} ou sous-\/type de {\ttfamily \mbox{\hyperlink{struct__LinkedList__}{\+\_\+\+Linked\+List\+\_\+}}}.
+
+
+\begin{DoxyParams}{Paramètres}
+{\em self} & La liste dont on cherche le premier élément. \\
+\hline
+{\em clone} & Booléen dont 1 permet d\textquotesingle{}indiquer à la fonction qu\textquotesingle{}on souhaite qu\textquotesingle{}elle renvoie une copie de l\textquotesingle{}objet au lieu de la vraie référence. Au cas où on souhaite la récupérer avant la destruction de la liste.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+La valeur du premier élément ou NULL si la liste est vide. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{LinkedList_8c_aedf8e74739973258efe4b13d29037b4c}\label{LinkedList_8c_aedf8e74739973258efe4b13d29037b4c}} 
+\index{LinkedList.c@{LinkedList.c}!LinkedList\_get\_last@{LinkedList\_get\_last}}
+\index{LinkedList\_get\_last@{LinkedList\_get\_last}!LinkedList.c@{LinkedList.c}}
+\doxysubsubsection{\texorpdfstring{LinkedList\_get\_last()}{LinkedList\_get\_last()}}
+{\footnotesize\ttfamily void$\ast$ Linked\+List\+\_\+get\+\_\+last (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{LinkedList_8c_a9e97ddb0b652fc6241b56a6f723e4dc0}{Linked\+List}}}]{self,  }\item[{int}]{clone }\end{DoxyParamCaption})}
+
+
+
+Fonction qui renvoie la valeur du dernier élément de la liste. 
+
+Mettre le paramètre {\ttfamily clone} à 1 pour renvoyer une copie au lieu de la la vraie valeur.
+
+La fonction peut être appelée pour tout objet de type {\ttfamily \mbox{\hyperlink{struct__LinkedList__}{\+\_\+\+Linked\+List\+\_\+}}} ou sous-\/type de {\ttfamily \mbox{\hyperlink{struct__LinkedList__}{\+\_\+\+Linked\+List\+\_\+}}}.
+
+
+\begin{DoxyParams}{Paramètres}
+{\em self} & La liste dont on cherche le dernier élément. \\
+\hline
+{\em clone} & Booléen dont 1 permet d\textquotesingle{}indiquer à la fonction qu\textquotesingle{}on souhaite qu\textquotesingle{}elle renvoie une copie de l\textquotesingle{}objet au lieu de la vraie référence. Au cas où on souhaite la récupérer avant la destruction de la liste.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+La valeur du dernier élément ou NULL si la liste est vide. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{LinkedList_8c_a4185653d9f545f45ca0e6df5dc12bc27}\label{LinkedList_8c_a4185653d9f545f45ca0e6df5dc12bc27}} 
+\index{LinkedList.c@{LinkedList.c}!LinkedList\_index\_of@{LinkedList\_index\_of}}
+\index{LinkedList\_index\_of@{LinkedList\_index\_of}!LinkedList.c@{LinkedList.c}}
+\doxysubsubsection{\texorpdfstring{LinkedList\_index\_of()}{LinkedList\_index\_of()}}
+{\footnotesize\ttfamily long long int Linked\+List\+\_\+index\+\_\+of (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{LinkedList_8c_a9e97ddb0b652fc6241b56a6f723e4dc0}{Linked\+List}}}]{self,  }\item[{void $\ast$}]{object }\end{DoxyParamCaption})}
+
+
+
+Fonction qui renvoie l\textquotesingle{}indice de la première occurence d\textquotesingle{}un élément qui se trouve dans la liste. 
+
+La fonction va comparer les éléments avec la méthode {\ttfamily \mbox{\hyperlink{new_8c_a80d4746b01a9f4a30386f83993065802}{obj\+\_\+equals()}}}, qui va appeler dynamiquement sa redéfinition sur les objets de la liste (si redefinie).
+
+
+\begin{DoxyParams}{Paramètres}
+{\em self} & La liste à parcourir. \\
+\hline
+{\em object} & L\textquotesingle{}élément à rechercher. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+L\textquotesingle{}indice dans la liste de l\textquotesingle{}élément. -\/1 Si l\textquotesingle{}élément n\textquotesingle{}est pas dans la liste. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{Voir également}
+\mbox{\hyperlink{new_8c_a80d4746b01a9f4a30386f83993065802}{obj\+\_\+equals()}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{LinkedList_8c_aa7918068dd2bcd899627bb6247318eea}\label{LinkedList_8c_aa7918068dd2bcd899627bb6247318eea}} 
+\index{LinkedList.c@{LinkedList.c}!LinkedList\_remove@{LinkedList\_remove}}
+\index{LinkedList\_remove@{LinkedList\_remove}!LinkedList.c@{LinkedList.c}}
+\doxysubsubsection{\texorpdfstring{LinkedList\_remove()}{LinkedList\_remove()}}
+{\footnotesize\ttfamily void$\ast$ Linked\+List\+\_\+remove (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{LinkedList_8c_a9e97ddb0b652fc6241b56a6f723e4dc0}{Linked\+List}}}]{self,  }\item[{int}]{index,  }\item[{int}]{clone }\end{DoxyParamCaption})}
+
+
+
+Fonction qui va retirer un élément de la liste qui se trouve à une position donnée. 
+
+Si la liste est vide alors la fonction va renvoyer NULL.
+
+$\ast$$\ast$ Important $\ast$$\ast$ \+: La cellule qui sera retirée sera immédiatement détruite (appelle à son destructeur). Ne pas rajouter d\textquotesingle{}objet dont on souhaite garder la référence après son retrait dans la liste. 
+
+La fonction peut être appelée pour tout objet de type {\ttfamily \mbox{\hyperlink{struct__LinkedList__}{\+\_\+\+Linked\+List\+\_\+}}} ou sous-\/type de {\ttfamily \mbox{\hyperlink{struct__LinkedList__}{\+\_\+\+Linked\+List\+\_\+}}}.
+
+Chaque suppression se fait en temps constant O(1).
+
+
+\begin{DoxyParams}{Paramètres}
+{\em self} & La liste dont on souhaite retirer le dernier élément. \\
+\hline
+{\em clone} & Booléen dont 1 permet d\textquotesingle{}indiquer à la fonction qu\textquotesingle{}on souhaite qu\textquotesingle{}elle nous renvoie une copie de l\textquotesingle{}objet après suppression. Pour rappel, l\textquotesingle{}objet sera détruit après sa suppression de la liste.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+La valeur retirée (ou NULL si on ne souhaite pas la récupérer) Si le dernier élément est bien retiré de la liste, NULL sinon. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{LinkedList_8c_a19cd73bd53654ddeb3440b30b0b88b21}\label{LinkedList_8c_a19cd73bd53654ddeb3440b30b0b88b21}} 
+\index{LinkedList.c@{LinkedList.c}!LinkedList\_remove\_first@{LinkedList\_remove\_first}}
+\index{LinkedList\_remove\_first@{LinkedList\_remove\_first}!LinkedList.c@{LinkedList.c}}
+\doxysubsubsection{\texorpdfstring{LinkedList\_remove\_first()}{LinkedList\_remove\_first()}}
+{\footnotesize\ttfamily void$\ast$ Linked\+List\+\_\+remove\+\_\+first (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{LinkedList_8c_a9e97ddb0b652fc6241b56a6f723e4dc0}{Linked\+List}}}]{self,  }\item[{int}]{clone }\end{DoxyParamCaption})}
+
+
+
+Cette fonction va retirer le premier élément de la liste. 
+
+Si la liste est vide alors la fonction va renvoyer NULL.
+
+$\ast$$\ast$ Important $\ast$$\ast$ \+: La cellule qui sera retirée sera immédiatement détruite (appelle à son destructeur). Ne pas rajouter d\textquotesingle{}objet dont on souhaite garder la référence après son retrait dans la liste.
+
+La fonction peut être appelée pour tout objet de type {\ttfamily \mbox{\hyperlink{struct__LinkedList__}{\+\_\+\+Linked\+List\+\_\+}}} ou sous-\/type de {\ttfamily \mbox{\hyperlink{struct__LinkedList__}{\+\_\+\+Linked\+List\+\_\+}}}.
+
+Chaque suppression se fait en temps constant O(1).
+
+
+\begin{DoxyParams}{Paramètres}
+{\em self} & La liste dont on souhaite retirer le premier élément. \\
+\hline
+{\em clone} & Booléen dont 1 permet d\textquotesingle{}indiquer à la fonction qu\textquotesingle{}on souhaite qu\textquotesingle{}elle nous renvoie une copie de l\textquotesingle{}objet après suppression. Pour rappel, l\textquotesingle{}objet sera détruit après sa suppression de la liste.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+La valeur retirée (ou NULL si on ne souhaite pas la récupérer) Si le premier élément est bien retiré de la liste, NULL sinon. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{LinkedList_8c_a3a984622be6a7d96d6cebdde37c6ea39}\label{LinkedList_8c_a3a984622be6a7d96d6cebdde37c6ea39}} 
+\index{LinkedList.c@{LinkedList.c}!LinkedList\_remove\_last@{LinkedList\_remove\_last}}
+\index{LinkedList\_remove\_last@{LinkedList\_remove\_last}!LinkedList.c@{LinkedList.c}}
+\doxysubsubsection{\texorpdfstring{LinkedList\_remove\_last()}{LinkedList\_remove\_last()}}
+{\footnotesize\ttfamily void$\ast$ Linked\+List\+\_\+remove\+\_\+last (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{LinkedList_8c_a9e97ddb0b652fc6241b56a6f723e4dc0}{Linked\+List}}}]{self,  }\item[{int}]{clone }\end{DoxyParamCaption})}
+
+
+
+Cette fonction va retirer le dernier élément de la liste. 
+
+Si la liste est vide alors la fonction va renvoyer NULL.
+
+$\ast$$\ast$ Important $\ast$$\ast$ \+: La cellule qui sera retirée sera immédiatement détruite (appelle à son destructeur). Ne pas rajouter d\textquotesingle{}objet dont on souhaite garder la référence après son retrait dans la liste. 
+
+La fonction peut être appelée pour tout objet de type {\ttfamily \mbox{\hyperlink{struct__LinkedList__}{\+\_\+\+Linked\+List\+\_\+}}} ou sous-\/type de {\ttfamily \mbox{\hyperlink{struct__LinkedList__}{\+\_\+\+Linked\+List\+\_\+}}}.
+
+Chaque suppression se fait en temps constant O(1).
+
+
+\begin{DoxyParams}{Paramètres}
+{\em self} & La liste dont on souhaite retirer le dernier élément. \\
+\hline
+{\em clone} & Booléen dont 1 permet d\textquotesingle{}indiquer à la fonction qu\textquotesingle{}on souhaite qu\textquotesingle{}elle nous renvoie une copie de l\textquotesingle{}objet après suppression. Pour rappel, l\textquotesingle{}objet sera détruit après sa suppression de la liste.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+La valeur retirée (ou NULL si on ne souhaite pas la récupérer) Si le dernier élément est bien retiré de la liste, NULL sinon. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{LinkedList_8c_a2c247b5c6b58fdd87a52e1ebbdf1a9ae}\label{LinkedList_8c_a2c247b5c6b58fdd87a52e1ebbdf1a9ae}} 
+\index{LinkedList.c@{LinkedList.c}!LinkedList\_size@{LinkedList\_size}}
+\index{LinkedList\_size@{LinkedList\_size}!LinkedList.c@{LinkedList.c}}
+\doxysubsubsection{\texorpdfstring{LinkedList\_size()}{LinkedList\_size()}}
+{\footnotesize\ttfamily size\+\_\+t Linked\+List\+\_\+size (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{LinkedList_8c_a9e97ddb0b652fc6241b56a6f723e4dc0}{Linked\+List}}}]{self\+\_\+ }\end{DoxyParamCaption})}
+
+
+
+Fonction qui renvoie la taille de la liste. 
+
+Cette fonction renvoie la taille de la liste, elle peut être appelé pour tout objet de type {\ttfamily \mbox{\hyperlink{struct__LinkedList__}{\+\_\+\+Linked\+List\+\_\+}}} ou sous-\/type de {\ttfamily \mbox{\hyperlink{struct__LinkedList__}{\+\_\+\+Linked\+List\+\_\+}}}.
+
+La récupération de la taille se fait en temps constant O(1).
+
+
+\begin{DoxyParams}{Paramètres}
+{\em self\+\_\+} & L\textquotesingle{}objet de type {\ttfamily Linked\+List} (ou sous-\/type). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+La taille de la liste. 
+\end{DoxyReturn}
+
+
+\doxysubsection{Documentation des variables}
+\mbox{\Hypertarget{LinkedList_8c_a03d6d0ac2c5eac13d26bd81c6daab29c}\label{LinkedList_8c_a03d6d0ac2c5eac13d26bd81c6daab29c}} 
+\index{LinkedList.c@{LinkedList.c}!\_LinkedList\_@{\_LinkedList\_}}
+\index{\_LinkedList\_@{\_LinkedList\_}!LinkedList.c@{LinkedList.c}}
+\doxysubsubsection{\texorpdfstring{\_LinkedList\_}{\_LinkedList\_}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{Class_8h_a6ec2a8ccaeb1e924a80036ec40760377}{Class}} \mbox{\hyperlink{struct__LinkedList__}{\+\_\+\+Linked\+List\+\_\+}} = \&\+\_\+\+\_\+\+Linked\+List\+\_\+\+\_\+}
+
+
+
+Classe de tous les objets {\ttfamily \mbox{\hyperlink{struct__LinkedList__}{\+\_\+\+Linked\+List\+\_\+}}}. Construction \+: {\ttfamily {\bfseries{ obj\+\_\+new( {\ttfamily \mbox{\hyperlink{struct__LinkedList__}{\+\_\+\+Linked\+List\+\_\+}}}) }}} ~\newline
+ {\ttfamily \mbox{\hyperlink{struct__LinkedList__}{\+\_\+\+Linked\+List\+\_\+}}} étant la classe de la liste. 
+
+NB \+: Tous les éléments de la liste peuvent être de plusieurs type différents 

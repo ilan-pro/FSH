@@ -1,0 +1,163 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>FSH - Projet Système:  Fichier source de base/ArrayList.h</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">FSH - Projet Système
+   </div>
+   <div id="projectbrief">Projet de la matière Sy5 - U Paris Cité</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "../../search",false,'Recherche','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="../../menudata.js"></script>
+<script type="text/javascript" src="../../menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('../../',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="../../dir_e914ee4d4a44400f1fdb170cb4ead18a.html">base</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">ArrayList.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="../../d5/d12/ArrayList_8h.html">Aller à la documentation de ce fichier.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#ifndef ARRAY_LIST_H</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#define ARRAY_LIST_H</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160; </div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="../../d7/d58/new_8h.html">new.h</a>&quot;</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#ifdef ARRAY_LIST_CLASS </span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">    #define ARRAY_LIST_FIELDS \</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">        size_t size;  \</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="preprocessor">        size_t last_index;  \</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">        void** dyn_array;  \</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor">        \</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor"> \</span></div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="preprocessor">        int reduce; </span></div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    </div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="../../d6/d4b/struct__ArrayList__.html">_ArrayList_</a>* <a class="code" href="../../d5/d12/ArrayList_8h.html#a9136afaa09bea0a69505480c5fb29d4b">ArrayList</a>;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    </div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="preprocessor">#else</span></div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    </div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="keyword">typedef</span> <span class="keyword">struct </span>__array_list_prv {</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        <span class="keywordtype">size_t</span> size;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        <span class="keywordtype">void</span>** dyn_array; </div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    } __array_list_prv;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="preprocessor">    #define ARRAY_LIST_H_FIELDS \</span></div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="preprocessor">        const char _arr_list_prv[sizeof(struct __array_list_prv )];</span></div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="../../d6/d4b/struct__ArrayList__.html">_ArrayList_</a>{</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;        <a class="code" href="../../d8/d36/struct__Class__.html">Class</a> <a class="code" href="../../d6/d4b/struct__ArrayList__.html#a676e8d6d75ec6e7c80fd50de78a66848">_ArrayList_</a>;</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;        ARRAY_LIST_H_FIELDS</div>
+<div class="line"><a name="l00094"></a><span class="lineno"><a class="line" href="../../d5/d12/ArrayList_8h.html#a9136afaa09bea0a69505480c5fb29d4b">   94</a></span>&#160;    }* <a class="code" href="../../d5/d12/ArrayList_8h.html#a9136afaa09bea0a69505480c5fb29d4b">ArrayList</a>;</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    </div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160; </div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;<span class="preprocessor">#endif </span></div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160; </div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;     </div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    <span class="keyword">extern</span> <span class="keyword">const</span> <a class="code" href="../../d8/d36/struct__Class__.html">Class</a> <a class="code" href="../../d5/d12/ArrayList_8h.html#ae9a47e6c37963aba432f1dcc7b9088b2">_ArrayList_</a>;</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160; </div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;        </div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;    <span class="keywordtype">size_t</span> <a class="code" href="../../d5/d12/ArrayList_8h.html#a7fb37214b265abc1e42494741b9bc8d1">ArrayList_size</a>( <a class="code" href="../../d6/d4b/struct__ArrayList__.html">ArrayList</a> <span class="keyword">self</span> );</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;        </div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;    <span class="keywordtype">int</span> <a class="code" href="../../d5/d12/ArrayList_8h.html#a1941fadf72dd05bcaa6d1f61bc5a2c26">ArrayList_add_first</a>( <a class="code" href="../../d6/d4b/struct__ArrayList__.html">ArrayList</a> <span class="keyword">self</span>, <span class="keywordtype">void</span>* object_, <span class="keywordtype">int</span> clone );</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;    </div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;    <span class="keywordtype">int</span> <a class="code" href="../../d5/d12/ArrayList_8h.html#aa224d29891c7a1483b070d7c211d2ea5">ArrayList_add_last</a>(<a class="code" href="../../d6/d4b/struct__ArrayList__.html">ArrayList</a> <span class="keyword">self</span>, <span class="keywordtype">void</span>* object_, <span class="keywordtype">int</span> clone);</div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;    </div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;    <span class="keywordtype">void</span>* <a class="code" href="../../d5/d12/ArrayList_8h.html#aeb51865efd56557d9cf0462c5a84eb02">ArrayList_remove_first</a>(<a class="code" href="../../d6/d4b/struct__ArrayList__.html">ArrayList</a> <span class="keyword">self</span>, <span class="keywordtype">int</span> destroy);</div>
+<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160; </div>
+<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;    <span class="keywordtype">void</span>* <a class="code" href="../../d5/d12/ArrayList_8h.html#a2a1e13e4039cbcd3a30fc2cc8a44bafd">ArrayList_remove_last</a>(<a class="code" href="../../d6/d4b/struct__ArrayList__.html">ArrayList</a> <span class="keyword">self</span>, <span class="keywordtype">int</span> destroy);</div>
+<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;    </div>
+<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;    <span class="keywordtype">void</span>* <a class="code" href="../../d5/d12/ArrayList_8h.html#a087e76304e650e70b50a19e84dc91b36">ArrayList_get_first</a>(<a class="code" href="../../d6/d4b/struct__ArrayList__.html">ArrayList</a> <span class="keyword">self</span>, <span class="keywordtype">int</span> clone);</div>
+<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160; </div>
+<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;    <span class="keywordtype">void</span>* <a class="code" href="../../d5/d12/ArrayList_8h.html#a4a5615ad13e481eaa032133bab72eb0d">ArrayList_get_last</a>(<a class="code" href="../../d6/d4b/struct__ArrayList__.html">ArrayList</a> <span class="keyword">self</span>, <span class="keywordtype">int</span> clone);</div>
+<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160; </div>
+<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;    <span class="keywordtype">void</span>* <a class="code" href="../../d5/d12/ArrayList_8h.html#a9f48f49bc48159ea308cf952d1407616">ArrayList_get</a>(<a class="code" href="../../d6/d4b/struct__ArrayList__.html">ArrayList</a> <span class="keyword">self</span>, <span class="keywordtype">size_t</span> index, <span class="keywordtype">int</span> clone);</div>
+<div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160; </div>
+<div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;    <span class="keywordtype">int</span> <a class="code" href="../../d5/d12/ArrayList_8h.html#a3e9dadf84ef8f73d38f8071b872073c1">ArrayList_add</a>( <a class="code" href="../../d6/d4b/struct__ArrayList__.html">ArrayList</a> <span class="keyword">self</span>, <span class="keywordtype">void</span>* <span class="keywordtype">object</span>, <span class="keywordtype">size_t</span> index, <span class="keywordtype">int</span> clone );</div>
+<div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160; </div>
+<div class="line"><a name="l00350"></a><span class="lineno">  350</span>&#160;    <span class="keywordtype">void</span>* <a class="code" href="../../d5/d12/ArrayList_8h.html#afb629e08764520a9e5f745e109960d7a">ArrayList_remove</a>( <a class="code" href="../../d6/d4b/struct__ArrayList__.html">ArrayList</a> <span class="keyword">self</span>, <span class="keywordtype">size_t</span> index, <span class="keywordtype">int</span> destroy );</div>
+<div class="line"><a name="l00351"></a><span class="lineno">  351</span>&#160; </div>
+<div class="line"><a name="l00363"></a><span class="lineno">  363</span>&#160;    <span class="keywordtype">int</span> <a class="code" href="../../d5/d12/ArrayList_8h.html#ad51f30052eebb1ce46a7f274efe049ed">ArrayList_contains</a>( <a class="code" href="../../d6/d4b/struct__ArrayList__.html">ArrayList</a> <span class="keyword">self</span>, <span class="keywordtype">void</span>* <span class="keywordtype">object</span> );</div>
+<div class="line"><a name="l00364"></a><span class="lineno">  364</span>&#160; </div>
+<div class="line"><a name="l00377"></a><span class="lineno">  377</span>&#160;    <span class="keywordtype">long</span> <span class="keywordtype">long</span> <span class="keywordtype">int</span> <a class="code" href="../../d5/d12/ArrayList_8h.html#adca02e85e96825c360fbff47d3179927">ArrayList_index_of</a>( <a class="code" href="../../d6/d4b/struct__ArrayList__.html">ArrayList</a> <span class="keyword">self</span>, <span class="keywordtype">void</span>* <span class="keywordtype">object</span>);</div>
+<div class="line"><a name="l00378"></a><span class="lineno">  378</span>&#160; </div>
+<div class="line"><a name="l00387"></a><span class="lineno">  387</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="../../d5/d12/ArrayList_8h.html#a41f67420e6ce4a0dcf0eef2d180444d4">ArrayList_clear</a>(<a class="code" href="../../d6/d4b/struct__ArrayList__.html">ArrayList</a> <span class="keyword">self</span>);</div>
+<div class="line"><a name="l00388"></a><span class="lineno">  388</span>&#160; </div>
+<div class="line"><a name="l00389"></a><span class="lineno">  389</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aArrayList_8h_html_a087e76304e650e70b50a19e84dc91b36"><div class="ttname"><a href="../../d5/d12/ArrayList_8h.html#a087e76304e650e70b50a19e84dc91b36">ArrayList_get_first</a></div><div class="ttdeci">void * ArrayList_get_first(ArrayList self, int clone)</div><div class="ttdoc">Fonction qui renvoie la valeur du premier élément de la liste.</div><div class="ttdef"><b>Definition:</b> ArrayList.c:691</div></div>
+<div class="ttc" id="aArrayList_8h_html_a1941fadf72dd05bcaa6d1f61bc5a2c26"><div class="ttname"><a href="../../d5/d12/ArrayList_8h.html#a1941fadf72dd05bcaa6d1f61bc5a2c26">ArrayList_add_first</a></div><div class="ttdeci">int ArrayList_add_first(ArrayList self, void *object_, int clone)</div><div class="ttdoc">Fonction qui va rajouter un élément en tête de liste.</div><div class="ttdef"><b>Definition:</b> ArrayList.c:470</div></div>
+<div class="ttc" id="aArrayList_8h_html_a2a1e13e4039cbcd3a30fc2cc8a44bafd"><div class="ttname"><a href="../../d5/d12/ArrayList_8h.html#a2a1e13e4039cbcd3a30fc2cc8a44bafd">ArrayList_remove_last</a></div><div class="ttdeci">void * ArrayList_remove_last(ArrayList self, int destroy)</div><div class="ttdoc">Cette fonction va retirer le dernier élément de la liste.</div><div class="ttdef"><b>Definition:</b> ArrayList.c:628</div></div>
+<div class="ttc" id="aArrayList_8h_html_a3e9dadf84ef8f73d38f8071b872073c1"><div class="ttname"><a href="../../d5/d12/ArrayList_8h.html#a3e9dadf84ef8f73d38f8071b872073c1">ArrayList_add</a></div><div class="ttdeci">int ArrayList_add(ArrayList self, void *object, size_t index, int clone)</div><div class="ttdoc">Fonction qui ajoute un élément à une position précise dans la liste.</div><div class="ttdef"><b>Definition:</b> ArrayList.c:405</div></div>
+<div class="ttc" id="aArrayList_8h_html_a41f67420e6ce4a0dcf0eef2d180444d4"><div class="ttname"><a href="../../d5/d12/ArrayList_8h.html#a41f67420e6ce4a0dcf0eef2d180444d4">ArrayList_clear</a></div><div class="ttdeci">void ArrayList_clear(ArrayList self)</div><div class="ttdef"><b>Definition:</b> ArrayList.c:784</div></div>
+<div class="ttc" id="aArrayList_8h_html_a4a5615ad13e481eaa032133bab72eb0d"><div class="ttname"><a href="../../d5/d12/ArrayList_8h.html#a4a5615ad13e481eaa032133bab72eb0d">ArrayList_get_last</a></div><div class="ttdeci">void * ArrayList_get_last(ArrayList self, int clone)</div><div class="ttdoc">Fonction qui renvoie la valeur du dernier élément de la liste.</div><div class="ttdef"><b>Definition:</b> ArrayList.c:714</div></div>
+<div class="ttc" id="aArrayList_8h_html_a7fb37214b265abc1e42494741b9bc8d1"><div class="ttname"><a href="../../d5/d12/ArrayList_8h.html#a7fb37214b265abc1e42494741b9bc8d1">ArrayList_size</a></div><div class="ttdeci">size_t ArrayList_size(ArrayList self)</div><div class="ttdoc">Fonction qui renvoie la taille de la liste.</div><div class="ttdef"><b>Definition:</b> ArrayList.c:359</div></div>
+<div class="ttc" id="aArrayList_8h_html_a9136afaa09bea0a69505480c5fb29d4b"><div class="ttname"><a href="../../d5/d12/ArrayList_8h.html#a9136afaa09bea0a69505480c5fb29d4b">ArrayList</a></div><div class="ttdeci">struct _ArrayList_ * ArrayList</div><div class="ttdoc">Classe des objets de type _ArrayList_.</div></div>
+<div class="ttc" id="aArrayList_8h_html_a9f48f49bc48159ea308cf952d1407616"><div class="ttname"><a href="../../d5/d12/ArrayList_8h.html#a9f48f49bc48159ea308cf952d1407616">ArrayList_get</a></div><div class="ttdeci">void * ArrayList_get(ArrayList self, size_t index, int clone)</div><div class="ttdoc">Fonction qui renvoie la valeur d' élément de la liste qui se trouve à une position donnée.</div><div class="ttdef"><b>Definition:</b> ArrayList.c:653</div></div>
+<div class="ttc" id="aArrayList_8h_html_aa224d29891c7a1483b070d7c211d2ea5"><div class="ttname"><a href="../../d5/d12/ArrayList_8h.html#aa224d29891c7a1483b070d7c211d2ea5">ArrayList_add_last</a></div><div class="ttdeci">int ArrayList_add_last(ArrayList self, void *object_, int clone)</div><div class="ttdoc">Fonction qui va rajouter un élément en fin de liste.</div><div class="ttdef"><b>Definition:</b> ArrayList.c:508</div></div>
+<div class="ttc" id="aArrayList_8h_html_ad51f30052eebb1ce46a7f274efe049ed"><div class="ttname"><a href="../../d5/d12/ArrayList_8h.html#ad51f30052eebb1ce46a7f274efe049ed">ArrayList_contains</a></div><div class="ttdeci">int ArrayList_contains(ArrayList self, void *object)</div><div class="ttdoc">Fonction qui vérifie si oui ou non un élément se trouve dans la liste.</div><div class="ttdef"><b>Definition:</b> ArrayList.c:733</div></div>
+<div class="ttc" id="aArrayList_8h_html_adca02e85e96825c360fbff47d3179927"><div class="ttname"><a href="../../d5/d12/ArrayList_8h.html#adca02e85e96825c360fbff47d3179927">ArrayList_index_of</a></div><div class="ttdeci">long long int ArrayList_index_of(ArrayList self, void *object)</div><div class="ttdoc">Fonction qui renvoie l'indice de la première occurence d'un élément qui se trouve dans la liste.</div><div class="ttdef"><b>Definition:</b> ArrayList.c:759</div></div>
+<div class="ttc" id="aArrayList_8h_html_ae9a47e6c37963aba432f1dcc7b9088b2"><div class="ttname"><a href="../../d5/d12/ArrayList_8h.html#ae9a47e6c37963aba432f1dcc7b9088b2">_ArrayList_</a></div><div class="ttdeci">const Class _ArrayList_</div><div class="ttdef"><b>Definition:</b> ArrayList.c:151</div></div>
+<div class="ttc" id="aArrayList_8h_html_aeb51865efd56557d9cf0462c5a84eb02"><div class="ttname"><a href="../../d5/d12/ArrayList_8h.html#aeb51865efd56557d9cf0462c5a84eb02">ArrayList_remove_first</a></div><div class="ttdeci">void * ArrayList_remove_first(ArrayList self, int destroy)</div><div class="ttdoc">Cette fonction va retirer le premier élément de la liste.</div><div class="ttdef"><b>Definition:</b> ArrayList.c:599</div></div>
+<div class="ttc" id="aArrayList_8h_html_afb629e08764520a9e5f745e109960d7a"><div class="ttname"><a href="../../d5/d12/ArrayList_8h.html#afb629e08764520a9e5f745e109960d7a">ArrayList_remove</a></div><div class="ttdeci">void * ArrayList_remove(ArrayList self, size_t index, int destroy)</div><div class="ttdoc">Fonction qui va retirer un élément de la liste qui se trouve à une position donnée.</div><div class="ttdef"><b>Definition:</b> ArrayList.c:537</div></div>
+<div class="ttc" id="anew_8h_html"><div class="ttname"><a href="../../d7/d58/new_8h.html">new.h</a></div><div class="ttdoc">Fichier d'en-tête contenant les déclarations de toutes les méthodes génériques agissant sur des objet...</div></div>
+<div class="ttc" id="astruct__ArrayList___html"><div class="ttname"><a href="../../d6/d4b/struct__ArrayList__.html">_ArrayList_</a></div><div class="ttdoc">Classe des objets de type _ArrayList_.</div><div class="ttdef"><b>Definition:</b> ArrayList.c:103</div></div>
+<div class="ttc" id="astruct__ArrayList___html_a676e8d6d75ec6e7c80fd50de78a66848"><div class="ttname"><a href="../../d6/d4b/struct__ArrayList__.html#a676e8d6d75ec6e7c80fd50de78a66848">_ArrayList_::_ArrayList_</a></div><div class="ttdeci">Class _ArrayList_</div><div class="ttdoc">Classe des objets de type _ArrayList_.</div><div class="ttdef"><b>Definition:</b> ArrayList.c:121</div></div>
+<div class="ttc" id="astruct__Class___html"><div class="ttname"><a href="../../d8/d36/struct__Class__.html">_Class_</a></div><div class="ttdoc">Structure représentant la classe dans laquelle appratient un objet.</div><div class="ttdef"><b>Definition:</b> Class.h:57</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré par&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+</small></address>
+</body>
+</html>

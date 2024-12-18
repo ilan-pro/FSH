@@ -1,0 +1,13 @@
+{
+    "files.associations": {
+        "wait.h": "c",
+        "types.h": "c",
+        "shell.h": "c",
+        "listcell.h": "c",
+        "command.h": "c",
+        "externalcommand.h": "c",
+        "string.h": "c",
+        "dirent.h": "c",
+        "features.h": "c"
+    }
+}

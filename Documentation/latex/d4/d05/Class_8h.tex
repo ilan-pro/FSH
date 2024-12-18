@@ -1,0 +1,71 @@
+\hypertarget{Class_8h}{}\doxysection{Référence du fichier base/\+Class.h}
+\label{Class_8h}\index{base/Class.h@{base/Class.h}}
+
+
+Fichier d\textquotesingle{}en-\/tête contenant la définition du type Class.  
+
+
+{\ttfamily \#include $<$stdarg.\+h$>$}\newline
+{\ttfamily \#include $<$stddef.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$assert.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+Graphe des dépendances par inclusion de Class.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d6/d03/Class_8h__incl}
+\end{center}
+\end{figure}
+Ce graphe montre quels fichiers incluent directement ou indirectement ce fichier \+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{de/d16/Class_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct__Class__}{\+\_\+\+Class\+\_\+}}
+\begin{DoxyCompactList}\small\item\em Structure représentant la classe dans laquelle appratient un objet. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Définitions de type}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \mbox{\hyperlink{struct__Class__}{\+\_\+\+Class\+\_\+}} $\ast$ \mbox{\hyperlink{Class_8h_a6ec2a8ccaeb1e924a80036ec40760377}{Class}}
+\begin{DoxyCompactList}\small\item\em Structure représentant la classe dans laquelle appratient un objet. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Description détaillée}
+Fichier d\textquotesingle{}en-\/tête contenant la définition du type Class. 
+
+
+
+\doxysubsection{Documentation des définitions de type}
+\mbox{\Hypertarget{Class_8h_a6ec2a8ccaeb1e924a80036ec40760377}\label{Class_8h_a6ec2a8ccaeb1e924a80036ec40760377}} 
+\index{Class.h@{Class.h}!Class@{Class}}
+\index{Class@{Class}!Class.h@{Class.h}}
+\doxysubsubsection{\texorpdfstring{Class}{Class}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{struct__Class__}{\+\_\+\+Class\+\_\+}}$\ast$ \mbox{\hyperlink{Class_8h_a6ec2a8ccaeb1e924a80036ec40760377}{Class}}}
+
+
+
+Structure représentant la classe dans laquelle appratient un objet. 
+
+Il s\textquotesingle{}agit d\textquotesingle{}une structure fournissant des informations sur la classe d\textquotesingle{}un objet créé. On y retrouve par exemple, la taille de mémoire à allouer (avec {\ttfamily calloc()}) lors de la construction de l\textquotesingle{}objet par le constructeur générique du fichier d\textquotesingle{}en-\/tête {\ttfamily \mbox{\hyperlink{new_8h}{new.\+h}}}.
+
+Elle contient égalment des détails sur la classe, tels que son nom, la référence à la classe parente (en cas d\textquotesingle{}héritage), ainsi que les fonctions de construction et de destruction associées. Ces informations permettent au constructeur générique d\textquotesingle{}invoquer ces fonctions dynamiquement (liaison dyn.).
+
+Cette structure peut également jouer le rôle d\textquotesingle{}une sorte d\textquotesingle{}empreinte unique pour les objets, car étant donné que chaque classe d\textquotesingle{}objets possède sa propre structure (partagée par tous les objets créés à partir de cette classe). Cela permet, par exemple, de déterminer si deux objets appartiennent à la même classe (de manière similaire au mécanisme instanceof en Java). \begin{DoxyVerb}         ********************** IMPORTANT ***********************
+\end{DoxyVerb}
+ {\bfseries{Important}} \+: Lors de la création d\textquotesingle{}une classe, le pointeur vers la classe des objets (le champ de type Class) doit impérativement être le premier champ déclaré dans la structure. Ce choix est essentiel, car il garantit que les fonctions génériques opérant sur les objets des classes puissent traiter n\textquotesingle{}importe quel objet comme un pointeur vers son premier élément.
+
+Cette approche repose sur le fait qu\textquotesingle{}une structure est stockée en mémoire de manière contiguë, comme un tableau, cela permet d\textquotesingle{}accéder directement à la classe de l\textquotesingle{}objet en considérant l\textquotesingle{}objet comme un pointeur {\ttfamily Class$\ast$} car le champs {\ttfamily Class} est son premier élément.
+
+En revanche, ce mécanisme ne fonctionne pas pour les autres champs de la structure, même le deuxième (pas comme les tableaux où on peut rajouter +1 pour aller au suivant), car ils peuvent avoir des types différents, et le compilateur peut insérer des zones de padding pour l\textquotesingle{}alignement en mémoire.
+
+Par conséquent, cet invariant doit impérativement être respecté pour assurer le bon fonctionnement du projet. \begin{DoxyVerb}        *********************************************************
+\end{DoxyVerb}
+ 

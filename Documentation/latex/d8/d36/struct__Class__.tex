@@ -1,0 +1,158 @@
+\hypertarget{struct__Class__}{}\doxysection{Référence de la structure \+\_\+\+Class\+\_\+}
+\label{struct__Class__}\index{\_Class\_@{\_Class\_}}
+
+
+Structure représentant la classe dans laquelle appratient un objet.  
+
+
+
+
+{\ttfamily \#include $<$Class.\+h$>$}
+
+
+
+Graphe de collaboration de \+\_\+\+Class\+\_\+\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=192pt]{dc/d33/struct__Class____coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Attributs publics}
+\begin{DoxyCompactItemize}
+\item 
+const struct \mbox{\hyperlink{struct__Class__}{\+\_\+\+Class\+\_\+}} $\ast$const \mbox{\hyperlink{struct__Class___a80cb7a35f15f8cc585d891ad12bb5954}{\+\_\+super\+\_\+}}
+\begin{DoxyCompactList}\small\item\em Classe du parent. NULL si pas de parent. \end{DoxyCompactList}\item 
+const char $\ast$ \mbox{\hyperlink{struct__Class___a5ac9c5395304cb4342d3c5035fc73272}{name}}
+\begin{DoxyCompactList}\small\item\em Le nom de la classe de l\textquotesingle{}objet. \end{DoxyCompactList}\item 
+const size\+\_\+t \mbox{\hyperlink{struct__Class___a49194702f2ab698823a1f161f92c9856}{size}}
+\begin{DoxyCompactList}\small\item\em La taille d\textquotesingle{}allocation à la construction d\textquotesingle{}un objet. \end{DoxyCompactList}\item 
+void $\ast$($\ast$const \mbox{\hyperlink{struct__Class___af03691a875f9e325b643827d3f7a0458}{ctor}} )(void $\ast$, va\+\_\+list $\ast$)
+\begin{DoxyCompactList}\small\item\em Référence vers le constructeur d\textquotesingle{}une instance de la classe. \end{DoxyCompactList}\item 
+void $\ast$($\ast$const \mbox{\hyperlink{struct__Class___a7acc2a630fbbc3b8266c4b8489411f1d}{dtor}} )(void $\ast$)
+\begin{DoxyCompactList}\small\item\em Référence vers le destructeur d\textquotesingle{}une instance de la classe. \end{DoxyCompactList}\item 
+char $\ast$($\ast$const \mbox{\hyperlink{struct__Class___ad35dc17a6850175221bcfe080621944b}{to\+\_\+string}} )(const void $\ast$)
+\begin{DoxyCompactList}\small\item\em Référence vers la fonction {\ttfamily to\+\_\+string} de la classe. \end{DoxyCompactList}\item 
+int($\ast$const \mbox{\hyperlink{struct__Class___a0dff366817a4628a52f1c15295aa67ce}{equals}} )(const void $\ast$, const void $\ast$)
+\begin{DoxyCompactList}\small\item\em Référence vers la fonction {\ttfamily equals} de la classe. \end{DoxyCompactList}\item 
+void $\ast$($\ast$const \mbox{\hyperlink{struct__Class___af4552e90c709c2445d656cf19de27447}{clone}} )(const void $\ast$)
+\begin{DoxyCompactList}\small\item\em Référence vers la fonction clone de la classe. \end{DoxyCompactList}\item 
+void($\ast$const \mbox{\hyperlink{struct__Class___a788ea59b44bab2a11f8af833481353b4}{print}} )(const void $\ast$)
+\begin{DoxyCompactList}\small\item\em Référence vers la fonction print de la classe. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Description détaillée}
+Structure représentant la classe dans laquelle appratient un objet. 
+
+Il s\textquotesingle{}agit d\textquotesingle{}une structure fournissant des informations sur la classe d\textquotesingle{}un objet créé. On y retrouve par exemple, la taille de mémoire à allouer (avec {\ttfamily calloc()}) lors de la construction de l\textquotesingle{}objet par le constructeur générique du fichier d\textquotesingle{}en-\/tête {\ttfamily \mbox{\hyperlink{new_8h}{new.\+h}}}.
+
+Elle contient égalment des détails sur la classe, tels que son nom, la référence à la classe parente (en cas d\textquotesingle{}héritage), ainsi que les fonctions de construction et de destruction associées. Ces informations permettent au constructeur générique d\textquotesingle{}invoquer ces fonctions dynamiquement (liaison dyn.).
+
+Cette structure peut également jouer le rôle d\textquotesingle{}une sorte d\textquotesingle{}empreinte unique pour les objets, car étant donné que chaque classe d\textquotesingle{}objets possède sa propre structure (partagée par tous les objets créés à partir de cette classe). Cela permet, par exemple, de déterminer si deux objets appartiennent à la même classe (de manière similaire au mécanisme instanceof en Java). \begin{DoxyVerb}         ********************** IMPORTANT ***********************
+\end{DoxyVerb}
+ {\bfseries{Important}} \+: Lors de la création d\textquotesingle{}une classe, le pointeur vers la classe des objets (le champ de type Class) doit impérativement être le premier champ déclaré dans la structure. Ce choix est essentiel, car il garantit que les fonctions génériques opérant sur les objets des classes puissent traiter n\textquotesingle{}importe quel objet comme un pointeur vers son premier élément.
+
+Cette approche repose sur le fait qu\textquotesingle{}une structure est stockée en mémoire de manière contiguë, comme un tableau, cela permet d\textquotesingle{}accéder directement à la classe de l\textquotesingle{}objet en considérant l\textquotesingle{}objet comme un pointeur {\ttfamily Class$\ast$} car le champs {\ttfamily Class} est son premier élément.
+
+En revanche, ce mécanisme ne fonctionne pas pour les autres champs de la structure, même le deuxième (pas comme les tableaux où on peut rajouter +1 pour aller au suivant), car ils peuvent avoir des types différents, et le compilateur peut insérer des zones de padding pour l\textquotesingle{}alignement en mémoire.
+
+Par conséquent, cet invariant doit impérativement être respecté pour assurer le bon fonctionnement du projet. \begin{DoxyVerb}        *********************************************************
+\end{DoxyVerb}
+ 
+
+\doxysubsection{Documentation des données membres}
+\mbox{\Hypertarget{struct__Class___a80cb7a35f15f8cc585d891ad12bb5954}\label{struct__Class___a80cb7a35f15f8cc585d891ad12bb5954}} 
+\index{\_Class\_@{\_Class\_}!\_super\_@{\_super\_}}
+\index{\_super\_@{\_super\_}!\_Class\_@{\_Class\_}}
+\doxysubsubsection{\texorpdfstring{\_super\_}{\_super\_}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{struct__Class__}{\+\_\+\+Class\+\_\+}}$\ast$ const \+\_\+\+Class\+\_\+\+::\+\_\+super\+\_\+}
+
+
+
+Classe du parent. NULL si pas de parent. 
+
+\mbox{\Hypertarget{struct__Class___af4552e90c709c2445d656cf19de27447}\label{struct__Class___af4552e90c709c2445d656cf19de27447}} 
+\index{\_Class\_@{\_Class\_}!clone@{clone}}
+\index{clone@{clone}!\_Class\_@{\_Class\_}}
+\doxysubsubsection{\texorpdfstring{clone}{clone}}
+{\footnotesize\ttfamily void$\ast$($\ast$const \+\_\+\+Class\+\_\+\+::clone) (const void $\ast$)}
+
+
+
+Référence vers la fonction clone de la classe. 
+
+Cette fonction est appellée dynamiquement par la fonction {\ttfamily \mbox{\hyperlink{new_8c_abd38a6858dfc530b8466440559c2531b}{obj\+\_\+clone()}}} définie dans {\ttfamily \mbox{\hyperlink{new_8h}{new.\+h}}} \mbox{\Hypertarget{struct__Class___af03691a875f9e325b643827d3f7a0458}\label{struct__Class___af03691a875f9e325b643827d3f7a0458}} 
+\index{\_Class\_@{\_Class\_}!ctor@{ctor}}
+\index{ctor@{ctor}!\_Class\_@{\_Class\_}}
+\doxysubsubsection{\texorpdfstring{ctor}{ctor}}
+{\footnotesize\ttfamily void$\ast$($\ast$ const \+\_\+\+Class\+\_\+\+::ctor) (void $\ast$, va\+\_\+list $\ast$)}
+
+
+
+Référence vers le constructeur d\textquotesingle{}une instance de la classe. 
+
+Cette fonction sera appelée dynamiquement par la fonction {\ttfamily \mbox{\hyperlink{new_8c_a4d3f685fb05159e0ab423bf213878c8e}{obj\+\_\+new()}}} définie dans {\ttfamily \mbox{\hyperlink{new_8h}{new.\+h}}} \mbox{\Hypertarget{struct__Class___a7acc2a630fbbc3b8266c4b8489411f1d}\label{struct__Class___a7acc2a630fbbc3b8266c4b8489411f1d}} 
+\index{\_Class\_@{\_Class\_}!dtor@{dtor}}
+\index{dtor@{dtor}!\_Class\_@{\_Class\_}}
+\doxysubsubsection{\texorpdfstring{dtor}{dtor}}
+{\footnotesize\ttfamily void$\ast$($\ast$ const \+\_\+\+Class\+\_\+\+::dtor) (void $\ast$)}
+
+
+
+Référence vers le destructeur d\textquotesingle{}une instance de la classe. 
+
+Cette fonction sera appelée dynamiquement par la fonction {\ttfamily \mbox{\hyperlink{new_8c_a0f1db85eee610ac2a243f51a430c90c3}{obj\+\_\+destroy()}}} définie dans {\ttfamily \mbox{\hyperlink{new_8h}{new.\+h}}} \mbox{\Hypertarget{struct__Class___a0dff366817a4628a52f1c15295aa67ce}\label{struct__Class___a0dff366817a4628a52f1c15295aa67ce}} 
+\index{\_Class\_@{\_Class\_}!equals@{equals}}
+\index{equals@{equals}!\_Class\_@{\_Class\_}}
+\doxysubsubsection{\texorpdfstring{equals}{equals}}
+{\footnotesize\ttfamily int($\ast$ const \+\_\+\+Class\+\_\+\+::equals) (const void $\ast$, const void $\ast$)}
+
+
+
+Référence vers la fonction {\ttfamily equals} de la classe. 
+
+Cette fonction sera appelée dynamiquement par la fonction {\ttfamily \mbox{\hyperlink{new_8c_a80d4746b01a9f4a30386f83993065802}{obj\+\_\+equals()}}} définie dans {\ttfamily \mbox{\hyperlink{new_8h}{new.\+h}}} \mbox{\Hypertarget{struct__Class___a5ac9c5395304cb4342d3c5035fc73272}\label{struct__Class___a5ac9c5395304cb4342d3c5035fc73272}} 
+\index{\_Class\_@{\_Class\_}!name@{name}}
+\index{name@{name}!\_Class\_@{\_Class\_}}
+\doxysubsubsection{\texorpdfstring{name}{name}}
+{\footnotesize\ttfamily const char$\ast$ \+\_\+\+Class\+\_\+\+::name}
+
+
+
+Le nom de la classe de l\textquotesingle{}objet. 
+
+\mbox{\Hypertarget{struct__Class___a788ea59b44bab2a11f8af833481353b4}\label{struct__Class___a788ea59b44bab2a11f8af833481353b4}} 
+\index{\_Class\_@{\_Class\_}!print@{print}}
+\index{print@{print}!\_Class\_@{\_Class\_}}
+\doxysubsubsection{\texorpdfstring{print}{print}}
+{\footnotesize\ttfamily void($\ast$const \+\_\+\+Class\+\_\+\+::print) (const void $\ast$)}
+
+
+
+Référence vers la fonction print de la classe. 
+
+Cette fonction est appellée dynamiquement par la fonction {\ttfamily \mbox{\hyperlink{new_8c_a02aa90f11b9841069a0e5e0aa370bf28}{obj\+\_\+print()}}} définie dans {\ttfamily \mbox{\hyperlink{new_8h}{new.\+h}}} \mbox{\Hypertarget{struct__Class___a49194702f2ab698823a1f161f92c9856}\label{struct__Class___a49194702f2ab698823a1f161f92c9856}} 
+\index{\_Class\_@{\_Class\_}!size@{size}}
+\index{size@{size}!\_Class\_@{\_Class\_}}
+\doxysubsubsection{\texorpdfstring{size}{size}}
+{\footnotesize\ttfamily const size\+\_\+t \+\_\+\+Class\+\_\+\+::size}
+
+
+
+La taille d\textquotesingle{}allocation à la construction d\textquotesingle{}un objet. 
+
+\mbox{\Hypertarget{struct__Class___ad35dc17a6850175221bcfe080621944b}\label{struct__Class___ad35dc17a6850175221bcfe080621944b}} 
+\index{\_Class\_@{\_Class\_}!to\_string@{to\_string}}
+\index{to\_string@{to\_string}!\_Class\_@{\_Class\_}}
+\doxysubsubsection{\texorpdfstring{to\_string}{to\_string}}
+{\footnotesize\ttfamily char$\ast$($\ast$ const \+\_\+\+Class\+\_\+\+::to\+\_\+string) (const void $\ast$)}
+
+
+
+Référence vers la fonction {\ttfamily to\+\_\+string} de la classe. 
+
+Cette fonction sera appelée dynamiquement par la fonction {\ttfamily \mbox{\hyperlink{new_8c_a982170ff95dbd729473188fea16f8db5}{obj\+\_\+to\+\_\+string()}}} définie dans {\ttfamily \mbox{\hyperlink{new_8h}{new.\+h}}} 
+
+La documentation de cette structure a été générée à partir du fichier suivant \+:\begin{DoxyCompactItemize}
+\item 
+base/\mbox{\hyperlink{Class_8h}{Class.\+h}}\end{DoxyCompactItemize}

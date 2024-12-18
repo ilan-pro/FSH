@@ -1,0 +1,60 @@
+\hypertarget{fsh_8c}{}\doxysection{Référence du fichier fsh.\+c}
+\label{fsh_8c}\index{fsh.c@{fsh.c}}
+
+
+Fichier contenant la fonction main de l\textquotesingle{}application.  
+
+
+{\ttfamily \#include $<$readline/readline.\+h$>$}\newline
+{\ttfamily \#include $<$readline/history.\+h$>$}\newline
+{\ttfamily \#include $<$sys/types.\+h$>$}\newline
+{\ttfamily \#include $<$sys/wait.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}base/\+String.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}base/new.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}command/all\+\_\+cmd.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}shell.\+h\char`\"{}}\newline
+Graphe des dépendances par inclusion de fsh.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d4/d96/fsh_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Fonctions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{fsh_8c_a2f4dbf5d30e18b6c18dab724885aebc6}{initialize\+\_\+cmd}} ()
+\begin{DoxyCompactList}\small\item\em Fonction qui va ajouter les classes des commandes internes dans le la table qui contient les commandes internes. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{fsh_8c_ae66f6b31b5ad750f1fe042a706a4e3d4}{main}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Description détaillée}
+Fichier contenant la fonction main de l\textquotesingle{}application. 
+
+C\textquotesingle{}est cette fonction qui va initialiser les commandes et démarrer le shell. 
+
+\doxysubsection{Documentation des fonctions}
+\mbox{\Hypertarget{fsh_8c_a2f4dbf5d30e18b6c18dab724885aebc6}\label{fsh_8c_a2f4dbf5d30e18b6c18dab724885aebc6}} 
+\index{fsh.c@{fsh.c}!initialize\_cmd@{initialize\_cmd}}
+\index{initialize\_cmd@{initialize\_cmd}!fsh.c@{fsh.c}}
+\doxysubsubsection{\texorpdfstring{initialize\_cmd()}{initialize\_cmd()}}
+{\footnotesize\ttfamily void initialize\+\_\+cmd (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Fonction qui va ajouter les classes des commandes internes dans le la table qui contient les commandes internes. 
+
+Ajouter directement les classes dans la déclaration faite dans le fichier {\ttfamily \mbox{\hyperlink{all__cmd_8h}{all\+\_\+cmd.\+h}}} est impossible car les structures des classes ne sont pas constantes au moment de la compilation. \mbox{\Hypertarget{fsh_8c_ae66f6b31b5ad750f1fe042a706a4e3d4}\label{fsh_8c_ae66f6b31b5ad750f1fe042a706a4e3d4}} 
+\index{fsh.c@{fsh.c}!main@{main}}
+\index{main@{main}!fsh.c@{fsh.c}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+char$\ast$ prompt = \char`\"{} -\/l\char`\"{};
+
+External\+Command e = obj\+\_\+new({\itshape External\+Command}, \char`\"{}ls\char`\"{}, \&prompt);
+
+Command\+\_\+execute((\+Command)e);
+
+obj\+\_\+destroy(e);

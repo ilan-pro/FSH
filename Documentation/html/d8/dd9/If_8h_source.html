@@ -1,0 +1,124 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>FSH - Projet Système:  Fichier source de command/If.h</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">FSH - Projet Système
+   </div>
+   <div id="projectbrief">Projet de la matière Sy5 - U Paris Cité</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "../../search",false,'Recherche','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="../../menudata.js"></script>
+<script type="text/javascript" src="../../menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('../../',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="../../dir_689a8946103f9323d050afa7f32bd943.html">command</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">If.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="../../d8/dd9/If_8h.html">Aller à la documentation de ce fichier.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#ifndef IF_H</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#define IF_H</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; </div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#ifdef IF_CLASS</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">    #define COMMAND_CLASS</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">    #include &quot;<a class="code" href="../../d1/d55/Command_8h.html">Command.h</a>&quot;</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">    #define IF_FIELDS \</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">        COMMAND_FIELDS \</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">        ArrayList test_command; \</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="preprocessor">        ArrayList if_block; \</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">        ArrayList else_block; \</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor"></span> </div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="../../dd/d9a/struct__If__.html">_If_</a>* <a class="code" href="../../d8/dd9/If_8h.html#a27e5ae048347715d4580a2a1edd1f066">If</a>;</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160; </div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#else</span></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="../../d1/d55/Command_8h.html">Command.h</a>&quot;</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="keyword">typedef</span> <span class="keyword">struct </span>__if_priv_fi {</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        <a class="code" href="../../d6/d4b/struct__ArrayList__.html">ArrayList</a> test_command;</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        <a class="code" href="../../d6/d4b/struct__ArrayList__.html">ArrayList</a> if_block;</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        <a class="code" href="../../d6/d4b/struct__ArrayList__.html">ArrayList</a> else_block;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    } __if_private_fields;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    </div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="preprocessor">    #define IF_H_FIEDLS \</span></div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="preprocessor">        COMMAND_H_FIELDS \</span></div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="preprocessor">        const char __if_private[sizeof(__if_private_fields)];</span></div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    </div>
+<div class="line"><a name="l00059"></a><span class="lineno"><a class="line" href="../../dd/d9a/struct__If__.html">   59</a></span>&#160;    <span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="../../dd/d9a/struct__If__.html">_If_</a> {</div>
+<div class="line"><a name="l00070"></a><span class="lineno"><a class="line" href="../../dd/d9a/struct__If__.html#a6fba0af56cad9d10c5566a4e930ca5cc">   70</a></span>&#160;        <a class="code" href="../../d8/d36/struct__Class__.html">Class</a> <a class="code" href="../../dd/d9a/struct__If__.html#a6fba0af56cad9d10c5566a4e930ca5cc">_If_</a>;</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        IF_H_FIEDLS</div>
+<div class="line"><a name="l00072"></a><span class="lineno"><a class="line" href="../../d8/dd9/If_8h.html#a27e5ae048347715d4580a2a1edd1f066">   72</a></span>&#160;    }* <a class="code" href="../../d8/dd9/If_8h.html#a27e5ae048347715d4580a2a1edd1f066">If</a>;</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160; </div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160; </div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<span class="keyword">extern</span> <a class="code" href="../../d8/d36/struct__Class__.html">Class</a> <a class="code" href="../../d8/dd9/If_8h.html#a3ecf030c0a362ee8f56493b8f7cc6623">_If_</a>;</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160; </div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aCommand_8h_html"><div class="ttname"><a href="../../d1/d55/Command_8h.html">Command.h</a></div><div class="ttdoc">Fichier d'en-tête contenant les déclarations des variables publiques et de toutes les méthodes public...</div></div>
+<div class="ttc" id="aIf_8h_html_a27e5ae048347715d4580a2a1edd1f066"><div class="ttname"><a href="../../d8/dd9/If_8h.html#a27e5ae048347715d4580a2a1edd1f066">If</a></div><div class="ttdeci">struct _If_ * If</div><div class="ttdoc">Structure de la classe _If_.</div></div>
+<div class="ttc" id="aIf_8h_html_a3ecf030c0a362ee8f56493b8f7cc6623"><div class="ttname"><a href="../../d8/dd9/If_8h.html#a3ecf030c0a362ee8f56493b8f7cc6623">_If_</a></div><div class="ttdeci">Class _If_</div><div class="ttdoc">Classe des objets de type _If_.</div><div class="ttdef"><b>Definition:</b> If.c:110</div></div>
+<div class="ttc" id="astruct__ArrayList___html"><div class="ttname"><a href="../../d6/d4b/struct__ArrayList__.html">_ArrayList_</a></div><div class="ttdoc">Classe des objets de type _ArrayList_.</div><div class="ttdef"><b>Definition:</b> ArrayList.c:103</div></div>
+<div class="ttc" id="astruct__Class___html"><div class="ttname"><a href="../../d8/d36/struct__Class__.html">_Class_</a></div><div class="ttdoc">Structure représentant la classe dans laquelle appratient un objet.</div><div class="ttdef"><b>Definition:</b> Class.h:57</div></div>
+<div class="ttc" id="astruct__If___html"><div class="ttname"><a href="../../dd/d9a/struct__If__.html">_If_</a></div><div class="ttdoc">Structure de la classe _If_.</div><div class="ttdef"><b>Definition:</b> If.h:59</div></div>
+<div class="ttc" id="astruct__If___html_a6fba0af56cad9d10c5566a4e930ca5cc"><div class="ttname"><a href="../../dd/d9a/struct__If__.html#a6fba0af56cad9d10c5566a4e930ca5cc">_If_::_If_</a></div><div class="ttdeci">Class _If_</div><div class="ttdoc">Classe des objets de type _If_.</div><div class="ttdef"><b>Definition:</b> If.h:70</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré par&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+</small></address>
+</body>
+</html>
