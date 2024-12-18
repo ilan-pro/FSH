@@ -169,7 +169,7 @@ int Shell_start(){
             ArrayList file_principal = Shell_parse(&usr_prompt); // Parsing de la saisie, pour en extraire les commandes.
                 
             if (!file_principal) {// Si la file renvoyée est NULL alors il y a une erreur de syntaxe.
-                Shell_print_syntaxe_error(usr_prompt, cp_prompt);
+                /** Shell_print_syntaxe_error(usr_prompt, cp_prompt); */
                 previous_cmd_finish = 1;
                 free(cp_prompt); // Destruction du pointeur alloué par readline.
             }
@@ -484,7 +484,7 @@ int Shell_execute_all(ArrayList struct_cmds){
      */
     int stdin_def = dup(0);
     int stdout_def = dup(1);
-    int stderr_def = dup(1);
+    int stderr_def = dup(2);
 
     // Parcours de la liste des pipeline (toute récupération se fait en O(1))
     for (size_t i = 0; i<ArrayList_size(struct_cmds); i++){
@@ -508,7 +508,7 @@ int Shell_execute_all(ArrayList struct_cmds){
             last_status = Command_execute(cmd);
             if(last_status != 0){
                 Command_perror();
-                goto exit;
+                /** goto exit; */
             }
             
             // Pipe1 est inutilisable car son écrivain est fermé (donc il en faut un nouveau)
@@ -528,7 +528,7 @@ int Shell_execute_all(ArrayList struct_cmds){
         dup2(stderr_def, 2);
     }
     
-    exit:
+    /** exit: */
     dup2(stdin_def, 0);
     dup2(stdout_def, 1);
     dup2(stderr_def, 2);

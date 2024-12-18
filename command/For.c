@@ -669,6 +669,8 @@ static void For_get_files(For self, DIR* dir, char** path, ArrayList all_files){
 
 static int For_execute_for_each_file(For self, ArrayList all_files){
 
+    int val_max  =  0;
+
     ////////// La parallèlisation c'est ici (enfin je crois :) ) /////////////////////
     for (size_t i = 0; i<ArrayList_size(all_files); i++){
 
@@ -684,12 +686,14 @@ static int For_execute_for_each_file(For self, ArrayList all_files){
 
         // Exécution de bloc de commandes.
         int val_ret = Shell_execute_all(self->commands);
-        if (val_ret) // Si la valeur de retour n'est pas nulle.
-            return val_ret; // On arrête l'exécution.
+        if (val_ret > val_max)
+            val_max =val_ret;
+        /** if (val_ret) // Si la valeur de retour n'est pas nulle. */
+        /**     return val_ret; // On arrête l'exécution. */
 
     }
 
-    return 0; 
+    return val_max; 
 
 }
 

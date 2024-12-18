@@ -311,7 +311,8 @@ static int out_redirection(Redirector self, char** prompt, int fd, int overwrite
 
                 // Vérification
                 if (file_d == -1) {// Si l'ouverture a échouée on quitte 
-                    Command_fail(2);
+                    perror("Pipeline_run");
+                    /** Command_fail(2); */
                     return 0;  /// S'il y a des chose à ajouter avant de quitter c'est ici !
                 }
 
@@ -423,7 +424,8 @@ static int in_redirection(Redirector self, char** prompt, int mult_redirect ){
                             
                 // Vérification
                 if (file_d == -1){ // Si l'ouverture a échouée on quitte 
-                    Command_fail(2);
+                    perror("Pipeline_run");
+                    /** Command_fail(2); */
                     return 0;  /// S'il y a des chose à ajouter avant de quitter c'est ici !
                 }
                 

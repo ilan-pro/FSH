@@ -163,6 +163,7 @@ static int add_if_block( If self, char** prompt ){
 }
 
 static int add_else_bloc( If self, char** prompt){
+    int ret = 1;
     if(**prompt == '\0' || **prompt == ';') return 1;
 
     char *tmp = *prompt;
@@ -182,14 +183,15 @@ static int add_else_bloc( If self, char** prompt){
         index++;
     }
     
-    printf("Else : %s \n", tmp2);
-    if(strcmp(tmp2, "else") != 0) return 1;
+    if(strcmp(tmp2, "else") != 0){
+        ret = 1;
+        goto clean;
+    }
 
     while(*tmp == ' ') tmp++;
 
     if(*tmp != '{') {
         If_print_syntax_err("Else mal formé");
-        return 0;
     }
 
     tmp++;
@@ -199,19 +201,22 @@ static int add_else_bloc( If self, char** prompt){
     *prompt = tmp;
 
     if(!(self->else_block = Shell_parse(prompt))){
-        return 0; 
+        ret = 0;
+        goto clean;
     }   
     
     if(**prompt != '}'){
         If_print_syntax_err("Accolade fermante abscente !");
-        return 0;
+        ret = 0;
+        goto clean;
     }
 
     (*prompt)++; // Avance d'un caractère.
     opened_brackets--;
 
+clean:
     free(tmp2);
-    return 1;
+    return ret;
 }
 
 /**
