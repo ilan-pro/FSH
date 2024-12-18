@@ -171,7 +171,7 @@ static int add_else_bloc( If self, char** prompt){
     while(*tmp == ' ') tmp++;
 
     size_t index = 1;
-    while(*tmp != ' ' && *tmp != '\0') {
+    while(*tmp != ' ' && *tmp != '\0' && *tmp != '{') {
         tmp2 = realloc(tmp2, sizeof(char) * (index+1));
         assert(tmp2 != NULL);
        
@@ -182,6 +182,7 @@ static int add_else_bloc( If self, char** prompt){
         index++;
     }
     
+    printf("Else : %s \n", tmp2);
     if(strcmp(tmp2, "else") != 0) return 1;
 
     while(*tmp == ' ') tmp++;
@@ -251,6 +252,7 @@ static void* If_constructor( void* self_, va_list* args ){
     }
     
     if(!add_else_bloc(self, prompt)){
+        obj_destroy(self);
         return NULL;
     }
 

@@ -306,6 +306,7 @@ static ArrayList getSplit(String arg){
         }
         fin++;
         continuer :
+        continue;
     }
     ArrayList_add_last(rad, obj_new(_String_, debut), 0);
     ArrayList res_split = obj_new(_ArrayList_, 0);
