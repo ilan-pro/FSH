@@ -151,11 +151,12 @@ const Class _SimpleCmd_ = &__SimpleCmd__;
  */
 static void SimpleCmd_parse_usr_prompt_params(SimpleCmd self, char** prompt){
 
+
     /** 
      * Lecture du prompt dans la boucle tant que l'on a pas fini le prompt 
      * ou qu'on a pas rencontré l'un des caractères `;`, `}` ou `|`
      */
-    while(**prompt && *(*prompt) != '|' && *(*prompt) != ';' && *(*prompt) != '}' ){
+    while( **prompt && *(*prompt) != '|' && *(*prompt) != '>' && *(*prompt) != '<' && *(*prompt) != ';' && *(*prompt) != '}' ){
         
         if (**prompt== ' ') // Si on tombe sur un espace alors on a fini de lire.
             break;
@@ -163,7 +164,7 @@ static void SimpleCmd_parse_usr_prompt_params(SimpleCmd self, char** prompt){
         // On crée une chaine à un seul caractère pour le paramètre.
         // TODO : Penser à créer une classe Character (si le temps le permet)
         char param[2];
-        param[0] = *(*prompt++);
+        param[0] = *((*prompt)++);
         param[1] = '\0';
         
         // Ajout du paramètre dans la liste.
@@ -187,9 +188,12 @@ static void SimpleCmd_parse_usr_prompt_params(SimpleCmd self, char** prompt){
  *
  * @param self La commande en cours de construction.
  * @param prompt Le prompt en cours de paring.
+ * @return Si oui ou non le parsing a réussi.
  */
-static void SimpleCmd_parse_usr_prompt(SimpleCmd self, char** prompt){
+static int SimpleCmd_parse_usr_prompt(SimpleCmd self, char** prompt){
     
+    int ret = 1;
+
     // Nombre de caractère lu. (Si ce nombre vaut 0 alors on a encore rien lu dans le prompt et donc tous les espaces sont ignorés. Le nombre est mis à 0 après chaque lecture d'un mot)
     int char_compteur = 0;
     
@@ -231,7 +235,8 @@ static void SimpleCmd_parse_usr_prompt(SimpleCmd self, char** prompt){
     
                 if (quoted || double_quoted || esc) // Si on est dans une expression entre guillemets ou que ' ' est echapé
                     goto h_default; // On va dans default
-
+                
+                add_mot:
                 if (char_compteur){ // Si il y a au moins une lettre lue.
                     
                     // Ajout du mot dans la liste des arguments de la commande.
@@ -276,6 +281,50 @@ static void SimpleCmd_parse_usr_prompt(SimpleCmd self, char** prompt){
                 SimpleCmd_parse_usr_prompt_params(self, prompt);
                 break;
 
+            case '>': // Redirection
+            case '<':
+                // Si on est dans une expression entre guillemets, que '>' est echapé ou redirector est NULL
+                if (quoted || double_quoted || esc ) 
+                    goto h_default; // On va dans default
+                
+                (*prompt)--; // On repointe sur '>'.
+                assert(**prompt=='>' || **prompt=='<');
+
+                if (!char_compteur){ // Si on a rien lu avant alors il n'y a rien à faire on redirige
+                    if (!Redirector_add_redirection(self->redirector, prompt)){
+                        ret = 0;
+                        goto exit;
+                    }
+                    goto add_mot;
+                }
+                
+                // On vérifie si la lettre précédent '>' est 1 ou 2
+                char prec = *((*prompt)-1);
+                if (prec=='1' || prec=='2'){
+                    // On diminue le compteur de 1 (pour ignorer le nombre)
+                    char_compteur--;
+
+                    // Troncage du mot.
+                    mot = realloc(mot, (1 + char_compteur) * sizeof(char));
+                    assert(mot);
+                    mot[char_compteur] = '\0';
+
+                    // Redirection
+                    if (!Redirector_add_redirection(self->redirector, prompt)){
+                        ret = 0;
+                        goto exit;
+                    }
+                    goto add_mot;
+                }
+                else{ 
+                    // Redirection
+                    if (!Redirector_add_redirection(self->redirector, prompt)){
+                        ret = 0;
+                        goto exit;
+                    }
+                    goto add_mot;
+                }
+                break;
             case '"': // Le cas où on a des guillemets doubles
                 if (!quoted && !esc) // S'ils sont dans des guillemets simples ou explicitement echapés alors ils sont échapés
                     double_quoted = !double_quoted;
@@ -308,7 +357,10 @@ static void SimpleCmd_parse_usr_prompt(SimpleCmd self, char** prompt){
     if(char_compteur)  // Si on a lu au moins un mot.
         ArrayList_add_last(self->args,obj_new(_String_, mot), 0); // On ajoute le mot
 
+exit :
+    // Mise à jour de la commande
     free(mot);
+    return ret;
 
 }
 
@@ -339,7 +391,11 @@ static void* SimpleCmd_constructor(void* self_, va_list* args){
     *(int(**))&self->execute = 0;
 
     // Lecture du prompt de l'utilisateur
-    SimpleCmd_parse_usr_prompt(self, prompt);
+    if (!SimpleCmd_parse_usr_prompt(self, prompt)){
+        Command_fail_with_message((Command)self, Command_FAIL_CODE);
+        obj_destroy(self);
+        return NULL;
+    }
 
     return self;
 }

@@ -120,6 +120,9 @@ static void* Exit_constructor(void* self_, va_list* args){
     
     // Conversion en objet de type Exit.
     Exit self = _SimpleCmd_->ctor(self_, args);
+
+    if (!self) // Si la construction échoue alors on renvoie NULL
+        return NULL;
         
     // Ajout de la fonction execute de la classe fille.
     *((int (**) (Command)) &(self->execute)) = Exit_execute;

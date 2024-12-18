@@ -13,10 +13,12 @@
  *  </ul>
  */
 
+#include <errno.h>
 #include <time.h>
 #include "../base/String.h"
 #include "../shell.h"
 #include <ctype.h>
+#include "Redirector.h"
 /**@cond HIDE_THIS*/
 #define COMMAND_CLASS "Command"  
 #include "Command.h"
@@ -145,8 +147,83 @@ const Class _Command_ = &__Command__;
  */
 int opened_brackets = 0;
 
+
+/**
+ * @internal
+ * @brief Il s'agit d'un code d'echec lors de la création de la consturction d'une commande.
+ * 
+ * Le message d'arreur peut être affiché en faisant Command_perror(Command_FAIL_CODE).
+ */
+int Command_FAIL_CODE;
+    
+/**
+ * Il s'agit d'une mémoire tampon qui permet de stocker le 
+ * message d'erreur renoyé par une commande.
+ */
+static char FAIL_BUFF[1024];
+
 /***************************************************/
 /************** Corps des fonctions ****************/
+
+/**
+ * @internal
+ * @brief Fonction qui va afficher le message d'erreur lié au code d'erreur 
+ * envoyé par la dernière commande échouée.
+ */
+void Command_perror(){
+    
+    write(2, FAIL_BUFF, strlen(FAIL_BUFF));     
+    
+}
+
+/**
+ * @internal 
+ * @brief Fonction qui va mettre à jour la valeur du code d'erreur 
+ * liée au résultat de la création ou exécution d'une commande.
+ *
+ * La fonction va également mettre à jour le  message d'erreur 
+ * lié au code d'erreur
+ *
+ * @param self La référence vers la commande (pour récupérer son nom);
+ * @param err Le code d'erreur que la commande souhaite stocker.
+ */
+void Command_fail_with_message(Command self, int err){
+    
+    // Mise à jour du code de l'erreur.
+    Command_FAIL_CODE = err;
+    switch (Command_FAIL_CODE){
+        default:
+            snprintf(FAIL_BUFF, 1024, "%s: uknown error.\n", self->name);
+            break;
+        case 0 : 
+            snprintf(FAIL_BUFF, 1024, "%s: sucess.\n", self->name);
+            break;
+        case 1 : 
+            snprintf(FAIL_BUFF, 1024, "%s: syntaxe error.\n", self->name);
+            break;
+        case 2 : 
+            snprintf(FAIL_BUFF, 1024, "%s: redirection error.\n%s\n", self->name, strerror(errno));
+            break;
+        case 3 : 
+            snprintf(FAIL_BUFF, 1024, "%s: too many arguments.\n", self->name);
+            break;
+    }
+
+}
+
+/**
+ * @internal 
+ * @brief Fonction qui va mettre à jour la valeur du code d'erreur 
+ * liée au résultat de la création ou exécution d'une commande.
+ *
+ * @param err Le code d'erreur que la commande souhaite stocker.
+ */
+void Command_fail( int err ){
+    
+    // Mise à jour du code de l'erreur.
+    Command_FAIL_CODE = err;
+
+}
 
 /**
  * @internal
@@ -180,6 +257,172 @@ int Command_actual_char_is_legal(int quoted, int double_quoted, int esc, char** 
 
 }
 
+
+/**
+ * @internal
+ * @brief Fonction qui va récupérer tous les sous chaines séparées par des ' ' (espaces) 
+ * dans le prompt jusqu'à la fin de ce dernier (rencontre avec `\0`).
+ *
+ * Les espace consécutives sont ignorés sauf s'ils font parti d'une chaine délimitée 
+ * par des guillemets (' ou ").
+ * <br>
+ * Lorsque la fonction rencontre un caractère '\' le caractère suivant est échappé. Les 
+ * espace sont échapés (c'est à dire qu'ils ne vont pas couper la chaine) s'ils se trouvent 
+ * entre guillemets.
+ * 
+ * @param collect_list La liste qui va contenir les résultats.
+ * @param prompt Le prompt qui sera utilisé (la chaine pointée est modifiée).
+ * @param redirector L'objet qui s'occupe de la redirection de la commande au cas où un caractère '>'
+ * est rencontré.
+ * @param stop_in_next Booléen indiquant si oui ou non la fonction doit s'arrêter après la première sous-chaine.
+ */
+int Command_parse_all_sub(ArrayList collect_list, char **prompt, int stop_in_next, Redirector redirector){
+    
+    // La valeur de retour de la commande.
+    int ret = 1;
+        
+    int cmd_length = 0;
+    char* command = malloc((1 + cmd_length) * sizeof(char));
+    assert(command);
+    command[cmd_length] = '\0';
+
+    int quoted = 0; // Booléean indiquant si oui ou non on se trouve dans des guillemets.
+    int double_quoted = 0; // Booléean indiquant si oui ou non on se trouve dans des guillemets double.
+    int esc = 0; // Booléean indiquant si oui ou non le caractère suivant est echappé.
+    
+    /** 
+     * Lecture du prompt dans la boucle tant que le caractère pointé est 
+     * valide (voir documentation de la fonction actual_char_is_legal()).
+     */
+    while(Command_actual_char_is_legal(quoted, double_quoted, esc, prompt)){
+        
+        // Récupération du caractère pointé par le pointeur, et incémentation de la posisiton.
+        char c = *((*prompt)++);
+        switch (c){
+            default : 
+                h_default: // label 
+
+                esc = 0; // On met l'echappement à 0 (si jamais le caractère était échappé)
+                // Incrémentation du compteur.
+                cmd_length++;
+                // Réallocation pour accueillir le nouveau caractère.
+                command = realloc(command, (1 + cmd_length) * sizeof(char));
+                assert(command);
+                command[cmd_length] = '\0';
+                command[cmd_length- 1] = c;
+                break; 
+
+
+            case ' ': // Le cas où le caractère lu est un espace.
+    
+                if (quoted || double_quoted || esc) // Si on est dans une expression entre guillemets ou que ' ' est echapé
+                    goto h_default; // On va dans default
+                
+                add_cmd:
+                if (cmd_length){ // Si il y a au moins une lettre lue.
+                    
+                    // Ajout du mot dans la liste des arguments de la commande.
+                    // L'ajout se fait à la fin pour préserver l'ordre de déclaration des arguments (sait-on jamais).
+                    ArrayList_add_last(collect_list, obj_new(_String_, command), 0);
+                    
+                    if (stop_in_next)
+                        goto exit;
+                    
+                    /** clean_buffer: */
+                    // Remise à 0 du compteur
+                    cmd_length = 0;
+
+                    // troncage du mot en mot vide.
+                    command = realloc(command, sizeof(char));
+                    assert(command);
+                    command[0] = '\0';
+                    continue;
+
+                }
+                else // Si on aucun caractère n'est lu alors on ignore l'espace.
+                    continue;    
+
+            case '"': // Le cas où on a des guillemets doubles
+                if (!quoted && !esc) // S'ils sont dans des guillemets simples ou explicitement echapés alors ils sont échapés
+                    double_quoted = !double_quoted;
+
+                goto h_default;
+                break;
+
+            case '>':
+            case '<':
+                // Si on est dans une expression entre guillemets, que '>' est echapé ou redirector est NULL
+                if (quoted || double_quoted || esc || !redirector) 
+                    goto h_default; // On va dans default
+                
+                (*prompt)--; // On repointe sur '>'.
+                assert(**prompt=='>' || **prompt=='<');
+
+                if (!cmd_length){ // Si on a rien lu avant alors il n'y a rien à faire on redirige
+                    if (!Redirector_add_redirection(redirector, prompt)){
+                        ret = 0;
+                        goto exit;
+                    }
+                    goto add_cmd;
+                }
+                
+                // On vérifie si la lettre précédent '>' est 1 ou 2
+                char prec = *((*prompt)-1);
+                if (prec=='1' || prec=='2'){
+                    // On diminue le compteur de 1 (pour ignorer le nombre)
+                    cmd_length--;
+
+                    // Troncage du mot.
+                    command = realloc(command, (1 + cmd_length) * sizeof(char));
+                    assert(command);
+                    command[cmd_length] = '\0';
+
+                    // Redirection
+                    if (!Redirector_add_redirection(redirector, prompt)){
+                        ret = 0;
+                        goto exit;
+                    }
+                    goto add_cmd;
+
+                }
+                else{ 
+                    // Redirection
+                    if (!Redirector_add_redirection(redirector, prompt)){
+                        ret = 0;
+                        goto exit;
+                    }
+                    goto add_cmd;
+                }
+                break;
+            case '\'': // Le cas où on a des guillemets simples
+                if (!double_quoted && !esc) // S'ils sont dans des guillemets doubles ou explicitement echapés alors ils sont échapés
+                    quoted = !quoted;
+
+                goto h_default;
+                break;
+            
+            case '\\': // Les echapement peuvent exister dans les commandes externes ex: find ... -exec rm {} \; ici ; est echapé
+            
+                if (esc) // Si il est echappé
+                    goto h_default;
+                
+                esc = 1;
+                break;
+        }
+    }
+    
+    if (cmd_length) // Si il y a au moins une lettre lue.
+        // Ajout du mot dans la liste des arguments de la commande.
+        // L'ajout se fait à la fin pour préserver l'ordre de déclaration des arguments (sait-on jamais).
+        ArrayList_add_last(collect_list, obj_new(_String_, command), 0);
+ 
+exit :
+    // Mise à jour de la commande
+    free(command);
+    return ret;
+}
+
+
 // Constructeur
 static void* Command_constructor(void* self_, va_list* args){
         
@@ -197,6 +440,9 @@ static void* Command_constructor(void* self_, va_list* args){
     // On fait une copie pour ne pas modifier la liste originale. 
     self->args_tmp = obj_new(_ArrayList_, 0); 
         
+    // Initialisation de l'objet de redirection
+    self->redirector = obj_new(_Redirector_);
+
     // Récupération du nom de la commande
     char* cmd_name = va_arg(*args, char*);
     char *name = malloc(sizeof(char) * (1+strlen(cmd_name)));
@@ -222,6 +468,7 @@ static void* Command_destroy(void* self_){
     obj_destroy(self->args);
     obj_destroy(self->params);
     obj_destroy(self->args_tmp);
+    obj_destroy(self->redirector);
     free(*((char**) &self->name));
     return self;
 
@@ -243,6 +490,8 @@ static void Command_print(const void* self_){
     obj_print(self->args);
     write(1, ". Params=", 9);
     obj_print(self->params);
+    write(1, ". Redirector=", 13);
+    obj_print(self->redirector);
     write(1, " \e[1;0m", 7);
 
 }
@@ -408,7 +657,9 @@ int Command_execute(Command self){
         abort();
     }
 
-
+    // Application de la redirection.
+    Redirector_apply_redirection(self->redirector);
+    
     // Parcours des arguments pour vérifier s'il n'y a pas de variable $...
     Command_remplace_variable(self, self->args_tmp);
     
@@ -421,6 +672,9 @@ int Command_execute(Command self){
     // Sinon on éxécute la commande.
     int ret_val = self->execute(self);
     
+    // Redirection multiple des sorties si activée
+    Redirector_out_multiple_redirection(self->redirector);
+
     // Changement de la liste des arguments, remise de l'original.
     self->args = origin_args;
     // suppression de tous les éléments de la liste temporaire.

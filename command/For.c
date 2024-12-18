@@ -116,6 +116,11 @@ const Class _For_ = &__For__;
 /************** Corps des fonctions ****************/
 
 
+/**
+ * Fonction qui va afficher un message d'erreur.
+ *
+ * @param msg Le message d'erreur qui sera affiché.
+ */
 static void For_print_syntax_err( const char* msg ){
 
     char tmp[] = "\e[1;31m[Erreur] Boucle for mal écrite : ";
@@ -417,18 +422,21 @@ static void* For_constructor(void* self_, va_list* args){
 
     // Ajout de l'identificateur de la variable de boucle
     if (!add_file_id(self, prompt)){
+        Command_fail_with_message((Command)self,1);
         obj_destroy(self);
         return NULL;
     }
 
     // Vérification de l'existance de `in`
     if (!check_in(prompt)){
+        Command_fail_with_message((Command)self,1);
         obj_destroy(self);
         return NULL;
     }
 
     // Ajout du répertoire
     if (!add_dir(self, prompt)){
+        Command_fail_with_message((Command)self,1);
         obj_destroy(self);
         return NULL;
     }
@@ -436,6 +444,7 @@ static void* For_constructor(void* self_, va_list* args){
 
     // Ajout des paramètres.
     if (!add_params(self, prompt)){
+        Command_fail_with_message((Command)self,1);
         obj_destroy(self);
         return NULL;
     }
@@ -447,6 +456,7 @@ static void* For_constructor(void* self_, va_list* args){
     // Appel de Shell_parse avec le reste du prompt.
     self->commands = Shell_parse(prompt); 
     if(!self->commands) {// Si self->command = NULL alors il y a eut une erreur de syntaxe quelque part pendant le parsing.
+        Command_fail_with_message((Command)self,1);
         obj_destroy(self);
         return NULL; // On renvoie NULL également.
     }
@@ -456,6 +466,7 @@ static void* For_constructor(void* self_, va_list* args){
         // Alors l'arrêt du parsing de Shell_parse() n'est pas causé par '}'
         // mais par '\0' (il n'y a que ces deux cas qui arrêtent Shell_parse()).
         For_print_syntax_err("Il manque l'accolade fermante !"); // On signale l'erreur de syntaxe.
+        Command_fail_with_message((Command)self,1);
         obj_destroy(self);
         return NULL;
     }
@@ -646,7 +657,7 @@ static void For_get_files(For self, DIR* dir, char** path, ArrayList all_files){
                 continue;
             }
         }
-
+     
         /////////////////////////////////////////////////
 
         // Assemblage du chemin vers le fichier.

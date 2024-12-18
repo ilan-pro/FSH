@@ -127,6 +127,9 @@ static void* Cd_constructor(void* self_, va_list* args){
     
     // Conversion en objet de type Cd.
     Cd self = _SimpleCmd_->ctor(self_, args);
+
+    if (!self) // Si la construction échoue alors on renvoie NULL
+        return NULL;
         
     // Ajout de la fonction execute de la classe fille.
     *((int (**) (Command)) &(self->execute)) = Cd_execute;

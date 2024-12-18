@@ -127,11 +127,11 @@ static ArrayList Ids_values_table;
  * sur la chaine le caractère qui a déclancher l'erreur.)
  */
 static void Shell_print_syntaxe_error(char* usr_prompt, char* cp_prompt){
-
-    char tmp[] = "\nErreur de syntaxe :\n\n\t\e[1;35m";
-    write(2, tmp, strlen(tmp));
+    
+    Command_perror();
+    write(2, "\e[1;35m\n\t", 9);
     write(2, cp_prompt, strlen(cp_prompt));
-    write(2, "\n\t", 2);
+    write(2, "\e[1;36m\n\t", 9);
     // Calcul de la position où a eut lieu l'erreur.
     int pos = usr_prompt - cp_prompt;
 
@@ -174,7 +174,7 @@ int Shell_start(){
                 free(cp_prompt); // Destruction du pointeur alloué par readline.
             }
             else {
-                // obj_print(file_principal); printf("\n"); // debug
+                /** obj_print(file_principal); printf("\n"); // debug */
                 previous_cmd_finish = Shell_execute_all(file_principal); // Exécution de la file principale.
                 obj_destroy(file_principal); // Destruction de la file principale.
                 free(cp_prompt); // Destruction du pointeur alloué par readline.
@@ -478,9 +478,13 @@ int Shell_execute_all(ArrayList struct_cmds){
      *      Ex: pwd | for i in . {ftype $i|wc} | sort.
      * Dans cet exemple lors de l'éxécution de {ftype $i|wc} stdin et stdout 
      * seront des tubes.
+     *
+     * Mais ça peut tout simplement être une reidrection vers des fichiers 
+     * donc il est important de remettre les descripteurs à leur place après chaque pipeline.
      */
     int stdin_def = dup(0);
     int stdout_def = dup(1);
+    int stderr_def = dup(1);
 
     // Parcours de la liste des pipeline (toute récupération se fait en O(1))
     for (size_t i = 0; i<ArrayList_size(struct_cmds); i++){
@@ -519,11 +523,13 @@ int Shell_execute_all(ArrayList struct_cmds){
         
         // Remise de stdin comme entrée standard (stdout est toujours remis après la dernière commande chaque pipeline)
         dup2(stdin_def, 0);
+        dup2(stderr_def, 2);
     }
     
     exit:
     dup2(stdin_def, 0);
     dup2(stdout_def, 1);
+    dup2(stderr_def, 2);
     // Fermeture des tube utilisés
     close(pipe1[0]);
     close(pipe2[0]);
