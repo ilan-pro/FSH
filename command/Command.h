@@ -10,6 +10,7 @@
 
 #include "../base/ArrayList.h"
 #include "Redirector.h"
+#include "../base/String.h"
 #ifndef COMMAND_H 
 /**@cond HIDE_THIS */
 #define COMMAND_H
@@ -164,5 +165,23 @@ int Command_actual_char_is_legal(int quoted, int double_quoted, int esc, char** 
  * @param stop_in_next Booléen indiquant si oui ou non la fonction doit s'arrêter après la première sous-chaine.
  */
 int Command_parse_all_sub(ArrayList collect_list, char **prompt, int stop_in_next, Redirector redirector);
+
+/**
+ * @brief Fonction qui pour un mot `_String_` donné (pouvant contenir des déclarations 
+ * de variables) va renvoyer la chaine de caractère où on a remplacé toutes les 
+ * variables par leur valeur.
+ *
+ * La fonction va renvoyer NULL si mot donné a une variable qui n'existe pas.<br>
+ * L'ordre de déclaration des variables est gardé.<br>
+ * Si le mot ne contient pas de variable, il est renvoyé tel qu'il est. (Attention 
+ * le mot qui sera renvoyé sera le même mot mais pas la même référence au mot donné 
+ * en argument. Garder cela à l'esprit pour éviter les fuites de méomire, les deux mots 
+ * doivent être détruit !)
+ *
+ * @param str La chaine de caractère à transformer. (Cette chaine n'est ni modifiée ni détruite)
+ * @return NULL si la chaine possède une déclaration de variables inexistantes ou le mot dont 
+ * le nom de chaque variable déclarée est remplacé par sa valeur.
+ */
+String replaceVar( String str );
 
 #endif
