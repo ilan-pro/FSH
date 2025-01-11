@@ -10,7 +10,8 @@
         String path;        /** Chemin vers le fichier. */\
         int fd;             /** Descripteur du fichier */\
         int hasVariable;    /** Booléen permettant de savoir si oui ou non le nom du fichier contient une variable. */\
-        int openFlag;       /** Flag utilisés pour l'ouverture du fichier. */
+        int openFlag;       /** Flag utilisés pour l'ouverture du fichier. */\
+        int opened;         /** Flag utilisés pour vérifier si le fichier est déjà ouvert. */\
 
     typedef struct _File_* File;
 
@@ -20,6 +21,8 @@
         String path;        /** Chemin vers le fichier. */
         int fd;             /** Descripteur du fichier */
         int hasVariable;    /** Booléen permettant de savoir si oui ou non le nom du fichier contient une variable. */
+        int openFlag;       /** Flag utilisés pour l'ouverture du fichier. */\
+        int opened;         /** Flag utilisés pour vérifier si le fichier est déjà ouvert. */\
     } __file_priv ;
     
     #define FILE_H_FIELDS \

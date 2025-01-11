@@ -1,6 +1,7 @@
 
 /** @cond HIDE_THIS */
 #include <stdarg.h>
+#include <string.h>
 #include <unistd.h>
 #include <fcntl.h>
 #include <stdio.h>
@@ -99,7 +100,7 @@
 
       // Vérifications.
       assert(self_);
-   
+
       // Conversion en objet de type File 
       File self = (File) self_;
       
@@ -109,14 +110,14 @@
       if (self->fd >= 0){
          int ret = close(self->fd);
 
-         // Si la fermeture échoue.
-         if (ret == -1){
-            char tmp[100];
-            printf("%d Après\n", self->fd);
-            snprintf(tmp, 100, "[Attention] : La fermeture d'un fichier ouvert a échouée.\n");
-            write(2, tmp, strlen(tmp));
-            perror("Fermeture de fichier");
-         } 
+         /** // Si la fermeture échoue. */
+         /** if (ret == -1){ */
+         /**    char tmp[100]; */
+         /**    printf("%d Après\n", self->fd); */
+         /**    snprintf(tmp, 100, "[Attention] : La fermeture d'un fichier ouvert a échouée.\n"); */
+         /**    write(2, tmp, strlen(tmp)); */
+         /**    perror("Fermeture de fichier"); */
+         /** }  */
       }
 
       return self;
@@ -148,7 +149,11 @@
 
       // Mise à jour du chemin vers le fichier.
       self->path = obj_new(_String_, path);
-     
+      
+      // On indique que le fichier n'est pas ouvert.
+      self->opened = 0;
+
+       /** write(2, "Un setPath ici !\n",17 ); */
       // Tout s'est bien terminé.
       return 1;
     }
@@ -178,6 +183,9 @@
       // Mise à jour du flag d'ouverture.
       self -> openFlag = tag;
 
+      // On indique que le fichier n'est pas ouvert.
+      self->opened = 0;
+
       return 1;
 
     }
@@ -206,12 +214,12 @@
       // Vérifications
       assert( self );
       assert( obj_instance_of(self, _File_) ); 
-            
+      
       // Nouveau descripteur (peut être une duplication).
       int new_fd = (duplicate) ? dup(fd) : fd;
       
       // Fermeture de l'ancien descripteur (S'il y en avait un).
-      if ( self->fd >= 0 ){
+      if ( self->fd >= 0 && new_fd != self -> fd){
          // Fermeture du fichier.
          int ret = close (self->fd);
          
@@ -227,6 +235,9 @@
       // Mise à jour du descripteur .
       self->fd = new_fd;
       
+      // On indique que le fichier n'est pas ouvert.
+      self->opened = 0;
+
       // Tout s'est bien passé.
       return 1;
    
@@ -278,6 +289,9 @@
       assert( self );
       assert( obj_instance_of(self, _File_) ); 
       
+      /** fprintf(stderr, "Ici %d\n", self->fd); */
+      /** fflush(stderr); */
+
       // On retourne le descripteur.
       return duplicate ? dup( self->fd ) : self->fd;
 
@@ -304,9 +318,14 @@
       // Vérifications
       assert( self );
       assert( obj_instance_of(self, _File_) ); 
+   
+      // Si il n'y a aucun chemin ou si le fichier est ouvert (mais que le chemin n'avait pas de variable) alors on a terminé.
+      if (strcmp(obj_to_string(self->path), "") == 0 || (self->opened && !self->hasVariable))
+         return 1; 
 
+       /** write(2, "Un open ici !\n",14 ); */
       // Ouverture du fichier.
-      int new_fd = open(obj_to_string(self->path), self->openFlag, 0600);
+      int new_fd = open(obj_to_string(self->path), self->openFlag, 0664);
       if (new_fd == -1){ // Gestion de l'échec d'ouverture.
          char tmp[100]; 
          snprintf(tmp, 100, "Echec de l'ouverture du fichier \"%s\" \n", obj_to_string(self->path));
@@ -315,13 +334,12 @@
       }
 
       // Fermeture de l'ancien descripteur (S'il y en avait un).
-      if ( self->fd >= 0 ){
+      if ( self->fd >= 0 && self->fd != new_fd){
          // Fermeture du fichier.
          int ret = close (self->fd);
          
          // Gestion en cas d'erreur de fermeture.
          // Fermeture du nouveau fichier ouvert.
-         close (new_fd);
          if (ret == -1){
             char tmp[100]; 
             snprintf(tmp, 100, "Echec de la fermeture du l'ancien descripteur du fichier \"%s\" \n", obj_to_string(self->path));
@@ -336,7 +354,12 @@
       
       // Mise à jour du descripteur.
       self->fd = new_fd;
+      /** printf("FD : %d\n\n", self->fd); */
+      /** fflush(stdout); */
    
+      // On indique que le fichier est ouvert
+      self->opened = 1;
+
       // Tout s'est bien terminé.
       return 1;
       

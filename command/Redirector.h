@@ -6,9 +6,9 @@
 #ifdef REDIRECTOR_CLASS
 
     #define REDIRECTOR_FIELDS\
-        ArrayList out_descriptors; /* liste des descripteur de redirection pour stdout.*/ \
-        ArrayList err_descriptors; /* liste des descripteur de redirection pour stderr.*/ \
-        ArrayList in_descriptors; /* liste des descripteur de redirection pour stdin.*/ \
+        ArrayList out_files; /* liste des fichiers de redirection pour stdout.*/ \
+        ArrayList err_files; /* liste des fichiers de redirection pour stderr.*/ \
+        ArrayList in_files; /* liste des fichiers de redirection pour stdin.*/ \
         int red_out; /* Il s'agit d'un booléen qui indique si oui ou non il y a une redirection multiple vers stdout */\
         int red_in; /* Il s'agit d'un booléen qui indique si oui ou non il y a une redirection multiple vers stdin */\
         int red_err; /* Il s'agit d'un booléen qui indique si oui ou non il y a une redirection multiple vers stderr */\
@@ -98,7 +98,7 @@
      * 
      * @param self L'objet `Redirector` s'occupant des redirections.
      */
-    void Redirector_apply_redirection( Redirector self );
+    int Redirector_apply_redirection( Redirector self );
 
     /**
      * @brief il s'agit d'une fonction qui va écrire sur tous les fichiers à 
