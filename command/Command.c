@@ -802,8 +802,8 @@ int Command_execute(Command self){
     // Sinon on éxécute la commande.
     int ret_val = self->execute(self);
     
-    // Redirection multiple des sorties si activée
-    Redirector_out_multiple_redirection(self->redirector);
+    // Redirection multiple des sorties si activée (stdin est remis si possible)
+    Redirector_multiple_redirection(self->redirector);
 
     // Changement de la liste des arguments, remise de l'original.
     self->args = origin_args;

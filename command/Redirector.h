@@ -12,6 +12,9 @@
         int red_out; /* Il s'agit d'un booléen qui indique si oui ou non il y a une redirection multiple vers stdout */\
         int red_in; /* Il s'agit d'un booléen qui indique si oui ou non il y a une redirection multiple vers stdin */\
         int red_err; /* Il s'agit d'un booléen qui indique si oui ou non il y a une redirection multiple vers stderr */\
+        int old_err; /* Il s'agit de la valeur de départ de stderr */\
+        int old_in; /* Il s'agit de la valeur de départ de stdin */\
+        int old_out; /* Il s'agit de la valeur de départ de stdout */\
 
     typedef struct _Redirector_* Redirector;
 
@@ -23,6 +26,9 @@
         int red_out; /* Il s'agit d'un booléen qui indique si oui ou non il y a une redirection multiple vers stdout */
         int red_in; /* Il s'agit d'un booléen qui indique si oui ou non il y a une redirection multiple vers stdin */
         int red_err; /* Il s'agit d'un booléen qui indique si oui ou non il y a une redirection multiple vers stderr */
+        int old_err; /* Il s'agit de la valeur de départ de stderr */
+        int old_in; /* Il s'agit de la valeur de départ de stdin */
+        int old_out; /* Il s'agit de la valeur de départ de stdout */
     } redirectior_private;
     
     #define REDIRECTOR_H_FIELDS\
@@ -110,6 +116,6 @@
      * 
      * @param self L'objet `Redirector` s'occupant des redirections.
      */
-    void Redirector_out_multiple_redirection( Redirector self );
+    void Redirector_multiple_redirection( Redirector self );
 
 #endif
