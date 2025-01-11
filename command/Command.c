@@ -14,6 +14,7 @@
  */
 
 #include <errno.h>
+#include <fcntl.h>
 #include <time.h>
 #include "../base/String.h"
 #include "../shell.h"
@@ -785,8 +786,10 @@ int Command_execute(Command self){
     }
 
     // Application de la redirection.
-    Redirector_apply_redirection(self->redirector);
-    
+    int ret = Redirector_apply_redirection(self->redirector);
+    if (!ret) // S'il y a une erreur d'ourture de fichier.
+        return 1;
+
     // Parcours des arguments pour vérifier s'il n'y a pas de variable $...
     Command_remplace_variable(self, self->args_tmp);
     
@@ -799,14 +802,15 @@ int Command_execute(Command self){
     // Sinon on éxécute la commande.
     int ret_val = self->execute(self);
     
-    // Redirection multiple des sorties si activée
-    Redirector_out_multiple_redirection(self->redirector);
+    // Redirection multiple des sorties si activée (stdin est remis si possible)
+    Redirector_multiple_redirection(self->redirector);
 
     // Changement de la liste des arguments, remise de l'original.
     self->args = origin_args;
     // suppression de tous les éléments de la liste temporaire.
     ArrayList_clear(self->args_tmp);
     
+
     return ret_val;
 }
 

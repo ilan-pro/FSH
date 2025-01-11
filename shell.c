@@ -9,6 +9,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <sys/stat.h>
 #include <sys/wait.h>
 #include <dirent.h>
 #include <unistd.h>
@@ -457,6 +458,47 @@ void show_std_new_location(Command cmd, int term_num){
 }
 
 /**
+ * Fonction qui va fermer les tube en vérifiant si les descripteur sont bien ceux d'un tube.
+ *
+ *  On vérifie si c'est un tube car lorsqu'on ferme un coté du tube pour la redirection ce coté 
+ *  le descritpeur de ce coté du tube peut être donné à un fichier pendant l'exécution de la commande.
+ */
+static void close_pipe(int pipe1[2], int pipe2[2]){
+    
+    struct stat pipe_stat;
+    
+    // Entrée tube 1 
+    if(fstat(pipe1[0], &pipe_stat) !=-1){
+        // Vérification si c'est un tube.
+        if(S_ISFIFO(pipe_stat.st_mode))
+            close(pipe1[0]);
+    }
+    
+    // Sortie tube 1 
+    if(fstat(pipe1[1], &pipe_stat) !=-1){
+        // Vérification si c'est un tube.
+        if(S_ISFIFO(pipe_stat.st_mode))
+            close(pipe1[1]);
+    }
+  
+    // Entrée tube 2 
+    if(fstat(pipe2[0], &pipe_stat) !=-1){
+        // Vérification si c'est un tube.
+        if(S_ISFIFO(pipe_stat.st_mode))
+            close(pipe2[0]);
+    }   
+    
+    // Sortie tube 2 
+    if(fstat(pipe2[1], &pipe_stat) !=-1){
+        // Vérification si c'est un tube.
+        if(S_ISFIFO(pipe_stat.st_mode))
+            close(pipe2[1]);
+    }
+
+
+}
+
+/**
  * @internal
  * @brief Fonction qui va exécuter toutes les pipelines d'une 
  * commande structurée (par appel de la méthode execute() de chaque commande).
@@ -543,6 +585,7 @@ int Shell_execute_all(ArrayList struct_cmds){
 
         }
         
+        
         // Remise de stdin comme entrée standard (stdout est toujours remis après la dernière commande chaque pipeline)
         dup2(stdin_def, 0);
         dup2(stderr_def, 2);
@@ -553,10 +596,7 @@ int Shell_execute_all(ArrayList struct_cmds){
     dup2(stdout_def, 1);
     dup2(stderr_def, 2);
     // Fermeture des tube utilisés
-    close(pipe1[0]);
-    close(pipe2[0]);
-    close(pipe1[1]);
-    close(pipe2[1]);
+    close_pipe(pipe1, pipe2);
 
     // fermeture des copie des descFic de stdin et stdout copiés (surtout si c'était des tubes, à fermer absolument !)
     close(stdin_def);
