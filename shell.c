@@ -76,6 +76,9 @@ static void destroy_var_table();
  */
 int previous_cmd_finish = 0;
 
+/** sauvegarde de l'ancienne valeur de retour */
+
+
 /**
  * Un booléan se chargeant de savoir si oui ou non nous avons reçu un signal dans le cas ou nous auriont un programme qui à comme 
  * code de sortie 255 mais qui n'a pas été interrompu par un signal
@@ -188,16 +191,10 @@ int Shell_start() {
             if (!file_principal) {  // Si la file renvoyée est NULL alors il y a une erreur de syntaxe.
                 /** Shell_print_syntaxe_error(usr_prompt, cp_prompt); */
                 previous_cmd_finish = 1;
-                if(signal_recu == 1){
-                    previous_cmd_finish = 255;
-                }
                 free(cp_prompt);  /** Destruction du pointeur alloué par readline */
             } else {
                 /** obj_print(file_principal); printf("\n"); // debug */
                 previous_cmd_finish = Shell_execute_all(file_principal);  // Exécution de la file principale.
-                if(signal_recu == 1){
-                    previous_cmd_finish = 255;
-                }
                 obj_destroy(file_principal);  /** Destruction de la file principale */
                 free(cp_prompt);  /** Destruction du pointeur alloué par readline */
             }
@@ -650,12 +647,15 @@ static void update_prompt(){
         snprintf(path, 30, "%s", tr);
     
 
-    if (!previous_cmd_finish){ // Si la précédente commande s'est bien terminée.
-        snprintf(prompt, 50, "\033[32m[%d]\033[36m%s\033[00m$ ", previous_cmd_finish, path); // On le met en vert.
-    }else if (previous_cmd_finish == 255 && signal_recu){
+    if (signal_recu){
         snprintf(prompt, 50, "\033[91m[SIG]\033[00m%s$ ", path); // On met le signal en rouge.
-    }else{ 
-        snprintf(prompt, 50, "\033[91m[%d]\033[00m%s$ ", previous_cmd_finish, path); // On le met en rouge.
+        signal_recu = 0;
+    } else {
+        if (!previous_cmd_finish){ // Si la précédente commande s'est bien terminée.
+            snprintf(prompt, 50, "\033[32m[%d]\033[36m%s\033[00m$ ", previous_cmd_finish, path); // On le met en vert.
+        }else{ 
+            snprintf(prompt, 50, "\033[91m[%d]\033[00m%s$ ", previous_cmd_finish, path); // On le met en rouge.
+        }
     }
 }
 
@@ -899,31 +899,29 @@ const char*  Shell_get_val(const char* id_){
 
 
 /* le gestionnaire de signaux ne va rien faire pour les signaux car nous les ignorons */
-void signal_handler(int sig){
-    // previous_cmd_finish = 255;
+void signal_handler_int(int sig){
     signal_recu = 1;
 }
+
+void signal_handler_term(int sig){}
 
 /**
  * @internal
  * @brief Fonction qui va utiliser un gestionnaire de signaux qui ne fait rien lors des signaux spécifié reçu.
  *  */
 void ignore_signals(){
-    struct sigaction sa = {0};
+    struct sigaction sa_int = {0};
+    struct sigaction sa_term = {0};
 
     /** On donne notre gestionnaire de signaux a notre structure sigaction pour gérer la réception des signaux */
-    sa.sa_handler = &signal_handler;
-    sa.sa_flags = 0;
-
-    /** 
-     * ici, on ne veut pas bloquer de signaux durant l'execution de signal_handler car on veut qu'il puisse en recevoir d'autre et d'en 
-     * traiter d'autre */
-    assert(sigemptyset(&sa.sa_mask) == 0);
+    sa_int.sa_handler = &signal_handler_int;
+    
+    sa_term.sa_handler = &signal_handler_term;
 
     /** 
      * ici on spécifie qu'elle signaux on veut ignorer pour le gestionnaire de signaux, signal_handler
      * En particulier, nous voulons : SIGINT ET SIGTERM
      */
-    assert(sigaction(SIGINT, &sa, NULL) == 0);
-    assert(sigaction(SIGTERM, &sa, NULL) == 0);
+    assert(sigaction(SIGINT, &sa_int, NULL) == 0);
+    assert(sigaction(SIGTERM, &sa_term, NULL) == 0);
 }

@@ -61,6 +61,8 @@
      * `_ExternalCommand_` désigne la classe des commandes external_command. et la chaine "external_command" est le nom de la commande.
      */
     extern const Class _ExternalCommand_;
+    // meme variable que celle de shell.c pour pouvoir gérer les signaux
+    extern volatile sig_atomic_t signal_recu;
     // pour les fonctions, les extern sont implicites
     void handler(int sig);
     void ignore_signals();

@@ -23,7 +23,6 @@
 #include <sys/types.h>
 #include "../base/String.h"
 
-
 /*****************************************************/
 /************ Déclaration des fonctions **************/
 
@@ -60,7 +59,6 @@ static int ExternalCommand_execute(Command self_);
 
 /*****************************************************/
 /************* Structure de la classe ****************/
-
 
 /**
  * @brief Classe `ExternalCommand` de la commande ExternalCommand qui affiche 
@@ -235,19 +233,14 @@ static int ExternalCommand_execute(Command self_){
                     for(int i=0; i < size; i++)
                         free(cmd[i]);
                     free(cmd);
-                    
-                    if(errno == EINTR){
-                        exit(255);
-                    }else{
-                        write(2,"\e[1;31m", 7);
-                        write(2,self->name, strlen(self->name));
-                        write(2," : ", 3);
-                        char* err = strerror(errno);
-                        write(2,err,strlen(err));
-                        write(2,"\e[1;0m", 6);
-                        write(2,"\n", 1);
-                        exit(1);
-                    }
+                    write(2,"\e[1;31m", 7);
+                    write(2,self->name, strlen(self->name));
+                    write(2," : ", 3);
+                    char* err = strerror(errno);
+                    write(2,err,strlen(err));
+                    write(2,"\e[1;0m", 6);
+                    write(2,"\n", 1);
+                    exit(1);
                 }
                 
                 // Libération de toutes les chaines qui ont servie à la création de la liste des arguments.
@@ -264,14 +257,16 @@ static int ExternalCommand_execute(Command self_){
         default:
             // le père
             if(waitpid(pid, &process_ret, 0) < 0){
-                if (errno == EINTR) {
+                if (WIFSIGNALED(process_ret)) {
                     // L'attente a été interrompue par un signal, on peut ajouter un message si besoin.
+                    signal_recu = 1;
                     return 255; // Réessayer l'appel à waitpid.
                 } else {
                     perror("waitpid");
                     return 1; // Une autre erreur inattendue s'est produite.
                 }
             }
+            
             break;
     }
 

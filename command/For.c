@@ -657,6 +657,9 @@ static void For_get_files(For self, DIR* dir, char** path, ArrayList all_files){
                 continue;
             }
         }
+
+        // -p 
+        
      
         /////////////////////////////////////////////////
 
