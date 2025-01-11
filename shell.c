@@ -141,59 +141,6 @@ static void Shell_print_syntaxe_error(char* usr_prompt, char* cp_prompt){
 
 }
 
-// /**
-//  * @internal
-//  * Fonction qui démarre le shell "FSH".
-//  */
-// int Shell_start(){
-
-//     // Initialisation du chemin absolue vers le réprtoire de travail.
-//     if (init_working_dir())
-//         return 1;
-
-//     // initialisation de la liste des variables qui seront utilisées dans le shell.
-//     init_var_table();
-
-//     // Redirection vers stderr
-//     rl_outstream = stderr;
-
-//     while(1){
-        
-//         // Mise à jour du prompt.
-//         update_prompt();
-//         // Récupération de la saisie de l'utilisateur.
-//         char* usr_prompt = readline(prompt);
-//         // Copie du pointeur pour sa destruction.
-//         char *cp_prompt = usr_prompt;
-//         if (usr_prompt){ // Si le pointeur vers la saisie n'est pas NULL (Pas de EOF)
-//             ArrayList file_principal = Shell_parse(&usr_prompt); // Parsing de la saisie, pour en extraire les commandes.
-                
-//             if (!file_principal) {// Si la file renvoyée est NULL alors il y a une erreur de syntaxe.
-//                 /** Shell_print_syntaxe_error(usr_prompt, cp_prompt); */
-//                 previous_cmd_finish = 1;
-//                 free(cp_prompt); // Destruction du pointeur alloué par readline.
-//             }
-//             else {
-//                 /** obj_print(file_principal); printf("\n"); // debug */
-//                 previous_cmd_finish = Shell_execute_all(file_principal); // Exécution de la file principale.
-//                 obj_destroy(file_principal); // Destruction de la file principale.
-//                 free(cp_prompt); // Destruction du pointeur alloué par readline.
-//             }
-//         }
-//         else{ // Si on est ici c'est qu'il y reception de EOF
-//             break; // Alors on arrête le shell.
-//         }
-//         rl_free_line_state();
-//     }
-    
-//     // Destruction de la liste des variables utilisées dans le shell.
-//     destroy_var_table();
-//     // On vide l'historique.
-//     rl_clear_history();
-//     return previous_cmd_finish; // On revoie le résultat de la dernière commande.
-
-// }
-
 /**
  * @internal
  * Fonction qui démarre le shell "FSH".
@@ -228,12 +175,12 @@ int Shell_start() {
             if (!file_principal) {  // Si la file renvoyée est NULL alors il y a une erreur de syntaxe.
                 /** Shell_print_syntaxe_error(usr_prompt, cp_prompt); */
                 previous_cmd_finish = 1;
-                free(cp_prompt);  // Destruction du pointeur alloué par readline.
+                free(cp_prompt);  /** Destruction du pointeur alloué par readline */
             } else {
                 /** obj_print(file_principal); printf("\n"); // debug */
                 previous_cmd_finish = Shell_execute_all(file_principal);  // Exécution de la file principale.
-                obj_destroy(file_principal);  // Destruction de la file principale.
-                free(cp_prompt);  // Destruction du pointeur alloué par readline.
+                obj_destroy(file_principal);  /** Destruction de la file principale */
+                free(cp_prompt);  /** Destruction du pointeur alloué par readline */
             }
         } else {  // Si on est ici c'est qu'il y a réception de EOF
             break;  // Alors on arrête le shell.
