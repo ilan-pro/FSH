@@ -22,6 +22,8 @@
 #include "command/ExternalCommand.h"
 #include "base/String.h"
 #include "shell.h"
+#include <signal.h>
+
 
 #include "base/new.h"
 
@@ -111,6 +113,7 @@ static ArrayList Ids_values_table;
 
 //****************** Fonctions **************** */
 /********************************************** */
+
 
 /**
  * Fonction qui va écire dans le shell tout le prompt suivi de la 
@@ -872,4 +875,27 @@ const char*  Shell_get_val(const char* id_){
 
     return obj_to_string(value);
     
+}
+
+
+
+void signal_handler(int sig){
+    /* en rien faire pour les signaux car nous les ignorons */
+}
+
+/**
+ * @internal
+ * @brief Fonction qui va utiliser un gestionnaire de signaux qui ne fait rien lors des signaux spécifié reçu.
+ *  */
+void ignore_signals(){
+    struct sigaction sa = {0};
+
+    sa.sa_handler = &signal_handler;
+    sa.sa_flags = 0;
+
+    // ici, on ne veut pas bloquer de signaux durant 
+    assert(sigemptyset(&sa.sa_mask) == 0);
+
+    assert(sigaction(SIGINT, &sa, NULL) == 0);
+    assert(sigaction(SIGTERM, &sa, NULL) == 0);
 }
