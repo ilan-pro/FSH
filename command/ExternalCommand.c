@@ -166,7 +166,7 @@ static void* ExternalCommand_destroy(void* self_){
 
 // Execute.
 static int ExternalCommand_execute(Command self_){
-    
+
     // Code de retour du processus fils.
     int process_ret;
     /**Nous allons fork afin de pouvoir exécuter les commandes externes car les commandes externes, aux antipodes des commandes
@@ -178,6 +178,7 @@ static int ExternalCommand_execute(Command self_){
     switch(pid){
         case 0:
             {
+                ignore_signals();
                 // le fils
                 // ExternalCommand cmd = _ExternalCommand_->ctor(self_, );
                 ExternalCommand self = (ExternalCommand) (void*) self_;
@@ -258,8 +259,13 @@ static int ExternalCommand_execute(Command self_){
         default:
             // le père
             if(waitpid(pid, &process_ret, 0) < 0){
-                perror("waitpid");
-                return 1;
+                if (errno == EINTR) {
+                    // L'attente a été interrompue par un signal, on peut ajouter un message si besoin.
+                    return 255; // Réessayer l'appel à waitpid.
+                } else {
+                    perror("waitpid");
+                    return 1; // Une autre erreur inattendue s'est produite.
+                }
             }
             break;
     }

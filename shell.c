@@ -149,6 +149,10 @@ static void Shell_print_syntaxe_error(char* usr_prompt, char* cp_prompt){
  * Fonction qui démarre le shell "FSH".
  */
 int Shell_start() {
+
+    // GESTION des signaux 
+    ignore_signals();
+
     // Initialisation du chemin absolue vers le répertoire de travail.
     if (init_working_dir())
         return 1;
@@ -635,7 +639,9 @@ static void update_prompt(){
 
     if (!previous_cmd_finish) // Si la précédente commande s'est bien terminée.
         snprintf(prompt, 50, "\033[32m[%d]\033[36m%s\033[00m$ ", previous_cmd_finish, path); // On le met en vert.
-    else
+    else if (previous_cmd_finish == 255)
+        snprintf(prompt, 50, "\033[91m[SIG]\033[00m%s$ ", path); // On le met en rouge.
+    else 
         snprintf(prompt, 50, "\033[91m[%d]\033[00m%s$ ", previous_cmd_finish, path); // On le met en rouge.
 
 }
@@ -879,8 +885,9 @@ const char*  Shell_get_val(const char* id_){
 
 
 
+/* le gestionnaire de signaux ne va rien faire pour les signaux car nous les ignorons */
 void signal_handler(int sig){
-    /* en rien faire pour les signaux car nous les ignorons */
+    previous_cmd_finish = 255;
 }
 
 /**
@@ -890,12 +897,19 @@ void signal_handler(int sig){
 void ignore_signals(){
     struct sigaction sa = {0};
 
+    /** On donne notre gestionnaire de signaux a notre structure sigaction pour gérer la réception des signaux */
     sa.sa_handler = &signal_handler;
     sa.sa_flags = 0;
 
-    // ici, on ne veut pas bloquer de signaux durant 
+    /** 
+     * ici, on ne veut pas bloquer de signaux durant l'execution de signal_handler car on veut qu'il puisse en recevoir d'autre et d'en 
+     * traiter d'autre */
     assert(sigemptyset(&sa.sa_mask) == 0);
 
+    /** 
+     * ici on spécifie qu'elle signaux on veut ignorer pour le gestionnaire de signaux, signal_handler
+     * En particulier, nous voulons : SIGINT ET SIGTERM
+     */
     assert(sigaction(SIGINT, &sa, NULL) == 0);
     assert(sigaction(SIGTERM, &sa, NULL) == 0);
 }

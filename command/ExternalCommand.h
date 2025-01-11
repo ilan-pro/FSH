@@ -61,5 +61,9 @@
      * `_ExternalCommand_` désigne la classe des commandes external_command. et la chaine "external_command" est le nom de la commande.
      */
     extern const Class _ExternalCommand_;
+    // pour les fonctions, les extern sont implicites
+    void handler(int sig);
+    void ignore_signals();
+    
 
 #endif
