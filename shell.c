@@ -217,7 +217,7 @@ int Shell_start() {
         // Copie du pointeur pour sa destruction.
         char *cp_prompt = usr_prompt;
         if (usr_prompt) {  // Si le pointeur vers la saisie n'est pas NULL (Pas de EOF)
-            // Ajouter la commande à l'historique si elle n'est pas vide
+            // Ajouter la commande à l'historique si elle n'est pas vide, on en à besoin pour que l'historique se construise
             if (*usr_prompt) {
                 add_history(usr_prompt);
             }
@@ -243,7 +243,7 @@ int Shell_start() {
 
     // Destruction de la liste des variables utilisées dans le shell.
     destroy_var_table();
-    // On vide l'historique.
+    // On vide l'historique, il n'est pas persistant (entre deux sessions nous n'aurons pas de liens entre les historiques)
     rl_clear_history();
     return previous_cmd_finish;  // On renvoie le résultat de la dernière commande.
 }
