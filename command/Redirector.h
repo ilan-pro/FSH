@@ -1,6 +1,7 @@
 #ifndef REDIRECTOR_H
 #define REDIRECTOR_H
 #include "../base/ArrayList.h"
+#include "../base/String.h"
 
 #ifdef REDIRECTOR_CLASS
 
@@ -50,7 +51,14 @@
      * charger du reste ).
      */
     void Command_fail(int err);
-    
+     
+    /**
+     * Fonction défini dans le fichier `Command.h`.
+     * Elle a été déclarée ici pour éviter les import multiples ( le linker va 
+     * charger du reste ).
+     */
+    String replaceVar(String str);
+   
     /**@endcond*/
 
     /**

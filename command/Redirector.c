@@ -291,8 +291,14 @@ static int out_redirection(Redirector self, char** prompt, int fd, int overwrite
                 int apnd = (append ? O_APPEND : 0);
                 
                 // Récupération du nom du fichier.
-                String file = get_file(prompt);
-                
+                String file_tmp = get_file(prompt);
+                if (!file_tmp) // Si la fonction a échoué (renvoie NULL)
+                    return 0; // On quitte.
+                // On va récupérer la valeur de la variable si le fichier en question contient des déclaration de variable.
+                String file = replaceVar(file_tmp);
+                // Destruction de file_tmp (inutile mtnt)
+                obj_destroy(file_tmp);
+
                 /** printf("\nTrunc ? %s [%d]. Excl ? %s[%d]. Append ? %s[%d]. \nMult-Redir ? %s[out=%d, err=%d].\n\n",  */
                         /** (trunc ? "Oui" : "Non"),trunc, (excl ? "Oui" : "Non"), excl, (apnd ? "Oui" : "Non"),apnd, */
                         /** (mult_redirect ? "Oui" : "Non"), self->red_out, self->red_err); */
@@ -408,9 +414,15 @@ static int in_redirection(Redirector self, char** prompt, int mult_redirect ){
         default : // Maintenant on redirige
             {
                 // Récupération du nom du fichier.
-                String file = get_file(prompt);
-                if (!file) // Si la fonction a échoué (renvoie NULL)
+                String file_tmp = get_file(prompt);
+                if (!file_tmp) // Si la fonction a échoué (renvoie NULL)
                     return 0; // On quitte.
+
+                // On va récupérer la valeur de la variable si le fichier en question contient des déclaration de variable.
+                String file = replaceVar(file_tmp);
+                printf("%s\n", obj_to_string(file));
+                // Destruction de file_tmp (inutile mtnt)
+                obj_destroy(file_tmp);
 
                 // On peut vérifier ici si le fichier n'est pas une variable (si le temps le permet)
 
