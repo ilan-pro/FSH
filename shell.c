@@ -77,6 +77,12 @@ static void destroy_var_table();
 int previous_cmd_finish = 0;
 
 /**
+ * Un booléan se chargeant de savoir si oui ou non nous avons reçu un signal dans le cas ou nous auriont un programme qui à comme 
+ * code de sortie 255 mais qui n'a pas été interrompu par un signal
+ */
+volatile sig_atomic_t signal_recu = 0;
+
+/**
  * @internal
  * @brief Il s'agit du chemin absolue vers le repertoire courant.
  */
@@ -637,13 +643,14 @@ static void update_prompt(){
         snprintf(path, 30, "%s", tr);
     
 
-    if (!previous_cmd_finish) // Si la précédente commande s'est bien terminée.
+    if (!previous_cmd_finish){ // Si la précédente commande s'est bien terminée.
         snprintf(prompt, 50, "\033[32m[%d]\033[36m%s\033[00m$ ", previous_cmd_finish, path); // On le met en vert.
-    else if (previous_cmd_finish == 255)
+    }else if (previous_cmd_finish == 255 && signal_recu){
         snprintf(prompt, 50, "\033[91m[SIG]\033[00m%s$ ", path); // On le met en rouge.
-    else 
+        signal_recu = 0;
+    }else{ 
         snprintf(prompt, 50, "\033[91m[%d]\033[00m%s$ ", previous_cmd_finish, path); // On le met en rouge.
-
+    }
 }
 
 
@@ -888,6 +895,7 @@ const char*  Shell_get_val(const char* id_){
 /* le gestionnaire de signaux ne va rien faire pour les signaux car nous les ignorons */
 void signal_handler(int sig){
     previous_cmd_finish = 255;
+    signal_recu = 1;
 }
 
 /**
