@@ -1,11 +1,14 @@
 
 /** @cond HIDE_THIS */
 #include <stdarg.h>
+#include <assert.h>
 #include <string.h>
+#include <sys/stat.h>
 #include <unistd.h>
 #include <fcntl.h>
 #include <stdio.h>
 #include "../base/new.h"
+#include "Redirector.h"
 #define FILE_CLASS "File"
 #include "File.h"
 /** @endcond */
@@ -150,6 +153,10 @@
       // Mise à jour du chemin vers le fichier.
       self->path = obj_new(_String_, path);
       
+      // On va vérifier dans la chaine si le caractère '$' s'y trouve.
+      if (String_contains(self->path, '$'))
+         self->hasVariable = 1; // On indique que le chemin contient une variable.
+
       // On indique que le fichier n'est pas ouvert.
       self->opened = 0;
 
@@ -320,12 +327,30 @@
       assert( obj_instance_of(self, _File_) ); 
    
       // Si il n'y a aucun chemin ou si le fichier est ouvert (mais que le chemin n'avait pas de variable) alors on a terminé.
-      if (strcmp(obj_to_string(self->path), "") == 0 || (self->opened && !self->hasVariable))
+      if (strcmp(obj_to_string(self->path), "") == 0 )
          return 1; 
+      
+      String path = self->path;
+
+      // Si le chemin contient une variable.
+      if (self->hasVariable){
+         path = replaceVar(path);
+         
+         if (path == NULL){
+            char tmp[100]; 
+            snprintf(tmp, 100, "Valeur inexistante dans la variable %s\n", obj_to_string(self->path));
+            write(2,tmp, strlen(tmp));
+            return 0;
+         }
+      }
 
        /** write(2, "Un open ici !\n",14 ); */
       // Ouverture du fichier.
-      int new_fd = open(obj_to_string(self->path), self->openFlag, 0664);
+      int new_fd = open(obj_to_string(path), self->openFlag, 0664);
+
+      // Destruction de path si il y avait une variable (c'était une nouvelle chaine contenant les valeurs des variables)
+      if (self->hasVariable) obj_destroy(path);
+
       if (new_fd == -1){ // Gestion de l'échec d'ouverture.
          char tmp[100]; 
          snprintf(tmp, 100, "Echec de l'ouverture du fichier \"%s\" \n", obj_to_string(self->path));
@@ -349,13 +374,19 @@
 
       }
 
+      // Récupération de la taille du fichier au moment de son ouverture.
+      struct stat tmp;
+      fstat( new_fd, &tmp );
+      self->size_on_open = tmp.st_size;
+
+      /** fprintf( stderr, "Taille: %lu\n", self->size_on_open ); */
+      /** fflush( stderr ); */
+      
       // Si on est ici c'est que tout s'est bien passé.
       // Mise à jour alors.
       
       // Mise à jour du descripteur.
       self->fd = new_fd;
-      /** printf("FD : %d\n\n", self->fd); */
-      /** fflush(stdout); */
    
       // On indique que le fichier est ouvert
       self->opened = 1;
@@ -366,6 +397,24 @@
     }
 
 
+    /**
+     * @internal
+     * @brief Fonction qui va renvoyer la taille du fichier au moment de son ouverture.
+     *
+     * @param self Fichier dont on veut récupérer la taille initiale. 
+     * descriteur avant de le renvoyer.
+     *
+     * @return La taille du fichier au moment de son ouverture.
+     */
+    size_t File_getSizeOnOpen( File self ){
+      
+       // Vérifications
+      assert( self );
+      assert( obj_instance_of(self, _File_) ); 
+      
+      return self->size_on_open;
+
+    }
 
 
 

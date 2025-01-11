@@ -276,10 +276,10 @@ static int out_redirection(Redirector self, char** prompt, int fd, int overwrite
                 // Récupération du nom du fichier.
                 String file = get_file(prompt);
                 
-                /** printf("\nTrunc ? %s [%d]. Excl ? %s[%d]. Append ? %s[%d]. \nMult-Redir ? %s[out=%d, err=%d].\n\n",  */
-                        /** (trunc ? "Oui" : "Non"),trunc, (excl ? "Oui" : "Non"), excl, (apnd ? "Oui" : "Non"),apnd, */
-                        /** (mult_redirect ? "Oui" : "Non"), self->red_out, self->red_err); */
-
+                /** fprintf(stderr, "\nTrunc ? %s [%d]. Excl ? %s[%d]. Append ? %s[%d]. \nMult-Redir ? %s[out=%d, err=%d].\n\n", */
+                /**         (trunc ? "Oui" : "Non"),trunc, (excl ? "Oui" : "Non"), excl, (apnd ? "Oui" : "Non"),apnd, */
+                /**         (mult_redirect ? "Oui" : "Non"), self->red_out, self->red_err); */
+                /** fflush(stderr); */
                 // On peut vérifier ici si le fichier n'est pas une variable (si le temps le permet)
                 
                 /////////////////////////////////////////////////////////////////////////////////////
@@ -809,15 +809,21 @@ static void out_err_multiple_redirection(Redirector self, int fd){
     // Le premier descripteur est celui dans lequel le résultat (erreur ou sortie) de la commande a été écrit.
     int file_d = File_getFd((File) ArrayList_get_first(list, 0), 0);
     
-    // Parcours de tous descripteurs 
+    // Parcours de tous descripteurs pour remettre la tête de lecture à la position initiale
     for (size_t i = 0; i< ArrayList_size(list); i++){ 
         // Récupération de leur FD
         int fd = File_getFd((File) ArrayList_get(list, i, 0), 0);
          
+        /**
+         * Comme on ne va pas écraser le texte contenu, la position de départ est la taille du 
+         * fichier au moment de son ouverture. Si le fichier est ouvert avec TRUNC ce sera à 0 
+         * si APPEND ce sera la taille initiale du fichier.
+         */
+
         // Remise de leur curseur au début.
         // Cela ne va pas gêner ceux ouvert avec APPEND car tout 
         // écriture se ferra à la fin quoi qu'il arrive.
-        lseek(fd, 0, SEEK_SET);
+        lseek(fd, File_getSizeOnOpen((File)ArrayList_get(list, i, 0)), SEEK_SET);
     }
     
     // Buffer pour lire le contenu du fichier.
@@ -826,6 +832,9 @@ static void out_err_multiple_redirection(Redirector self, int fd){
 
     // Lecture de tout le fichier
     while ((nb=read(file_d, buff, 4096)) >0){
+        /** write(2, "\n===\nContenu : ", 15); */
+        /** write(2, buff, nb); */
+        /** write(2, "\n\n\n\n==========\n", 15); */
         for (size_t i = 1; i< ArrayList_size(list); i++){ // Parcours de tous descripteurs()
             // Récupération de leur FD
             int fd = File_getFd((File) ArrayList_get(list, i, 0), 0);
@@ -939,7 +948,9 @@ static void in_multiple_redirection (Redirector self){
  * redirection est faite avant exécution et non après) si la redirection 
  * n'est pas exlisive.
  *
- * @param self L'objet `Redirector` s'occupant des redirections.
+ * @param self L'objet `Redirector` s'occupant denContenu : ", 15);
+        write(2, buff, nb);
+        write(s redirections.
  */
 void Redirector_multiple_redirection( Redirector self ){
     // Vérifications

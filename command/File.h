@@ -12,6 +12,7 @@
         int hasVariable;    /** Booléen permettant de savoir si oui ou non le nom du fichier contient une variable. */\
         int openFlag;       /** Flag utilisés pour l'ouverture du fichier. */\
         int opened;         /** Flag utilisés pour vérifier si le fichier est déjà ouvert. */\
+        size_t size_on_open;         /** Taille du fichier au moment de son ouverture. */\
 
     typedef struct _File_* File;
 
@@ -23,6 +24,7 @@
         int hasVariable;    /** Booléen permettant de savoir si oui ou non le nom du fichier contient une variable. */
         int openFlag;       /** Flag utilisés pour l'ouverture du fichier. */\
         int opened;         /** Flag utilisés pour vérifier si le fichier est déjà ouvert. */\
+        size_t size_on_open;         /** Taille du fichier au moment de son ouverture. */\
     } __file_priv ;
     
     #define FILE_H_FIELDS \
@@ -114,6 +116,16 @@
      * @return Le descripteur du fichier ouvert.
      */
     int File_getFd( File self, int duplicate );
+    
+    /**
+     * @brief Fonction qui va renvoyer la taille du fichier au moment de son ouverture.
+     *
+     * @param self Fichier dont on veut récupérer la taille initiale. 
+     * descriteur avant de le renvoyer.
+     *
+     * @return La taille du fichier au moment de son ouverture.
+     */
+    size_t File_getSizeOnOpen( File self );
     
     /**
      * @brief Fonction qui va ouvrir le fichier en tenant compte des donnée 
