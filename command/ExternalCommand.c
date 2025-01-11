@@ -166,7 +166,8 @@ static void* ExternalCommand_destroy(void* self_){
 
 // Execute.
 static int ExternalCommand_execute(Command self_){
-
+    
+    ignore_signals();
     // Code de retour du processus fils.
     int process_ret;
     /**Nous allons fork afin de pouvoir exécuter les commandes externes car les commandes externes, aux antipodes des commandes
@@ -178,7 +179,7 @@ static int ExternalCommand_execute(Command self_){
     switch(pid){
         case 0:
             {
-                ignore_signals();
+                
                 // le fils
                 // ExternalCommand cmd = _ExternalCommand_->ctor(self_, );
                 ExternalCommand self = (ExternalCommand) (void*) self_;
@@ -234,15 +235,19 @@ static int ExternalCommand_execute(Command self_){
                     for(int i=0; i < size; i++)
                         free(cmd[i]);
                     free(cmd);
-
-                    write(2,"\e[1;31m", 7);
-                    write(2,self->name, strlen(self->name));
-                    write(2," : ", 3);
-                    char* err = strerror(errno);
-                    write(2,err,strlen(err));
-                    write(2,"\e[1;0m", 6);
-                    write(2,"\n", 1);
-                    exit(1);
+                    
+                    if(errno == EINTR){
+                        exit(255);
+                    }else{
+                        write(2,"\e[1;31m", 7);
+                        write(2,self->name, strlen(self->name));
+                        write(2," : ", 3);
+                        char* err = strerror(errno);
+                        write(2,err,strlen(err));
+                        write(2,"\e[1;0m", 6);
+                        write(2,"\n", 1);
+                        exit(1);
+                    }
                 }
                 
                 // Libération de toutes les chaines qui ont servie à la création de la liste des arguments.

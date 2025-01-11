@@ -188,10 +188,16 @@ int Shell_start() {
             if (!file_principal) {  // Si la file renvoyée est NULL alors il y a une erreur de syntaxe.
                 /** Shell_print_syntaxe_error(usr_prompt, cp_prompt); */
                 previous_cmd_finish = 1;
+                if(signal_recu == 1){
+                    previous_cmd_finish = 255;
+                }
                 free(cp_prompt);  /** Destruction du pointeur alloué par readline */
             } else {
                 /** obj_print(file_principal); printf("\n"); // debug */
                 previous_cmd_finish = Shell_execute_all(file_principal);  // Exécution de la file principale.
+                if(signal_recu == 1){
+                    previous_cmd_finish = 255;
+                }
                 obj_destroy(file_principal);  /** Destruction de la file principale */
                 free(cp_prompt);  /** Destruction du pointeur alloué par readline */
             }
@@ -205,6 +211,7 @@ int Shell_start() {
     destroy_var_table();
     // On vide l'historique, il n'est pas persistant (entre deux sessions nous n'aurons pas de liens entre les historiques)
     rl_clear_history();
+    
     return previous_cmd_finish;  // On renvoie le résultat de la dernière commande.
 }
 
@@ -646,8 +653,7 @@ static void update_prompt(){
     if (!previous_cmd_finish){ // Si la précédente commande s'est bien terminée.
         snprintf(prompt, 50, "\033[32m[%d]\033[36m%s\033[00m$ ", previous_cmd_finish, path); // On le met en vert.
     }else if (previous_cmd_finish == 255 && signal_recu){
-        snprintf(prompt, 50, "\033[91m[SIG]\033[00m%s$ ", path); // On le met en rouge.
-        signal_recu = 0;
+        snprintf(prompt, 50, "\033[91m[SIG]\033[00m%s$ ", path); // On met le signal en rouge.
     }else{ 
         snprintf(prompt, 50, "\033[91m[%d]\033[00m%s$ ", previous_cmd_finish, path); // On le met en rouge.
     }
@@ -894,7 +900,7 @@ const char*  Shell_get_val(const char* id_){
 
 /* le gestionnaire de signaux ne va rien faire pour les signaux car nous les ignorons */
 void signal_handler(int sig){
-    previous_cmd_finish = 255;
+    // previous_cmd_finish = 255;
     signal_recu = 1;
 }
 
