@@ -218,6 +218,34 @@ String String_concat(String s1_, String s2_){
     
 }
 
+
+    /**
+     * @brief Fonction qui va vérifier si oui ou non le caractère donné 
+     * en argument à la fonction se trouve dans la chaine.
+     * 
+     * @param self La chaine à parcourir.
+     * @param c Le caractère à rechercher.
+     *
+     * @return 0 si la caractère n'est pas trouvé, 1 sinon. 
+     */
+    int String_contains( String self, char c){
+        
+        // Vérfications
+        assert( self );
+        assert( obj_instance_of(self, _String_) );
+        
+        for (size_t i = 0; i<self->size; i++){
+            if (self->str[i] == c)
+                return 1;
+        }
+        
+        return 0;
+
+    }
+
+
+
+
 /*****************************************************/
 /*****************************************************/
 /*****************************************************/
