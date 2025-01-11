@@ -85,6 +85,30 @@
      * Elle est défini dans le fichier `String.c`
      */
     extern const Class _String_;
-
+    
+    /**
+     * @brief Fonction qui peremet de faire la concaténation de deux chaines de caractères.
+     *
+     * La chaine résultante est un objet qu'il faudra détruire. <br>
+     * Les deux chaines donnée en arguments ne sont pas modifiées.
+     *
+     * @param s1_ La première chaine.
+     * @param s2_ La seconde chaine.
+     *
+     * @return La chaine issue de la concaténation des deux chaine (chaine qu'il faudra détruire après utilisation.)
+     */
     String String_concat(String s1_, String s2_);
+
+    /**
+     * @brief Fonction qui va vérifier si oui ou non le caractère donné 
+     * en argument à la fonction se trouve dans la chaine.
+     * 
+     * @param self La chaine à parcourir.
+     * @param c Le caractère à rechercher.
+     *
+     * @return 0 si la caractère n'est pas trouvé, 1 sinon. 
+     */
+    int String_contains( String self, char c);        
+
+
 #endif
