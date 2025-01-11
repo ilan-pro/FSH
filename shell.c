@@ -498,6 +498,61 @@ static void close_pipe(int pipe1[2], int pipe2[2]){
 
 }
 
+/** void Shell_execute_cmd( Command cmd, int* last_status, int** pipes, int index){ */
+
+/**     assert(cmd);     */
+/**     // Redirection de la sortie. */
+/**     if (index < ) */
+
+/**     *last_status = Command_execute(cmd); */
+/**     if(last_status != 0){ */
+/**         Command_perror(); */
+/**         [> goto exit; <] */
+/**     } */
+
+
+
+/** } */
+
+
+static int Shell_exec_one( ArrayList pipeline ){
+        
+    // Sert à stocker le status des processus enfant afin de retourner le dernier éxecuter.
+    int last_status = 0;
+
+    /** // Vérification. */
+    /** assert( pipeline ); */
+    /** assert( ArrayList_size( pipeline ) <= 1 ); */
+
+    /** // Sauvegarde de stdout, stderr et stdin */
+    /** int std_in_old = dup(STDIN_FILENO); */
+    /** int std_err_old = dup(STDOUT_FILENO); */
+    /** int std_out_old = dup(STDERR_FILENO); */
+
+    /** // Vérifications */
+    /** assert( std_in_old != -1 ); */
+    /** assert( std_err_old != -1 ); */
+    /** assert( std_out_old != -1 ); */
+
+    for (int i = 0; i<ArrayList_size( pipeline ); i ++){
+        Command cmd = (Command) ArrayList_get(pipeline, i, 0); 
+        last_status = Command_execute(cmd);
+    }
+    
+    /** // On remet STDOUT, STDERR et STDIN à leur place */
+    /** assert(dup2( std_in_old, STDIN_FILENO ) != -1); */
+    /** assert(dup2( std_out_old, STDOUT_FILENO ) != -1); */
+    /** assert(dup2( std_err_old, STDERR_FILENO ) != -1); */
+
+    /** // Fermeture des copies  */
+    /** assert(close (std_in_old) != -1); */
+    /** assert(close (std_out_old) != -1); */
+    /** assert(close (std_err_old) != -1); */
+
+    return last_status;
+
+}
+
 /**
  * @internal
  * @brief Fonction qui va exécuter toutes les pipelines d'une 
@@ -520,15 +575,15 @@ int Shell_execute_all(ArrayList struct_cmds){
     int last_status = 0;
     
     /**
-     * Création de deux tubes, entrant et sortant dont l'un (pipe1) sera celui qui 
-     * remplacera `stdin` (tube entrant, en lecture) et l'autre (pipe2) remplacera 
+     * Création de deux tubes, entrant et sortant dont l'un (pipe1) sera celui qui
+     * remplacera `stdin` (tube entrant, en lecture) et l'autre (pipe2) remplacera
      * `stdout` (tube sortant, en écriture).
      */
-    int pipe1[2];
-    int pipe2[2];
-    
-    pipe(pipe1);
-    pipe(pipe2);
+    /** int pipe1[2]; */
+    /** int pipe2[2]; */
+
+    /** pipe(pipe1); */
+    /** pipe(pipe2); */
 
 
     /**
@@ -553,54 +608,99 @@ int Shell_execute_all(ArrayList struct_cmds){
         
         // on récupère la list chaîné de chaque pipeline
         ArrayList pipeline = ArrayList_get(struct_cmds, i, 0);
-        
-        for (size_t j = 0; j<ArrayList_size(pipeline); j++){
             
-            // Redirection des entrées et sortie des commande la pipeline.
-            pipe_redirection(pipe1, pipe2, stdout_def, j, ArrayList_size(pipeline));
+        // S'il n'y a qu'une seule commande il n'y a pas de parallèlisation.
+        if (ArrayList_size( pipeline ) <= 1){
+            last_status = Shell_exec_one(pipeline);
+            continue;
+        }
 
-            // Récupération de la commande.
-            Command cmd = ArrayList_get(pipeline, j, 0); 
+        // On crée une liste de tube anonyme de taille n-1 pour les redirections
+        int** pipes = malloc(sizeof(int*) * (ArrayList_size(pipeline) - 1));
+    
+        // Initialisation de tous les tubes.
+        for (size_t j = 0; j<ArrayList_size(pipeline) - 1; j++){
+            // Allocation.
+            int* p = malloc(sizeof(int) * 2);
+            // Création du tube.
+            assert(pipe(p) != -1);
+            pipes[j] = p;
+        }
+
+        // Il s'agit du pid de la dernière commande du pipeline.
+        int last_cmd_pid;
+
+        // Exécution de la première commande.
+        //Shell_execute_cmd(ArrayList_get_first(pipeline, 0), &last_status, pipes, 0);        
+
+        /** fprintf(stderr, "il y a %lu commandes dans la pipeline\n", ArrayList_size(pipeline)); */
+        /** fflush(stderr); */
+
+        for (size_t j = 0; j<ArrayList_size(pipeline); j++){    
+
+            if (!(last_cmd_pid = fork())) {
+                // Redirection de la sortie standard.
+                if ( j < ArrayList_size(pipeline)-1 )
+                    dup2(pipes[j][1], 1); // Redirection de stdout dans le coté écriture du tube.
+                
+                // Redirection de l'entrée standard.
+                if (j > 0)
+                    dup2( pipes[j-1][0], 0); // Redirection de stdin dans le coté écriture du tube.
+                
+
+                /// Fermeture de tous les tubes.
+                for (int k=0; k<ArrayList_size(pipeline)-1; k++){
+                    assert(close(pipes[k][0])!=-1);
+                    assert(close(pipes[k][1])!=-1);
+                }
+
+                // Récupération de la commande.
+                Command cmd = ArrayList_get(pipeline, j, 0); 
+                
+                /** show_std_new_location(cmd, 1); */
+
+                // Execution et récupération de la valeur de retour.
+                int last_status = Command_execute(cmd);
+                
+                // On quitte avec la dernière valeur.
+                exit(last_status);
+                
+            }
+
 
             //Debug
             // show_std_new_location(cmd, 2);
-            assert(fcntl(pipe1[1], F_GETFD)==-1); // pipe1[1] doit toujours être fermé !
 
             // Exécution de la commande.
-            last_status = Command_execute(cmd);
-            if(last_status != 0){
-                Command_perror();
-                /** goto exit; */
-            }
             
-            // Pipe1 est inutilisable car son écrivain est fermé (donc il en faut un nouveau)
-            close(pipe1[0]); 
             
-            // Pas besoin de créer un Pipe pour le dernier (c'est juste une optimisation)
-            if (j < ArrayList_size(pipeline)-1) 
-                pipe(pipe1);
-            
-            // échange de pipe1 et pipe2.
-            swap_pipes(pipe1, pipe2);
-
         }
-        
-        
-        // Remise de stdin comme entrée standard (stdout est toujours remis après la dernière commande chaque pipeline)
-        dup2(stdin_def, 0);
-        dup2(stderr_def, 2);
+    
+        // Libération du tableau des tubes.
+        for (int j = 0 ; j<ArrayList_size( pipeline ) - 1; j++){
+            assert(close(pipes[j][0]) != -1);
+            assert(close(pipes[j][1]) != -1);
+            free( pipes[j] );
+        }
+        free(pipes);
+    
+
+        // On attends le dernier processus (seulement si la pipeline n'était pas vide)
+        if (ArrayList_size(pipeline)){
+            int pid;
+            while((pid = wait(NULL)) != -1){
+                if (pid == last_cmd_pid)
+                    WEXITSTATUS(last_status);
+                
+            }
+        }
+            
     }
     
-    /** exit: */
     dup2(stdin_def, 0);
     dup2(stdout_def, 1);
     dup2(stderr_def, 2);
-    // Fermeture des tube utilisés
-    close_pipe(pipe1, pipe2);
-
-    // fermeture des copie des descFic de stdin et stdout copiés (surtout si c'était des tubes, à fermer absolument !)
-    close(stdin_def);
-    close(stdout_def);
+ 
     return last_status;
 }
 
