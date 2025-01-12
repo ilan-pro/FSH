@@ -19,6 +19,7 @@
 #include <assert.h>
 #include "base/ArrayList.h"
 #include "command/For.h"
+#include "command/Redirector.h"
 #include "command/all_cmd.h"
 #include "command/ExternalCommand.h"
 #include "base/String.h"
@@ -44,6 +45,21 @@ static int init_working_dir();
 static void update_prompt();
 static Class get_internal_cmd(char *char_lu);
 static Command apply_cmd(char *char_lu, ArrayList file_secondaire, char** prompt);
+/**
+ * @internal 
+ * @biref Fonction qui va créer une variable du shell dont le nom est 
+ * donné en argument.
+ *  
+ * La valeur de la variable est la valeur qui suit le '=' et peut être 
+ * le résulat d'une commande structurelle (par redirection de stdout).
+ * <br>
+ * Si la variable existe sa valeur sera mise à jour.
+ *
+ * @param id L'identificateur de la variable.
+ * @param prompt Il s'agit du prompt qui est en cours de parsing.
+ * @return Si oui ou non l'ajout a réussi.
+ */
+static int varAffectation(char* id, char** prompt);
 
 /**
  * Fonction qui va initialiser la tables des variables qui seront utilisées 
@@ -123,6 +139,7 @@ static ArrayList Ids_values_table;
 
 //****************** Fonctions **************** */
 /********************************************** */
+
 
 
 /**
@@ -336,6 +353,32 @@ ArrayList Shell_parse(char **prompt){
             // continue pour revenir au debut du whilevoir des espaces si 
             continue;
         }
+
+        // on vérifie que ce caractère est un égale, pour l'affectation de variable.
+        if(res == '='){
+            // si c'est un égale et que nous n'avons pas lu de caratère ...
+            if(!lu1lettre){
+                // ...alors il y erreur de syntaxe.
+                char tmp[100];
+                snprintf(tmp, 100, "\e[1;31mErreur de syntaxe : Il manque l'identificateur du '='\e[1;0m\n");
+                write(2, tmp, strlen(tmp));
+                goto error;
+            }
+            // si on arrive ici, c'est qu'il y a un égale et qu'on à déjà lu un caractère
+            // donc char_lu contient le nom de la commande
+            // on remet lu1lettre à 0 car nous voulons relire une commande
+            lu1lettre = 0;
+
+            if(!varAffectation(char_lu, prompt))
+                goto error;
+
+            // on trunk l'espace alloué par l'ancienne commande afin de pouvoir stocker le nom de la nouvelle commande sans l'avoir à la concatener avec l'ancienne
+            char_lu = realloc(char_lu, sizeof(char));
+            char_lu[0] = '\0';
+            // pour éviter d'avoir des espaces si il y a une autre commande qui suit
+            // continue pour revenir au debut du whilevoir des espaces si 
+            continue;
+        }
         
         // ajout du charactère res à char_lu
         lu1lettre++;
@@ -356,6 +399,109 @@ error:
     return NULL; // On ne créé pas de file, on renvoie NULL
 
 }
+
+
+/**
+ * @internal 
+ * @biref Fonction qui va créer une variable du shell dont le nom est 
+ * donné en argument.
+ *  
+ * La valeur de la variable est la valeur qui suit le '=' et peut être 
+ * le résulat d'une commande structurelle (par redirection de stdout).
+ * <br>
+ * Si la variable existe sa valeur sera mise à jour.
+ *
+ * @param id L'identificateur de la variable.
+ * @param prompt Il s'agit du prompt qui est en cours de parsing.
+ * @return Si oui ou non l'ajout a réussi.
+ */
+static int varAffectation(char* id, char** prompt){
+   
+    // On décale de 1 (pour =)
+    (*prompt)++;
+
+    // Valeur de retour.
+    int ret = 1;
+
+    // Nombre de caractère lu. (Si ce nombre vaut 0 alors on a encore rien lu dans le prompt et donc tous les espaces sont ignorés. Le nombre est mis à 0 après chaque lecture d'un mot)
+    int char_compteur = 0;
+    
+    /** 
+     * Chaine de caractère qui va contenir le mot en cours de lecture, 
+     * cette chaine est troquée après chaque lecture d'un mot (après 
+     * avoir rencontré le premier caractère espace depuis la lecture du mot).
+     */
+    char* mot = (char*)malloc(sizeof(char));
+    assert(mot);
+    // On ajoute le caractère de fin de chaine au mot.
+    mot[0] = '\0';
+    
+    int quoted = 0; // Booléean indiquant si oui ou non on se trouve dans des guillemets.
+    int double_quoted = 0; // Booléean indiquant si oui ou non on se trouve dans des guillemets double.
+    int esc = 0; // Booléean indiquant si oui ou non le caractère suivant est echappé.
+
+    /** 
+     * Lecture du prompt dans la boucle tant que le caractère pointé est 
+     * valide (voir documentation de la fonction actual_char_is_legal()).
+     */
+    while(Command_actual_char_is_legal(quoted, double_quoted, esc, prompt)){
+        // Récupération du caractère pointé par le pointeur, et incémentation de la posisiton.
+        char c = *((*prompt)++);
+        switch (c) {
+            default : // par défaut on ajoute le caractère à la chaine en cours de lecture. 
+                h_default: // label 
+
+                esc = 0; // On met l'echappement à 0 (si jamais le caractère était échappé)
+                // Incrémentation du compteur.
+                char_compteur ++;
+                // Réallocation pour accueillir le nouveau caractère.
+                mot = realloc(mot, (1 + char_compteur) * sizeof(char));
+                mot[char_compteur] = '\0';
+                mot[char_compteur - 1] = c;
+                break; 
+
+            case ' ': // Le cas où le caractère lu est un espace.
+                    
+                goto h_default; // On va dans default
+                
+            case '"': // Le cas où on a des guillemets doubles
+                if (!quoted && !esc) // S'ils sont dans des guillemets simples ou explicitement echapés alors ils sont échapés
+                    double_quoted = !double_quoted;
+
+                goto h_default;
+                break;
+
+            case '\'': // Le cas où on a des guillemets simples
+                if (!double_quoted && !esc) // S'ils sont dans des guillemets doubles ou explicitement echapés alors ils sont échapés
+                    quoted = !quoted;
+
+                goto h_default;
+                break;
+            
+            case '\\': // Il n'y a pas d'échappement mais ça ne coûte rien
+            
+                if (esc) // Si il est echappé
+                    goto h_default;
+                
+                esc = 1;
+                break;
+
+        }
+
+    }
+
+    // Si on arrive ici c'est qu'on a terminé la lecture du contenue de la variable.
+    if (!Shell_add_var(id, mot)){ // On tente d'ajouter la variable si possible.
+        Shell_update_var(id, mot); // Sinon on la met à jour.
+    }
+        
+    // Mise à jour de la commande
+    free(mot);
+    return ret;
+
+}
+
+
 
 /**
  * Fonction qui va échanger les descripteurs de deux tubes.

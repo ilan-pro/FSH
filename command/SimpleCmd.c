@@ -29,7 +29,6 @@
 
 #include <time.h>
 #include "../base/String.h"
-#include "../shell.h"
 
 /*****************************************************/
 /************ Déclaration des fonctions **************/
