@@ -178,10 +178,20 @@ static int ExternalCommand_execute(Command self_){
             {
                 
                 // le fils
+
+                /** comment les commandes externes n'ont pas le même comportement vis-à-vis
+                 * des signaux nous devons changer le masque 
+                 * Nous avons donc créer un nouveau masque vide qui n'ignore aucun signals
+                 * et nous débloquons tous les signaux qui étaient bloqué jusqu'à présent
+                 * Donc SIGTERM est débloqué et SIGINT reste toujours un signal non ignoré
+                 **/
                 sigset_t mask;
 
                 assert(sigemptyset(&mask) == 0);
+                // pour récuperer le masque des signaux bloqué actuellement
+                // le masque actuelle prend la valeur de l'ancien masque donc le mask de Shell.C
                 assert(sigprocmask(SIG_BLOCK, NULL, &mask) == 0);
+                // débloquer le masque des signaux bloqué donc SIGTERM
                 assert(sigprocmask(SIG_UNBLOCK, &mask, NULL) == 0);
                 // ExternalCommand cmd = _ExternalCommand_->ctor(self_, );
                 ExternalCommand self = (ExternalCommand) (void*) self_;
@@ -265,6 +275,9 @@ static int ExternalCommand_execute(Command self_){
                 return 1; // Une autre erreur inattendue s'est produite.
             }
 
+            /** Si le processus enfant à terminé avec un signal alors 
+             * nous mettons signal_recu au numéro de ce signal
+             **/ 
             if(WIFSIGNALED(process_ret)){
                 signal_recu = WTERMSIG(process_ret);
                 return 1; 

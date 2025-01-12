@@ -1374,7 +1374,10 @@ void ignore_signals(){
 
     /** On donne notre gestionnaire de signaux a notre structure sigaction pour gérer la réception des signaux */
     sa_int.sa_handler = &signal_handler_int;
-     
+
+    /** ici nous mettons un masque pour le signal SIGTERM car nous ne voulons pas le prendre 
+     * en compte, tant que nous le débloquons pas avec SIG_UNBOCK, il ne sera pas débloqué 
+     **/ 
     sigset_t mask;
 
     assert(sigemptyset(&mask) == 0);
