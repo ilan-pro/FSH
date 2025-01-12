@@ -4,8 +4,10 @@
  * 
  * C'est cette fonction qui va initialiser les commandes et démarrer le shell.
  */
+#include <fcntl.h>
 #include <readline/readline.h>
 #include <readline/history.h>
+#include <stdio.h>
 #include <sys/types.h>
 #include <sys/wait.h>
 #include "base/String.h"
@@ -41,5 +43,5 @@ int main(){
     /** Command_execute((Command)e); */
 
     /** obj_destroy(e); */
-    return Shell_start();  
+    return Shell_start();
 }

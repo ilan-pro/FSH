@@ -23,7 +23,6 @@
 #include <sys/types.h>
 #include "../base/String.h"
 
-
 /*****************************************************/
 /************ Déclaration des fonctions **************/
 
@@ -60,7 +59,6 @@ static int ExternalCommand_execute(Command self_);
 
 /*****************************************************/
 /************* Structure de la classe ****************/
-
 
 /**
  * @brief Classe `ExternalCommand` de la commande ExternalCommand qui affiche 
@@ -178,7 +176,23 @@ static int ExternalCommand_execute(Command self_){
     switch(pid){
         case 0:
             {
+                
                 // le fils
+
+                /** comment les commandes externes n'ont pas le même comportement vis-à-vis
+                 * des signaux nous devons changer le masque 
+                 * Nous avons donc créer un nouveau masque vide qui n'ignore aucun signals
+                 * et nous débloquons tous les signaux qui étaient bloqué jusqu'à présent
+                 * Donc SIGTERM est débloqué et SIGINT reste toujours un signal non ignoré
+                 **/
+                sigset_t mask;
+
+                assert(sigemptyset(&mask) == 0);
+                // pour récuperer le masque des signaux bloqué actuellement
+                // le masque actuelle prend la valeur de l'ancien masque donc le mask de Shell.C
+                assert(sigprocmask(SIG_BLOCK, NULL, &mask) == 0);
+                // débloquer le masque des signaux bloqué donc SIGTERM
+                assert(sigprocmask(SIG_UNBLOCK, &mask, NULL) == 0);
                 // ExternalCommand cmd = _ExternalCommand_->ctor(self_, );
                 ExternalCommand self = (ExternalCommand) (void*) self_;
                 
@@ -233,7 +247,6 @@ static int ExternalCommand_execute(Command self_){
                     for(int i=0; i < size; i++)
                         free(cmd[i]);
                     free(cmd);
-
                     write(2,"\e[1;31m", 7);
                     write(2,self->name, strlen(self->name));
                     write(2," : ", 3);
@@ -258,9 +271,18 @@ static int ExternalCommand_execute(Command self_){
         default:
             // le père
             if(waitpid(pid, &process_ret, 0) < 0){
-                perror("waitpid");
-                return 1;
+                // perror("waitpid");
+                return 1; // Une autre erreur inattendue s'est produite.
             }
+
+            /** Si le processus enfant à terminé avec un signal alors 
+             * nous mettons signal_recu au numéro de ce signal
+             **/ 
+            if(WIFSIGNALED(process_ret)){
+                signal_recu = WTERMSIG(process_ret);
+                return 1; 
+            }
+            
             break;
     }
 

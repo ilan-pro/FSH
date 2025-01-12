@@ -1,0 +1,678 @@
+Début des tests jalon-1-A-internes
+
+Test jalon-1-A-internes/test-01-exit-0... OK
+Test jalon-1-A-internes/test-02-exit-argument... OK
+Test jalon-1-A-internes/test-03-cd-pwd... OK
+Test jalon-1-A-internes/test-04-prompt-cwd... OK
+Test jalon-1-A-internes/test-05-cd-inexistant... OK
+Test jalon-1-A-internes/test-06-cd-special... OK
+Test jalon-1-A-internes/test-07-ftype... OK
+Test jalon-1-A-internes/test-08-for... OK
+
+Début des tests jalon-1-B-externes
+
+Test jalon-1-B-externes/test-01-externe-simple... OK
+Test jalon-1-B-externes/test-02-valeur-retour... OK
+Test jalon-1-B-externes/test-03-exit-sans-argument... OK
+Test jalon-1-B-externes/test-04-externe-entree... OK
+Test jalon-1-B-externes/test-05-externe-arguments... OK
+Test jalon-1-B-externes/test-06-ligne-vide... OK
+Test jalon-1-B-externes/test-07-mauvaises-commandes-externes... OK
+Test jalon-1-B-externes/test-08-for... OK
+Test jalon-1-B-externes/test-09-valgrind-1... OK
+Test jalon-1-B-externes/test-10-valgrind-2... OK
+
+Début des tests jalon-1-extra
+
+Test jalon-1-extra/test-01-for-aucune-occurrence... OK
+Test jalon-1-extra/test-02-for-occurrences-multiples... OK
+Test jalon-1-extra/test-03-for-fichiers-caches... OK
+Test jalon-1-extra/test-04-for-extension... OK
+Test jalon-1-extra/test-05-for-prefixe... OK
+Test jalon-1-extra/test-06-for-occurrences-multiples-meme-argument... OK
+Test jalon-1-extra/test-07-exit-code-255... OK
+Test jalon-1-extra/test-08-for-if-ailleurs... OK
+Test jalon-1-extra/test-09-internes-trop-arguments... OK
+Test jalon-1-extra/test-10-espaces... OK
+
+Début des tests jalon-2-A-redirections
+
+Test jalon-2-A-redirections/test-01-stdin... Échec :
+
+Interaction attendue :
+[0]...bIbT9HUxVtmrV/main-dir$␣head␣-n␣11␣<␣texte
+Harpagon␣␣␣␣␣␣␣:␣Lui,␣qui␣me␣paroît␣si␣fidèle␣?
+
+Maître␣Jacques␣:␣Lui−même.␣Je␣crois␣que␣c'est␣lui␣qui␣vous␣a␣dérobé.
+
+Harpagon␣␣␣␣␣␣␣:␣Et␣sur␣quoi␣le␣crois−tu␣?
+
+Maître␣Jacques␣:␣Sur␣quoi␣?
+
+Harpagon␣␣␣␣␣␣␣:␣Oui.
+
+Maître␣Jacques␣:␣Je␣le␣crois...␣sur␣ce␣que␣je␣le␣crois.
+[0]...bIbT9HUxVtmrV/main-dir$␣exit␣<␣fichier3
+Le processus du shell s'est terminé normalement avec le code de retour 0
+
+Interaction réelle :
+[0]...bIbT9HUxVtmrV/main-dir$␣head␣-n␣11␣<␣texte
+texte
+Harpagon␣␣␣␣␣␣␣:␣Lui,␣qui␣me␣paroît␣si␣fidèle␣?
+
+Maître␣Jacques␣:␣Lui−même.␣Je␣crois␣que␣c'est␣lui␣qui␣vous␣a␣dérobé.
+
+Harpagon␣␣␣␣␣␣␣:␣Et␣sur␣quoi␣le␣crois−tu␣?
+
+Maître␣Jacques␣:␣Sur␣quoi␣?
+
+Harpagon␣␣␣␣␣␣␣:␣Oui.
+
+Maître␣Jacques␣:␣Je␣le␣crois...␣sur␣ce␣que␣je␣le␣crois.
+[0]...bIbT9HUxVtmrV/main-dir$␣exit␣<␣fichier3
+fichier3
+Le processus du shell s'est terminé normalement avec le code de retour 0
+************************************************************
+
+Test jalon-2-A-redirections/test-02-stdout... OK
+Test jalon-2-A-redirections/test-03-stdout-noclobber... OK
+Test jalon-2-A-redirections/test-04-stderr... OK
+Test jalon-2-A-redirections/test-05-stderr-noclobber... OK
+Test jalon-2-A-redirections/test-06-multiples... Échec :
+
+Interaction attendue :
+[0]...bIbT9HUxVtmrV/main-dir$␣./split.sh␣11␣<␣texte␣>␣dossier/out␣2>␣/tmp/tmp.FEAZmWTayk/0gwxI13cY0a6kMIdA2ZbIbT9HUxVtmrV/main-dir/dossier/err
+[0]...bIbT9HUxVtmrV/main-dir$␣./ls.sh␣dossier
+-rw-r--r--␣dossier/err
+-rw-r--r--␣dossier/out
+drwxr-xr-x␣dossier
+[0]...bIbT9HUxVtmrV/main-dir$␣cat␣dossier/out
+Harpagon␣␣␣␣␣␣␣:␣Lui,␣qui␣me␣paroît␣si␣fidèle␣?
+
+Maître␣Jacques␣:␣Lui−même.␣Je␣crois␣que␣c'est␣lui␣qui␣vous␣a␣dérobé.
+
+Harpagon␣␣␣␣␣␣␣:␣Et␣sur␣quoi␣le␣crois−tu␣?
+
+Maître␣Jacques␣:␣Sur␣quoi␣?
+
+Harpagon␣␣␣␣␣␣␣:␣Oui.
+
+Maître␣Jacques␣:␣Je␣le␣crois...␣sur␣ce␣que␣je␣le␣crois.
+[0]...bIbT9HUxVtmrV/main-dir$␣cat␣dossier/err
+
+Le␣Commissaire␣:␣Mais␣il␣est␣nécessaire␣de␣dire␣les␣indices␣que␣vous
+avez.
+
+Harpagon␣␣␣␣␣␣␣:␣L'as−tu␣vu␣rôder␣autour␣du␣lieu␣où␣j'avois␣mis␣mon␣argent␣?
+
+Maître␣Jacques␣:␣Oui,␣vraiment.␣Où␣étoit−il␣votre␣argent␣?
+
+Harpagon␣␣␣␣␣␣␣:␣Dans␣le␣jardin.
+
+Maître␣Jacques␣:␣Justement␣:␣je␣l'ai␣vu␣rôder␣dans␣le␣jardin.␣Et␣dans
+quoi␣est−ce␣que␣cet␣argent␣étoit␣?
+
+Harpagon␣␣␣␣␣␣␣:␣Dans␣une␣cassette.
+
+Maître␣Jacques␣:␣Voilà␣l'affaire␣:␣je␣lui␣ai␣vu␣une␣cassette.
+
+Harpagon␣␣␣␣␣␣␣:␣Et␣cette␣cassette,␣comment␣est−elle␣faite␣?␣Je␣verrai␣bien
+si␣c'est␣la␣mienne.
+
+Maître␣Jacques␣:␣Comment␣elle␣est␣faite␣?
+
+Harpagon␣␣␣␣␣␣␣:␣Oui.
+
+Maître␣Jacques␣:␣Elle␣est␣faite...␣elle␣est␣faite␣comme␣une␣cassette
+[0]...bIbT9HUxVtmrV/main-dir$␣rm␣dossier/out␣dossier/err
+[0]...bIbT9HUxVtmrV/main-dir$␣Le processus du shell s'est terminé normalement avec le code de retour 0
+
+Interaction réelle :
+[0]...bIbT9HUxVtmrV/main-dir$␣./split.sh␣11␣<␣texte␣>␣dossier/out␣2>␣/tmp/tmp.FEAZmWTayk/0gwxI13cY0a6kMIdA2ZbIbT9HUxVtmrV/main-dir/dossier/err
+texte
+[0]...bIbT9HUxVtmrV/main-dir$␣./ls.sh␣dossier
+-rw-r--r--␣dossier/err
+-rw-r--r--␣dossier/out
+drwxr-xr-x␣dossier
+[0]...bIbT9HUxVtmrV/main-dir$␣cat␣dossier/out
+Harpagon␣␣␣␣␣␣␣:␣Lui,␣qui␣me␣paroît␣si␣fidèle␣?
+
+Maître␣Jacques␣:␣Lui−même.␣Je␣crois␣que␣c'est␣lui␣qui␣vous␣a␣dérobé.
+
+Harpagon␣␣␣␣␣␣␣:␣Et␣sur␣quoi␣le␣crois−tu␣?
+
+Maître␣Jacques␣:␣Sur␣quoi␣?
+
+Harpagon␣␣␣␣␣␣␣:␣Oui.
+
+Maître␣Jacques␣:␣Je␣le␣crois...␣sur␣ce␣que␣je␣le␣crois.
+[0]...bIbT9HUxVtmrV/main-dir$␣cat␣dossier/err
+
+Le␣Commissaire␣:␣Mais␣il␣est␣nécessaire␣de␣dire␣les␣indices␣que␣vous
+avez.
+
+Harpagon␣␣␣␣␣␣␣:␣L'as−tu␣vu␣rôder␣autour␣du␣lieu␣où␣j'avois␣mis␣mon␣argent␣?
+
+Maître␣Jacques␣:␣Oui,␣vraiment.␣Où␣étoit−il␣votre␣argent␣?
+
+Harpagon␣␣␣␣␣␣␣:␣Dans␣le␣jardin.
+
+Maître␣Jacques␣:␣Justement␣:␣je␣l'ai␣vu␣rôder␣dans␣le␣jardin.␣Et␣dans
+quoi␣est−ce␣que␣cet␣argent␣étoit␣?
+
+Harpagon␣␣␣␣␣␣␣:␣Dans␣une␣cassette.
+
+Maître␣Jacques␣:␣Voilà␣l'affaire␣:␣je␣lui␣ai␣vu␣une␣cassette.
+
+Harpagon␣␣␣␣␣␣␣:␣Et␣cette␣cassette,␣comment␣est−elle␣faite␣?␣Je␣verrai␣bien
+si␣c'est␣la␣mienne.
+
+Maître␣Jacques␣:␣Comment␣elle␣est␣faite␣?
+
+Harpagon␣␣␣␣␣␣␣:␣Oui.
+
+Maître␣Jacques␣:␣Elle␣est␣faite...␣elle␣est␣faite␣comme␣une␣cassette
+[0]...bIbT9HUxVtmrV/main-dir$␣rm␣dossier/out␣dossier/err
+[0]...bIbT9HUxVtmrV/main-dir$␣Le processus du shell s'est terminé normalement avec le code de retour 0
+************************************************************
+
+Test jalon-2-A-redirections/test-07-valgrind... Échec :
+
+Interaction attendue :
+[0]...bIbT9HUxVtmrV/main-dir$␣./split.sh␣11␣<␣texte␣>␣dossier/out␣2>␣/tmp/tmp.FEAZmWTayk/0gwxI13cY0a6kMIdA2ZbIbT9HUxVtmrV/main-dir/dossier/err
+[0]...bIbT9HUxVtmrV/main-dir$␣./ls.sh␣dossier
+-rw-r--r--␣dossier/err
+-rw-r--r--␣dossier/out
+drwxr-xr-x␣dossier
+[0]...bIbT9HUxVtmrV/main-dir$␣cat␣dossier/out
+Harpagon␣␣␣␣␣␣␣:␣Lui,␣qui␣me␣paroît␣si␣fidèle␣?
+
+Maître␣Jacques␣:␣Lui−même.␣Je␣crois␣que␣c'est␣lui␣qui␣vous␣a␣dérobé.
+
+Harpagon␣␣␣␣␣␣␣:␣Et␣sur␣quoi␣le␣crois−tu␣?
+
+Maître␣Jacques␣:␣Sur␣quoi␣?
+
+Harpagon␣␣␣␣␣␣␣:␣Oui.
+
+Maître␣Jacques␣:␣Je␣le␣crois...␣sur␣ce␣que␣je␣le␣crois.
+[0]...bIbT9HUxVtmrV/main-dir$␣cat␣dossier/err
+
+Le␣Commissaire␣:␣Mais␣il␣est␣nécessaire␣de␣dire␣les␣indices␣que␣vous
+avez.
+
+Harpagon␣␣␣␣␣␣␣:␣L'as−tu␣vu␣rôder␣autour␣du␣lieu␣où␣j'avois␣mis␣mon␣argent␣?
+
+Maître␣Jacques␣:␣Oui,␣vraiment.␣Où␣étoit−il␣votre␣argent␣?
+
+Harpagon␣␣␣␣␣␣␣:␣Dans␣le␣jardin.
+
+Maître␣Jacques␣:␣Justement␣:␣je␣l'ai␣vu␣rôder␣dans␣le␣jardin.␣Et␣dans
+quoi␣est−ce␣que␣cet␣argent␣étoit␣?
+
+Harpagon␣␣␣␣␣␣␣:␣Dans␣une␣cassette.
+
+Maître␣Jacques␣:␣Voilà␣l'affaire␣:␣je␣lui␣ai␣vu␣une␣cassette.
+
+Harpagon␣␣␣␣␣␣␣:␣Et␣cette␣cassette,␣comment␣est−elle␣faite␣?␣Je␣verrai␣bien
+si␣c'est␣la␣mienne.
+
+Maître␣Jacques␣:␣Comment␣elle␣est␣faite␣?
+
+Harpagon␣␣␣␣␣␣␣:␣Oui.
+
+Maître␣Jacques␣:␣Elle␣est␣faite...␣elle␣est␣faite␣comme␣une␣cassette
+[0]...bIbT9HUxVtmrV/main-dir$␣rm␣dossier/out␣dossier/err
+[0]...bIbT9HUxVtmrV/main-dir$␣Le processus du shell s'est terminé normalement avec le code de retour 0
+
+Interaction réelle :
+[0]...bIbT9HUxVtmrV/main-dir$␣./split.sh␣11␣<␣texte␣>␣dossier/out␣2>␣/tmp/tmp.FEAZmWTayk/0gwxI13cY0a6kMIdA2ZbIbT9HUxVtmrV/main-dir/dossier/err
+texte
+[0]...bIbT9HUxVtmrV/main-dir$␣./ls.sh␣dossier
+-rw-r--r--␣dossier/err
+-rw-r--r--␣dossier/out
+drwxr-xr-x␣dossier
+[0]...bIbT9HUxVtmrV/main-dir$␣cat␣dossier/out
+Harpagon␣␣␣␣␣␣␣:␣Lui,␣qui␣me␣paroît␣si␣fidèle␣?
+
+Maître␣Jacques␣:␣Lui−même.␣Je␣crois␣que␣c'est␣lui␣qui␣vous␣a␣dérobé.
+
+Harpagon␣␣␣␣␣␣␣:␣Et␣sur␣quoi␣le␣crois−tu␣?
+
+Maître␣Jacques␣:␣Sur␣quoi␣?
+
+Harpagon␣␣␣␣␣␣␣:␣Oui.
+
+Maître␣Jacques␣:␣Je␣le␣crois...␣sur␣ce␣que␣je␣le␣crois.
+[0]...bIbT9HUxVtmrV/main-dir$␣cat␣dossier/err
+
+Le␣Commissaire␣:␣Mais␣il␣est␣nécessaire␣de␣dire␣les␣indices␣que␣vous
+avez.
+
+Harpagon␣␣␣␣␣␣␣:␣L'as−tu␣vu␣rôder␣autour␣du␣lieu␣où␣j'avois␣mis␣mon␣argent␣?
+
+Maître␣Jacques␣:␣Oui,␣vraiment.␣Où␣étoit−il␣votre␣argent␣?
+
+Harpagon␣␣␣␣␣␣␣:␣Dans␣le␣jardin.
+
+Maître␣Jacques␣:␣Justement␣:␣je␣l'ai␣vu␣rôder␣dans␣le␣jardin.␣Et␣dans
+quoi␣est−ce␣que␣cet␣argent␣étoit␣?
+
+Harpagon␣␣␣␣␣␣␣:␣Dans␣une␣cassette.
+
+Maître␣Jacques␣:␣Voilà␣l'affaire␣:␣je␣lui␣ai␣vu␣une␣cassette.
+
+Harpagon␣␣␣␣␣␣␣:␣Et␣cette␣cassette,␣comment␣est−elle␣faite␣?␣Je␣verrai␣bien
+si␣c'est␣la␣mienne.
+
+Maître␣Jacques␣:␣Comment␣elle␣est␣faite␣?
+
+Harpagon␣␣␣␣␣␣␣:␣Oui.
+
+Maître␣Jacques␣:␣Elle␣est␣faite...␣elle␣est␣faite␣comme␣une␣cassette
+[0]...bIbT9HUxVtmrV/main-dir$␣rm␣dossier/out␣dossier/err
+[0]...bIbT9HUxVtmrV/main-dir$␣Le processus du shell s'est terminé normalement avec le code de retour 0
+************************************************************
+
+
+Début des tests jalon-2-B-commandes-structurees
+
+Test jalon-2-B-commandes-structurees/test-01-for-for... OK
+Test jalon-2-B-commandes-structurees/test-02-for-sequence... OK
+Test jalon-2-B-commandes-structurees/test-03-for-filtre-type... OK
+Test jalon-2-B-commandes-structurees/test-04-for-caches... OK
+Test jalon-2-B-commandes-structurees/test-05-for-extension... OK
+Test jalon-2-B-commandes-structurees/test-06-for-recursif... OK
+Test jalon-2-B-commandes-structurees/test-07-for-valeur-retour... OK
+Test jalon-2-B-commandes-structurees/test-08-for-mauvais-repertoire... OK
+Test jalon-2-B-commandes-structurees/test-09-if... OK
+Test jalon-2-B-commandes-structurees/test-10-if-else... OK
+Test jalon-2-B-commandes-structurees/test-11-if-valeur-retour... OK
+Test jalon-2-B-commandes-structurees/test-12-if-dans-for... OK
+Test jalon-2-B-commandes-structurees/test-13-valgrind-1... OK
+Test jalon-2-B-commandes-structurees/test-14-valgrind-2... OK
+
+Début des tests jalon-2-extra
+
+Test jalon-2-extra/test-01-redirection-sequence... Échec :
+
+Interaction attendue :
+[0]...bIbT9HUxVtmrV/main-dir$␣./trunc␣res
+[0]...bIbT9HUxVtmrV/main-dir$␣echo␣a␣>>␣res␣;␣rev␣<␣fichier-1␣>>␣res␣;␣echo␣i␣>>␣res
+[0]...bIbT9HUxVtmrV/main-dir$␣cat␣res
+a
+bcdefgh
+i
+[0]...bIbT9HUxVtmrV/main-dir$␣exit␣0
+Le processus du shell s'est terminé normalement avec le code de retour 0
+
+Interaction réelle :
+[0]...bIbT9HUxVtmrV/main-dir$␣./trunc␣res
+[0]...bIbT9HUxVtmrV/main-dir$␣echo␣a␣>>␣res␣;␣rev␣<␣fichier-1␣>>␣res␣;␣echo␣i␣>>␣res
+fichier-1
+[0]...bIbT9HUxVtmrV/main-dir$␣cat␣res
+a
+bcdefgh
+i
+[0]...bIbT9HUxVtmrV/main-dir$␣exit␣0
+Le processus du shell s'est terminé normalement avec le code de retour 0
+************************************************************
+
+Test jalon-2-extra/test-02-redirection-commande-structuree... OK
+Test jalon-2-extra/test-03-redirection-variable... Échec :
+
+Interaction attendue :
+[0]...bIbT9HUxVtmrV/main-dir$␣./trunc␣res
+[0]...bIbT9HUxVtmrV/main-dir$␣for␣f␣in␣dir-1␣{␣if␣grep␣i␣$f␣>>␣res␣{␣rev␣<␣$f␣>>␣res␣}␣}
+[0]...bIbT9HUxVtmrV/main-dir$␣sed␣-f␣commande-sed␣-i␣res
+[0]...bIbT9HUxVtmrV/main-dir$␣sort␣res
+kcirb␣brick
+kcirt␣trick
+tlih␣hilt
+tlik␣kilt
+tlit␣tilt
+tliug␣guilt
+[0]...bIbT9HUxVtmrV/main-dir$␣exit␣0
+Le processus du shell s'est terminé normalement avec le code de retour 0
+
+Interaction réelle :
+[0]...bIbT9HUxVtmrV/main-dir$␣./trunc␣res
+[0]...bIbT9HUxVtmrV/main-dir$␣for␣f␣in␣dir-1␣{␣if␣grep␣i␣$f␣>>␣res␣{␣rev␣<␣$f␣>>␣res␣}␣}
+d
+Pipeline_run:␣No␣such␣file␣or␣directory
+[1]...bIbT9HUxVtmrV/main-dir$␣sed␣-f␣commande-sed␣-i␣res
+[0]...bIbT9HUxVtmrV/main-dir$␣sort␣res
+[0]...bIbT9HUxVtmrV/main-dir$␣exit␣0
+Le processus du shell s'est terminé normalement avec le code de retour 0
+************************************************************
+
+Test jalon-2-extra/test-04-redirection-fichier-infini... Échec :
+
+Interaction attendue :
+[0]...bIbT9HUxVtmrV/main-dir$␣./trunc␣res
+[0]...bIbT9HUxVtmrV/main-dir$␣head␣-c␣123␣<␣/dev/zero␣>|␣res
+[0]...bIbT9HUxVtmrV/main-dir$␣wc␣-c␣res
+123␣res
+[0]...bIbT9HUxVtmrV/main-dir$␣exit␣0
+Le processus du shell s'est terminé normalement avec le code de retour 0
+
+Interaction réelle :
+[0]...bIbT9HUxVtmrV/main-dir$␣./trunc␣res
+[0]...bIbT9HUxVtmrV/main-dir$␣head␣-c␣123␣<␣/dev/zero␣>|␣res
+/dev/zero
+[0]...bIbT9HUxVtmrV/main-dir$␣wc␣-c␣res
+123␣res
+[0]...bIbT9HUxVtmrV/main-dir$␣exit␣0
+Le processus du shell s'est terminé normalement avec le code de retour 0
+************************************************************
+
+Test jalon-2-extra/test-05-for-recursif-caches... OK
+
+Début des tests rendu-final-A-pipelines
+
+Test rendu-final-A-pipelines/test-01-simple... OK
+Test rendu-final-A-pipelines/test-02-fermeture-fd-superflus... Échec :
+
+Interaction attendue :
+[0]...bIbT9HUxVtmrV/main-dir$␣yes␣|␣head
+y
+y
+y
+y
+y
+y
+y
+y
+y
+y
+[0]...bIbT9HUxVtmrV/main-dir$␣ls␣|␣tail
+dossier
+lf
+ls.sh
+split.sh
+texte
+vide
+[0]...bIbT9HUxVtmrV/main-dir$␣Le processus du shell s'est terminé normalement avec le code de retour 0
+
+Interaction réelle :
+[0]...bIbT9HUxVtmrV/main-dir$␣yes␣|␣head
+Le processus du shell a dépassé le temps imparti et a été terminé par SIGALRM
+************************************************************
+
+Test rendu-final-A-pipelines/test-03-redirections... Échec :
+
+Interaction attendue :
+[0]...bIbT9HUxVtmrV/main-dir$␣./split.sh␣34␣<␣texte␣2>␣dossier/35-36␣|␣./split.sh␣32␣2>␣dossier/33-34␣|␣./split.sh␣27␣2>␣dossier/28-32␣|␣tail␣2>␣dossier/vide␣|␣./split.sh␣8␣2>␣dossier/26-27␣>␣dossier/18-25
+[0]...bIbT9HUxVtmrV/main-dir$␣./ls.sh␣dossier
+-rw-r--r--␣dossier/18-25
+-rw-r--r--␣dossier/26-27
+-rw-r--r--␣dossier/28-32
+-rw-r--r--␣dossier/33-34
+-rw-r--r--␣dossier/35-36
+-rw-r--r--␣dossier/vide
+drwxr-xr-x␣dossier
+[0]...bIbT9HUxVtmrV/main-dir$␣ls␣dossier
+18-25␣␣26-27␣␣28-32␣␣33-34␣␣35-36␣␣vide
+[0]...bIbT9HUxVtmrV/main-dir$␣ls
+dossier␣␣lf␣␣ls.sh␣␣split.sh␣␣texte␣␣vide
+[0]...bIbT9HUxVtmrV/main-dir$␣cat␣dossier/18-25␣lf␣dossier/26-27␣lf␣dossier/28-32␣lf␣␣dossier/33-34␣lf␣dossier/35-36␣dossier/vide
+18␣Maître␣Jacques␣:␣Oui,␣vraiment.␣Où␣étoit−il␣votre␣argent␣?
+19
+20␣Harpagon␣␣␣␣␣␣␣:␣Dans␣le␣jardin.
+21
+22␣Maître␣Jacques␣:␣Justement␣:␣je␣l'ai␣vu␣rôder␣dans␣le␣jardin.␣Et␣dans
+23␣␣␣␣␣␣␣␣␣␣␣␣␣␣␣␣␣␣quoi␣est−ce␣que␣cet␣argent␣étoit␣?
+24
+25␣Harpagon␣␣␣␣␣␣␣:␣Dans␣une␣cassette.
+
+26
+27␣Maître␣Jacques␣:␣Voilà␣l'affaire␣:␣je␣lui␣ai␣vu␣une␣cassette.
+
+28
+29␣Harpagon␣␣␣␣␣␣␣:␣Et␣cette␣cassette,␣comment␣est−elle␣faite␣?␣Je␣verrai␣bien
+30␣␣␣␣␣␣␣␣␣␣␣␣␣␣␣␣␣␣si␣c'est␣la␣mienne.
+31
+32␣Maître␣Jacques␣:␣Comment␣elle␣est␣faite␣?
+
+33
+34␣Harpagon␣␣␣␣␣␣␣:␣Oui.
+
+35
+36␣Maître␣Jacques␣:␣Elle␣est␣faite...␣elle␣est␣faite␣comme␣une␣cassette
+[0]...bIbT9HUxVtmrV/main-dir$␣rm␣-rf␣dossier/
+[0]...bIbT9HUxVtmrV/main-dir$␣mkdir␣-p␣dossier
+[0]...bIbT9HUxVtmrV/main-dir$␣Le processus du shell s'est terminé normalement avec le code de retour 0
+
+Interaction réelle :
+[0]...bIbT9HUxVtmrV/main-dir$␣./split.sh␣34␣<␣texte␣2>␣dossier/35-36␣|␣./split.sh␣32␣2>␣dossier/33-34␣|␣./split.sh␣27␣2>␣dossier/28-32␣|␣tail␣2>␣dossier/vide␣|␣./split.sh␣8␣2>␣dossier/26-27␣>␣dossier/18-25
+texte
+[0]...bIbT9HUxVtmrV/main-dir$␣./ls.sh␣dossier
+-rw-r--r--␣dossier/18-25
+-rw-r--r--␣dossier/26-27
+-rw-r--r--␣dossier/28-32
+-rw-r--r--␣dossier/33-34
+-rw-r--r--␣dossier/35-36
+-rw-r--r--␣dossier/vide
+drwxr-xr-x␣dossier
+[0]...bIbT9HUxVtmrV/main-dir$␣ls␣dossier
+18-25␣␣26-27␣␣28-32␣␣33-34␣␣35-36␣␣vide
+[0]...bIbT9HUxVtmrV/main-dir$␣ls
+dossier␣␣lf␣␣ls.sh␣␣split.sh␣␣texte␣␣vide
+[0]...bIbT9HUxVtmrV/main-dir$␣cat␣dossier/18-25␣lf␣dossier/26-27␣lf␣dossier/28-32␣lf␣␣dossier/33-34␣lf␣dossier/35-36␣dossier/vide
+18␣Maître␣Jacques␣:␣Oui,␣vraiment.␣Où␣étoit−il␣votre␣argent␣?
+19
+20␣Harpagon␣␣␣␣␣␣␣:␣Dans␣le␣jardin.
+21
+22␣Maître␣Jacques␣:␣Justement␣:␣je␣l'ai␣vu␣rôder␣dans␣le␣jardin.␣Et␣dans
+23␣␣␣␣␣␣␣␣␣␣␣␣␣␣␣␣␣␣quoi␣est−ce␣que␣cet␣argent␣étoit␣?
+24
+25␣Harpagon␣␣␣␣␣␣␣:␣Dans␣une␣cassette.
+
+26
+27␣Maître␣Jacques␣:␣Voilà␣l'affaire␣:␣je␣lui␣ai␣vu␣une␣cassette.
+
+28
+29␣Harpagon␣␣␣␣␣␣␣:␣Et␣cette␣cassette,␣comment␣est−elle␣faite␣?␣Je␣verrai␣bien
+30␣␣␣␣␣␣␣␣␣␣␣␣␣␣␣␣␣␣si␣c'est␣la␣mienne.
+31
+32␣Maître␣Jacques␣:␣Comment␣elle␣est␣faite␣?
+
+33
+34␣Harpagon␣␣␣␣␣␣␣:␣Oui.
+
+35
+36␣Maître␣Jacques␣:␣Elle␣est␣faite...␣elle␣est␣faite␣comme␣une␣cassette
+[0]...bIbT9HUxVtmrV/main-dir$␣rm␣-rf␣dossier/
+[0]...bIbT9HUxVtmrV/main-dir$␣mkdir␣-p␣dossier
+[0]...bIbT9HUxVtmrV/main-dir$␣Le processus du shell s'est terminé normalement avec le code de retour 0
+************************************************************
+
+Test rendu-final-A-pipelines/test-04-interne... OK
+Test rendu-final-A-pipelines/test-05-pas-simultane... Échec :
+
+Interaction attendue :
+[0]...bIbT9HUxVtmrV/main-dir$␣yes␣|␣cat␣|␣cat␣|␣head
+y
+y
+y
+y
+y
+y
+y
+y
+y
+y
+[0]...bIbT9HUxVtmrV/main-dir$␣Le processus du shell s'est terminé normalement avec le code de retour 0
+
+Interaction réelle :
+[0]...bIbT9HUxVtmrV/main-dir$␣yes␣|␣cat␣|␣cat␣|␣head
+Le processus du shell a dépassé le temps imparti et a été terminé par SIGALRM
+************************************************************
+
+Test rendu-final-A-pipelines/test-06-valgrind... Échec :
+
+Interaction attendue :
+[0]...bIbT9HUxVtmrV/main-dir$␣./split.sh␣34␣<␣texte␣2>␣dossier/35-36␣|␣./split.sh␣32␣2>␣dossier/33-34␣|␣./split.sh␣27␣2>␣dossier/28-32␣|␣tail␣2>␣dossier/vide␣|␣./split.sh␣8␣2>␣dossier/26-27␣>␣dossier/18-25
+[0]...bIbT9HUxVtmrV/main-dir$␣./ls.sh␣dossier
+-rw-r--r--␣dossier/18-25
+-rw-r--r--␣dossier/26-27
+-rw-r--r--␣dossier/28-32
+-rw-r--r--␣dossier/33-34
+-rw-r--r--␣dossier/35-36
+-rw-r--r--␣dossier/vide
+drwxr-xr-x␣dossier
+[0]...bIbT9HUxVtmrV/main-dir$␣ls␣dossier
+18-25␣␣26-27␣␣28-32␣␣33-34␣␣35-36␣␣vide
+[0]...bIbT9HUxVtmrV/main-dir$␣ls
+dossier␣␣lf␣␣ls.sh␣␣split.sh␣␣texte␣␣vide
+[0]...bIbT9HUxVtmrV/main-dir$␣cat␣dossier/18-25␣lf␣dossier/26-27␣lf␣dossier/28-32␣lf␣␣dossier/33-34␣lf␣dossier/35-36␣dossier/vide
+18␣Maître␣Jacques␣:␣Oui,␣vraiment.␣Où␣étoit−il␣votre␣argent␣?
+19
+20␣Harpagon␣␣␣␣␣␣␣:␣Dans␣le␣jardin.
+21
+22␣Maître␣Jacques␣:␣Justement␣:␣je␣l'ai␣vu␣rôder␣dans␣le␣jardin.␣Et␣dans
+23␣␣␣␣␣␣␣␣␣␣␣␣␣␣␣␣␣␣quoi␣est−ce␣que␣cet␣argent␣étoit␣?
+24
+25␣Harpagon␣␣␣␣␣␣␣:␣Dans␣une␣cassette.
+
+26
+27␣Maître␣Jacques␣:␣Voilà␣l'affaire␣:␣je␣lui␣ai␣vu␣une␣cassette.
+
+28
+29␣Harpagon␣␣␣␣␣␣␣:␣Et␣cette␣cassette,␣comment␣est−elle␣faite␣?␣Je␣verrai␣bien
+30␣␣␣␣␣␣␣␣␣␣␣␣␣␣␣␣␣␣si␣c'est␣la␣mienne.
+31
+32␣Maître␣Jacques␣:␣Comment␣elle␣est␣faite␣?
+
+33
+34␣Harpagon␣␣␣␣␣␣␣:␣Oui.
+
+35
+36␣Maître␣Jacques␣:␣Elle␣est␣faite...␣elle␣est␣faite␣comme␣une␣cassette
+[0]...bIbT9HUxVtmrV/main-dir$␣rm␣-rf␣dossier/
+[0]...bIbT9HUxVtmrV/main-dir$␣mkdir␣-p␣dossier
+[0]...bIbT9HUxVtmrV/main-dir$␣Le processus du shell s'est terminé normalement avec le code de retour 0
+
+Interaction réelle :
+[0]...bIbT9HUxVtmrV/main-dir$␣./split.sh␣34␣<␣texte␣2>␣dossier/35-36␣|␣./split.sh␣32␣2>␣dossier/33-34␣|␣./split.sh␣27␣2>␣dossier/28-32␣|␣tail␣2>␣dossier/vide␣|␣./split.sh␣8␣2>␣dossier/26-27␣>␣dossier/18-25
+texte
+[0]...bIbT9HUxVtmrV/main-dir$␣./ls.sh␣dossier
+-rw-r--r--␣dossier/18-25
+-rw-r--r--␣dossier/26-27
+-rw-r--r--␣dossier/28-32
+-rw-r--r--␣dossier/33-34
+-rw-r--r--␣dossier/35-36
+-rw-r--r--␣dossier/vide
+drwxr-xr-x␣dossier
+[0]...bIbT9HUxVtmrV/main-dir$␣ls␣dossier
+18-25␣␣26-27␣␣28-32␣␣33-34␣␣35-36␣␣vide
+[0]...bIbT9HUxVtmrV/main-dir$␣ls
+dossier␣␣lf␣␣ls.sh␣␣split.sh␣␣texte␣␣vide
+[0]...bIbT9HUxVtmrV/main-dir$␣cat␣dossier/18-25␣lf␣dossier/26-27␣lf␣dossier/28-32␣lf␣␣dossier/33-34␣lf␣dossier/35-36␣dossier/vide
+18␣Maître␣Jacques␣:␣Oui,␣vraiment.␣Où␣étoit−il␣votre␣argent␣?
+19
+20␣Harpagon␣␣␣␣␣␣␣:␣Dans␣le␣jardin.
+21
+22␣Maître␣Jacques␣:␣Justement␣:␣je␣l'ai␣vu␣rôder␣dans␣le␣jardin.␣Et␣dans
+23␣␣␣␣␣␣␣␣␣␣␣␣␣␣␣␣␣␣quoi␣est−ce␣que␣cet␣argent␣étoit␣?
+24
+25␣Harpagon␣␣␣␣␣␣␣:␣Dans␣une␣cassette.
+
+26
+27␣Maître␣Jacques␣:␣Voilà␣l'affaire␣:␣je␣lui␣ai␣vu␣une␣cassette.
+
+28
+29␣Harpagon␣␣␣␣␣␣␣:␣Et␣cette␣cassette,␣comment␣est−elle␣faite␣?␣Je␣verrai␣bien
+30␣␣␣␣␣␣␣␣␣␣␣␣␣␣␣␣␣␣si␣c'est␣la␣mienne.
+31
+32␣Maître␣Jacques␣:␣Comment␣elle␣est␣faite␣?
+
+33
+34␣Harpagon␣␣␣␣␣␣␣:␣Oui.
+
+35
+36␣Maître␣Jacques␣:␣Elle␣est␣faite...␣elle␣est␣faite␣comme␣une␣cassette
+[0]...bIbT9HUxVtmrV/main-dir$␣rm␣-rf␣dossier/
+[0]...bIbT9HUxVtmrV/main-dir$␣mkdir␣-p␣dossier
+[0]...bIbT9HUxVtmrV/main-dir$␣Le processus du shell s'est terminé normalement avec le code de retour 0
+************************************************************
+
+
+Début des tests rendu-final-B-signaux
+
+Test rendu-final-B-signaux/test-01-shell-sigterm... OK
+Test rendu-final-B-signaux/test-02-commande-sigterm... OK
+Test rendu-final-B-signaux/test-03-commande-sigint... OK
+Test rendu-final-B-signaux/test-04-sequence-sigint... Échec :
+
+Interaction attendue :
+[0]...bIbT9HUxVtmrV/main-dir$␣echo␣a␣;␣./raise␣TERM
+a
+[SIG]...bT9HUxVtmrV/main-dir$␣echo␣a␣;␣./raise␣TERM␣;␣echo␣b
+a
+b
+[0]...bIbT9HUxVtmrV/main-dir$␣echo␣a␣;␣./raise␣INT␣;␣echo␣b
+a
+[SIG]...bT9HUxVtmrV/main-dir$␣exit␣0
+Le processus du shell s'est terminé normalement avec le code de retour 0
+
+Interaction réelle :
+[0]...bIbT9HUxVtmrV/main-dir$␣echo␣a␣;␣./raise␣TERM
+a
+[0]...bIbT9HUxVtmrV/main-dir$␣echo␣a␣;␣./raise␣TERM␣;␣echo␣b
+a
+b
+[0]...bIbT9HUxVtmrV/main-dir$␣echo␣a␣;␣./raise␣INT␣;␣echo␣b
+a
+b
+[0]...bIbT9HUxVtmrV/main-dir$␣exit␣0
+Le processus du shell s'est terminé normalement avec le code de retour 0
+************************************************************
+
+Test rendu-final-B-signaux/test-05-boucle-sigint... Échec :
+
+Interaction attendue :
+[0]...bIbT9HUxVtmrV/main-dir$␣for␣f␣in␣dir-2␣{␣echo␣a␣;␣if␣true␣{␣./raise␣TERM␣}␣else␣{␣./raise␣INT␣}␣;␣echo␣b␣}
+a
+b
+a
+b
+[0]...bIbT9HUxVtmrV/main-dir$␣for␣f␣in␣dir-2␣{␣echo␣a␣;␣if␣false␣{␣./raise␣TERM␣}␣else␣{␣./raise␣INT␣}␣;␣echo␣b␣}
+a
+[SIG]...bT9HUxVtmrV/main-dir$␣exit␣0
+Le processus du shell s'est terminé normalement avec le code de retour 0
+
+Interaction réelle :
+[0]...bIbT9HUxVtmrV/main-dir$␣for␣f␣in␣dir-2␣{␣echo␣a␣;␣if␣true␣{␣./raise␣TERM␣}␣else␣{␣./raise␣INT␣}␣;␣echo␣b␣}
+a
+b
+a
+b
+[0]...bIbT9HUxVtmrV/main-dir$␣for␣f␣in␣dir-2␣{␣echo␣a␣;␣if␣false␣{␣./raise␣TERM␣}␣else␣{␣./raise␣INT␣}␣;␣echo␣b␣}
+a
+b
+a
+b
+[0]...bIbT9HUxVtmrV/main-dir$␣exit␣0
+Le processus du shell s'est terminé normalement avec le code de retour 0
+************************************************************
+
+
+Début des tests rendu-final-C-boucles-paralleles
+
+Test rendu-final-C-boucles-paralleles/test-01-parallele... Échec :
+
+Interaction attendue :
+[0]...bIbT9HUxVtmrV/main-dir$␣for␣f␣in␣dir-30␣-p␣30␣{␣echo␣-n␣a␣;␣sleep␣1␣}
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa[0]...bIbT9HUxVtmrV/main-dir$␣exit␣0
+Le processus du shell s'est terminé normalement avec le code de retour 0
+
+Interaction réelle :
+[0]...bIbT9HUxVtmrV/main-dir$␣for␣f␣in␣dir-30␣-p␣30␣{␣echo␣-n␣a␣;␣sleep␣1␣}
+aaaLe processus du shell a dépassé le temps imparti et a été terminé par SIGALRM
+************************************************************
+
+Test rendu-final-C-boucles-paralleles/test-02-mais-pas-trop... OK
+Test rendu-final-C-boucles-paralleles/test-03-valeur-retour... OK
+
+Tests réussis : 55/68

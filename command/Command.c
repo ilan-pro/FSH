@@ -14,6 +14,7 @@
  */
 
 #include <errno.h>
+#include <fcntl.h>
 #include <time.h>
 #include "../base/String.h"
 #include "../shell.h"
@@ -499,74 +500,242 @@ static void Command_print(const void* self_){
 
 }
 
+/**
+ * @brief Fonction qui pour une chaine de caractère (donnée sous-forme d'objet String) 
+ * donnée, va découper la chaine de caractère afin de récupérer les nom de variables 
+ * qui y figurent.
+ * 
+ * L'objet `_String_` donné n'est pas modifié.<br>
+ * La fonction va renvoyer une `_ArrayList_` contenant deux `_ArrayList_`, la première 
+ * contiendera les chaines de caractères qui délimitaient les variables et l'autre contiendera
+ * les noms des variables dans l'ordre où elles ont été déclarées dans la chaine de départ.
+ * <br>
+ * On peut alors reassembler la chaine avec les valeurs des variables, on assemblant ainsi 
+ * `radical_0`+`variable_0`+`radical_1`+`variable_1`+...+`variable_n`+`radical_n+1` 
+ * avec `radical_i` un élément de la première liste et `variable_i` un élément de la seconde.
+ * Le derinier radical (`radical_n+1`) peut être vide si le mot terminait avec une variable.
+ *
+ * @param arg La chaine de caractère qui va subir le traitement (l'objet reste intact).
+ * @return L'`_ArrayList_` contenant les radicaux et les noms des variables.
+ */
 static ArrayList getSplit(String arg){
+
+    /**
+     * Chaines de caractère qui vont servir à délimiter les mots dans la chaine.
+     */
     char* debut;
     char* fin;
-
+    
+    /**
+     * Récupération de la taille de la chaine afin d'en faire une copie modifiable. 
+     * La chaine de départ est donc laissée telle qu'elle est.
+     */
     size_t size_of_arg = arg->size;
+    // Allocation de la mémoire qui va accueillir la copie.
     char* str = malloc(sizeof(char) * (size_of_arg + 1));
+    // Copie de la chaine.
     strcpy(str, obj_to_string(arg));
-
+    
+    /**
+     * Les deux pointeurs de délimitation de pointeront dans un premier temps 
+     * le début de chaine.
+     */
     debut = str;
     fin = str;
-
+    
+    // Création des listes qui vont accueillir les mots découpés
     ArrayList rad = obj_new(_ArrayList_, 0);
     ArrayList var = obj_new(_ArrayList_, 0);
-
-    while (*fin){
-
+    
+    /**
+     * Algorithme : 
+     *
+     * On parcours la chaine à l'aide des deux pointeurs `debut` et `fin` 
+     * `debut` comme son nom l'indique va pointer vers le début du prochain 
+     * mot qui sera trouvé, il ne bougera donc pas tant qu'un mot n'est pas trouvé.
+     * `fin` comme son nom l'indique pointera vers la fin d'un mot, c'est ce pointeur 
+     * qui va servir à ajouter le caractère `\0` sur la chaine `str` afin de créer une 
+     * sous-chaine commençant par `debut` obtenant ainsi un mot.
+     * 
+     * Lorsque `fin` rencontre un caractère `$` (symbole indiquant la présence d'une variable), 
+     * il met un caractère de fin (`\0`) et le mot commençant par début est ajouté dans la liste 
+     * des radicaux. Ensuite `debut` est décalé à `fin` afin de permettre de récupérer le prochain 
+     * mot, qui sera ici le nom de la variable. Tant que `fin` ne lira pas le caractère de fin 
+     * ou un caractère non-alphanumérique, il continue d'avancer. Une fois terminé `fin` ajoute un
+     * caractère de fin et le mot commençant par `debut` est ajouté dans la liste des variables.
+     * `debut` est de nouveau décalé à `fin` et la boucle recommence.
+     */
+    while (*fin){ // Tant qu'on a pas lu toute la chaine.
+        
+        // Si fin rencontre un `$` (symbole d'une varaible)
         if (*fin == '$'){
-            *fin = '\0';
+
+            // Ajout du caractère de fin de chaine pour recépérer le radical
+            *fin = '\0'; 
+            // Ajout du radical dans la liste.
             ArrayList_add_last(rad, obj_new(_String_, debut), 0);
-            fin++;
+            // Mise à jour des pointeurs. `fin` et `debut` pointent vers le premier caractère du prochain mot.
+            fin++; 
             debut = fin;
-
-            while (*fin){
-
+            
+            // Récupération du nom de la variable.
+            while (*fin){ // Tant qu'on a pas fini la chaine.
+                
+                /**
+                 * Si le caractère pointé par `fin` est un caractère alphanumérique ou un undescore 
+                 * ('_' On se permet d'autoriser ce caractère comme séparateur) alors il fait parti du 
+                 * nom de la variable.
+                 */
                 if (isalnum(*fin) || *fin == '_'){
-                    fin++;
-                    if(*fin)
+                    fin++; // Avancement.
+                           
+                    // On continue seulement si le prochain caractère n'est pas la fin (il y a une petite 
+                    // gestion à faire avant de quitter la boucle).
+                    if(*fin) 
                         continue;
                 }
                 
-                if (*fin == '$'){
-                    *fin = '\0';
+                if (*fin == '$'){ // Si le caractère est '$' (donc il y a concaténation de deux variables)
+                    *fin = '\0'; // Alors on a trouvé le nom de la variable.
+                    // On ajoute la variable.
                     ArrayList_add_last(var, obj_new(_String_, debut), 0);
+
+                    // On ajoute également une chaine de caractère (vide) qui va servir de séparateur entre 
+                    // les deux. Il est important d'en ajouter une car l'algorithme par du principe 
+                    // qu'on a toujours à la fin `radical`+`variable`+`radical`+`variable`+... Le cas `variable`+`variable`
+                    // ne satisferait pas cet invariant d'où le fait de rajouter une chaine vide dans la liste 
+                    // des radicaux.
                     ArrayList_add_last(rad, obj_new(_String_, ""), 0);
+                    
+                    // Mise à jour des pointeurs. `fin` et `debut` pointent vers le premier caractère du prochain mot.
                     fin++;
                     debut = fin;
                     continue;
                 }
 
-
+                /**
+                 * Si on arrive à la fin de la chaine princiapal alors on 
+                 * ajoute le nom de la variable avant de quitter.
+                 */
                 if (!*fin) {
                     ArrayList_add_last(var, obj_new(_String_, debut), 0);
+                    // Mise à jour des pointeurs. `fin` et `debut` pointent vers le premier caractère du prochain mot 
+                    // (qui est vide mais c'est fait exprès pour préserver l'invariant).
                     debut = fin;
                     goto continuer;
                 }
-
+                
+                // Si on est ici c'est qu'on a un caractère qui n'est pas un caractère pour une variable
+                // Alors on s'arrête là, on récupère le mot comme nom de la variable.
                 char tmp = *fin;
                     
                 *fin = '\0';
                 ArrayList_add_last(var, obj_new(_String_, debut), 0);
-
+                // On remet le caractère précédent pour ne pas modifier le prochain mot;
                 *fin = tmp;
                 
+                // Mise à jour des pointeurs. `fin` et `debut` pointent vers le premier caractère du prochain mot.
                 debut = fin++;
                 goto continuer;
             }
         }
-        fin++;
-        continuer :
-        continue;
-    }
-    ArrayList_add_last(rad, obj_new(_String_, debut), 0);
-    ArrayList res_split = obj_new(_ArrayList_, 0);
 
+        // Si on est ici c'est que le caractère pointé n'est pas '$' donc fait parti du mot racine.
+        fin++;
+        continuer : // Label
+        continue; // Alors on continue.
+    }
+
+    // Une fois en dehors de la boucle on a ajoute le deriner mot (qui n' a pas eut le temps d'être ajouté à cause de l'arrêt de la boucle).
+    ArrayList_add_last(rad, obj_new(_String_, debut), 0);
+
+    // Création d'un ArrayList qui va accueillir le deux listes.
+    ArrayList res_split = obj_new(_ArrayList_, 0);
+    
+    // Ajout des deux listes.
     ArrayList_add_last(res_split, rad, 0);
     ArrayList_add_last(res_split, var, 0);
+
+    // Libération la chaine alloué pour l'exécution de l'algorithme.
     free(str);
+
+    // Renvoie de la valeur.
     return res_split;
+}
+
+/**
+ * @internal
+ * @brief Fonction qui pour un mot `_String_` donné (pouvant contenir des déclarations 
+ * de variables) va renvoyer la chaine de caractère où on a remplacé toutes les 
+ * variables par leur valeur.
+ *
+ * La fonction va renvoyer NULL si mot donné a une variable qui n'existe pas.<br>
+ * L'ordre de déclaration des variables est gardé.<br>
+ * Si le mot ne contient pas de variable, il est renvoyé tel qu'il est. (Attention 
+ * le mot qui sera renvoyé sera le même mot mais pas la même référence au mot donné 
+ * en argument. Garder cela à l'esprit pour éviter les fuites de méomire, les deux mots 
+ * doivent être détruit !)
+ *
+ * @param str La chaine de caractère à transformer. (Cette chaine n'est ni modifiée ni détruite)
+ * @return NULL si la chaine possède une déclaration de variables inexistantes ou le mot dont 
+ * le nom de chaque variable déclarée est remplacé par sa valeur.
+ */
+String replaceVar( String str ){
+        // Récupération de l'argument.
+        // Récupération des deux listes où on a extrait les noms des variables de l'argument.
+        ArrayList split = getSplit(str);
+        ArrayList rad = ArrayList_get_first(split, 0);
+        ArrayList var = ArrayList_get_last(split, 0);
+        
+        // Vérification que l'on a bien que la liste des radicaux et celle des variables diffèrent de 1.
+        assert(ArrayList_size(rad) == ArrayList_size(var)+1);
+        
+        // Récupération du premier radical.
+        str = ArrayList_get_first(rad, 1);
+        
+        // Parcours de la liste des variables.
+        for (size_t j = 0; j < ArrayList_size(var); j++){ 
+            // Récupération du nom de la variable.
+            String s1 = ArrayList_get(var, j, 1);
+            // Récupération du radical.
+            String s2 = ArrayList_get(rad, j + 1, 1);
+            // Récupération de la valeur de la variable.
+            const char* value = Shell_get_val(obj_to_string(s1));
+            
+            if (value){ // Si cette valeur existe.
+                obj_destroy(s1); // On détruit s1 (il n'est plus utile)
+                s1 = obj_new(_String_, value); // On le remplace par la valeur de la variable.
+
+            }else{ // Sinon on regarde parmi les variables d'environement si la valeur existe.
+                value = getenv(obj_to_string(s1));
+                if (value){ // Si elle existe.
+                    obj_destroy(s1); // On détruit s1 (il n'est plus utile)
+                    s1 = obj_new(_String_, value); // On le remplace par la valeur de la variable.
+                }else{ 
+                    // Sinon on détruit tout le monde et l'argument n'est plus valide (il contient une variable qui n'existe pas).
+                    obj_destroy(s1);
+                    obj_destroy(s2);
+                    obj_destroy(str);
+                    str = NULL;
+                    break; // On quitte la boucle.
+                }
+            }
+
+            // arg = String_concat(arg, s1);
+            // Concaténation du radical et de la valeur de la variable.
+            String tmp = String_concat(str, s1);
+            obj_destroy(str);
+            str = tmp;
+            tmp = String_concat(str, s2);
+            obj_destroy(str);
+            str = tmp;
+            obj_destroy(s1);
+            obj_destroy(s2);
+        }
+
+        // Une fois terminé on ajoute la vraie valeur de l'argument. 
+        obj_destroy(split);
+        return str;                                           
 }
 
 /**
@@ -580,53 +749,9 @@ static void Command_remplace_variable( Command self, ArrayList new_args ){
 
     // Parcours des arguments.
     for (size_t i = 0; i < ArrayList_size(self->args); i++){
-
-        String arg = ArrayList_get(self->args, i, 0);
-        ArrayList split = getSplit(arg);
-        ArrayList rad = ArrayList_get_first(split, 0);
-        ArrayList var = ArrayList_get_last(split, 0);
-        
-        assert(ArrayList_size(rad) == ArrayList_size(var)+1);
-
-        arg = ArrayList_get_first(rad, 1);
-        
-        for (size_t j = 0; j < ArrayList_size(var); j++){
-            String s1 = ArrayList_get(var, j, 1);
-            String s2 = ArrayList_get(rad, j + 1, 1);
-            const char* value = Shell_get_val(obj_to_string(s1));
-            
-            if (value){
-                obj_destroy(s1);
-                s1 = obj_new(_String_, value);
-            }else{
-                value = getenv(obj_to_string(s1));
-                if (value){
-                    obj_destroy(s1);
-                    s1 = obj_new(_String_, value);
-                }else{
-                    obj_destroy(s1);
-                    obj_destroy(s2);
-                    obj_destroy(arg);
-                    arg = NULL;
-                    break;
-                }
-            }
-
-            // arg = String_concat(arg, s1);
-            String tmp = String_concat(arg, s1);
-            obj_destroy(arg);
-            arg = tmp;
-            tmp = String_concat(arg, s2);
-            obj_destroy(arg);
-            arg = tmp;
-            obj_destroy(s1);
-            obj_destroy(s2);
-        }
-        // obj_print(arg);
-        // write(1, "\n", 1);         
-        ArrayList_add_last(new_args, arg, 1);
-        obj_destroy(arg);
-        obj_destroy(split);
+        // Récupération de l'argument avec les noms de variables remplacés.
+        String arg = replaceVar( ArrayList_get(self->args, i, 0) );
+        ArrayList_add_last(new_args, arg, 0);
     }
 }
 
@@ -661,8 +786,10 @@ int Command_execute(Command self){
     }
 
     // Application de la redirection.
-    Redirector_apply_redirection(self->redirector);
-    
+    int ret = Redirector_apply_redirection(self->redirector);
+    if (!ret) // S'il y a une erreur d'ourture de fichier.
+        return 1;
+
     // Parcours des arguments pour vérifier s'il n'y a pas de variable $...
     Command_remplace_variable(self, self->args_tmp);
     
@@ -675,14 +802,15 @@ int Command_execute(Command self){
     // Sinon on éxécute la commande.
     int ret_val = self->execute(self);
     
-    // Redirection multiple des sorties si activée
-    Redirector_out_multiple_redirection(self->redirector);
+    // Redirection multiple des sorties si activée (stdin est remis si possible)
+    Redirector_multiple_redirection(self->redirector);
 
     // Changement de la liste des arguments, remise de l'original.
     self->args = origin_args;
     // suppression de tous les éléments de la liste temporaire.
     ArrayList_clear(self->args_tmp);
     
+
     return ret_val;
 }
 

@@ -9,6 +9,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <sys/stat.h>
 #include <sys/wait.h>
 #include <dirent.h>
 #include <unistd.h>
@@ -18,10 +19,13 @@
 #include <assert.h>
 #include "base/ArrayList.h"
 #include "command/For.h"
+#include "command/Redirector.h"
 #include "command/all_cmd.h"
 #include "command/ExternalCommand.h"
 #include "base/String.h"
 #include "shell.h"
+#include <signal.h>
+
 
 #include "base/new.h"
 
@@ -41,6 +45,21 @@ static int init_working_dir();
 static void update_prompt();
 static Class get_internal_cmd(char *char_lu);
 static Command apply_cmd(char *char_lu, ArrayList file_secondaire, char** prompt);
+/**
+ * @internal 
+ * @biref Fonction qui va créer une variable du shell dont le nom est 
+ * donné en argument.
+ *  
+ * La valeur de la variable est la valeur qui suit le '=' et peut être 
+ * le résulat d'une commande structurelle (par redirection de stdout).
+ * <br>
+ * Si la variable existe sa valeur sera mise à jour.
+ *
+ * @param id L'identificateur de la variable.
+ * @param prompt Il s'agit du prompt qui est en cours de parsing.
+ * @return Si oui ou non l'ajout a réussi.
+ */
+static int varAffectation(char* id, char* dyn_out, char** prompt);
 
 /**
  * Fonction qui va initialiser la tables des variables qui seront utilisées 
@@ -73,6 +92,15 @@ static void destroy_var_table();
  * Le résultat de la dernière commande.
  */
 int previous_cmd_finish = 0;
+
+/** sauvegarde de l'ancienne valeur de retour */
+
+
+/**
+ * Un booléan se chargeant de savoir si oui ou non nous avons reçu un signal dans le cas ou nous auriont un programme qui à comme 
+ * code de sortie 255 mais qui n'a pas été interrompu par un signal
+ */
+volatile sig_atomic_t signal_recu = 0;
 
 /**
  * @internal
@@ -112,6 +140,8 @@ static ArrayList Ids_values_table;
 //****************** Fonctions **************** */
 /********************************************** */
 
+
+
 /**
  * Fonction qui va écire dans le shell tout le prompt suivi de la 
  * d'une ligne rempli de '~' jusqu'à la dernière position pointé 
@@ -145,54 +175,61 @@ static void Shell_print_syntaxe_error(char* usr_prompt, char* cp_prompt){
  * @internal
  * Fonction qui démarre le shell "FSH".
  */
-int Shell_start(){
+int Shell_start() {
 
-    // Initialisation du chemin absolue vers le réprtoire de travail.
+    // GESTION des signaux 
+    ignore_signals();
+
+    // Initialisation du chemin absolue vers le répertoire de travail.
     if (init_working_dir())
         return 1;
 
-    // initialisation de la liste des variables qui seront utilisées dans le shell.
+    // Initialisation de la liste des variables qui seront utilisées dans le shell.
     init_var_table();
 
     // Redirection vers stderr
     rl_outstream = stderr;
 
-    while(1){
-        
+    while (1) {
         // Mise à jour du prompt.
         update_prompt();
         // Récupération de la saisie de l'utilisateur.
-        char* usr_prompt = readline(prompt);
+        char *usr_prompt = readline(prompt);
         // Copie du pointeur pour sa destruction.
         char *cp_prompt = usr_prompt;
-        if (usr_prompt){ // Si le pointeur vers la saisie n'est pas NULL (Pas de EOF)
-            ArrayList file_principal = Shell_parse(&usr_prompt); // Parsing de la saisie, pour en extraire les commandes.
-                
-            if (!file_principal) {// Si la file renvoyée est NULL alors il y a une erreur de syntaxe.
-                /** Shell_print_syntaxe_error(usr_prompt, cp_prompt); */
+        if (usr_prompt) {  // Si le pointeur vers la saisie n'est pas NULL (Pas de EOF)
+            // Ajouter la commande à l'historique si elle n'est pas vide, on en à besoin pour que l'historique se construise
+            if (*usr_prompt) {
+                add_history(usr_prompt);
+            }
+
+            // Parsing de la saisie, pour en extraire les commandes.
+            ArrayList file_principal = Shell_parse(&usr_prompt);
+
+            if (!file_principal) {  // Si la file renvoyée est NULL alors il y a une erreur de syntaxe.
+                Shell_print_syntaxe_error(usr_prompt, cp_prompt);
                 previous_cmd_finish = 1;
-                free(cp_prompt); // Destruction du pointeur alloué par readline.
-            }
-            else {
+                free(cp_prompt);  /** Destruction du pointeur alloué par readline */
+            } else {
                 /** obj_print(file_principal); printf("\n"); // debug */
-                previous_cmd_finish = Shell_execute_all(file_principal); // Exécution de la file principale.
-                obj_destroy(file_principal); // Destruction de la file principale.
-                free(cp_prompt); // Destruction du pointeur alloué par readline.
+                previous_cmd_finish = Shell_execute_all(file_principal);  // Exécution de la file principale.
+                obj_destroy(file_principal);  /** Destruction de la file principale */
+                free(cp_prompt);  /** Destruction du pointeur alloué par readline */
             }
-        }
-        else{ // Si on est ici c'est qu'il y reception de EOF
-            break; // Alors on arrête le shell.
+        } else {  // Si on est ici c'est qu'il y a réception de EOF
+            break;  // Alors on arrête le shell.
         }
         rl_free_line_state();
     }
-    
+
     // Destruction de la liste des variables utilisées dans le shell.
     destroy_var_table();
-    // On vide l'historique.
+    // On vide l'historique, il n'est pas persistant (entre deux sessions nous n'aurons pas de liens entre les historiques)
     rl_clear_history();
-    return previous_cmd_finish; // On revoie le résultat de la dernière commande.
-
+    
+    return previous_cmd_finish;  // On renvoie le résultat de la dernière commande.
 }
+
 
 /**
  * @internal
@@ -316,6 +353,35 @@ ArrayList Shell_parse(char **prompt){
             // continue pour revenir au debut du whilevoir des espaces si 
             continue;
         }
+
+        // on vérifie que ce caractère est un égale, pour l'affectation de variable.
+        if(res == '='){
+            // si c'est un égale et que nous n'avons pas lu de caratère ...
+            if(!lu1lettre){
+                // ...alors il y erreur de syntaxe.
+                char tmp[100];
+                snprintf(tmp, 100, "\e[1;31mErreur de syntaxe : Il manque l'identificateur du '='\e[1;0m\n");
+                write(2, tmp, strlen(tmp));
+                goto error;
+            }
+            // si on arrive ici, c'est qu'il y a un égale et qu'on à déjà lu un caractère
+            // donc char_lu contient le nom de la commande
+            // on remet lu1lettre à 0 car nous voulons relire une commande
+            lu1lettre = 0;
+            
+            char* dyn_str = (char*) malloc(sizeof(char) * 1);
+            dyn_str[0] = '\0';
+
+            if(!varAffectation(char_lu, dyn_str, prompt))
+                goto error;
+
+            // on trunk l'espace alloué par l'ancienne commande afin de pouvoir stocker le nom de la nouvelle commande sans l'avoir à la concatener avec l'ancienne
+            char_lu = realloc(char_lu, sizeof(char));
+            char_lu[0] = '\0';
+            // pour éviter d'avoir des espaces si il y a une autre commande qui suit
+            // continue pour revenir au debut du whilevoir des espaces si 
+            continue;
+        }
         
         // ajout du charactère res à char_lu
         lu1lettre++;
@@ -337,9 +403,256 @@ error:
 
 }
 
+
+/**
+ * @internal
+ * @brief Fonction qui va exécuter l'ensemble des commandes structurelles et qui va récupérer les 
+ * valeurs de sortie pour les stocker dans une variables.
+ *
+ * La fonction va travailler avec des tube anonymes (dont elle va se servir pour rediriger la sortie), 
+ * avec une parallélisation pour accélerer le processus d'exécution, mais également pour éviter les 
+ * blocages en cas de débordement de la pile (le processus père lira le tube en permanence).
+ *
+ * @param cmds Les commandes à éxécuter.
+ * @return La valeur de la sortie après exécution.
+ */
+static char* Shell_exec_for_var( ArrayList cmds ){
+    
+    // Vérifications.
+    assert( cmds );
+
+    // Création du tube.
+    int p[2];
+    pipe(p);
+
+    // Division
+    if (!fork()){ // Fils 
+        // Fermeture du coté lecteur (le fils ne lit pas il écrit).
+        assert(close(p[0]) != -1);
+        // Redirection de la sortie.
+        assert( dup2(p[1], STDOUT_FILENO) != -1);
+        // Fermeture du coté écriture (La sortie va s'occuper de l'écriture).
+        assert(close(p[1]) != -1);
+        
+        // On quitte une fois l'exécution terminée.
+        exit(Shell_execute_all(cmds));
+        
+    }
+
+    // Père
+    // Fermeture du descripteur coté écriture (le père lit mais n'écrit pas)
+    assert( close(p[1]) != -1 );
+
+    // Vérification de la valeur de retour.
+    int val;
+    
+
+    // Lecture du tube tant qu'il ya  quelque chose à lire.
+    int nb;
+    size_t total_size = 0; // Taille total de ce qui sera lu ici.
+    char buff[4096]; // largement suffisant enfin jspr.
+    ArrayList list_read = obj_new(_ArrayList_, 10); // Lliste qui va contenir chaque chaine de caractère lu.
+    while ((nb = read(p[0], buff, 4095))){ // On ne lit pas les 4096 caractères pour pouvoir y ajouter un caractère de fin.
+        
+        // Ajout d'un caractère de fin pour pouvoir travailler sur la chaine lu.
+        buff[nb] = '\0';
+        
+        // Transformation du buffer en objet String chaine de caracètre, pour pouvoir le stocker dans une liste;
+        String buff_string  = obj_new(_String_, buff);
+        // Ajout du buffer.
+        ArrayList_add_last(list_read, buff_string, 0);
+        
+        // Incrémentation de la taille totale.
+        total_size += nb;
+
+    }
+
+    /**
+     * Il n'y a pas de gestion d'erreur, pas le temps de la faire.
+     *
+     * Mais sinon il faut placer un waitpid ici pour le traitement 
+     * d'erreur.
+     */
+    
+    ////////////////////////////////////////////////////////////
+
+    // La lecture est terminé
+    // Création de la chaine résultante.
+    char* result = (char*) malloc(sizeof(char) * (total_size + 1));
+    assert(result);
+
+    result[total_size] = '\0';
+    total_size = 0;
+
+    // Parcours de la liste des chaines lues
+    for (size_t i = 0; i<ArrayList_size(list_read); i++){
+        
+        // Récupération de l'objet String lu.
+        String tmp = ArrayList_get(list_read, i, 0);
+        // Récupération de la chaine de caractère.
+        char* tmp_str = String_to_allocated_str(tmp);
+        
+        int j = 0;
+        int const_totsize = total_size;
+        // Parcours pour concaténer avec le resultat.
+        for (; total_size< const_totsize + tmp->size; total_size++){
+            result[total_size] 
+                = tmp_str[j++];
+        }
+
+        // Libération de la chaine.
+        free(tmp_str);
+
+    }
+
+
+    // Destruction de la liste
+    obj_destroy(list_read);
+    
+    // Reevoie de result.
+    return result;
+
+}
+
+
+/**
+ * @internal 
+ * @biref Fonction qui va créer une variable du shell dont le nom est 
+ * donné en argument.
+ *  
+ * La valeur de la variable est la valeur qui suit le '=' et peut être 
+ * le résulat d'une commande structurelle (par redirection de stdout).
+ * <br>
+ * Si la variable existe sa valeur sera mise à jour.
+ *
+ * @param id L'identificateur de la variable.
+ * @param prompt Il s'agit du prompt qui est en cours de parsing.
+ * @param dyn_out Chaine de caractère allouée dynamiquement qui contiendera le résultat final.
+ * @return Si oui ou non l'ajout a réussi.
+ */
+static int varAffectation(char* id, char* dyn_out, char** prompt){
+   
+    // On décale de 1 (pour =)
+    (*prompt)++;
+
+    // Valeur de retour.
+    int ret = 1;
+
+    // Nombre de caractère lu. (Si ce nombre vaut 0 alors on a encore rien lu dans le prompt et donc tous les espaces sont ignorés. Le nombre est mis à 0 après chaque lecture d'un mot)
+    int char_compteur = 0;
+    
+    int quoted = 0; // Booléean indiquant si oui ou non on se trouve dans des guillemets.
+    int double_quoted = 0; // Booléean indiquant si oui ou non on se trouve dans des guillemets double.
+    int esc = 0; // Booléean indiquant si oui ou non le caractère suivant est echappé.
+
+    /** 
+     * Lecture du prompt dans la boucle tant que le caractère pointé est 
+     * valide (voir documentation de la fonction actual_char_is_legal()).
+     */
+    while(Command_actual_char_is_legal(quoted, double_quoted, esc, prompt)){
+        // Récupération du caractère pointé par le pointeur, et incémentation de la posisiton.
+        char c = *((*prompt)++);
+        switch (c) {
+            default : // par défaut on ajoute le caractère à la chaine en cours de lecture. 
+                h_default: // label 
+
+                esc = 0; // On met l'echappement à 0 (si jamais le caractère était échappé)
+                // Incrémentation du compteur.
+                char_compteur ++;
+                // Réallocation pour accueillir le nouveau caractère.
+                dyn_out = realloc(dyn_out, (1 + char_compteur) * sizeof(char));
+                dyn_out[char_compteur] = '\0';
+                dyn_out[char_compteur - 1] = c;
+                break; 
+
+            case ' ': // Le cas où le caractère lu est un espace.
+                    
+                goto h_default; // On va dans default
+                
+
+                
+            case '"': // Le cas où on a des guillemets doubles
+                if (!quoted && !esc) // S'ils sont dans des guillemets simples ou explicitement echapés alors ils sont échapés
+                    double_quoted = !double_quoted;
+
+                goto h_default;
+                break;
+
+            case '\'': // Le cas où on a des guillemets simples
+                if (!double_quoted && !esc) // S'ils sont dans des guillemets doubles ou explicitement echapés alors ils sont échapés
+                    quoted = !quoted;
+
+                goto h_default;
+                break;
+            
+            case '\\': // Il n'y a pas d'échappement mais ça ne coûte rien
+            
+                if (esc) // Si il est echappé
+                    goto h_default;
+                
+                esc = 1;
+                break;
+
+        }
+
+    }
+
+    // Si on arrive ici c'est qu'on a terminé la lecture du contenue de la variable.
+    
+    if(**prompt == '{'){ // Si le parse s'est achevé à cause de '{' alors on est dans 
+                         // le cas où l'on veut ajouter le résultat d'une commande structurelle.
+        (*prompt)++;
+        opened_brackets++; 
+        // Récupération de la commande structurée.
+        // Si la récupération échoue alors on la fonction échoue.
+        ArrayList cmds = Shell_parse(prompt);
+        // Vérification.
+        if (cmds == NULL){
+            ret = 0;
+            goto exit;
+        }
+
+        // Exécution de la commande structurelle.
+        char* out = Shell_exec_for_var( cmds );
+        obj_destroy(cmds);
+            
+        // S'il n'y a pas d'accolade de fin
+        if (**prompt != '}'){
+            char tmp[100];
+            snprintf(tmp, 100, "\e[1;31mErreur de syntaxe : Il manque une accolade fermante pour la variable.\e[1;0m\n");
+            write(2, tmp, strlen(tmp));
+            free( out );
+            ret = 0;
+            goto exit;
+        }
+        else  // S'il y en a alors on déclare une accolade ouverte en moins.
+            opened_brackets--;
+        
+        // Opération très couteuse
+        size_t size = strlen(out);
+        dyn_out = realloc(dyn_out, strlen(dyn_out) + size + 1);
+        dyn_out = strcat(dyn_out, out);
+        free( out );
+        return varAffectation(id, dyn_out, prompt);
+    }
+
+    if (!Shell_add_var(id, dyn_out)){ // On tente d'ajouter la variable si possible.
+        Shell_update_var(id, dyn_out); // Sinon on la met à jour.
+    }
+
+exit: 
+    // Mise à jour de la commande
+    free(dyn_out);
+    return ret;
+
+}
+
+
+
 /**
  * Fonction qui va échanger les descripteurs de deux tubes.
  */
+
 static void swap_pipes(int* const pipe1, int* const pipe2){
     
     int tmp[2];
@@ -437,6 +750,102 @@ void show_std_new_location(Command cmd, int term_num){
 }
 
 /**
+ * Fonction qui va fermer les tube en vérifiant si les descripteur sont bien ceux d'un tube.
+ *
+ *  On vérifie si c'est un tube car lorsqu'on ferme un coté du tube pour la redirection ce coté 
+ *  le descritpeur de ce coté du tube peut être donné à un fichier pendant l'exécution de la commande.
+ */
+static void close_pipe(int pipe1[2], int pipe2[2]){
+    
+    struct stat pipe_stat;
+    
+    // Entrée tube 1 
+    if(fstat(pipe1[0], &pipe_stat) !=-1){
+        // Vérification si c'est un tube.
+        if(S_ISFIFO(pipe_stat.st_mode))
+            close(pipe1[0]);
+    }
+    
+    // Sortie tube 1 
+    if(fstat(pipe1[1], &pipe_stat) !=-1){
+        // Vérification si c'est un tube.
+        if(S_ISFIFO(pipe_stat.st_mode))
+            close(pipe1[1]);
+    }
+  
+    // Entrée tube 2 
+    if(fstat(pipe2[0], &pipe_stat) !=-1){
+        // Vérification si c'est un tube.
+        if(S_ISFIFO(pipe_stat.st_mode))
+            close(pipe2[0]);
+    }   
+    
+    // Sortie tube 2 
+    if(fstat(pipe2[1], &pipe_stat) !=-1){
+        // Vérification si c'est un tube.
+        if(S_ISFIFO(pipe_stat.st_mode))
+            close(pipe2[1]);
+    }
+
+
+}
+
+/** void Shell_execute_cmd( Command cmd, int* last_status, int** pipes, int index){ */
+
+/**     assert(cmd);     */
+/**     // Redirection de la sortie. */
+/**     if (index < ) */
+
+/**     *last_status = Command_execute(cmd); */
+/**     if(last_status != 0){ */
+/**         Command_perror(); */
+/**         [> goto exit; <] */
+/**     } */
+
+
+
+/** } */
+
+
+static int Shell_exec_one( ArrayList pipeline ){
+        
+    // Sert à stocker le status des processus enfant afin de retourner le dernier éxecuter.
+    int last_status = 0;
+
+    /** // Vérification. */
+    /** assert( pipeline ); */
+    /** assert( ArrayList_size( pipeline ) <= 1 ); */
+
+    /** // Sauvegarde de stdout, stderr et stdin */
+    /** int std_in_old = dup(STDIN_FILENO); */
+    /** int std_err_old = dup(STDOUT_FILENO); */
+    /** int std_out_old = dup(STDERR_FILENO); */
+
+    /** // Vérifications */
+    /** assert( std_in_old != -1 ); */
+    /** assert( std_err_old != -1 ); */
+    /** assert( std_out_old != -1 ); */
+
+    for (int i = 0; i<ArrayList_size( pipeline ); i ++){
+        Command cmd = (Command) ArrayList_get(pipeline, i, 0); 
+        last_status = Command_execute(cmd);
+    }
+    
+    /** // On remet STDOUT, STDERR et STDIN à leur place */
+    /** assert(dup2( std_in_old, STDIN_FILENO ) != -1); */
+    /** assert(dup2( std_out_old, STDOUT_FILENO ) != -1); */
+    /** assert(dup2( std_err_old, STDERR_FILENO ) != -1); */
+
+    /** // Fermeture des copies  */
+    /** assert(close (std_in_old) != -1); */
+    /** assert(close (std_out_old) != -1); */
+    /** assert(close (std_err_old) != -1); */
+
+    return last_status;
+
+}
+
+/**
  * @internal
  * @brief Fonction qui va exécuter toutes les pipelines d'une 
  * commande structurée (par appel de la méthode execute() de chaque commande).
@@ -458,15 +867,15 @@ int Shell_execute_all(ArrayList struct_cmds){
     int last_status = 0;
     
     /**
-     * Création de deux tubes, entrant et sortant dont l'un (pipe1) sera celui qui 
-     * remplacera `stdin` (tube entrant, en lecture) et l'autre (pipe2) remplacera 
+     * Création de deux tubes, entrant et sortant dont l'un (pipe1) sera celui qui
+     * remplacera `stdin` (tube entrant, en lecture) et l'autre (pipe2) remplacera
      * `stdout` (tube sortant, en écriture).
      */
-    int pipe1[2];
-    int pipe2[2];
-    
-    pipe(pipe1);
-    pipe(pipe2);
+    /** int pipe1[2]; */
+    /** int pipe2[2]; */
+
+    /** pipe(pipe1); */
+    /** pipe(pipe2); */
 
 
     /**
@@ -491,56 +900,123 @@ int Shell_execute_all(ArrayList struct_cmds){
         
         // on récupère la list chaîné de chaque pipeline
         ArrayList pipeline = ArrayList_get(struct_cmds, i, 0);
-        
-        for (size_t j = 0; j<ArrayList_size(pipeline); j++){
             
-            // Redirection des entrées et sortie des commande la pipeline.
-            pipe_redirection(pipe1, pipe2, stdout_def, j, ArrayList_size(pipeline));
+        // S'il n'y a qu'une seule commande il n'y a pas de parallèlisation.
+        if (ArrayList_size( pipeline ) <= 1){
+            last_status = Shell_exec_one(pipeline);
+            if (signal_recu){
+                if(signal_recu == SIGTERM){
+                    if(i == ArrayList_size(struct_cmds) - 1){
+                        break;
+                    }else{
+                        signal_recu = 0;
+                        continue;
+                    }
+                }else{
+                    break;
+                }
+            }
+            continue;
+        }
 
-            // Récupération de la commande.
-            Command cmd = ArrayList_get(pipeline, j, 0); 
+        // On crée une liste de tube anonyme de taille n-1 pour les redirections
+        int** pipes = malloc(sizeof(int*) * (ArrayList_size(pipeline) - 1));
+    
+        // Initialisation de tous les tubes.
+        for (size_t j = 0; j<ArrayList_size(pipeline) - 1; j++){
+            // Allocation.
+            int* p = malloc(sizeof(int) * 2);
+            // Création du tube.
+            assert(pipe(p) != -1);
+            pipes[j] = p;
+        }
+
+        // Il s'agit du pid de la dernière commande du pipeline.
+        int last_cmd_pid;
+
+        // Exécution de la première commande.
+        //Shell_execute_cmd(ArrayList_get_first(pipeline, 0), &last_status, pipes, 0);        
+
+        /** fprintf(stderr, "il y a %lu commandes dans la pipeline\n", ArrayList_size(pipeline)); */
+        /** fflush(stderr); */
+
+        for (size_t j = 0; j<ArrayList_size(pipeline); j++){    
+
+            if (!(last_cmd_pid = fork())) {
+                // Redirection de la sortie standard.
+                if ( j < ArrayList_size(pipeline)-1 )
+                    dup2(pipes[j][1], 1); // Redirection de stdout dans le coté écriture du tube.
+                
+                // Redirection de l'entrée standard.
+                if (j > 0)
+                    dup2( pipes[j-1][0], 0); // Redirection de stdin dans le coté écriture du tube.
+                
+
+                /// Fermeture de tous les tubes.
+                for (int k=0; k<ArrayList_size(pipeline)-1; k++){
+                    assert(close(pipes[k][0])!=-1);
+                    assert(close(pipes[k][1])!=-1);
+                }
+
+                // Récupération de la commande.
+                Command cmd = ArrayList_get(pipeline, j, 0); 
+                
+                /** show_std_new_location(cmd, 1); */
+
+                // Execution et récupération de la valeur de retour.
+                int last_status = Command_execute(cmd);
+                // On quitte avec la dernière valeur.
+                exit(last_status);
+                
+            }
+            
+            if(signal_recu){
+                break;
+            }
 
             //Debug
             // show_std_new_location(cmd, 2);
-            assert(fcntl(pipe1[1], F_GETFD)==-1); // pipe1[1] doit toujours être fermé !
 
             // Exécution de la commande.
-            last_status = Command_execute(cmd);
-            if(last_status != 0){
-                Command_perror();
-                /** goto exit; */
-            }
             
-            // Pipe1 est inutilisable car son écrivain est fermé (donc il en faut un nouveau)
-            close(pipe1[0]); 
             
-            // Pas besoin de créer un Pipe pour le dernier (c'est juste une optimisation)
-            if (j < ArrayList_size(pipeline)-1) 
-                pipe(pipe1);
-            
-            // échange de pipe1 et pipe2.
-            swap_pipes(pipe1, pipe2);
-
         }
-        
-        // Remise de stdin comme entrée standard (stdout est toujours remis après la dernière commande chaque pipeline)
-        dup2(stdin_def, 0);
-        dup2(stderr_def, 2);
+    
+        // Libération du tableau des tubes.
+        for (int j = 0 ; j<ArrayList_size( pipeline ) - 1; j++){
+            assert(close(pipes[j][0]) != -1);
+            assert(close(pipes[j][1]) != -1);
+            free( pipes[j] );
+        }
+        free(pipes);
+
+        if(signal_recu){
+            if(signal_recu == SIGTERM){
+                if(i == ArrayList_size(struct_cmds) - 1){
+                    break;
+                }
+                continue;
+            }else{
+                break;
+            }
+        }
+
+        // On attends le dernier processus (seulement si la pipeline n'était pas vide)
+        if (ArrayList_size(pipeline)){
+            int pid;
+            while((pid = wait(NULL)) != -1){
+                if (pid == last_cmd_pid)
+                    WEXITSTATUS(last_status);
+                
+            }
+        }
+            
     }
     
-    /** exit: */
     dup2(stdin_def, 0);
     dup2(stdout_def, 1);
     dup2(stderr_def, 2);
-    // Fermeture des tube utilisés
-    close(pipe1[0]);
-    close(pipe2[0]);
-    close(pipe1[1]);
-    close(pipe2[1]);
-
-    // fermeture des copie des descFic de stdin et stdout copiés (surtout si c'était des tubes, à fermer absolument !)
-    close(stdin_def);
-    close(stdout_def);
+ 
     return last_status;
 }
 
@@ -619,19 +1095,30 @@ static void update_prompt(){
 
     if (len>PROMPT_CHAR_LIMITS){
         // On pointe vers les 30 derniers caracètres (7 = 3 sont pour les ... + '[' + ']' + '$' + ' ' )
-        tr = working_dir + (len-PROMPT_CHAR_LIMITS+7+strlen(val_ret));
-        snprintf(path, 30, "...%s", tr);
+        if(signal_recu){
+            // 2 : pour SIG
+            tr = working_dir + (len-PROMPT_CHAR_LIMITS+7+strlen(val_ret) + 2);
+            snprintf(path, 30, "...%s", tr); 
+        }else{
+            tr = working_dir + (len-PROMPT_CHAR_LIMITS+7+strlen(val_ret));
+            snprintf(path, 30, "...%s", tr);
+        }
     }
     else
         // Sinon on écrit le chemin tel qu'il est.
         snprintf(path, 30, "%s", tr);
     
 
-    if (!previous_cmd_finish) // Si la précédente commande s'est bien terminée.
-        snprintf(prompt, 50, "\033[32m[%d]\033[36m%s\033[00m$ ", previous_cmd_finish, path); // On le met en vert.
-    else
-        snprintf(prompt, 50, "\033[91m[%d]\033[00m%s$ ", previous_cmd_finish, path); // On le met en rouge.
-
+    if (signal_recu){
+        snprintf(prompt, 50, "\033[91m[SIG]\033[00m%s$ ", path); // On met le signal en rouge.
+        signal_recu = 0;
+    } else {
+        if (!previous_cmd_finish){ // Si la précédente commande s'est bien terminée.
+            snprintf(prompt, 50, "\033[32m[%d]\033[36m%s\033[00m$ ", previous_cmd_finish, path); // On le met en vert.
+        }else{ 
+            snprintf(prompt, 50, "\033[91m[%d]\033[00m%s$ ", previous_cmd_finish, path); // On le met en rouge.
+        }
+    }
 }
 
 
@@ -869,4 +1356,37 @@ const char*  Shell_get_val(const char* id_){
 
     return obj_to_string(value);
     
+}
+
+
+
+/* le gestionnaire de signaux ne va rien faire pour les signaux car nous les ignorons */
+void signal_handler_int(int sig){
+    signal_recu = 1;
+}
+
+/**
+ * @internal
+ * @brief Fonction qui va utiliser un gestionnaire de signaux qui ne fait rien lors des signaux spécifié reçu.
+ *  */
+void ignore_signals(){
+    struct sigaction sa_int = {0};
+
+    /** On donne notre gestionnaire de signaux a notre structure sigaction pour gérer la réception des signaux */
+    sa_int.sa_handler = &signal_handler_int;
+
+    /** ici nous mettons un masque pour le signal SIGTERM car nous ne voulons pas le prendre 
+     * en compte, tant que nous le débloquons pas avec SIG_UNBOCK, il ne sera pas débloqué 
+     **/ 
+    sigset_t mask;
+
+    assert(sigemptyset(&mask) == 0);
+    assert(sigaddset(&mask, SIGTERM) == 0);
+    assert(sigprocmask(SIG_BLOCK, &mask, NULL) == 0);
+
+    /** 
+     * ici on spécifie qu'elle signaux on veut ignorer pour le gestionnaire de signaux, signal_handler
+     * En particulier, nous voulons : SIGINT
+     */
+    assert(sigaction(SIGINT, &sa_int, NULL) == 0);
 }

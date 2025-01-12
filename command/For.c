@@ -12,6 +12,7 @@
 #include <dirent.h>
 #include <sys/types.h>
 #include <sys/stat.h>
+#include <sys/wait.h>
 #include "../shell.h"
 #include "../base/String.h"
 
@@ -667,11 +668,10 @@ static void For_get_files(For self, DIR* dir, char** path, ArrayList all_files){
 
 }
 
-static int For_execute_for_each_file(For self, ArrayList all_files){
+static int For_execute_for_each_file(For self, ArrayList all_files){ 
 
-    int val_max  =  0;
-
-    ////////// La parallèlisation c'est ici (enfin je crois :) ) /////////////////////
+    int val_max = 0;
+    
     for (size_t i = 0; i<ArrayList_size(all_files); i++){
 
         char* name = obj_to_string((String)ArrayList_get(all_files, i, 0));
@@ -686,6 +686,11 @@ static int For_execute_for_each_file(For self, ArrayList all_files){
 
         // Exécution de bloc de commandes.
         int val_ret = Shell_execute_all(self->commands);
+
+        if(signal_recu){
+            break;
+        }
+
         if (val_ret > val_max)
             val_max =val_ret;
         /** if (val_ret) // Si la valeur de retour n'est pas nulle. */
@@ -706,10 +711,10 @@ static int For_execute(Command self_){
     For self = (For) self_;
 
     // Ouverture du dossier
-        // Récupération du chemin
-        char* tmp = obj_to_string((String) ArrayList_get(self->args, self->index_dir, 0));
-        char* dir = malloc((1 + strlen(tmp))*sizeof(char));
-        assert(strcpy(dir, tmp));
+    // Récupération du chemin
+    char* tmp = obj_to_string((String) ArrayList_get(self->args, self->index_dir, 0));
+    char* dir = malloc((1 + strlen(tmp))*sizeof(char));
+    assert(strcpy(dir, tmp));
 
     DIR* dir_opened = opendir(dir);
     if (!dir_opened){ // Si le répertoire ne s'ouvre pas.
@@ -726,11 +731,55 @@ static int For_execute(Command self_){
     ArrayList all_files = obj_new(_ArrayList_, 0);
     // Récupération des fichiers qui seront utilisés.
     For_get_files(self, dir_opened, &dir, all_files);
+
+    
+    // on calculs le nombre de threads donc nous avons besoin donc le parametre après -p
+    const char *nb_thrds = 0;
+    // la liste en a au moins 1 si p n'est pas présent
+    long nbr_threads = 1;
+    if((nb_thrds = get_user_extension(self->params, "p")) != NULL){
+        // nombre de threads en parallèles qu'il va falloir lancé
+        nbr_threads= strtol(nb_thrds, NULL, 10);   
+    }  
+
+    // toutes les arraylist que nous allons traité
+    ArrayList split = ArrayList_split(all_files, nbr_threads);
+
+    if(nbr_threads == 1){
+        // dans le cas ou nous avons juste un seul thread 
+        ret = For_execute_for_each_file(self, all_files);
+    }else{
+        /** nous executions en parallele tous les threads */
+        for(size_t i = 0; i<nbr_threads; i++){
+            pid_t child_pid = fork();
+            
+            // le fils execute pour chaque element de split (donc les sous_arraylist de all_files)
+            if(child_pid == 0){
+                exit(For_execute_for_each_file(self, ArrayList_get(split, i, 0)));
+            }else if(child_pid > 0){
+                continue;
+            }else{
+                perror("fork");
+                ret = 1;
+                goto cleanup;
+            }
+        }
+        int retour_ad;
+        int max = 0;
+        // le père attends tous ses fils terminer et va renvoyer la valeur retour maximum
+        while(wait(&retour_ad) != -1){
+            int return_val = WEXITSTATUS(retour_ad);
+            if(max < return_val){
+                max = return_val;
+            }
+        }
+        ret = max;
+    }
     
     // Exécution du bloc des commandes pour chaque fichier.
-    ret = For_execute_for_each_file(self, all_files);
-
+cleanup :
     // Libération des ressources.
+    obj_destroy(split);
     obj_destroy(all_files);
     closedir(dir_opened);
     free(dir);

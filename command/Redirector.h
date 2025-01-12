@@ -1,16 +1,20 @@
 #ifndef REDIRECTOR_H
 #define REDIRECTOR_H
 #include "../base/ArrayList.h"
+#include "../base/String.h"
 
 #ifdef REDIRECTOR_CLASS
 
     #define REDIRECTOR_FIELDS\
-        ArrayList out_descriptors; /* liste des descripteur de redirection pour stdout.*/ \
-        ArrayList err_descriptors; /* liste des descripteur de redirection pour stderr.*/ \
-        ArrayList in_descriptors; /* liste des descripteur de redirection pour stdin.*/ \
+        ArrayList out_files; /* liste des fichiers de redirection pour stdout.*/ \
+        ArrayList err_files; /* liste des fichiers de redirection pour stderr.*/ \
+        ArrayList in_files; /* liste des fichiers de redirection pour stdin.*/ \
         int red_out; /* Il s'agit d'un booléen qui indique si oui ou non il y a une redirection multiple vers stdout */\
         int red_in; /* Il s'agit d'un booléen qui indique si oui ou non il y a une redirection multiple vers stdin */\
         int red_err; /* Il s'agit d'un booléen qui indique si oui ou non il y a une redirection multiple vers stderr */\
+        int old_err; /* Il s'agit de la valeur de départ de stderr */\
+        int old_in; /* Il s'agit de la valeur de départ de stdin */\
+        int old_out; /* Il s'agit de la valeur de départ de stdout */\
 
     typedef struct _Redirector_* Redirector;
 
@@ -22,6 +26,9 @@
         int red_out; /* Il s'agit d'un booléen qui indique si oui ou non il y a une redirection multiple vers stdout */
         int red_in; /* Il s'agit d'un booléen qui indique si oui ou non il y a une redirection multiple vers stdin */
         int red_err; /* Il s'agit d'un booléen qui indique si oui ou non il y a une redirection multiple vers stderr */
+        int old_err; /* Il s'agit de la valeur de départ de stderr */
+        int old_in; /* Il s'agit de la valeur de départ de stdin */
+        int old_out; /* Il s'agit de la valeur de départ de stdout */
     } redirectior_private;
     
     #define REDIRECTOR_H_FIELDS\
@@ -50,7 +57,14 @@
      * charger du reste ).
      */
     void Command_fail(int err);
-    
+     
+    /**
+     * Fonction défini dans le fichier `Command.h`.
+     * Elle a été déclarée ici pour éviter les import multiples ( le linker va 
+     * charger du reste ).
+     */
+    String replaceVar(String str);
+   
     /**@endcond*/
 
     /**
@@ -90,7 +104,7 @@
      * 
      * @param self L'objet `Redirector` s'occupant des redirections.
      */
-    void Redirector_apply_redirection( Redirector self );
+    int Redirector_apply_redirection( Redirector self );
 
     /**
      * @brief il s'agit d'une fonction qui va écrire sur tous les fichiers à 
@@ -102,6 +116,6 @@
      * 
      * @param self L'objet `Redirector` s'occupant des redirections.
      */
-    void Redirector_out_multiple_redirection( Redirector self );
+    void Redirector_multiple_redirection( Redirector self );
 
 #endif

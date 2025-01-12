@@ -774,7 +774,7 @@ long long int ArrayList_index_of( ArrayList self, void* object){
 
 
 /**
- * @biref Fonction qui va vider la liste.
+ * @brief Fonction qui va vider la liste.
  *
  * La fonction va détruire tous les objets qui se trouve à l'intérieur de la liste.
  * <p>Penser à cloner les éléments avant de vider la liste !
@@ -801,4 +801,45 @@ void ArrayList_clear( ArrayList self ){
     check_size(self);
 
 }
+    /**
+     * @brief Divise un tableau dynamique (ArrayList) en plusieurs sous-listes de taille à peu près égale.
+     *        Si la division ne donne pas un nombre exact de sous-listes, les derniers sous-tableaux
+     *        peuvent contenir un nombre légèrement supérieur d'éléments 
+     * 
+     * @param self La list à découper
+     * @param n le nombre de liste que l'on veut créer
+     * 
+     * @return Une nouvelle ArrayList contenant les n sous-listes
+     *         Si n est plus grand que la taille de la liste d'origine, les n - (self->size) liste seront
+     *         vide
+     **/
+ArrayList ArrayList_split(ArrayList self, int n){
+    assert(n > 0);
+    assert(self != NULL);
+    assert(obj_instance_of(self, _ArrayList_));
 
+    size_t max_size = (n < self->last_index) ? self->last_index / n : 1;
+
+    size_t rest = (n < self->last_index) ? self->last_index % n : 0;
+
+    ArrayList resultat = obj_new(_ArrayList_, 0);
+
+    size_t cp = 0;
+    for(size_t i=0; i<n; i++){
+        ArrayList sous_tab = obj_new(_ArrayList_, 0);
+        if(i >= self->last_index){
+            ArrayList_add_last(resultat, sous_tab, 0);
+            continue;
+        }
+        
+        size_t size = (i < n-1) ? max_size : max_size + rest;
+
+        for(size_t j = 0; j<size; j++){
+            void *element = ArrayList_get(self, cp++, 0);
+            ArrayList_add_last(sous_tab, element, 1);
+        }
+        ArrayList_add_last(resultat, sous_tab, 0);
+    }
+
+    return resultat;
+}

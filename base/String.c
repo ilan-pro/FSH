@@ -7,6 +7,8 @@
  */
 
 #include "new.h"
+#include <assert.h>
+#include <stdlib.h>
 
 /**@cond HIDE_THIS*/
 #define STRING_CLASS "String"
@@ -217,6 +219,60 @@ String String_concat(String s1_, String s2_){
     return new_string;
     
 }
+
+
+    /**
+     * @brief Fonction qui va vérifier si oui ou non le caractère donné 
+     * en argument à la fonction se trouve dans la chaine.
+     * 
+     * @param self La chaine à parcourir.
+     * @param c Le caractère à rechercher.
+     *
+     * @return 0 si la caractère n'est pas trouvé, 1 sinon. 
+     */
+    int String_contains( String self, char c){
+        
+        // Vérfications
+        assert( self );
+        assert( obj_instance_of(self, _String_) );
+        
+        for (size_t i = 0; i<self->size; i++){
+            if (self->str[i] == c)
+                return 1;
+        }
+        
+        return 0;
+
+    }
+
+
+    /**
+     * @internal 
+     * @brief Fonction qui va renvoyer une chaine de caractère qui est une 
+     * copie de la chaine encapsulée par l'objet et qui a été allouée dynamiquement.
+     *
+     * [Attention] : La chaine renvoyée est allouée dynamiquement, elle doit impérativement 
+     * être désallouée.
+     *
+     * @param self L'objet _String_ dont on veut la copie de la chaine.
+     * @return Une chaine de caractère (`char*`) copie de celle encapsulée par l'objet, 
+     * alloiuée dynamiquement.
+     */
+    char* String_to_allocated_str( String self ){
+    
+        // Vérification
+        assert( self );
+        assert( obj_instance_of(self, _String_) ); 
+
+        // Allocation d'une chaine copie de la chaine actuelle.
+        char* cp = (char*) malloc(sizeof(char) * (self->size+1));
+        assert(cp);
+
+        // Copie de la chaine encapsulée
+        return strcpy(cp, self->str);
+        
+    }
+
 
 /*****************************************************/
 /*****************************************************/
