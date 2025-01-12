@@ -671,7 +671,7 @@ static void For_get_files(For self, DIR* dir, char** path, ArrayList all_files){
 static int For_execute_for_each_file(For self, ArrayList all_files){ 
 
     int val_max = 0;
-    ////////// La parallèlisation c'est ici (enfin je crois :) ) /////////////////////
+    
     for (size_t i = 0; i<ArrayList_size(all_files); i++){
 
         char* name = obj_to_string((String)ArrayList_get(all_files, i, 0));
@@ -733,21 +733,27 @@ static int For_execute(Command self_){
     For_get_files(self, dir_opened, &dir, all_files);
 
     
+    // on calculs le nombre de threads donc nous avons besoin donc le parametre après -p
     const char *nb_thrds = 0;
+    // la liste en a au moins 1 si p n'est pas présent
     long nbr_threads = 1;
     if((nb_thrds = get_user_extension(self->params, "p")) != NULL){
         // nombre de threads en parallèles qu'il va falloir lancé
         nbr_threads= strtol(nb_thrds, NULL, 10);   
     }  
 
+    // toutes les arraylist que nous allons traité
     ArrayList split = ArrayList_split(all_files, nbr_threads);
 
     if(nbr_threads == 1){
+        // dans le cas ou nous avons juste un seul thread 
         ret = For_execute_for_each_file(self, all_files);
     }else{
+        /** nous executions en parallele tous les threads */
         for(size_t i = 0; i<nbr_threads; i++){
             pid_t child_pid = fork();
             
+            // le fils execute pour chaque element de split (donc les sous_arraylist de all_files)
             if(child_pid == 0){
                 exit(For_execute_for_each_file(self, ArrayList_get(split, i, 0)));
             }else if(child_pid > 0){
@@ -760,6 +766,7 @@ static int For_execute(Command self_){
         }
         int retour_ad;
         int max = 0;
+        // le père attends tous ses fils terminer et va renvoyer la valeur retour maximum
         while(wait(&retour_ad) != -1){
             int return_val = WEXITSTATUS(retour_ad);
             if(max < return_val){

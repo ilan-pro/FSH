@@ -774,7 +774,7 @@ long long int ArrayList_index_of( ArrayList self, void* object){
 
 
 /**
- * @biref Fonction qui va vider la liste.
+ * @brief Fonction qui va vider la liste.
  *
  * La fonction va détruire tous les objets qui se trouve à l'intérieur de la liste.
  * <p>Penser à cloner les éléments avant de vider la liste !
@@ -801,8 +801,18 @@ void ArrayList_clear( ArrayList self ){
     check_size(self);
 
 }
-
-
+    /**
+     * @brief Divise un tableau dynamique (ArrayList) en plusieurs sous-listes de taille à peu près égale.
+     *        Si la division ne donne pas un nombre exact de sous-listes, les derniers sous-tableaux
+     *        peuvent contenir un nombre légèrement supérieur d'éléments 
+     * 
+     * @param self La list à découper
+     * @param n le nombre de liste que l'on veut créer
+     * 
+     * @return Une nouvelle ArrayList contenant les n sous-listes
+     *         Si n est plus grand que la taille de la liste d'origine, les n - (self->size) liste seront
+     *         vide
+     **/
 ArrayList ArrayList_split(ArrayList self, int n){
     assert(n > 0);
     assert(self != NULL);
