@@ -165,7 +165,6 @@ static void* ExternalCommand_destroy(void* self_){
 // Execute.
 static int ExternalCommand_execute(Command self_){
     
-    ignore_signals();
     // Code de retour du processus fils.
     int process_ret;
     /**Nous allons fork afin de pouvoir exécuter les commandes externes car les commandes externes, aux antipodes des commandes
@@ -179,6 +178,11 @@ static int ExternalCommand_execute(Command self_){
             {
                 
                 // le fils
+                sigset_t mask;
+
+                assert(sigemptyset(&mask) == 0);
+                assert(sigprocmask(SIG_BLOCK, NULL, &mask) == 0);
+                assert(sigprocmask(SIG_UNBLOCK, &mask, NULL) == 0);
                 // ExternalCommand cmd = _ExternalCommand_->ctor(self_, );
                 ExternalCommand self = (ExternalCommand) (void*) self_;
                 
@@ -257,14 +261,13 @@ static int ExternalCommand_execute(Command self_){
         default:
             // le père
             if(waitpid(pid, &process_ret, 0) < 0){
-                if (WIFSIGNALED(process_ret)) {
-                    // L'attente a été interrompue par un signal, on peut ajouter un message si besoin.
-                    signal_recu = 1;
-                    return 255; // Réessayer l'appel à waitpid.
-                } else {
-                    perror("waitpid");
-                    return 1; // Une autre erreur inattendue s'est produite.
-                }
+                // perror("waitpid");
+                return 1; // Une autre erreur inattendue s'est produite.
+            }
+
+            if(WIFSIGNALED(process_ret)){
+                signal_recu = WTERMSIG(process_ret);
+                return 1; 
             }
             
             break;

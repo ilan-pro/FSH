@@ -612,6 +612,18 @@ int Shell_execute_all(ArrayList struct_cmds){
         // S'il n'y a qu'une seule commande il n'y a pas de parallèlisation.
         if (ArrayList_size( pipeline ) <= 1){
             last_status = Shell_exec_one(pipeline);
+            if (signal_recu){
+                if(signal_recu == SIGTERM){
+                    if(i == ArrayList_size(struct_cmds) - 1){
+                        break;
+                    }else{
+                        signal_recu = 0;
+                        continue;
+                    }
+                }else{
+                    break;
+                }
+            }
             continue;
         }
 
@@ -661,12 +673,14 @@ int Shell_execute_all(ArrayList struct_cmds){
 
                 // Execution et récupération de la valeur de retour.
                 int last_status = Command_execute(cmd);
-                
                 // On quitte avec la dernière valeur.
                 exit(last_status);
                 
             }
-
+            
+            if(signal_recu){
+                break;
+            }
 
             //Debug
             // show_std_new_location(cmd, 2);
@@ -683,7 +697,17 @@ int Shell_execute_all(ArrayList struct_cmds){
             free( pipes[j] );
         }
         free(pipes);
-    
+
+        if(signal_recu){
+            if(signal_recu == SIGTERM){
+                if(i == ArrayList_size(struct_cmds) - 1){
+                    break;
+                }
+                continue;
+            }else{
+                break;
+            }
+        }
 
         // On attends le dernier processus (seulement si la pipeline n'était pas vide)
         if (ArrayList_size(pipeline)){
@@ -779,8 +803,14 @@ static void update_prompt(){
 
     if (len>PROMPT_CHAR_LIMITS){
         // On pointe vers les 30 derniers caracètres (7 = 3 sont pour les ... + '[' + ']' + '$' + ' ' )
-        tr = working_dir + (len-PROMPT_CHAR_LIMITS+7+strlen(val_ret));
-        snprintf(path, 30, "...%s", tr);
+        if(signal_recu){
+            // 2 : pour SIG
+            tr = working_dir + (len-PROMPT_CHAR_LIMITS+7+strlen(val_ret) + 2);
+            snprintf(path, 30, "...%s", tr); 
+        }else{
+            tr = working_dir + (len-PROMPT_CHAR_LIMITS+7+strlen(val_ret));
+            snprintf(path, 30, "...%s", tr);
+        }
     }
     else
         // Sinon on écrit le chemin tel qu'il est.
@@ -1043,25 +1073,25 @@ void signal_handler_int(int sig){
     signal_recu = 1;
 }
 
-void signal_handler_term(int sig){}
-
 /**
  * @internal
  * @brief Fonction qui va utiliser un gestionnaire de signaux qui ne fait rien lors des signaux spécifié reçu.
  *  */
 void ignore_signals(){
     struct sigaction sa_int = {0};
-    struct sigaction sa_term = {0};
 
     /** On donne notre gestionnaire de signaux a notre structure sigaction pour gérer la réception des signaux */
     sa_int.sa_handler = &signal_handler_int;
-    
-    sa_term.sa_handler = &signal_handler_term;
+     
+    sigset_t mask;
+
+    assert(sigemptyset(&mask) == 0);
+    assert(sigaddset(&mask, SIGTERM) == 0);
+    assert(sigprocmask(SIG_BLOCK, &mask, NULL) == 0);
 
     /** 
      * ici on spécifie qu'elle signaux on veut ignorer pour le gestionnaire de signaux, signal_handler
-     * En particulier, nous voulons : SIGINT ET SIGTERM
+     * En particulier, nous voulons : SIGINT
      */
     assert(sigaction(SIGINT, &sa_int, NULL) == 0);
-    assert(sigaction(SIGTERM, &sa_term, NULL) == 0);
 }
