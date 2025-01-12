@@ -190,7 +190,7 @@ int Shell_start() {
             ArrayList file_principal = Shell_parse(&usr_prompt);
 
             if (!file_principal) {  // Si la file renvoyée est NULL alors il y a une erreur de syntaxe.
-                /** Shell_print_syntaxe_error(usr_prompt, cp_prompt); */
+                Shell_print_syntaxe_error(usr_prompt, cp_prompt);
                 previous_cmd_finish = 1;
                 free(cp_prompt);  /** Destruction du pointeur alloué par readline */
             } else {

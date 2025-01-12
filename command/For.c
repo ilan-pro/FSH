@@ -12,6 +12,7 @@
 #include <dirent.h>
 #include <sys/types.h>
 #include <sys/stat.h>
+#include <sys/wait.h>
 #include "../shell.h"
 #include "../base/String.h"
 
@@ -732,7 +733,7 @@ static int For_execute(Command self_){
     For_get_files(self, dir_opened, &dir, all_files);
 
     
-    char *nb_thrds = 0;
+    const char *nb_thrds = 0;
     long nbr_threads = 1;
     if((nb_thrds = get_user_extension(self->params, "p")) != NULL){
         // nombre de threads en parallèles qu'il va falloir lancé
