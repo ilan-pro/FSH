@@ -110,5 +110,17 @@
      */
     int String_contains( String self, char c);        
 
+    /**
+     * @brief Fonction qui va renvoyer une chaine de caractère qui est une 
+     * copie de la chaine encapsulée par l'objet et qui a été allouée dynamiquement.
+     *
+     * [Attention] : La chaine renvoyée est allouée dynamiquement, elle doit impérativement 
+     * être désallouée.
+     *
+     * @param self L'objet _String_ dont on veut la copie de la chaine.
+     * @return Une chaine de caractère (`char*`) copie de celle encapsulée par l'objet, 
+     * alloiuée dynamiquement.
+     */
+    char* String_to_allocated_str( String self );
 
 #endif

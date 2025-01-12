@@ -44,12 +44,15 @@ int main(){
     /** return Shell_start();  */
     String s1 = obj_new(_String_, "Hello");
     String s2 = obj_new(_String_, "World");
-
+    
     String c = String_concat(s1, s2);
-
+    
+    char* str = String_to_allocated_str(c);
+    printf("La chaine est là : %s\n", str);
     obj_print(c);
     printf("\n");
 
+    free(str);
     obj_destroy(s1);
     obj_destroy(s2);
     obj_destroy(c);
