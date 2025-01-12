@@ -7,6 +7,8 @@
  */
 
 #include "new.h"
+#include <assert.h>
+#include <stdlib.h>
 
 /**@cond HIDE_THIS*/
 #define STRING_CLASS "String"
@@ -244,6 +246,32 @@ String String_concat(String s1_, String s2_){
     }
 
 
+    /**
+     * @internal 
+     * @brief Fonction qui va renvoyer une chaine de caractère qui est une 
+     * copie de la chaine encapsulée par l'objet et qui a été allouée dynamiquement.
+     *
+     * [Attention] : La chaine renvoyée est allouée dynamiquement, elle doit impérativement 
+     * être désallouée.
+     *
+     * @param self L'objet _String_ dont on veut la copie de la chaine.
+     * @return Une chaine de caractère (`char*`) copie de celle encapsulée par l'objet, 
+     * alloiuée dynamiquement.
+     */
+    char* String_to_allocated_str( String self ){
+    
+        // Vérification
+        assert( self );
+        assert( obj_instance_of(self, _String_) ); 
+
+        // Allocation d'une chaine copie de la chaine actuelle.
+        char* cp = (char*) malloc(sizeof(char) * (self->size+1));
+        assert(cp);
+
+        // Copie de la chaine encapsulée
+        return strcpy(cp, self->str);
+        
+    }
 
 
 /*****************************************************/

@@ -59,7 +59,7 @@ static Command apply_cmd(char *char_lu, ArrayList file_secondaire, char** prompt
  * @param prompt Il s'agit du prompt qui est en cours de parsing.
  * @return Si oui ou non l'ajout a réussi.
  */
-static int varAffectation(char* id, char** prompt);
+static int varAffectation(char* id, char* dyn_out, char** prompt);
 
 /**
  * Fonction qui va initialiser la tables des variables qui seront utilisées 
@@ -368,8 +368,11 @@ ArrayList Shell_parse(char **prompt){
             // donc char_lu contient le nom de la commande
             // on remet lu1lettre à 0 car nous voulons relire une commande
             lu1lettre = 0;
+            
+            char* dyn_str = (char*) malloc(sizeof(char) * 1);
+            dyn_str[0] = '\0';
 
-            if(!varAffectation(char_lu, prompt))
+            if(!varAffectation(char_lu, dyn_str, prompt))
                 goto error;
 
             // on trunk l'espace alloué par l'ancienne commande afin de pouvoir stocker le nom de la nouvelle commande sans l'avoir à la concatener avec l'ancienne
@@ -402,6 +405,117 @@ error:
 
 
 /**
+ * @internal
+ * @brief Fonction qui va exécuter l'ensemble des commandes structurelles et qui va récupérer les 
+ * valeurs de sortie pour les stocker dans une variables.
+ *
+ * La fonction va travailler avec des tube anonymes (dont elle va se servir pour rediriger la sortie), 
+ * avec une parallélisation pour accélerer le processus d'exécution, mais également pour éviter les 
+ * blocages en cas de débordement de la pile (le processus père lira le tube en permanence).
+ *
+ * @param cmds Les commandes à éxécuter.
+ * @return La valeur de la sortie après exécution.
+ */
+static char* Shell_exec_for_var( ArrayList cmds ){
+    
+    // Vérifications.
+    assert( cmds );
+
+    // Création du tube.
+    int p[2];
+    pipe(p);
+
+    // Division
+    if (!fork()){ // Fils 
+        // Fermeture du coté lecteur (le fils ne lit pas il écrit).
+        assert(close(p[0]) != -1);
+        // Redirection de la sortie.
+        assert( dup2(p[1], STDOUT_FILENO) != -1);
+        // Fermeture du coté écriture (La sortie va s'occuper de l'écriture).
+        assert(close(p[1]) != -1);
+        
+        // On quitte une fois l'exécution terminée.
+        exit(Shell_execute_all(cmds));
+        
+    }
+
+    // Père
+    // Fermeture du descripteur coté écriture (le père lit mais n'écrit pas)
+    assert( close(p[1]) != -1 );
+
+    // Vérification de la valeur de retour.
+    int val;
+    
+
+    // Lecture du tube tant qu'il ya  quelque chose à lire.
+    int nb;
+    size_t total_size = 0; // Taille total de ce qui sera lu ici.
+    char buff[4096]; // largement suffisant enfin jspr.
+    ArrayList list_read = obj_new(_ArrayList_, 10); // Lliste qui va contenir chaque chaine de caractère lu.
+    while ((nb = read(p[0], buff, 4095))){ // On ne lit pas les 4096 caractères pour pouvoir y ajouter un caractère de fin.
+        
+        // Ajout d'un caractère de fin pour pouvoir travailler sur la chaine lu.
+        buff[nb] = '\0';
+        
+        // Transformation du buffer en objet String chaine de caracètre, pour pouvoir le stocker dans une liste;
+        String buff_string  = obj_new(_String_, buff);
+        // Ajout du buffer.
+        ArrayList_add_last(list_read, buff_string, 0);
+        
+        // Incrémentation de la taille totale.
+        total_size += nb;
+
+    }
+
+    /**
+     * Il n'y a pas de gestion d'erreur, pas le temps de la faire.
+     *
+     * Mais sinon il faut placer un waitpid ici pour le traitement 
+     * d'erreur.
+     */
+    
+    ////////////////////////////////////////////////////////////
+
+    // La lecture est terminé
+    // Création de la chaine résultante.
+    char* result = (char*) malloc(sizeof(char) * (total_size + 1));
+    assert(result);
+
+    result[total_size] = '\0';
+    total_size = 0;
+
+    // Parcours de la liste des chaines lues
+    for (size_t i = 0; i<ArrayList_size(list_read); i++){
+        
+        // Récupération de l'objet String lu.
+        String tmp = ArrayList_get(list_read, i, 0);
+        // Récupération de la chaine de caractère.
+        char* tmp_str = String_to_allocated_str(tmp);
+        
+        int j = 0;
+        int const_totsize = total_size;
+        // Parcours pour concaténer avec le resultat.
+        for (; total_size< const_totsize + tmp->size; total_size++){
+            result[total_size] 
+                = tmp_str[j++];
+        }
+
+        // Libération de la chaine.
+        free(tmp_str);
+
+    }
+
+
+    // Destruction de la liste
+    obj_destroy(list_read);
+    
+    // Reevoie de result.
+    return result;
+
+}
+
+
+/**
  * @internal 
  * @biref Fonction qui va créer une variable du shell dont le nom est 
  * donné en argument.
@@ -413,9 +527,10 @@ error:
  *
  * @param id L'identificateur de la variable.
  * @param prompt Il s'agit du prompt qui est en cours de parsing.
+ * @param dyn_out Chaine de caractère allouée dynamiquement qui contiendera le résultat final.
  * @return Si oui ou non l'ajout a réussi.
  */
-static int varAffectation(char* id, char** prompt){
+static int varAffectation(char* id, char* dyn_out, char** prompt){
    
     // On décale de 1 (pour =)
     (*prompt)++;
@@ -425,16 +540,6 @@ static int varAffectation(char* id, char** prompt){
 
     // Nombre de caractère lu. (Si ce nombre vaut 0 alors on a encore rien lu dans le prompt et donc tous les espaces sont ignorés. Le nombre est mis à 0 après chaque lecture d'un mot)
     int char_compteur = 0;
-    
-    /** 
-     * Chaine de caractère qui va contenir le mot en cours de lecture, 
-     * cette chaine est troquée après chaque lecture d'un mot (après 
-     * avoir rencontré le premier caractère espace depuis la lecture du mot).
-     */
-    char* mot = (char*)malloc(sizeof(char));
-    assert(mot);
-    // On ajoute le caractère de fin de chaine au mot.
-    mot[0] = '\0';
     
     int quoted = 0; // Booléean indiquant si oui ou non on se trouve dans des guillemets.
     int double_quoted = 0; // Booléean indiquant si oui ou non on se trouve dans des guillemets double.
@@ -455,14 +560,16 @@ static int varAffectation(char* id, char** prompt){
                 // Incrémentation du compteur.
                 char_compteur ++;
                 // Réallocation pour accueillir le nouveau caractère.
-                mot = realloc(mot, (1 + char_compteur) * sizeof(char));
-                mot[char_compteur] = '\0';
-                mot[char_compteur - 1] = c;
+                dyn_out = realloc(dyn_out, (1 + char_compteur) * sizeof(char));
+                dyn_out[char_compteur] = '\0';
+                dyn_out[char_compteur - 1] = c;
                 break; 
 
             case ' ': // Le cas où le caractère lu est un espace.
                     
                 goto h_default; // On va dans default
+                
+
                 
             case '"': // Le cas où on a des guillemets doubles
                 if (!quoted && !esc) // S'ils sont dans des guillemets simples ou explicitement echapés alors ils sont échapés
@@ -491,12 +598,51 @@ static int varAffectation(char* id, char** prompt){
     }
 
     // Si on arrive ici c'est qu'on a terminé la lecture du contenue de la variable.
-    if (!Shell_add_var(id, mot)){ // On tente d'ajouter la variable si possible.
-        Shell_update_var(id, mot); // Sinon on la met à jour.
-    }
+    
+    if(**prompt == '{'){ // Si le parse s'est achevé à cause de '{' alors on est dans 
+                         // le cas où l'on veut ajouter le résultat d'une commande structurelle.
+        (*prompt)++;
+        opened_brackets++; 
+        // Récupération de la commande structurée.
+        // Si la récupération échoue alors on la fonction échoue.
+        ArrayList cmds = Shell_parse(prompt);
+        // Vérification.
+        if (cmds == NULL){
+            ret = 0;
+            goto exit;
+        }
+
+        // Exécution de la commande structurelle.
+        char* out = Shell_exec_for_var( cmds );
+        obj_destroy(cmds);
+            
+        // S'il n'y a pas d'accolade de fin
+        if (**prompt != '}'){
+            char tmp[100];
+            snprintf(tmp, 100, "\e[1;31mErreur de syntaxe : Il manque une accolade fermante pour la variable.\e[1;0m\n");
+            write(2, tmp, strlen(tmp));
+            free( out );
+            ret = 0;
+            goto exit;
+        }
+        else  // S'il y en a alors on déclare une accolade ouverte en moins.
+            opened_brackets--;
         
+        // Opération très couteuse
+        size_t size = strlen(out);
+        dyn_out = realloc(dyn_out, strlen(dyn_out) + size + 1);
+        dyn_out = strcat(dyn_out, out);
+        free( out );
+        return varAffectation(id, dyn_out, prompt);
+    }
+
+    if (!Shell_add_var(id, dyn_out)){ // On tente d'ajouter la variable si possible.
+        Shell_update_var(id, dyn_out); // Sinon on la met à jour.
+    }
+
+exit: 
     // Mise à jour de la commande
-    free(mot);
+    free(dyn_out);
     return ret;
 
 }
