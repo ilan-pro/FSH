@@ -802,3 +802,34 @@ void ArrayList_clear( ArrayList self ){
 
 }
 
+
+ArrayList ArrayList_split(ArrayList self, int n){
+    assert(n > 0);
+    assert(self != NULL);
+    assert(obj_instance_of(self, _ArrayList_));
+
+    size_t max_size = (n < self->last_index) ? self->last_index / n : 1;
+
+    size_t rest = (n < self->last_index) ? self->last_index % n : 0;
+
+    ArrayList resultat = obj_new(_ArrayList_, 0);
+
+    size_t cp = 0;
+    for(size_t i=0; i<n; i++){
+        ArrayList sous_tab = obj_new(_ArrayList_, 0);
+        if(i >= self->last_index){
+            ArrayList_add_last(resultat, sous_tab, 0);
+            continue;
+        }
+        
+        size_t size = (i < n-1) ? max_size : max_size + rest;
+
+        for(size_t j = 0; j<size; j++){
+            void *element = ArrayList_get(self, cp++, 0);
+            ArrayList_add_last(sous_tab, element, 1);
+        }
+        ArrayList_add_last(resultat, sous_tab, 0);
+    }
+
+    return resultat;
+}

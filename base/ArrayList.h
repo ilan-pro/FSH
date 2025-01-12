@@ -386,4 +386,7 @@
      */
     void ArrayList_clear(ArrayList self);
 
+    /** @brief */
+    ArrayList ArrayList_split(ArrayList self, int n);
+
 #endif
