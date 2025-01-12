@@ -6,12 +6,13 @@
  * `_For_` désigne la classe des commandes for. et la chaine "for" est le nom de la commande.
  */
 
+#include <signal.h>
 #ifndef FOR_H
 #define FOR_H
 #ifdef FOR_CLASS
 #define COMMAND_CLASS
 #include "Command.h"
-    
+
     #define FOR_FILEDS \
         COMMAND_FIELDS /* Doit toujours être déclaré en premier pour pouvoir réduire l'objet à un objet de type Command pour le polymorphisme */\
         ArrayList commands; /* Il s'agit de la commande structruée à exécuter dans le `for`.*/ \
@@ -64,6 +65,8 @@
      * `_For_` désigne la classe des commandes for. et la chaine "for" est le nom de la commande.
      */
     extern const Class _For_;
+    extern volatile sig_atomic_t signal_recu;
+
     
 
 #endif

@@ -659,7 +659,7 @@ static void For_get_files(For self, DIR* dir, char** path, ArrayList all_files){
         }
 
         // -p 
-        
+
      
         /////////////////////////////////////////////////
 
@@ -689,6 +689,9 @@ static int For_execute_for_each_file(For self, ArrayList all_files){
 
         // Exécution de bloc de commandes.
         int val_ret = Shell_execute_all(self->commands);
+        if(signal_recu){
+            break;
+        }
         if (val_ret > val_max)
             val_max =val_ret;
         /** if (val_ret) // Si la valeur de retour n'est pas nulle. */
